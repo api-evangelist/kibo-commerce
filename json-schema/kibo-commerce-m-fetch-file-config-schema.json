@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-m-fetch-file-config-schema.json",
+  "title": "M_FetchFileConfig",
+  "description": "Fetch File Config Model",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-inventory-openapi.yml#/components/schemas/M_FetchFileConfig",
+  "properties": {
+    "active": {
+      "description": "Active",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "archiveBucket": {
+      "description": "S3 Archive Bucket",
+      "type": "string"
+    },
+    "blankQuantityIsZero": {
+      "description": "Flag to convert null quantities to zero",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "bucket": {
+      "description": "S3 Bucket",
+      "type": "string"
+    },
+    "csvDelimiter": {
+      "description": "CSV Delimiter",
+      "type": "string"
+    },
+    "emailList": {
+      "description": "Email List",
+      "type": "string"
+    },
+    "exportAfterRefresh": {
+      "description": "Flag for exporting after refresh",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "failed_attempts": {
+      "description": "Failed Attempts",
+      "nullable": false,
+      "type": "integer"
+    },
+    "fetchFileConfigID": {
+      "description": "Fetch File Config ID",
+      "type": "integer"
+    },
+    "fieldNameMap": {
+      "description": "List of field names",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "ftpPassword": {
+      "description": "FTP server password",
+      "type": "string"
+    },
+    "ftpPort": {
+      "description": "FTP server port",
+      "type": "integer"
+    },
+    "ftpRemotePath": {
+      "description": "FTP server remote path",
+      "type": "string"
+    },
+    "ftpRemotePathArchive": {
+      "description": "FTP server remote path archive",
+      "type": "string"
+    },
+    "ftpServer": {
+      "description": "FTP server address",
+      "type": "string"
+    },
+    "ftpUsername": {
+      "description": "FTP server username",
+      "type": "string"
+    },
+    "ignoreExtraFields": {
+      "description": "Flag for ignoring extra fields",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "lastModified": {
+      "description": "Time config was last modified",
+      "type": "string"
+    },
+    "lockName": {
+      "description": "Lock name",
+      "type": "string"
+    },
+    "multipleFiles": {
+      "description": "Flag for using multiple files",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "postImportExportId": {
+      "description": "Export id post import",
+      "type": "integer"
+    },
+    "postImportFtpId": {
+      "description": "FTP id post import",
+      "type": "integer"
+    },
+    "postProcessAction": {
+      "description": "Enum denoting action post processing",
+      "type": "integer"
+    },
+    "productMapping": {
+      "description": "Enum for fetch file mapping",
+      "enum": [
+        "SWAP_PART_NUMBER_WITH_UPC",
+        "SWAP_SKU_WITH_UPC"
+      ],
+      "title": "productMapping",
+      "type": "string"
+    },
+    "refreshEnabled": {
+      "description": "Flag for Refresh Enabled",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "refreshFileDescription": {
+      "description": "Description for the refresh file",
+      "type": "string"
+    },
+    "region": {
+      "description": "S3 Region",
+      "type": "string"
+    },
+    "s3ArchivePath": {
+      "description": "S3 Archive Bucket Path (directory)",
+      "type": "string"
+    },
+    "s3Key": {
+      "description": "S3 Key",
+      "type": "string"
+    },
+    "s3Path": {
+      "description": "S3 Bucket Path (directory)",
+      "type": "string"
+    },
+    "secret": {
+      "description": "S3 Secret",
+      "type": "string"
+    },
+    "tenantID": {
+      "description": "Tenant ID",
+      "type": "integer"
+    },
+    "updateEnabled": {
+      "description": "Flag for Update Enabled",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "updateFileDescription": {
+      "description": "Description for the update file",
+      "type": "string"
+    },
+    "useControlFile": {
+      "description": "Flag for using control file",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "zeroOutNegatives": {
+      "description": "Flag for converting negatives to zero",
+      "nullable": false,
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}

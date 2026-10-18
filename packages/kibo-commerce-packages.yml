@@ -1,0 +1,74 @@
+generated: '2026-10-18'
+method: searched
+source: https://registry.npmjs.org/-/v1/search?text=kibo
+packages:
+- name: '@kibocommerce/rest-sdk'
+  registry: npm
+  url: https://www.npmjs.com/package/@kibocommerce/rest-sdk
+  language: TypeScript
+  official: true
+  version: '3.2634.1'
+  published: '2026-09-02'
+  description: Kibo Commerce Rest client SDK
+- name: '@kibocommerce/sdk-authentication'
+  registry: npm
+  url: https://www.npmjs.com/package/@kibocommerce/sdk-authentication
+  language: TypeScript
+  official: true
+  version: '1.0.1'
+  published: '2023-11-21'
+  description: Kibo API Auth Client for TypeScript
+- name: '@kibocommerce/graphql-client'
+  registry: npm
+  url: https://www.npmjs.com/package/@kibocommerce/graphql-client
+  language: TypeScript
+  official: true
+  version: '1.0.3-beta.10'
+  published: '2022-05-06'
+  description: Kibo Apollo Client for TypeScript
+- name: '@kibocommerce/kibo-sandbox-data-cli'
+  registry: npm
+  url: https://www.npmjs.com/package/@kibocommerce/kibo-sandbox-data-cli
+  language: JavaScript
+  official: true
+  version: null
+  published: null
+  description: kibo sandbox data cli
+  note: Version information not available from npm registry
+- name: '@kibocommerce/kibo-kpp-ucp-catalog-sync-cli'
+  registry: npm
+  url: https://www.npmjs.com/package/@kibocommerce/kibo-kpp-ucp-catalog-sync-cli
+  language: JavaScript
+  official: true
+  version: null
+  published: null
+  description: A small utility to automate syncing catalogs between Kibo KPP and Kibo UCP platforms
+  note: Version information not available from npm registry
+- name: '@kibocommerce/cli-web-login'
+  registry: npm
+  url: https://www.npmjs.com/package/@kibocommerce/cli-web-login
+  language: JavaScript
+  official: true
+  version: null
+  published: null
+  description: kibo cli web login
+  note: Version information not available from npm registry
+- name: '@kibocommerce/headless-cli'
+  registry: npm
+  url: https://www.npmjs.com/package/@kibocommerce/headless-cli
+  language: JavaScript
+  official: true
+  version: null
+  published: null
+  description: Kibo Headless CLI — manage env vars, secrets, builds, and logs
+  note: Version information not available from npm registry
+- name: 'generator-mozu-actions'
+  registry: npm
+  url: https://www.npmjs.com/package/generator-mozu-actions
+  language: JavaScript
+  official: true
+  version: null
+  published: null
+  description: Yeoman generator for Kibo API Extensions
+  note: Version information not available from npm registry
+note: Found official Kibo SDKs on npm registry. Some packages have version information available while others do not. The main SDK (@kibocommerce/rest-sdk) was last updated September 2026.

@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-application-summary-schema.json",
+  "title": "ApplicationSummary",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationSummary",
+  "properties": {
+    "appId": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appKey": {
+      "description": "The AppKey is a runtime type.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appSchemeVersion": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationNamespace": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationStatusId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationStatusName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationTypeId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationVersion": {
+      "$ref": "#/$defs/AppVersion"
+    },
+    "hasV2Credentials": {
+      "description": "Indicates whether the application has been upgraded to V2 credentials.",
+      "type": "boolean"
+    },
+    "hasVersions": {
+      "description": "",
+      "type": "boolean"
+    },
+    "name": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parentAppKey": {
+      "description": "The AppKey is a runtime type.\nThis only applies for themes that inherit from another theme.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parentName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "releasePackageId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "releasePackageName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updateAvailable": {
+      "description": "",
+      "type": "boolean"
+    },
+    "updateParentAppKey": {
+      "description": "The AppKey is a runtime type.\nThis only applies for themes that inherit from another theme.\nIt shows the most current update available.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AppVersion": {
+      "description": "",
+      "properties": {
+        "majorVersion": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minorVersion": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "revision": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

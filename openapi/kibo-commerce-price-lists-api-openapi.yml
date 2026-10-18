@@ -1,0 +1,344 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Price Lists API
+  version: '1.0'
+  description: 'Operations tagged PriceLists across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Price Lists
+paths:
+  /commerce/catalog/admin/pricelists/{priceListCode}:
+    delete:
+      description: Deletes a price list by its code.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: cascadeDeleteEntries
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Delete Price List
+      tags:
+      - Price Lists
+      operationId: deleteCommerceCatalogAdminPricelistsByPriceListCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a price list by its code.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+          description: OK
+      summary: Get Price List
+      tags:
+      - Price Lists
+      operationId: getCommerceCatalogAdminPricelistsByPriceListCode
+      x-operation-id-source: derived
+    put:
+      description: Updates a price list by its code.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceList'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+          description: OK
+      summary: Update Price List
+      tags:
+      - Price Lists
+      operationId: putCommerceCatalogAdminPricelistsByPriceListCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/pricelists:
+    get:
+      description: Retrieve a list of all price lists.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListCollection'
+          description: OK
+      summary: Get Price Lists
+      tags:
+      - Price Lists
+      operationId: getCommerceCatalogAdminPricelists
+      x-operation-id-source: derived
+    post:
+      description: Creates a price list.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceList'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceList'
+          description: OK
+      summary: Add Price List
+      tags:
+      - Price Lists
+      operationId: postCommerceCatalogAdminPricelists
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PriceListCollection:
+      description: Collection of categories returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PriceList'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    PriceList:
+      description: Category
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        defaultForSites:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        description:
+          description: Description of the price list. Max length is 300
+          type:
+          - string
+          - 'null'
+        enabled:
+          description: Is the price list enabled and valid in the storefront. Default is true.
+          type:
+          - boolean
+          - 'null'
+        filteredInStorefront:
+          description: When true, only products with valid price list entries will be visible in the storefront. Default is false
+          type:
+          - boolean
+          - 'null'
+        indexedSites:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        mappedCustomerSegments:
+          description: 'List of customer segment code associated with this price list.
+
+            Used to resolve default price list'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          description: Name of the priceList. Max length is 100
+          minLength: 1
+          type: string
+        parentPriceListCode:
+          description: Parent PriceList code, Can be null for root level priceLists
+          type:
+          - string
+          - 'null'
+        parentPriceListName:
+          description: Parent PriceList name, Can be null for root level priceLists. Read only in contract.
+          type:
+          - string
+          - 'null'
+        priceListCode:
+          description: External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is 50
+          minLength: 1
+          type: string
+        priceListSequence:
+          format: int32
+          type: integer
+        rank:
+          description: Used to prioritize price list resolution when more than 1 price list maps
+          format: int32
+          type:
+          - integer
+          - 'null'
+        resolvable:
+          description: "Determines if this price list can be resolved as the current price list \nwithin a session."
+          type:
+          - boolean
+          - 'null'
+        validForAllSites:
+          description: When true, no valid sites need to be specifiied. Price list is considered valid for all sites. Default is true
+          type:
+          - boolean
+          - 'null'
+        validSites:
+          description: When ValidForAllSites = false, a list of siteIDs that the price list is valid for should be supplied
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      required:
+      - name
+      - priceListCode
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

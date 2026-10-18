@@ -1,0 +1,415 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Public Application API
+  version: '1.0'
+  description: 'Operations tagged PublicApplication across 2 of this provider''s published API definitions: openapi_openapi_appdevelopement.json, kibo-commerce-appdevelopement-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: PublicApplication
+paths:
+  /platform/developer/applications/{applicationKey}/packagenames:
+    get:
+      description: Retrieve a list of application package names.
+      parameters:
+      - in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+          description: OK
+      summary: Get App Package Names
+      tags:
+      - PublicApplication
+      operationId: getPlatformDeveloperApplicationsByApplicationKeyPackagenames
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/developer/applications/versions/{nsAndAppId}:
+    get:
+      description: Retrieve a list of application versions.
+      parameters:
+      - in: path
+        name: nsAndAppId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+          description: OK
+      summary: Get App Versions
+      tags:
+      - PublicApplication
+      operationId: getPlatformDeveloperApplicationsVersionsByNsAndAppId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/developer/packages/{applicationKey}/filemetadata/{filepath}:
+    get:
+      description: Retrieve all package file metadata.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: OK
+      summary: Get Package File Metadata
+      tags:
+      - PublicApplication
+      operationId: getPlatformDeveloperPackagesByApplicationKeyFilemetadataByFilepath
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/developer/packages/{applicationKey}/metadata:
+    get:
+      description: Retrieve application package metadata.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+          description: OK
+      summary: Get Package Metadata
+      tags:
+      - PublicApplication
+      operationId: getPlatformDeveloperPackagesByApplicationKeyMetadata
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/developer/packages/{applicationKey}/files_rename:
+    post:
+      description: Rename a package file.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenameInfo'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: OK
+      summary: Rename Package File
+      tags:
+      - PublicApplication
+      operationId: postPlatformDeveloperPackagesByApplicationKeyFilesRename
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/developer/packages/{applicationKey}/files/{filepath}:
+    delete:
+      description: Delete an existing package file.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Package File
+      tags:
+      - PublicApplication
+      operationId: deletePlatformDeveloperPackagesByApplicationKeyFilesByFilepath
+      x-operation-id-source: derived
+    post:
+      description: Update and replace a package file.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: lastModifiedTime
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: OK
+      summary: Upsert Package File
+      tags:
+      - PublicApplication
+      operationId: postPlatformDeveloperPackagesByApplicationKeyFilesByFilepath
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    RenameInfo:
+      properties:
+        newFullPath:
+          type:
+          - string
+          - 'null'
+        oldFullPath:
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ApplicationVersionsCollection:
+      properties:
+        items:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    FolderMetadata:
+      properties:
+        files:
+          items:
+            $ref: '#/components/schemas/FileMetadata'
+          type:
+          - array
+          - 'null'
+        fullPath:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        subFolders:
+          items:
+            type: object
+          type:
+          - array
+          - 'null'
+      type: object
+    PackageNamesCollection:
+      properties:
+        items:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    FileMetadata:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        checkSum:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+        sizeInBytes:
+          format: int64
+          type: integer
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_appdevelopement.json
+- kibo-commerce-appdevelopement-openapi.yml

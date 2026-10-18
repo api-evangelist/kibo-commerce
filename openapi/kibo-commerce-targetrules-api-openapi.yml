@@ -1,0 +1,274 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Target Rules API
+  version: '1.0'
+  description: 'Operations tagged TargetRules across 3 of this provider''s published API definitions: openapi_openapi_shipping.json, kibo-commerce-shipping-admin-openapi.yml, kibo-commerce-shipping-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: TargetRules
+paths:
+  /commerce/targetrules/{code}:
+    delete:
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Target Rule
+      tags:
+      - TargetRules
+      operationId: deleteCommerceTargetrulesByCode
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Get Target Rule
+      tags:
+      - TargetRules
+      operationId: getCommerceTargetrulesByCode
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Update Target Rule
+      tags:
+      - TargetRules
+      operationId: putCommerceTargetrulesByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/targetrules:
+    get:
+      description: Retrieves a list of TargetRules according to any specified filter criteria and sort options
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+          description: Success
+      summary: Get Target Rules
+      tags:
+      - TargetRules
+      operationId: getCommerceTargetrules
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Create Target Rule
+      tags:
+      - TargetRules
+      operationId: postCommerceTargetrules
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/targetrules/validate:
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        '200':
+          description: Success
+      summary: Validate Target Rule
+      tags:
+      - TargetRules
+      operationId: postCommerceTargetrulesValidate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    TargetRuleCollection:
+      description: A collection of zones
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/TargetRule'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    TargetRule:
+      description: An object used to define a bool expression against a particular domain type
+      properties:
+        code:
+          description: 'The user defined code for this rule
+
+            <remarks>must be unique</remarks>'
+          type:
+          - string
+          - 'null'
+        description:
+          description: The description of this rule
+          type:
+          - string
+          - 'null'
+        domain:
+          description: 'The domain of this rule
+
+            <value>Product</value><value>Order</value>'
+          type:
+          - string
+          - 'null'
+        expression:
+          description: the expression of this rule
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_shipping.json
+- kibo-commerce-shipping-admin-openapi.yml
+- kibo-commerce-shipping-openapi.yml

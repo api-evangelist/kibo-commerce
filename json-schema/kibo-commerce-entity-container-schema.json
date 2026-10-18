@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-entity-container-schema.json",
+  "title": "EntityContainer",
+  "description": "The metadata and Entity contents for an entity persisted in an EntityList in MZDB. The Item property contains the json representation of the Entity",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-entities-openapi.yml#/components/schemas/EntityContainer",
+  "properties": {
+    "catalogId": {
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "createBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "createDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identifier for the Entity.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "item": {
+      "description": "The entity in json format.",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "listFullName": {
+      "description": "The nameSpace and name for the EntityList in the format name@nameSpace.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "localeCode": {
+      "description": "The localeCode for the Entity. This will only be populated for EntityLists that are created with IsLocaleSpecific set to true.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "masterCatalogId": {
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "siteId": {
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "tenantId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "updateBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updateDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "userId": {
+      "description": "The userId of the shopper account associated with this Entity. This will only be populated for EntityLists that are creaetd with IsShopperSpecific set to true.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object"
+}

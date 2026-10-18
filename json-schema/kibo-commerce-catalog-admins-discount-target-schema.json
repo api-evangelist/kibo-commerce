@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-catalog-admins-discount-target-schema.json",
+  "title": "CatalogAdminsDiscountTarget",
+  "description": "What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount.\nCan also specify the minimum amount that the order must total for the discount to apply.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/CatalogAdminsDiscountTarget",
+  "properties": {
+    "appliesToLeastExpensiveProductsFirst": {
+      "description": "Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true)\nApplies to discounts where target is not a specific product or list of products.  \nMay also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "categories": {
+      "description": "List of categories to discount. When a discount applies to a category, all products in the category are discounted.",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsTargetedCategory"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "doNotApplyToHandlingFees": {
+      "description": "Prevents the discount from being applied to handling fees",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "excludeItemsWithExistingProductDiscounts": {
+      "description": "Prevents order scoped discounts from layering over items that already have a product discount with the \nsame type.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "excludeItemsWithExistingShippingDiscounts": {
+      "description": "Prevents order scoped discounts from layering over items that already have a shipping discount with the \nsame type.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "excludedCategories": {
+      "description": "List of categories to exclude from the discount. Useful to exclude specific child categories.",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsTargetedCategory"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "excludedCategoriesOperator": {
+      "description": "Applies to Included categories\nDefaults to Any",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "excludedProducts": {
+      "description": "List of products that are excluded from the discount.",
+      "items": {
+        "$ref": "#/$defs/TargetedProduct"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "includeAllProducts": {
+      "description": "If yes, the discount applies to all products sold on the storefront.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "includedCategoriesOperator": {
+      "description": "Applies to Included categories\nWhen Any, the target product can belong to any specified category.\nWhen All, the target product must belong to all specified categories.\nDefaults to Any",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "maximumQuantityPerRedemption": {
+      "description": "When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.\nif multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated \ncondition.\nIf no condition is specified then this value is not used.  \nIf null and condition exists, then defaults to 1.",
+      "exclusiveMinimum": true,
+      "format": "int32",
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "products": {
+      "description": "List of products that are eligible for the discount.",
+      "items": {
+        "$ref": "#/$defs/TargetedProduct"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "shippingMethods": {
+      "description": "Shipping method that is eligible for shipping discounts. This is a shipping method defined in Shipping Settings.",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsTargetedShippingMethod"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "shippingZones": {
+      "description": "Shipping Zones that are applicable for this discount",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsTargetedShippingZone"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "type": {
+      "description": "    Type of target to which the discount applies. Possible values: <pre>Product</pre> or <pre>Shipping</pre>. \nIf this is a <pre>Product</pre> type, you can specify which products or categories that the discount applies to.\n    If this is a <pre>Shipping</pre> type then you must specify which shipping methods apply.",
+      "minLength": 1,
+      "nullable": false,
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object",
+  "$defs": {
+    "CatalogAdminsTargetedCategory": {
+      "description": "Category to discount. When a discount applies to a category, all products in the category are discounted.",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the category to which the discount applies.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsTargetedShippingMethod": {
+      "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\nSettings resource.",
+      "properties": {
+        "code": {
+          "description": "Unique identifier of the shipping method as it appears in the SiteShippingMethod property of the Shipping Settings\nresource.",
+          "maxLength": 100,
+          "minLength": 0,
+          "nullable": false,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the shipping method as it appears in SiteShippingMethodLocalizedContent of the Shipping Settings resource.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "type": "object"
+    },
+    "CatalogAdminsTargetedShippingZone": {
+      "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\nSettings resource.",
+      "properties": {
+        "zone": {
+          "description": "Indicates the shipping zone that this discount is valid for.  If zone is provided the\nmethod selected must be valid for the zone and both populated in the order for the discount\nto be valid.",
+          "maxLength": 200,
+          "minLength": 0,
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone"
+      ],
+      "type": "object"
+    },
+    "TargetedProduct": {
+      "description": "Product to discount.",
+      "properties": {
+        "productCode": {
+          "description": "Product code of the product to discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

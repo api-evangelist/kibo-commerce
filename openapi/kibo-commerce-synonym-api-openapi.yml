@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Synonym API
+  version: '1.0'
+  description: 'Operations tagged Synonym across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Synonym
+paths:
+  /commerce/catalog/admin/searchSchema/synonyms:
+    get:
+      parameters:
+      - in: query
+        name: language
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: OK
+      summary: List Synonyms
+      tags:
+      - Synonym
+      operationId: getCommerceCatalogAdminSearchSchemaSynonyms
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/searchSchema/synonyms/reload:
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: OK
+      summary: Update Synonyms
+      tags:
+      - Synonym
+      operationId: postCommerceCatalogAdminSearchSchemaSynonymsReload
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

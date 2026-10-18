@@ -1,0 +1,412 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Fulfillment Settings API
+  version: '1.0'
+  description: 'Operations tagged FulfillmentSettings across 2 of this provider''s published API definitions: openapi_openapi_settings.json, kibo-commerce-settings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: FulfillmentSettings
+paths:
+  /commerce/settings/fulfillment/fulfillmentsettings:
+    get:
+      description: Retrieves existing fulfillment settings defined on the site
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+          description: OK
+      summary: Get Fulfillment Settings
+      tags:
+      - FulfillmentSettings
+      operationId: getCommerceSettingsFulfillmentFulfillmentsettings
+      x-operation-id-source: derived
+    post:
+      description: Creates fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentSettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+          description: OK
+      summary: Create Fulfillment Settings
+      tags:
+      - FulfillmentSettings
+      operationId: postCommerceSettingsFulfillmentFulfillmentsettings
+      x-operation-id-source: derived
+    put:
+      description: Modifies existing fulfillment settings for the site, which includes bpm settings, ship to store, back order days etc.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentSettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FulfillmentSettings'
+          description: OK
+      summary: Update Fulfillment Settings
+      tags:
+      - FulfillmentSettings
+      operationId: putCommerceSettingsFulfillmentFulfillmentsettings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ForceSTHConsolidationOnSplitShipments:
+      properties:
+        isEnabled:
+          type: boolean
+      type: object
+    PickupReminderJob:
+      allOf:
+      - $ref: '#/components/schemas/FulfillmentJob'
+      - additionalProperties: false
+        type: object
+    FutureDateLimit:
+      properties:
+        futureDateLimitQuantity:
+          format: int32
+          type: integer
+        futureDateLimitUnit:
+          type:
+          - string
+          - 'null'
+      type: object
+    ConfigurableShipmentRelease:
+      properties:
+        b2BOrderRelease:
+          $ref: '#/components/schemas/B2BOrderRelease'
+        isEnabled:
+          type: boolean
+        refreshPricingOnOrderEdit:
+          description: Indicates whether pricing should be refreshed when orders are edited.
+          type:
+          - boolean
+          - 'null'
+        reserveInventoryOnOrderPendingShipment:
+          type: boolean
+        shipmentCreationOffset:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    BPMConfiguration:
+      properties:
+        containerId:
+          type:
+          - string
+          - 'null'
+        processId:
+          type:
+          - string
+          - 'null'
+      type: object
+    FulfillmentSettings:
+      properties:
+        actionOnBOPISReject:
+          type:
+          - string
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        bpmConfiguration:
+          $ref: '#/components/schemas/BPMConfiguration'
+        configurableShipmentRelease:
+          $ref: '#/components/schemas/ConfigurableShipmentRelease'
+        createShipmentsOnPendingReview:
+          $ref: '#/components/schemas/CreateShipmentsOnPendingReview'
+        defaultBackOrderDays:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        deliveryConsolidation:
+          $ref: '#/components/schemas/DeliveryConsolidation'
+        fulfillerSettings:
+          $ref: '#/components/schemas/FulfillerSettings'
+        fulfillmentJobSettings:
+          $ref: '#/components/schemas/FulfillmentJobSettings'
+        futureDateLimit:
+          $ref: '#/components/schemas/FutureDateLimit'
+        futureInventoryEnabled:
+          type:
+          - boolean
+          - 'null'
+        paymentVoidAndReauth:
+          type:
+          - boolean
+          - 'null'
+        retainFlatRatePerOrder:
+          type:
+          - boolean
+          - 'null'
+        shipToHomeConsolidation:
+          $ref: '#/components/schemas/ShipToHomeConsolidation'
+        shipToStore:
+          $ref: '#/components/schemas/ShipToStore'
+        shipmentsOnHold:
+          $ref: '#/components/schemas/ShipmentsOnHold'
+        substitution:
+          $ref: '#/components/schemas/Substitution'
+      type: object
+    JobInterval:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    B2BOrderRelease:
+      properties:
+        automaticReleaseOffset:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        isEnabled:
+          type: boolean
+        releaseType:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingMethod:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShipToStore:
+      properties:
+        alwaysCreateTransferShipments:
+          type: boolean
+        cancellation:
+          $ref: '#/components/schemas/Cancellation'
+        isEnabled:
+          type: boolean
+        shippingMethod:
+          $ref: '#/components/schemas/ShippingMethod'
+      type: object
+    AutoRelease:
+      properties:
+        enabled:
+          type:
+          - boolean
+          - 'null'
+        jobInterval:
+          $ref: '#/components/schemas/JobInterval'
+      type: object
+    CreateShipmentsOnPendingReview:
+      properties:
+        isEnabled:
+          type: boolean
+      type: object
+    ShipToHomeConsolidation:
+      properties:
+        allowPartialFulfillment:
+          description: AllowPartialFulfillment
+          type: boolean
+        cancellationSTHC:
+          $ref: '#/components/schemas/Cancellation'
+        forceSTHConsolidationOnSplitShipments:
+          $ref: '#/components/schemas/ForceSTHConsolidationOnSplitShipments'
+        isEnabled:
+          type: boolean
+        multipleConsolidation:
+          $ref: '#/components/schemas/MultipleConsolidation'
+        shippingMethodSTHC:
+          $ref: '#/components/schemas/ShippingMethod'
+      type: object
+    FulfillerSettings:
+      properties:
+        editShipment:
+          type: boolean
+      type: object
+    ShipmentsOnHold:
+      properties:
+        autoRelease:
+          $ref: '#/components/schemas/AutoRelease'
+        enabled:
+          type:
+          - boolean
+          - 'null'
+        manualRelease:
+          type:
+          - boolean
+          - 'null'
+      type: object
+    Substitution:
+      properties:
+        repriceOnSubstitution:
+          type: boolean
+      type: object
+    FulfillmentJobSettings:
+      properties:
+        pickupReminderJob:
+          $ref: '#/components/schemas/PickupReminderJob'
+        releaseBackorderJob:
+          $ref: '#/components/schemas/ReleaseBackorderJob'
+      type: object
+    DeliveryConsolidation:
+      properties:
+        allowPartialFulfillment:
+          description: AllowPartialFulfillment
+          type: boolean
+        cancellationOnParentShipment:
+          type: boolean
+        forceDeliveryConsolidation:
+          type: boolean
+        isEnabled:
+          type: boolean
+        multipleConsolidation:
+          description: MultipleConsolidation
+          type: boolean
+        restrictedCancellationSteps:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        shippingMethodDeliveryConsolidation:
+          $ref: '#/components/schemas/ShippingMethod'
+      type: object
+    ReleaseBackorderJob:
+      properties:
+        interval:
+          format: int32
+          type: integer
+        isEnabled:
+          type: boolean
+        partialReleaseEnabled:
+          type: boolean
+        partialReleaseType:
+          type:
+          - string
+          - 'null'
+      type: object
+    MultipleConsolidation:
+      properties:
+        isEnabled:
+          type: boolean
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    FulfillmentJob:
+      properties:
+        interval:
+          format: int32
+          type: integer
+        isEnabled:
+          type: boolean
+      type: object
+    Cancellation:
+      properties:
+        onParentShipment:
+          type: boolean
+        restrictedSteps:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_settings.json
+- kibo-commerce-settings-openapi.yml

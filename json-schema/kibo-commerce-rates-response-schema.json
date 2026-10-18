@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-rates-response-schema.json",
+  "title": "RatesResponse",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-shipping-storefront-openapi.yml#/components/schemas/RatesResponse",
+  "properties": {
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rates": {
+      "items": {
+        "$ref": "#/$defs/CarrierRatesResponse"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "resolvedShippingZoneCode": {
+      "description": "Resolved Shipping Zone Code.  This value can be null if the tenant/site does not have shipping zones defined or there are no matching \nshipping zones for the request (e.g. the only zone defined is \"UNITED-STATES\" and the destination address of the rate request is in Canada)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "shippingZoneCodes": {
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "CarrierRatesResponse": {
+      "properties": {
+        "carrierId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "customAttributes": {
+          "deprecated": true,
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "fulfillmentMethod": {
+          "description": "The fulfillment method for which this carrier rate is applicable to. Possible values are Ship and Delivery.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shippingRates": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeShippingRate"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomAttribute": {
+      "properties": {
+        "childAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRateLocalizedContent": {
+      "properties": {
+        "localeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRateValidationMessage": {
+      "description": "Shipping Rate Validation Message",
+      "properties": {
+        "helpLink": {
+          "description": "Help Link",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "message": {
+          "description": "Message",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "severity": {
+          "description": "Severity",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeDeliveryWindow": {
+      "properties": {
+        "dropoffTime": {
+          "$ref": "#/$defs/TimeWindow"
+        },
+        "pickupTime": {
+          "$ref": "#/$defs/TimeWindow"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeShippingItemRate": {
+      "description": "The shipping rate for a particular line item",
+      "properties": {
+        "amount": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "itemId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeShippingRate": {
+      "properties": {
+        "amount": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "content": {
+          "$ref": "#/$defs/ShippingRateLocalizedContent"
+        },
+        "customAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "data": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "daysInTransit": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "messages": {
+          "items": {
+            "$ref": "#/$defs/ShippingRateValidationMessage"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "shippingItemRates": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeShippingItemRate"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "windows": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeDeliveryWindow"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TimeWindow": {
+      "description": "Represents a time window with a start and end time.",
+      "properties": {
+        "endsAt": {
+          "description": "Gets or sets the end time of the time window.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "startsAt": {
+          "description": "Gets or sets the start time of the time window.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

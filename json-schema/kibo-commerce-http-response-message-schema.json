@@ -1,0 +1,237 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-http-response-message-schema.json",
+  "title": "HttpResponseMessage",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HttpResponseMessage",
+  "properties": {
+    "content": {
+      "$ref": "#/$defs/HttpContent"
+    },
+    "headers": {
+      "items": {
+        "$ref": "#/$defs/StringStringIEnumerableKeyValuePair"
+      },
+      "readOnly": true,
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "isSuccessStatusCode": {
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "reasonPhrase": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "requestMessage": {
+      "$ref": "#/$defs/HttpRequestMessage"
+    },
+    "statusCode": {
+      "$ref": "#/$defs/HttpStatusCode"
+    },
+    "trailingHeaders": {
+      "items": {
+        "$ref": "#/$defs/StringStringIEnumerableKeyValuePair"
+      },
+      "readOnly": true,
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "HttpContent": {
+      "properties": {
+        "headers": {
+          "items": {
+            "$ref": "#/$defs/StringStringIEnumerableKeyValuePair"
+          },
+          "readOnly": true,
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "HttpMethod": {
+      "properties": {
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "HttpRequestMessage": {
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/HttpContent"
+        },
+        "headers": {
+          "items": {
+            "$ref": "#/$defs/StringStringIEnumerableKeyValuePair"
+          },
+          "readOnly": true,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "method": {
+          "$ref": "#/$defs/HttpMethod"
+        },
+        "options": {
+          "additionalProperties": {},
+          "readOnly": true,
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "properties": {
+          "additionalProperties": {
+            "nullable": true
+          },
+          "deprecated": true,
+          "readOnly": true,
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "requestUri": {
+          "format": "uri",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "version": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "versionPolicy": {
+          "$ref": "#/$defs/HttpVersionPolicy"
+        }
+      },
+      "type": "object"
+    },
+    "HttpStatusCode": {
+      "enum": [
+        100,
+        101,
+        102,
+        103,
+        200,
+        201,
+        202,
+        203,
+        204,
+        205,
+        206,
+        207,
+        208,
+        226,
+        300,
+        301,
+        302,
+        303,
+        304,
+        305,
+        306,
+        307,
+        308,
+        400,
+        401,
+        402,
+        403,
+        404,
+        405,
+        406,
+        407,
+        408,
+        409,
+        410,
+        411,
+        412,
+        413,
+        414,
+        415,
+        416,
+        417,
+        421,
+        422,
+        423,
+        424,
+        426,
+        428,
+        429,
+        431,
+        451,
+        500,
+        501,
+        502,
+        503,
+        504,
+        505,
+        506,
+        507,
+        508,
+        510,
+        511
+      ],
+      "format": "int32",
+      "type": "integer"
+    },
+    "HttpVersionPolicy": {
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "format": "int32",
+      "type": "integer"
+    },
+    "StringStringIEnumerableKeyValuePair": {
+      "properties": {
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

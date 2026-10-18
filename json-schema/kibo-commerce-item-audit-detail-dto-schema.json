@@ -1,0 +1,301 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-item-audit-detail-dto-schema.json",
+  "title": "ItemAuditDetailDto",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-fulfillment-openapi.yml#/components/schemas/ItemAuditDetailDto",
+  "properties": {
+    "accountName": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "assignedPriority": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "callOffState": {
+      "type": "string"
+    },
+    "childShipmentNumbers": {
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "contractedQty": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "distinctProductCount": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "donorReservationIds": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "fulfillmentType": {
+      "type": "string"
+    },
+    "lineItemCount": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "locationCode": {
+      "type": "string"
+    },
+    "locationName": {
+      "type": "string"
+    },
+    "newPriority": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "orderNumber": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "originShipmentNumber": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "outcomeCode": {
+      "type": "string"
+    },
+    "outcomeText": {
+      "type": "string"
+    },
+    "previousPriority": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "queue": {
+      "type": "string"
+    },
+    "reservationCategory": {
+      "type": "string"
+    },
+    "reservationId": {
+      "type": "string"
+    },
+    "reservationState": {
+      "type": "string"
+    },
+    "reservationType": {
+      "type": "string"
+    },
+    "ruleCode": {
+      "type": "string"
+    },
+    "ruleDescription": {
+      "type": "string"
+    },
+    "ruleName": {
+      "type": "string"
+    },
+    "shipDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "shipWindowEnd": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "shipWindowStart": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "shipmentNumber": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "sourcing": {
+      "$ref": "#/$defs/SourcingDto"
+    },
+    "splitLineage": {
+      "$ref": "#/$defs/SplitLineageDto"
+    },
+    "totalUnits": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "triggeringEvents": {
+      "items": {
+        "$ref": "#/$defs/ChangeDto"
+      },
+      "type": "array"
+    },
+    "view": {
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ChangeDto": {
+      "properties": {
+        "afterValue": {
+          "type": "object"
+        },
+        "beforeValue": {
+          "type": "object"
+        },
+        "changeCategory": {
+          "type": "string"
+        },
+        "detectedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "locationCode": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": "string"
+        },
+        "sequenceId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "subtype": {
+          "type": "string"
+        },
+        "upcs": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "title": "ChangeDto",
+      "type": "object"
+    },
+    "SourcingDto": {
+      "properties": {
+        "atpAtScope": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "atsAtScope": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "balanceCalled": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "balanceContracted": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "balanceUncalled": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "heldBeforeRun": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "lostUnits": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nettingPosition": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "reSecuredUnits": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "stolenFrom": {
+          "items": {
+            "$ref": "#/$defs/StolenFromDto"
+          },
+          "type": "array"
+        }
+      },
+      "title": "SourcingDto",
+      "type": "object"
+    },
+    "SplitLineageDto": {
+      "properties": {
+        "origin": {
+          "$ref": "#/$defs/SplitLineageOriginDto"
+        },
+        "results": {
+          "items": {
+            "$ref": "#/$defs/SplitLineageEntryDto"
+          },
+          "type": "array"
+        }
+      },
+      "title": "SplitLineageDto",
+      "type": "object"
+    },
+    "SplitLineageEntryDto": {
+      "properties": {
+        "origin": {
+          "type": "boolean"
+        },
+        "queue": {
+          "type": "string"
+        },
+        "shipmentNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "units": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "title": "SplitLineageEntryDto",
+      "type": "object"
+    },
+    "SplitLineageOriginDto": {
+      "properties": {
+        "queue": {
+          "type": "string"
+        },
+        "shipmentNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalUnits": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "title": "SplitLineageOriginDto",
+      "type": "object"
+    },
+    "StolenFromDto": {
+      "properties": {
+        "orderNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "shipDate": {
+          "type": "string"
+        },
+        "unitsStolen": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "title": "StolenFromDto",
+      "type": "object"
+    }
+  }
+}

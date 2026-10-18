@@ -1,0 +1,581 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory API
+  version: '1.0'
+  description: 'Operations tagged Inventory across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Inventory
+paths:
+  /commerce/inventory/v5/inventory/aggregate:
+    post:
+      description: Aggregates inventory.
+      parameters:
+      - description: Site ID
+        in: query
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/AggregateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AggregateResponse'
+                type: array
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Aggregate
+      tags:
+      - Inventory
+      operationId: postCommerceInventoryV5InventoryAggregate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory:
+    post:
+      description: Queries for specified inventory at given location. To call the version of this API with RIS (real-time inventory service) data, use the /commerce/realtime-inventory/v5/inventory endpoint instead.
+      parameters:
+      - description: Site ID
+        in: query
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/InventoryRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/InventoryResponse'
+                type: array
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Get Inventory (POST)
+      tags:
+      - Inventory
+      operationId: postCommerceInventoryV5Inventory
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    taggedInventoryMap:
+      items:
+        $ref: '#/components/schemas/TagQuantity'
+      type: array
+    AggregateRequest:
+      description: Request for aggregating inventory
+      properties:
+        directShip:
+          description: Whether to limit results to locations that are shipping enabled
+          type: boolean
+        forceDefaultsForUnspecifiedTagCategories:
+          description: Whether to force populate default tags onto the request if they are unspecified for any tag category
+          type: boolean
+        futureEndDate:
+          description: Future end Date at which the inventory should be allocated against.
+          format: date-time
+          type: string
+        futureStartDate:
+          description: Future start Date at which the inventory should be allocated against.
+          format: date-time
+          type: string
+        ignoreSafetyStock:
+          description: Whether to ignore the safety stock buffer put in place
+          type: boolean
+        includeFutureInventory:
+          description: 'Enum for including future inventory: [futureOnly, futureAndCurrent]'
+          enum:
+          - futureOnly
+          - futureAndCurrent
+          type: string
+        includeNegativeFutureInventory:
+          description: Whether to allow items with negative future inventory in the results
+          type: boolean
+        includeNegativeInventory:
+          description: Whether to allow items with negative inventory in the results
+          type: boolean
+        items:
+          description: List of Items to search on
+          items:
+            $ref: '#/components/schemas/InventoryItem'
+          type: array
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        pickup:
+          description: Filter results by pickup enabled (true) or not (false)
+          type: boolean
+        sortBy:
+          description: index to sort results by
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        transferEnabled:
+          description: Filter results by locations that have transfer enabled (true) or don't (false)
+          type: boolean
+        userID:
+          description: user id
+          type: integer
+      title: Aggregate Request
+      type: object
+    InventoryItem:
+      description: Item
+      properties:
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        lotCode:
+          type: string
+        partNumber:
+          description: Part/Product Number
+          type: string
+        serialNumber:
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Item
+      type: object
+    InventoryResponse:
+      description: Inventory Response
+      properties:
+        allocated:
+          description: The quantity the location has that are already allocated.
+          type: integer
+        attributes:
+          description: List of Inventory Attributes
+          items:
+            type: string
+          type: array
+        available:
+          description: The quantity the location has that are available for purchase
+          type: integer
+        blockAssignment:
+          description: Whether or not the product is blocked for assignment
+          type: boolean
+        countryCode:
+          description: The country code of this location
+          type: string
+        directShip:
+          description: Whether this location can ship to a consumer
+          type: boolean
+        distance:
+          description: The distance in miles from this location to the item's destination
+          type: number
+        externalID:
+          description: External ID of the item
+          type: string
+        floor:
+          description: Absolute minimum quantity of this item that should be in stock at any time
+          type: integer
+        futureInventory:
+          $ref: '#/components/schemas/futureInventoryArray'
+        inventoryLocatorName:
+          description: The inventory locator name of the individual item
+          type: string
+        locationCode:
+          description: Location Code
+          type: string
+        locationName:
+          description: Location Name
+          type: string
+        ltd:
+          description: Custom field used for store prioritization
+          type: number
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        onHand:
+          description: The quantity the location has in its possession
+          type: integer
+        partNumber:
+          description: Part/Product Number
+          type: string
+        pending:
+          description: The quantity the location has that are pending.
+          type: integer
+        pickup:
+          description: Whether a consumer can pick up product at this location (store)
+          type: boolean
+        safetyStock:
+          description: Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+          type: integer
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        success:
+          description: Flag for success
+          type: boolean
+        taggedInventory:
+          $ref: '#/components/schemas/taggedInventoryMap'
+        tenantID:
+          description: Tenant Identifier
+          type: integer
+        transferEnabled:
+          description: Whether the location can ship to another location (store), thus restocking that location.
+          type: boolean
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Inventory Response
+      type: object
+    InventoryRequest:
+      description: Request for getting Inventory
+      properties:
+        deliveryDateAfter:
+          description: DateTime to filter for only future inventory with a delivery date after or equal to the given date
+          format: date-time
+          type: string
+        deliveryDateBefore:
+          description: DateTime to filter for only future inventory with a delivery date before or equal to the given date
+          format: date-time
+          type: string
+        directShip:
+          description: Whether to limit results to locations that are shipping enabled
+          type: boolean
+        excludeBlockedAssignment:
+          description: 'Filter out results that are blocked from assignment (at the product/location level) '
+          type: boolean
+        forceDefaultsForUnspecifiedTagCategories:
+          description: Whether to force populate default tags onto the request if they are unspecified for any tag category
+          type: boolean
+        ignoreSafetyStock:
+          description: Whether to ignore the safety stock buffer put in place
+          type: boolean
+        includeAttributes:
+          description: Flag to include attributes or not
+          type: boolean
+        includeFutureInventory:
+          description: If set to true, include future inventory in response (records that were set with a deliveryDate).
+          type: boolean
+        includeInAggregateExport:
+          description: Filter results by locations that have aggregate export enabled (true) or don't (false)
+          type: boolean
+        includeInLocationExport:
+          description: Filter results by locations that have physical storefronts (true) or don't (false)
+          type: boolean
+        includeNegativeFutureInventory:
+          description: Whether to allow items with negative future inventory in the results
+          type: boolean
+        includeNegativeInventory:
+          description: Whether to allow items with negative inventory in the results
+          type: boolean
+        items:
+          description: List of Items to search on
+          items:
+            $ref: '#/components/schemas/ItemQuantity'
+          type: array
+        limit:
+          description: The maximum number of results to return, defaults to 100 for most
+          type: integer
+        locationBlacklist:
+          description: List of location codes that are NOT allowed to be included in results
+          items:
+            type: string
+          type: array
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        locationPriorityList:
+          description: List of location codes that should be returned before all others, preventing them from being excluded by limit
+          items:
+            type: string
+          type: array
+        locationWhitelist:
+          description: List of location codes that are allowed to be included in results
+          items:
+            type: string
+          type: array
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        pickup:
+          description: Filter results by locations that have finderbot enabled (true) or don't (false)
+          type: boolean
+        requestLocation:
+          $ref: '#/components/schemas/RequestLocation'
+        sortBy:
+          description: index to sort results by
+          type: string
+        sortByEnum:
+          description: What to sort the inventory results by. Only used for GetInventoryByLocation calls (locationCode must be set)
+          enum:
+          - ON_HAND
+          - AVAILABLE
+          - ALLOCATED
+          - PART_NUMBER
+          - PRODUCT_ID
+          type: string
+        sortDescending:
+          description: Whether to sort by descending order or not. Must be used in conjunction with the sortByEnum value
+          type: boolean
+        tags:
+          $ref: '#/components/schemas/tags'
+        transferEnabled:
+          description: Filter results by locations that have transfer enabled (true) or don't (false)
+          type: boolean
+        type:
+          description: Inventory Request Type Enum
+          enum:
+          - ALL
+          - PARTIAL
+          - ANY
+          - ALL_STORES
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Inventory Request
+      type: object
+    AggregateResponse:
+      description: Response for aggregating Inventory
+      properties:
+        available:
+          description: The quantity the location has that are available for purchase
+          type: integer
+        floor:
+          description: Absolute minimum quantity of this item that should be in stock at any time
+          type: integer
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        onHand:
+          description: The quantity the location has in its possession
+          type: integer
+        partNumber:
+          description: Part/Product Number
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        success:
+          description: Flag for success
+          type: boolean
+        tags:
+          $ref: '#/components/schemas/tags'
+        tenantID:
+          description: Manufacturer Identifier
+          type: integer
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Aggregate Response
+      type: object
+    ItemQuantity:
+      description: Item Quantity Model
+      properties:
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        lotCode:
+          type: string
+        partNumber:
+          description: Part/Product Number
+          type: string
+        quantity:
+          description: Quantity
+          type: integer
+        serialNumber:
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Item Quantity
+      type: object
+    InventoryFutureInventory:
+      description: Future Inventory Model
+      properties:
+        allocated:
+          description: Expected change in the actual allocated inventory value when this future inventory record is released.
+          type: integer
+        available:
+          description: Expected change in the actual available inventory value when this future inventory record is released.
+          type: integer
+        createDate:
+          description: Date the inventory was created.
+          format: date-time
+          type: string
+        deliveryDate:
+          description: Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'
+          format: date-time
+          type: string
+        futureInventoryID:
+          description: Future Inventory unique identifier.
+          type: integer
+        onhand:
+          description: Expected change in the actual onhand inventory value when this future inventory record is released.
+          type: integer
+        pending:
+          description: Number of new expected pending items that would be created by releasing this future inventory record assuming no actual inventory is available
+          type: integer
+        type:
+          description: 'Type of future inventory update: REFRESH or ADJUST.'
+          type: string
+      title: Future Inventory
+      type: object
+    TagQuantity:
+      description: Response object for a tag quantity
+      properties:
+        allocated:
+          description: The quantity the location has that are already allocated for this tag
+          type: integer
+        available:
+          description: The quantity the location has that are available for purchase for this tag
+          type: integer
+        futureInventory:
+          $ref: '#/components/schemas/futureInventoryArray'
+        onHand:
+          description: The quantity the the location has in its possession for this tag
+          type: integer
+        pending:
+          description: The quantity the location has that are pending for this tag
+          type: integer
+        tags:
+          $ref: '#/components/schemas/tags'
+      title: Tag quantity response
+      type: object
+    tags:
+      additionalProperties:
+        type: string
+      description: Associative Map of <String, String> for tagCategoryName => tagName
+      type: object
+    futureInventoryArray:
+      items:
+        $ref: '#/components/schemas/InventoryFutureInventory'
+      type: array
+    RequestLocation:
+      description: Request Location
+      properties:
+        addressID:
+          description: Address ID for this location
+          type: integer
+        addressLine1:
+          description: Address line 1 for this location
+          type: string
+        city:
+          description: City for this location
+          type: string
+        countryCode:
+          description: Country Code for this location
+          type: string
+        customerID:
+          description: CustomerID ID for this location
+          type: integer
+        latitude:
+          description: Latitude coordinate of this location
+          type: number
+        locationCode:
+          description: Location Code for this location. This being set will trigger GetInventoryByLocation
+          type: string
+        longitude:
+          description: Longitude coordinate of this location
+          type: number
+        phone:
+          description: Phone number for this location
+          type: string
+        postalCode:
+          description: Postal Code of this location
+          type: string
+        radius:
+          description: Distance from location
+          type: number
+        state:
+          description: State for this location
+          type: string
+        unit:
+          default: MILES
+          description: Unit of distance used for radius
+          enum:
+          - MILES
+          - KM
+          type: string
+      title: Request Location
+      type: object
+  requestBodies:
+    AggregateRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AggregateRequest'
+      description: Request to aggregate inventory
+      required: true
+    InventoryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InventoryRequest'
+      description: Request to get inventory
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

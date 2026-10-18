@@ -1,0 +1,302 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Priority API
+  version: '1.0'
+  description: 'Operations tagged ShipmentPriority across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentPriority
+paths:
+  /commerce/shipments/priorities/{shipmentNumber}/history:
+    get:
+      deprecated: false
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PriorityInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriorityInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PriorityInfo'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Prioritization History
+      tags:
+      - ShipmentPriority
+      operationId: getCommerceShipmentsPrioritiesByShipmentNumberHistory
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/priorities/{shipmentNumber}:
+    get:
+      deprecated: false
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PriorityInfo'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriorityInfo'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PriorityInfo'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Priority Info
+      tags:
+      - ShipmentPriority
+      operationId: getCommerceShipmentsPrioritiesByShipmentNumber
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/priorities:
+    put:
+      deprecated: false
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePrioritiesDto'
+        description: request
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/UpdatePrioritiesResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePrioritiesResponseDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UpdatePrioritiesResponseDto'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Priorities
+      tags:
+      - ShipmentPriority
+      operationId: putCommerceShipmentsPriorities
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PriorityResult:
+      properties:
+        actual:
+          type: string
+        expected:
+          type: string
+        fulfillmentPriority:
+          format: int32
+          type: integer
+        previousPriority:
+          format: int32
+          type: integer
+        reason:
+          type: string
+        ruleCode:
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        status:
+          type: string
+      title: PriorityResult
+      type: object
+    PriorityInfo:
+      properties:
+        history:
+          items:
+            $ref: '#/components/schemas/PriorityEvent'
+          type: array
+        prioritizedAt:
+          format: date-time
+          type: string
+        priority:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+        ruleType:
+          type: string
+        statusWhenPrioritized:
+          type: string
+      title: PriorityInfo
+      type: object
+    PriorityAssignment:
+      properties:
+        fulfillmentPriority:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+      title: PriorityAssignment
+      type: object
+    UpdatePrioritiesResponseDto:
+      properties:
+        results:
+          items:
+            $ref: '#/components/schemas/PriorityResult'
+          type: array
+        shipmentsReset:
+          format: int32
+          type: integer
+        shipmentsUnchanged:
+          format: int32
+          type: integer
+        shipmentsUpdated:
+          format: int32
+          type: integer
+      title: UpdatePrioritiesResponseDto
+      type: object
+    UpdatePrioritiesDto:
+      properties:
+        locationCode:
+          type: string
+        moreInfo:
+          type: string
+        priorities:
+          items:
+            $ref: '#/components/schemas/PriorityAssignment'
+          type: array
+        reasonCode:
+          type: string
+        resetOrphanedPriorities:
+          type: boolean
+        ruleType:
+          type: string
+        shipmentStatus:
+          type: string
+      title: UpdatePrioritiesDto
+      type: object
+    PriorityEvent:
+      properties:
+        action:
+          type: string
+        priority:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+        ruleType:
+          type: string
+        shipmentStatus:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      title: PriorityEvent
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

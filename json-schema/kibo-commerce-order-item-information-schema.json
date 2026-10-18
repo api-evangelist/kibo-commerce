@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-order-item-information-schema.json",
+  "title": "Order Item Information",
+  "description": "Order Item Information",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-inventory-openapi.yml#/components/schemas/OrderItemInformation",
+  "properties": {
+    "allocated": {
+      "description": "The quantity the location has that are allocated",
+      "type": "integer"
+    },
+    "allocates": {
+      "description": "Total number of allocations",
+      "type": "integer"
+    },
+    "available": {
+      "description": "The quantity the location has that are available for purchase",
+      "type": "integer"
+    },
+    "binID": {
+      "description": "Bin Identifier",
+      "type": "integer"
+    },
+    "deallocates": {
+      "description": "Total number of deallocations",
+      "type": "integer"
+    },
+    "events": {
+      "description": "Order Identifier",
+      "items": {
+        "$ref": "#/$defs/OrderItemInformationEvent"
+      },
+      "type": "array"
+    },
+    "floor": {
+      "description": "Absolute minimum quantity of this item that should be in stock at any time",
+      "type": "integer"
+    },
+    "fulfills": {
+      "description": "Total number of fulfillments. Should never be greater than 1.",
+      "type": "integer"
+    },
+    "locationActive": {
+      "description": "Flag for whether the location is active",
+      "type": "boolean"
+    },
+    "locationCode": {
+      "description": "External Store Identifier",
+      "type": "integer"
+    },
+    "locationID": {
+      "description": "Location Identifier",
+      "type": "integer"
+    },
+    "locationName": {
+      "description": "Location Name",
+      "type": "string"
+    },
+    "ltd": {
+      "description": "Custom field used for store prioritization",
+      "type": "string"
+    },
+    "messages": {
+      "description": "List of messages",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "numResults": {
+      "description": "Number of results",
+      "type": "integer"
+    },
+    "onHand": {
+      "description": "The quantity the location has in its possession",
+      "type": "integer"
+    },
+    "orderID": {
+      "description": "Order Identifier",
+      "type": "integer"
+    },
+    "orderItemID": {
+      "description": "Order Item Identifier",
+      "type": "integer"
+    },
+    "partNumber": {
+      "description": "Part/Product Number",
+      "type": "string"
+    },
+    "pendingQuantity": {
+      "description": "Pending quantity (WMS only)",
+      "type": "integer"
+    },
+    "picks": {
+      "description": "Total number of picks (WMS only)",
+      "type": "integer"
+    },
+    "safetyStock": {
+      "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
+      "type": "integer"
+    },
+    "sku": {
+      "description": "Stock Keeping Unit",
+      "type": "string"
+    },
+    "success": {
+      "description": "Flag for success",
+      "type": "boolean"
+    },
+    "upc": {
+      "description": "Universal Product Code",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "OrderItemInformationEvent": {
+      "description": "Order Item Information Event",
+      "properties": {
+        "date": {
+          "description": "Date of the event",
+          "type": "string"
+        },
+        "eventType": {
+          "description": "Type of event",
+          "enum": [
+            "ALLOCATED",
+            "DEALLOCATED",
+            "FULFILLED",
+            "PICKED",
+            "DEALLOCATE_FULFILL"
+          ],
+          "type": "string"
+        },
+        "messages": {
+          "description": "List of messages",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "numResults": {
+          "description": "Number of results",
+          "type": "integer"
+        },
+        "quantity": {
+          "description": "Quantity",
+          "type": "integer"
+        },
+        "success": {
+          "description": "Flag for success",
+          "type": "boolean"
+        }
+      },
+      "title": "Order Item Information Event",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,2337 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-catalog-admins-product-schema.json",
+  "title": "CatalogAdminsProduct",
+  "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/CatalogAdminsProduct",
+  "properties": {
+    "applicableDiscounts": {
+      "description": "Read only. List of discounts that are available for a product.",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsDiscount"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "baseProductCode": {
+      "description": "This is the base product ProductCode of a product that is a variation. It is read-only and only populated for products that are variations of a configurable base product.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "bundledProducts": {
+      "description": "list of other products that are included in a BundleProduct\nThis requires that the ProductUsage be set to Bundle",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsBundledProduct"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "content": {
+      "$ref": "#/$defs/ProductLocalizedContent"
+    },
+    "extras": {
+      "description": "The Extras defined in the product Type that are currently assigned to this product",
+      "items": {
+        "$ref": "#/$defs/ProductExtra"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "fulfillmentTypesSupported": {
+      "description": "Indicates the fulfillment types the product supports.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "hasConfigurableOptions": {
+      "description": "Read only. If true, this product has configurable options. The product is not purchasable until the shopper selects options that resolve to a product variation. System-supplied and read-only.",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "hasStandAloneOptions": {
+      "description": "Read only. If true, the product has stand-alone options that a shopper may select. System-supplied and read-only.",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "inventoryInfo": {
+      "$ref": "#/$defs/ProductInventoryInfo"
+    },
+    "isPackagedStandAlone": {
+      "description": "Does this product need to be packaged on its own",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isRecurring": {
+      "description": "If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isTaxable": {
+      "description": "If true, the product is subject to tax.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isValidForProductType": {
+      "description": "Read only flag that indicates if the product meets the product type constraints (All adminRequired attributes have a valid value)",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isVariation": {
+      "description": "Read only. If true, this is a product variation of a product with configurable options. System-supplied and read-only.",
+      "nullable": false,
+      "type": "boolean"
+    },
+    "localizedContent": {
+      "description": "The content for each locale code supported by the master catalog",
+      "items": {
+        "$ref": "#/$defs/ProductLocalizedContent"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "localizedSEOContent": {
+      "description": "The default content SEO content of a product. This content is always in the default language of the MasterCatalog",
+      "items": {
+        "$ref": "#/$defs/ProductLocalizedSEOContent"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "masterCatalogId": {
+      "description": "Identifier of the Master Catalog that this product is a member of. System-supplied and read-only",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "options": {
+      "description": "The Options defined in the product Type that are currently assigned to this product",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsProductOption"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "packageHeight": {
+      "$ref": "#/$defs/Measurement"
+    },
+    "packageLength": {
+      "$ref": "#/$defs/Measurement"
+    },
+    "packageWeight": {
+      "$ref": "#/$defs/Measurement"
+    },
+    "packageWidth": {
+      "$ref": "#/$defs/Measurement"
+    },
+    "price": {
+      "$ref": "#/$defs/CatalogAdminsProductPrice"
+    },
+    "pricingBehavior": {
+      "$ref": "#/$defs/ProductPricingBehaviorInfo"
+    },
+    "primaryProductCollectionCode": {
+      "description": "When this product belongs to a product collection this is the product id for the primary collection.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "productCode": {
+      "description": "Merchant-created code identifier associated with the product, for example, a SKU or product item number.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "productCollectionProducts": {
+      "description": "list of other products that are members of a ProductCollection\nThis requires that the ProductUsage be set to Collection",
+      "items": {
+        "$ref": "#/$defs/ProductCollectionProduct"
+      },
+      "maxItems": 35,
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "productCollections": {
+      "description": "List of Mozu.ProductAdmin.Contracts.ProductCollectionInfo that this product belongs to",
+      "items": {
+        "$ref": "#/$defs/ProductCollectionInfo"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "productImageGroups": {
+      "description": "List of the image groups this product uses.\nImage groups are used to map different images to different product options.\nIf the product doesn't have options then all images will be in the default\nimage group.",
+      "items": {
+        "$ref": "#/$defs/ProductImageGroup"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "productInCatalogs": {
+      "description": "Catalog specific info for each catalog a product is valid in. There should always be one or more entries here.",
+      "items": {
+        "$ref": "#/$defs/ProductInCatalogInfo"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "productSequence": {
+      "description": "System generated monotonically increasing sequence",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "productTypeId": {
+      "description": "Unique identifier of the productType of the product. Refers to a valid ProductType that was previously created with the ProductType resource.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "productUsage": {
+      "description": "Indicates the usage type of this product. Must be one of the values in ProductUsageConst.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "properties": {
+      "description": "The Properties defined in the product Type that are currently assigned to this product",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsProductProperty"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "publishingInfo": {
+      "$ref": "#/$defs/ProductPublishingInfo"
+    },
+    "seoContent": {
+      "$ref": "#/$defs/ProductLocalizedSEOContent"
+    },
+    "shippingClassId": {
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "slicingSettings": {
+      "$ref": "#/$defs/SlicingSettings"
+    },
+    "standAlonePackageType": {
+      "description": "When packaged alone this is the package type",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "supplierInfo": {
+      "$ref": "#/$defs/ProductSupplierInfo"
+    },
+    "upc": {
+      "description": "UPC code of the product.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "variationKey": {
+      "description": "Read only. If IsVariation true, thish provides a unique key to manage the variation of the base product.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "variationOptions": {
+      "description": "Read only List of variations that exist for a product. This is only populated when IsVariation is true. To get the list of options, the GET request must include the VariationOptions response group.",
+      "items": {
+        "$ref": "#/$defs/ProductVariationOption"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AttributeVocabularyValueLocalizedContent": {
+      "description": "Attribute Value Localized Resource",
+      "properties": {
+        "localeCode": {
+          "description": "Language used for the string attribute value. Currently, only en_US is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stringValue": {
+          "description": "Localized Value in the language of the locale code",
+          "minLength": 1,
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsActiveDateRange": {
+      "description": "Active Effectivity Dates",
+      "properties": {
+        "endDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsAttributeVocabularyValue": {
+      "description": "Value of an attribute",
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+        },
+        "displayOrder": {
+          "description": "The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "localizedContent": {
+          "description": "The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.",
+          "items": {
+            "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "mappedGenericValues": {
+          "description": "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time.",
+          "items": {},
+          "maxItems": 200,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "productName": {
+          "description": "The ProductName when the Attribute DataType is ProductCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed.",
+          "maxLength": 50,
+          "nullable": false,
+          "pattern": "^[A-Za-z0-9-_\\.()]*[A-Za-z0-9-_()]"
+        },
+        "valueSequence": {
+          "description": "Read only System generated monotonically increasing unique sequence.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsBundledProduct": {
+      "description": "Price of the product and currency used.",
+      "properties": {
+        "fulfillmentTypesSupported": {
+          "description": "Indicates the fulfillment types the product supports.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "packageHeight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "packageLength": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "packageWeight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "packageWidth": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "price": {
+          "$ref": "#/$defs/CatalogAdminsProductPrice"
+        },
+        "productCode": {
+          "description": "Product Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productName": {
+          "description": "Read only Name of the BundledProduct",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "Qty of the bundled PRoduct",
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsCustomerSegment": {
+      "description": "Represents a customer segment",
+      "properties": {
+        "id": {
+          "description": "The Customer segment Id.\nThis is the  system Id not the code.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsDiscount": {
+      "description": "Allows you to define and manage discounts to apply to your products, product categories, or orders. The discounts can be a specified monetary amount off the price, percentage off the price, or for free shipping.\nYou can create a coupon code that applies to the discount.",
+      "properties": {
+        "amount": {
+          "description": "    Amount of the discount, as a percentage or monetary amount, for example 15% or $15.\nMust be either null or greater than zero.",
+          "exclusiveMinimum": true,
+          "format": "double",
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "amountType": {
+          "description": "Type of discount, which can be either a percentage off the price, \na specific monetary amount, or free. \nPossible values: \n\tPercentage \n\tAmount \n\tFree\n\tFixedPrice",
+          "minLength": 1,
+          "nullable": false,
+          "type": "string"
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "canBeDeleted": {
+          "description": "Signifies that the discount is not referenced and can be hard deleted",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "canBeStackedUpon": {
+          "description": "Indicates whether or not stacking is enabled for this discount",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "code": {
+          "description": "Indicates unique code for the discount, if not present Discount Id is used as a code.",
+          "maxLength": 50,
+          "pattern": "^[A-Za-z0-9-_\\.()]*[A-Za-z0-9-_()]$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "conditions": {
+          "$ref": "#/$defs/CatalogAdminsDiscountCondition"
+        },
+        "content": {
+          "$ref": "#/$defs/DiscountLocalizedContent"
+        },
+        "currentRedemptionCount": {
+          "description": "How many times this discount has been redeemed. System-supplied and read-only.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "doesNotApplyToMultiShipToOrders": {
+          "description": "Flag to allow or prevent application to multi-ship-to orders,\nOnly applicable to shipping discounts.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "doesNotApplyToProductsWithSalePrice": {
+          "description": "Determines whether or not a discount applies to a items with a sale price.  Applicable \non order and line item discounts.  For line items, when this is true, the discount will \nbe disqualified.  For order level discounts, when true, the discount will not be applied \nto those items have a sale price.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "doesNotApplyToSalePrice": {
+          "description": "Determines if the discount should apply to sale price or regular price only.\nDiscounts will apply to sale prices by default.\nOnly applies to LineItem product discounts.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "hasPurchaseConditions": {
+          "description": "Indicates if this discount has purchase conditions that must be met before \nthe discount is applied",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "id": {
+          "description": "Unique identifier of the discount. System-supplied and read-only.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "includedPriceLists": {
+          "description": "Products receiving a price from a price list specified here or a child of a specified \nprice list can be discounted.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "isBxGx": {
+          "description": "Readonly property indicating that the condition required purchase is the \nsame as the target items.  Used in BxGx and BoGo type discounts.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isDisabled": {
+          "description": "Signifies if the discount is disabled (Null is treated as false)",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isPublic": {
+          "description": "Determines whether the discount is available for every shopper.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isSubscriptionDiscount": {
+          "description": "Determines how discounts will be evaluated for subscription items and during continuity orders.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "labels": {
+          "description": "Indicates unique discount labels.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "localizedContent": {
+          "description": "Container for the language-specific name of the discount. You will have a container for each supported language (LocaleCode).\nThis enables you to display the discount name in multiple languages yet manage it as a single discount internally.",
+          "items": {
+            "$ref": "#/$defs/DiscountLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "maximumDiscountImpactPerOrder": {
+          "description": "Maximum impact this discount can apply on a single order.\n Must be either null or greater than zero.",
+          "exclusiveMinimum": true,
+          "format": "double",
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maximumDiscountImpactPerRedemption": {
+          "description": "Maximum impact this discount can apply on a single line item.\n Must be either null or greater than zero.",
+          "exclusiveMinimum": true,
+          "format": "double",
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maximumRedemptionsPerOrder": {
+          "description": "Maximum number of redemptions allowed per order.\nIf null, defaults to unlimited.",
+          "exclusiveMinimum": true,
+          "format": "int32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "maximumUsesPerUser": {
+          "description": "Maximum number of times a user can redeem this discount.\n Must be either null or greater than zero.",
+          "exclusiveMinimum": true,
+          "format": "int32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "preventLineItemShippingDiscounts": {
+          "description": "Prevents Line Item Shipping discounts from being applied when a Line Item Product  \ndiscount has been applied",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "preventOrderProductDiscounts": {
+          "description": "Prevents Order Product discounts from being applied when a Line Item Product  \nor Shipping discount has been applied",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "preventOrderShippingDiscounts": {
+          "description": "Prevents Order Shipping discounts from being applied when a Line Item Product/Shipping  \nor Order Product discount has been applied",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "purchaseRequirementType": {
+          "description": "The type of purchase requirement for this discount, either purchase conditions and targets which   \nSupports BoGo, and BxGx scenarios. Or Target only that only have a target and no purchase conditions",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reevalFreeItemMinOrderPostDiscounts": {
+          "description": "Enables post-order-discount minimum re-evaluation for eligible free-item discounts.\nValues null and false are treated as disabled.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "scope": {
+          "description": "Scope to which the discount applies, valid values are: Order, LineItem",
+          "minLength": 1,
+          "nullable": false,
+          "type": "string"
+        },
+        "stackingLayer": {
+          "description": "Indicates which stacking layer this discount is a part of",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "status": {
+          "description": "Discount status which can be \"Active,\" \"Scheduled,\" or \"Expired.\" System-supplied and read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tagCodes": {
+          "description": "System-supplied and read-only.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/CatalogAdminsDiscountTarget"
+        },
+        "thresholdMessage": {
+          "$ref": "#/$defs/CatalogAdminsThresholdMessage"
+        }
+      },
+      "required": [
+        "amountType",
+        "scope",
+        "target"
+      ],
+      "type": "object"
+    },
+    "CatalogAdminsDiscountCondition": {
+      "description": "Specifies constraints that must be satified for a discount to be applied to a target.\nConstraints are Anded together",
+      "properties": {
+        "categoriesToExcludeFromMinOrderTotal": {
+          "description": "List of categories to discount. When a discount applies to a category, all products in the category are discounted.",
+          "items": {
+            "$ref": "#/$defs/CategoryDiscountCondition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "continuityRecurrenceSettings": {
+          "$ref": "#/$defs/ContinuityRecurrenceSettings"
+        },
+        "couponCode": {
+          "description": "Code of the coupon associated with the discount (if a coupon code is required). The merchant can supply the code or the system can generate it.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "customerSegments": {
+          "description": "List of customer groups for which the discount applies",
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsCustomerSegment"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "excludedCategories": {
+          "description": "List of categories to discount. When a discount applies to a category, all products in the category are discounted.",
+          "items": {
+            "$ref": "#/$defs/CategoryDiscountCondition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "excludedProducts": {
+          "description": "List of products that are eligible for the discount.",
+          "items": {
+            "$ref": "#/$defs/ProductDiscountCondition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "exclusiveLocationCodes": {
+          "description": "List of locations where the item/order should be fulfilled for the discount to be valid.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "exclusiveSiteIds": {
+          "description": "The discount condition for site Ids, if present the discount will be applied only to these sites.\nIf not present discount will work for all sites in a catalog.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "expirationDate": {
+          "description": "Date when the discount expires. Default is null (no expiration date).",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expression": {
+          "$ref": "#/$defs/CatalogAdminsDynamicExpression"
+        },
+        "includedCategories": {
+          "description": "List of categories that must be purchased in order for the discount to be valid.",
+          "items": {
+            "$ref": "#/$defs/CategoryDiscountCondition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "includedPaymentWorkflows": {
+          "description": "List of payment types that trigger this discount to be valid.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "includedProducts": {
+          "description": "List of products that are eligible for the discount.",
+          "items": {
+            "$ref": "#/$defs/ProductDiscountCondition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "maxRedemptionCount": {
+          "description": "Maximum number of times that the discount can be redeemed. Default is null (no limit to discount redemptions).",
+          "exclusiveMinimum": true,
+          "format": "int32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "maximumOrderAmount": {
+          "description": "Only applies to order.\nMaximum order subtotal after discounts in order for the associated discount to be applied",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minDistinctProductsRequired": {
+          "description": "The minimum number of distinct products on the order\nNot a quantity calculation.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minTotalOrderQuantity": {
+          "description": "The order must contain at least this total quantity of items for the discount to apply.\nYou must buy a combined quantity of at least x amount.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minimumCategorySubtotalBeforeDiscounts": {
+          "description": "Minimum amount that must be purchased in the combined categories defined in \nIncludedCategories.  Amount is calculated before discounting.\nNot used if IncludedCategories is empty.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minimumLifetimeValueAmount": {
+          "description": "Minimum lifetime value amount required for this discount to apply",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minimumOrderAmount": {
+          "description": "Only applies to order.\nMinimum order subtotal after discounts in order for the associated discount to be applied",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minimumQuantityProductsRequiredInCategories": {
+          "description": "Minimum quantity of products in the categories specified in IncludedCategories that must be purchased to\nqualify for the associated discount.\nDefaults to 1 if  null and IncludedCategories has values",
+          "exclusiveMinimum": true,
+          "format": "int32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minimumQuantityRequiredProducts": {
+          "description": "Minimum quantity of products in the specified IncludedProducts that must be purchased to\nqualify for the associated discount.\nDefaults to 1 if  null and IncludedProducts has values.",
+          "exclusiveMinimum": true,
+          "format": "int32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minimumRequiredQuantityPerRedemption": {
+          "description": "Defines a minimum quantity that is required for a target only discount",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "pricingContext": {
+          "description": "The pricing context must match on this value for the discount to apply.\nThis only matters for tenants that use subscription products",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productsToExcludeFromMinOrderTotal": {
+          "description": "List of products that are eligible for the discount.",
+          "items": {
+            "$ref": "#/$defs/ProductDiscountCondition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "requiresAuthenticatedUser": {
+          "description": "Determines is this discount can be used by an anonymous user \nDefaults to false to allow discounts for anonymous users.",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "requiresCoupon": {
+          "description": "If true, the shopper needs to enter a coupon code to redeem the discount.",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "startDate": {
+          "description": "Date when the discount can goes into effect, in the format yyyy-mm-dd.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validFulfillmentMethods": {
+          "description": "The discount condition for fulfillment methods, if present the discount will be applied only to these fulfillment methods.\nThis must be a value defined in FulfillmentMethodConst below.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "validSubscriptionContinuityOrdinals": {
+          "description": "Ordinals at which a continuity order should receive the discount.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "validSubscriptionFrequencies": {
+          "description": "List of subscription frequencies to which the discount will apply.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsDiscountTarget": {
+      "description": "What to discount. Specifies the type of discount (percentage off, monetary amount, or free shipping) and which products, categories, or shipping methods are eligible for the discount.\nCan also specify the minimum amount that the order must total for the discount to apply.",
+      "properties": {
+        "appliesToLeastExpensiveProductsFirst": {
+          "description": "Determines which way the discount is optimized.  Consumers favor(default - false/null) or tenants favor (when this is set to true)\nApplies to discounts where target is not a specific product or list of products.  \nMay also impact behavior of Buy X Get Y so that X is the most expensive items and Y the least expensive.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "categories": {
+          "description": "List of categories to discount. When a discount applies to a category, all products in the category are discounted.",
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsTargetedCategory"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "doNotApplyToHandlingFees": {
+          "description": "Prevents the discount from being applied to handling fees",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "excludeItemsWithExistingProductDiscounts": {
+          "description": "Prevents order scoped discounts from layering over items that already have a product discount with the \nsame type.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "excludeItemsWithExistingShippingDiscounts": {
+          "description": "Prevents order scoped discounts from layering over items that already have a shipping discount with the \nsame type.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "excludedCategories": {
+          "description": "List of categories to exclude from the discount. Useful to exclude specific child categories.",
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsTargetedCategory"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "excludedCategoriesOperator": {
+          "description": "Applies to Included categories\nDefaults to Any",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "excludedProducts": {
+          "description": "List of products that are excluded from the discount.",
+          "items": {
+            "$ref": "#/$defs/TargetedProduct"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "includeAllProducts": {
+          "description": "If yes, the discount applies to all products sold on the storefront.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "includedCategoriesOperator": {
+          "description": "Applies to Included categories\nWhen Any, the target product can belong to any specified category.\nWhen All, the target product must belong to all specified categories.\nDefaults to Any",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maximumQuantityPerRedemption": {
+          "description": "When a condition is specified, this property limits the number of items that can be targeted per discount redemption with an order.\nif multiple redemptions are allowed per order then multiples of this value would be allowed in multiples of the associated \ncondition.\nIf no condition is specified then this value is not used.  \nIf null and condition exists, then defaults to 1.",
+          "exclusiveMinimum": true,
+          "format": "int32",
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "products": {
+          "description": "List of products that are eligible for the discount.",
+          "items": {
+            "$ref": "#/$defs/TargetedProduct"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "shippingMethods": {
+          "description": "Shipping method that is eligible for shipping discounts. This is a shipping method defined in Shipping Settings.",
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsTargetedShippingMethod"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "shippingZones": {
+          "description": "Shipping Zones that are applicable for this discount",
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsTargetedShippingZone"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "type": {
+          "description": "    Type of target to which the discount applies. Possible values: <pre>Product</pre> or <pre>Shipping</pre>. \nIf this is a <pre>Product</pre> type, you can specify which products or categories that the discount applies to.\n    If this is a <pre>Shipping</pre> type then you must specify which shipping methods apply.",
+          "minLength": 1,
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "required": [
+        "type"
+      ],
+      "type": "object"
+    },
+    "CatalogAdminsDynamicExpression": {
+      "description": "Category",
+      "properties": {
+        "text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tree": {
+          "$ref": "#/$defs/CatalogAdminsExpression"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsExpression": {
+      "properties": {
+        "left": {
+          "description": "The field target of a predicate",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "logicalOperator": {
+          "description": "And or Or (if Container with More than one Node)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "nodes": {
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsExpression"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "operator": {
+          "description": "The operator of a predicate",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "right": {
+          "description": "The literal values of a predicate",
+          "nullable": true
+        },
+        "type": {
+          "description": "Container or Predicate",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsProductOption": {
+      "description": "Product options for configurable or stand-alone products. A configurable option is one that the shopper chooses when ordering, for example, \nthe color of a T-shirt. A stand-alone option is independent of the product and can be added to the product order. For example, a monogram.",
+      "properties": {
+        "attributeFQN": {
+          "description": "Unique identifier of the Attribute.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isProductImageGroupSelector": {
+          "description": "Defines whether or not this option can be used to segment product images",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "values": {
+          "description": "List of all the values for this product option.",
+          "items": {
+            "$ref": "#/$defs/ProductOptionValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsProductPrice": {
+      "description": "Price of the product and currency used.",
+      "properties": {
+        "creditValue": {
+          "description": "Credit amt of the product",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "isoCurrencyCode": {
+          "description": "Currency code.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "map": {
+          "description": "Minimum Advertised Price",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "mapEndDate": {
+          "description": "Minimum Advertised Price effectivity end date (null = forever)",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mapStartDate": {
+          "description": "Minimum Advertised Price effective start date (null = begining of time)",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "msrp": {
+          "description": "Manufacturer Suggested Retail Price. +",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price": {
+          "description": "Price of the product. This is the price the merchant intends to sell the product if no sale price is present.",
+          "format": "double",
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "salePrice": {
+          "description": "Current sale price of the product. Sale price is a numeric (monetary) amount, not a percentage off.",
+          "format": "double",
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsProductProperty": {
+      "description": "Product options for configurable or stand-alone products. A configurable option is one that the shopper chooses when ordering, for example, \nthe color of a T-shirt. A stand-alone option is independent of the product and can be added to the product order. For example, a monogram.",
+      "properties": {
+        "attributeFQN": {
+          "description": "Unique identifier of the Attribute.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "forceOrder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsProductPropertyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsProductPropertyValue": {
+      "description": "A value of a product option for this product. For example, a computer product may have an option called \"Memory\" that can have the values \"6GB,\"8GB,\" and \"12GB.\"",
+      "properties": {
+        "attributeVocabularyValueDetail": {
+          "$ref": "#/$defs/CatalogAdminsAttributeVocabularyValue"
+        },
+        "content": {
+          "$ref": "#/$defs/ProductPropertyValueLocalizedContent"
+        },
+        "localizedContent": {
+          "items": {
+            "$ref": "#/$defs/ProductPropertyValueLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsTargetedCategory": {
+      "description": "Category to discount. When a discount applies to a category, all products in the category are discounted.",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the category to which the discount applies.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsTargetedShippingMethod": {
+      "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\nSettings resource.",
+      "properties": {
+        "code": {
+          "description": "Unique identifier of the shipping method as it appears in the SiteShippingMethod property of the Shipping Settings\nresource.",
+          "maxLength": 100,
+          "minLength": 0,
+          "nullable": false,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the shipping method as it appears in SiteShippingMethodLocalizedContent of the Shipping Settings resource.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "type": "object"
+    },
+    "CatalogAdminsTargetedShippingZone": {
+      "description": "Shipping method that is eligible for free shipping. This is the shipping method that is defined with the Shipping\nSettings resource.",
+      "properties": {
+        "zone": {
+          "description": "Indicates the shipping zone that this discount is valid for.  If zone is provided the\nmethod selected must be valid for the zone and both populated in the order for the discount\nto be valid.",
+          "maxLength": 200,
+          "minLength": 0,
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone"
+      ],
+      "type": "object"
+    },
+    "CatalogAdminsThresholdMessage": {
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "content": {
+          "$ref": "#/$defs/ThresholdMessageLocalizedContent"
+        },
+        "discountId": {
+          "description": "Unique identifier of the discount. System-supplied and read-only.",
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        },
+        "isActive": {
+          "description": "Indicates if threshold messages are active for this discount",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "localizedContent": {
+          "description": "Container for the language-specific name of the threshold message. You will have a container for each supported language (LocaleCode).\nThis enables you to display the message in multiple languages yet manage it as a single message internally.",
+          "items": {
+            "$ref": "#/$defs/ThresholdMessageLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "requiresCouponCode": {
+          "description": "Indicates if the threshold message will display when a promo code is evaluated",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "showInCart": {
+          "description": "Indicates if the threshold message will display in the cart",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "showOnCheckout": {
+          "description": "Indicates if the threshold message will display on the checkout page",
+          "nullable": false,
+          "type": "boolean"
+        },
+        "thresholdValue": {
+          "description": "The cart total amount that must be met before the threshold message is displayed",
+          "format": "double",
+          "nullable": false,
+          "type": "number"
+        }
+      },
+      "required": [
+        "discountId",
+        "thresholdValue"
+      ],
+      "type": "object"
+    },
+    "CategoryDiscountCondition": {
+      "description": "Represents a product category and quantity constraint",
+      "properties": {
+        "categoryId": {
+          "description": "Unique identifier of the category to which the discount condition applies.",
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ContinuityRecurrenceSettings": {
+      "properties": {
+        "interval": {
+          "description": "Interval until next discount applies",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "startOrdinal": {
+          "description": "Continuity ordinal to start discounting",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "stopOrdinal": {
+          "description": "Continuity ordinal to stop discounting",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomPropertyValues": {
+      "properties": {
+        "value1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value10": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value5": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value6": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value7": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value8": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value9": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "DiscountLocalizedContent": {
+      "description": "Container for the language-specific name of the discount. You will have a container for each supported language\n(LocaleCode).\nThis enables you to display the discount name in multiple languages yet manage it as a single discount internally.",
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "customPropertyValues": {
+          "$ref": "#/$defs/CustomPropertyValues"
+        },
+        "friendlyDescription": {
+          "description": "Promotional text or HTML that can be utilized as friendly content like \"Buy this product now and get X!\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "localeCode": {
+          "description": "Lanugage used for the discount in the current catalog. Defaults setting for the active catalog.",
+          "maxLength": 8,
+          "minLength": 0,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the discount.",
+          "maxLength": 200,
+          "minLength": 0,
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object"
+    },
+    "Measurement": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductCategory": {
+      "description": "Categories to which the product belongs.",
+      "properties": {
+        "categoryId": {
+          "description": "Unique identifier of the category. System-supplied and read-only.",
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProductCollectionInfo": {
+      "description": "Information about the relationship between a Mozu.ProductAdmin.Contracts.Product and a productCollection (product with usagetype of collection)\nThis is only represented on the product member side of the relationship.",
+      "properties": {
+        "collectionName": {
+          "description": "Collection name in the language of the master catalog",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "collectionProductCode": {
+          "description": "Product code of the product that is the collection that the containing product belongs to",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isPrimaryCollection": {
+          "description": "True when this is the primary collection for the containing product.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductCollectionMemberKey": {
+      "description": "Key to resolve a collection member",
+      "properties": {
+        "value": {
+          "description": "Key to resolve a collection member product",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductCollectionProduct": {
+      "description": "List of products that belong to a product collection product.",
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/ProductLocalizedContent"
+        },
+        "memberKey": {
+          "$ref": "#/$defs/ProductCollectionMemberKey"
+        },
+        "price": {
+          "$ref": "#/$defs/CatalogAdminsProductPrice"
+        },
+        "productUsage": {
+          "description": "ReadOnly Indicates the usage type of this product. Must be one of the values in ProductUsageConst.",
+          "readOnly": true,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductCost": {
+      "description": "Price of the product and currency used.",
+      "properties": {
+        "cost": {
+          "description": "Cost of the product. This is the price the merchant pays for the product.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "isoCurrencyCode": {
+          "description": "Currency code.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductDiscountCondition": {
+      "description": "Represents a product and quantity constraint",
+      "properties": {
+        "productCode": {
+          "description": "Product code of the product to discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductExtra": {
+      "description": "Product options for configurable or stand-alone products. A configurable option is one that the shopper chooses when ordering, for example, \nthe color of a T-shirt. A stand-alone option is independent of the product and can be added to the product order. For example, a monogram.",
+      "properties": {
+        "attributeFQN": {
+          "description": "Unique identifier of the Attribute.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isMultiSelect": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isRequired": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/ProductExtraValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductExtraValue": {
+      "description": "A value of a product option for this product. For example, a computer product may have an option called \"Memory\" that can have the values \"6GB,\"8GB,\" and \"12GB.\"",
+      "properties": {
+        "attributeVocabularyValueDetail": {
+          "$ref": "#/$defs/CatalogAdminsAttributeVocabularyValue"
+        },
+        "deltaPrice": {
+          "$ref": "#/$defs/ProductExtraValueDeltaPrice"
+        },
+        "deltaWeight": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "isDefaulted": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "localizedDeltaPrice": {
+          "items": {
+            "$ref": "#/$defs/ProductExtraValueDeltaPrice"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ProductExtraValueDeltaPrice": {
+      "description": "How much a product option costs above the cost of the base product, if at all.",
+      "properties": {
+        "currencyCode": {
+          "description": "Which currency to use.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deltaPrice": {
+          "description": "Amount of money saved when discounts are applied.",
+          "format": "double",
+          "nullable": false,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ProductImageGroup": {
+      "properties": {
+        "productImageGroupId": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "productImageGroupTags": {
+          "items": {
+            "$ref": "#/$defs/ProductImageGroupTag"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "productImageGroupId"
+      ],
+      "type": "object"
+    },
+    "ProductImageGroupTag": {
+      "properties": {
+        "fqn": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "fqn"
+      ],
+      "type": "object"
+    },
+    "ProductInCatalogInfo": {
+      "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.",
+      "properties": {
+        "activeDateRange": {
+          "$ref": "#/$defs/CatalogAdminsActiveDateRange"
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "catalogId": {
+          "description": "The CatalogId of the catalog that the product is associated with (The catalog must a valid catalog within the MasterCatalog that the product belongs to)",
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        },
+        "dateFirstAvailableInCatalog": {
+          "description": "Date this product was first Available for sale in the catalog. This is utilized in expressions that reference DaysInCatloag.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isActive": {
+          "description": "If true, the product is marked as available for sale in the catalog. Setting a product to IsActive = false will prevent it from being shown on the customer facing storefront.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isPriceOverridden": {
+          "description": "If true, the price for this product is overridden in the catalog. If false, the MasterCatalog level price will be used for the product.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "price": {
+          "$ref": "#/$defs/CatalogAdminsProductPrice"
+        },
+        "primaryProductCategory": {
+          "$ref": "#/$defs/ProductCategory"
+        },
+        "productCategories": {
+          "description": "Categories to which the product belongs for this catalog.",
+          "items": {
+            "$ref": "#/$defs/ProductCategory"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductInventoryInfo": {
+      "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.",
+      "properties": {
+        "manageStock": {
+          "description": "If true, the Products service manages inventory for this product.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "outOfStockBehavior": {
+          "description": "The behvior when the ManageStock is true and the product is not in stock.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductLocalizedContent": {
+      "description": "Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display a product in multiple languages yet manage it as a single product internally.",
+      "properties": {
+        "localeCode": {
+          "description": "Lanugage used for product content. Currently, only en_US is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productFullDescription": {
+          "description": "Long description of the product typically used for a product details page.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productImages": {
+          "description": "List of images associated with the product.",
+          "items": {
+            "$ref": "#/$defs/ProductLocalizedImage"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "productName": {
+          "description": "Name of the product.",
+          "nullable": false,
+          "pattern": "^(?!\\s+).+(?<!\\s)$",
+          "type": "string"
+        },
+        "productShortDescription": {
+          "description": "Brief description of the product typically used when the product is displayed in a list or search results.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductLocalizedImage": {
+      "description": "Contains the image label and alternate text for a product image or video in the language specified by LocalCode.",
+      "properties": {
+        "altText": {
+          "description": "Descriptive text associated with the image or video that appears on the storefront.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cmsId": {
+          "description": "Id of the image in the CMS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Unique identifier of the image. System-supplied and read-only.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "imageLabel": {
+          "description": "Image title that appears on the storefront.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "description": "URL of the image.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "localeCode": {
+          "description": "Language used for the image content.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mediaType": {
+          "description": "Type of media. Used by the client to determine how to render the image or video or what have you.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productImageGroupId": {
+          "description": "Image group to which this image belongs.  Default is null.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sequence": {
+          "description": "For products with multiple images, the order in which this image appears on the storefront.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "videoUrl": {
+          "description": "URL of a video associated with the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductLocalizedSEOContent": {
+      "description": "Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display a product in multiple languages yet manage it as a single product internally.",
+      "properties": {
+        "localeCode": {
+          "description": "Lanugage used for product content. Currently, only en_US is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagDescription": {
+          "description": "Metadata description. Metadata can be used to manage information internally. Sometimes used for SEO.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagKeywords": {
+          "description": "Metadata keywords. Metadata can be used to manage information internally. Sometimes used for SEO.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagTitle": {
+          "description": "Metadata title. Metadata can be used to manage information internally. Sometimes used for SEO.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "seoFriendlyUrl": {
+          "description": "Human-readable identifier that you can give to the product to create friendly URLs. For example, \ninstead of \"http: //example.com/products?category=2&id=25,\" the friendly URL can be \"http: //example.com/products/category/2/25.\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "titleTagTitle": {
+          "description": "Used to customize the HTML title tag within the head section of the product details page",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductOptionValue": {
+      "description": "A value of a product option for this product. For example, a computer product may have an option called \"Memory\" that can have the values \"6GB,\"8GB,\" and \"12GB.\"",
+      "properties": {
+        "attributeVocabularyValueDetail": {
+          "$ref": "#/$defs/CatalogAdminsAttributeVocabularyValue"
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ProductPricingBehaviorInfo": {
+      "description": "Pricing behavior associated with the product",
+      "properties": {
+        "discountsRestricted": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "discountsRestrictedEndDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discountsRestrictedStartDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "variationPricingMethod": {
+          "description": "Only used when product is a variation",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductPropertyValueLocalizedContent": {
+      "description": "Attribute Value Localized Resource",
+      "properties": {
+        "localeCode": {
+          "description": "Language used for the string attribute value.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stringValue": {
+          "description": "Localized Value in the language of the locale code",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductPublishingInfo": {
+      "description": "Price of the product and currency used.",
+      "properties": {
+        "lastPublishedBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastPublishedDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "publishSetCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "publishedState": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductSupplierInfo": {
+      "description": "Supplier info for the product",
+      "properties": {
+        "cost": {
+          "$ref": "#/$defs/ProductCost"
+        },
+        "distPartNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mfgPartNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductVariationOption": {
+      "description": "An option for a product variation. For example, a T-shirt with size and color configurable options, might have a product variation option of \"size\" or \"color.\"",
+      "properties": {
+        "attributeFQN": {
+          "description": "Unique identifier of the product variation option. System-supplied and read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "content": {
+          "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+        },
+        "value": {
+          "description": "Name of the product variation option used on the admin side independent of how it appears on the storefront. For example, the internal \"SZ\" attribute might appear as \"size\" on the storefront.",
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "SlicingSettings": {
+      "description": "Container class for Slicing Settings",
+      "properties": {
+        "slicingAttributeFqn": {
+          "description": "Product option FQN to create slices on",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TargetedProduct": {
+      "description": "Product to discount.",
+      "properties": {
+        "productCode": {
+          "description": "Product code of the product to discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ThresholdMessageLocalizedContent": {
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "localeCode": {
+          "description": "Language used for the discount in the current catalog. Defaults setting for the active catalog.",
+          "maxLength": 8,
+          "minLength": 0,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "messageTemplate": {
+          "description": "Locale-based contents of the Threshold Message.",
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "required": [
+        "messageTemplate"
+      ],
+      "type": "object"
+    }
+  }
+}

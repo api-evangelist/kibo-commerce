@@ -1,0 +1,310 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Customer Survey API
+  version: '1.0'
+  description: 'Operations tagged CustomerSurvey across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CustomerSurvey
+paths:
+  /commerce/shipments/surveys/{id}:
+    get:
+      deprecated: false
+      description: Get a specific customer survey by ID.
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCustomerSurvey'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCustomerSurvey'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCustomerSurvey'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Customer Survey
+      tags:
+      - CustomerSurvey
+      operationId: getCommerceShipmentsSurveysById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/surveys:
+    get:
+      deprecated: false
+      description: Get the customer surveys of a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfCustomerSurvey'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfCustomerSurvey'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfCustomerSurvey'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Surveys
+      tags:
+      - CustomerSurvey
+      operationId: getCommerceShipmentsByShipmentNumberSurveys
+      x-operation-id-source: derived
+    post:
+      deprecated: false
+      description: Create a customer survey for a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerSurvey'
+        description: customerSurveyDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCustomerSurvey'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCustomerSurvey'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfCustomerSurvey'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Create Survey
+      tags:
+      - CustomerSurvey
+      x-codegen-request-body-name: customerSurveyDto
+      operationId: postCommerceShipmentsByShipmentNumberSurveys
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    FulfillmentAPIAuditInfo:
+      properties:
+        createBy:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      title: AuditInfo
+      type: object
+    UriTemplate:
+      properties:
+        variableNames:
+          items:
+            type: string
+          type: array
+        variables:
+          items:
+            $ref: '#/components/schemas/TemplateVariable'
+          type: array
+      title: UriTemplate
+      type: object
+    CustomerSurvey:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        entries:
+          items:
+            $ref: '#/components/schemas/CustomerSurveyEntry'
+          type: array
+        id:
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        siteId:
+          format: int32
+          type: integer
+        tenantId:
+          format: int32
+          type: integer
+      title: CustomerSurvey
+      type: object
+    EntityModelOfCustomerSurvey:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        entries:
+          items:
+            $ref: '#/components/schemas/CustomerSurveyEntry'
+          type: array
+        id:
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        siteId:
+          format: int32
+          type: integer
+        tenantId:
+          format: int32
+          type: integer
+      title: EntityModelOfCustomerSurvey
+      type: object
+    FulfillmentAPILink:
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        rel:
+          $ref: '#/components/schemas/LinkRelation'
+        template:
+          $ref: '#/components/schemas/UriTemplate'
+        templated:
+          type: boolean
+        title:
+          type: string
+        type:
+          type: string
+      title: Link
+      type: object
+    CollectionModelOfEntityModelOfCustomerSurvey:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/EntityModelOfCustomerSurvey'
+            type: array
+          type: object
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+      title: CollectionModelOfEntityModelOfCustomerSurvey
+      type: object
+    CustomerSurveyEntry:
+      properties:
+        answer:
+          type: object
+        question:
+          type: string
+      title: CustomerSurveyEntry
+      type: object
+    TemplateVariable:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - ''
+          - '?'
+          - '&'
+          - /
+          - '#'
+          - '*'
+          type: string
+      title: TemplateVariable
+      type: object
+    Links:
+      properties:
+        empty:
+          type: boolean
+      title: Links
+      type: object
+    LinkRelation:
+      title: LinkRelation
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

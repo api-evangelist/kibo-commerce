@@ -1,0 +1,397 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Document List Type API
+  version: '1.0'
+  description: 'Operations tagged DocumentListType across 2 of this provider''s published API definitions: openapi_openapi_content.json, kibo-commerce-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: DocumentListType
+paths:
+  /content/documentlistTypes/{documentListTypeFQN}:
+    get:
+      parameters:
+      - in: path
+        name: documentListTypeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+          description: OK
+      summary: Get Document List Type
+      tags:
+      - DocumentListType
+      operationId: getContentDocumentlistTypesByDocumentListTypeFQN
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: The name of the document documentListName to update
+        in: path
+        name: documentListTypeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentListType'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/DocumentListType'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/DocumentListType'
+        description: Content Collection values to apply
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+          description: OK
+      summary: Update Document List Type
+      tags:
+      - DocumentListType
+      operationId: putContentDocumentlistTypesByDocumentListTypeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlistTypes:
+    get:
+      description: Get Document List Types. The list type denotes a content type for that list of folders, sub-folders, and documents. The immutable document list types that are defined out-of-the-box are pages, siteSnippets, files, siteSettings, catalogContent, pageTemplateContent, emailTemplateContent, and entityEditors.
+      parameters:
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListTypeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListTypeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentListTypeCollection'
+          description: OK
+      summary: Get Document List Types
+      tags:
+      - DocumentListType
+      operationId: getContentDocumentlistTypes
+      x-operation-id-source: derived
+    post:
+      description: Create Document List Type. Creating a new documentListType will tell the Content service to immediately create a document list of the new type within the set scopeType. For instance, a scopeType of "site" will create a list in each site for the tenant. Any defaultDocuments defined for the type will be created within each list, which will be addressable via the type's fully qualified name (FQN) and will use the type's defined views, usages, and metadata by default.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentListType'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/DocumentListType'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/DocumentListType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentListType'
+          description: OK
+      summary: Create Document List Type
+      tags:
+      - DocumentListType
+      operationId: postContentDocumentlistTypes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    View:
+      description: 'A view provides GET access to documents within the documentList the view belongs to. The view can designate which document fields are returned (projection) and
+
+        a security model for providing GET access independent of the documentList''s security model.'
+      properties:
+        fields:
+          description: Designation of which document fields are returned (projection) when GETing documents from the view.
+          items:
+            $ref: '#/components/schemas/ViewField'
+          type:
+          - array
+          - 'null'
+        filter:
+          description: "Filter criteria to apply automatically when documents from this view are accessed, using the standard Mozu filter syntax. Only documents matching the filter criteria will be returned. \nAny filter provided by an operation is combined with the view filter."
+          type:
+          - string
+          - 'null'
+        includeInactiveMode:
+          description: 'If view documents are requested with includeInactive=true, then this controls which documents return. If includeInactive is not provided or set to false, then only active documents return.
+
+            If not set, or set to "all", then all documents return.
+
+            If set to "active", then only documents within the active date range and documents with no active date range are returned.
+
+            If set to "scheduled", then only documents with an active date range in the future are returned.
+
+            If set to "activeOrScheduled", then only documents that are active or documents with an active date range in the future are returned.
+
+            If set to "ended", then only documents with an active date range in the past are returned.'
+          type:
+          - string
+          - 'null'
+        isAdminDefault:
+          type:
+          - boolean
+          - 'null'
+        isVisibleInStorefront:
+          description: "The isVisibleInStorefront field indicates whether documents in the view can be accessed from the Mozu storefront application. If true, the storefront application and storefront client application (javascript tier) \ncan GET documents from the view."
+          type:
+          - boolean
+          - 'null'
+        metadata:
+          description: The metadata field allows arbitrary data to be stored on the view.
+        name:
+          description: A view is addressed via its name, which is unique within the documentList or documentListType in which it is defined.
+          type:
+          - string
+          - 'null'
+        usages:
+          description: tbd
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    DocumentListTypeCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DocumentListType'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    DocumentListType:
+      description: "A documentListType instructs the Mozu platform to automatically create documentLists within a scopeType. Example: Creating a documentListType in tenant X with a \nscopeType of site tells the Mozu platform to immediately create a documentList in each site tenant X has. The Mozu platform will also automatically create a new \ndocumentList for every site subsequently provisioned in tenant X. Any defaultDocuments defined on the documentListType will be created within \neach documentList. Each documentList will be addressable via the documenetListType's fully qualified name and will, by default, use the documentListType's views, \nusages and metadata. Therefore the documentListType can be used to centrally manage each associated documentList."
+      properties:
+        defaultDocuments:
+          description: The definition of any documents to create when a documentList is created.
+          items:
+            $ref: '#/components/schemas/DocumentInstallation'
+          type:
+          - array
+          - 'null'
+        documentListTypeFQN:
+          description: 'The unique identifier of the documentListType, represented by name@namespace. The documentListTypeFQN must be provided when creating the documentListType, or the name and namespace fields must be provided.
+
+            This field cannot be updated and each documentList created from the documentListType will use this value.'
+          type:
+          - string
+          - 'null'
+        documentTypeFQNs:
+          description: "The full names (name@namespace) of the types of documents that can be created within the documentLists belonging to this documentListType. \nEach documentList created from the documentListType will use this value, but it can be overridden in an individual documentList."
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        enableActiveDateRanges:
+          description: "Determines if documentLists belonging to this documentListType have ActiveDateRanges turned on or off. \nEach documentList created from the documentListType will use this value, but it can be overridden in an individual documentList."
+          type:
+          - boolean
+          - 'null'
+        enablePublishing:
+          description: "Determines if documentLists belonging to this documentListType have publishing turned on or off. \nEach documentList created from the documentListType will use this value, but it can be overridden in an individual documentList."
+          type:
+          - boolean
+          - 'null'
+        installationPackage:
+          description: "Optionally, a documentListType can be defined in an installationPackage and then installed into a tenant. Installed documentListsTypes can only be updated via installation upgrades. \nCurrently only internal Mozu platform components can create installations. This field is system-supplied and read-only."
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: "Allows arbitrary data to be stored on the documentListType. Each documentList created from this documentListType will use this value, \nbut it can be overridden in an individual documentList."
+        name:
+          description: 'The name component of the documentListTypeFQN, name@namespace. The name must be unique within the namespace component and cannot be updated.
+
+            Each documentList created from the documentListType will use this value.'
+          type:
+          - string
+          - 'null'
+        namespace:
+          description: 'The namespace component of the documentListTypeFQN, name@namespace. The issued dev account namespace must be used unless elevated privileges allow a blank namespace to be used. The namespace cannot be updated.
+
+            Each documentList created from the documentListType will use this value.'
+          type:
+          - string
+          - 'null'
+        scopeType:
+          description: The context level at which this documentListType will create documentLists. Valid values are "tenant", "masterCatalog", "catalog" and "site". This field is read-only after insert.
+          type:
+          - string
+          - 'null'
+        supportsActiveDateRanges:
+          description: "Determines if documentLists belonging to this documentListType will support drafting and ActiveDateRanges documents. \nThis field defaults to false and cannot be updated. Each documentList created from the documentListType will use this value."
+          type: boolean
+        supportsPublishing:
+          description: "Determines if documentLists belonging to this documentListType will support drafting and publishing documents. \nThis field defaults to false and cannot be updated. Each documentList created from the documentListType will use this value."
+          type: boolean
+        usages:
+          description: 'An array of strings that describes to the Mozu platform the manner(s) in which a documentList can be used. The following values are valid:
+
+            entitymanager -- the documentList should be visible in the Admin Content/Entities screen, which allows admin users to create, manage and publish documents within the documentList.
+
+            sitebuilder -- the documentList should be visible in Sitebuilder. A documentList will display in the Sitebuilder Navigation Content List node, which supports document creation, management and web cms integration.
+
+            Each documentList created from this documentListType will use this value, but it can be overridden in an individual documentList.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        version:
+          description: The version of the installationPackge installed. This field is read-only.
+          type:
+          - string
+          - 'null'
+        views:
+          description: "An array of one or more views, which each allow GET access to a projection of fields from the documents in the given documentList. \nEach documentList created from this documentListType will use this value, but it can be overridden in an individual documentList."
+          items:
+            $ref: '#/components/schemas/View'
+          type:
+          - array
+          - 'null'
+      type: object
+    DocumentInstallation:
+      description: The definition of a document to create when a documentList is created.
+      properties:
+        documentTypeFQN:
+          description: The full name of the documentType that underlies this document.
+          type:
+          - string
+          - 'null'
+        locale:
+          description: tbd
+          type:
+          - string
+          - 'null'
+        name:
+          description: The name of the document to create.
+          type:
+          - string
+          - 'null'
+        properties:
+          description: The properties of this document.
+      type: object
+    ViewField:
+      description: The projection of an individual field in a view.
+      properties:
+        name:
+          description: 'The name of the field projected into the view document, meaning the name given to the target field after it is projected.
+
+            The name must be unique within the list of viewFields provided in the view.'
+          type:
+          - string
+          - 'null'
+        target:
+          description: "Specifies the document field to project. First-class fields will be returned on the document, but can be projected into the view properties. \nValid first-class fields include name, id, documentTypeFqn, listFqn and publishState. Dynamic fields within the properties field can be projected by prefixing the target string with \"properties.\"\nExample: \"properties.property1\". If a property is an object, then dot notation can be used to walk to particular subelements. Example: \"properties.property1.subProperty1\"\nIndividual array elements can be selected as well. Example: \"properties.property1.subProperty1.subSubArray[2].propertyOnArrayItem\"\nAny target miss will result in a null value returning for the projected field."
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_content.json
+- kibo-commerce-content-openapi.yml

@@ -1,0 +1,448 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Workflow Process API
+  version: '1.0'
+  description: 'Operations tagged WorkflowProcess across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: WorkflowProcess
+paths:
+  /commerce/processes/definitions/{containerIdOrAlias}/{processId}:
+    get:
+      deprecated: false
+      description: Get a specific process definition by ID.
+      parameters:
+      - description: containerIdOrAlias
+        in: path
+        name: containerIdOrAlias
+        required: true
+        schema:
+          type: string
+      - description: processId
+        in: path
+        name: processId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Process Definition
+      tags:
+      - WorkflowProcess
+      operationId: getCommerceProcessesDefinitionsByContainerIdOrAliasByProcessId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/processes/definitionImage/{containerIdOrAlias}/{processId}:
+    get:
+      deprecated: false
+      description: Get a process definition image.
+      parameters:
+      - description: containerIdOrAlias
+        in: path
+        name: containerIdOrAlias
+        required: true
+        schema:
+          type: string
+      - description: processId
+        in: path
+        name: processId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/svg+xml:
+              schema:
+                type: string
+            application/xml:
+              schema:
+                type: string
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Process Definition Image
+      tags:
+      - WorkflowProcess
+      operationId: getCommerceProcessesDefinitionImageByContainerIdOrAliasByProcessId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/processes/definitions:
+    get:
+      deprecated: false
+      description: Get a list of process definitions.
+      parameters:
+      - in: query
+        name: page
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sort
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfWorkflowProcess'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfWorkflowProcess'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfWorkflowProcess'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Process Definitions
+      tags:
+      - WorkflowProcess
+      operationId: getCommerceProcessesDefinitions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/processes/shipmentType/{shipmentType}:
+    get:
+      deprecated: true
+      description: Get workflow process details by shipment type.
+      parameters:
+      - description: shipmentType
+        in: path
+        name: shipmentType
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Workflow Process By Shipment Type
+      tags:
+      - WorkflowProcess
+      operationId: getCommerceProcessesShipmentTypeByShipmentType
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/processes/shipmentType/{shipmentType}/location/{locationCode}:
+    get:
+      deprecated: false
+      description: Get workflow process details by shipment type and location code.
+      parameters:
+      - description: locationCode
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      - description: shipmentType
+        in: path
+        name: shipmentType
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Workflow Process By Shipment Type Location Code
+      tags:
+      - WorkflowProcess
+      operationId: getCommerceProcessesShipmentTypeByShipmentTypeLocationByLocationCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/processes/shipmentType/{shipmentType}/locationGroup/{locationGroupCode}:
+    get:
+      deprecated: false
+      description: Get workflow process details by shipment type and location group code.
+      parameters:
+      - description: locationGroupCode
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: shipmentType
+        in: path
+        name: shipmentType
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Workflow Process By Shipment Type Location Group Code
+      tags:
+      - WorkflowProcess
+      operationId: getCommerceProcessesShipmentTypeByShipmentTypeLocationGroupByLocationGroupCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PagedModelOfEntityModelOfWorkflowProcess:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/EntityModelOfWorkflowProcess'
+            type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Links'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+      title: PagedModelOfEntityModelOfWorkflowProcess
+      type: object
+    TaskDefinition:
+      properties:
+        description:
+          type: string
+        id:
+          type: string
+        inputs:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPITaskInput'
+          type: array
+        name:
+          type: string
+        priority:
+          format: int32
+          type: integer
+        skippable:
+          type: boolean
+        subject:
+          type: string
+      title: TaskDefinition
+      type: object
+    PageMetadata:
+      properties:
+        number:
+          format: int64
+          type: integer
+        size:
+          format: int64
+          type: integer
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int64
+          type: integer
+      title: PageMetadata
+      type: object
+    WorkflowProcessVariable:
+      properties:
+        name:
+          type: string
+        type:
+          enum:
+          - STRING
+          - INTEGER
+          - NUMBER
+          - BOOLEAN
+          - OBJECT
+          - LIST
+          - UNKNOWN
+          type: string
+      title: WorkflowProcessVariable
+      type: object
+    EntityModelOfWorkflowProcess:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        containerAlias:
+          type: string
+        containerId:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        tasks:
+          items:
+            $ref: '#/components/schemas/TaskDefinition'
+          type: array
+        variables:
+          items:
+            $ref: '#/components/schemas/WorkflowProcessVariable'
+          type: array
+        version:
+          type: string
+      title: EntityModelOfWorkflowProcess
+      type: object
+    Links:
+      properties:
+        empty:
+          type: boolean
+      title: Links
+      type: object
+    FulfillmentAPITaskInput:
+      properties:
+        helpMessage:
+          type: string
+        label:
+          type: string
+        maxLength:
+          format: int32
+          type: integer
+        maximum:
+          type: number
+        minLength:
+          format: int32
+          type: integer
+        minimum:
+          type: number
+        name:
+          type: string
+        options:
+          items:
+            type: object
+          type: array
+        pattern:
+          type: string
+        required:
+          type: boolean
+        type:
+          enum:
+          - STRING
+          - INTEGER
+          - NUMBER
+          - BOOLEAN
+          - OBJECT
+          - LIST
+          - UNKNOWN
+          type: string
+      title: TaskInput
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

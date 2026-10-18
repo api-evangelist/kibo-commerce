@@ -1,0 +1,167 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Subscriptions
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-subscription-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-subscription-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items'].post
+  description: Add derived operationId for POST /commerce/subscriptions/{subscriptionId}/items
+  update:
+    operationId: subscriptionAddSubscriptionItem
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/coupons/{couponCode}'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/coupons/{couponCode}
+  update:
+    operationId: subscriptionApplyCoupon
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/priceList'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/priceList
+  update:
+    operationId: subscriptionChangePricelistOnSubscription
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/converttoorder'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/converttoorder
+  update:
+    operationId: subscriptionConvertToOrder
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes/{attributeFqn}'].delete
+  description: Add derived operationId for DELETE /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes/{attributeFqn}
+  update:
+    operationId: subscriptionDeleteASingleLineLevelAttributeFromASubscriptionItemByFQN
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/cleardraft'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/cleardraft
+  update:
+    operationId: subscriptionDeleteSubscriptionDraft
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/remove'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/remove
+  update:
+    operationId: subscriptionDeleteSubscriptionItem
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes'].get
+  description: Add derived operationId for GET /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes
+  update:
+    operationId: subscriptionGetAllLineLevelAttributesForASubscriptionItem
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes'].post
+  description: Add derived operationId for POST /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes
+  update:
+    operationId: subscriptionCreateLineLevelAttributesOnASubscriptionItemSkipsFQNsThatAlreadyExist
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/attributes
+  update:
+    operationId: subscriptionUpsertLineLevelAttributesOnASubscriptionItem
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/shipments/methods'].get
+  description: Add derived operationId for GET /commerce/subscriptions/{subscriptionId}/shipments/methods
+  update:
+    operationId: subscriptionGetAvailableShipmentMethods
+- target: $.paths['/commerce/subscriptions/reasons'].get
+  description: Add derived operationId for GET /commerce/subscriptions/reasons
+  update:
+    operationId: subscriptionGetReasons
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/attributes'].get
+  description: Add derived operationId for GET /commerce/subscriptions/{subscriptionId}/attributes
+  update:
+    operationId: subscriptionGetSubscriptionAttributes
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/attributes'].post
+  description: Add derived operationId for POST /commerce/subscriptions/{subscriptionId}/attributes
+  update:
+    operationId: subscriptionCreateSubscriptionAttributes
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/attributes
+  update:
+    operationId: subscriptionUpdateSubscriptionAttribute
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/data'].get
+  description: Add derived operationId for GET /commerce/subscriptions/{subscriptionId}/data
+  update:
+    operationId: subscriptionGetSubscriptionData
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data'].get
+  description: Add derived operationId for GET /commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data
+  update:
+    operationId: subscriptionGetSubscriptionItemData
+- target: $.paths['/commerce/subscriptions'].get
+  description: Add derived operationId for GET /commerce/subscriptions
+  update:
+    operationId: subscriptionGetSubscriptions
+- target: $.paths['/commerce/subscriptions'].post
+  description: Add derived operationId for POST /commerce/subscriptions
+  update:
+    operationId: subscriptionCreatesSubscription
+- target: $.paths['/commerce/subscriptions/{subscriptionId}'].get
+  description: Add derived operationId for GET /commerce/subscriptions/{subscriptionId}
+  update:
+    operationId: subscriptionGetsSubscription
+- target: $.paths['/commerce/subscriptions/{subscriptionId}'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}
+  update:
+    operationId: subscriptionUpdateSubscription
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/ordernow'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/ordernow
+  update:
+    operationId: subscriptionOrderNow
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/orderpartialdraft'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/orderpartialdraft
+  update:
+    operationId: subscriptionOrderPartialSubscription
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/actions'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/actions
+  update:
+    operationId: subscriptionPerformSubscriptionAction
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/removecoupon'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/removecoupon
+  update:
+    operationId: subscriptionRemoveCoupons
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/skip'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/skip
+  update:
+    operationId: subscriptionSkipSubscription
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/adjustments'].post
+  description: Add derived operationId for POST /commerce/subscriptions/{subscriptionId}/adjustments
+  update:
+    operationId: subscriptionUpdateAdjustments
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/fulfillmentinfo'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/fulfillmentinfo
+  update:
+    operationId: subscriptionUpdateFulfillmentInfo
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/installmentPlan'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/installmentPlan
+  update:
+    operationId: subscriptionUpdateInstallmentPlan
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/fulfillment'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/fulfillment
+  update:
+    operationId: subscriptionUpdateItemFulfillment
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/quantity/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/quantity/{quantity}
+  update:
+    operationId: subscriptionUpdateItemQuantity
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/nextorderdate'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/nextorderdate
+  update:
+    operationId: subscriptionUpdateNextOrderDate
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/payment'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/payment
+  update:
+    operationId: subscriptionUpdatePayment
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/data/{subscriptionDataId}'].delete
+  description: Add derived operationId for DELETE /commerce/subscriptions/{subscriptionId}/data/{subscriptionDataId}
+  update:
+    operationId: subscriptionDeleteSubscriptionData
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/data/{subscriptionDataId}'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/data/{subscriptionDataId}
+  update:
+    operationId: subscriptionUpdateSubscriptionData
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/frequency'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/frequency
+  update:
+    operationId: subscriptionUpdateSubscriptionFrequency
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data/{subscriptionItemDataId}'].delete
+  description: Add derived operationId for DELETE /commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data/{subscriptionItemDataId}
+  update:
+    operationId: subscriptionDeleteSubscriptionItemData
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data/{subscriptionItemDataId}'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/item/{subscriptionItemId}/data/{subscriptionItemDataId}
+  update:
+    operationId: subscriptionUpdateSubscriptionItemData
+- target: $.paths['/commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/upsertinventorytags'].put
+  description: Add derived operationId for PUT /commerce/subscriptions/{subscriptionId}/items/{subscriptionItemId}/upsertinventorytags
+  update:
+    operationId: subscriptionUpsertInventoryTags

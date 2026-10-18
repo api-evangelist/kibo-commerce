@@ -1,0 +1,2119 @@
+{
+  "@context": {
+    "@vocab": "https://kibocommerce.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "kibo": "https://kibocommerce.com/schema#",
+    "AppAuthInfo": "kibo:AppAuthInfo",
+    "applicationId": {
+      "@id": "kibo:applicationId",
+      "@type": "xsd:string"
+    },
+    "sharedSecret": {
+      "@id": "kibo:sharedSecret",
+      "@type": "xsd:string"
+    },
+    "AppVersion": "kibo:AppVersion",
+    "majorVersion": {
+      "@id": "kibo:majorVersion",
+      "@type": "xsd:integer"
+    },
+    "minorVersion": {
+      "@id": "kibo:minorVersion",
+      "@type": "xsd:integer"
+    },
+    "revision": {
+      "@id": "kibo:revision",
+      "@type": "xsd:integer"
+    },
+    "ApplicationAttribute": "kibo:ApplicationAttribute",
+    "attributeCodes": {
+      "@id": "kibo:attributeCodes",
+      "@type": "xsd:string"
+    },
+    "attributeJson": {
+      "@id": "kibo:attributeJson",
+      "@type": "xsd:string"
+    },
+    "attributes": {
+      "@id": "kibo:attributes",
+      "@container": "@list"
+    },
+    "isAppliedToBase": {
+      "@id": "kibo:isAppliedToBase",
+      "@type": "xsd:boolean"
+    },
+    "packageId": {
+      "@id": "kibo:packageId",
+      "@type": "xsd:integer"
+    },
+    "productTypeJson": {
+      "@id": "kibo:productTypeJson",
+      "@type": "xsd:string"
+    },
+    "sourceTenantId": {
+      "@id": "kibo:sourceTenantId",
+      "@type": "xsd:integer"
+    },
+    "sourceTenantName": {
+      "@id": "kibo:sourceTenantName",
+      "@type": "xsd:string"
+    },
+    "subsystem": {
+      "@id": "kibo:subsystem",
+      "@type": "xsd:string"
+    },
+    "ApplicationBehavior": "kibo:ApplicationBehavior",
+    "behaviorId": {
+      "@id": "kibo:behaviorId",
+      "@type": "xsd:integer"
+    },
+    "ApplicationCapability": "kibo:ApplicationCapability",
+    "applicationCapabilityId": {
+      "@id": "kibo:applicationCapabilityId",
+      "@type": "xsd:integer"
+    },
+    "applicationCapabilityTypeId": {
+      "@id": "kibo:applicationCapabilityTypeId",
+      "@type": "xsd:integer"
+    },
+    "applicationEndPoint": {
+      "@id": "kibo:applicationEndPoint",
+      "@type": "xsd:string"
+    },
+    "capabilityTypeContractId": {
+      "@id": "kibo:capabilityTypeContractId",
+      "@type": "xsd:integer"
+    },
+    "ApplicationCapabilityDomain": "kibo:ApplicationCapabilityDomain",
+    "applicationCapabilityDomainId": {
+      "@id": "kibo:applicationCapabilityDomainId",
+      "@type": "xsd:integer"
+    },
+    "applicationCapabilityDomainValues1": {
+      "@id": "kibo:applicationCapabilityDomainValues1",
+      "@container": "@list"
+    },
+    "applicationCapabilityDomainValues2": {
+      "@id": "kibo:applicationCapabilityDomainValues2",
+      "@container": "@list"
+    },
+    "name": {
+      "@id": "kibo:name",
+      "@type": "xsd:string"
+    },
+    "ApplicationCapabilityDomainValue": "kibo:ApplicationCapabilityDomainValue",
+    "applicationCapabilityDomainId1": {
+      "@id": "kibo:applicationCapabilityDomainId1",
+      "@type": "xsd:integer"
+    },
+    "applicationCapabilityDomainId2": {
+      "@id": "kibo:applicationCapabilityDomainId2",
+      "@type": "xsd:integer"
+    },
+    "applicationCapabilityDomainValueId": {
+      "@id": "kibo:applicationCapabilityDomainValueId",
+      "@type": "xsd:integer"
+    },
+    "displayName": {
+      "@id": "kibo:displayName",
+      "@type": "xsd:string"
+    },
+    "valueName": {
+      "@id": "kibo:valueName",
+      "@type": "xsd:string"
+    },
+    "ApplicationCapabilityType": "kibo:ApplicationCapabilityType",
+    "applicationCapabilities": {
+      "@id": "kibo:applicationCapabilities",
+      "@container": "@list"
+    },
+    "applicationCapabilityDomains": {
+      "@id": "kibo:applicationCapabilityDomains",
+      "@container": "@list"
+    },
+    "capabilityTypeId": {
+      "@id": "kibo:capabilityTypeId",
+      "@type": "xsd:integer"
+    },
+    "capabilityTypeName": {
+      "@id": "kibo:capabilityTypeName",
+      "@type": "xsd:string"
+    },
+    "isImplemented": {
+      "@id": "kibo:isImplemented",
+      "@type": "xsd:boolean"
+    },
+    "isInitializedByDefault": {
+      "@id": "kibo:isInitializedByDefault",
+      "@type": "xsd:boolean"
+    },
+    "ApplicationEntitlement": "kibo:ApplicationEntitlement",
+    "appKey": {
+      "@id": "kibo:appKey",
+      "@type": "xsd:string"
+    },
+    "appOwnerDevAccountId": {
+      "@id": "kibo:appOwnerDevAccountId",
+      "@type": "xsd:integer"
+    },
+    "applicationEntitlementId": {
+      "@id": "kibo:applicationEntitlementId",
+      "@type": "xsd:integer"
+    },
+    "applicationLicenseType": {
+      "@id": "kibo:applicationLicenseType",
+      "@type": "xsd:string"
+    },
+    "applicationName": {
+      "@id": "kibo:applicationName",
+      "@type": "xsd:string"
+    },
+    "applicationStatusId": {
+      "@id": "kibo:applicationStatusId",
+      "@type": "xsd:string"
+    },
+    "applicationTransactions": {
+      "@id": "kibo:applicationTransactions",
+      "@container": "@list"
+    },
+    "applicationVersion": {
+      "@id": "kibo:applicationVersion",
+      "@type": "xsd:string"
+    },
+    "deletedBy": {
+      "@id": "kibo:deletedBy",
+      "@type": "xsd:string"
+    },
+    "deletedByFirstName": {
+      "@id": "kibo:deletedByFirstName",
+      "@type": "xsd:string"
+    },
+    "deletedByLastName": {
+      "@id": "kibo:deletedByLastName",
+      "@type": "xsd:string"
+    },
+    "deletedDate": {
+      "@id": "kibo:deletedDate",
+      "@type": "xsd:dateTime"
+    },
+    "devAccountId": {
+      "@id": "kibo:devAccountId",
+      "@type": "xsd:integer"
+    },
+    "effectiveEndDate": {
+      "@id": "kibo:effectiveEndDate",
+      "@type": "xsd:dateTime"
+    },
+    "effectiveStartDate": {
+      "@id": "kibo:effectiveStartDate",
+      "@type": "xsd:dateTime"
+    },
+    "entitlementStatus": {
+      "@id": "kibo:entitlementStatus",
+      "@type": "xsd:string"
+    },
+    "installedAppsApplicationId": {
+      "@id": "kibo:installedAppsApplicationId",
+      "@type": "xsd:string"
+    },
+    "installedByFirstName": {
+      "@id": "kibo:installedByFirstName",
+      "@type": "xsd:string"
+    },
+    "installedByLastName": {
+      "@id": "kibo:installedByLastName",
+      "@type": "xsd:string"
+    },
+    "installedDate": {
+      "@id": "kibo:installedDate",
+      "@type": "xsd:dateTime"
+    },
+    "packageName": {
+      "@id": "kibo:packageName",
+      "@type": "xsd:string"
+    },
+    "siteId": {
+      "@id": "kibo:siteId",
+      "@type": "xsd:integer"
+    },
+    "tenantId": {
+      "@id": "kibo:tenantId",
+      "@type": "xsd:integer"
+    },
+    "tenantName": {
+      "@id": "kibo:tenantName",
+      "@type": "xsd:string"
+    },
+    "ApplicationSubscription": "kibo:ApplicationSubscription",
+    "applicationSubscriptionId": {
+      "@id": "kibo:applicationSubscriptionId",
+      "@type": "xsd:integer"
+    },
+    "events": {
+      "@id": "kibo:events",
+      "@container": "@list"
+    },
+    "noCallback": {
+      "@id": "kibo:noCallback",
+      "@type": "xsd:boolean"
+    },
+    "ApplicationSummary": "kibo:ApplicationSummary",
+    "appId": {
+      "@id": "kibo:appId",
+      "@type": "xsd:string"
+    },
+    "appSchemeVersion": {
+      "@id": "kibo:appSchemeVersion",
+      "@type": "xsd:integer"
+    },
+    "applicationNamespace": {
+      "@id": "kibo:applicationNamespace",
+      "@type": "xsd:string"
+    },
+    "applicationStatusName": {
+      "@id": "kibo:applicationStatusName",
+      "@type": "xsd:string"
+    },
+    "applicationTypeId": {
+      "@id": "kibo:applicationTypeId",
+      "@type": "xsd:integer"
+    },
+    "hasV2Credentials": {
+      "@id": "kibo:hasV2Credentials",
+      "@type": "xsd:boolean"
+    },
+    "hasVersions": {
+      "@id": "kibo:hasVersions",
+      "@type": "xsd:boolean"
+    },
+    "parentAppKey": {
+      "@id": "kibo:parentAppKey",
+      "@type": "xsd:string"
+    },
+    "parentName": {
+      "@id": "kibo:parentName",
+      "@type": "xsd:string"
+    },
+    "releasePackageId": {
+      "@id": "kibo:releasePackageId",
+      "@type": "xsd:integer"
+    },
+    "releasePackageName": {
+      "@id": "kibo:releasePackageName",
+      "@type": "xsd:string"
+    },
+    "updateAvailable": {
+      "@id": "kibo:updateAvailable",
+      "@type": "xsd:boolean"
+    },
+    "updateParentAppKey": {
+      "@id": "kibo:updateParentAppKey",
+      "@type": "xsd:string"
+    },
+    "ApplicationSummaryCollection": "kibo:ApplicationSummaryCollection",
+    "items": {
+      "@id": "kibo:items",
+      "@container": "@list"
+    },
+    "pageCount": {
+      "@id": "kibo:pageCount",
+      "@type": "xsd:integer"
+    },
+    "pageSize": {
+      "@id": "kibo:pageSize",
+      "@type": "xsd:integer"
+    },
+    "startIndex": {
+      "@id": "kibo:startIndex",
+      "@type": "xsd:integer"
+    },
+    "totalCount": {
+      "@id": "kibo:totalCount",
+      "@type": "xsd:integer"
+    },
+    "ApplicationTransaction": "kibo:ApplicationTransaction",
+    "applicationTransactionId": {
+      "@id": "kibo:applicationTransactionId",
+      "@type": "xsd:integer"
+    },
+    "isoCurrencyCode": {
+      "@id": "kibo:isoCurrencyCode",
+      "@type": "xsd:string"
+    },
+    "localeCode": {
+      "@id": "kibo:localeCode",
+      "@type": "xsd:integer"
+    },
+    "orderNumber": {
+      "@id": "kibo:orderNumber",
+      "@type": "xsd:string"
+    },
+    "transactionDate": {
+      "@id": "kibo:transactionDate",
+      "@type": "xsd:dateTime"
+    },
+    "transactionPrice": {
+      "@id": "kibo:transactionPrice",
+      "@type": "xsd:decimal"
+    },
+    "transactionTax": {
+      "@id": "kibo:transactionTax",
+      "@type": "xsd:decimal"
+    },
+    "transactionTotal": {
+      "@id": "kibo:transactionTotal",
+      "@type": "xsd:decimal"
+    },
+    "ApplicationVersionsCollection": "kibo:ApplicationVersionsCollection",
+    "Attribute": "kibo:Attribute",
+    "adminName": {
+      "@id": "kibo:adminName",
+      "@type": "xsd:string"
+    },
+    "applicationAttributeId": {
+      "@id": "kibo:applicationAttributeId",
+      "@type": "xsd:integer"
+    },
+    "attributeId": {
+      "@id": "kibo:attributeId",
+      "@type": "xsd:integer"
+    },
+    "code": {
+      "@id": "kibo:code",
+      "@type": "xsd:string"
+    },
+    "fqn": {
+      "@id": "kibo:fqn",
+      "@type": "xsd:string"
+    },
+    "inputType": {
+      "@id": "kibo:inputType",
+      "@type": "xsd:string"
+    },
+    "sequence": {
+      "@id": "kibo:sequence",
+      "@type": "xsd:integer"
+    },
+    "type": {
+      "@id": "kibo:type",
+      "@type": "xsd:string"
+    },
+    "vocabularyJson": {
+      "@id": "kibo:vocabularyJson",
+      "@type": "xsd:string"
+    },
+    "vocabularyValues": {
+      "@id": "kibo:vocabularyValues",
+      "@type": "xsd:string"
+    },
+    "AuditInfo": "kibo:AuditInfo",
+    "createBy": {
+      "@id": "kibo:createBy",
+      "@type": "xsd:string"
+    },
+    "createDate": {
+      "@id": "kibo:createDate",
+      "@type": "xsd:dateTime"
+    },
+    "updateBy": {
+      "@id": "kibo:updateBy",
+      "@type": "xsd:string"
+    },
+    "updateDate": {
+      "@id": "kibo:updateDate",
+      "@type": "xsd:dateTime"
+    },
+    "AuthTicket": "kibo:AuthTicket",
+    "accessToken": {
+      "@id": "kibo:accessToken",
+      "@type": "xsd:string"
+    },
+    "accessTokenExpiration": {
+      "@id": "kibo:accessTokenExpiration",
+      "@type": "xsd:dateTime"
+    },
+    "environmentScope": {
+      "@id": "kibo:environmentScope",
+      "@type": "xsd:string"
+    },
+    "refreshToken": {
+      "@id": "kibo:refreshToken",
+      "@type": "xsd:string"
+    },
+    "refreshTokenExpiration": {
+      "@id": "kibo:refreshTokenExpiration",
+      "@type": "xsd:dateTime"
+    },
+    "AuthTicketRequest": "kibo:AuthTicketRequest",
+    "BehaviorCategoryBehavior": "kibo:BehaviorCategoryBehavior",
+    "behaviorItems": {
+      "@id": "kibo:behaviorItems",
+      "@container": "@list"
+    },
+    "id": {
+      "@id": "kibo:id",
+      "@type": "xsd:integer"
+    },
+    "BehaviorCategoryBehaviorCollection": "kibo:BehaviorCategoryBehaviorCollection",
+    "BehaviorItem": "kibo:BehaviorItem",
+    "categoryId": {
+      "@id": "kibo:categoryId",
+      "@type": "xsd:integer"
+    },
+    "isPrivate": {
+      "@id": "kibo:isPrivate",
+      "@type": "xsd:boolean"
+    },
+    "Event": "kibo:Event",
+    "apiVersionNumber": {
+      "@id": "kibo:apiVersionNumber",
+      "@type": "xsd:string"
+    },
+    "eventCategory": {
+      "@id": "kibo:eventCategory",
+      "@type": "xsd:string"
+    },
+    "eventId": {
+      "@id": "kibo:eventId",
+      "@type": "xsd:integer"
+    },
+    "eventName": {
+      "@id": "kibo:eventName",
+      "@type": "xsd:string"
+    },
+    "FileMetadata": "kibo:FileMetadata",
+    "auditInfo": {
+      "@id": "kibo:auditInfo",
+      "@type": "@id"
+    },
+    "checkSum": {
+      "@id": "kibo:checkSum",
+      "@type": "xsd:string"
+    },
+    "path": {
+      "@id": "kibo:path",
+      "@type": "xsd:string"
+    },
+    "sizeInBytes": {
+      "@id": "kibo:sizeInBytes",
+      "@type": "xsd:integer"
+    },
+    "FolderMetadata": "kibo:FolderMetadata",
+    "files": {
+      "@id": "kibo:files",
+      "@container": "@list"
+    },
+    "fullPath": {
+      "@id": "kibo:fullPath",
+      "@type": "xsd:string"
+    },
+    "subFolders": {
+      "@id": "kibo:subFolders",
+      "@container": "@list"
+    },
+    "HeadlessAppBuildJob": "kibo:HeadlessAppBuildJob",
+    "commitId": {
+      "@id": "kibo:commitId",
+      "@type": "xsd:string"
+    },
+    "commitTime": {
+      "@id": "kibo:commitTime",
+      "@type": "xsd:dateTime"
+    },
+    "endTime": {
+      "@id": "kibo:endTime",
+      "@type": "xsd:dateTime"
+    },
+    "jobId": {
+      "@id": "kibo:jobId",
+      "@type": "xsd:string"
+    },
+    "startTime": {
+      "@id": "kibo:startTime",
+      "@type": "xsd:dateTime"
+    },
+    "status": {
+      "@id": "kibo:status",
+      "@type": "xsd:string"
+    },
+    "HeadlessAppBuildJobResponse": "kibo:HeadlessAppBuildJobResponse",
+    "jobs": {
+      "@id": "kibo:jobs",
+      "@container": "@list"
+    },
+    "nextToken": {
+      "@id": "kibo:nextToken",
+      "@type": "xsd:string"
+    },
+    "HeadlessAppBuildLog": "kibo:HeadlessAppBuildLog",
+    "steps": {
+      "@id": "kibo:steps",
+      "@container": "@list"
+    },
+    "HeadlessAppBuildStep": "kibo:HeadlessAppBuildStep",
+    "logUrl": {
+      "@id": "kibo:logUrl",
+      "@type": "xsd:string"
+    },
+    "stepName": {
+      "@id": "kibo:stepName",
+      "@type": "xsd:string"
+    },
+    "HeadlessAppRuntimeLog": "kibo:HeadlessAppRuntimeLog",
+    "key": {
+      "@id": "kibo:key",
+      "@type": "xsd:string"
+    },
+    "lastModified": {
+      "@id": "kibo:lastModified",
+      "@type": "xsd:dateTime"
+    },
+    "size": {
+      "@id": "kibo:size",
+      "@type": "xsd:integer"
+    },
+    "HeadlessAppRuntimeLogResponse": "kibo:HeadlessAppRuntimeLogResponse",
+    "isTruncated": {
+      "@id": "kibo:isTruncated",
+      "@type": "xsd:boolean"
+    },
+    "logs": {
+      "@id": "kibo:logs",
+      "@container": "@list"
+    },
+    "maxResults": {
+      "@id": "kibo:maxResults",
+      "@type": "xsd:integer"
+    },
+    "prefix": {
+      "@id": "kibo:prefix",
+      "@type": "xsd:string"
+    },
+    "HeadlessBuildTriggerResponse": "kibo:HeadlessBuildTriggerResponse",
+    "branchName": {
+      "@id": "kibo:branchName",
+      "@type": "xsd:string"
+    },
+    "HeadlessEnvVar": "kibo:HeadlessEnvVar",
+    "value": {
+      "@id": "kibo:value",
+      "@type": "xsd:string"
+    },
+    "HeadlessEnvVarCollection": "kibo:HeadlessEnvVarCollection",
+    "HeadlessEnvVarInput": "kibo:HeadlessEnvVarInput",
+    "HeadlessSecret": "kibo:HeadlessSecret",
+    "HeadlessSecretCollection": "kibo:HeadlessSecretCollection",
+    "HeadlessSecretInput": "kibo:HeadlessSecretInput",
+    "HttpContent": "kibo:HttpContent",
+    "headers": {
+      "@id": "kibo:headers",
+      "@container": "@list"
+    },
+    "HttpMethod": "kibo:HttpMethod",
+    "method": {
+      "@id": "kibo:method",
+      "@type": "xsd:string"
+    },
+    "HttpRequestMessage": "kibo:HttpRequestMessage",
+    "content": {
+      "@id": "kibo:content",
+      "@type": "@id"
+    },
+    "options": {
+      "@id": "kibo:options"
+    },
+    "properties": {
+      "@id": "kibo:properties"
+    },
+    "requestUri": {
+      "@id": "kibo:requestUri",
+      "@type": "@id"
+    },
+    "version": {
+      "@id": "kibo:version",
+      "@type": "xsd:string"
+    },
+    "versionPolicy": {
+      "@id": "kibo:versionPolicy",
+      "@type": "@id"
+    },
+    "HttpResponseMessage": "kibo:HttpResponseMessage",
+    "isSuccessStatusCode": {
+      "@id": "kibo:isSuccessStatusCode",
+      "@type": "xsd:boolean"
+    },
+    "reasonPhrase": {
+      "@id": "kibo:reasonPhrase",
+      "@type": "xsd:string"
+    },
+    "requestMessage": {
+      "@id": "kibo:requestMessage",
+      "@type": "@id"
+    },
+    "statusCode": {
+      "@id": "kibo:statusCode",
+      "@type": "@id"
+    },
+    "trailingHeaders": {
+      "@id": "kibo:trailingHeaders",
+      "@container": "@list"
+    },
+    "HttpStatusCode": "kibo:HttpStatusCode",
+    "HttpVersionPolicy": "kibo:HttpVersionPolicy",
+    "OAuthAccessTokenResponse": "kibo:OAuthAccessTokenResponse",
+    "access_token": {
+      "@id": "kibo:access_token",
+      "@type": "xsd:string"
+    },
+    "expires_in": {
+      "@id": "kibo:expires_in",
+      "@type": "xsd:integer"
+    },
+    "refresh_token": {
+      "@id": "kibo:refresh_token",
+      "@type": "xsd:string"
+    },
+    "token_type": {
+      "@id": "kibo:token_type",
+      "@type": "xsd:string"
+    },
+    "OauthAuthRequest": "kibo:OauthAuthRequest",
+    "client_id": {
+      "@id": "kibo:client_id",
+      "@type": "xsd:string"
+    },
+    "client_secret": {
+      "@id": "kibo:client_secret",
+      "@type": "xsd:string"
+    },
+    "grant_type": {
+      "@id": "kibo:grant_type",
+      "@type": "xsd:string"
+    },
+    "OauthAuthRequestInternal": "kibo:OauthAuthRequestInternal",
+    "application_name": {
+      "@id": "kibo:application_name",
+      "@type": "xsd:string"
+    },
+    "Package": "kibo:Package",
+    "apiVersion": {
+      "@id": "kibo:apiVersion",
+      "@type": "xsd:string"
+    },
+    "appConfigUrl": {
+      "@id": "kibo:appConfigUrl",
+      "@type": "xsd:string"
+    },
+    "applicationAttributes": {
+      "@id": "kibo:applicationAttributes",
+      "@container": "@list"
+    },
+    "applicationBehaviors": {
+      "@id": "kibo:applicationBehaviors",
+      "@container": "@list"
+    },
+    "applicationCapabilityTypes": {
+      "@id": "kibo:applicationCapabilityTypes",
+      "@container": "@list"
+    },
+    "applicationDescription": {
+      "@id": "kibo:applicationDescription",
+      "@type": "xsd:string"
+    },
+    "applicationDetailId": {
+      "@id": "kibo:applicationDetailId",
+      "@type": "xsd:integer"
+    },
+    "applicationEntitlements": {
+      "@id": "kibo:applicationEntitlements",
+      "@container": "@list"
+    },
+    "applicationOwnerDevAccountId": {
+      "@id": "kibo:applicationOwnerDevAccountId",
+      "@type": "xsd:integer"
+    },
+    "applicationStatus": {
+      "@id": "kibo:applicationStatus",
+      "@type": "xsd:string"
+    },
+    "applicationSubscriptions": {
+      "@id": "kibo:applicationSubscriptions",
+      "@container": "@list"
+    },
+    "applicationTypeName": {
+      "@id": "kibo:applicationTypeName",
+      "@type": "xsd:string"
+    },
+    "applicationUpdateDate": {
+      "@id": "kibo:applicationUpdateDate",
+      "@type": "xsd:dateTime"
+    },
+    "assetFileCount": {
+      "@id": "kibo:assetFileCount",
+      "@type": "xsd:integer"
+    },
+    "attributeNamespace": {
+      "@id": "kibo:attributeNamespace",
+      "@type": "xsd:string"
+    },
+    "dataNamespace": {
+      "@id": "kibo:dataNamespace",
+      "@type": "xsd:string"
+    },
+    "hasApplicationVersions": {
+      "@id": "kibo:hasApplicationVersions",
+      "@type": "xsd:boolean"
+    },
+    "isDeleted": {
+      "@id": "kibo:isDeleted",
+      "@type": "xsd:boolean"
+    },
+    "isLocked": {
+      "@id": "kibo:isLocked",
+      "@type": "xsd:boolean"
+    },
+    "isReleasePackage": {
+      "@id": "kibo:isReleasePackage",
+      "@type": "xsd:boolean"
+    },
+    "legacyNamespace": {
+      "@id": "kibo:legacyNamespace",
+      "@type": "xsd:string"
+    },
+    "namespace": {
+      "@id": "kibo:namespace",
+      "@type": "xsd:string"
+    },
+    "namespaceRegistryId": {
+      "@id": "kibo:namespaceRegistryId",
+      "@type": "xsd:string"
+    },
+    "packageDescription": {
+      "@id": "kibo:packageDescription",
+      "@type": "xsd:string"
+    },
+    "packageGuid": {
+      "@id": "kibo:packageGuid",
+      "@type": "xsd:string"
+    },
+    "parentThemeAppKey": {
+      "@id": "kibo:parentThemeAppKey",
+      "@type": "xsd:string"
+    },
+    "parentThemeName": {
+      "@id": "kibo:parentThemeName",
+      "@type": "xsd:string"
+    },
+    "publishedParentSemanticVersion": {
+      "@id": "kibo:publishedParentSemanticVersion",
+      "@type": "xsd:string"
+    },
+    "publishedParentThemeId": {
+      "@id": "kibo:publishedParentThemeId",
+      "@type": "xsd:integer"
+    },
+    "semanticVersionRange": {
+      "@id": "kibo:semanticVersionRange",
+      "@type": "xsd:string"
+    },
+    "themeEngineVersion": {
+      "@id": "kibo:themeEngineVersion",
+      "@type": "xsd:string"
+    },
+    "updateParentThemeName": {
+      "@id": "kibo:updateParentThemeName",
+      "@type": "xsd:string"
+    },
+    "updateParentThemeVersion": {
+      "@id": "kibo:updateParentThemeVersion",
+      "@type": "xsd:string"
+    },
+    "userId": {
+      "@id": "kibo:userId",
+      "@type": "xsd:string"
+    },
+    "validApplicationStatusIdList": {
+      "@id": "kibo:validApplicationStatusIdList",
+      "@container": "@list"
+    },
+    "PackageCollection": "kibo:PackageCollection",
+    "PackageNamesCollection": "kibo:PackageNamesCollection",
+    "PackageRequest": "kibo:PackageRequest",
+    "RenameInfo": "kibo:RenameInfo",
+    "newFullPath": {
+      "@id": "kibo:newFullPath",
+      "@type": "xsd:string"
+    },
+    "oldFullPath": {
+      "@id": "kibo:oldFullPath",
+      "@type": "xsd:string"
+    },
+    "StringStringIEnumerableKeyValuePair": "kibo:StringStringIEnumerableKeyValuePair",
+    "History": "kibo:History",
+    "action": {
+      "@id": "kibo:action",
+      "@type": "xsd:string"
+    },
+    "correlationId": {
+      "@id": "kibo:correlationId",
+      "@type": "xsd:string"
+    },
+    "entityId": {
+      "@id": "kibo:entityId",
+      "@type": "xsd:string"
+    },
+    "entityType": {
+      "@id": "kibo:entityType",
+      "@type": "xsd:string"
+    },
+    "initiatingAppId": {
+      "@id": "kibo:initiatingAppId",
+      "@type": "xsd:string"
+    },
+    "ipAddress": {
+      "@id": "kibo:ipAddress",
+      "@type": "xsd:string"
+    },
+    "objectName": {
+      "@id": "kibo:objectName",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "kibo:timestamp",
+      "@type": "xsd:dateTime"
+    },
+    "HistoryCollection": "kibo:HistoryCollection",
+    "AssignedDiscount": "kibo:AssignedDiscount",
+    "couponSetCode": {
+      "@id": "kibo:couponSetCode",
+      "@type": "xsd:string"
+    },
+    "couponSetId": {
+      "@id": "kibo:couponSetId",
+      "@type": "xsd:integer"
+    },
+    "discountId": {
+      "@id": "kibo:discountId",
+      "@type": "xsd:integer"
+    },
+    "AttributeInProductType": "kibo:AttributeInProductType",
+    "attributeDetail": {
+      "@id": "kibo:attributeDetail",
+      "@type": "@id"
+    },
+    "attributeFQN": {
+      "@id": "kibo:attributeFQN",
+      "@type": "xsd:string"
+    },
+    "displayInfo": {
+      "@id": "kibo:displayInfo",
+      "@type": "@id"
+    },
+    "isAdminOnlyProperty": {
+      "@id": "kibo:isAdminOnlyProperty",
+      "@type": "xsd:boolean"
+    },
+    "isHiddenProperty": {
+      "@id": "kibo:isHiddenProperty",
+      "@type": "xsd:boolean"
+    },
+    "isInheritedFromBaseType": {
+      "@id": "kibo:isInheritedFromBaseType",
+      "@type": "xsd:boolean"
+    },
+    "isMultiValueProperty": {
+      "@id": "kibo:isMultiValueProperty",
+      "@type": "xsd:boolean"
+    },
+    "isProductDetailsOnlyProperty": {
+      "@id": "kibo:isProductDetailsOnlyProperty",
+      "@type": "xsd:boolean"
+    },
+    "isRequiredByAdmin": {
+      "@id": "kibo:isRequiredByAdmin",
+      "@type": "xsd:boolean"
+    },
+    "order": {
+      "@id": "kibo:order",
+      "@type": "xsd:integer"
+    },
+    "AttributeInProductTypeDisplayInfo": "kibo:AttributeInProductTypeDisplayInfo",
+    "displayIntention": {
+      "@id": "kibo:displayIntention",
+      "@type": "xsd:string"
+    },
+    "AttributeSearchSettings": "kibo:AttributeSearchSettings",
+    "allowFilteringAndSortingInStorefront": {
+      "@id": "kibo:allowFilteringAndSortingInStorefront",
+      "@type": "xsd:boolean"
+    },
+    "customWeightInStorefrontSearch": {
+      "@id": "kibo:customWeightInStorefrontSearch",
+      "@type": "xsd:boolean"
+    },
+    "indexValueWithCase": {
+      "@id": "kibo:indexValueWithCase",
+      "@type": "xsd:boolean"
+    },
+    "searchDisplayValue": {
+      "@id": "kibo:searchDisplayValue",
+      "@type": "xsd:boolean"
+    },
+    "searchableInAdmin": {
+      "@id": "kibo:searchableInAdmin",
+      "@type": "xsd:boolean"
+    },
+    "searchableInStorefront": {
+      "@id": "kibo:searchableInStorefront",
+      "@type": "xsd:boolean"
+    },
+    "AttributeTypeRule": "kibo:AttributeTypeRule",
+    "attributeDataType": {
+      "@id": "kibo:attributeDataType",
+      "@type": "xsd:string"
+    },
+    "attributeInputType": {
+      "@id": "kibo:attributeInputType",
+      "@type": "xsd:string"
+    },
+    "attributeUsageType": {
+      "@id": "kibo:attributeUsageType",
+      "@type": "xsd:string"
+    },
+    "attributeValueType": {
+      "@id": "kibo:attributeValueType",
+      "@type": "xsd:string"
+    },
+    "AttributeTypeRuleCollection": "kibo:AttributeTypeRuleCollection",
+    "AttributeVocabularyValueDisplayInfo": "kibo:AttributeVocabularyValueDisplayInfo",
+    "cmsId": {
+      "@id": "kibo:cmsId",
+      "@type": "xsd:string"
+    },
+    "colorValue": {
+      "@id": "kibo:colorValue",
+      "@type": "xsd:string"
+    },
+    "imageUrl": {
+      "@id": "kibo:imageUrl",
+      "@type": "xsd:string"
+    },
+    "AttributeVocabularyValueInProductType": "kibo:AttributeVocabularyValueInProductType",
+    "vocabularyValueDetail": {
+      "@id": "kibo:vocabularyValueDetail",
+      "@type": "@id"
+    },
+    "AttributeVocabularyValueLocalizedContent": "kibo:AttributeVocabularyValueLocalizedContent",
+    "stringValue": {
+      "@id": "kibo:stringValue",
+      "@type": "xsd:string"
+    },
+    "BackorderRebalancingRule": "kibo:BackorderRebalancingRule",
+    "customerRules": {
+      "@id": "kibo:customerRules",
+      "@container": "@list"
+    },
+    "description": {
+      "@id": "kibo:description",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "kibo:enabled",
+      "@type": "xsd:boolean"
+    },
+    "endDate": {
+      "@id": "kibo:endDate",
+      "@type": "xsd:dateTime"
+    },
+    "isActive": {
+      "@id": "kibo:isActive",
+      "@type": "xsd:boolean"
+    },
+    "metaData": {
+      "@id": "kibo:metaData"
+    },
+    "productRules": {
+      "@id": "kibo:productRules",
+      "@container": "@list"
+    },
+    "rank": {
+      "@id": "kibo:rank",
+      "@type": "xsd:integer"
+    },
+    "shipmentRules": {
+      "@id": "kibo:shipmentRules",
+      "@container": "@list"
+    },
+    "sortAttribute": {
+      "@id": "kibo:sortAttribute",
+      "@type": "xsd:string"
+    },
+    "startDate": {
+      "@id": "kibo:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "timeFenceDays": {
+      "@id": "kibo:timeFenceDays",
+      "@type": "xsd:integer"
+    },
+    "BackorderRebalancingRuleCollection": "kibo:BackorderRebalancingRuleCollection",
+    "BoostField": "kibo:BoostField",
+    "fieldName": {
+      "@id": "kibo:fieldName",
+      "@type": "xsd:string"
+    },
+    "valueExpressions": {
+      "@id": "kibo:valueExpressions",
+      "@container": "@list"
+    },
+    "BoostValue": "kibo:BoostValue",
+    "boost": {
+      "@id": "kibo:boost",
+      "@type": "xsd:integer"
+    },
+    "operator": {
+      "@id": "kibo:operator",
+      "@type": "xsd:string"
+    },
+    "CallOffReleaseRule": "kibo:CallOffReleaseRule",
+    "callOffOrderRules": {
+      "@id": "kibo:callOffOrderRules",
+      "@container": "@list"
+    },
+    "daysBeforeShipDate": {
+      "@id": "kibo:daysBeforeShipDate",
+      "@type": "xsd:integer"
+    },
+    "minimumFillRate": {
+      "@id": "kibo:minimumFillRate",
+      "@type": "xsd:integer"
+    },
+    "validForAllSites": {
+      "@id": "kibo:validForAllSites",
+      "@type": "xsd:boolean"
+    },
+    "validSites": {
+      "@id": "kibo:validSites",
+      "@container": "@list"
+    },
+    "CallOffReleaseRuleCollection": "kibo:CallOffReleaseRuleCollection",
+    "CatalogAdminsActiveDateRange": "kibo:CatalogAdminsActiveDateRange",
+    "CatalogAdminsAttribute": "kibo:CatalogAdminsAttribute",
+    "attributeCode": {
+      "@id": "kibo:attributeCode",
+      "@type": "xsd:string"
+    },
+    "attributeDataTypeSequence": {
+      "@id": "kibo:attributeDataTypeSequence",
+      "@type": "xsd:integer"
+    },
+    "attributeMetadata": {
+      "@id": "kibo:attributeMetadata",
+      "@container": "@list"
+    },
+    "attributeSequence": {
+      "@id": "kibo:attributeSequence",
+      "@type": "xsd:integer"
+    },
+    "availableForOrderRouting": {
+      "@id": "kibo:availableForOrderRouting",
+      "@type": "xsd:boolean"
+    },
+    "availableInRules": {
+      "@id": "kibo:availableInRules",
+      "@type": "xsd:boolean"
+    },
+    "dataType": {
+      "@id": "kibo:dataType",
+      "@type": "xsd:string"
+    },
+    "isExtra": {
+      "@id": "kibo:isExtra",
+      "@type": "xsd:boolean"
+    },
+    "isOption": {
+      "@id": "kibo:isOption",
+      "@type": "xsd:boolean"
+    },
+    "isProperty": {
+      "@id": "kibo:isProperty",
+      "@type": "xsd:boolean"
+    },
+    "isValueMappingAttribute": {
+      "@id": "kibo:isValueMappingAttribute",
+      "@type": "xsd:boolean"
+    },
+    "localizedContent": {
+      "@id": "kibo:localizedContent",
+      "@container": "@list"
+    },
+    "masterCatalogId": {
+      "@id": "kibo:masterCatalogId",
+      "@type": "xsd:integer"
+    },
+    "searchSettings": {
+      "@id": "kibo:searchSettings",
+      "@type": "@id"
+    },
+    "validation": {
+      "@id": "kibo:validation",
+      "@type": "@id"
+    },
+    "valueMappingAttributeFQN": {
+      "@id": "kibo:valueMappingAttributeFQN",
+      "@type": "xsd:string"
+    },
+    "valueType": {
+      "@id": "kibo:valueType",
+      "@type": "xsd:string"
+    },
+    "CatalogAdminsAttributeCollection": "kibo:CatalogAdminsAttributeCollection",
+    "CatalogAdminsAttributeLocalizedContent": "kibo:CatalogAdminsAttributeLocalizedContent",
+    "CatalogAdminsAttributeMetadataItem": "kibo:CatalogAdminsAttributeMetadataItem",
+    "CatalogAdminsAttributeValidation": "kibo:CatalogAdminsAttributeValidation",
+    "maxDateValue": {
+      "@id": "kibo:maxDateValue",
+      "@type": "xsd:dateTime"
+    },
+    "maxNumericValue": {
+      "@id": "kibo:maxNumericValue",
+      "@type": "xsd:decimal"
+    },
+    "maxStringLength": {
+      "@id": "kibo:maxStringLength",
+      "@type": "xsd:integer"
+    },
+    "minDateValue": {
+      "@id": "kibo:minDateValue",
+      "@type": "xsd:dateTime"
+    },
+    "minNumericValue": {
+      "@id": "kibo:minNumericValue",
+      "@type": "xsd:decimal"
+    },
+    "minStringLength": {
+      "@id": "kibo:minStringLength",
+      "@type": "xsd:integer"
+    },
+    "regularExpression": {
+      "@id": "kibo:regularExpression",
+      "@type": "xsd:string"
+    },
+    "CatalogAdminsAttributeVocabularyValue": "kibo:CatalogAdminsAttributeVocabularyValue",
+    "displayOrder": {
+      "@id": "kibo:displayOrder",
+      "@type": "xsd:integer"
+    },
+    "mappedGenericValues": {
+      "@id": "kibo:mappedGenericValues",
+      "@container": "@list"
+    },
+    "productName": {
+      "@id": "kibo:productName",
+      "@type": "xsd:string"
+    },
+    "valueSequence": {
+      "@id": "kibo:valueSequence",
+      "@type": "xsd:integer"
+    },
+    "CatalogAdminsBundledProduct": "kibo:CatalogAdminsBundledProduct",
+    "fulfillmentTypesSupported": {
+      "@id": "kibo:fulfillmentTypesSupported",
+      "@container": "@list"
+    },
+    "packageHeight": {
+      "@id": "kibo:packageHeight",
+      "@type": "@id"
+    },
+    "packageLength": {
+      "@id": "kibo:packageLength",
+      "@type": "@id"
+    },
+    "packageWeight": {
+      "@id": "kibo:packageWeight",
+      "@type": "@id"
+    },
+    "packageWidth": {
+      "@id": "kibo:packageWidth",
+      "@type": "@id"
+    },
+    "price": {
+      "@id": "kibo:price",
+      "@type": "@id"
+    },
+    "productCode": {
+      "@id": "kibo:productCode",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "kibo:quantity",
+      "@type": "xsd:integer"
+    },
+    "CatalogAdminsCategory": "kibo:CatalogAdminsCategory",
+    "activeDateEnd": {
+      "@id": "kibo:activeDateEnd",
+      "@type": "xsd:dateTime"
+    },
+    "activeDateStart": {
+      "@id": "kibo:activeDateStart",
+      "@type": "xsd:dateTime"
+    },
+    "catalogId": {
+      "@id": "kibo:catalogId",
+      "@type": "xsd:integer"
+    },
+    "categoryCode": {
+      "@id": "kibo:categoryCode",
+      "@type": "xsd:string"
+    },
+    "categoryType": {
+      "@id": "kibo:categoryType",
+      "@type": "xsd:string"
+    },
+    "childCount": {
+      "@id": "kibo:childCount",
+      "@type": "xsd:integer"
+    },
+    "dynamicExpression": {
+      "@id": "kibo:dynamicExpression",
+      "@type": "@id"
+    },
+    "isDisplayed": {
+      "@id": "kibo:isDisplayed",
+      "@type": "xsd:boolean"
+    },
+    "parentCategoryCode": {
+      "@id": "kibo:parentCategoryCode",
+      "@type": "xsd:string"
+    },
+    "parentCategoryId": {
+      "@id": "kibo:parentCategoryId",
+      "@type": "xsd:integer"
+    },
+    "parentCategoryName": {
+      "@id": "kibo:parentCategoryName",
+      "@type": "xsd:string"
+    },
+    "parentIsActive": {
+      "@id": "kibo:parentIsActive",
+      "@type": "xsd:boolean"
+    },
+    "productCount": {
+      "@id": "kibo:productCount",
+      "@type": "xsd:integer"
+    },
+    "shouldSlice": {
+      "@id": "kibo:shouldSlice",
+      "@type": "xsd:boolean"
+    },
+    "CatalogAdminsCustomerSegment": "kibo:CatalogAdminsCustomerSegment",
+    "CatalogAdminsDiscount": "kibo:CatalogAdminsDiscount",
+    "amount": {
+      "@id": "kibo:amount",
+      "@type": "xsd:decimal"
+    },
+    "amountType": {
+      "@id": "kibo:amountType",
+      "@type": "xsd:string"
+    },
+    "canBeDeleted": {
+      "@id": "kibo:canBeDeleted",
+      "@type": "xsd:boolean"
+    },
+    "canBeStackedUpon": {
+      "@id": "kibo:canBeStackedUpon",
+      "@type": "xsd:boolean"
+    },
+    "conditions": {
+      "@id": "kibo:conditions",
+      "@type": "@id"
+    },
+    "currentRedemptionCount": {
+      "@id": "kibo:currentRedemptionCount",
+      "@type": "xsd:integer"
+    },
+    "doesNotApplyToMultiShipToOrders": {
+      "@id": "kibo:doesNotApplyToMultiShipToOrders",
+      "@type": "xsd:boolean"
+    },
+    "doesNotApplyToProductsWithSalePrice": {
+      "@id": "kibo:doesNotApplyToProductsWithSalePrice",
+      "@type": "xsd:boolean"
+    },
+    "doesNotApplyToSalePrice": {
+      "@id": "kibo:doesNotApplyToSalePrice",
+      "@type": "xsd:boolean"
+    },
+    "hasPurchaseConditions": {
+      "@id": "kibo:hasPurchaseConditions",
+      "@type": "xsd:boolean"
+    },
+    "includedPriceLists": {
+      "@id": "kibo:includedPriceLists",
+      "@container": "@list"
+    },
+    "isBxGx": {
+      "@id": "kibo:isBxGx",
+      "@type": "xsd:boolean"
+    },
+    "isDisabled": {
+      "@id": "kibo:isDisabled",
+      "@type": "xsd:boolean"
+    },
+    "isPublic": {
+      "@id": "kibo:isPublic",
+      "@type": "xsd:boolean"
+    },
+    "isSubscriptionDiscount": {
+      "@id": "kibo:isSubscriptionDiscount",
+      "@type": "xsd:boolean"
+    },
+    "labels": {
+      "@id": "kibo:labels",
+      "@container": "@list"
+    },
+    "maximumDiscountImpactPerOrder": {
+      "@id": "kibo:maximumDiscountImpactPerOrder",
+      "@type": "xsd:decimal"
+    },
+    "maximumDiscountImpactPerRedemption": {
+      "@id": "kibo:maximumDiscountImpactPerRedemption",
+      "@type": "xsd:decimal"
+    },
+    "maximumRedemptionsPerOrder": {
+      "@id": "kibo:maximumRedemptionsPerOrder",
+      "@type": "xsd:integer"
+    },
+    "maximumUsesPerUser": {
+      "@id": "kibo:maximumUsesPerUser",
+      "@type": "xsd:integer"
+    },
+    "preventLineItemShippingDiscounts": {
+      "@id": "kibo:preventLineItemShippingDiscounts",
+      "@type": "xsd:boolean"
+    },
+    "preventOrderProductDiscounts": {
+      "@id": "kibo:preventOrderProductDiscounts",
+      "@type": "xsd:boolean"
+    },
+    "preventOrderShippingDiscounts": {
+      "@id": "kibo:preventOrderShippingDiscounts",
+      "@type": "xsd:boolean"
+    },
+    "purchaseRequirementType": {
+      "@id": "kibo:purchaseRequirementType",
+      "@type": "xsd:string"
+    },
+    "reevalFreeItemMinOrderPostDiscounts": {
+      "@id": "kibo:reevalFreeItemMinOrderPostDiscounts",
+      "@type": "xsd:boolean"
+    },
+    "scope": {
+      "@id": "kibo:scope",
+      "@type": "xsd:string"
+    },
+    "stackingLayer": {
+      "@id": "kibo:stackingLayer",
+      "@type": "xsd:integer"
+    },
+    "tagCodes": {
+      "@id": "kibo:tagCodes",
+      "@container": "@list"
+    },
+    "target": {
+      "@id": "kibo:target",
+      "@type": "@id"
+    },
+    "thresholdMessage": {
+      "@id": "kibo:thresholdMessage",
+      "@type": "@id"
+    },
+    "CatalogAdminsDiscountCollection": "kibo:CatalogAdminsDiscountCollection",
+    "CatalogAdminsDiscountCondition": "kibo:CatalogAdminsDiscountCondition",
+    "categoriesToExcludeFromMinOrderTotal": {
+      "@id": "kibo:categoriesToExcludeFromMinOrderTotal",
+      "@container": "@list"
+    },
+    "continuityRecurrenceSettings": {
+      "@id": "kibo:continuityRecurrenceSettings",
+      "@type": "@id"
+    },
+    "couponCode": {
+      "@id": "kibo:couponCode",
+      "@type": "xsd:string"
+    },
+    "customerSegments": {
+      "@id": "kibo:customerSegments",
+      "@container": "@list"
+    },
+    "excludedCategories": {
+      "@id": "kibo:excludedCategories",
+      "@container": "@list"
+    },
+    "excludedProducts": {
+      "@id": "kibo:excludedProducts",
+      "@container": "@list"
+    },
+    "exclusiveLocationCodes": {
+      "@id": "kibo:exclusiveLocationCodes",
+      "@container": "@list"
+    },
+    "exclusiveSiteIds": {
+      "@id": "kibo:exclusiveSiteIds",
+      "@container": "@list"
+    },
+    "expirationDate": {
+      "@id": "kibo:expirationDate",
+      "@type": "xsd:dateTime"
+    },
+    "expression": {
+      "@id": "kibo:expression",
+      "@type": "@id"
+    },
+    "includedCategories": {
+      "@id": "kibo:includedCategories",
+      "@container": "@list"
+    },
+    "includedPaymentWorkflows": {
+      "@id": "kibo:includedPaymentWorkflows",
+      "@container": "@list"
+    },
+    "includedProducts": {
+      "@id": "kibo:includedProducts",
+      "@container": "@list"
+    },
+    "maxRedemptionCount": {
+      "@id": "kibo:maxRedemptionCount",
+      "@type": "xsd:integer"
+    },
+    "maximumOrderAmount": {
+      "@id": "kibo:maximumOrderAmount",
+      "@type": "xsd:decimal"
+    },
+    "minDistinctProductsRequired": {
+      "@id": "kibo:minDistinctProductsRequired",
+      "@type": "xsd:integer"
+    },
+    "minTotalOrderQuantity": {
+      "@id": "kibo:minTotalOrderQuantity",
+      "@type": "xsd:integer"
+    },
+    "minimumCategorySubtotalBeforeDiscounts": {
+      "@id": "kibo:minimumCategorySubtotalBeforeDiscounts",
+      "@type": "xsd:decimal"
+    },
+    "minimumLifetimeValueAmount": {
+      "@id": "kibo:minimumLifetimeValueAmount",
+      "@type": "xsd:decimal"
+    },
+    "minimumOrderAmount": {
+      "@id": "kibo:minimumOrderAmount",
+      "@type": "xsd:decimal"
+    },
+    "minimumQuantityProductsRequiredInCategories": {
+      "@id": "kibo:minimumQuantityProductsRequiredInCategories",
+      "@type": "xsd:integer"
+    },
+    "minimumQuantityRequiredProducts": {
+      "@id": "kibo:minimumQuantityRequiredProducts",
+      "@type": "xsd:integer"
+    },
+    "minimumRequiredQuantityPerRedemption": {
+      "@id": "kibo:minimumRequiredQuantityPerRedemption",
+      "@type": "xsd:integer"
+    },
+    "pricingContext": {
+      "@id": "kibo:pricingContext",
+      "@type": "xsd:string"
+    },
+    "productsToExcludeFromMinOrderTotal": {
+      "@id": "kibo:productsToExcludeFromMinOrderTotal",
+      "@container": "@list"
+    },
+    "requiresAuthenticatedUser": {
+      "@id": "kibo:requiresAuthenticatedUser",
+      "@type": "xsd:boolean"
+    },
+    "requiresCoupon": {
+      "@id": "kibo:requiresCoupon",
+      "@type": "xsd:boolean"
+    },
+    "validFulfillmentMethods": {
+      "@id": "kibo:validFulfillmentMethods",
+      "@container": "@list"
+    },
+    "validSubscriptionContinuityOrdinals": {
+      "@id": "kibo:validSubscriptionContinuityOrdinals",
+      "@container": "@list"
+    },
+    "validSubscriptionFrequencies": {
+      "@id": "kibo:validSubscriptionFrequencies",
+      "@container": "@list"
+    },
+    "CatalogAdminsDiscountTarget": "kibo:CatalogAdminsDiscountTarget",
+    "appliesToLeastExpensiveProductsFirst": {
+      "@id": "kibo:appliesToLeastExpensiveProductsFirst",
+      "@type": "xsd:boolean"
+    },
+    "categories": {
+      "@id": "kibo:categories",
+      "@container": "@list"
+    },
+    "doNotApplyToHandlingFees": {
+      "@id": "kibo:doNotApplyToHandlingFees",
+      "@type": "xsd:boolean"
+    },
+    "excludeItemsWithExistingProductDiscounts": {
+      "@id": "kibo:excludeItemsWithExistingProductDiscounts",
+      "@type": "xsd:boolean"
+    },
+    "excludeItemsWithExistingShippingDiscounts": {
+      "@id": "kibo:excludeItemsWithExistingShippingDiscounts",
+      "@type": "xsd:boolean"
+    },
+    "excludedCategoriesOperator": {
+      "@id": "kibo:excludedCategoriesOperator",
+      "@type": "xsd:string"
+    },
+    "includeAllProducts": {
+      "@id": "kibo:includeAllProducts",
+      "@type": "xsd:boolean"
+    },
+    "includedCategoriesOperator": {
+      "@id": "kibo:includedCategoriesOperator",
+      "@type": "xsd:string"
+    },
+    "maximumQuantityPerRedemption": {
+      "@id": "kibo:maximumQuantityPerRedemption",
+      "@type": "xsd:integer"
+    },
+    "products": {
+      "@id": "kibo:products",
+      "@container": "@list"
+    },
+    "shippingMethods": {
+      "@id": "kibo:shippingMethods",
+      "@container": "@list"
+    },
+    "shippingZones": {
+      "@id": "kibo:shippingZones",
+      "@container": "@list"
+    },
+    "CatalogAdminsDynamicExpression": "kibo:CatalogAdminsDynamicExpression",
+    "text": {
+      "@id": "kibo:text",
+      "@type": "xsd:string"
+    },
+    "tree": {
+      "@id": "kibo:tree",
+      "@type": "@id"
+    },
+    "CatalogAdminsExpression": "kibo:CatalogAdminsExpression",
+    "left": {
+      "@id": "kibo:left",
+      "@type": "xsd:string"
+    },
+    "logicalOperator": {
+      "@id": "kibo:logicalOperator",
+      "@type": "xsd:string"
+    },
+    "nodes": {
+      "@id": "kibo:nodes",
+      "@container": "@list"
+    },
+    "right": {
+      "@id": "kibo:right"
+    },
+    "CatalogAdminsMasterCatalog": "kibo:CatalogAdminsMasterCatalog",
+    "enableLiveEdit": {
+      "@id": "kibo:enableLiveEdit",
+      "@type": "xsd:boolean"
+    },
+    "productPublishingMode": {
+      "@id": "kibo:productPublishingMode",
+      "@type": "xsd:string"
+    },
+    "supportedLocaleCodes": {
+      "@id": "kibo:supportedLocaleCodes",
+      "@container": "@list"
+    },
+    "CatalogAdminsProduct": "kibo:CatalogAdminsProduct",
+    "applicableDiscounts": {
+      "@id": "kibo:applicableDiscounts",
+      "@container": "@list"
+    },
+    "baseProductCode": {
+      "@id": "kibo:baseProductCode",
+      "@type": "xsd:string"
+    },
+    "bundledProducts": {
+      "@id": "kibo:bundledProducts",
+      "@container": "@list"
+    },
+    "extras": {
+      "@id": "kibo:extras",
+      "@container": "@list"
+    },
+    "hasConfigurableOptions": {
+      "@id": "kibo:hasConfigurableOptions",
+      "@type": "xsd:boolean"
+    },
+    "hasStandAloneOptions": {
+      "@id": "kibo:hasStandAloneOptions",
+      "@type": "xsd:boolean"
+    },
+    "inventoryInfo": {
+      "@id": "kibo:inventoryInfo",
+      "@type": "@id"
+    },
+    "isPackagedStandAlone": {
+      "@id": "kibo:isPackagedStandAlone",
+      "@type": "xsd:boolean"
+    },
+    "isRecurring": {
+      "@id": "kibo:isRecurring",
+      "@type": "xsd:boolean"
+    },
+    "isTaxable": {
+      "@id": "kibo:isTaxable",
+      "@type": "xsd:boolean"
+    },
+    "isValidForProductType": {
+      "@id": "kibo:isValidForProductType",
+      "@type": "xsd:boolean"
+    },
+    "isVariation": {
+      "@id": "kibo:isVariation",
+      "@type": "xsd:boolean"
+    },
+    "localizedSEOContent": {
+      "@id": "kibo:localizedSEOContent",
+      "@container": "@list"
+    },
+    "pricingBehavior": {
+      "@id": "kibo:pricingBehavior",
+      "@type": "@id"
+    },
+    "primaryProductCollectionCode": {
+      "@id": "kibo:primaryProductCollectionCode",
+      "@type": "xsd:string"
+    },
+    "productCollectionProducts": {
+      "@id": "kibo:productCollectionProducts",
+      "@container": "@list"
+    },
+    "productCollections": {
+      "@id": "kibo:productCollections",
+      "@container": "@list"
+    },
+    "productImageGroups": {
+      "@id": "kibo:productImageGroups",
+      "@container": "@list"
+    },
+    "productInCatalogs": {
+      "@id": "kibo:productInCatalogs",
+      "@container": "@list"
+    },
+    "productSequence": {
+      "@id": "kibo:productSequence",
+      "@type": "xsd:integer"
+    },
+    "productTypeId": {
+      "@id": "kibo:productTypeId",
+      "@type": "xsd:integer"
+    },
+    "productUsage": {
+      "@id": "kibo:productUsage",
+      "@type": "xsd:string"
+    },
+    "publishingInfo": {
+      "@id": "kibo:publishingInfo",
+      "@type": "@id"
+    },
+    "seoContent": {
+      "@id": "kibo:seoContent",
+      "@type": "@id"
+    },
+    "shippingClassId": {
+      "@id": "kibo:shippingClassId",
+      "@type": "xsd:integer"
+    },
+    "slicingSettings": {
+      "@id": "kibo:slicingSettings",
+      "@type": "@id"
+    },
+    "standAlonePackageType": {
+      "@id": "kibo:standAlonePackageType",
+      "@type": "xsd:string"
+    },
+    "supplierInfo": {
+      "@id": "kibo:supplierInfo",
+      "@type": "@id"
+    },
+    "upc": {
+      "@id": "kibo:upc",
+      "@type": "xsd:string"
+    },
+    "variationKey": {
+      "@id": "kibo:variationKey",
+      "@type": "xsd:string"
+    },
+    "variationOptions": {
+      "@id": "kibo:variationOptions",
+      "@container": "@list"
+    },
+    "CatalogAdminsProductImageGroup": "kibo:CatalogAdminsProductImageGroup",
+    "productImageGroupId": {
+      "@id": "kibo:productImageGroupId"
+    },
+    "CatalogAdminsProductImageGroupTag": "kibo:CatalogAdminsProductImageGroupTag",
+    "CatalogAdminsProductOption": "kibo:CatalogAdminsProductOption",
+    "isProductImageGroupSelector": {
+      "@id": "kibo:isProductImageGroupSelector",
+      "@type": "xsd:boolean"
+    },
+    "values": {
+      "@id": "kibo:values",
+      "@container": "@list"
+    },
+    "CatalogAdminsProductPrice": "kibo:CatalogAdminsProductPrice",
+    "creditValue": {
+      "@id": "kibo:creditValue",
+      "@type": "xsd:decimal"
+    },
+    "map": {
+      "@id": "kibo:map",
+      "@type": "xsd:decimal"
+    },
+    "mapEndDate": {
+      "@id": "kibo:mapEndDate",
+      "@type": "xsd:dateTime"
+    },
+    "mapStartDate": {
+      "@id": "kibo:mapStartDate",
+      "@type": "xsd:dateTime"
+    },
+    "msrp": {
+      "@id": "kibo:msrp",
+      "@type": "xsd:decimal"
+    },
+    "salePrice": {
+      "@id": "kibo:salePrice",
+      "@type": "xsd:decimal"
+    },
+    "CatalogAdminsProductProperty": "kibo:CatalogAdminsProductProperty",
+    "forceOrder": {
+      "@id": "kibo:forceOrder",
+      "@type": "xsd:boolean"
+    },
+    "CatalogAdminsProductPropertyValue": "kibo:CatalogAdminsProductPropertyValue",
+    "attributeVocabularyValueDetail": {
+      "@id": "kibo:attributeVocabularyValueDetail",
+      "@type": "@id"
+    },
+    "CatalogAdminsTag": "kibo:CatalogAdminsTag",
+    "tagCode": {
+      "@id": "kibo:tagCode",
+      "@type": "xsd:string"
+    },
+    "tagName": {
+      "@id": "kibo:tagName",
+      "@type": "xsd:string"
+    },
+    "tagPath": {
+      "@id": "kibo:tagPath",
+      "@type": "xsd:string"
+    },
+    "CatalogAdminsTargetedCategory": "kibo:CatalogAdminsTargetedCategory",
+    "CatalogAdminsTargetedShippingMethod": "kibo:CatalogAdminsTargetedShippingMethod",
+    "CatalogAdminsTargetedShippingZone": "kibo:CatalogAdminsTargetedShippingZone",
+    "zone": {
+      "@id": "kibo:zone",
+      "@type": "xsd:string"
+    },
+    "CatalogAdminsThresholdMessage": "kibo:CatalogAdminsThresholdMessage",
+    "requiresCouponCode": {
+      "@id": "kibo:requiresCouponCode",
+      "@type": "xsd:boolean"
+    },
+    "showInCart": {
+      "@id": "kibo:showInCart",
+      "@type": "xsd:boolean"
+    },
+    "showOnCheckout": {
+      "@id": "kibo:showOnCheckout",
+      "@type": "xsd:boolean"
+    },
+    "thresholdValue": {
+      "@id": "kibo:thresholdValue",
+      "@type": "xsd:decimal"
+    },
+    "CategoryAttribute": "kibo:CategoryAttribute",
+    "attributeDefinitionId": {
+      "@id": "kibo:attributeDefinitionId",
+      "@type": "xsd:integer"
+    },
+    "fullyQualifiedName": {
+      "@id": "kibo:fullyQualifiedName",
+      "@type": "xsd:string"
+    },
+    "CategoryAttributeCollection": "kibo:CategoryAttributeCollection",
+    "CategoryCollection": "kibo:CategoryCollection",
+    "CategoryDiscountCondition": "kibo:CategoryDiscountCondition",
+    "CategoryLocalizedContent": "kibo:CategoryLocalizedContent",
+    "categoryImages": {
+      "@id": "kibo:categoryImages",
+      "@container": "@list"
+    },
+    "metaTagDescription": {
+      "@id": "kibo:metaTagDescription",
+      "@type": "xsd:string"
+    },
+    "metaTagKeywords": {
+      "@id": "kibo:metaTagKeywords",
+      "@type": "xsd:string"
+    },
+    "metaTagTitle": {
+      "@id": "kibo:metaTagTitle",
+      "@type": "xsd:string"
+    },
+    "pageTitle": {
+      "@id": "kibo:pageTitle",
+      "@type": "xsd:string"
+    },
+    "slug": {
+      "@id": "kibo:slug",
+      "@type": "xsd:string"
+    },
+    "CategoryLocalizedImage": "kibo:CategoryLocalizedImage",
+    "altText": {
+      "@id": "kibo:altText",
+      "@type": "xsd:string"
+    },
+    "imageLabel": {
+      "@id": "kibo:imageLabel",
+      "@type": "xsd:string"
+    },
+    "mediaType": {
+      "@id": "kibo:mediaType",
+      "@type": "xsd:string"
+    },
+    "videoUrl": {
+      "@id": "kibo:videoUrl",
+      "@type": "xsd:string"
+    },
+    "CategoryPagedCollection": "kibo:CategoryPagedCollection",
+    "ChangeProductTypeAction": "kibo:ChangeProductTypeAction",
+    "ignoreDataLoss": {
+      "@id": "kibo:ignoreDataLoss",
+      "@type": "xsd:boolean"
+    },
+    "patches": {
+      "@id": "kibo:patches",
+      "@type": "@id"
+    },
+    "saveAndPublish": {
+      "@id": "kibo:saveAndPublish",
+      "@type": "xsd:boolean"
+    },
+    "testMode": {
+      "@id": "kibo:testMode",
+      "@type": "xsd:boolean"
+    },
+    "CollapseSettings": "kibo:CollapseSettings",
+    "boostFieldName": {
+      "@id": "kibo:boostFieldName",
+      "@type": "xsd:string"
+    },
+    "boostRankListing": {
+      "@id": "kibo:boostRankListing",
+      "@type": "xsd:boolean"
+    },
+    "boostRankSiteSearch": {
+      "@id": "kibo:boostRankSiteSearch",
+      "@type": "xsd:boolean"
+    },
+    "collapseFieldName": {
+      "@id": "kibo:collapseFieldName",
+      "@type": "xsd:string"
+    },
+    "collapseListing": {
+      "@id": "kibo:collapseListing",
+      "@type": "xsd:boolean"
+    },
+    "collapseSiteSearch": {
+      "@id": "kibo:collapseSiteSearch",
+      "@type": "xsd:boolean"
+    },
+    "useFieldCache": {
+      "@id": "kibo:useFieldCache",
+      "@type": "xsd:boolean"
+    },
+    "ContinuityRecurrenceSettings": "kibo:ContinuityRecurrenceSettings",
+    "interval": {
+      "@id": "kibo:interval",
+      "@type": "xsd:integer"
+    },
+    "startOrdinal": {
+      "@id": "kibo:startOrdinal",
+      "@type": "xsd:integer"
+    },
+    "stopOrdinal": {
+      "@id": "kibo:stopOrdinal",
+      "@type": "xsd:integer"
+    },
+    "Coupon": "kibo:Coupon",
+    "redemptionCount": {
+      "@id": "kibo:redemptionCount",
+      "@type": "xsd:integer"
+    },
+    "CouponCollection": "kibo:CouponCollection",
+    "CouponSet": "kibo:CouponSet",
+    "assignedDiscountCount": {
+      "@id": "kibo:assignedDiscountCount",
+      "@type": "xsd:integer"
+    },
+    "couponCodeCount": {
+      "@id": "kibo:couponCodeCount",
+      "@type": "xsd:integer"
+    },
+    "couponCodeType": {
+      "@id": "kibo:couponCodeType",
+      "@type": "xsd:string"
+    },
+    "maxRedemptionsPerCouponCode": {
+      "@id": "kibo:maxRedemptionsPerCouponCode",
+      "@type": "xsd:integer"
+    },
+    "maxRedemptionsPerUser": {
+      "@id": "kibo:maxRedemptionsPerUser",
+      "@type": "xsd:integer"
+    },
+    "setSize": {
+      "@id": "kibo:setSize",
+      "@type": "xsd:integer"
+    },
+    "CouponSetCollection": "kibo:CouponSetCollection",
+    "CurrencyExchangeRate": "kibo:CurrencyExchangeRate",
+    "fromCurrencyCode": {
+      "@id": "kibo:fromCurrencyCode",
+      "@type": "xsd:string"
+    },
+    "multiplier": {
+      "@id": "kibo:multiplier",
+      "@type": "xsd:decimal"
+    },
+    "rate": {
+      "@id": "kibo:rate",
+      "@type": "xsd:decimal"
+    },
+    "referenceData": {
+      "@id": "kibo:referenceData",
+      "@type": "xsd:string"
+    },
+    "toCurrencyCode": {
+      "@id": "kibo:toCurrencyCode",
+      "@type": "xsd:string"
+    },
+    "CurrencyExchangeRateCollection": "kibo:CurrencyExchangeRateCollection",
+    "CurrencyLocalization": "kibo:CurrencyLocalization",
+    "currencyCode": {
+      "@id": "kibo:currencyCode",
+      "@type": "xsd:string"
+    },
+    "decimalPlaces": {
+      "@id": "kibo:decimalPlaces",
+      "@type": "xsd:integer"
+    },
+    "roundingStrategy": {
+      "@id": "kibo:roundingStrategy",
+      "@type": "xsd:integer"
+    },
+    "CurrencyLocalizationCollection": "kibo:CurrencyLocalizationCollection",
+    "CustomProperty": "kibo:CustomProperty",
+    "position": {
+      "@id": "kibo:position",
+      "@type": "xsd:integer"
+    },
+    "CustomPropertyValues": "kibo:CustomPropertyValues",
+    "value1": {
+      "@id": "kibo:value1",
+      "@type": "xsd:string"
+    },
+    "value10": {
+      "@id": "kibo:value10",
+      "@type": "xsd:string"
+    },
+    "value2": {
+      "@id": "kibo:value2",
+      "@type": "xsd:string"
+    },
+    "value3": {
+      "@id": "kibo:value3",
+      "@type": "xsd:string"
+    },
+    "value4": {
+      "@id": "kibo:value4",
+      "@type": "xsd:string"
+    },
+    "value5": {
+      "@id": "kibo:value5",
+      "@type": "xsd:string"
+    },
+    "value6": {
+      "@id": "kibo:value6",
+      "@type": "xsd:string"
+    },
+    "value7": {
+      "@id": "kibo:value7",
+      "@type": "xsd:string"
+    },
+    "value8": {
+      "@id": "kibo:value8",
+      "@type": "xsd:string"
+    },
+    "value9": {
+      "@id": "kibo:value9",
+      "@type": "xsd:string"
+    },
+    "DiscountLocalizedContent": "kibo:DiscountLocalizedContent",
+    "customPropertyValues": {
+      "@id": "kibo:customPropertyValues",
+      "@type": "@id"
+    },
+    "friendlyDescription": {
+      "@id": "kibo:friendlyDescription",
+      "@type": "xsd:string"
+    },
+    "DiscountSettings": "kibo:DiscountSettings",
+    "customProperties": {
+      "@id": "kibo:customProperties",
+      "@container": "@list"
+    },
+    "rejectSelfDefeatingDiscounts": {
+      "@id": "kibo:rejectSelfDefeatingDiscounts",
+      "@type": "xsd:boolean"
+    },
+    "stackingConfiguration": {
+      "@id": "kibo:stackingConfiguration",
+      "@type": "@id"
+    },
+    "usePostDiscountedOrderValue": {
+      "@id": "kibo:usePostDiscountedOrderValue",
+      "@type": "xsd:boolean"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Kibo Commerce API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Kibo Commerce's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-18) from openapi/kibo-commerce-appdevelopement-openapi.yml, openapi/kibo-commerce-audit-logs-openapi.yml, openapi/kibo-commerce-catalog-admin-openapi.yml.",
+  "dcterms:created": "2026-10-18",
+  "dcterms:source": [
+    "openapi/kibo-commerce-appdevelopement-openapi.yml",
+    "openapi/kibo-commerce-audit-logs-openapi.yml",
+    "openapi/kibo-commerce-catalog-admin-openapi.yml",
+    "openapi/kibo-commerce-catalog-storefront-openapi.yml",
+    "openapi/kibo-commerce-commerce-openapi.yml"
+  ]
+}

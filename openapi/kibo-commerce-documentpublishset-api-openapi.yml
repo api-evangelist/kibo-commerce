@@ -1,0 +1,353 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Document Publish Set API
+  version: '1.0'
+  description: 'Operations tagged DocumentPublishSet across 2 of this provider''s published API definitions: openapi_openapi_content.json, kibo-commerce-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: DocumentPublishSet
+paths:
+  /content/publishsets/{code}:
+    post:
+      description: Adds a set of documents by id to a publish set.
+      parameters:
+      - description: code of the publish set.  Use UNASSIGNED or ALL to denote those special cases
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: should trash the drafts in the publish set as well
+        in: query
+        name: shouldDiscard
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Publish Set
+      tags:
+      - DocumentPublishSet
+      operationId: postContentPublishsetsByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/publishsets:
+    get:
+      description: Returns a List of current Publishing sets with counts of drafts in each.
+      parameters:
+      - description: maximum number of items to return
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: start index
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishSetSummaryPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PublishSetSummaryPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PublishSetSummaryPagedCollection'
+          description: OK
+      summary: Get Publish Set
+      tags:
+      - DocumentPublishSet
+      operationId: getContentPublishsets
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/publishsets/{code}/items:
+    get:
+      description: Retrieve a paged collection of publish set Items.
+      parameters:
+      - description: code of the publish set.  Use UNASSIGNED or ALL to denote those special cases
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: maximum number of items to return
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: start index
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDraftSummaryPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDraftSummaryPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentDraftSummaryPagedCollection'
+          description: OK
+      summary: Get Publish Set Items
+      tags:
+      - DocumentPublishSet
+      operationId: getContentPublishsetsByCodeItems
+      x-operation-id-source: derived
+    put:
+      description: Adds a set of documents by id to a publish set.
+      parameters:
+      - description: code of the publish set.  Use UNASSIGNED or ALL to denote those special cases
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/AddOrDeletePublishItem'
+              type: array
+          application/octet-stream:
+            schema:
+              items:
+                $ref: '#/components/schemas/AddOrDeletePublishItem'
+              type: array
+          text/plain:
+            schema:
+              items:
+                $ref: '#/components/schemas/AddOrDeletePublishItem'
+              type: array
+        description: documentId/doclist pairs to add to the publish set
+      responses:
+        '200':
+          description: OK
+      summary: Add Publish Set Items
+      tags:
+      - DocumentPublishSet
+      operationId: putContentPublishsetsByCodeItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    DocumentDraftSummary:
+      description: Summary information on a Document Draft
+      properties:
+        activeUpdateDate:
+          description: The date and time the document was last published, if any.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        activeUpdatedBy:
+          type:
+          - string
+          - 'null'
+        catalogId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        documentTypeFQN:
+          description: The full name of the documentType that underlies this document.
+          type:
+          - string
+          - 'null'
+        draftUpdateDate:
+          description: The date and time the document draft was last updated.
+          format: date-time
+          type: string
+        id:
+          description: The system generated 32 digit alpha-numeric string that uniquely identifies the document.
+          type:
+          - string
+          - 'null'
+        listFQN:
+          description: The fully qualified name of the documentList to which the document belongs.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        name:
+          description: The unique name of the document.
+          type:
+          - string
+          - 'null'
+        publishSetCode:
+          type:
+          - string
+          - 'null'
+        publishType:
+          description: "Denotes the type of draft. \n\"Created\" -- the document has never been published. \n\"Updated\" -- the document has an \"active\" version and this is a subsequent draft.\n\"Deleted\" -- the \"active\" document will be permanently deleted when this draft is published."
+          type:
+          - string
+          - 'null'
+        siteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        updatedBy:
+          description: The userId or applicationId that last updated the draft document.
+          type:
+          - string
+          - 'null'
+      type: object
+    AddOrDeletePublishItem:
+      properties:
+        docListFQN:
+          type:
+          - string
+          - 'null'
+        documentId:
+          type:
+          - string
+          - 'null'
+        scopeId:
+          format: int32
+          type: integer
+        scopeType:
+          type:
+          - string
+          - 'null'
+      type: object
+    PublishSetSummaryPagedCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PublishSetSummary'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    DocumentDraftSummaryPagedCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DocumentDraftSummary'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PublishSetSummary:
+      description: Summary information of documents in a publishing set
+      properties:
+        count:
+          description: the count of documents in the associated publish set
+          format: int32
+          type: integer
+        publishSetCode:
+          description: the code of the associated publish set
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_content.json
+- kibo-commerce-content-openapi.yml

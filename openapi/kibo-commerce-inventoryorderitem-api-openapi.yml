@@ -1,0 +1,239 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Order Item API
+  version: '1.0'
+  description: 'Operations tagged InventoryOrderItem across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryOrderItem
+paths:
+  /commerce/inventory/v5/inventory/getOrderItemInformation:
+    post:
+      description: Retrieves the information for a specific order item
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/OrderItemInformationRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OrderItemInformation'
+                type: array
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Get Order Item Information
+      tags:
+      - InventoryOrderItem
+      operationId: postCommerceInventoryV5InventoryGetOrderItemInformation
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    InventoryItem:
+      description: Item
+      properties:
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        lotCode:
+          type: string
+        partNumber:
+          description: Part/Product Number
+          type: string
+        serialNumber:
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Item
+      type: object
+    OrderItemInformation:
+      description: Order Item Information
+      properties:
+        allocated:
+          description: The quantity the location has that are allocated
+          type: integer
+        allocates:
+          description: Total number of allocations
+          type: integer
+        available:
+          description: The quantity the location has that are available for purchase
+          type: integer
+        binID:
+          description: Bin Identifier
+          type: integer
+        deallocates:
+          description: Total number of deallocations
+          type: integer
+        events:
+          description: Order Identifier
+          items:
+            $ref: '#/components/schemas/OrderItemInformationEvent'
+          type: array
+        floor:
+          description: Absolute minimum quantity of this item that should be in stock at any time
+          type: integer
+        fulfills:
+          description: Total number of fulfillments. Should never be greater than 1.
+          type: integer
+        locationActive:
+          description: Flag for whether the location is active
+          type: boolean
+        locationCode:
+          description: External Store Identifier
+          type: integer
+        locationID:
+          description: Location Identifier
+          type: integer
+        locationName:
+          description: Location Name
+          type: string
+        ltd:
+          description: Custom field used for store prioritization
+          type: string
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        onHand:
+          description: The quantity the location has in its possession
+          type: integer
+        orderID:
+          description: Order Identifier
+          type: integer
+        orderItemID:
+          description: Order Item Identifier
+          type: integer
+        partNumber:
+          description: Part/Product Number
+          type: string
+        pendingQuantity:
+          description: Pending quantity (WMS only)
+          type: integer
+        picks:
+          description: Total number of picks (WMS only)
+          type: integer
+        safetyStock:
+          description: Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+          type: integer
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        success:
+          description: Flag for success
+          type: boolean
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Order Item Information
+      type: object
+    OrderItemInformationRequest:
+      description: Request for getting order item information
+      properties:
+        items:
+          description: List of Items to search on
+          items:
+            $ref: '#/components/schemas/InventoryItem'
+          type: array
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        orderID:
+          description: Order Identifier
+          type: integer
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Order Item Information Request
+      type: object
+    OrderItemInformationEvent:
+      description: Order Item Information Event
+      properties:
+        date:
+          description: Date of the event
+          type: string
+        eventType:
+          description: Type of event
+          enum:
+          - ALLOCATED
+          - DEALLOCATED
+          - FULFILLED
+          - PICKED
+          - DEALLOCATE_FULFILL
+          type: string
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        quantity:
+          description: Quantity
+          type: integer
+        success:
+          description: Flag for success
+          type: boolean
+      title: Order Item Information Event
+      type: object
+    tags:
+      additionalProperties:
+        type: string
+      description: Associative Map of <String, String> for tagCategoryName => tagName
+      type: object
+  requestBodies:
+    OrderItemInformationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OrderItemInformationRequest'
+      description: Request to retrieve order item information
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

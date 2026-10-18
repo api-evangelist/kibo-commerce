@@ -1,0 +1,318 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Schema Definition API
+  version: '1.0'
+  description: 'Operations tagged SchemaDefinition across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SchemaDefinition
+paths:
+  /commerce/catalog/admin/searchSchema/definition/{language}:
+    get:
+      parameters:
+      - in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: published
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+          description: OK
+      summary: Get Schema Definition
+      tags:
+      - SchemaDefinition
+      operationId: getCommerceCatalogAdminSearchSchemaDefinitionByLanguage
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+          application/zip:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/SchemaDefinition'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SchemaDefinition'
+          description: OK
+      summary: Update Schema Definition
+      tags:
+      - SchemaDefinition
+      operationId: putCommerceCatalogAdminSearchSchemaDefinitionByLanguage
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/searchSchema/definition:
+    get:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SchemaDefinition'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SchemaDefinition'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SchemaDefinition'
+                type: array
+          description: OK
+      summary: List Schema Definitions
+      tags:
+      - SchemaDefinition
+      operationId: getCommerceCatalogAdminSearchSchemaDefinition
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/searchSchema/definition/{language}/publish:
+    post:
+      parameters:
+      - in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: reindex
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: OK
+      summary: Publish
+      tags:
+      - SchemaDefinition
+      operationId: postCommerceCatalogAdminSearchSchemaDefinitionByLanguagePublish
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/searchSchema/definition/{language}/revert:
+    post:
+      parameters:
+      - in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+            text/plain:
+              schema:
+                type: boolean
+          description: OK
+      summary: Revert
+      tags:
+      - SchemaDefinition
+      operationId: postCommerceCatalogAdminSearchSchemaDefinitionByLanguageRevert
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SpellingSchemaDefinitionField:
+      properties:
+        ingestFieldName:
+          type:
+          - string
+          - 'null'
+      type: object
+    SchemaDefinition:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        fields:
+          items:
+            $ref: '#/components/schemas/SchemaDefinitionField'
+          type: array
+        isPublished:
+          readOnly: true
+          type: boolean
+        language:
+          minLength: 1
+          type: string
+        spellCorrectEnabled:
+          description: Returns boolean if contains any SpellingFields members.
+          type:
+          - boolean
+          - 'null'
+        spellingFields:
+          description: List of attributes used in the spelling dictionary
+          items:
+            $ref: '#/components/schemas/SpellingSchemaDefinitionField'
+          type:
+          - array
+          - 'null'
+      required:
+      - fields
+      - language
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    SchemaDefinitionField:
+      properties:
+        fieldDefinition:
+          minLength: 1
+          type: string
+        fieldName:
+          minLength: 1
+          type: string
+        friendlyName:
+          type:
+          - string
+          - 'null'
+        ingestFieldName:
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        searchFieldName:
+          readOnly: true
+          type:
+          - string
+          - 'null'
+      required:
+      - fieldDefinition
+      - fieldName
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

@@ -1,0 +1,2187 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Wishlist API
+  version: '1.0'
+  description: 'Operations tagged Wishlist across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Wishlist
+paths:
+  /commerce/wishlists/{wishlistId}:
+    delete:
+      description: Deletes a wishlist specified by wishlist Id.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Deletes Wishlist
+      tags:
+      - Wishlist
+      operationId: deleteCommerceWishlistsByWishlistId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a wishlist specified by the wishlist ID.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+          description: OK
+      summary: Get Wishlist
+      tags:
+      - Wishlist
+      operationId: getCommerceWishlistsByWishlistId
+      x-operation-id-source: derived
+    put:
+      description: Updates a wishlist specified by wishlist Id.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wishlist'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+          description: OK
+      summary: Update Wishlist
+      tags:
+      - Wishlist
+      operationId: putCommerceWishlistsByWishlistId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/wishlists/customers/{customerAccountId}/{wishlistName}:
+    get:
+      description: Retrieves wishlist by name.
+      parameters:
+      - description: ''
+        in: path
+        name: customerAccountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: wishlistName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+          description: OK
+      summary: Get Wishlist By Name
+      tags:
+      - Wishlist
+      operationId: getCommerceWishlistsCustomersByCustomerAccountIdByWishlistName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/wishlists/{wishlistId}/items/{wishlistItemId}:
+    delete:
+      description: Delete/remove wishlist item.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: wishlistItemId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Wishlist Item
+      tags:
+      - Wishlist
+      operationId: deleteCommerceWishlistsByWishlistIdItemsByWishlistItemId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves an individual wishlist item from a wishlist.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: wishlistItemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+          description: OK
+      summary: Get Wishlist Item
+      tags:
+      - Wishlist
+      operationId: getCommerceWishlistsByWishlistIdItemsByWishlistItemId
+      x-operation-id-source: derived
+    put:
+      description: Updates a wishlist item.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: wishlistItemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WishlistItem'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+          description: OK
+      summary: Update Wishlist Item
+      tags:
+      - Wishlist
+      operationId: putCommerceWishlistsByWishlistIdItemsByWishlistItemId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/wishlists/{wishlistId}/items:
+    delete:
+      description: Clears all items in the wishlist.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+          description: OK
+      summary: Remove All Wishlist Items
+      tags:
+      - Wishlist
+      operationId: deleteCommerceWishlistsByWishlistIdItems
+      x-operation-id-source: derived
+    get:
+      description: Returns a listing of wishlists.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItemCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WishlistItemCollection'
+          description: OK
+      summary: Get Wishlist Items
+      tags:
+      - Wishlist
+      operationId: getCommerceWishlistsByWishlistIdItems
+      x-operation-id-source: derived
+    post:
+      description: Adds an item to the wishlist of the current shopper.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WishlistItem'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+          description: OK
+      summary: Add Item To Wishlist
+      tags:
+      - Wishlist
+      operationId: postCommerceWishlistsByWishlistIdItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/wishlists/customers/{customerAccountId}/{wishlistName}/items:
+    get:
+      description: Returns a listing of wishlists.
+      parameters:
+      - description: ''
+        in: path
+        name: customerAccountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: wishlistName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItemCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WishlistItemCollection'
+          description: OK
+      summary: Get Wishlist Items By WishlistName
+      tags:
+      - Wishlist
+      operationId: getCommerceWishlistsCustomersByCustomerAccountIdByWishlistNameItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/wishlists:
+    get:
+      description: Retrieves a list of wishlists according to any specified filter criteria and sort options.
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=50. The default value is 0. Optional."
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, \n            gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional."
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Text to perform a search on
+        in: query
+        name: q
+        schema:
+          type: string
+      - description: Limit of the records to include in a search, used for global search
+        in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WishlistCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WishlistCollection'
+          description: OK
+      summary: Get Wishlists
+      tags:
+      - Wishlist
+      operationId: getCommerceWishlists
+      x-operation-id-source: derived
+    post:
+      description: Create wishlist.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Wishlist'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Wishlist'
+          description: OK
+      summary: Create Wishlist
+      tags:
+      - Wishlist
+      operationId: postCommerceWishlists
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/wishlists/{wishlistId}/items/{wishlistItemId}/{quantity}:
+    put:
+      description: Updates the quantity of an item in the wishlist.
+      parameters:
+      - description: ''
+        in: path
+        name: wishlistId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: wishlistItemId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: quantity
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/WishlistItem'
+          description: OK
+      summary: Update Wishlist Item Quantity
+      tags:
+      - Wishlist
+      operationId: putCommerceWishlistsByWishlistIdItemsByWishlistItemIdByQuantity
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    WishlistItemCollection:
+      description: Paged collection of wishlists.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/WishlistItem'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductPropertyValue:
+      properties:
+        stringValue:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+    Category:
+      description: Categories to which the product belongs. Discounts can apply to categories where any product in the category is discounted.
+      properties:
+        id:
+          description: Unique identifier of the category. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        parent:
+          $ref: '#/components/schemas/Category'
+      type: object
+    Wishlist:
+      description: Details of the wishlist, items listed in the wishlist, and any system messages.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        changeMessages:
+          description: List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
+          items:
+            $ref: '#/components/schemas/ChangeMessage'
+          type:
+          - array
+          - 'null'
+        channelCode:
+          description: Unique identifier of the channel for this item.
+          type:
+          - string
+          - 'null'
+        currencyCode:
+          description: ISO Currency Code. Currently, only USD is supported.
+          type:
+          - string
+          - 'null'
+        customerAccountId:
+          description: Unique identifier of the customer account.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        customerInteractionType:
+          description: 'Determines the interaction type that a customer will use to create this object.
+
+            Valid values are: Website, Store, Call, Unknown'
+          type:
+          - string
+          - 'null'
+        data:
+          description: Custom data for a given vendor set within the commerce process.
+          type:
+          - object
+          - 'null'
+        discountThresholdMessages:
+          description: List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
+          items:
+            $ref: '#/components/schemas/ThresholdMessage'
+          type:
+          - array
+          - 'null'
+        discountTotal:
+          description: Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        discountedSubtotal:
+          description: Combined price for all cart items, including all selected options as well as any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        discountedTotal:
+          description: Subtotal minus the discounted total
+          format: double
+          type:
+          - number
+          - 'null'
+        expirationDate:
+          description: "When the order will no longer be active. That is, the order is considered abandoned. \nOrders of anonymous shoppers expire after 14 days of inactivity. \nAn order never expires for shoppers who are logged into their account. \nDate in UTC Date/Time."
+          format: date-time
+          type:
+          - string
+          - 'null'
+        extendedProperties:
+          description: Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
+          items:
+            $ref: '#/components/schemas/ExtendedProperty'
+          type:
+          - array
+          - 'null'
+        externalId:
+          description: Id in an external system this item may have been imported from
+          type:
+          - string
+          - 'null'
+        feeTotal:
+          description: Not implemented. Total cost of fees for all items in the cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInfo'
+        handlingTaxTotal:
+          description: Total tax on handling
+          format: double
+          type:
+          - number
+          - 'null'
+        id:
+          description: Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
+          type:
+          - string
+          - 'null'
+        importDate:
+          description: Date this item was imported
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isImport:
+          description: Was this object imported from an external system?
+          type:
+          - boolean
+          - 'null'
+        itemTaxTotal:
+          description: Not implemented. Tax does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        items:
+          description: List of items in the wishlist.
+          items:
+            $ref: '#/components/schemas/WishlistItem'
+          type:
+          - array
+          - 'null'
+        lastValidationDate:
+          description: "Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. \nIf changed, it updates LastValidationDate."
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lineItemSubtotalWithOrderAdjustments:
+          description: Line Item Subtotals with Order Adjustments
+          format: double
+          type:
+          - number
+          - 'null'
+        name:
+          description: Name of the list that is display or potentially shared (e.g. friends and family may view this description if the list is public and the list owner may see this description when viewing the list)
+          type:
+          - string
+          - 'null'
+        orderDiscounts:
+          description: The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
+          items:
+            $ref: '#/components/schemas/AppliedDiscount'
+          type:
+          - array
+          - 'null'
+        privacyType:
+          description: Is the wishlist public, viewable only through a shared link, or private (only the owner of the list may view the wishlist)?
+          type:
+          - string
+          - 'null'
+        rejectedDiscounts:
+          items:
+            $ref: '#/components/schemas/SuggestedDiscount'
+          type:
+          - array
+          - 'null'
+        shippingAmountBeforeDiscountsAndAdjustments:
+          description: Shipping Amount before discount and adjustments
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingSubTotal:
+          description: Shipping total without discounts applied.
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingTaxTotal:
+          description: Not implemented. Tax does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingTotal:
+          description: Shipping does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        siteId:
+          description: Unique identifier of the Site.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        sortOrder:
+          description: The wishlist sort order.  Useful for scenarios where there is a default wishlist and other wishlists or arbitrary ordering
+          format: int32
+          type:
+          - integer
+          - 'null'
+        subtotal:
+          description: Combined price for all cart items, including all selected options but excluding any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        suggestedDiscounts:
+          items:
+            $ref: '#/components/schemas/SuggestedDiscount'
+          type:
+          - array
+          - 'null'
+        taxData:
+          description: Storage for any additional/custom tax data.
+          type:
+          - object
+          - 'null'
+        taxTotal:
+          description: Tax does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        tenantId:
+          description: Unique identifier of the Tenant.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        total:
+          description: Final total amount of the order including all discounts, shipping, and tax.
+          format: double
+          type:
+          - number
+          - 'null'
+        typeTag:
+          description: Open-ended Wishlist type, e.g. giftlist, gift, wish, wishlist, wedding, baby.  If the merchant does not need this level of granularity this is always null.
+          type:
+          - string
+          - 'null'
+        userId:
+          description: Unique identifier of the shopper who created the cart.
+          type:
+          - string
+          - 'null'
+        version:
+          description: Version for concurrency purposes
+          type:
+          - string
+          - 'null'
+        visitId:
+          description: Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
+          type:
+          - string
+          - 'null'
+        webSessionId:
+          description: Identifies the web session used to place the order or last update the cart.
+          type:
+          - string
+          - 'null'
+      type: object
+    ExtendedProperty:
+      properties:
+        key:
+          maxLength: 128
+          minLength: 1
+          type: string
+        value:
+          maxLength: 800
+          type:
+          - string
+          - 'null'
+      type: object
+    PackageMeasurements:
+      description: Physical dimensions of the package required to ship the product and its weight.
+      properties:
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    ChangeMessage:
+      description: A message displayed by the system based on the last  action, for example, when a product price has changed. System-supplied and read-only.
+      properties:
+        amount:
+          deprecated: true
+          description: Monetary amount that pertains to the change if applicable
+          format: double
+          type:
+          - number
+          - 'null'
+        appId:
+          description: App Id that identifies the user that performed the related change
+          type:
+          - string
+          - 'null'
+        appKey:
+          description: App Key
+          type:
+          - string
+          - 'null'
+        appName:
+          description: App Name
+          type:
+          - string
+          - 'null'
+        attributes:
+          additionalProperties: {}
+          description: Additional Data. This property will be a Dictionary of objects.
+          type:
+          - object
+          - 'null'
+        correlationId:
+          description: Correlation Id
+          type:
+          - string
+          - 'null'
+        createDate:
+          description: When the message was created. System-supplied. Read-only.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the  message. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        identifier:
+          description: Unique identifier to what the message pertains, which can be a cart item, cart or another generic entity. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        message:
+          description: Human readable message. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: Data. This property will be a JSON array that will contain 0-N items, when there is 1 item it will still be an array containing only one item. System-supplied. Read-only.
+        newValue:
+          deprecated: true
+          description: Current price of the item. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        oldValue:
+          deprecated: true
+          description: Original price of the item. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        subject:
+          description: Text on the subject line of the message, for example, the product name. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        subjectType:
+          description: Subject of the message, for example, "Product." System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        success:
+          description: Indicates if the message is related to a success or failure.
+          type:
+          - boolean
+          - 'null'
+        userFirstName:
+          description: User First Name
+          type:
+          - string
+          - 'null'
+        userId:
+          description: User Id that identifies the user that performed the related change
+          type:
+          - string
+          - 'null'
+        userLastName:
+          description: User Last Name
+          type:
+          - string
+          - 'null'
+        userScopeType:
+          description: User Type (e.g. Shopper, Admin, etc.)
+          type:
+          - string
+          - 'null'
+        verb:
+          description: "Action applicable to the message. This can be \"Increased,\" when the product price has increased, \"Decreased,\" when the \nproduct price has decreased, and \"Invalidated,\" when the product is no longer available. System-supplied. Read-only."
+          type:
+          - string
+          - 'null'
+      type: object
+    SuggestedDiscount:
+      properties:
+        autoAdd:
+          type: boolean
+        discountId:
+          format: int32
+          type: integer
+        hasMultipleProducts:
+          type: boolean
+        hasOptions:
+          type: boolean
+        productCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductStock:
+      properties:
+        aggregateInventory:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        availableDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        availableFutureInventories:
+          format: int32
+          readOnly: true
+          type: integer
+        futureInventories:
+          items:
+            $ref: '#/components/schemas/FutureInventory'
+          type:
+          - array
+          - 'null'
+        isOnBackOrder:
+          type: boolean
+        isSubstitutable:
+          type:
+          - boolean
+          - 'null'
+        manageStock:
+          type: boolean
+        stockAvailable:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        totalAvailableStock:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    Product:
+      description: The product as it appears on the order item.
+      properties:
+        allocationExpiration:
+          description: Allocation ID associated with this product on this order.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        allocationId:
+          description: Allocation ID associated with this product on this order.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        bundledProducts:
+          description: Products bundled with this product (if the current product is a bundle)
+          items:
+            $ref: '#/components/schemas/BundledProduct'
+          type:
+          - array
+          - 'null'
+        categories:
+          description: Categories to which this product belongs.
+          items:
+            $ref: '#/components/schemas/Category'
+          type:
+          - array
+          - 'null'
+        condition:
+          description: Condition
+          type:
+          - string
+          - 'null'
+        description:
+          description: Short description of the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        discountsRestricted:
+          description: Is the product discount restricted
+          type:
+          - boolean
+          - 'null'
+        discountsRestrictedEndDate:
+          description: Product discount restriction end date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        discountsRestrictedStartDate:
+          description: Product discount restriction start date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        fulfillmentFields:
+          description: List of unique product identifiers for an item on shipment
+          items:
+            $ref: '#/components/schemas/FulfillmentField'
+          type:
+          - array
+          - 'null'
+        fulfillmentStatus:
+          description: Fulfillment status of the product.
+          type:
+          - string
+          - 'null'
+        fulfillmentTypesSupported:
+          description: Types of fulfillment that are supported for this product.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        goodsType:
+          description: Goods Type
+          type:
+          - string
+          - 'null'
+        imageAlternateText:
+          description: Descriptive text of the image associated with the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: URL of the image that appears next to the product on the order item. Optional.
+          type:
+          - string
+          - 'null'
+        isPackagedStandAlone:
+          description: Indicates that this product ships by itself.
+          type: boolean
+        isRecurring:
+          description: If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription.
+          type:
+          - boolean
+          - 'null'
+        isTaxable:
+          description: If true, the product is eligible for tax.
+          type:
+          - boolean
+          - 'null'
+        measurements:
+          $ref: '#/components/schemas/PackageMeasurements'
+        mfgPartNumber:
+          description: Manufacturing Part Number of the product.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        options:
+          description: If the product contains configurable or stand-alone options, the list of product options that the shopper selected for this product.
+          items:
+            $ref: '#/components/schemas/ProductOption'
+          type:
+          - array
+          - 'null'
+        price:
+          $ref: '#/components/schemas/ProductPrice'
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          type:
+          - string
+          - 'null'
+        productReservationId:
+          description: Reservation ID associated with this product in the bundle.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        productType:
+          description: Type of product, which can be a product with configurable options, a product with stand-alone options, or a simple product with no options.
+          type:
+          - string
+          - 'null'
+        productUsage:
+          description: Usage of the product, primarily used to indicate a bundle in this context
+          type:
+          - string
+          - 'null'
+        properties:
+          description: If the product contains properties, the list of properties that the shopper selected for this product.
+          items:
+            $ref: '#/components/schemas/ProductProperty'
+          type:
+          - array
+          - 'null'
+        serialNumber:
+          description: Serial Number
+          type:
+          - string
+          - 'null'
+        sku:
+          description: Product Identifier specific to the store
+          type:
+          - string
+          - 'null'
+        stock:
+          $ref: '#/components/schemas/ProductStock'
+        upc:
+          description: Universal Product Code of the product.
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: For configurable products, the unique identifier of the product variation that has been selected.
+          type:
+          - string
+          - 'null'
+      type: object
+    AppliedDiscount:
+      description: "Discount applied to the order, which is a negative number to be subtracted from the original price to get the final price. \nIf multiple discounts for the order exist, this is the value most advantageous to the shopper."
+      properties:
+        couponCode:
+          description: Code of the coupon associated with the discount if a coupon code is required to get the discount.
+          type:
+          - string
+          - 'null'
+        data:
+          description: Stores any custom data sent from external discounts.
+          type:
+          - object
+          - 'null'
+        discount:
+          $ref: '#/components/schemas/Discount'
+        excluded:
+          description: Determines whether or not this discount is set up to be ignored by the pricing runtime.
+          type:
+          - boolean
+          - 'null'
+        groupId:
+          description: Group identifier for the discount.
+          type:
+          - string
+          - 'null'
+        impact:
+          description: Value of the discount applied. This is a negative number to be subtracted from the original price to get the final price.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    Contact:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+      type: object
+    AppliedLineItemShippingDiscount:
+      properties:
+        discount:
+          $ref: '#/components/schemas/AppliedDiscount'
+        discountQuantity:
+          description: The number of the line item that can be used for this particular discount.
+          format: int32
+          type: integer
+        impactPerUnit:
+          description: The impact of this discount pur discount quantity.
+          format: double
+          type: number
+        methodCode:
+          description: Unique identifier of the shipping method discount.
+          type:
+          - string
+          - 'null'
+      type: object
+    CoreApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AppliedLineItemProductDiscount:
+      properties:
+        appliesToSalePrice:
+          description: Determines if the discount applies to the sale price of the order
+          type:
+          - boolean
+          - 'null'
+        discountQuantity:
+          description: The number of the line item that can be used for this particular discount.
+          format: int32
+          type: integer
+      type: object
+    CommerceUnitPrice:
+      description: Pricing details for the product listed on a cart item, including the original price, discount amount, and final price.
+      properties:
+        extendedAmount:
+          description: 'Extended amount, this is in order of precedence: OverrideAmount, SaleAmount, ListAmount'
+          format: double
+          type:
+          - number
+          - 'null'
+        listAmount:
+          description: Product list amount.
+          format: double
+          type:
+          - number
+          - 'null'
+        overrideAmount:
+          description: Amount as manually overridden by the Merchant
+          format: double
+          type:
+          - number
+          - 'null'
+        saleAmount:
+          description: Sale amount indicated on the product.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    InventoryTags:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductProperty:
+      properties:
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        dataType:
+          type:
+          - string
+          - 'null'
+        isMultiValue:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        values:
+          items:
+            $ref: '#/components/schemas/ProductPropertyValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    SubstituteInfo:
+      properties:
+        optIn:
+          description: Determines if and when substitution is allowed. Allowed values are `None`, `Yes`, `No`, or `OnlyAtFulfillment`. Default is `None`.
+          type:
+          - string
+          - 'null'
+        substituteProductCode:
+          description: Allows user to provide a specific product that should be substituted if substitution occurs.
+          type:
+          - string
+          - 'null'
+        substituteVariantCode:
+          description: Allows user to provide a specific variant that should be substituted if substitution occurs.
+          type:
+          - string
+          - 'null'
+      type: object
+    WishlistCollection:
+      description: Paged collection of wishlists.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Wishlist'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    BundledProduct:
+      description: Describes products that are bundled inside of a main bundle product.
+      properties:
+        allocationExpiration:
+          description: Allocation ID associated with this product on this order.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        allocationId:
+          description: Allocation ID associated with this product on this order.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        creditValue:
+          description: Credit value.  Only populated if the bundled product is a gift card or digital credit
+          format: double
+          type:
+          - number
+          - 'null'
+        deltaPrice:
+          description: Only populated for extras
+          format: double
+          type:
+          - number
+          - 'null'
+        description:
+          description: Short description of the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        fulfillmentStatus:
+          description: Fulfillment status of the product.
+          type:
+          - string
+          - 'null'
+        goodsType:
+          description: Goods Type
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: ImageUrl of product
+          type:
+          - string
+          - 'null'
+        isPackagedStandAlone:
+          description: Indicates that this product ships by itself.
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/PackageMeasurements'
+        name:
+          description: Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        optionAttributeFQN:
+          description: Fully Qualified Name of the selected option's attribute
+          type:
+          - string
+          - 'null'
+        optionValue:
+          description: Value of the selected option
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          type:
+          - string
+          - 'null'
+        productReservationId:
+          description: Reservation ID associated with this product in the bundle.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        quantity:
+          description: Quantity of the product included in the bundle.
+          format: int32
+          type: integer
+        stock:
+          $ref: '#/components/schemas/ProductStock'
+      type: object
+    ProductPrice:
+      description: Price of the product with any sale and discounts applied.
+      properties:
+        creditValue:
+          description: Credit Value when the product happens to be a gift card or similar product
+          format: double
+          type:
+          - number
+          - 'null'
+        isOverRidePriceSalePrice:
+          description: Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.
+          type:
+          - boolean
+          - 'null'
+        msrp:
+          description: MSRP of product.
+          format: double
+          type:
+          - number
+          - 'null'
+        price:
+          description: Price of the product. This is the price that the merchant intends to sell the product if no sale price is present.
+          format: double
+          type:
+          - number
+          - 'null'
+        priceListCode:
+          description: Pricelist code for the product
+          type:
+          - string
+          - 'null'
+        priceListEntryMode:
+          description: 'Pricelist entry mode of the product.
+
+            Note: possible values are below
+
+            1. null : Product doesn''t participate in pricelist
+
+            2. Bulk : Bulk volume price available(unit price vary based on quantity)
+
+            3. Simple:'
+          type:
+          - string
+          - 'null'
+        salePrice:
+          description: Current sale price of the product, which is a specific numerical amount (not a percentage off).
+          format: double
+          type:
+          - number
+          - 'null'
+        tenantOverridePrice:
+          description: An override price applied on the product by the tenant.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    ThresholdMessage:
+      properties:
+        discountId:
+          format: int32
+          type: integer
+        message:
+          type:
+          - string
+          - 'null'
+        requiresCouponCode:
+          type: boolean
+        showInCart:
+          type: boolean
+        showOnCheckout:
+          type: boolean
+        thresholdValue:
+          format: double
+          type: number
+      type: object
+    FulfillmentInfo:
+      description: "Shipment information, which includes the shipping address, price, estimated delivery date, tracking information, method (for example, Ground, Overnight, or Pick-up), \ncarrier (for example, USPS, UPS, FedEx), and current status (for example, Not Shipped, In Transit, Delayed, or Returned To Sender)."
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        data:
+          description: Custom data originated by the shipping service.
+          type:
+          - object
+          - 'null'
+        fulfillmentContact:
+          $ref: '#/components/schemas/Contact'
+        isDestinationCommercial:
+          description: Indicates that the destination is commercial
+          type:
+          - boolean
+          - 'null'
+        shippingMethodCode:
+          description: 'Code that uniquely identifies the shipping method such as "Ground," "Overnight," or "Digital."
+
+            The site''s shipping settings lists the valid shipping methods specified for this site.'
+          type:
+          - string
+          - 'null'
+        shippingMethodName:
+          description: Readable name of the shipping method
+          type:
+          - string
+          - 'null'
+      type: object
+    FulfillmentField:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        required:
+          type: boolean
+        userEnteredValue: {}
+      type: object
+    Discount:
+      description: "Discounts that apply to the order, if any. For example, when the \nsubtotal of the order exceeds a certain amount, or for free shipping."
+      properties:
+        expirationDate:
+          description: Date when the discount expires. Default is null (no expiration date).
+          format: date-time
+          type:
+          - string
+          - 'null'
+        hasMultipleTargetProducts:
+          description: 'Indicates that the discount targets more than a product.  Used
+
+            primarily for BoGa discounts with multiple targets.'
+          type: boolean
+        id:
+          description: Unique identifier of the discount.
+          format: int32
+          type: integer
+        itemIds:
+          description: List of discounts for each order item.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          description: Name of the discount in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+      type: object
+    Measurement:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    FutureInventory:
+      properties:
+        allocated:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        available:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        deliveryDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        futureInventoryID:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        onhand:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        pending:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    WishlistItem:
+      description: A single line item of an order.
+      properties:
+        adjustedLineItemSubtotal:
+          description: Order Level taxable sub total
+          format: double
+          type:
+          - number
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        autoAddDiscountId:
+          description: Track the discoutid from which the item was auto added
+          format: int32
+          type:
+          - integer
+          - 'null'
+        childItemIds:
+          description: List of Child Item Ids for this order item
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        comments:
+          description: Comments for the wishlist item that are entered by the wishlist owner
+          type:
+          - string
+          - 'null'
+        data:
+          description: Custom data for a given vendor set within the commerce process.
+          type:
+          - object
+          - 'null'
+        discountTotal:
+          description: How much the shopper saves with the applied discount or sale price. This is a negative number.
+          format: double
+          type:
+          - number
+          - 'null'
+        discountedTotal:
+          description: Subtotal minus any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        dutyAmount:
+          description: Indicate Duty Amount for this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        extendedTotal:
+          description: Line item extended total (quantity multiplied by unit extended price) before discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        feeTotal:
+          description: Not implemented. Total cost of fees that apply to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        handlingAmount:
+          description: 'Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+
+            This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+
+            Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.'
+          format: double
+          type:
+          - number
+          - 'null'
+        id:
+          description: Unique identifier of the wishlist line item. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTags'
+          type:
+          - array
+          - 'null'
+        isAssemblyRequired:
+          description: Assembly Required for this order item
+          type: boolean
+        isRecurring:
+          description: If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+          type:
+          - boolean
+          - 'null'
+        isTaxable:
+          description: Not implemented. If true, the cart item is eligible for tax.
+          type:
+          - boolean
+          - 'null'
+        itemTaxTotal:
+          description: Total price of taxes that apply to products in this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        lineId:
+          description: 'The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+
+            in CommerceRuntime when a cart is converted to an order.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lineItemAdjustment:
+          format: double
+          type:
+          - number
+          - 'null'
+        localeCode:
+          description: "Locale code for language that appears in text and descriptions on the site, for example, en_US. \nThis is not the currency code. Currently only en_US is supported."
+          type:
+          - string
+          - 'null'
+        parentItemId:
+          description: Indicates Parent Item Id for this order item
+          type:
+          - string
+          - 'null'
+        priceMode:
+          description: Determines if the item is using external or internal(catalog) pricing
+          type:
+          - string
+          - 'null'
+        priorityType:
+          description: Wishlist item priority that is a hint to how much this item is needed or desired
+          type:
+          - string
+          - 'null'
+        product:
+          $ref: '#/components/schemas/Product'
+        productDiscount:
+          $ref: '#/components/schemas/AppliedLineItemProductDiscount'
+        productDiscounts:
+          description: A list of discounts applied to the product
+          items:
+            $ref: '#/components/schemas/AppliedLineItemProductDiscount'
+          type:
+          - array
+          - 'null'
+        purchasableStatusType:
+          description: Is the item purchasable?
+          type:
+          - string
+          - 'null'
+        purchaseLocation:
+          description: 'The location where the product is being purchased.. default is null. Products can have different prices
+
+            by purchaseLocation via custom priceListResolution...'
+          type:
+          - string
+          - 'null'
+        quantity:
+          description: Number of products ordered.
+          format: int32
+          type: integer
+        shippingAmountBeforeDiscountsAndAdjustments:
+          description: Shipping amount before Discounts and adjustments
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingDiscounts:
+          description: A discount applied to the shipping
+          items:
+            $ref: '#/components/schemas/AppliedLineItemShippingDiscount'
+          type:
+          - array
+          - 'null'
+        shippingTaxTotal:
+          description: Total price of taxes that apply to the shipping of this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingTotal:
+          description: Total price of shipping that apply to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        substituteInfo:
+          $ref: '#/components/schemas/SubstituteInfo'
+        subtotal:
+          description: Line item subtotal (quantity multiplied by price) before discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxData:
+          description: Storage for any additional/custom tax data.
+          type:
+          - object
+          - 'null'
+        taxableTotal:
+          description: Line item subtotal (quantity multiplied by price) before discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        total:
+          description: Total price of this cart item taking into account any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        totalWithWeightedShippingAndHandling:
+          description: Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+          format: double
+          type:
+          - number
+          - 'null'
+        totalWithoutWeightedShippingAndHandling:
+          description: Taxable Subtotal including Weighted Order amounts
+          format: double
+          type:
+          - number
+          - 'null'
+        unitPrice:
+          $ref: '#/components/schemas/CommerceUnitPrice'
+        weightedOrderAdjustment:
+          description: Order Level Manual Adjustment applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderDiscount:
+          description: Order Level Discount applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderDuty:
+          description: Order Level Duty applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingAdjustment:
+          description: Order-level handling manual adjustment allocated to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingFee:
+          description: 'Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+
+            This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+
+            Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.'
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingFeeDiscount:
+          description: Order-level handling fee discount allocated to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingFeeTax:
+          description: 'Total handling tax for this item (covers both product-level and order-level handling tax combined).
+
+            On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).'
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShipping:
+          description: Order Level Shipping applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShippingDiscount:
+          description: Order Level Shipping discount applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShippingManualAdjustment:
+          description: Order Level Shipping Manual Adjustment applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShippingTax:
+          description: Order Level Shipping Tax applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderTax:
+          description: Order Level tax applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    ProductOption:
+      description: "Product option for the product listed on this order item. If the product contains \nconfigurable or stand-alone options, this is a product option that the shopper has selected."
+      properties:
+        attributeFQN:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        dataType:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the product option that appears with the order item in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        shopperEnteredValue:
+          description: The value entered by the shopper if this is an option that requires shopper input, for example, a monogram.
+        stringValue:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        value:
+          description: Value of the product option.
+      type: object
+    Phone:
+      properties:
+        home:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        work:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

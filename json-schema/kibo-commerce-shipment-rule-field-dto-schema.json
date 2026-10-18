@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-shipment-rule-field-dto-schema.json",
+  "title": "ShipmentRuleFieldDto",
+  "description": "Metadata for a shipment rule field including operators, data type, and UI grouping information",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-fulfillment-openapi.yml#/components/schemas/ShipmentRuleFieldDto",
+  "properties": {
+    "allowNullOnRight": {
+      "description": "Whether null values are allowed on the right side of the operator",
+      "type": "boolean"
+    },
+    "apiFieldName": {
+      "description": "API field name for RSQL filter construction",
+      "type": "string"
+    },
+    "apiOperators": {
+      "description": "Comprehensive operator metadata with display text and RSQL syntax",
+      "items": {
+        "$ref": "#/$defs/RuleOperatorDto"
+      },
+      "type": "array"
+    },
+    "applicableTo": {
+      "description": "Attribute scope (Shipment, ShipmentItem, ShipmentAndShipmentItem) for custom attributes only",
+      "type": "string"
+    },
+    "dataType": {
+      "description": "Data type of the field (string, enum, date, boolean, number)",
+      "type": "string"
+    },
+    "displayValue": {
+      "description": "Human-readable display name for UI",
+      "type": "string"
+    },
+    "fieldName": {
+      "description": "Field name identifier used internally",
+      "type": "string"
+    },
+    "ruleFieldType": {
+      "description": "Field type for UI grouping (ShipmentField, ShipmentAttribute, ItemAttribute)",
+      "type": "string"
+    },
+    "ruleFieldTypeDisplayValue": {
+      "description": "Display value for the field type group header",
+      "type": "string"
+    },
+    "sortDescriptor": {
+      "$ref": "#/$defs/SortDescriptorDto",
+      "description": "Sort descriptor with query parameter format and ascending/descending values"
+    },
+    "sortable": {
+      "description": "Whether this field supports sorting in result sets",
+      "type": "boolean"
+    },
+    "supportedOperators": {
+      "description": "List of supported operator codes (legacy, use apiOperators instead)",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "validEnumValues": {
+      "description": "List of valid enumerated values for enum/list data types",
+      "items": {
+        "$ref": "#/$defs/ShipmentRuleEnumValueDto"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "allowNullOnRight",
+    "dataType",
+    "displayValue",
+    "fieldName",
+    "supportedOperators"
+  ],
+  "type": "object",
+  "$defs": {
+    "RuleOperatorDto": {
+      "description": "Metadata for a rule field operator including display text and RSQL syntax",
+      "properties": {
+        "code": {
+          "description": "Operator code identifier",
+          "enum": [
+            "eq",
+            "ne",
+            "in",
+            "le",
+            "lt",
+            "ge",
+            "gt",
+            "cont",
+            "sw"
+          ],
+          "type": "string"
+        },
+        "display": {
+          "description": "Human-readable operator display text for UI",
+          "type": "string"
+        },
+        "filterSyntax": {
+          "description": "RSQL filter syntax token for query construction",
+          "type": "string"
+        }
+      },
+      "required": [
+        "code",
+        "display",
+        "filterSyntax"
+      ],
+      "title": "RuleOperatorDto",
+      "type": "object"
+    },
+    "ShipmentRuleEnumValueDto": {
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "title": "ShipmentRuleEnumValueDto",
+      "type": "object"
+    },
+    "SortDescriptorDto": {
+      "properties": {
+        "ascValue": {
+          "type": "string"
+        },
+        "descValue": {
+          "type": "string"
+        },
+        "multiFieldSeparator": {
+          "type": "string"
+        },
+        "queryParam": {
+          "type": "string"
+        }
+      },
+      "title": "SortDescriptorDto",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-cutoff-time-override-schema.json",
+  "title": "CutoffTimeOverride",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-location-openapi.yml#/components/schemas/CutoffTimeOverride",
+  "properties": {
+    "auditInfo": {
+      "$ref": "#/$defs/ApiContractsAuditInfo"
+    },
+    "date": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "endTime": {
+      "format": "date-span",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fulfillmentType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isClosed": {
+      "type": "boolean"
+    },
+    "label": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "locationCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "startTime": {
+      "format": "date-span",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tenantId": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ApiContractsAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

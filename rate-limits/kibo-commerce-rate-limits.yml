@@ -1,0 +1,75 @@
+generated: '2026-10-18'
+method: searched
+source: https://docs.kibocommerce.com/pages/api-best-practices.md
+name: Kibo Commerce rate limits
+limits:
+- name: Platform APIs (POST, PUT, DELETE)
+  scope: per tenant
+  window: 1 minute
+  max: 500
+  limit_text: '500'
+  endpoint: /api/platform/*
+  http_methods: POST, PUT, DELETE
+  note: This does not include dev/app authtickets as they don't currently support rate limiting.
+- name: Platform APIs (all methods)
+  scope: per tenant
+  window: 1 minute
+  max: 500
+  limit_text: '500'
+  endpoint: /api/platform/*
+  note: Excludes POST, PUT, DELETE rule count
+- name: Platform APIs hourly limit
+  scope: per tenant
+  window: 1 hour
+  max: 10000
+  limit_text: '10000 (166 average RPM)'
+  endpoint: /api/platform/*
+- name: Catalog Admin APIs (POST, PUT, DELETE)
+  scope: per tenant
+  window: 1 minute
+  max: 500
+  limit_text: '500'
+  endpoint: /api/commerce/catalog/admin/*
+  http_methods: POST, PUT, DELETE
+- name: Catalog Admin APIs (all methods)
+  scope: per tenant
+  window: 1 minute
+  max: 500
+  limit_text: '500'
+  endpoint: /api/commerce/catalog/admin/*
+  note: Excludes POST, PUT, DELETE rule count
+- name: Catalog Admin APIs hourly limit
+  scope: per tenant
+  window: 1 hour
+  max: 10000
+  limit_text: '10000 (166 average RPM)'
+  endpoint: /api/commerce/catalog/admin/*
+- name: Inventory refresh API
+  scope: per tenant
+  window: 1 minute
+  max: 50
+  limit_text: '50'
+  endpoint: /api/commerce/inventory/v5/inventory/refresh
+  http_methods: POST
+  note: This API adds to a shared queue so it is limited to avoid backing up the queue for all sandboxes
+- name: Inventory adjust API
+  scope: per tenant
+  window: 1 minute
+  max: 50
+  limit_text: '50'
+  endpoint: /api/commerce/inventory/v5/inventory/adjust
+  http_methods: POST
+  note: This API adds to a shared queue so it is limited to avoid backing up the queue for all sandboxes
+- name: Inventory APIs hourly limit
+  scope: per tenant
+  window: 1 hour
+  max: 200
+  limit_text: '200 (3.33 average RPM)'
+  endpoint: /api/commerce/inventory/v5/inventory/*
+headers:
+- name: Retry-After
+  description: The remaining rejection time in seconds to wait before placing another request
+  values: 60, 900, 1800, 2700, 3600
+  note: Corresponds to 1 minute, 15 minutes, 30 minutes, 45 minutes, and 60 minutes
+status_code: 429
+note: Rate limits vary by environment (sandbox, pre-prod, production) and by API route. Sandbox limits apply per developer account across all sandboxes, while production limits apply per tenant. Most APIs have 500 RPM / 10000 RPH limits. Limits return HTTP 429 with Retry-After header.

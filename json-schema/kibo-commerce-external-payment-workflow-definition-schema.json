@@ -1,0 +1,147 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-external-payment-workflow-definition-schema.json",
+  "title": "ExternalPaymentWorkflowDefinition",
+  "description": "This class describes credentials and enablement for the various third-party payment workflows that we will integrate with.\nExamples include Paypal Express, Amazon Payments, Google Wallet, etc.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-settings-openapi.yml#/components/schemas/ExternalPaymentWorkflowDefinition",
+  "properties": {
+    "credentials": {
+      "items": {
+        "$ref": "#/$defs/ThirdPartyCredentialField"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "description": {
+      "description": "Information about this definition for display purposes in the 'Payment and Checkout Settings'\nadmin ui.  This field may contain valid html tags",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fullyQualifiedName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isEnabled": {
+      "type": "boolean"
+    },
+    "isLegacy": {
+      "description": "Indicates if this is a legacy implementation using ARC only\nor using the new extensible implementation.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "name": {
+      "description": "Should be one of Contracts.Constants.ThirdPartyWorkflowNames.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "namespace": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "LocalizedContent": {
+      "properties": {
+        "localeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ThirdPartyCredentialField": {
+      "description": "Describes the name and value of a third party credential field.",
+      "properties": {
+        "apiName": {
+          "description": "The name of this credential that should be used for web requests.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "displayName": {
+          "description": "The displayable name of this credential field",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inputType": {
+          "description": "The input field type for the value.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isSensitive": {
+          "description": "the value holds sensitive information.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "The value for this credential that should be used for web requests.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vocabularyValues": {
+          "items": {
+            "$ref": "#/$defs/VocabularyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "VocabularyValue": {
+      "properties": {
+        "contents": {
+          "items": {
+            "$ref": "#/$defs/LocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+generated: '2026-10-18'
+method: searched
+generator: extract-docs-artifacts.py (deepseek)
+source: https://docs.kibocommerce.com/_llms/release-notes.txt
+sources:
+- https://docs.kibocommerce.com/_llms/release-notes.txt
+- https://docs.kibocommerce.com/release-notes/october-14-2026-12640-service-update
+entries:
+- date: '2026-10-14'
+  highlights:
+  - Kibo is entering its 'code freeze' for the peak holiday season with Version 1.2640 being the final major update being pushed to production
+    tenants until January.
+  - Kibo is updating how access to the Inventory UI (Supply/Demand UI) is controlled in the Kibo Admin with Inventory UI visibility and actions
+    gated by inventory-specific role behaviors.
+  - New user interface capabilities now allow users to capture, view, and manage custom return attributes directly during return creation and
+    processing.
+  - Added the ability to create internal order notes on historical imported orders in Order Admin.
+  version: '1.2640'
+  breaking: false
+current_version: '1.2640'
+scheme: semantic
+docs: https://docs.kibocommerce.com/_llms/release-notes.txt
+note: Only one release note page content was provided for analysis. The page shows version 1.2640 with date October 14, 2026. No breaking changes
+  are mentioned in the provided content. The versioning appears to follow semantic versioning with major.minor.patch format (1.2640).

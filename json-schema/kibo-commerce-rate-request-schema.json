@@ -1,0 +1,488 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-rate-request-schema.json",
+  "title": "RateRequest",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-shipping-openapi.yml#/components/schemas/RateRequest",
+  "properties": {
+    "attributes": {
+      "description": "Order Attributes. Made available for Arc.js to use",
+      "items": {
+        "$ref": "#/$defs/RateRequestAttribute"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "carrierIds": {
+      "description": "Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "customAttributes": {
+      "deprecated": true,
+      "items": {
+        "$ref": "#/$defs/CustomAttribute"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "data": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "destinationAddress": {
+      "$ref": "#/$defs/Address"
+    },
+    "estimatedShipmentDate": {
+      "description": "Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "handlingTotal": {
+      "description": "The order Handling total after discounts to be used in rate calculation",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isDestinationAddressCommercial": {
+      "description": "Is the destination address a commercial address?",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isoCurrencyCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/RateRequestItem"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "orderDiscountedSubTotal": {
+      "description": "The Order SubTotal After Discounts to be used in rate calculation",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "orderTotal": {
+      "description": "The OrderTotal to be used in rate calculation",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "originAddress": {
+      "$ref": "#/$defs/Address"
+    },
+    "originLocationCode": {
+      "description": "Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relatedOrderId": {
+      "description": "The Order ID to be used in rate calculation\nInformational only",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relatedOrderNumber": {
+      "description": "The Order Number to be used in rate calculation\nInformational only",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "shippingServiceTypes": {
+      "description": "Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "addressType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isValidated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomAttribute": {
+      "properties": {
+        "childAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ItemMeasurements": {
+      "properties": {
+        "girth": {
+          "description": "Not exposed publicly",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "height": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "length": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "weight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "width": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "type": "object"
+    },
+    "Measurement": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductSummary": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeCategory"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "options": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeProductOption"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "price": {
+          "description": "Price (unit price * quantity)",
+          "format": "double",
+          "type": "number"
+        },
+        "productCode": {
+          "description": "Merchant-created code that uniquely identifies the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productDescription": {
+          "description": "Product name/description",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeProductProperty"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "Product quantity",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unitMeasurements": {
+          "$ref": "#/$defs/ItemMeasurements"
+        }
+      },
+      "type": "object"
+    },
+    "RateRequestAttribute": {
+      "properties": {
+        "attributeDefinitionId": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "fullyQualifiedName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {},
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "RateRequestItem": {
+      "description": "Represents an item in a rate request, inheriting from RequestItem.",
+      "properties": {
+        "data": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "fulfillmentMethod": {
+          "description": "The fulfillment method on item to fetch rates for. Supported values are Ship and Delivery. Will assume Ship if nothing is passed.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "itemId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "itemTotal": {
+          "description": "Item total.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "productSummaries": {
+          "description": "If Product Summaries are populated, this information will be utilized in Product Rules (e.g. ProductCode eq \"ABC\" or (Weight.Unit eq \"lbs\" and Weight.Value ge 50)",
+          "items": {
+            "$ref": "#/$defs/ProductSummary"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "shipsByItself": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "unitMeasurements": {
+          "$ref": "#/$defs/ItemMeasurements"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeCategory": {
+      "description": "Categories to which the product belongs.",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "parent": {
+          "$ref": "#/$defs/ShippingRuntimeCategory"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeProductOption": {
+      "properties": {
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeProductProperty": {
+      "properties": {
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {},
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

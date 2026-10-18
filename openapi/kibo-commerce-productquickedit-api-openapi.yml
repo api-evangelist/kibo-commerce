@@ -1,0 +1,480 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Quick Edit API
+  version: '1.0'
+  description: 'Operations tagged ProductQuickEdit across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductQuickEdit
+paths:
+  /commerce/catalog/admin/quickedit/products/producttype:
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuickEditChangeProductTypeActions'
+        description: Mozu.ProductAdmin.Contracts.QuickEditChangeProductTypeActions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditChangeProductTypeResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditChangeProductTypeResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/QuickEditChangeProductTypeResponse'
+          description: OK
+      summary: Endpoint used to apply updates for product type
+      tags:
+      - ProductQuickEdit
+      operationId: postCommerceCatalogAdminQuickeditProductsProducttype
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/quickedit/products/productincatalog:
+    post:
+      description: 'Updates products in catalog through quick edit. Values will be
+
+        added, not replaced. The Quick Edit APIs are designed primarily for the Quick Edit UI. They are not advised for bulk product updates through a batch job. For efficiently updating your catalog through a batch job, use the Import Export APIs or the Catalog Administration APIs directly.'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuickEditProductInCatalogActions'
+        description: Mozu.ProductAdmin.Contracts.QuickEditProductInCatalogActions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+          description: OK
+      summary: Quick Edit Product in Catalog
+      tags:
+      - ProductQuickEdit
+      operationId: postCommerceCatalogAdminQuickeditProductsProductincatalog
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/quickedit/products:
+    post:
+      description: Applies top level product updates. The Quick Edit APIs are designed primarily for the Quick Edit UI. They are not advised for bulk product updates through a batch job. For efficiently updating your catalog through a batch job, use the Import Export APIs or the Catalog Administration APIs directly.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuickEditProductActions'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+          description: OK
+      summary: Quick Edit Products
+      tags:
+      - ProductQuickEdit
+      operationId: postCommerceCatalogAdminQuickeditProducts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/quickedit/products/properties:
+    post:
+      description: Updates product properties through quick edits. Values will be added, not replaced. The Quick Edit APIs are designed primarily for the Quick Edit UI. They are not advised for bulk product updates through a batch job. For efficiently updating your catalog through a batch job, use the Import Export APIs or the Catalog Administration APIs directly.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuickEditProductPropertyActions'
+        description: Mozu.ProductAdmin.Contracts.QuickEditProductPropertyActions
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/QuickEditResponse'
+          description: OK
+      summary: Quick Edit Properties
+      tags:
+      - ProductQuickEdit
+      operationId: postCommerceCatalogAdminQuickeditProductsProperties
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductInCatalogInfoV1PatchDocument:
+      properties:
+        operations:
+          items:
+            $ref: '#/components/schemas/ProductInCatalogInfoV1PatchOperation'
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductInCatalogPatchAction:
+      description: List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.ProductInCatalogInfo
+      properties:
+        catalogId:
+          description: CatalogId
+          format: int32
+          type: integer
+        patches:
+          $ref: '#/components/schemas/ProductInCatalogInfoV1PatchDocument'
+        productCode:
+          description: Product code of the target product
+          type:
+          - string
+          - 'null'
+        saveAndPublish:
+          description: 'If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
+
+            changes are saved to the live product.'
+          type: boolean
+      type: object
+    ProductInCatalogInfoV1PatchOperation:
+      properties:
+        from:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+    ProductTypeChangeValidationResult:
+      properties:
+        attributeFqn:
+          type:
+          - string
+          - 'null'
+        code:
+          format: int32
+          type: integer
+        message:
+          type:
+          - string
+          - 'null'
+        severity:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductV1PatchDocument:
+      properties:
+        operations:
+          items:
+            $ref: '#/components/schemas/ProductV1PatchOperation'
+          type:
+          - array
+          - 'null'
+      type: object
+    QuickEditChangeProductTypeResult:
+      properties:
+        initialProductTypeId:
+          description: The original product type id
+          format: int32
+          type: integer
+        message:
+          description: Error message if any.
+          type:
+          - string
+          - 'null'
+        resourceId:
+          description: The unique resouce identifier
+          type:
+          - string
+          - 'null'
+        success:
+          description: true if the patch succeeded.
+          type: boolean
+        targetProductTypeId:
+          description: The target product type id
+          format: int32
+          type: integer
+        validationResults:
+          description: List of Mozu.ProductAdmin.Contracts.ProductTypeChangeValidationResult
+          items:
+            $ref: '#/components/schemas/ProductTypeChangeValidationResult'
+          type:
+          - array
+          - 'null'
+      type: object
+    QuickEditChangeProductTypeActions:
+      description: List of Mozu.ProductAdmin.Contracts.ChangeProductTypeActions to be applied to a list of Mozu.ProductAdmin.Contracts.Products.
+      properties:
+        actions:
+          items:
+            $ref: '#/components/schemas/ChangeProductTypeAction'
+          type:
+          - array
+          - 'null'
+      type: object
+    QuickEditProductActions:
+      description: List of Mozu.ProductAdmin.Contracts.ProductPatchActions to be applied to a list of Mozu.ProductAdmin.Contracts.Products.
+      properties:
+        actions:
+          description: List of Mozu.ProductAdmin.Contracts.ProductPatchAction actions to perform
+          items:
+            $ref: '#/components/schemas/ProductPatchAction'
+          type:
+          - array
+          - 'null'
+      type: object
+    QuickEditResult:
+      description: Individual update action result
+      properties:
+        message:
+          description: Error message if any.
+          type:
+          - string
+          - 'null'
+        resourceId:
+          description: The unique resouce identifier
+          type:
+          - string
+          - 'null'
+        success:
+          description: true if the patch succeeded.
+          type: boolean
+      type: object
+    ProductPropertyPatchOperation:
+      properties:
+        from:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+    QuickEditProductInCatalogActions:
+      description: List of Mozu.ProductAdmin.Contracts.ProductInCatalogPatchActions to be applied
+      properties:
+        actions:
+          description: List of Mozu.ProductAdmin.Contracts.ProductPropertyPatchAction actions to perform
+          items:
+            $ref: '#/components/schemas/ProductInCatalogPatchAction'
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductPropertyPatchDocument:
+      properties:
+        operations:
+          items:
+            $ref: '#/components/schemas/ProductPropertyPatchOperation'
+          type:
+          - array
+          - 'null'
+      type: object
+    QuickEditResponse:
+      description: Aggregates the individual results of update actions per product update
+      properties:
+        results:
+          description: List of Mozu.ProductAdmin.Contracts.QuickEditResult
+          items:
+            $ref: '#/components/schemas/QuickEditResult'
+          type:
+          - array
+          - 'null'
+      type: object
+    ChangeProductTypeAction:
+      description: List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.Product
+      properties:
+        ignoreDataLoss:
+          description: 'Whether to ignore data loss.
+
+            If true, data loss will be ignored.
+
+            If false, the product will not be updated when warnings are encountered'
+          type: boolean
+        patches:
+          $ref: '#/components/schemas/ProductV1PatchDocument'
+        productCode:
+          description: Product code of the target product
+          type:
+          - string
+          - 'null'
+        saveAndPublish:
+          description: 'If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
+
+            changes are saved to the live product.'
+          type: boolean
+        testMode:
+          description: Whether to run in test mode.  If true, no changes will be made.
+          type: boolean
+      type: object
+    ProductV1PatchOperation:
+      properties:
+        from:
+          type:
+          - string
+          - 'null'
+        op:
+          type:
+          - string
+          - 'null'
+        path:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+    ProductPropertyPatchAction:
+      description: List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.ProductProperty
+      properties:
+        attributeFqn:
+          description: AttributeFQN
+          type:
+          - string
+          - 'null'
+        patches:
+          $ref: '#/components/schemas/ProductPropertyPatchDocument'
+        productCode:
+          description: Product code of the target product
+          type:
+          - string
+          - 'null'
+        saveAndPublish:
+          description: 'If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
+
+            changes are saved to the live product.'
+          type: boolean
+      type: object
+    QuickEditProductPropertyActions:
+      description: 'List of Mozu.ProductAdmin.Contracts.ProductPropertyPatchActions to be applied to a list of
+
+        Mozu.ProductAdmin.Contracts.ProductPropertys.'
+      properties:
+        actions:
+          description: List of Mozu.ProductAdmin.Contracts.ProductPropertyPatchAction actions to perform
+          items:
+            $ref: '#/components/schemas/ProductPropertyPatchAction'
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductPatchAction:
+      description: List of JsonPatch operations to be applied to a Mozu.ProductAdmin.Contracts.Product
+      properties:
+        patches:
+          $ref: '#/components/schemas/ProductV1PatchDocument'
+        productCode:
+          description: Target product code
+          type:
+          - string
+          - 'null'
+        saveAndPublish:
+          description: 'If true and publishing is enabled, actions are applied to a draft version of the product and then the draft is published otherwise
+
+            changes are saved to the live product.'
+          type: boolean
+      type: object
+    QuickEditChangeProductTypeResponse:
+      description: Aggregates the individual results of update actions per product update
+      properties:
+        results:
+          description: List of Mozu.ProductAdmin.Contracts.QuickEditChangeProductTypeResult
+          items:
+            $ref: '#/components/schemas/QuickEditChangeProductTypeResult'
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

@@ -1,0 +1,1163 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipping Profile API
+  version: '1.0'
+  description: 'Operations tagged ShippingProfile across 3 of this provider''s published API definitions: openapi_openapi_shipping.json, kibo-commerce-shipping-admin-openapi.yml, kibo-commerce-shipping-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShippingProfile
+paths:
+  /commerce/shipping/admin/profiles/{profilecode}/shippingstates:
+    get:
+      description: Retrieves all configured shipping states
+      parameters:
+      - in: path
+        name: profileCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+          description: Success
+      summary: Get Configured Shipping States
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfilesByProfilecodeShippingstates
+      x-operation-id-source: derived
+    put:
+      description: Updates the configured shipping states
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ShippingStates'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+          description: Success
+      summary: Update States
+      tags:
+      - ShippingProfile
+      operationId: putCommerceShippingAdminProfilesByProfilecodeShippingstates
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}:
+    delete:
+      description: Deletes an existing order handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+          description: Success
+      summary: Delete Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: deleteCommerceShippingAdminProfilesByProfilecodeRulesOrderhandlingfeesById
+      x-operation-id-source: derived
+    get:
+      description: Retrieves an order handling fee rule by ID
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Get Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfilesByProfilecodeRulesOrderhandlingfeesById
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing order handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Update Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: putCommerceShippingAdminProfilesByProfilecodeRulesOrderhandlingfeesById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees:
+    get:
+      description: Retrieve all order handling fee rules
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: fulfillmentMethod
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+          description: Success
+      summary: Get Order Handling Fee Rules
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfilesByProfilecodeRulesOrderhandlingfees
+      x-operation-id-source: derived
+    post:
+      description: Creates a new order handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Create Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: postCommerceShippingAdminProfilesByProfilecodeRulesOrderhandlingfees
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}:
+    delete:
+      description: Deletes an existing product handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: deleteCommerceShippingAdminProfilesByProfilecodeRulesProducthandlingfeesById
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a product handling fee rule by ID
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Get Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfilesByProfilecodeRulesProducthandlingfeesById
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing product handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Update Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: putCommerceShippingAdminProfilesByProfilecodeRulesProducthandlingfeesById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees:
+    get:
+      description: Retrieves all product handling fee rules
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: fulfillmentMethod
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+          description: Success
+      summary: Get Product Handling Fee Rules
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfilesByProfilecodeRulesProducthandlingfees
+      x-operation-id-source: derived
+    post:
+      description: Creates a new product handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Create Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+      operationId: postCommerceShippingAdminProfilesByProfilecodeRulesProducthandlingfees
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}:
+    delete:
+      description: Deletes an existing shipping inclusion rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      operationId: deleteCommerceShippingAdminProfilesByProfilecodeRulesShippinginclusionsById
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a shipping inclusion rule by ID
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Get Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfilesByProfilecodeRulesShippinginclusionsById
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing shipping inclusion rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShippingInclusionRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Update Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      operationId: putCommerceShippingAdminProfilesByProfilecodeRulesShippinginclusionsById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions:
+    get:
+      description: Retrieves all shipping inclusion rules
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+          description: Success
+      summary: Get Shipping Inclusion Rules
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfilesByProfilecodeRulesShippinginclusions
+      x-operation-id-source: derived
+    post:
+      description: Creates a new shipping inclusion rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShippingInclusionRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Create Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+      operationId: postCommerceShippingAdminProfilesByProfilecodeRulesShippinginclusions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/profiles:
+    get:
+      description: Get shipping profiles for the tenant/master catalog
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+          description: Success
+      summary: Get Shipping Profiles
+      tags:
+      - ShippingProfile
+      operationId: getCommerceShippingAdminProfiles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ShippingAdminHttpRequestMessage:
+      properties:
+        content:
+          $ref: '#/components/schemas/HttpContent'
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          readOnly: true
+          type:
+          - array
+          - 'null'
+        method:
+          $ref: '#/components/schemas/HttpMethod'
+        options:
+          additionalProperties: {}
+          readOnly: true
+          type:
+          - object
+          - 'null'
+        properties:
+          additionalProperties: {}
+          deprecated: true
+          readOnly: true
+          type:
+          - object
+          - 'null'
+        requestUri:
+          format: uri
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+        versionPolicy:
+          $ref: '#/components/schemas/ShippingAdminHttpVersionPolicy'
+      type: object
+    HttpMethod:
+      properties:
+        method:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingAdminHttpVersionPolicy:
+      enum:
+      - RequestVersionOrLower
+      - RequestVersionOrHigher
+      - RequestVersionExact
+      format: ''
+      type: string
+    ShippingAdminState:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    HttpResponseMessage:
+      properties:
+        content:
+          $ref: '#/components/schemas/HttpContent'
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          readOnly: true
+          type:
+          - array
+          - 'null'
+        isSuccessStatusCode:
+          readOnly: true
+          type: boolean
+        reasonPhrase:
+          type:
+          - string
+          - 'null'
+        requestMessage:
+          $ref: '#/components/schemas/ShippingAdminHttpRequestMessage'
+        statusCode:
+          $ref: '#/components/schemas/ShippingAdminHttpStatusCode'
+        trailingHeaders:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          readOnly: true
+          type:
+          - array
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+      type: object
+    HandlingFeeRuleCollection:
+      description: A collection of FeeGroups
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ServiceTypeLocalizedContent:
+      properties:
+        localeCode:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingProfileCollection:
+      description: a collection of profiles
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ShippingProfile'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ShippingStates:
+      properties:
+        countryCode:
+          type:
+          - string
+          - 'null'
+        states:
+          items:
+            $ref: '#/components/schemas/ShippingAdminState'
+          type:
+          - array
+          - 'null'
+          uniqueItems: true
+      type: object
+    ShippingProfile:
+      description: ''
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Merchant entered unique identifier for a ShippingProfile
+          type:
+          - string
+          - 'null'
+        orderHandlingFeeRules:
+          description: ''
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          type:
+          - array
+          - 'null'
+        productHandlingFeeRules:
+          description: ''
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          type:
+          - array
+          - 'null'
+        shippingInclusionRules:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ShippingInclusionRule'
+          type:
+          - array
+          - 'null'
+        targetedSiteIds:
+          description: 'The siteid''s for which this profile applies
+
+            <remarks>for now there is a 1-1 relationship between this profile and site so only 1 siteid should be in this list</remarks>'
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    HttpContent:
+      properties:
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          readOnly: true
+          type:
+          - array
+          - 'null'
+      type: object
+    ShippingInclusionRuleCollection:
+      description: A collection of methodgroup
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ShippingInclusionRule'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ServiceType:
+      description: Service Type aka Shipping Method
+      properties:
+        code:
+          description: Unique Service Type Code for a particular Carrier
+          type:
+          - string
+          - 'null'
+        content:
+          $ref: '#/components/schemas/ServiceTypeLocalizedContent'
+        deliveryDuration:
+          type:
+          - string
+          - 'null'
+      type: object
+    StringStringIEnumerableKeyValuePair:
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    ShippingAdminHttpStatusCode:
+      enum:
+      - Continue
+      - SwitchingProtocols
+      - Processing
+      - EarlyHints
+      - OK
+      - Created
+      - Accepted
+      - NonAuthoritativeInformation
+      - NoContent
+      - ResetContent
+      - PartialContent
+      - MultiStatus
+      - AlreadyReported
+      - IMUsed
+      - MultipleChoices
+      - Ambiguous
+      - MovedPermanently
+      - Moved
+      - Found
+      - Redirect
+      - SeeOther
+      - RedirectMethod
+      - NotModified
+      - UseProxy
+      - Unused
+      - TemporaryRedirect
+      - RedirectKeepVerb
+      - PermanentRedirect
+      - BadRequest
+      - Unauthorized
+      - PaymentRequired
+      - Forbidden
+      - NotFound
+      - MethodNotAllowed
+      - NotAcceptable
+      - ProxyAuthenticationRequired
+      - RequestTimeout
+      - Conflict
+      - Gone
+      - LengthRequired
+      - PreconditionFailed
+      - RequestEntityTooLarge
+      - RequestUriTooLong
+      - UnsupportedMediaType
+      - RequestedRangeNotSatisfiable
+      - ExpectationFailed
+      - MisdirectedRequest
+      - UnprocessableEntity
+      - Locked
+      - FailedDependency
+      - UpgradeRequired
+      - PreconditionRequired
+      - TooManyRequests
+      - RequestHeaderFieldsTooLarge
+      - UnavailableForLegalReasons
+      - InternalServerError
+      - NotImplemented
+      - BadGateway
+      - ServiceUnavailable
+      - GatewayTimeout
+      - HttpVersionNotSupported
+      - VariantAlsoNegotiates
+      - InsufficientStorage
+      - LoopDetected
+      - NotExtended
+      - NetworkAuthenticationRequired
+      format: ''
+      type: string
+    ShippingInclusionRule:
+      description: An object to bind service types to shipping target rules and/or product target rules
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        id:
+          description: The system generated id of this shipping inclusion rule
+          type:
+          - string
+          - 'null'
+        productTargetRuleCodes:
+          description: 'the product target rule codes associated with this rule
+
+            <remarks>leave empty or null to denote all products</remarks>'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        sequence:
+          description: The sequence in which this rule is preferred over others
+          format: int32
+          type: integer
+        serviceTypes:
+          description: 'the servicetypes associated with this rule
+
+            <remarks>leave empty or null to denote all carriers and subsequent service types</remarks>'
+          items:
+            $ref: '#/components/schemas/ServiceType'
+          type:
+          - array
+          - 'null'
+        shippingTargetRuleCodes:
+          description: 'The shipping target rule codes associated with this rule
+
+            <remarks>leave empty or null to denote all destinations</remarks>'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    HandlingFeeRule:
+      description: An object to group a handling fee with zones, rules, and servicetypes
+      properties:
+        appliesTo:
+          description: 'The level at which this fee applies
+
+            <value>shippingrate</value><value>order</value>'
+          type:
+          - string
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        fulfillmentMethod:
+          description: 'Fulfillment method this rule applies to.
+
+            <value>Ship</value><value>Pickup</value><value>Delivery</value>'
+          type:
+          - string
+          - 'null'
+        id:
+          description: The system generated id for this rule
+          type:
+          - string
+          - 'null'
+        locationCodes:
+          description: 'Optional location codes for Pickup/Delivery rules.
+
+            <remarks>Must be null for Ship rules. When empty/null for Pickup/Delivery, the rule applies to all locations.</remarks>'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        productTargetRuleCodes:
+          description: 'the product target rule codes associated with this rule
+
+            <remarks>leave empty or null to denote all products</remarks>'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        sequence:
+          description: The sequence in which this rule is preferred over others
+          format: int32
+          type: integer
+        serviceTypes:
+          description: 'the servicetypes associated with this rule
+
+            <remarks>leave empty or null to denote all carriers and subsequent service types</remarks>'
+          items:
+            $ref: '#/components/schemas/ServiceType'
+          type:
+          - array
+          - 'null'
+        shippingTargetRuleCodes:
+          description: 'The shipping target rule codes associated with this rule
+
+            <remarks>leave empty or null to denote all destinations</remarks>'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        value:
+          description: The value of this fee
+          format: double
+          type: number
+        valueType:
+          description: 'The type of this handling fee
+
+            <value>percentage</value><value>flatrate</value>'
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_shipping.json
+- kibo-commerce-shipping-admin-openapi.yml
+- kibo-commerce-shipping-openapi.yml

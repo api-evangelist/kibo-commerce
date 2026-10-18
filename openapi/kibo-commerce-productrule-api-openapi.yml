@@ -1,0 +1,229 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Rule API
+  version: '1.0'
+  description: 'Operations tagged ProductRule across 2 of this provider''s published API definitions: openapi_openapi_catalog_storefront.json, kibo-commerce-catalog-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductRule
+paths:
+  /commerce/rules/product/evaluate/preview:
+    post:
+      description: Previews a new product rule by searching for products in the admin index that meet the rule criteria
+      parameters:
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: fieldList
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogRuntimesProductRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchSimplifiedResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchSimplifiedResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSearchSimplifiedResult'
+          description: OK
+      summary: Preview Product Rule
+      tags:
+      - ProductRule
+      operationId: postCommerceRulesProductEvaluatePreview
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CatalogRuntimesProductRule:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        description:
+          description: ProductRule description
+          type:
+          - string
+          - 'null'
+        expression:
+          $ref: '#/components/schemas/CatalogRuntimesDynamicExpression'
+        name:
+          description: ProductRule name
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogRuntimesDynamicExpression:
+      description: Category
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductSearchSimplifiedResult:
+      properties:
+        facets:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesFacet'
+          type:
+          - array
+          - 'null'
+        items:
+          items:
+            additionalProperties: {}
+            type: object
+          type:
+          - array
+          - 'null'
+        nextCursorMark:
+          type:
+          - string
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        searchRedirect:
+          type:
+          - string
+          - 'null'
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    FacetValue:
+      description: ''
+      properties:
+        childrenFacetValues:
+          description: When hierarchical Facet
+          items:
+            type: object
+          type:
+          - array
+          - 'null'
+        count:
+          description: Number of occurrences of FacetValue in result set.
+          format: int32
+          type: integer
+        filterValue:
+          description: Submit this as a facet value filter
+          type:
+          - string
+          - 'null'
+        isApplied:
+          description: True if this FacetValue was supplied as a facet value filter in the current search
+          type:
+          - boolean
+          - 'null'
+        isDisplayed:
+          description: Indicates whether the FacetValue should be displayed
+          type: boolean
+        label:
+          type:
+          - string
+          - 'null'
+        parentFacetValue:
+          description: When hierarchical Facet
+          type:
+          - string
+          - 'null'
+        rangeQueryValueEnd:
+          description: When range query Facet
+          type:
+          - string
+          - 'null'
+        rangeQueryValueStart:
+          description: When range query Facet
+          type:
+          - string
+          - 'null'
+        value:
+          description: String representation of Facet Value
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogRuntimesFacet:
+      description: For faceted searches, name of the facet and list of facet values. For example, a facet called "Brands" may have the facet values "Apple," "Motorola," and "Samsung."
+      properties:
+        facetType:
+          description: Value, RangeQuery, Hierarchy
+          type:
+          - string
+          - 'null'
+        field:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        values:
+          items:
+            $ref: '#/components/schemas/FacetValue'
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_storefront.json
+- kibo-commerce-catalog-storefront-openapi.yml

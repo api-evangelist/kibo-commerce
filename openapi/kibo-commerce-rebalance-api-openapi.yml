@@ -1,0 +1,97 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Rebalance API
+  version: '1.0'
+  description: 'Operations tagged Rebalance across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Rebalance
+paths:
+  /commerce/fulfillment/rebalancer/runs:
+    post:
+      deprecated: false
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RebalanceTriggerRequestDto'
+        description: request
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RebalanceTriggerResponseDto'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Trigger
+      tags:
+      - Rebalance
+      operationId: postCommerceFulfillmentRebalancerRuns
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    RebalanceTriggerResponseDto:
+      properties:
+        accepted:
+          type: boolean
+        jobGroup:
+          type: string
+        jobName:
+          type: string
+        queue:
+          type: string
+        reason:
+          type: string
+      title: RebalanceTriggerResponseDto
+      type: object
+    RebalanceTriggerRequestDto:
+      properties:
+        queue:
+          type: string
+      title: RebalanceTriggerRequestDto
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

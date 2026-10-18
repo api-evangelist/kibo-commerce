@@ -1,0 +1,2938 @@
+# x-archived-from: kibo-commerce-appdevelopement-openapi.yml
+# x-archived-on: 2026-10-18
+components:
+  schemas:
+    AppAuthInfo:
+      properties:
+        applicationId:
+          nullable: true
+          type: string
+        sharedSecret:
+          nullable: true
+          type: string
+      type: object
+    AppVersion:
+      description: ''
+      properties:
+        majorVersion:
+          description: ''
+          format: int32
+          type: integer
+        minorVersion:
+          description: ''
+          format: int32
+          type: integer
+        revision:
+          description: ''
+          format: int32
+          type: integer
+      type: object
+    ApplicationAttribute:
+      description: Holds attribute definitions for AppVersion
+      properties:
+        attributeCodes:
+          description: Comma delimited list of attribute codes.
+          nullable: true
+          type: string
+        attributeJson:
+          description: json representation of attribute definitions
+          nullable: true
+          type: string
+        attributes:
+          description: ''
+          items:
+            $ref: '#/components/schemas/Attribute'
+          nullable: true
+          type: array
+        isAppliedToBase:
+          type: boolean
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+        productTypeJson:
+          description: Will contain ProductTypeCollection if Product, else AttributeSet
+          nullable: true
+          type: string
+        sourceTenantId:
+          description: Source Tenant Id
+          format: int32
+          type: integer
+        sourceTenantName:
+          description: Source Tenant Name
+          nullable: true
+          type: string
+        subsystem:
+          description: Customer, Order, or Product
+          nullable: true
+          type: string
+      type: object
+    ApplicationBehavior:
+      description: ''
+      properties:
+        behaviorId:
+          description: ''
+          format: int32
+          type: integer
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+      type: object
+    ApplicationCapability:
+      description: ''
+      properties:
+        applicationCapabilityId:
+          description: ''
+          format: int32
+          type: integer
+        applicationCapabilityTypeId:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        applicationEndPoint:
+          description: ''
+          nullable: true
+          type: string
+        capabilityTypeContractId:
+          description: ''
+          format: int32
+          type: integer
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+      type: object
+    ApplicationCapabilityDomain:
+      description: ''
+      properties:
+        applicationCapabilityDomainId:
+          description: ''
+          format: int32
+          type: integer
+        applicationCapabilityDomainValues1:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityDomainValue'
+          nullable: true
+          type: array
+        applicationCapabilityDomainValues2:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityDomainValue'
+          nullable: true
+          type: array
+        applicationCapabilityTypeId:
+          description: ''
+          format: int32
+          type: integer
+        name:
+          description: ''
+          nullable: true
+          type: string
+      type: object
+    ApplicationCapabilityDomainValue:
+      description: ''
+      properties:
+        applicationCapabilityDomainId1:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        applicationCapabilityDomainId2:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        applicationCapabilityDomainValueId:
+          description: ''
+          format: int32
+          type: integer
+        displayName:
+          description: ''
+          nullable: true
+          type: string
+        valueName:
+          description: ''
+          nullable: true
+          type: string
+      type: object
+    ApplicationCapabilityType:
+      description: ''
+      properties:
+        applicationCapabilities:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationCapability'
+          nullable: true
+          type: array
+        applicationCapabilityDomains:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityDomain'
+          nullable: true
+          type: array
+        applicationCapabilityTypeId:
+          description: ''
+          format: int32
+          type: integer
+        applicationId:
+          description: ''
+          format: int32
+          type: integer
+        capabilityTypeId:
+          description: ''
+          format: int32
+          type: integer
+        capabilityTypeName:
+          description: ''
+          nullable: true
+          type: string
+        isImplemented:
+          description: ''
+          type: boolean
+        isInitializedByDefault:
+          description: ''
+          type: boolean
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+      type: object
+    ApplicationEntitlement:
+      description: ''
+      properties:
+        appKey:
+          description: ''
+          nullable: true
+          type: string
+        appOwnerDevAccountId:
+          description: Denotes the application owner dev account id
+          format: int32
+          type: integer
+        applicationEntitlementId:
+          description: ''
+          format: int32
+          type: integer
+        applicationId:
+          description: ''
+          format: int32
+          type: integer
+        applicationLicenseType:
+          description: ''
+          nullable: true
+          type: string
+        applicationName:
+          description: ''
+          nullable: true
+          type: string
+        applicationStatusId:
+          description: ''
+          nullable: true
+          type: string
+        applicationTransactions:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationTransaction'
+          nullable: true
+          type: array
+        applicationVersion:
+          description: ''
+          nullable: true
+          type: string
+        deletedBy:
+          description: User id that soft-deleted this entitlement during an application delete cascade (null if active).
+          nullable: true
+          type: string
+        deletedByFirstName:
+          description: First name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).
+          nullable: true
+          type: string
+        deletedByLastName:
+          description: Last name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).
+          nullable: true
+          type: string
+        deletedDate:
+          description: UTC timestamp when this entitlement was soft-deleted during an application delete cascade (null if active).
+          format: date-time
+          nullable: true
+          type: string
+        devAccountId:
+          description: Denotes which DevAccountId is the application installed in
+          format: int32
+          type: integer
+        effectiveEndDate:
+          description: ''
+          format: date-time
+          nullable: true
+          type: string
+        effectiveStartDate:
+          description: ''
+          format: date-time
+          nullable: true
+          type: string
+        entitlementStatus:
+          description: ''
+          nullable: true
+          type: string
+        installedAppsApplicationId:
+          description: ''
+          nullable: true
+          type: string
+        installedByFirstName:
+          description: ''
+          nullable: true
+          type: string
+        installedByLastName:
+          description: ''
+          nullable: true
+          type: string
+        installedDate:
+          description: ''
+          format: date-time
+          type: string
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+        packageName:
+          description: ''
+          nullable: true
+          type: string
+        siteId:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          description: ''
+          format: int32
+          type: integer
+        tenantName:
+          description: ''
+          nullable: true
+          type: string
+      type: object
+    ApplicationSubscription:
+      description: Defines an event that an Application Version is subscribed to.
+      properties:
+        applicationEndPoint:
+          description: The End Point where the event information will be sent to when the event is fired.
+          nullable: true
+          type: string
+        applicationSubscriptionId:
+          description: The unique identifier of an ApplicationVersionEvent record.
+          format: int32
+          type: integer
+        events:
+          description: ''
+          items:
+            $ref: '#/components/schemas/Event'
+          nullable: true
+          type: array
+        noCallback:
+          description: ''
+          type: boolean
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+      type: object
+    ApplicationSummary:
+      properties:
+        appId:
+          description: ''
+          nullable: true
+          type: string
+        appKey:
+          description: The AppKey is a runtime type.
+          nullable: true
+          type: string
+        appSchemeVersion:
+          description: ''
+          format: int32
+          type: integer
+        applicationId:
+          description: ''
+          format: int32
+          type: integer
+        applicationNamespace:
+          description: ''
+          nullable: true
+          type: string
+        applicationStatusId:
+          description: ''
+          format: int32
+          type: integer
+        applicationStatusName:
+          description: ''
+          nullable: true
+          type: string
+        applicationTypeId:
+          description: ''
+          format: int32
+          type: integer
+        applicationVersion:
+          $ref: '#/components/schemas/AppVersion'
+        hasV2Credentials:
+          description: Indicates whether the application has been upgraded to V2 credentials.
+          type: boolean
+        hasVersions:
+          description: ''
+          type: boolean
+        name:
+          description: ''
+          nullable: true
+          type: string
+        parentAppKey:
+          description: 'The AppKey is a runtime type.
+
+            This only applies for themes that inherit from another theme.'
+          nullable: true
+          type: string
+        parentName:
+          description: ''
+          nullable: true
+          type: string
+        releasePackageId:
+          description: ''
+          format: int32
+          type: integer
+        releasePackageName:
+          description: ''
+          nullable: true
+          type: string
+        updateAvailable:
+          description: ''
+          type: boolean
+        updateParentAppKey:
+          description: 'The AppKey is a runtime type.
+
+            This only applies for themes that inherit from another theme.
+
+            It shows the most current update available.'
+          nullable: true
+          type: string
+      type: object
+    ApplicationSummaryCollection:
+      description: Collection of products returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ApplicationSummary'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ApplicationTransaction:
+      description: ''
+      properties:
+        applicationEntitlementId:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        applicationId:
+          description: ''
+          format: int32
+          type: integer
+        applicationTransactionId:
+          description: ''
+          format: int32
+          type: integer
+        isoCurrencyCode:
+          description: ''
+          nullable: true
+          type: string
+        localeCode:
+          description: ''
+          format: int32
+          type: integer
+        orderNumber:
+          description: ''
+          nullable: true
+          type: string
+        siteId:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          description: ''
+          format: int32
+          type: integer
+        transactionDate:
+          description: ''
+          format: date-time
+          type: string
+        transactionPrice:
+          description: ''
+          format: double
+          type: number
+        transactionTax:
+          description: ''
+          format: double
+          type: number
+        transactionTotal:
+          description: ''
+          format: double
+          type: number
+      type: object
+    ApplicationVersionsCollection:
+      properties:
+        items:
+          items:
+            type: string
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    Attribute:
+      description: ''
+      properties:
+        adminName:
+          description: ''
+          nullable: true
+          type: string
+        applicationAttributeId:
+          description: ''
+          format: int32
+          type: integer
+        attributeId:
+          description: ''
+          format: int32
+          type: integer
+        code:
+          description: ''
+          nullable: true
+          type: string
+        fqn:
+          description: ''
+          nullable: true
+          type: string
+        inputType:
+          description: ''
+          nullable: true
+          type: string
+        name:
+          description: ''
+          nullable: true
+          type: string
+        sequence:
+          description: ''
+          format: int32
+          type: integer
+        type:
+          description: ''
+          nullable: true
+          type: string
+        vocabularyJson:
+          description: ''
+          nullable: true
+          type: string
+        vocabularyValues:
+          description: ''
+          nullable: true
+          type: string
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    AuthTicket:
+      properties:
+        accessToken:
+          nullable: true
+          type: string
+        accessTokenExpiration:
+          format: date-time
+          type: string
+        environmentScope:
+          description: 'For V2 credentials, indicates the environment scope (Sandbox/Production).
+
+            Null for V1 credentials (no environment restriction).'
+          nullable: true
+          type: string
+        refreshToken:
+          nullable: true
+          type: string
+        refreshTokenExpiration:
+          format: date-time
+          type: string
+      type: object
+    AuthTicketRequest:
+      description: Complex object to have the refresh token sent in the body intead of as clear text in the query string.
+      properties:
+        refreshToken:
+          description: The refresh token for renewing the authorization.
+          nullable: true
+          type: string
+      type: object
+    BehaviorCategoryBehavior:
+      description: ''
+      properties:
+        behaviorItems:
+          description: ''
+          items:
+            $ref: '#/components/schemas/BehaviorItem'
+          nullable: true
+          type: array
+        id:
+          description: ''
+          format: int32
+          type: integer
+        name:
+          description: ''
+          nullable: true
+          type: string
+      type: object
+    BehaviorCategoryBehaviorCollection:
+      description: ''
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BehaviorCategoryBehavior'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    BehaviorItem:
+      description: ''
+      properties:
+        categoryId:
+          description: ''
+          format: int32
+          type: integer
+        id:
+          description: ''
+          format: int32
+          type: integer
+        isPrivate:
+          description: ''
+          type: boolean
+        name:
+          description: ''
+          nullable: true
+          type: string
+      type: object
+    BrotliDecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/DecompressedContent'
+      - additionalProperties: false
+        type: object
+    ByteArrayContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      - additionalProperties: false
+        type: object
+    DecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      - additionalProperties: false
+        type: object
+    DeflateDecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/DecompressedContent'
+      - additionalProperties: false
+        type: object
+    EmptyContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      - additionalProperties: false
+        type: object
+    Event:
+      description: Describes an event that a 3rd party developer can subscribe to.
+      properties:
+        apiVersionNumber:
+          description: The Api Version Number which defines what events are available for a given API version.
+          nullable: true
+          type: string
+        eventCategory:
+          description: The category the event belongs to.
+          nullable: true
+          type: string
+        eventId:
+          description: Unique identifier of an Event record.
+          format: int32
+          type: integer
+        eventName:
+          description: The name of the event.
+          nullable: true
+          type: string
+      type: object
+    FileMetadata:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        checkSum:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+        path:
+          nullable: true
+          type: string
+        sizeInBytes:
+          format: int64
+          type: integer
+        type:
+          nullable: true
+          type: string
+      type: object
+    FolderMetadata:
+      properties:
+        files:
+          items:
+            $ref: '#/components/schemas/FileMetadata'
+          nullable: true
+          type: array
+        fullPath:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        subFolders:
+          items:
+            type: object
+          nullable: true
+          type: array
+      type: object
+    FormUrlEncodedContent:
+      allOf:
+      - $ref: '#/components/schemas/ByteArrayContent'
+      - additionalProperties: false
+        type: object
+    GZipDecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/DecompressedContent'
+      - additionalProperties: false
+        type: object
+    HeadlessAppBuildJob:
+      description: A job that represents the build of a Kibo hosted headless application.
+      properties:
+        commitId:
+          description: The Commit ID for the build job.
+          nullable: true
+          type: string
+        commitTime:
+          description: The time of code commit for the build job.
+          format: date-time
+          type: string
+        endTime:
+          description: The end time for the build job.
+          format: date-time
+          type: string
+        jobId:
+          description: The unique identifier for a Headless Application Build Job.
+          nullable: true
+          type: string
+        startTime:
+          description: The start time for the build job.
+          format: date-time
+          type: string
+        status:
+          description: The name of the third party feature.
+          nullable: true
+          type: string
+      type: object
+    HeadlessAppBuildJobResponse:
+      description: Response object for looking up headless storefront build jobs.
+      properties:
+        jobs:
+          description: A list of items representing headless application build jobs.
+          items:
+            $ref: '#/components/schemas/HeadlessAppBuildJob'
+          nullable: true
+          type: array
+        nextToken:
+          description: A token used for paginating through build jobs on subsequent requests.
+          nullable: true
+          type: string
+      type: object
+    HeadlessAppBuildLog:
+      description: The list of steps taken during the build job with links to logs.
+      properties:
+        jobId:
+          nullable: true
+          type: string
+        steps:
+          items:
+            $ref: '#/components/schemas/HeadlessAppBuildStep'
+          nullable: true
+          type: array
+      type: object
+    HeadlessAppBuildStep:
+      description: A job that represents the build of a Kibo hosted headless application.
+      properties:
+        endTime:
+          description: The end time for the build job step.
+          format: date-time
+          type: string
+        logUrl:
+          description: The url to access logs generated during the build step.
+          nullable: true
+          type: string
+        startTime:
+          description: The start time for the build job step.
+          format: date-time
+          type: string
+        status:
+          description: The status result of the step during the build job
+          nullable: true
+          type: string
+        stepName:
+          description: The name of the build step producing logs during the build Job.
+          nullable: true
+          type: string
+      type: object
+    HeadlessAppRuntimeLog:
+      description: Response object representing a s3 object containing headless storefront runtime logs.
+      properties:
+        key:
+          description: The key for the s3 log object.
+          nullable: true
+          type: string
+        lastModified:
+          description: The last modified datetime
+          format: date-time
+          type: string
+        logUrl:
+          description: The presigned URL to download the log collection, valid for 4 hours.
+          nullable: true
+          type: string
+        size:
+          description: The size of the log collection
+          format: int64
+          type: integer
+      type: object
+    HeadlessAppRuntimeLogResponse:
+      description: Response object for looking up headless storefront runtime logs.
+      properties:
+        isTruncated:
+          description: Flag to indicate if all results were returned. If IsTruncated is true, use NextToken to retrieve additional results.
+          type: boolean
+        logs:
+          description: A list of items representing headless application build jobs.
+          items:
+            $ref: '#/components/schemas/HeadlessAppRuntimeLog'
+          nullable: true
+          type: array
+        maxResults:
+          description: The max result provided in runtime log lookup
+          format: int32
+          type: integer
+        nextToken:
+          description: A token used for paginating through runtime logs on subsequent requests.
+          nullable: true
+          type: string
+        prefix:
+          description: The prefix provided in runtime log lookup
+          nullable: true
+          type: string
+      type: object
+    HeadlessBuildTriggerResponse:
+      description: Response returned when a headless build is triggered. See Mozu.AppDev.Contracts.HeadlessBuildJobStatus for valid Mozu.AppDev.Contracts.HeadlessBuildTriggerResponse.Status values.
+      properties:
+        branchName:
+          nullable: true
+          type: string
+        jobId:
+          nullable: true
+          type: string
+        startTime:
+          format: date-time
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+      type: object
+    HeadlessEnvVar:
+      description: 'Read/list view of a headless environment variable. Unlike Mozu.AppDev.Contracts.HeadlessSecret,
+
+        environment variable values are plaintext and deliberately returned to clients.
+
+        For writes, use Mozu.AppDev.Contracts.HeadlessEnvVarInput.'
+      properties:
+        lastModified:
+          format: date-time
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    HeadlessEnvVarCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/HeadlessEnvVar'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    HeadlessEnvVarInput:
+      description: 'Write-only input for creating or updating a headless environment variable.
+
+        The read view is Mozu.AppDev.Contracts.HeadlessEnvVar.'
+      properties:
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    HeadlessSecret:
+      description: 'Read/list view of a headless secret: name and metadata only. This type intentionally has NO
+
+        `Value` property — secret plaintext is never returned to clients, and the absence of the field
+
+        makes that leak unrepresentable. Do not add a `Value` here; use Mozu.AppDev.Contracts.HeadlessSecretInput
+
+        for writes.'
+      properties:
+        lastModified:
+          description: When the secret was last modified, if known.
+          format: date-time
+          nullable: true
+          type: string
+        name:
+          description: The secret's name.
+          nullable: true
+          type: string
+      type: object
+    HeadlessSecretCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/HeadlessSecret'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    HeadlessSecretInput:
+      description: 'Write-only input for creating or updating a headless secret. The read view is
+
+        Mozu.AppDev.Contracts.HeadlessSecret, which intentionally has no `Value` property —
+
+        secret plaintext is never returned to clients.'
+      properties:
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    HttpConnectionResponseContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      - additionalProperties: false
+        type: object
+    HttpContent:
+      properties:
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    HttpMethod:
+      properties:
+        method:
+          nullable: true
+          type: string
+      type: object
+    HttpRequestMessage:
+      properties:
+        content:
+          $ref: '#/components/schemas/HttpContent'
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        method:
+          $ref: '#/components/schemas/HttpMethod'
+        options:
+          additionalProperties: {}
+          nullable: true
+          readOnly: true
+          type: object
+        properties:
+          additionalProperties:
+            nullable: true
+          deprecated: true
+          nullable: true
+          readOnly: true
+          type: object
+        requestUri:
+          format: uri
+          nullable: true
+          type: string
+        version:
+          nullable: true
+          type: string
+        versionPolicy:
+          $ref: '#/components/schemas/HttpVersionPolicy'
+      type: object
+    HttpResponseMessage:
+      properties:
+        content:
+          $ref: '#/components/schemas/HttpContent'
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        isSuccessStatusCode:
+          readOnly: true
+          type: boolean
+        reasonPhrase:
+          nullable: true
+          type: string
+        requestMessage:
+          $ref: '#/components/schemas/HttpRequestMessage'
+        statusCode:
+          $ref: '#/components/schemas/HttpStatusCode'
+        trailingHeaders:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        version:
+          nullable: true
+          type: string
+      type: object
+    HttpStatusCode:
+      enum:
+      - 100
+      - 101
+      - 102
+      - 103
+      - 200
+      - 201
+      - 202
+      - 203
+      - 204
+      - 205
+      - 206
+      - 207
+      - 208
+      - 226
+      - 300
+      - 301
+      - 302
+      - 303
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 400
+      - 401
+      - 402
+      - 403
+      - 404
+      - 405
+      - 406
+      - 407
+      - 408
+      - 409
+      - 410
+      - 411
+      - 412
+      - 413
+      - 414
+      - 415
+      - 416
+      - 417
+      - 421
+      - 422
+      - 423
+      - 424
+      - 426
+      - 428
+      - 429
+      - 431
+      - 451
+      - 500
+      - 501
+      - 502
+      - 503
+      - 504
+      - 505
+      - 506
+      - 507
+      - 508
+      - 510
+      - 511
+      format: int32
+      type: integer
+    HttpVersionPolicy:
+      enum:
+      - 0
+      - 1
+      - 2
+      format: int32
+      type: integer
+    OAuthAccessTokenResponse:
+      properties:
+        access_token:
+          nullable: true
+          type: string
+        expires_in:
+          format: int32
+          type: integer
+        refresh_token:
+          nullable: true
+          type: string
+        token_type:
+          nullable: true
+          type: string
+      type: object
+    OauthAuthRequest:
+      properties:
+        client_id:
+          nullable: true
+          type: string
+        client_secret:
+          nullable: true
+          type: string
+        grant_type:
+          nullable: true
+          type: string
+        refresh_token:
+          nullable: true
+          type: string
+      type: object
+    OauthAuthRequestInternal:
+      properties:
+        application_name:
+          nullable: true
+          type: string
+        client_id:
+          nullable: true
+          type: string
+        client_secret:
+          nullable: true
+          type: string
+        grant_type:
+          nullable: true
+          type: string
+        refresh_token:
+          nullable: true
+          type: string
+      type: object
+    Package:
+      description: ''
+      properties:
+        apiVersion:
+          description: ''
+          nullable: true
+          type: string
+        appConfigUrl:
+          description: "This will be used by the 3rd party developers to set a URL the intalled \napplications can call from the Tenant installation/"
+          nullable: true
+          type: string
+        appId:
+          description: ''
+          nullable: true
+          type: string
+        appKey:
+          description: App Key for the package in question.
+          nullable: true
+          type: string
+        appSchemeVersion:
+          description: ''
+          format: int32
+          type: integer
+        applicationAttributes:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationAttribute'
+          nullable: true
+          type: array
+        applicationBehaviors:
+          description: List of Application Behaviors that apply to this version of the application.
+          items:
+            $ref: '#/components/schemas/ApplicationBehavior'
+          nullable: true
+          type: array
+        applicationCapabilities:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationCapability'
+          nullable: true
+          type: array
+        applicationCapabilityTypes:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationCapabilityType'
+          nullable: true
+          type: array
+        applicationDescription:
+          description: ''
+          nullable: true
+          type: string
+        applicationDetailId:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        applicationEntitlements:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationEntitlement'
+          nullable: true
+          type: array
+        applicationId:
+          description: ''
+          format: int32
+          type: integer
+        applicationName:
+          description: ''
+          nullable: true
+          type: string
+        applicationOwnerDevAccountId:
+          description: This is the DevAccountId that owns the application
+          format: int32
+          type: integer
+        applicationStatus:
+          description: ''
+          nullable: true
+          type: string
+        applicationStatusId:
+          description: ''
+          format: int32
+          type: integer
+        applicationStatusName:
+          description: ''
+          nullable: true
+          type: string
+        applicationSubscriptions:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationSubscription'
+          nullable: true
+          type: array
+        applicationTypeId:
+          description: ''
+          format: int32
+          type: integer
+        applicationTypeName:
+          description: ''
+          nullable: true
+          type: string
+        applicationUpdateDate:
+          description: ''
+          format: date-time
+          nullable: true
+          type: string
+        assetFileCount:
+          description: ''
+          format: int32
+          type: integer
+        attributeNamespace:
+          description: ''
+          nullable: true
+          type: string
+        dataNamespace:
+          description: ''
+          nullable: true
+          type: string
+        hasApplicationVersions:
+          description: ''
+          type: boolean
+        id:
+          description: ''
+          format: int32
+          type: integer
+        isDeleted:
+          description: ''
+          type: boolean
+        isLocked:
+          description: ''
+          type: boolean
+        isReleasePackage:
+          description: ''
+          type: boolean
+        legacyNamespace:
+          description: ''
+          nullable: true
+          type: string
+        majorVersion:
+          description: ''
+          format: int32
+          type: integer
+        minorVersion:
+          description: ''
+          format: int32
+          type: integer
+        namespace:
+          description: ''
+          nullable: true
+          type: string
+        namespaceRegistryId:
+          description: ''
+          nullable: true
+          type: string
+        packageDescription:
+          description: ''
+          nullable: true
+          type: string
+        packageGuid:
+          description: ''
+          nullable: true
+          type: string
+        packageName:
+          description: ''
+          nullable: true
+          type: string
+        parentThemeAppKey:
+          description: "The parent theme AppKey if this is a theme and \nthe theme extends a valid, published theme."
+          nullable: true
+          type: string
+        parentThemeName:
+          description: ''
+          nullable: true
+          type: string
+        publishedParentSemanticVersion:
+          description: ''
+          nullable: true
+          type: string
+        publishedParentThemeId:
+          description: ''
+          format: int32
+          nullable: true
+          type: integer
+        revision:
+          description: ''
+          format: int32
+          type: integer
+        semanticVersionRange:
+          description: ''
+          nullable: true
+          type: string
+        sharedSecret:
+          description: ''
+          nullable: true
+          type: string
+        themeEngineVersion:
+          description: ''
+          nullable: true
+          type: string
+        updateAvailable:
+          description: Whether or not there's a theme update.
+          type: boolean
+        updateDate:
+          description: ''
+          format: date-time
+          type: string
+        updateParentAppKey:
+          description: 'The AppKey is a runtime type.
+
+            This only applies for themes that inherit from another theme.
+
+            It shows the most current update available.'
+          nullable: true
+          type: string
+        updateParentThemeName:
+          description: 'This only applies for themes that inherit from another theme.
+
+            It shows the name of the most current update available.'
+          nullable: true
+          type: string
+        updateParentThemeVersion:
+          description: 'This only applies for themes that inherit from another theme.
+
+            It shows the version of the most current update available.'
+          nullable: true
+          type: string
+        userId:
+          description: ''
+          nullable: true
+          type: string
+        validApplicationStatusIdList:
+          description: 'List of Statuses that the application can move to during the application lifecycle.
+
+            This is based on what the current value of the ApplicatinStatusId is.'
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    PackageCollection:
+      description: ''
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Package'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PackageNamesCollection:
+      properties:
+        items:
+          items:
+            type: string
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PackageRequest:
+      description: ''
+      properties:
+        appKey:
+          description: ''
+          nullable: true
+          type: string
+        parentThemeAppKey:
+          description: ''
+          nullable: true
+          type: string
+      type: object
+    ReadOnlyMemoryContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      - additionalProperties: false
+        type: object
+    RenameInfo:
+      properties:
+        newFullPath:
+          nullable: true
+          type: string
+        oldFullPath:
+          nullable: true
+          type: string
+      type: object
+    StreamContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      - additionalProperties: false
+        type: object
+    StringContent:
+      allOf:
+      - $ref: '#/components/schemas/ByteArrayContent'
+      - additionalProperties: false
+        type: object
+    StringStringIEnumerableKeyValuePair:
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+info:
+  description: "<div id=\"overview_APPDEVELOPEMENT\">\n            <h2>APP DEVELOPMENT</h2>\n            <p>The Applications API updates and retrieves details about the applications installed for your tenant. Use\n                the AuthTickets resource for applications resource to manage authentication tickets for your apps. For information about creating applications, see the <a href=\"/pages/applications-1a6c791\">Application Development</a> guides.</p>\n            <p>Use the<strong>App Auth Tickets</strong> resource to manage authentication tickets for your applications.</p>\n            <p>Use the <strong>Filebased Package</strong> resource to download a file-based representation of the application definition to work on collaboratively with your team using your own source control process.</p>\n            <p>Use the <strong>Package</strong> resource to manage the application packages and retrieve summaries.</p>\n            <p>Use the <strong>Public Application</strong> resource to\
+    \ retrieve package metadata or application versions as well as manage package files.</p>\n        </div>"
+  title: App Development
+openapi: 3.0.1
+paths:
+  /platform/applications/authtickets:
+    post:
+      description: Authenticates an application using shared secret and application id. The method returns a set of authentication tokens used to manage application authentication.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppAuthInfo'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+          description: OK
+      security: []
+      summary: App Authenticate
+      tags:
+      - AppAuthTickets
+  /platform/applications/authtickets/{refreshToken}:
+    delete:
+      description: This method is used to expire an application's current refresh token which \r\nwill force the application to reauthenticate once the current access token expires.
+      parameters:
+      - description: ''
+        in: path
+        name: refreshToken
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete App Auth Ticket
+      tags:
+      - AppAuthTickets
+  /platform/applications/authtickets/oauth:
+    post:
+      description: Authenticate an application using OAuth.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthAuthRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+          description: OK
+      security: []
+      summary: Oauth Authenticate App
+      tags:
+      - AppAuthTickets
+  /platform/applications/authtickets/refresh-ticket:
+    put:
+      description: Returns the AppAuthTicket with a refreshed AccessToken
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthTicketRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+          description: OK
+      summary: Refresh App Auth Ticket
+      tags:
+      - AppAuthTickets
+  /platform/appdev/appsubscriptions/events:
+    post:
+      description: Create a new application event subscription.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationSubscription'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+          description: OK
+      summary: Create Application Subscription
+      tags:
+      - AppEvent
+    put:
+      description: Update an existing application event subscription.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationSubscription'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+          description: OK
+      summary: Update Application Subscription
+      tags:
+      - AppEvent
+  /platform/appdev/appsubscriptions/events/{applicationSubscriptionId}:
+    delete:
+      description: Delete an application event subscription.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationSubscriptionId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Application Subscription
+      tags:
+      - AppEvent
+  /platform/appdev/appsubscriptions/{subscriptionId}:
+    get:
+      description: Get a specific application subscription by ID.
+      parameters:
+      - description: ''
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+          description: OK
+      summary: Get Application Subscription
+      tags:
+      - AppEvent
+  /platform/appdev/appinstall/application/entitlement/{applicationEntitlementId}:
+    get:
+      description: Get a specific application entitlement by  ID.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationEntitlementId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+          description: OK
+      summary: Get Application
+      tags:
+      - AppInstall
+  /platform/appdev/appinstall/application/entitlement:
+    get:
+      description: Get a list of installed applications.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+          description: OK
+      summary: Get Applications
+      tags:
+      - AppInstall
+    post:
+      description: Install an application entitlement.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationEntitlement'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+          description: OK
+      summary: Install Application
+      tags:
+      - AppInstall
+  /platform/appdev/appinstall/applicationversion/{applicationId}/entitlements:
+    get:
+      description: Retrieve a list of entitlements for a specific application.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+          description: OK
+      summary: Get Entitlements By Application
+      tags:
+      - AppInstall
+  /platform/appdev/appinstall/tenant/{tenantId}/entitlements:
+    get:
+      description: Get a list of applicaiton entitlements by tenant.
+      parameters:
+      - description: ''
+        in: path
+        name: tenantId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+          description: OK
+      summary: Get Entitlements By Tenant
+      tags:
+      - AppInstall
+  /platform/appdev/appinstall/toproductiontenant:
+    post:
+      description: Install an application to a production tenant.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationEntitlement'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+          description: OK
+      summary: Install App To Production Tenant
+      tags:
+      - AppInstall
+  /platform/appdev/filebasedpackage/packages/{applicationKey}:
+    get:
+      description: Retrieve an application package file.
+      parameters:
+      - in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: fileName
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+          description: OK
+      summary: Get File
+      tags:
+      - FilebasedPackage
+  /platform/appdev/headless-app/env/{branchName}/{variableName}:
+    delete:
+      description: Delete an environment variable from a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to delete the environment variable from
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The name of the environment variable to delete
+        in: path
+        name: variableName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Environment Variable
+      tags:
+      - HeadlessApp
+  /platform/appdev/headless-app/secrets/{branchName}/{secretName}:
+    delete:
+      description: Delete a secret from a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to delete the secret from
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The name of the secret to delete
+        in: path
+        name: secretName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Secret
+      tags:
+      - HeadlessApp
+  /platform/appdev/headless-app/builds/{branchName}:
+    get:
+      description: Get the builds of a specific code branch for a Kibo Hosted Headless application.\r\nA Kibo site must be first linked to a headless hosted application before using this API.
+      parameters:
+      - description: The name of the branch to use for the request
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The maximum number of records to list in a single response. defaults to 20, maximum is 100
+        in: query
+        name: maxResults
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: A pagination token
+        in: query
+        name: nextToken
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildJobResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildJobResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildJobResponse'
+          description: OK
+      summary: Get Application Build Jobs
+      tags:
+      - HeadlessApp
+  /platform/appdev/headless-app/builds/{branchName}/logs/{jobId}:
+    get:
+      description: Get the build logs of a specific code branch and build for a Kibo Hosted Headless application.\r\nA Kibo site must be first linked to a headless hosted application before using this API.
+      parameters:
+      - description: The name of the branch to use for the request
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The Identifier of the build to retrieve logs for
+        in: path
+        name: jobId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildLog'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildLog'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildLog'
+          description: OK
+      summary: Get Application Build Log
+      tags:
+      - HeadlessApp
+  /platform/appdev/headless-app/env/{branchName}:
+    get:
+      description: List environment variables for a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to list environment variables for
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVarCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVarCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVarCollection'
+          description: OK
+      summary: Get Environment Variables
+      tags:
+      - HeadlessApp
+    put:
+      description: Create or update a plaintext environment variable for a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to set the environment variable on
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeadlessEnvVarInput'
+        description: The environment variable name and value to set
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVar'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVar'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVar'
+          description: OK
+      summary: Put Environment Variable
+      tags:
+      - HeadlessApp
+  /platform/appdev/headless-app/logs/runtime:
+    get:
+      description: 'Get the runtime logs, as s3 objects, for a Kibo Hosted Headless application.
+
+        A Kibo site must be first linked to a headless hosted application before using this API.'
+      parameters:
+      - description: 'A date filter for the log results. Filters can be in the following formats:
+
+          for 2024, prefix=2024
+
+          for first month of 2024, prefix=2024-01
+
+          for first day, first month of 2024, prefix=2024-01-01'
+        in: query
+        name: prefix
+        schema:
+          type: string
+      - description: The maximum number of records to list in a single response. defaults to 300, maximum is 1000
+        in: query
+        name: maxResults
+        schema:
+          default: 300
+          format: int32
+          type: integer
+      - description: A pagination token
+        in: query
+        name: nextToken
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppRuntimeLogResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppRuntimeLogResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppRuntimeLogResponse'
+          description: OK
+      summary: Get Runtime Logs
+      tags:
+      - HeadlessApp
+  /platform/appdev/headless-app/secrets/{branchName}:
+    get:
+      description: 'List secrets for a specific branch of a Kibo Hosted Headless application.
+
+        Returns secret names and metadata only. Values are excluded from the response contract.'
+      parameters:
+      - description: The name of the branch to list secrets for
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecretCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecretCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecretCollection'
+          description: OK
+      summary: Get Secrets
+      tags:
+      - HeadlessApp
+    put:
+      description: Create or update an encrypted secret for a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to set the secret on
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeadlessSecretInput'
+        description: The secret name and value to set
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecret'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecret'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecret'
+          description: OK
+      summary: Put Secret
+      tags:
+      - HeadlessApp
+  /platform/appdev/headless-app/builds/{branchName}/trigger:
+    post:
+      description: Trigger a rebuild of a specific branch for a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to trigger a build for
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessBuildTriggerResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessBuildTriggerResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessBuildTriggerResponse'
+          description: OK
+      summary: Trigger Build
+      tags:
+      - HeadlessApp
+  /platform/appdev/apppackages/{applicationKey}/clone/{packageName}:
+    post:
+      description: Use this operation to clone an existing package.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: packageName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Package'
+          description: OK
+      summary: Clone Package
+      tags:
+      - Package
+  /platform/appdev/apppackages/create:
+    post:
+      description: Save as new version of the application core with only a release package included.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Package'
+          description: OK
+      summary: Create New Core Package
+      tags:
+      - Package
+  /platform/appdev/apppackages/project:
+    post:
+      description: Create a new application package.
+      parameters:
+      - description: ''
+        in: query
+        name: projectId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Package'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Package'
+          description: OK
+      summary: Create Package
+      tags:
+      - Package
+  /platform/appdev/apppackages/apps/{appId}:
+    get:
+      description: Get a list of application summaries.
+      parameters:
+      - description: ''
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationSummary'
+                type: array
+          description: OK
+      summary: Get Application Summary Children
+      tags:
+      - Package
+  /platform/appdev/apppackages/collection:
+    get:
+      description: Get a collection of application summaries.
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSummaryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSummaryCollection'
+          description: OK
+      summary: Get Application Summary Parents
+      tags:
+      - Package
+  /platform/appdev/apppackages/{applicationKey}:
+    get:
+      description: Retrieve a package and its associated application.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: includeChildren
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: skipDevAccountCheck
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: includeNonCertifiedPackages
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Package'
+          description: OK
+      summary: Get Package
+      tags:
+      - Package
+    put:
+      description: Update an application package.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Package'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Package'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Package'
+          description: OK
+      summary: Update Package
+      tags:
+      - Package
+  /platform/appdev/apppackages/{packageId}/behaviors:
+    get:
+      description: Retrieve a list of application package behaviors.
+      parameters:
+      - description: ''
+        in: path
+        name: packageId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryBehaviorCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryBehaviorCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryBehaviorCollection'
+          description: OK
+      summary: Get Package Behaviors
+      tags:
+      - Package
+    post:
+      description: Update a package's behaviors.
+      parameters:
+      - description: ''
+        in: path
+        name: packageId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ApplicationBehavior'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryBehaviorCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryBehaviorCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryBehaviorCollection'
+          description: OK
+      summary: Update Package Behaviors
+      tags:
+      - Package
+  /platform/appdev/apppackages/applications/{applicationKey}/packages:
+    get:
+      description: Use this operation to retieve all packages for a given applicationKey.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 50
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PackageCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PackageCollection'
+          description: OK
+      summary: Get Packages
+      tags:
+      - Package
+  /platform/developer/applications/{applicationKey}/packagenames:
+    get:
+      description: Retrieve a list of application package names.
+      parameters:
+      - in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PackageNamesCollection'
+          description: OK
+      summary: Get App Package Names
+      tags:
+      - PublicApplication
+  /platform/developer/applications/versions/{nsAndAppId}:
+    get:
+      description: Retrieve a list of application versions.
+      parameters:
+      - in: path
+        name: nsAndAppId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationVersionsCollection'
+          description: OK
+      summary: Get App Versions
+      tags:
+      - PublicApplication
+  /platform/developer/packages/{applicationKey}/filemetadata/{filepath}:
+    get:
+      description: Retrieve all package file metadata.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: OK
+      summary: Get Package File Metadata
+      tags:
+      - PublicApplication
+  /platform/developer/packages/{applicationKey}/metadata:
+    get:
+      description: Retrieve application package metadata.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FolderMetadata'
+          description: OK
+      summary: Get Package Metadata
+      tags:
+      - PublicApplication
+  /platform/developer/packages/{applicationKey}/files_rename:
+    post:
+      description: Rename a package file.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RenameInfo'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: OK
+      summary: Rename Package File
+      tags:
+      - PublicApplication
+  /platform/developer/packages/{applicationKey}/files/{filepath}:
+    delete:
+      description: Delete an existing package file.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Package File
+      tags:
+      - PublicApplication
+    post:
+      description: Update and replace a package file.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationKey
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: filepath
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: lastModifiedTime
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+          description: OK
+      summary: Upsert Package File
+      tags:
+      - PublicApplication
+security:
+- bearerAuth: []
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL

@@ -1,0 +1,96 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Location Group API
+  version: '1.0'
+  description: 'Operations tagged InventoryLocationGroup across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryLocationGroup
+paths:
+  /commerce/inventory/v1/locationGroup:
+    get:
+      description: Get LocationGroups
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationGroupResponse'
+                type: array
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Get Location Groups
+      tags:
+      - InventoryLocationGroup
+      operationId: getCommerceInventoryV1LocationGroup
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    LocationGroupResponse:
+      description: LocationGroup Response Object
+      properties:
+        adminLocationGroupID:
+          description: Admin Location Group ID
+          type: integer
+        created:
+          description: Created
+          type: string
+        locationCodes:
+          description: Location IDs
+          items:
+            type: string
+          type: array
+        locationGroupCode:
+          description: Location Group Code
+          type: string
+        locationGroupID:
+          description: Location Group ID
+          type: integer
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        sites:
+          description: Site IDs
+          items:
+            type: integer
+          type: array
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Tenant ID
+          type: integer
+      title: LocationGroupResponse
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

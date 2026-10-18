@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-document-schema.json",
+  "title": "Document",
+  "description": "Container for schema-enforced and schemaless data. A document is primarily used to store content (html, text,\nnumbers, dates, JSON, binary data) that is directly or indirectly used for the storefront website experience\nand may be addressed via the Hypr theming engine language. A document belongs to a documentList and has an\nunderlying documentType.  The documentType describes any required and optional schema. Additionally, a binary\nobject may be stored on the document's content subresource and edge cached via the Mozu CDN.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-content-openapi.yml#/components/schemas/Document",
+  "properties": {
+    "activeDateRange": {
+      "$ref": "#/$defs/ActiveDateRange"
+    },
+    "contentLength": {
+      "description": "The size of the content subresource in decimal number of OCTETs.\nWhen updating the content subresource, the  contentLength is captured from the\nContent-Length header, if present, or is otherwise computed from the total size of the http body.",
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "contentMimeType": {
+      "description": "The mime type of the document's binary content, provided via the Content-Type header when updating the content\nsubresource. If no value is provided then \"application/octet-stream\" is set by default.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contentUpdateDate": {
+      "description": "The date and time the most recent content update was made via the content subresource. UTC date/time.\nSystem-supplied and read-only.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "documentTypeFQN": {
+      "description": "The full name of the documentType that underlies this document.\nThis field must be supplied upon document creation and cannot be updated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "extension": {
+      "description": "If applicable, the file extension associated with the document content.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "id": {
+      "description": "Read-only, system generated 32 digit alpha-numeric string that uniquely identifies the document.",
+      "readOnly": true,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "insertDate": {
+      "description": "The date and time the document was added to the documentList. This field is system-supplied and read-only.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "listFQN": {
+      "description": "The fully qualified name of the documentList to which the document belongs.\nThis field is read-only and represents which documentList the document is created in.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "description": "The fully qualified name of the document including path.\nUnique within the documentList. This field is a required field, but it can be updated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "path": {
+      "description": "ReadOnly, path portion of the Name property.",
+      "readOnly": true,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "properties": {
+      "description": "A JSON object of name/value pairs. Name parts are matched against the underlying documentType properties names. Any\nmatching name parts must have a value part that conforms to the matching property schema.\nAny non-matching name/value pairs are considered dynamic schema and may have a value part of valid JSON.\nThe properties field can be used for sorting/filtering and can be projected in the documents returned within a\ndocumentList view.",
+      "nullable": true
+    },
+    "publishSetCode": {
+      "description": "The name of the publish set that this document belongs to, if any.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "publishState": {
+      "description": "The current publish status of the document. If publishing is not supported or is currently disabled in the\ndocumentList then the value will be \"active\".\nIf publishing is supported and enabled, then the publish state may be \"draft\" or \"active\". A document may have both\nan \"active\" and \"draft\" version. The publishState\ndenotes which version of the document being interacted with. This field is read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updateDate": {
+      "description": "The date and time the most recent document update was made. If publishing is enabled, then this value will\nrepresent\nthe last draft update if the publishState is draft, or the last publish date if the publishState is active.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ActiveDateRange": {
+      "properties": {
+        "endDate": {
+          "description": "The end of the active date range for this document",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "startDate": {
+          "description": "The beginning of the active date range of this document",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

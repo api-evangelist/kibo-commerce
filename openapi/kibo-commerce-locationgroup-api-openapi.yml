@@ -1,0 +1,401 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Location Group API
+  version: '1.0'
+  description: 'Operations tagged LocationGroup across 3 of this provider''s published API definitions: openapi_openapi_location.json, kibo-commerce-location-admin-openapi.yml, kibo-commerce-location-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: LocationGroup
+paths:
+  /commerce/admin/locationGroups/{locationGroupCode}/locationCodes:
+    delete:
+      parameters:
+      - description: The unique code of the location group
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: Location codes to remove
+        in: query
+        name: locationCodes
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Remove location codes from a location group
+      tags:
+      - LocationGroup
+      operationId: deleteCommerceAdminLocationGroupsByLocationGroupCodeLocationCodes
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: The unique code of the location group
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationGroupCodesRequest'
+        description: Request containing location codes to add
+      responses:
+        '200':
+          description: OK
+      summary: Add location codes to a location group
+      tags:
+      - LocationGroup
+      operationId: postCommerceAdminLocationGroupsByLocationGroupCodeLocationCodes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/admin/locationGroups/{locationGroupCode}:
+    delete:
+      description: Deletes a location group specified by location group code.
+      parameters:
+      - description: ''
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Location Group
+      tags:
+      - LocationGroup
+      operationId: deleteCommerceAdminLocationGroupsByLocationGroupCode
+      x-operation-id-source: derived
+    get:
+      description: Gets a location group by code.
+      parameters:
+      - description: ''
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+          description: OK
+      summary: Get Location Group
+      tags:
+      - LocationGroup
+      operationId: getCommerceAdminLocationGroupsByLocationGroupCode
+      x-operation-id-source: derived
+    patch:
+      description: Update specific fields of a location group using RFC 6902 JSON Patch format.
+      parameters:
+      - description: the unique code for a location group
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                properties:
+                  from:
+                    type: string
+                  op:
+                    type: string
+                  path:
+                    type: string
+                  value: {}
+                required:
+                - op
+                - path
+                type: object
+              type: array
+        description: JSON Patch document with operations to apply
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+          description: OK
+      summary: Partially Update Location Group
+      tags:
+      - LocationGroup
+      operationId: patchCommerceAdminLocationGroupsByLocationGroupCode
+      x-operation-id-source: derived
+    put:
+      description: Update an existing location group.
+      parameters:
+      - description: ''
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationGroup'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+          description: OK
+      summary: Update Location Group
+      tags:
+      - LocationGroup
+      operationId: putCommerceAdminLocationGroupsByLocationGroupCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/admin/locationGroups:
+    get:
+      description: Gets a collection of location groups.
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroupCollection'
+          description: OK
+      summary: Get Location Groups
+      tags:
+      - LocationGroup
+      operationId: getCommerceAdminLocationGroups
+      x-operation-id-source: derived
+    post:
+      description: Add a location group.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationGroup'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroup'
+          description: OK
+      summary: Add Location Group
+      tags:
+      - LocationGroup
+      operationId: postCommerceAdminLocationGroups
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    LocationGroupCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationGroup'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    LocationGroup:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        locationCodes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        locationGroupCode:
+          type:
+          - string
+          - 'null'
+        locationGroupId:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        siteIds:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    LocationGroupCodesRequest:
+      properties:
+        locationCodes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    ApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_location.json
+- kibo-commerce-location-admin-openapi.yml
+- kibo-commerce-location-openapi.yml

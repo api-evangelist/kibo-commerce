@@ -1,0 +1,508 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Redaction API
+  version: '1.0'
+  description: 'Operations tagged Redaction across 2 of this provider''s published API definitions: openapi_openapi_gdpr.json, kibo-commerce-gdpr-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Redaction
+paths:
+  /platform/data/redaction/execute/{reportId}:
+    post:
+      description: Executes an approved draft redaction report. This action is irreversible — it permanently removes or overwrites all PII identified in the report. The report status changes from Draft to Executed and operationLog is populated. See the Redaction Services Developer Guide for the complete workflow and warnings.
+      parameters:
+      - in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+          description: OK
+      summary: Execute Redaction
+      tags:
+      - Redaction
+      operationId: postPlatformDataRedactionExecuteByReportId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/redaction/report/{reportId}:
+    get:
+      description: Retrieves a single redaction report by ID. Returns the full report including affectedEntities and, after execution, the operationLog. Use this to review a draft before executing or to audit a completed redaction. See the Redaction Services Developer Guide for field descriptions.
+      parameters:
+      - in: path
+        name: reportId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+          description: OK
+      summary: Get Redaction Report
+      tags:
+      - Redaction
+      operationId: getPlatformDataRedactionReportByReportId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/redaction/report:
+    get:
+      description: Lists redaction reports for the tenant, with optional filtering by status (Draft or Executed) and date range. Returns summary objects without affectedEntities or operationLog; retrieve individual reports by ID for full details. See the Redaction Services Developer Guide for auditing guidance.
+      parameters:
+      - in: query
+        name: status
+        schema:
+          type: string
+      - in: query
+        name: page
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: from
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: to
+        schema:
+          format: date-time
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportSummaryListResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportSummaryListResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportSummaryListResponse'
+          description: OK
+      summary: List Redaction Reports
+      tags:
+      - Redaction
+      operationId: getPlatformDataRedactionReport
+      x-operation-id-source: derived
+    post:
+      description: Creates a draft redaction report by scanning tenant data for all PII associated with the specified data subject. No data is modified at this stage. Review the returned report before executing. See the Redaction Services Developer Guide for the complete two-phase workflow.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateReportRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RedactionReportResponse'
+          description: OK
+      summary: Generate Redaction Report
+      tags:
+      - Redaction
+      operationId: postPlatformDataRedactionReport
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    RedactionReportResponse:
+      properties:
+        affectedEntities:
+          $ref: '#/components/schemas/AffectedEntitiesResponse'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfoResponse'
+        createdAt:
+          format: date-time
+          type: string
+        errorSummary:
+          type:
+          - string
+          - 'null'
+        executionCompletedAt:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        executionStartedAt:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        operationLog:
+          items:
+            $ref: '#/components/schemas/OperationLogEntry'
+          type:
+          - array
+          - 'null'
+        reportId:
+          type:
+          - string
+          - 'null'
+        request:
+          $ref: '#/components/schemas/RequestResponse'
+        schemaVersion:
+          format: int32
+          type: integer
+        status:
+          type:
+          - string
+          - 'null'
+        subject:
+          $ref: '#/components/schemas/SubjectResponse'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    RedactionReportSummaryResponse:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfoResponse'
+        createdAt:
+          format: date-time
+          type: string
+        errorSummary:
+          type:
+          - string
+          - 'null'
+        executionCompletedAt:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        executionStartedAt:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        reportId:
+          type:
+          - string
+          - 'null'
+        schemaVersion:
+          format: int32
+          type: integer
+        status:
+          type:
+          - string
+          - 'null'
+        subject:
+          $ref: '#/components/schemas/SubjectResponse'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    EntityGroupResponse:
+      properties:
+        count:
+          format: int32
+          type: integer
+        ids:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    AttributeFqnsResponse:
+      properties:
+        customer:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        order:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        return:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        shipment:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    ClearDataNodesResponse:
+      properties:
+        checkouts:
+          type: boolean
+        orders:
+          type: boolean
+        shipments:
+          type: boolean
+      type: object
+    AffectedEntitiesResponse:
+      properties:
+        checkouts:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        customerAccountId:
+          format: int32
+          type: integer
+        orders:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        payments:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        returns:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        shipments:
+          $ref: '#/components/schemas/EntityGroupResponse'
+        wishlists:
+          $ref: '#/components/schemas/EntityGroupResponse'
+      type: object
+    RedactionReportSummaryListResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/RedactionReportSummaryResponse'
+          type:
+          - array
+          - 'null'
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+      type: object
+    AttributeFqnsRequest:
+      properties:
+        customer:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        order:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        return:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        shipment:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    CreateReportRequest:
+      properties:
+        attributeFqns:
+          $ref: '#/components/schemas/AttributeFqnsRequest'
+        clearDataNodes:
+          $ref: '#/components/schemas/ClearDataNodesRequest'
+        customerAccountId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfoResponse:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    SubjectResponse:
+      properties:
+        customerAccountId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        resolvedEmailAddresses:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+      type: object
+    RequestResponse:
+      properties:
+        attributeFqns:
+          $ref: '#/components/schemas/AttributeFqnsResponse'
+        clearDataNodes:
+          $ref: '#/components/schemas/ClearDataNodesResponse'
+        correlationId:
+          type:
+          - string
+          - 'null'
+      type: object
+    OperationLogEntry:
+      properties:
+        durationMs:
+          format: int64
+          type: integer
+        entityId:
+          type:
+          - string
+          - 'null'
+        entityType:
+          type:
+          - string
+          - 'null'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        operation:
+          type:
+          - string
+          - 'null'
+        phase:
+          type:
+          - string
+          - 'null'
+        recordsAffected:
+          format: int32
+          type: integer
+        status:
+          type:
+          - string
+          - 'null'
+        store:
+          type:
+          - string
+          - 'null'
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    ClearDataNodesRequest:
+      properties:
+        checkouts:
+          type:
+          - boolean
+          - 'null'
+        orders:
+          type:
+          - boolean
+          - 'null'
+        shipments:
+          type:
+          - boolean
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_gdpr.json
+- kibo-commerce-gdpr-openapi.yml

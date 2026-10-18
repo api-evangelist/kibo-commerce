@@ -1,0 +1,302 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Rate Shopping API
+  version: '1.0'
+  description: 'Operations tagged RateShopping across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: RateShopping
+paths:
+  /commerce/rate-shopping/recommend:
+    post:
+      deprecated: false
+      description: Retrieves recommended shipping rates from configured carriers for the provided shipment details
+      parameters:
+      - allowEmptyValue: false
+        description: Package ID
+        in: query
+        name: packageId
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Ship Date
+        in: query
+        name: shipDate
+        required: false
+        schema:
+          format: date-time
+          type: string
+      - allowEmptyValue: false
+        description: Shipment number
+        in: query
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateShoppingRequestDto'
+        description: Rate shopping request
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRateShoppingResponseDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRateShoppingResponseDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRateShoppingResponseDto'
+          description: Rates retrieved successfully
+        '201':
+          description: Created
+        '400':
+          description: Invalid request
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '422':
+          description: Validation error
+        '500':
+          description: Internal server error
+      summary: Get recommended shipping rates
+      tags:
+      - RateShopping
+      operationId: postCommerceRateShoppingRecommend
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    RateShoppingWeightsDto:
+      title: RateShoppingWeightsDto
+      type: object
+    FulfillmentAPIMeasurement:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        unit:
+          type: string
+        value:
+          type: number
+      title: Measurement
+      type: object
+    EntityModelOfRateShoppingResponseDto:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        metadata:
+          $ref: '#/components/schemas/RateShoppingMetadataDto'
+        rates:
+          description: List of shipping rates from carriers
+          items:
+            $ref: '#/components/schemas/ShippingRateDto'
+          type: array
+        recommendedRate:
+          $ref: '#/components/schemas/RecommendedRateDto'
+          description: Recommended shipping rate for rate shopping
+      required:
+      - rates
+      - recommendedRate
+      title: EntityModelOfRateShoppingResponseDto
+      type: object
+    ShippingRateDto:
+      description: Shipping rate from a carrier
+      properties:
+        carrier:
+          description: Carrier code
+          example: FEDEX
+          type: string
+        currency:
+          description: Currency code
+          example: USD
+          type: string
+        estimatedDeliveryDate:
+          description: Estimated delivery date
+          format: date-time
+          type: string
+        exclusionCode:
+          description: Exclusion code
+          type: string
+        exclusionMessage:
+          description: Exclusion message
+          type: string
+        normalizedCost:
+          description: Normalized cost
+          type: number
+        normalizedSpeed:
+          description: Normalized speed
+          type: number
+        serviceType:
+          description: Service Type code
+          example: fedex_FEDEX_GROUND
+          type: string
+        serviceTypeName:
+          description: Service Type Name
+          example: FedEx Ground
+          type: string
+        totalRate:
+          description: Total rate
+          type: number
+        transitDays:
+          description: Transit time in business days
+          format: int32
+          type: integer
+        weightedScore:
+          description: Weighted score
+          type: number
+      required:
+      - carrier
+      - currency
+      - estimatedDeliveryDate
+      - exclusionCode
+      - exclusionMessage
+      - normalizedCost
+      - normalizedSpeed
+      - serviceType
+      - totalRate
+      - transitDays
+      - weightedScore
+      title: ShippingRateDto
+      type: object
+    RateShoppingPackage:
+      properties:
+        measurements:
+          $ref: '#/components/schemas/FulfillmentAPIPackageMeasurements'
+        packageId:
+          type: string
+      title: RateShoppingPackage
+      type: object
+    RecommendedRateDto:
+      properties:
+        carrier:
+          description: Carrier code
+          example: FEDEX
+          type: string
+        estimatedDeliveryDate:
+          description: Estimated delivery date
+          format: date-time
+          type: string
+        serviceType:
+          description: Service type code
+          example: 1_DAY
+          type: string
+        totalRate:
+          description: Total rate
+          type: number
+      required:
+      - carrier
+      - estimatedDeliveryDate
+      - serviceType
+      - totalRate
+      title: RecommendedRateDto
+      type: object
+    FulfillmentAPIPackageMeasurements:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        height:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        length:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        weight:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        width:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+      title: PackageMeasurements
+      type: object
+    Links:
+      properties:
+        empty:
+          type: boolean
+      title: Links
+      type: object
+    RateShoppingRequestDto:
+      description: Rate shopping request containing shipment details
+      properties:
+        packagesOverride:
+          description: Packages override
+          items:
+            $ref: '#/components/schemas/RateShoppingPackage'
+          type: array
+      title: RateShoppingRequestDto
+      type: object
+    RateShoppingMetadataDto:
+      properties:
+        destinationZip:
+          description: Destination ZIP code
+          type: string
+        expectedDeliveryDate:
+          description: Expected delivery date used for rate shopping
+          format: date-time
+          type: string
+        originZip:
+          description: Origin ZIP code
+          type: string
+        packageCount:
+          description: Number of packages in the shipment
+          format: int32
+          type: integer
+        scoringWeights:
+          $ref: '#/components/schemas/RateShoppingWeightsDto'
+          description: Rate shopping scoring weights
+        shipDate:
+          description: Ship Date used for rate shopping
+          format: date-time
+          type: string
+      required:
+      - destinationZip
+      - expectedDeliveryDate
+      - originZip
+      - packageCount
+      - scoringWeights
+      - shipDate
+      title: RateShoppingMetadataDto
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

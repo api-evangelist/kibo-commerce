@@ -1,0 +1,1890 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Types API
+  version: '1.0'
+  description: 'Operations tagged ProductTypes across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductTypes
+paths:
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/variations:
+    post:
+      description: Generate product variations for a product type.
+      parameters:
+      - in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: productCode
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationPagedCollection'
+          description: OK
+      summary: Generate Product Variations
+      tags:
+      - ProductTypes
+      operationId: postCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdVariations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}:
+    delete:
+      description: Delete product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Type
+      tags:
+      - ProductTypes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeId
+      x-operation-id-source: derived
+    get:
+      description: Get product type by Id.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+          description: OK
+      summary: Get Product Type
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeId
+      x-operation-id-source: derived
+    put:
+      description: Update product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+          description: OK
+      summary: Update Product Type
+      tags:
+      - ProductTypes
+      operationId: putCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras/{attributeFQN}:
+    delete:
+      description: Delete a product type extra.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Type Extra
+      tags:
+      - ProductTypes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdExtrasByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Get a product type extra.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Get Product Type Extra
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdExtrasByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Update a product type extra
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Update Product Type Extra
+      tags:
+      - ProductTypes
+      operationId: putCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdExtrasByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras:
+    get:
+      description: Get a list of product type extras.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+          description: OK
+      summary: Get Product Type Extras
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdExtras
+      x-operation-id-source: derived
+    post:
+      description: Add a product type extra.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Add Product Type Extra
+      tags:
+      - ProductTypes
+      operationId: postCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdExtras
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options/{attributeFQN}:
+    delete:
+      description: Delete a product type option by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Type Option
+      tags:
+      - ProductTypes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdOptionsByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Get an individual product type option by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Get Product Type Option
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdOptionsByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Update a product option type by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Update Product Type Option
+      tags:
+      - ProductTypes
+      operationId: putCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdOptionsByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options:
+    get:
+      description: Get options for the product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+          description: OK
+      summary: Get Product Type Options
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdOptions
+      x-operation-id-source: derived
+    post:
+      description: Add a product option to a product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Add Product Type Option
+      tags:
+      - ProductTypes
+      operationId: postCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdOptions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties:
+    get:
+      description: Get properties of a product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+          description: OK
+      summary: Get Product Type Properties
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdProperties
+      x-operation-id-source: derived
+    post:
+      description: Add a property to a product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Add Product Type Property
+      tags:
+      - ProductTypes
+      operationId: postCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdProperties
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties/{attributeFQN}:
+    delete:
+      description: Delete a product type property by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Type Property
+      tags:
+      - ProductTypes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdPropertiesByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Get a product type property by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Get Product Type Property
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdPropertiesByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Update a product type property by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Update Product Type Property
+      tags:
+      - ProductTypes
+      operationId: putCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdPropertiesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes:
+    get:
+      description: Retrieves a list of product types according to any specified filter criteria and sort options.
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a single query. The default value is 20 and the maximum value is 200.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: 'The element to sort the results by and the order in which the results appear. Either ascending or descending order. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.'
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: 'Used to get more specific information from the request. For example to get discounts applied to a product use the AppliedProducts response group. Available response groups: ApplicableDiscounts, VariationOptions, and BaseProductCode.'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductTypeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductTypeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductTypeCollection'
+          description: OK
+      summary: Get Product Types
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypes
+      x-operation-id-source: derived
+    post:
+      description: Get product type by Id.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductType'
+          description: OK
+      summary: Add Product Type
+      tags:
+      - ProductTypes
+      operationId: postCommerceCatalogAdminAttributedefinitionProducttypes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties:
+    get:
+      description: Get variant properties for a product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeInProductType'
+                type: array
+          description: OK
+      summary: Get Variant Product Type Properties
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdVariantProperties
+      x-operation-id-source: derived
+    post:
+      description: Add a variant property to a product type.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Add Variant Product Type Property
+      tags:
+      - ProductTypes
+      operationId: postCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdVariantProperties
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties/{attributeFQN}:
+    delete:
+      description: Delete a variant property by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Variant Product Type Property
+      tags:
+      - ProductTypes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdVariantPropertiesByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Get a variant property by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Get Variant Product Type Property
+      tags:
+      - ProductTypes
+      operationId: getCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdVariantPropertiesByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Update a variant property by its FQN.
+      parameters:
+      - description: ''
+        in: path
+        name: productTypeId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeInProductType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeInProductType'
+          description: OK
+      summary: Update Variant Product Type Property
+      tags:
+      - ProductTypes
+      operationId: putCommerceCatalogAdminAttributedefinitionProducttypesByProductTypeIdVariantPropertiesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductSupplierInfo:
+      description: Supplier info for the product
+      properties:
+        cost:
+          $ref: '#/components/schemas/ProductCost'
+        distPartNumber:
+          type:
+          - string
+          - 'null'
+        mfgPartNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeInProductTypeDisplayInfo:
+      properties:
+        displayIntention:
+          description: Defines the intended display of this Attribute in the storeFront (ex. DropDown, ImagePicker, RadioButtons....)
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsProductOption:
+      description: "Product options for configurable or stand-alone products. A configurable option is one that the shopper chooses when ordering, for example, \nthe color of a T-shirt. A stand-alone option is independent of the product and can be added to the product order. For example, a monogram."
+      properties:
+        attributeFQN:
+          description: Unique identifier of the Attribute.
+          type:
+          - string
+          - 'null'
+        isProductImageGroupSelector:
+          description: Defines whether or not this option can be used to segment product images
+          type:
+          - boolean
+          - 'null'
+        values:
+          description: List of all the values for this product option.
+          items:
+            $ref: '#/components/schemas/ProductOptionValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    CatalogAdminsAttributeValidation:
+      description: Used to validate attributes.
+      properties:
+        maxDateValue:
+          description: For validating a DateTime attribute value, maximum datetime allowed.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        maxNumericValue:
+          description: For validating Number attribute value, maximum number allowed.
+          format: double
+          type:
+          - number
+          - 'null'
+        maxStringLength:
+          description: For validating strings, maximum length allowed for a string.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        minDateValue:
+          description: For validating a DateTime attribute value, minimum datetime allowed.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        minNumericValue:
+          description: For validating Number attribute value, minimum number allowed.
+          format: double
+          type:
+          - number
+          - 'null'
+        minStringLength:
+          description: For validating strings, minimum length allowed for a string.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        regularExpression:
+          description: Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsAttributeLocalizedContent:
+      description: Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display an attribute in multiple languages yet manage it as a single attribute internally.
+      properties:
+        description:
+          description: Description of the attribute in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        localeCode:
+          description: Language used for the attribute name and description. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the attribute in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductVariation:
+      description: The ProductVariation resource helps merchants manage their products with configurable options. Using this resource, the system creates a matrix of all possible combinations of the product options and the merchant confirms which variations match products for sale. For example, a T-shirt with three color and three size options has nine possible product variations. The system keeps track of inventory for each variation.
+      properties:
+        deltaPrice:
+          $ref: '#/components/schemas/ProductVariationDeltaPrice'
+        deltaWeight:
+          description: Weight of the product with this variation.
+          format: double
+          type:
+          - number
+          - 'null'
+        fixedPrice:
+          $ref: '#/components/schemas/ProductVariationFixedPrice'
+        fixedWeight:
+          description: Fixed weight of the product with this variation.
+          format: double
+          type:
+          - number
+          - 'null'
+        fulfillmentTypesSupported:
+          description: Indicates the fulfillment types the product supports.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        isActive:
+          description: If true, the merchant accepts the variation generated from the configurable options as a product offering. If IsActive is false then the product variation is not for sale--either because it was never a product offering or it was permanently dropped. IsActive is not intended for temporary unavailability. Default is false.
+          type:
+          - boolean
+          - 'null'
+        isOrphan:
+          description: If true, the variation is no longer possible. The system sets IsOrphan to true when the merchant has changed something to make this variation impossible. For example, if the merchant stopped selling all "small" shirts, all product variations with the "small" option are set to IsOrphan. System-supplied and read-only.
+          type:
+          - boolean
+          - 'null'
+        localizedDeltaPrice:
+          description: 'How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly.
+
+            This collection allows for multiple currencies.'
+          items:
+            $ref: '#/components/schemas/ProductVariationDeltaPrice'
+          type:
+          - array
+          - 'null'
+        localizedFixedPrice:
+          description: 'Price of the variation using fixed per currency
+
+            This collection allows for multiple currencies.'
+          items:
+            $ref: '#/components/schemas/ProductVariationFixedPrice'
+          type:
+          - array
+          - 'null'
+        options:
+          description: 'List of values for this product variation: such as "small, "red.. these are read only here as the variationKey defines the values "'
+          items:
+            $ref: '#/components/schemas/ProductVariationOption'
+          type:
+          - array
+          - 'null'
+        properties:
+          description: List of properties specific to this variation
+          items:
+            $ref: '#/components/schemas/ProductVariationProperty'
+          type:
+          - array
+          - 'null'
+        supplierInfo:
+          $ref: '#/components/schemas/ProductSupplierInfo'
+        upc:
+          description: Price Lookup Unit code for the product
+          type:
+          - string
+          - 'null'
+        variationExists:
+          description: If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.
+          type:
+          - boolean
+          - 'null'
+        variationProductCode:
+          description: Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.
+          type:
+          - string
+          - 'null'
+        variationkey:
+          description: Unique identifier for a single variation ("small" + "red" + "short-sleeved"). System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeInProductType:
+      properties:
+        attributeDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttribute'
+        attributeFQN:
+          description: Unique identifier of the Attribute. Must be an attribute fully qualilfied name that already exists. If no namespace is specified Tenant is assumed
+          type:
+          - string
+          - 'null'
+        displayInfo:
+          $ref: '#/components/schemas/AttributeInProductTypeDisplayInfo'
+        isAdminOnlyProperty:
+          description: If true, this property is not available on the storefront. If false, this property will be available on storefront. The IsHiddenProperty hides the property from the customer, but is still available from the API.
+          type:
+          - boolean
+          - 'null'
+        isHiddenProperty:
+          description: If True, the property is hidden in the storefront. This field only applies to properties.
+          type:
+          - boolean
+          - 'null'
+        isInheritedFromBaseType:
+          description: If True, the attribute is part of the base product type and can only have order modified.
+          type:
+          - boolean
+          - 'null'
+        isMultiValueProperty:
+          description: If True, the property can have multiple values selected on the product. Only applies to PredefinedVocabulary properties.
+          type:
+          - boolean
+          - 'null'
+        isProductDetailsOnlyProperty:
+          description: If True this property will not be returned  storefront product listings (Search,GetProduct) it will still be returned on GetProduct, ValidateProduct...)
+          type:
+          - boolean
+          - 'null'
+        isRequiredByAdmin:
+          description: If True, the admin must include this attribute in products of this productType
+          type:
+          - boolean
+          - 'null'
+        order:
+          description: Used to order the display of the attributes within a section
+          format: int32
+          type:
+          - integer
+          - 'null'
+        vocabularyValues:
+          description: The collection of vocabulary values included in this product type.
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValueInProductType'
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductVariationOption:
+      description: An option for a product variation. For example, a T-shirt with size and color configurable options, might have a product variation option of "size" or "color."
+      properties:
+        attributeFQN:
+          description: Unique identifier of the product variation option. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        value:
+          description: Name of the product variation option used on the admin side independent of how it appears on the storefront. For example, the internal "SZ" attribute might appear as "size" on the storefront.
+      type: object
+    CatalogAdminsAttribute:
+      description: Attribute
+      properties:
+        adminName:
+          description: Name of the product displayed in the admin, This field does not need to be unqiue, but is required. It can include spaces...and is limited to a length of 50.
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          description: 'Unique identifier of the Attribute. Must be unique within a namespace and cannot be changed once the attribute is created. This value will be generated and match the attribute
+
+            sequence if not provided on create.'
+          type:
+          - string
+          - 'null'
+        attributeDataTypeSequence:
+          description: Read only System generated monotonically increasing unique sequence for each attribute,DataType created (this is used to optimize indexed field names in search).
+          format: int32
+          type:
+          - integer
+          - 'null'
+        attributeFQN:
+          description: Attribute fully qualified name, Read only value that combines namespace and attribute code as NameSpace~AttributeCode
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          description: Attribute Metadata. This list can contain opaque data (key value pairs) that can be used as a property bag for UI concerns.
+          items:
+            $ref: '#/components/schemas/CatalogAdminsAttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        attributeSequence:
+          description: Read only System generated monotonically increasing unique sequence for each attribute created.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        availableForOrderRouting:
+          description: Specifies if this attribute is available for order routing
+          type: boolean
+        availableInRules:
+          description: 'Specifies if this attribute is available for use when building rules (e.g. Product rules, Shipment
+
+            rules, category expressions). Purely descriptive metadata: it does not gate or validate
+
+            rule-criteria authoring in any way.
+
+            Omitting this property means "leave unchanged" on update: the stored value is preserved.
+
+            On create an omitted value is persisted as an explicit false.'
+          type:
+          - boolean
+          - 'null'
+        content:
+          $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+        dataType:
+          description: "The DataType of the attribute.  Must be a valid value for DataType defined in DataTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create"
+          maxLength: 20
+          type:
+          - string
+          - 'null'
+        inputType:
+          description: "The InputType type of the attribute. Must be a valid value for InputType defined in InputTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create"
+          maxLength: 20
+          type:
+          - string
+          - 'null'
+        isExtra:
+          description: Specifies if this attribute can have a usage type of Extra in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
+          type:
+          - boolean
+          - 'null'
+        isOption:
+          description: Specifies if this attribute can have a usage type of Option in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
+          type:
+          - boolean
+          - 'null'
+        isProperty:
+          description: Specifies if this attribute can have a usage type of Property in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
+          type:
+          - boolean
+          - 'null'
+        isValueMappingAttribute:
+          description: Specifies if this attribute can can be used to generalize values of another attribute
+          type:
+          - boolean
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute. This content is always in the default language of the MasterCatalog.
+          items:
+            $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+          type:
+          - array
+          - 'null'
+        masterCatalogId:
+          description: Indentifier of the master that this attribute is a member of. System-supplied and read-only. Attributes will be created in the MasterCatalog of the supplied context.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        namespace:
+          description: 'NameSpace, each application creating attributes will have a uniqe namespace to avoid name (Code) collisions. The namespace provided must be a valid registered
+
+            namespace. If no namespace is specified it is assumed to be the namespace of the Tenant.'
+          type:
+          - string
+          - 'null'
+        searchSettings:
+          $ref: '#/components/schemas/AttributeSearchSettings'
+        validation:
+          $ref: '#/components/schemas/CatalogAdminsAttributeValidation'
+        valueMappingAttributeFQN:
+          description: Attribute fully qualified name of a corresponding value mapping atribuite
+          type:
+          - string
+          - 'null'
+        valueType:
+          description: "The ValueType of the attribute.  Must be a valid value for ValueType defined in ValueTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create"
+          maxLength: 20
+          type:
+          - string
+          - 'null'
+        vocabularyValues:
+          description: The list of Values for this attribute. Only available for ValueType:PredefinedVocabulary
+          items:
+            $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductVariationFixedPrice:
+      properties:
+        creditValue:
+          description: Credit amt of the product
+          format: double
+          type:
+          - number
+          - 'null'
+        currencyCode:
+          description: Which currency is in use.
+          type:
+          - string
+          - 'null'
+        listPrice:
+          description: Variation price for fixed pricing
+          format: double
+          type:
+          - number
+          - 'null'
+        msrp:
+          description: Manufacturer Suggested Retail Price.
+          format: double
+          type:
+          - number
+          - 'null'
+        salePrice:
+          description: Variation sale price whne fixed pricing
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    ProductPropertyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductTypeCollection:
+      description: Collection of attributes.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ProductType'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductVariationPagedCollection:
+      description: Collection of product variations where the variations are returned in a series of pages.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ProductVariation'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AttributeSearchSettings:
+      description: Attribute Search Settings. A container for all of the search and indexing settings of an Attribute
+      properties:
+        allowFilteringAndSortingInStorefront:
+          description: Indicates whether the attribute should be able to be used in filters, facets, and sorting on the public storefront.
+          type:
+          - boolean
+          - 'null'
+        customWeightInStorefrontSearch:
+          description: Indicates whether the attribute is indevidually stored as a tokenized field in search for custom term search weight
+          type:
+          - boolean
+          - 'null'
+        indexValueWithCase:
+          description: "Indicates whether the attribute value is case sensative for filtering and faceting. This applies to Text Admin entered attributes. \nA null value means it is not case sensative"
+          type:
+          - boolean
+          - 'null'
+        searchDisplayValue:
+          description: "If true, the system will index the display value of string attributes instead of the canonical value for searching. \nThe canonical value will always be used for filtering. Does not apply for for non-string attributes."
+          type: boolean
+        searchableInAdmin:
+          description: Indicates whether the attribute value should be searchable in the merchant catalog admin.
+          type: boolean
+        searchableInStorefront:
+          description: Indicates whether the attribute value should be searchable on the public storefront.
+          type: boolean
+      type: object
+    CatalogAdminsAttributeMetadataItem:
+      description: Attribute Metadata Item.  It can be utilized for storing abitrary key/value pairs of data related to an attribute.
+      properties:
+        key:
+          description: The key
+          type:
+          - string
+          - 'null'
+        value:
+          description: The value
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductCost:
+      description: Price of the product and currency used.
+      properties:
+        cost:
+          description: Cost of the product. This is the price the merchant pays for the product.
+          format: double
+          type:
+          - number
+          - 'null'
+        isoCurrencyCode:
+          description: Currency code.
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValueDisplayInfo:
+      properties:
+        cmsId:
+          description: Id of the image in the CMS.
+          type:
+          - string
+          - 'null'
+        colorValue:
+          description: Hex Color value to display in a color picker
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: URL of the image.
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValueInProductType:
+      properties:
+        displayInfo:
+          $ref: '#/components/schemas/AttributeVocabularyValueDisplayInfo'
+        order:
+          description: Used to order the display of the attribute values in the storefront....
+          format: int32
+          type:
+          - integer
+          - 'null'
+        value:
+          description: The actual value of the attribute vocabulary. This must be an existing value defined in the attribute vocabulary
+        vocabularyValueDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+      type: object
+    CatalogAdminsProductPropertyValue:
+      description: A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
+      properties:
+        attributeVocabularyValueDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        content:
+          $ref: '#/components/schemas/ProductPropertyValueLocalizedContent'
+        localizedContent:
+          items:
+            $ref: '#/components/schemas/ProductPropertyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        value: {}
+      type: object
+    AttributeVocabularyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          minLength: 1
+          type: string
+      type: object
+    ProductOptionValue:
+      description: A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
+      properties:
+        attributeVocabularyValueDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        value: {}
+      type: object
+    CatalogAdminsAttributeVocabularyValue:
+      description: Value of an attribute
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        displayOrder:
+          description: The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        mappedGenericValues:
+          description: "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time."
+          items: {}
+          maxItems: 200
+          type:
+          - array
+          - 'null'
+        productName:
+          description: The ProductName when the Attribute DataType is ProductCode.
+          type:
+          - string
+          - 'null'
+        value:
+          description: "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed."
+          maxLength: 50
+          pattern: ^[A-Za-z0-9-_\.()]*[A-Za-z0-9-_()]
+        valueSequence:
+          description: Read only System generated monotonically increasing unique sequence.
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    ProductVariationProperty:
+      description: ''
+      properties:
+        attributeFQN:
+          description: Unique identifier of the Attribute.
+          type:
+          - string
+          - 'null'
+        values:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsProductPropertyValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductType:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        extras:
+          description: Collection of the Attributes that are Extras in this productType
+          items:
+            $ref: '#/components/schemas/AttributeInProductType'
+          type:
+          - array
+          - 'null'
+        goodsType:
+          description: The TYpe of Goods of this product
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the ProductType. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        isBaseProductType:
+          description: System supplied and read only. There is only one BaseProductType per MasterCatalog.
+          type: boolean
+        masterCatalogId:
+          description: Indentifier of the Master Catalog that this ProductType is a member of. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        name:
+          description: Name of the productType
+          type:
+          - string
+          - 'null'
+        options:
+          description: Collection of the Attributes that are Options in this productType
+          items:
+            $ref: '#/components/schemas/AttributeInProductType'
+          type:
+          - array
+          - 'null'
+        productCount:
+          description: Indicates the number of products currently using this Product Type. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        productUsages:
+          description: List of ProductUsages supported by the ProductType.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        properties:
+          description: Collection of the Attributes that are Properties in this productType
+          items:
+            $ref: '#/components/schemas/AttributeInProductType'
+          type:
+          - array
+          - 'null'
+        variantProperties:
+          description: Collection of the Attributes that are VariantProperties in this productType
+          items:
+            $ref: '#/components/schemas/AttributeInProductType'
+          type:
+          - array
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductVariationDeltaPrice:
+      description: How much more a product variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted automatically.
+      properties:
+        creditValue:
+          description: Credit amt of the product
+          format: double
+          type:
+          - number
+          - 'null'
+        currencyCode:
+          description: Which currency is in use.
+          type:
+          - string
+          - 'null'
+        msrp:
+          description: Manufacturer Suggested Retail Price.
+          format: double
+          type:
+          - number
+          - 'null'
+        value:
+          description: How much more the variation costs above the cost of the base product.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

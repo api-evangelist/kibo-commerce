@@ -1,0 +1,881 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Location Group Configuration API
+  version: '1.0'
+  description: 'Operations tagged LocationGroupConfiguration across 3 of this provider''s published API definitions: openapi_openapi_location.json, kibo-commerce-location-admin-openapi.yml, kibo-commerce-location-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: LocationGroupConfiguration
+paths:
+  /commerce/admin/locationGroupConfiguration/location/{locationCode}:
+    get:
+      description: Get this tenants Location Group Configuration Values by Location Code.
+      parameters:
+      - in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+          description: OK
+      summary: Get Location Group Configuration
+      tags:
+      - LocationGroupConfiguration
+      operationId: getCommerceAdminLocationGroupConfigurationLocationByLocationCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/admin/locationGroupConfiguration/{locationGroupCode}:
+    get:
+      description: Get this tenants Location Group Configuration Values by locationGroupCode.
+      parameters:
+      - description: ''
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+          description: OK
+      summary: Get Location Group Configuration
+      tags:
+      - LocationGroupConfiguration
+      operationId: getCommerceAdminLocationGroupConfigurationByLocationGroupCode
+      x-operation-id-source: derived
+    put:
+      description: Set this tenants Location Group Configuration Values.
+      parameters:
+      - description: ''
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationGroupConfiguration'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationGroupConfiguration'
+          description: OK
+      summary: Set Location Group Configuration
+      tags:
+      - LocationGroupConfiguration
+      operationId: putCommerceAdminLocationGroupConfigurationByLocationGroupCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AttributeMetadataItem:
+      properties:
+        key:
+          maxLength: 50
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    PackageSettings:
+      properties:
+        unitType:
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeValidation:
+      properties:
+        maxDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        maxNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        maxStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        minDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        minNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        minStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        regularExpression:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeEntityConfig:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        editable:
+          type: boolean
+        entityType:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    AttributeLocalizedContent:
+      properties:
+        localeCode:
+          maxLength: 8
+          type:
+          - string
+          - 'null'
+        value:
+          maxLength: 100
+          type:
+          - string
+          - 'null'
+      type: object
+    CoreAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingMethodMappings:
+      properties:
+        enableSmartPost:
+          type:
+          - boolean
+          - 'null'
+        express1DayDefault:
+          type:
+          - string
+          - 'null'
+        express2DayDefault:
+          type:
+          - string
+          - 'null'
+        express3DayDefault:
+          type:
+          - string
+          - 'null'
+        internationalUsReturnLabelShippingMethod:
+          type:
+          - string
+          - 'null'
+        requireSignatureAmount:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        returnLabelShippingMethod:
+          type:
+          - string
+          - 'null'
+        shippingMethods:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        signatureOption:
+          type:
+          - string
+          - 'null'
+        standardDefault:
+          type:
+          - string
+          - 'null'
+        useDeclaredValue:
+          type:
+          - boolean
+          - 'null'
+      type: object
+    ApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValue:
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeValueLocalizedContent'
+        isHidden:
+          type:
+          - boolean
+          - 'null'
+        sequence:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        value:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - value
+      type: object
+    SlaConfiguration:
+      properties:
+        isEnabled:
+          type: boolean
+        slaId:
+          format: int32
+          type: integer
+        targetServiceLevelPercentage:
+          format: int32
+          type: integer
+      type: object
+    LocationGroupConfiguration:
+      properties:
+        allowReturns:
+          type:
+          - boolean
+          - 'null'
+        attributes:
+          items:
+            $ref: '#/components/schemas/LocationAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        autoPackingListPopup:
+          type:
+          - boolean
+          - 'null'
+        blockPartialCancel:
+          type:
+          - boolean
+          - 'null'
+        blockPartialStock:
+          type:
+          - boolean
+          - 'null'
+        boxTypes:
+          items:
+            $ref: '#/components/schemas/BoxType'
+          type:
+          - array
+          - 'null'
+        bpmConfigurations:
+          items:
+            $ref: '#/components/schemas/BpmConfiguration'
+          type:
+          - array
+          - 'null'
+        carriers:
+          items:
+            $ref: '#/components/schemas/Carrier'
+          type:
+          - array
+          - 'null'
+        closePickWavePermissions:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        customerFailedToPickupAfterAction:
+          type:
+          - string
+          - 'null'
+        customerFailedToPickupDeadline:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        defaultCarrier:
+          type:
+          - string
+          - 'null'
+        defaultMaxNumberOfShipmentsInPickWave:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        defaultNumberOfOrdersInPickWave:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        defaultPrinterType:
+          type:
+          - string
+          - 'null'
+        defaultReturnCarrier:
+          type:
+          - string
+          - 'null'
+        defaultReturnRefundReductionAmount:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        displayProductImagesInPickWaveDetails:
+          type:
+          - boolean
+          - 'null'
+        enableAdvancedOptionForPickWaveCreation:
+          type:
+          - boolean
+          - 'null'
+        enableForISPU:
+          type:
+          - boolean
+          - 'null'
+        enableForSTH:
+          type:
+          - boolean
+          - 'null'
+        enablePnp:
+          type:
+          - boolean
+          - 'null'
+        enablePnpForBOPIS:
+          type:
+          - boolean
+          - 'null'
+        enablePnpForDelivery:
+          type:
+          - boolean
+          - 'null'
+        enablePnpForSTH:
+          type:
+          - boolean
+          - 'null'
+        enableScanningOfUpcForShipToHome:
+          type:
+          - boolean
+          - 'null'
+        locationGroupCode:
+          type:
+          - string
+          - 'null'
+        locationGroupId:
+          format: int32
+          type: integer
+        maxNumberOfPackingSlipsByGroup:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        maximumNumberOfOrdersInPickWave:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        maximumReturnRefundReductionAmount:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        packageSettings:
+          $ref: '#/components/schemas/PackageSettings'
+        pickWavePrintFormat:
+          type:
+          - string
+          - 'null'
+        printReturnLabel:
+          type:
+          - boolean
+          - 'null'
+        returnRefundReduction:
+          type:
+          - boolean
+          - 'null'
+        sendCustomerPickupReminder:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        siteId:
+          format: int32
+          type: integer
+        slaConfigurations:
+          items:
+            $ref: '#/components/schemas/SlaConfiguration'
+          type:
+          - array
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+        wmsEnabled:
+          type:
+          - boolean
+          - 'null'
+      type: object
+    BoxType:
+      properties:
+        height:
+          format: double
+          type:
+          - number
+          - 'null'
+        length:
+          format: double
+          type:
+          - number
+          - 'null'
+        maxWeight:
+          format: double
+          type:
+          - number
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        width:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    AttributeValueLocalizedContent:
+      properties:
+        localeCode:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - localeCode
+      - value
+      type: object
+    Carrier:
+      properties:
+        carrierType:
+          type:
+          - string
+          - 'null'
+        enableMultiPieceShipment:
+          type:
+          - boolean
+          - 'null'
+        features:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        isEnabled:
+          type: boolean
+        shippingMethodMappings:
+          $ref: '#/components/schemas/ShippingMethodMappings'
+      type: object
+    BpmConfiguration:
+      properties:
+        shipmentType:
+          type:
+          - string
+          - 'null'
+        workflowContainerId:
+          type:
+          - string
+          - 'null'
+        workflowProcessId:
+          type:
+          - string
+          - 'null'
+      type: object
+    LocationAttribute:
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/LocationAttribute2'
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    LocationAttribute2:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    AttributeInheritanceRule:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceMode:
+          type:
+          - string
+          - 'null'
+        sourceEntityType:
+          type:
+          - string
+          - 'null'
+        targetEntityType:
+          type:
+          - string
+          - 'null'
+      type: object
+    LocationAdminAttribute:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    LocationAttribute_2:
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/LocationAdminAttribute'
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_location.json
+- kibo-commerce-location-admin-openapi.yml
+- kibo-commerce-location-openapi.yml

@@ -1,0 +1,95 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Field Type Definition API
+  version: '1.0'
+  description: 'Operations tagged FieldTypeDefinition across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: FieldTypeDefinition
+paths:
+  /commerce/catalog/admin/searchSchema/fieldTypes/{language}:
+    get:
+      parameters:
+      - in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FieldTypeDefinitionRepositoryEntry'
+                type: array
+          description: OK
+      summary: Get Field Type Definitions
+      tags:
+      - FieldTypeDefinition
+      operationId: getCommerceCatalogAdminSearchSchemaFieldTypesByLanguage
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    FieldTypeDefinitionRepositoryEntry:
+      description: ''
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        solrFieldType: {}
+        suffix:
+          type:
+          - string
+          - 'null'
+        usageRestrictions:
+          description: 'Restricts the fields used by specific SOLR analyzer.
+
+            Originally developed for entity extraction/ aka noun_extraction
+
+            (e.g. searching for sofa tables should return tables, not sofas)'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

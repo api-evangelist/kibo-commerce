@@ -1,0 +1,357 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Rules API
+  version: '1.0'
+  description: 'Operations tagged Rules across 2 of this provider''s published API definitions: openapi_openapi_catalog_storefront.json, kibo-commerce-catalog-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Rules
+paths:
+  /commerce/rules/purchaselimit/evaluate:
+    post:
+      description: Evaluate the purchase limits for given products and customer.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseLimitEvalRequest'
+        description: The request containing the products and customer to evaluate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitEvalResponseCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitEvalResponseCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitEvalResponseCollection'
+          description: OK
+      summary: Evaluate Purchase Limits
+      tags:
+      - Rules
+      operationId: postCommerceRulesPurchaselimitEvaluate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/return/evaluate:
+    post:
+      description: Evaluate the return eligibility for given products and customer
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnEvalRequest'
+        description: The request containing the products and customer to evaluate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnEvalResponseCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReturnEvalResponseCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReturnEvalResponseCollection'
+          description: OK
+      summary: Evaluate Return Eligibility
+      tags:
+      - Rules
+      operationId: postCommerceRulesReturnEvaluate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/safetystock/evaluate:
+    post:
+      description: Evaluate the safety stock for given products and locations
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/SafetyStockEvalRequest'
+              type: array
+        description: The request containing the products and customer to evaluate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SafetyStockEvalResponse'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SafetyStockEvalResponse'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SafetyStockEvalResponse'
+                type: array
+          description: OK
+      summary: Evaluate Safety Stock Rules
+      tags:
+      - Rules
+      operationId: postCommerceRulesSafetystockEvaluate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ReturnEvalRequestItems:
+      description: Items for return rule evaluation request
+      properties:
+        productCode:
+          description: Product code for evaluation
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: Variation product code for evaluation
+          type:
+          - string
+          - 'null'
+      type: object
+    SafetyStockEvalRequest:
+      description: Request parameters for evaluating purchase limit
+      properties:
+        locationCode:
+          description: List of items to evaluate
+          type:
+          - string
+          - 'null'
+        productCode:
+          description: Customer ID
+          type:
+          - string
+          - 'null'
+      required:
+      - locationCode
+      - productCode
+      type: object
+    SafetyStockEvalResponse:
+      description: ''
+      properties:
+        locationCode:
+          description: List of items to evaluate
+          type:
+          - string
+          - 'null'
+        productCode:
+          description: Customer ID
+          type:
+          - string
+          - 'null'
+        quantity:
+          description: List of items to evaluate
+          format: int32
+          type:
+          - integer
+          - 'null'
+        rank:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        ruleCode:
+          description: List of items to evaluate
+          type:
+          - string
+          - 'null'
+      required:
+      - locationCode
+      - productCode
+      type: object
+    PurchaseLimitEvalRequest:
+      description: Request parameters for evaluating purchase limit
+      properties:
+        customerId:
+          description: Customer ID
+          format: int32
+          type: integer
+        items:
+          description: List of items to evaluate
+          items:
+            $ref: '#/components/schemas/PurchaseLimitEvalRequestItems'
+          type:
+          - array
+          - 'null'
+      required:
+      - customerId
+      - items
+      type: object
+    PurchaseLimitEvalRequestItems:
+      description: Items for purchase limit rule evaluation request
+      properties:
+        productCode:
+          description: Product code for evaluation
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: Variation product code for evaluation
+          type:
+          - string
+          - 'null'
+      type: object
+    PurchaseLimitEvalResponseItem:
+      description: Purchase limit evaluation response item
+      properties:
+        maxQty:
+          description: Maximum quantity of the product that can be purchased
+          format: int32
+          type:
+          - integer
+          - 'null'
+        productCode:
+          description: Product code evaluated for purchase limit
+          type:
+          - string
+          - 'null'
+        ruleCode:
+          description: Rule code that affected the purchase limit for the product
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: Variation product code evaluated for purchase limit
+          type:
+          - string
+          - 'null'
+      type: object
+    PurchaseLimitEvalResponseCollection:
+      description: Collection of purchase limit evaluation response items
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseLimitEvalResponseItem'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ReturnEvalResponseItem:
+      description: Return evaluation response item
+      properties:
+        isReturnable:
+          description: Flag indicating whether the product can be returned
+          type:
+          - boolean
+          - 'null'
+        maxDays:
+          description: Maximum number of days that the product can be returned
+          format: int32
+          type:
+          - integer
+          - 'null'
+        maxQty:
+          description: Maximum quantity of the product that can be returned
+          format: int32
+          type:
+          - integer
+          - 'null'
+        productCode:
+          description: Product code evaluated for return
+          type:
+          - string
+          - 'null'
+        ruleCode:
+          description: Return rule code that affected the return for the product
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: Variation product code for evaluation
+          type:
+          - string
+          - 'null'
+      type: object
+    ReturnEvalRequest:
+      description: Request parameters for evaluating returns
+      properties:
+        customerId:
+          description: Customer ID
+          format: int32
+          type: integer
+        items:
+          description: List of items to evaluate
+          items:
+            $ref: '#/components/schemas/ReturnEvalRequestItems'
+          type:
+          - array
+          - 'null'
+      required:
+      - customerId
+      - items
+      type: object
+    ReturnEvalResponseCollection:
+      description: Collection of return evaluation response items
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ReturnEvalResponseItem'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_storefront.json
+- kibo-commerce-catalog-storefront-openapi.yml

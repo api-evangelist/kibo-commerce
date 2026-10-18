@@ -1,0 +1,2601 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Vendor API
+  version: '1.0'
+  description: 'Operations tagged Vendor across 3 of this provider''s published API definitions: openapi_openapi_location.json, kibo-commerce-location-admin-openapi.yml, kibo-commerce-location-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Vendor
+paths:
+  /commerce/vendors/{vendorCode}/attributes:
+    post:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorAttributeAddRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+          description: OK
+      summary: Add Vendor Attribute
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/documents/{templateId}/approve:
+    put:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorDocumentApprovalRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+          description: OK
+      summary: Approve a vendor document (US3)
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsByVendorCodeDocumentsByTemplateIdApprove
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/status:
+    post:
+      description: 'Transitions to Active status require full validation (address, SKU mappings, ReceiverId for EDIKibo).
+
+        Transitions to Inactive or OnboardingInProcess have no validation requirements.'
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeVendorStatusRequest'
+        description: Request containing new status
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+          description: OK
+      summary: Change vendor status with validation based on target status
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeStatus
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/documents/{templateId}/download:
+    get:
+      parameters:
+      - description: The vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: The document template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Download a document file for a vendor and template (memory-efficient streaming)
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeDocumentsByTemplateIdDownload
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/documents/{templateId}:
+    delete:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a vendor document (FR-022)
+      tags:
+      - Vendor
+      operationId: deleteCommerceVendorsByVendorCodeDocumentsByTemplateId
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+          description: OK
+      summary: Get a specific document for a vendor and template
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeDocumentsByTemplateId
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding:
+              file:
+                style: form
+            schema:
+              properties:
+                file:
+                  format: binary
+                  type: string
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+          description: OK
+      summary: Upload a document from form data (memory-efficient streaming)
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeDocumentsByTemplateId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/document-templates/{templateId}:
+    get:
+      parameters:
+      - description: The template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+          description: OK
+      summary: Get a specific document template by ID
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsDocumentTemplatesByTemplateId
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: The template ID
+        in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentTemplate'
+        description: The updated template data
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+          description: OK
+      summary: Update an existing document template
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsDocumentTemplatesByTemplateId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/compliance-status:
+    get:
+      parameters:
+      - description: The vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentStatusCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentStatusCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentStatusCollection'
+          description: OK
+      summary: Get aggregated compliance status for all templates for a vendor (US5)
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeComplianceStatus
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/document-templates:
+    get:
+      parameters:
+      - description: Whether to include inactive templates
+        in: query
+        name: includeInactive
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplateCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplateCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplateCollection'
+          description: OK
+      summary: Get all document templates
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsDocumentTemplates
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentTemplate'
+        description: The template to create
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentTemplate'
+          description: OK
+      summary: Create a new document template
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsDocumentTemplates
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/documents:
+    get:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentCollection'
+          description: OK
+      summary: Get all documents for a vendor
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeDocuments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/locations:
+    get:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+          description: OK
+      summary: Get all locations associated with a vendor
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeLocations
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/VendorLocation'
+              type: array
+        description: List of vendor locations to add
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+          description: OK
+      summary: Add locations to a vendor (bulk operation)
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeLocations
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: If true, replaces all locations; if false (default), upserts locations
+        in: query
+        name: removeUnspecified
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/VendorLocation'
+              type: array
+        description: List of vendor locations to update
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/VendorLocation'
+                type: array
+          description: OK
+      summary: Update vendor locations (bulk operation with upsert or full replace)
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsByVendorCodeLocations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/inventory-files:
+    get:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFileCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFileCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFileCollection'
+          description: OK
+      summary: Get paged inventory file records for a vendor
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeInventoryFiles
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorInventoryFile'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFile'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFile'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFile'
+          description: OK
+      summary: Create a new inventory file record for a vendor
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeInventoryFiles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/attributes/{fullyQualifiedName}:
+    delete:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: fullyQualifiedName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Remove Vendor Attribute
+      tags:
+      - Vendor
+      operationId: deleteCommerceVendorsByVendorCodeAttributesByFullyQualifiedName
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: fullyQualifiedName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+          description: OK
+      summary: Get Vendor Attribute
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeAttributesByFullyQualifiedName
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: fullyQualifiedName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorAttributeUpdateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorAttribute'
+          description: OK
+      summary: Update Vendor Attribute
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsByVendorCodeAttributesByFullyQualifiedName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}:
+    delete:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Deletes a specific vendor
+      tags:
+      - Vendor
+      operationId: deleteCommerceVendorsByVendorCode
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+          description: OK
+      summary: Gets a specific vendor by vendor code
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCode
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vendor'
+        description: Vendor object with changes
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+          description: OK
+      summary: Update a specific vendor
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsByVendorCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/skumappings/{upc}:
+    delete:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: UPC code
+        in: path
+        name: upc
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Deletes a specific vendor SKU mapping
+      tags:
+      - Vendor
+      operationId: deleteCommerceVendorsByVendorCodeSkumappingsByUpc
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: UPC code
+        in: path
+        name: upc
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+          description: OK
+      summary: Gets a specific vendor SKU mapping by UPC
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeSkumappingsByUpc
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: UPC code
+        in: path
+        name: upc
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorSkuMapping'
+        description: Vendor SKU mapping object with changes
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+          description: OK
+      summary: Update a specific vendor SKU mapping
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsByVendorCodeSkumappingsByUpc
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/skumappings:
+    get:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: Starting index for pagination
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Number of items per page (max 200)
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: Sort criteria
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Filter criteria
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMappingCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMappingCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMappingCollection'
+          description: OK
+      summary: Gets list of vendor SKU mappings by filter, sort and paging
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsByVendorCodeSkumappings
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorSkuMapping'
+        description: Vendor SKU mapping object to create
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMapping'
+          description: OK
+      summary: Create a new vendor SKU mapping
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeSkumappings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors:
+    get:
+      description: 'Filter by VendorCode, Name, Status, Email,
+
+        LocationCode, ReceiverId, ItemAcceptanceRate,
+
+        OnTimeShipmentRate, ItemReturnRate,
+
+        PerformanceScore, or PerformanceCategory.'
+      parameters:
+      - description: Starting index for pagination
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Number of items per page (max 100)
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: Sort criteria
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Filter criteria
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorCollection'
+          description: OK
+      summary: Gets list of vendors by filter, sort and paging
+      tags:
+      - Vendor
+      operationId: getCommerceVendors
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Vendor'
+        description: Vendor object to create
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+          description: OK
+      summary: Create a new vendor
+      tags:
+      - Vendor
+      operationId: postCommerceVendors
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/location/{locationCode}/skumappings:
+    get:
+      parameters:
+      - description: Location code to find vendor for
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      - description: 'Starting index for pagination (default: 0)'
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: 'Number of items per page (default: 100, max: 200)'
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: Sort criteria (e.g., "upc asc", "contractedprice desc")
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Filter criteria (e.g., "contractedprice gt 10.00")
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMappingCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMappingCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorSkuMappingCollection'
+          description: OK
+      summary: Gets vendor SKU mappings for the vendor associated with a location
+      tags:
+      - Vendor
+      operationId: getCommerceVendorsLocationByLocationCodeSkumappings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/document-templates/install/{vendorCode}:
+    post:
+      description: 'Creates placeholder documents (status = NOT_UPLOADED) for each template.
+
+        Skips templates where the vendor already has a document.'
+      parameters:
+      - description: The vendor code to install templates for
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorDocumentCollection'
+          description: OK
+      summary: Install all active document templates for a specific vendor
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsDocumentTemplatesInstallByVendorCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/sync-users:
+    post:
+      description: 'Use this to recover from a partial failure where vendor status was updated
+
+        but the user sync failed (e.g., AdminUser was temporarily unavailable).'
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Manually syncs vendor user active status with the vendor's current status
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeSyncUsers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/documents/{templateId}/reject:
+    put:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: templateId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorDocumentApprovalRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorDocument'
+          description: OK
+      summary: Reject a vendor document (US3)
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsByVendorCodeDocumentsByTemplateIdReject
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/locations/delete:
+    post:
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: List of location codes to remove
+      responses:
+        '200':
+          description: OK
+      summary: Remove multiple locations from a vendor (bulk operation, idempotent)
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeLocationsDelete
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/invitations/resend:
+    post:
+      description: 'Only valid for vendors whose status is OnboardingInProcess or InActive.
+
+        The handler delegates to AdminUser to find and resubmit the pending
+
+        invitation -- no invitationId needed.'
+      parameters:
+      - description: Unique vendor code
+        in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResendVendorInvitationRequest'
+        description: Request containing the email address to resend to
+      responses:
+        '200':
+          description: OK
+      summary: Resends the onboarding invitation email for a vendor
+      tags:
+      - Vendor
+      operationId: postCommerceVendorsByVendorCodeInvitationsResend
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/vendors/{vendorCode}/inventory-files/{id}:
+    delete:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete an inventory file record
+      tags:
+      - Vendor
+      operationId: deleteCommerceVendorsByVendorCodeInventoryFilesById
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: vendorCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VendorInventoryFile'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFile'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFile'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VendorInventoryFile'
+          description: OK
+      summary: Update an inventory file record (filename + jobs)
+      tags:
+      - Vendor
+      operationId: putCommerceVendorsByVendorCodeInventoryFilesById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AttributeValidation:
+      properties:
+        maxDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        maxNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        maxStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        minDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        minNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        minStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        regularExpression:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+      type: object
+    VendorAttributeUpdateRequest:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    CoreAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ChangeVendorStatusRequest:
+      properties:
+        status:
+          type:
+          - string
+          - 'null'
+      type: object
+    OnboardingChecklist:
+      properties:
+        businessVerificationCompleted:
+          type: boolean
+        companyInfoSubmitted:
+          type: boolean
+        integrationProfile:
+          $ref: '#/components/schemas/IntegrationProfile'
+        userAccountsAdded:
+          type: boolean
+      type: object
+    VendorDocumentApprovalRequest:
+      properties:
+        comments:
+          type:
+          - string
+          - 'null'
+        reviewedBy:
+          type:
+          - string
+          - 'null'
+      type: object
+    DocumentStatus:
+      enum:
+      - 0
+      - 1
+      - 2
+      - 3
+      format: int32
+      type: integer
+    VendorAttribute:
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/LocationAttribute2'
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    AttributeValueLocalizedContent:
+      properties:
+        localeCode:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - localeCode
+      - value
+      type: object
+    Vendor:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/VendorAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        contactInfo:
+          $ref: '#/components/schemas/ContactInfo'
+        corporateDetails:
+          $ref: '#/components/schemas/CorporateDetails'
+        data: {}
+        inventoryRefresh:
+          type:
+          - string
+          - 'null'
+        locations:
+          items:
+            $ref: '#/components/schemas/VendorLocation'
+          type:
+          - array
+          - 'null'
+        metrics:
+          $ref: '#/components/schemas/VendorMetrics'
+        name:
+          type:
+          - string
+          - 'null'
+        onboardingChecklist:
+          $ref: '#/components/schemas/OnboardingChecklist'
+        status:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+        vendorCode:
+          type:
+          - string
+          - 'null'
+        vendorType:
+          type:
+          - string
+          - 'null'
+      type: object
+    PortalIntegration:
+      properties:
+        catalogListingAndInventory:
+          type: boolean
+        locations:
+          type: boolean
+      type: object
+    AttributeLocalizedContent:
+      properties:
+        localeCode:
+          maxLength: 8
+          type:
+          - string
+          - 'null'
+        value:
+          maxLength: 100
+          type:
+          - string
+          - 'null'
+      type: object
+    ApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    DocumentAuditEntry:
+      properties:
+        action:
+          type:
+          - string
+          - 'null'
+        actorId:
+          type:
+          - string
+          - 'null'
+        newStatus:
+          $ref: '#/components/schemas/DocumentStatus'
+        notes:
+          type:
+          - string
+          - 'null'
+        previousStatus:
+          $ref: '#/components/schemas/DocumentStatus'
+        timestamp:
+          format: date-time
+          type: string
+      type: object
+    DocumentTemplateCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DocumentTemplate'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    VendorDocumentCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/VendorDocument'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    LocationAttribute2:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    VendorLocation:
+      properties:
+        data: {}
+        locationCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeMetadataItem:
+      properties:
+        key:
+          maxLength: 50
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    AttributeEntityConfig:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        editable:
+          type: boolean
+        entityType:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    CorporateDetails:
+      properties:
+        businessType:
+          type:
+          - string
+          - 'null'
+        companyDescription:
+          type:
+          - string
+          - 'null'
+        foundedYear:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        legalBusinessName:
+          type:
+          - string
+          - 'null'
+        numberOfEmployees:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        taxId:
+          type:
+          - string
+          - 'null'
+        website:
+          type:
+          - string
+          - 'null'
+      type: object
+    IntegrationProfile:
+      properties:
+        api:
+          $ref: '#/components/schemas/ApiIntegration'
+        ediKibo:
+          $ref: '#/components/schemas/EdiKiboIntegration'
+        integrationConfigured:
+          type: boolean
+        portal:
+          $ref: '#/components/schemas/PortalIntegration'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    InventoryFileJob:
+      properties:
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        jobId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        locationCode:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValue:
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeValueLocalizedContent'
+        isHidden:
+          type:
+          - boolean
+          - 'null'
+        sequence:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        value:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - value
+      type: object
+    VendorDocument:
+      properties:
+        auditHistory:
+          items:
+            $ref: '#/components/schemas/DocumentAuditEntry'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        contentType:
+          type:
+          - string
+          - 'null'
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileSizeBytes:
+          format: int64
+          type: integer
+        id:
+          type:
+          - string
+          - 'null'
+        rejectionReason:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/DocumentStatus'
+        templateId:
+          type:
+          - string
+          - 'null'
+        vendorCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    VendorMetrics:
+      properties:
+        itemAcceptanceRate:
+          format: double
+          readOnly: true
+          type:
+          - number
+          - 'null'
+        itemReturnRate:
+          format: double
+          readOnly: true
+          type:
+          - number
+          - 'null'
+        onTimeShipmentRate:
+          format: double
+          readOnly: true
+          type:
+          - number
+          - 'null'
+        performanceCategory:
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        performanceScore:
+          format: double
+          readOnly: true
+          type:
+          - number
+          - 'null'
+      type: object
+    VendorInventoryFileCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/VendorInventoryFile'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    EdiKiboIntegration:
+      properties:
+        ackOn856:
+          type:
+          - boolean
+          - 'null'
+        receiverId:
+          type:
+          - string
+          - 'null'
+      type: object
+    VendorCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Vendor'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ResendVendorInvitationRequest:
+      properties:
+        emailAddress:
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeInheritanceRule:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceMode:
+          type:
+          - string
+          - 'null'
+        sourceEntityType:
+          type:
+          - string
+          - 'null'
+        targetEntityType:
+          type:
+          - string
+          - 'null'
+      type: object
+    VendorDocumentStatus:
+      properties:
+        documentId:
+          type:
+          - string
+          - 'null'
+        lastUpdated:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/DocumentStatus'
+        templateId:
+          type:
+          - string
+          - 'null'
+        templateName:
+          type:
+          - string
+          - 'null'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    VendorSkuMapping:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        contractedPrice:
+          format: double
+          type: number
+        tenantId:
+          format: int32
+          type: integer
+        upc:
+          type:
+          - string
+          - 'null'
+        vendorCode:
+          type:
+          - string
+          - 'null'
+        vendorSku:
+          type:
+          - string
+          - 'null'
+      type: object
+    VendorSkuMappingCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/VendorSkuMapping'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    VendorAttributeAddRequest:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    VendorInventoryFile:
+      properties:
+        filename:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        jobs:
+          items:
+            $ref: '#/components/schemas/InventoryFileJob'
+          type:
+          - array
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        uploadDatetime:
+          format: date-time
+          type: string
+        uploadedBy:
+          type:
+          - string
+          - 'null'
+        vendorCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    DocumentTemplate:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        description:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        required:
+          type: boolean
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    VendorDocumentStatusCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/VendorDocumentStatus'
+          type:
+          - array
+          - 'null'
+        vendorCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    ContactInfo:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        billingEmail:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        primaryContactName:
+          type:
+          - string
+          - 'null'
+        supportEmail:
+          type:
+          - string
+          - 'null'
+      type: object
+    ApiIntegration:
+      properties:
+        catalogListing:
+          type: boolean
+        inventory:
+          type: boolean
+        locations:
+          type: boolean
+        orders:
+          type: boolean
+      type: object
+    VendorAttribute_2:
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/LocationAdminAttribute'
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    LocationAdminAttribute:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_location.json
+- kibo-commerce-location-admin-openapi.yml
+- kibo-commerce-location-openapi.yml

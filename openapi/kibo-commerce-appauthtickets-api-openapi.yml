@@ -1,0 +1,255 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce App Auth Tickets API
+  version: '1.0'
+  description: 'Operations tagged AppAuthTickets across 2 of this provider''s published API definitions: openapi_openapi_appdevelopement.json, kibo-commerce-appdevelopement-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AppAuthTickets
+paths:
+  /platform/applications/authtickets:
+    post:
+      description: Authenticates an application using shared secret and application id. The method returns a set of authentication tokens used to manage application authentication.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppAuthInfo'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+          description: OK
+      security: []
+      summary: App Authenticate
+      tags:
+      - AppAuthTickets
+      operationId: postPlatformApplicationsAuthtickets
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/applications/authtickets/{refreshToken}:
+    delete:
+      description: This method is used to expire an application's current refresh token which \r\nwill force the application to reauthenticate once the current access token expires.
+      parameters:
+      - description: ''
+        in: path
+        name: refreshToken
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete App Auth Ticket
+      tags:
+      - AppAuthTickets
+      operationId: deletePlatformApplicationsAuthticketsByRefreshToken
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/applications/authtickets/oauth:
+    post:
+      description: Authenticate an application using OAuth.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OauthAuthRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/OAuthAccessTokenResponse'
+          description: OK
+      security: []
+      summary: Oauth Authenticate App
+      tags:
+      - AppAuthTickets
+      operationId: postPlatformApplicationsAuthticketsOauth
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/applications/authtickets/refresh-ticket:
+    put:
+      description: Returns the AppAuthTicket with a refreshed AccessToken
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthTicketRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AuthTicket'
+          description: OK
+      summary: Refresh App Auth Ticket
+      tags:
+      - AppAuthTickets
+      operationId: putPlatformApplicationsAuthticketsRefreshTicket
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    OAuthAccessTokenResponse:
+      properties:
+        access_token:
+          type:
+          - string
+          - 'null'
+        expires_in:
+          format: int32
+          type: integer
+        refresh_token:
+          type:
+          - string
+          - 'null'
+        token_type:
+          type:
+          - string
+          - 'null'
+      type: object
+    AuthTicketRequest:
+      description: Complex object to have the refresh token sent in the body intead of as clear text in the query string.
+      properties:
+        refreshToken:
+          description: The refresh token for renewing the authorization.
+          type:
+          - string
+          - 'null'
+      type: object
+    OauthAuthRequest:
+      properties:
+        client_id:
+          type:
+          - string
+          - 'null'
+        client_secret:
+          type:
+          - string
+          - 'null'
+        grant_type:
+          type:
+          - string
+          - 'null'
+        refresh_token:
+          type:
+          - string
+          - 'null'
+      type: object
+    AppAuthInfo:
+      properties:
+        applicationId:
+          type:
+          - string
+          - 'null'
+        sharedSecret:
+          type:
+          - string
+          - 'null'
+      type: object
+    AuthTicket:
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+        accessTokenExpiration:
+          format: date-time
+          type: string
+        environmentScope:
+          description: 'For V2 credentials, indicates the environment scope (Sandbox/Production).
+
+            Null for V1 credentials (no environment restriction).'
+          type:
+          - string
+          - 'null'
+        refreshToken:
+          type:
+          - string
+          - 'null'
+        refreshTokenExpiration:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_appdevelopement.json
+- kibo-commerce-appdevelopement-openapi.yml

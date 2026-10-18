@@ -1,0 +1,95 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Entities
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-entities-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-entities-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/platform/entitylists/{entityListFullName}/entities'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/entities
+  update:
+    operationId: entitiesGetEntities
+- target: $.paths['/platform/entitylists/{entityListFullName}/entities'].post
+  description: Add derived operationId for POST /platform/entitylists/{entityListFullName}/entities
+  update:
+    operationId: entitiesAddEntity
+- target: $.paths['/platform/entitylists/{entityListFullName}/entities/{id}'].delete
+  description: Add derived operationId for DELETE /platform/entitylists/{entityListFullName}/entities/{id}
+  update:
+    operationId: entitiesDeleteEntity
+- target: $.paths['/platform/entitylists/{entityListFullName}/entities/{id}'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/entities/{id}
+  update:
+    operationId: entitiesGetEntity
+- target: $.paths['/platform/entitylists/{entityListFullName}/entities/{id}'].put
+  description: Add derived operationId for PUT /platform/entitylists/{entityListFullName}/entities/{id}
+  update:
+    operationId: entitiesUpdateEntity
+- target: $.paths['/platform/entitylists/{entityListFullName}/views/{viewName}/entities'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/views/{viewName}/entities
+  update:
+    operationId: entitiesGetViewEntities
+- target: $.paths['/platform/entitylists/{entityListFullName}/views/{viewName}/entities/{entityId}'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/views/{viewName}/entities/{entityId}
+  update:
+    operationId: entitiesGetViewEntity
+- target: $.paths['/platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers/{entityId}'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers/{entityId}
+  update:
+    operationId: entitycontainersGetEntityViewContainer
+- target: $.paths['/platform/entitylists/{entityListFullName}/entityContainers/{id}'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/entityContainers/{id}
+  update:
+    operationId: entitycontainersGetEntityContainer
+- target: $.paths['/platform/entitylists/{entityListFullName}/entityContainers'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/entityContainers
+  update:
+    operationId: entitycontainersGetEntityContainers
+- target: $.paths['/platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers
+  update:
+    operationId: entitycontainersGetEntityViewContainers
+- target: $.paths['/platform/entitylists/{entityListFullName}'].delete
+  description: Add derived operationId for DELETE /platform/entitylists/{entityListFullName}
+  update:
+    operationId: entitylistsDeleteEntityList
+- target: $.paths['/platform/entitylists/{entityListFullName}'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}
+  update:
+    operationId: entitylistsGetEntityList
+- target: $.paths['/platform/entitylists/{entityListFullName}'].put
+  description: Add derived operationId for PUT /platform/entitylists/{entityListFullName}
+  update:
+    operationId: entitylistsUpdateEntitylist
+- target: $.paths['/platform/entitylists'].get
+  description: Add derived operationId for GET /platform/entitylists
+  update:
+    operationId: entitylistsGetEntityLists
+- target: $.paths['/platform/entitylists'].post
+  description: Add derived operationId for POST /platform/entitylists
+  update:
+    operationId: entitylistsAddEntityList
+- target: $.paths['/platform/entitylists/{entityListFullName}/views'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/views
+  update:
+    operationId: listviewsGetListViews
+- target: $.paths['/platform/entitylists/{entityListFullName}/views'].post
+  description: Add derived operationId for POST /platform/entitylists/{entityListFullName}/views
+  update:
+    operationId: listviewsAddListView
+- target: $.paths['/platform/entitylists/{entityListFullName}/views/{viewName}'].delete
+  description: Add derived operationId for DELETE /platform/entitylists/{entityListFullName}/views/{viewName}
+  update:
+    operationId: listviewsDeleteListView
+- target: $.paths['/platform/entitylists/{entityListFullName}/views/{viewName}'].get
+  description: Add derived operationId for GET /platform/entitylists/{entityListFullName}/views/{viewName}
+  update:
+    operationId: listviewsGetListView
+- target: $.paths['/platform/entitylists/{entityListFullName}/views/{viewName}'].put
+  description: Add derived operationId for PUT /platform/entitylists/{entityListFullName}/views/{viewName}
+  update:
+    operationId: listviewsUpdateListView

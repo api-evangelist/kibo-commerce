@@ -1,0 +1,2175 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Blanket Order API
+  version: '1.0'
+  description: 'Operations tagged BlanketOrder across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: BlanketOrder
+paths:
+  /commerce/blanketorders/{blanketOrderId}/items:
+    post:
+      description: Add an item to a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlanketOrderItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+          description: OK
+      summary: Add an item to a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketordersByBlanketOrderIdItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/aggregate:
+    get:
+      description: 'Sums `items[].remainingQuantity` and returns breakdowns by product code, customer, and status.
+
+        Use the `filter` parameter to scope the aggregation (e.g. `items.product.productCode in [SKU1,SKU2]`,
+
+        `customerAccountId eq 1234`, `items.status ne Cancelled`).'
+      parameters:
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderAggregateResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderAggregateResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderAggregateResult'
+          description: OK
+      summary: Aggregate remaining quantity across blanket orders scoped to the current tenant…
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersAggregate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/actions/bulk-cancel:
+    post:
+      description: Bulk cancel Blanket Orders.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkCancelRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkCancelResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BulkCancelResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BulkCancelResult'
+          description: OK
+      summary: Bulk cancel Blanket Orders
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketordersActionsBulkCancel
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/cancel:
+    post:
+      description: Cancel a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CanceledReason'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+          description: OK
+      summary: Cancel a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketordersByBlanketOrderIdCancel
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/items/{itemId}/cancel:
+    post:
+      description: Cancel an item on a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CanceledReason'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+          description: OK
+      summary: Cancel an item on a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketordersByBlanketOrderIdItemsByItemIdCancel
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/attributes/{attributeFqn}:
+    delete:
+      description: Delete a single header-level attribute from a blanket order by FQN.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFqn
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a single header-level attribute from a blanket order by FQN
+      tags:
+      - BlanketOrder
+      operationId: deleteCommerceBlanketordersByBlanketOrderIdAttributesByAttributeFqn
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes/{attributeFqn}:
+    delete:
+      description: Delete a single line-level attribute from a blanket order item by FQN.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFqn
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a single line-level attribute from a blanket order item by FQN
+      tags:
+      - BlanketOrder
+      operationId: deleteCommerceBlanketordersByBlanketOrderIdItemsByItemIdAttributesByAttributeFqn
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}:
+    delete:
+      description: Delete a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: deleteCommerceBlanketordersByBlanketOrderId
+      x-operation-id-source: derived
+    get:
+      description: Get a Blanket Order by ID.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+          description: OK
+      summary: Get a Blanket Order by ID
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersByBlanketOrderId
+      x-operation-id-source: derived
+    put:
+      description: Update an existing Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlanketOrder'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+          description: OK
+      summary: Update an existing Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: putCommerceBlanketordersByBlanketOrderId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders:
+    get:
+      description: Get a paged collection of Blanket Orders.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderCollection'
+          description: OK
+      summary: Get a paged collection of Blanket Orders
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketorders
+      x-operation-id-source: derived
+    post:
+      description: Create a new Blanket Order.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlanketOrder'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+          description: OK
+      summary: Create a new Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketorders
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/consumptionrecords/{consumptionRecordId}:
+    get:
+      description: Get a single consumption record for a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: consumptionRecordId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumptionRecord'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ConsumptionRecord'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ConsumptionRecord'
+          description: OK
+      summary: Get a single consumption record for a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersByBlanketOrderIdConsumptionrecordsByConsumptionRecordId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/attributes:
+    get:
+      description: Get all header-level attributes for a blanket order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+          description: OK
+      summary: Get all header-level attributes for a blanket order
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersByBlanketOrderIdAttributes
+      x-operation-id-source: derived
+    post:
+      description: Create header-level attributes on a blanket order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/BlanketOrderAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+          description: OK
+      summary: Create header-level attributes on a blanket order
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketordersByBlanketOrderIdAttributes
+      x-operation-id-source: derived
+    put:
+      description: Update (upsert) header-level attributes on a blanket order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: removeMissing
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/BlanketOrderAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderAttribute'
+                type: array
+          description: OK
+      summary: Update (upsert) header-level attributes on a blanket order
+      tags:
+      - BlanketOrder
+      operationId: putCommerceBlanketordersByBlanketOrderIdAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes:
+    get:
+      description: Get all line-level attributes for a blanket order item.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+          description: OK
+      summary: Get all line-level attributes for a blanket order item
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersByBlanketOrderIdItemsByItemIdAttributes
+      x-operation-id-source: derived
+    post:
+      description: Create line-level attributes on a blanket order item; skips FQNs that already exist.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/BlanketOrderItemAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+          description: OK
+      summary: Create line-level attributes on a blanket order item; skips FQNs that already…
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketordersByBlanketOrderIdItemsByItemIdAttributes
+      x-operation-id-source: derived
+    put:
+      description: Upsert line-level attributes on a blanket order item.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: removeMissing
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/BlanketOrderItemAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BlanketOrderItemAttribute'
+                type: array
+          description: OK
+      summary: Upsert line-level attributes on a blanket order item
+      tags:
+      - BlanketOrder
+      operationId: putCommerceBlanketordersByBlanketOrderIdItemsByItemIdAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/consumptionrecords:
+    get:
+      description: Get consumption records for a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsumptionRecordCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ConsumptionRecordCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ConsumptionRecordCollection'
+          description: OK
+      summary: Get consumption records for a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersByBlanketOrderIdConsumptionrecords
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/changemessages/{changeMessageId}:
+    delete:
+      description: Deletes a change message for a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: changeMessageId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Deletes a change message for a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: deleteCommerceBlanketordersByBlanketOrderIdChangemessagesByChangeMessageId
+      x-operation-id-source: derived
+    get:
+      description: Gets a single change message for a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: changeMessageId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangeMessage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ChangeMessage'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ChangeMessage'
+          description: OK
+      summary: Gets a single change message for a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersByBlanketOrderIdChangemessagesByChangeMessageId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/changemessages:
+    get:
+      description: Gets change messages for a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangeMessageCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ChangeMessageCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ChangeMessageCollection'
+          description: OK
+      summary: Gets change messages for a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: getCommerceBlanketordersByBlanketOrderIdChangemessages
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{sourceBlanketOrderId}/rollover:
+    post:
+      description: 'ICKY-2647: Blanket Order Rollover
+
+
+        Source order must be in Expired status. Only Open items can be selected.
+
+        Creates a new Blanket Order in Open status with copied data:
+
+        - Customer Account ID
+
+        - Buyer and Seller contact information
+
+        - Price List Code
+
+        - Header and line item attributes'
+      parameters:
+      - in: path
+        name: sourceBlanketOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RolloverBlanketOrderRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrder'
+          description: OK
+      summary: Roll over an expired Blanket Order to create a new order with selected items
+      tags:
+      - BlanketOrder
+      operationId: postCommerceBlanketordersBySourceBlanketOrderIdRollover
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/blanketorders/{blanketOrderId}/items/{itemId}:
+    delete:
+      description: Delete an item from a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete an item from a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: deleteCommerceBlanketordersByBlanketOrderIdItemsByItemId
+      x-operation-id-source: derived
+    put:
+      description: Update an item on a Blanket Order.
+      parameters:
+      - in: path
+        name: blanketOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlanketOrderItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BlanketOrderItem'
+          description: OK
+      summary: Update an item on a Blanket Order
+      tags:
+      - BlanketOrder
+      operationId: putCommerceBlanketordersByBlanketOrderIdItemsByItemId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Reason:
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        moreInfo:
+          type:
+          - string
+          - 'null'
+        reasonCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    BlanketOrderProductReference:
+      description: 'Lightweight product identity for Blanket Order Items.
+
+        Extended fields are stamped from the catalog at blanket creation
+
+        and carried through to consumption tracking and call-off integration.'
+      properties:
+        bundledProducts:
+          description: 'Bundle component lines. Populated only when Mozu.CommerceRuntime.Contracts.BlanketOrders.ProductReference.ProductUsage is "Bundle".
+
+            Stamped at create. Immutable.'
+          items:
+            $ref: '#/components/schemas/BundledProduct'
+          type:
+          - array
+          - 'null'
+        combinedProductCode:
+          description: 'Returns VariationProductCode if not null/whitespace, otherwise ProductCode.
+
+            This value is computed on the domain model and mapped directly to the contract
+
+            via Mapster convention-based mapping — no recalculation on the contract side.
+
+            UI should use the items.product.combinedproductcode filter for variation-aware
+
+            product searches instead of items.product.productcode.'
+          type:
+          - string
+          - 'null'
+        fulfillmentTypesSupported:
+          description: 'Fulfillment types the product supports (e.g. "Shipping", "Pickup"). Stamped from
+
+            the catalog at blanket create. Immutable.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        goodsType:
+          description: 'Goods type (e.g. "Physical", "Digital", "Service"). Routes shipment creation.
+
+            Stamped at create. Immutable.'
+          type:
+          - string
+          - 'null'
+        isBundle:
+          description: Indicates if this product is a bundle (ProductUsage="Bundle" and has bundled products).
+          readOnly: true
+          type: boolean
+        name:
+          description: Product display name.
+          type:
+          - string
+          - 'null'
+        options:
+          description: Configurable option selections for this variant. Stamped at create. Immutable.
+          items:
+            $ref: '#/components/schemas/ProductOption'
+          type:
+          - array
+          - 'null'
+        productCode:
+          description: Product code used for identification.
+          type:
+          - string
+          - 'null'
+        productUsage:
+          description: 'Product usage type (e.g., "simple", "collection", "bundle_component", "Configurable").
+
+            Used to enforce product eligibility rules for blanket orders.'
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: 'For configurable products, the unique identifier of the product variation.
+
+            Either ProductCode or VariationProductCode must be provided.'
+          type:
+          - string
+          - 'null'
+      type: object
+    PackageMeasurements:
+      description: Physical dimensions of the package required to ship the product and its weight.
+      properties:
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    BulkCancelResultItem:
+      properties:
+        cancelledResource: {}
+        error:
+          $ref: '#/components/schemas/BulkCancelError'
+        orderId:
+          type:
+          - string
+          - 'null'
+        outcome:
+          type:
+          - string
+          - 'null'
+        resourceType:
+          type:
+          - string
+          - 'null'
+      type: object
+    ChangeMessage:
+      description: A message displayed by the system based on the last  action, for example, when a product price has changed. System-supplied and read-only.
+      properties:
+        amount:
+          deprecated: true
+          description: Monetary amount that pertains to the change if applicable
+          format: double
+          type:
+          - number
+          - 'null'
+        appId:
+          description: App Id that identifies the user that performed the related change
+          type:
+          - string
+          - 'null'
+        appKey:
+          description: App Key
+          type:
+          - string
+          - 'null'
+        appName:
+          description: App Name
+          type:
+          - string
+          - 'null'
+        attributes:
+          additionalProperties: {}
+          description: Additional Data. This property will be a Dictionary of objects.
+          type:
+          - object
+          - 'null'
+        correlationId:
+          description: Correlation Id
+          type:
+          - string
+          - 'null'
+        createDate:
+          description: When the message was created. System-supplied. Read-only.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the  message. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        identifier:
+          description: Unique identifier to what the message pertains, which can be a cart item, cart or another generic entity. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        message:
+          description: Human readable message. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: Data. This property will be a JSON array that will contain 0-N items, when there is 1 item it will still be an array containing only one item. System-supplied. Read-only.
+        newValue:
+          deprecated: true
+          description: Current price of the item. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        oldValue:
+          deprecated: true
+          description: Original price of the item. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        subject:
+          description: Text on the subject line of the message, for example, the product name. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        subjectType:
+          description: Subject of the message, for example, "Product." System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        success:
+          description: Indicates if the message is related to a success or failure.
+          type:
+          - boolean
+          - 'null'
+        userFirstName:
+          description: User First Name
+          type:
+          - string
+          - 'null'
+        userId:
+          description: User Id that identifies the user that performed the related change
+          type:
+          - string
+          - 'null'
+        userLastName:
+          description: User Last Name
+          type:
+          - string
+          - 'null'
+        userScopeType:
+          description: User Type (e.g. Shopper, Admin, etc.)
+          type:
+          - string
+          - 'null'
+        verb:
+          description: "Action applicable to the message. This can be \"Increased,\" when the product price has increased, \"Decreased,\" when the \nproduct price has decreased, and \"Invalidated,\" when the product is no longer available. System-supplied. Read-only."
+          type:
+          - string
+          - 'null'
+      type: object
+    BulkCancelRequest:
+      properties:
+        correlationId:
+          type:
+          - string
+          - 'null'
+        orderIds:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        reason:
+          $ref: '#/components/schemas/CanceledReason'
+      type: object
+    BlanketOrderItemAttribute:
+      description: 'Attribute instance on a Blanket Order line item.
+
+        Separate from Mozu.CommerceRuntime.Contracts.BlanketOrders.BlanketOrderAttribute (header-level) for type safety
+
+        and to allow consumers to distinguish header vs line attributes.'
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    BlanketOrderAggregateResult:
+      description: 'Result of aggregating blanket order remaining quantity. Includes the grand total,
+
+        per-product-code sums, and optional breakdowns by customer account and order status.'
+      properties:
+        byCustomer:
+          description: 'Remaining quantity broken down by customer account. Each entry''s `Key` is the
+
+            customer account id as a string, or `"anonymous"` for orders without an account.'
+          items:
+            $ref: '#/components/schemas/BlanketOrderDemandEntry'
+          type:
+          - array
+          - 'null'
+        byProductCode:
+          description: 'Remaining quantity broken down by product code. Each entry''s `Key` is a product code.
+
+            Only product codes with at least one matching item appear here (no zero-quantity back-fill).'
+          items:
+            $ref: '#/components/schemas/BlanketOrderDemandEntry'
+          type:
+          - array
+          - 'null'
+        byStatus:
+          description: 'Remaining quantity broken down by blanket order status. Each entry''s `Key` is the
+
+            order-level status string (e.g. `"Active"`, `"Completed"`).'
+          items:
+            $ref: '#/components/schemas/BlanketOrderDemandEntry'
+          type:
+          - array
+          - 'null'
+        totalRemainingQuantity:
+          description: Sum of `items[].remainingQuantity` across all matched blanket orders.
+          format: int64
+          type: integer
+      type: object
+    CanceledReason:
+      allOf:
+      - $ref: '#/components/schemas/Reason'
+      - additionalProperties: false
+        type: object
+    ProductStock:
+      properties:
+        aggregateInventory:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        availableDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        availableFutureInventories:
+          format: int32
+          readOnly: true
+          type: integer
+        futureInventories:
+          items:
+            $ref: '#/components/schemas/FutureInventory'
+          type:
+          - array
+          - 'null'
+        isOnBackOrder:
+          type: boolean
+        isSubstitutable:
+          type:
+          - boolean
+          - 'null'
+        manageStock:
+          type: boolean
+        stockAvailable:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        totalAvailableStock:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    CoreApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    BulkCancelResult:
+      properties:
+        correlationId:
+          type:
+          - string
+          - 'null'
+        resourceType:
+          type:
+          - string
+          - 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/BulkCancelResultItem'
+          type:
+          - array
+          - 'null'
+        totalFailed:
+          format: int32
+          type: integer
+        totalProcessed:
+          format: int32
+          type: integer
+        totalRequested:
+          format: int32
+          type: integer
+        totalSucceeded:
+          format: int32
+          type: integer
+      type: object
+    ItemConsumption:
+      description: 'Per-item detail within a ConsumptionRecord, tracking the quantity consumed
+
+        from a specific Blanket Order item and the remaining balance after the operation.'
+      properties:
+        blanketOrderItemId:
+          description: The Blanket Order item ID that was consumed.
+          type:
+          - string
+          - 'null'
+        productCode:
+          description: Product code of the consumed item.
+          type:
+          - string
+          - 'null'
+        quantity:
+          description: Quantity consumed (positive) or restored (negative for reversals).
+          format: int32
+          type: integer
+        remainingAfter:
+          description: Remaining quantity on the Blanket Order item after this operation.
+          format: int32
+          type: integer
+        reservedQuantity:
+          description: 'Reservation-ledger adjustment magnitude for BlanketOrderItem.ReservedQuantity.
+
+            Always a non-negative magnitude — direction is determined by which method applies
+
+            it (BlanketOrderHandler.ConsumeAsync adds it, RestoreAsync subtracts it), mirroring
+
+            the existing Mozu.CommerceRuntime.Contracts.BlanketOrders.ItemConsumption.Quantity field''s convention. Defaults to 0 for
+
+            commitment-only operations (e.g. new call-off creation before any allocation).'
+          format: int32
+          type: integer
+        variationProductCode:
+          description: For configurable products, the variation product code of the consumed item.
+          type:
+          - string
+          - 'null'
+      type: object
+    RolloverBlanketOrderRequest:
+      description: 'Request DTO for rolling over an expired Blanket Order to a new order.
+
+        Used by POST /blanketorders/{blanketOrderId}/rollover endpoint.
+
+        ICKY-2647: Blanket Order Rollover'
+      properties:
+        endDate:
+          description: 'End date for the new Blanket Order''s validity period.
+
+            Must be after StartDate.'
+          format: date-time
+          type: string
+        selectedLineItemIds:
+          description: 'Line item IDs to include in the new Blanket Order.
+
+            Only Open status items are eligible for rollover.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        startDate:
+          description: Start date for the new Blanket Order's validity period.
+          format: date-time
+          type: string
+      type: object
+    BlanketOrder:
+      description: 'Represents a contractual commitment between the seller and a B2B Account
+
+        to supply goods at predetermined prices and quantities over a specified period.'
+      properties:
+        attributes:
+          description: Custom attributes at the header level.
+          items:
+            $ref: '#/components/schemas/BlanketOrderAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        availableActions:
+          description: Available lifecycle actions from the current status. Populated on read.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        buyerContact:
+          $ref: '#/components/schemas/AlternateContact'
+        canceledReason:
+          $ref: '#/components/schemas/CanceledReason'
+        cancelledDate:
+          description: Date when the order was cancelled. System-supplied, read-only.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        changeMessages:
+          description: Change messages associated with this Blanket Order. Hydrated from a separate collection.
+          items:
+            $ref: '#/components/schemas/ChangeMessage'
+          type:
+          - array
+          - 'null'
+        channelCode:
+          description: Channel code for multi-channel context.
+          type:
+          - string
+          - 'null'
+        currencyCode:
+          description: Currency code (default "USD").
+          type:
+          - string
+          - 'null'
+        customerAccountId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        data:
+          description: Extensibility data bag for tenant-specific custom data.
+          type:
+          - object
+          - 'null'
+        externalId:
+          description: External reference identifier for integration with external systems.
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        items:
+          description: Product commitment Items for this Blanket Order.
+          items:
+            $ref: '#/components/schemas/BlanketOrderItem'
+          type:
+          - array
+          - 'null'
+        notes:
+          description: Internal notes for merchant use.
+          items:
+            $ref: '#/components/schemas/OrderNote'
+          type:
+          - array
+          - 'null'
+        number:
+          description: Auto-generated sequential Blanket Order number. System-supplied, read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        priceListCode:
+          description: Price list code for pricing context. Resolved and locked at create. Immutable.
+          type:
+          - string
+          - 'null'
+        pricingMode:
+          description: 'Pricing mode: `Kibo` (default — prices resolved from catalog/price list) or
+
+            `External` (caller-supplied prices stored as-is). Immutable after create.
+
+            See Mozu.CommerceRuntime.Contracts.PricingModeConst.'
+          type:
+          - string
+          - 'null'
+        reservationMode:
+          description: 'Reservation mode for this blanket order. Values: `NetworkLevel` | `CallOffLevel`
+
+            (default). When `NetworkLevel`, the blanket''s uncalled balance is tracked in a
+
+            ledger used for network-wide ATS/ATP netting.
+
+            Immutable after creation.'
+          type:
+          - string
+          - 'null'
+        sellerContact:
+          $ref: '#/components/schemas/AlternateContact'
+        siteId:
+          format: int32
+          type: integer
+        status:
+          description: Current status managed by the StatusEngine transition table.
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+        userId:
+          type:
+          - string
+          - 'null'
+        validityPeriod:
+          $ref: '#/components/schemas/ValidityPeriod'
+        version:
+          description: Optimistic concurrency token. System-supplied.
+          type:
+          - string
+          - 'null'
+      type: object
+    ChangeMessageCollection:
+      description: Paged collection
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ChangeMessage'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ConsumptionRecordCollection:
+      description: Paged collection of ConsumptionRecords.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ConsumptionRecord'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    BundledProduct:
+      description: Describes products that are bundled inside of a main bundle product.
+      properties:
+        allocationExpiration:
+          description: Allocation ID associated with this product on this order.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        allocationId:
+          description: Allocation ID associated with this product on this order.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        creditValue:
+          description: Credit value.  Only populated if the bundled product is a gift card or digital credit
+          format: double
+          type:
+          - number
+          - 'null'
+        deltaPrice:
+          description: Only populated for extras
+          format: double
+          type:
+          - number
+          - 'null'
+        description:
+          description: Short description of the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        fulfillmentStatus:
+          description: Fulfillment status of the product.
+          type:
+          - string
+          - 'null'
+        goodsType:
+          description: Goods Type
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: ImageUrl of product
+          type:
+          - string
+          - 'null'
+        isPackagedStandAlone:
+          description: Indicates that this product ships by itself.
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/PackageMeasurements'
+        name:
+          description: Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        optionAttributeFQN:
+          description: Fully Qualified Name of the selected option's attribute
+          type:
+          - string
+          - 'null'
+        optionValue:
+          description: Value of the selected option
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          type:
+          - string
+          - 'null'
+        productReservationId:
+          description: Reservation ID associated with this product in the bundle.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        quantity:
+          description: Quantity of the product included in the bundle.
+          format: int32
+          type: integer
+        stock:
+          $ref: '#/components/schemas/ProductStock'
+      type: object
+    BlanketOrderCollection:
+      description: Paged collection of Blanket Orders.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BlanketOrder'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    BlanketOrderItem:
+      description: 'A single product commitment within a Blanket Order.
+
+        Each line tracks its own lifecycle independently.'
+      properties:
+        attributes:
+          description: 'Line-level extensible attributes. Use Mozu.CommerceRuntime.Contracts.BlanketOrders.BlanketOrderAttribute on
+
+            `BlanketOrder.Attributes` for header-level attributes.'
+          items:
+            $ref: '#/components/schemas/BlanketOrderItemAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        consumedQuantity:
+          description: Total quantity consumed by call-off orders. System-managed.
+          format: int32
+          type: integer
+        id:
+          description: Unique identifier for this line. System-supplied.
+          type:
+          - string
+          - 'null'
+        lineId:
+          description: Auto-assigned sequential line number within the order.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        product:
+          $ref: '#/components/schemas/BlanketOrderProductReference'
+        quantity:
+          description: Total committed quantity for this product line.
+          format: int32
+          type: integer
+        remainingQuantity:
+          description: Remaining available quantity (Quantity - ConsumedQuantity). System-managed.
+          format: int32
+          type: integer
+        reservedQuantity:
+          description: 'Quantity currently reserved by active call-off allocations against this blanket item.
+
+            System-managed; not client-settable. Updated only via the internal consumption/
+
+            restoration ledger (BlanketOrderHandler.ConsumeAsync/RestoreAsync).'
+          format: int32
+          type: integer
+        status:
+          description: Current line status managed by the line-level transition table.
+          type:
+          - string
+          - 'null'
+        unitPrice:
+          description: Agreed unit price for this product line.
+          format: double
+          type: number
+        unreservedQuantity:
+          description: 'Computed: Quantity - ReservedQuantity. The blanket''s balance not yet reserved by
+
+            call-off allocations. Not persisted.'
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    ValidityPeriod:
+      description: 'Represents the validity window for a Blanket Order.
+
+        Call-off orders can only be placed while the current date is within this period.'
+      properties:
+        endDate:
+          description: End date of the validity period. Must be after StartDate.
+          format: date-time
+          type: string
+        startDate:
+          description: Start date of the validity period. Must be today or in the future on creation.
+          format: date-time
+          type: string
+      type: object
+    BulkCancelError:
+      properties:
+        category:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        retryable:
+          type: boolean
+      type: object
+    BlanketOrderDemandEntry:
+      description: 'A single bucket in a blanket-order aggregate breakdown: the summed remaining quantity
+
+        for a group (product code, customer account, or status) plus a count of matching orders.'
+      properties:
+        key:
+          description: 'The grouping key value. Meaning depends on the breakdown dimension:
+
+            product code string, customer account id string, or order status string.'
+          type:
+          - string
+          - 'null'
+        orderCount:
+          description: Number of distinct blanket orders in this bucket.
+          format: int32
+          type: integer
+        totalRemainingQuantity:
+          description: Sum of `items[].remainingQuantity` for blanket orders in this bucket.
+          format: int64
+          type: integer
+      type: object
+    ConsumptionRecord:
+      description: 'Audit entry recording the consumption or restoration of Blanket Order balance
+
+        by a call-off order. Stored in a separate BlanketOrderConsumptionRecord collection.'
+      properties:
+        callOffOrderId:
+          description: The call-off order that triggered this consumption or reversal.
+          type:
+          - string
+          - 'null'
+        consumptionTime:
+          description: Timestamp of the consumption event. System-supplied.
+          format: date-time
+          type: string
+        id:
+          description: Unique identifier. System-supplied.
+          type:
+          - string
+          - 'null'
+        itemConsumptions:
+          description: Per-line consumption details.
+          items:
+            $ref: '#/components/schemas/ItemConsumption'
+          type:
+          - array
+          - 'null'
+        type:
+          description: 'Type of record: "Consumption" or "Reversal".'
+          type:
+          - string
+          - 'null'
+        userId:
+          description: User who performed the action.
+          type:
+          - string
+          - 'null'
+      type: object
+    OrderNote:
+      description: Internal notes that a merchant may add to the order. Maximum 250 characters.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        id:
+          description: Unique identifier of the note. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        text:
+          description: Text of the note. Maximum 250 characters.
+          maxLength: 500
+          type: string
+      type: object
+    Measurement:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    FutureInventory:
+      properties:
+        allocated:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        available:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        deliveryDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        futureInventoryID:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        onhand:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        pending:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    BlanketOrderAttribute:
+      description: 'Custom attribute for Blanket Orders, following the same pattern
+
+        as OrderAttribute and ReturnAttribute.
+
+        Inherits FullyQualifiedName, AttributeDefinitionId, and Values
+
+        from AbstractAttribute.'
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductOption:
+      description: "Product option for the product listed on this order item. If the product contains \nconfigurable or stand-alone options, this is a product option that the shopper has selected."
+      properties:
+        attributeFQN:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        dataType:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the product option that appears with the order item in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        shopperEnteredValue:
+          description: The value entered by the shopper if this is an option that requires shopper input, for example, a monogram.
+        stringValue:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        value:
+          description: Value of the product option.
+      type: object
+    AlternateContact:
+      properties:
+        emailAddress:
+          description: Email Address of alternate contact during order process
+          format: email
+          minLength: 1
+          type: string
+        firstName:
+          description: First Name of alternate contact during order process
+          minLength: 1
+          type: string
+        lastNameOrSurname:
+          description: Last Name of alternate contact during order process
+          minLength: 1
+          type: string
+        phoneNumber:
+          description: Phone Number of alternate contact during order process
+          pattern: ^[0-9]+$
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

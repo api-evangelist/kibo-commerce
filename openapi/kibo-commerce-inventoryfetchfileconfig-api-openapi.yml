@@ -1,0 +1,430 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Fetch File Config API
+  version: '1.0'
+  description: 'Operations tagged InventoryFetchFileConfig across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryFetchFileConfig
+paths:
+  /commerce/inventory/v1/config/fetchfile/{fetchFileConfigID}:
+    delete:
+      description: Deletes a fetch file configuration.
+      parameters:
+      - description: Id of fetch file config
+        in: path
+        name: fetchFileConfigID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      summary: Delete Fetch Config
+      tags:
+      - InventoryFetchFileConfig
+      operationId: deleteCommerceInventoryV1ConfigFetchfileByFetchFileConfigID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/config/fetchfile:
+    get:
+      description: Get the Fetch File Configs for the current tenant
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/M_FetchFileConfig'
+          description: Success
+        '404':
+          description: Not Found
+      summary: Get Fetch Config
+      tags:
+      - InventoryFetchFileConfig
+      operationId: getCommerceInventoryV1ConfigFetchfile
+      x-operation-id-source: derived
+    post:
+      description: Save a new Fetch File Configuration.
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/FetchFileConfigRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Save Fetch Config
+      tags:
+      - InventoryFetchFileConfig
+      operationId: postCommerceInventoryV1ConfigFetchfile
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/config/fetchfile/testConnection/{fetchFileConfigID}:
+    get:
+      description: Attempts to connect to a fetch file endpoint and lists current files if successful
+      parameters:
+      - description: Id of fetch file config
+        in: path
+        name: fetchFileConfigID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchFileConnectionResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      summary: Test Connection
+      tags:
+      - InventoryFetchFileConfig
+      operationId: getCommerceInventoryV1ConfigFetchfileTestConnectionByFetchFileConfigID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    M_FetchFileConfig:
+      description: Fetch File Config Model
+      properties:
+        active:
+          description: Active
+          type: boolean
+        archiveBucket:
+          description: S3 Archive Bucket
+          type: string
+        blankQuantityIsZero:
+          description: Flag to convert null quantities to zero
+          type: boolean
+        bucket:
+          description: S3 Bucket
+          type: string
+        csvDelimiter:
+          description: CSV Delimiter
+          type: string
+        emailList:
+          description: Email List
+          type: string
+        exportAfterRefresh:
+          description: Flag for exporting after refresh
+          type: boolean
+        failed_attempts:
+          description: Failed Attempts
+          type: integer
+        fetchFileConfigID:
+          description: Fetch File Config ID
+          type: integer
+        fieldNameMap:
+          description: List of field names
+          items:
+            type: string
+          type: array
+        ftpPassword:
+          description: FTP server password
+          type: string
+        ftpPort:
+          description: FTP server port
+          type: integer
+        ftpRemotePath:
+          description: FTP server remote path
+          type: string
+        ftpRemotePathArchive:
+          description: FTP server remote path archive
+          type: string
+        ftpServer:
+          description: FTP server address
+          type: string
+        ftpUsername:
+          description: FTP server username
+          type: string
+        ignoreExtraFields:
+          description: Flag for ignoring extra fields
+          type: boolean
+        lastModified:
+          description: Time config was last modified
+          type: string
+        lockName:
+          description: Lock name
+          type: string
+        multipleFiles:
+          description: Flag for using multiple files
+          type: boolean
+        postImportExportId:
+          description: Export id post import
+          type: integer
+        postImportFtpId:
+          description: FTP id post import
+          type: integer
+        postProcessAction:
+          description: Enum denoting action post processing
+          type: integer
+        productMapping:
+          description: Enum for fetch file mapping
+          enum:
+          - SWAP_PART_NUMBER_WITH_UPC
+          - SWAP_SKU_WITH_UPC
+          title: productMapping
+          type: string
+        refreshEnabled:
+          description: Flag for Refresh Enabled
+          type: boolean
+        refreshFileDescription:
+          description: Description for the refresh file
+          type: string
+        region:
+          description: S3 Region
+          type: string
+        s3ArchivePath:
+          description: S3 Archive Bucket Path (directory)
+          type: string
+        s3Key:
+          description: S3 Key
+          type: string
+        s3Path:
+          description: S3 Bucket Path (directory)
+          type: string
+        secret:
+          description: S3 Secret
+          type: string
+        tenantID:
+          description: Tenant ID
+          type: integer
+        updateEnabled:
+          description: Flag for Update Enabled
+          type: boolean
+        updateFileDescription:
+          description: Description for the update file
+          type: string
+        useControlFile:
+          description: Flag for using control file
+          type: boolean
+        zeroOutNegatives:
+          description: Flag for converting negatives to zero
+          type: boolean
+      title: M_FetchFileConfig
+      type: object
+    FetchFileConfigRequest:
+      description: Request for Fetch File Configs
+      properties:
+        active:
+          description: Flag for active state
+          type: boolean
+        archiveBucket:
+          description: S3 Archive Bucket
+          type: string
+        blankQuantityIsZero:
+          description: Flag to convert null quantities to zero
+          type: boolean
+        bucket:
+          description: S3 Bucket
+          type: string
+        csvDelimiter:
+          description: Delimiter
+          type: string
+        emailList:
+          description: Email List
+          type: string
+        fetchFileConfigID:
+          description: Fetch File Config ID
+          type: integer
+        fieldNameMap:
+          description: List of field names
+          items:
+            type: string
+          type: array
+        ftpPassword:
+          description: FTP server password
+          type: string
+        ftpPort:
+          description: FTP server port
+          type: integer
+        ftpRemotePath:
+          description: FTP server remote path
+          type: string
+        ftpRemotePathArchive:
+          description: FTP server remote path archive
+          type: string
+        ftpServer:
+          description: FTP server address
+          type: string
+        ftpUsername:
+          description: FTP server username
+          type: string
+        ignoreExtraFields:
+          description: Flag for ignoring extra fields
+          type: boolean
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        lockName:
+          description: Lock name
+          type: string
+        multipleFiles:
+          description: Flag for using multiple files
+          type: boolean
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        postProcessAction:
+          description: Enum denoting action post processing
+          type: integer
+        productMapping:
+          description: Enum for fetch file productMapping
+          enum:
+          - SWAP_PART_NUMBER_WITH_UPC
+          - SWAP_SKU_WITH_UPC
+          title: productMapping
+          type: string
+        refreshEnabled:
+          description: Flag for Refresh Enabled
+          type: boolean
+        refreshFileDescription:
+          description: Description for the refresh file
+          type: string
+        region:
+          description: S3 Region
+          type: string
+        s3ArchivePath:
+          description: S3 Archive Bucket Path (directory)
+          type: string
+        s3Path:
+          description: S3 Bucket Path (directory)
+          type: string
+        sortBy:
+          description: index to sort results by
+          type: string
+        testFTPConfigs:
+          description: Flag for if its a test ftp config
+          type: boolean
+        updateEnabled:
+          description: Flag for Update Enabled
+          type: boolean
+        updateFileDescription:
+          description: Description for the update file
+          type: string
+        useControlFile:
+          description: Flag for using control file
+          type: boolean
+        userID:
+          description: user id
+          type: integer
+        zeroOutNegatives:
+          description: Flag for converting negatives to zero
+          type: boolean
+      title: Fetch File Config Request
+      type: object
+    DeletedResponse:
+      description: Deleted Response Model
+      properties:
+        deleted:
+          description: Whether the delete was successful
+          type: boolean
+      title: Deleted Response
+      type: object
+    FetchFileConnectionResponse:
+      description: FetchFileConnectionResponse
+      properties:
+        ftpArchiveFiles:
+          description: List of files found on the specified sftp archive directory
+          items:
+            type: string
+          type: array
+        ftpFiles:
+          description: List of files found on the specified sftp directory
+          items:
+            type: string
+          type: array
+        s3ArchiveFiles:
+          description: List of files found on the specified s3 archive bucket/path
+          items:
+            type: string
+          type: array
+        s3Files:
+          description: List of files found on the specified s3 bucket/path
+          items:
+            type: string
+          type: array
+      title: FetchFileConnectionResponse
+      type: object
+    BaseResponse:
+      description: Base Response Model
+      properties:
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        success:
+          description: Flag for success
+          type: boolean
+      title: Base Response
+      type: object
+  requestBodies:
+    FetchFileConfigRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FetchFileConfigRequest'
+      description: Request to fetch file configs
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

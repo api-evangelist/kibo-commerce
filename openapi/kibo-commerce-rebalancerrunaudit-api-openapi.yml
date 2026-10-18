@@ -1,0 +1,1866 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Rebalancer Run Audit API
+  version: '1.0'
+  description: 'Operations tagged RebalancerRunAudit across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: RebalancerRunAudit
+paths:
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/reservations/{reservationId}:
+    get:
+      deprecated: false
+      parameters:
+      - description: reservationId
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ItemAuditDetailDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Reservation Detail
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdReservationsByReservationId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/reservations/{reservationId}/sourcing:
+    get:
+      deprecated: false
+      parameters:
+      - description: reservationId
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SourcingDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Reservation Sourcing
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdReservationsByReservationIdSourcing
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}:
+    get:
+      deprecated: false
+      parameters:
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/RunDetailDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Run Detail
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/shipments/{shipmentNumber}:
+    get:
+      deprecated: false
+      parameters:
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ItemAuditDetailDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Shipment Detail
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdShipmentsByShipmentNumber
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/rules:
+    get:
+      deprecated: false
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageOfRuleDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List All Rules
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRules
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/backorder-rules:
+    get:
+      deprecated: false
+      parameters:
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/RuleDto'
+                type: array
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Backorder Rules
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdBackorderRules
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/changes:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: changeCategory
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: quickSearch
+        required: false
+        schema:
+          type: string
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: since
+        required: false
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseDtoOfChangeDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Changes
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdChanges
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/backorder-shipments:
+    get:
+      deprecated: false
+      parameters:
+      - explode: true
+        in: query
+        name: changeIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - explode: true
+        in: query
+        name: outcomeCode
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: queue
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: quickSearch
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: view
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseDtoOfItemAuditDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Current Backorder Shipments
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditBackorderShipments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/events:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: changeCategory
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: quickSearch
+        required: false
+        schema:
+          type: string
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: since
+        required: false
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseDtoOfChangeDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Events
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdEvents
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/rules:
+    get:
+      deprecated: false
+      parameters:
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageOfRuleDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Future Rules
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdRules
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/reservations/{reservationId}/lines:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: reservationId
+        in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ItemLinesResponseDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Reservation Lines
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdReservationsByReservationIdLines
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/reservations:
+    get:
+      deprecated: false
+      parameters:
+      - explode: true
+        in: query
+        name: changeIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - explode: true
+        in: query
+        name: outcomeCode
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: queue
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: quickSearch
+        required: false
+        schema:
+          type: string
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: view
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseDtoOfItemAuditDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Reservations
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdReservations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: quickSearch
+        required: false
+        schema:
+          type: string
+      - description: runType
+        in: query
+        name: runType
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseDtoOfRunSummaryDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Runs
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRuns
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/shipments/{shipmentNumber}/runs:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: quickSearch
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseDtoOfRunSummaryDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Runs For Shipment
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditShipmentsByShipmentNumberRuns
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/shipments/{shipmentNumber}/lines:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ItemLinesResponseDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Shipment Lines
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdShipmentsByShipmentNumberLines
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/shipments:
+    get:
+      deprecated: false
+      parameters:
+      - explode: true
+        in: query
+        name: changeIds
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - explode: true
+        in: query
+        name: outcomeCode
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: queue
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: quickSearch
+        required: false
+        schema:
+          type: string
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: sort
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: view
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseDtoOfItemAuditDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Shipments
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsByRunIdShipments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/audit/runs/saved-filters:
+    get:
+      deprecated: false
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/MapOfstringAndstring'
+                type: array
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Saved Filters
+      tags:
+      - RebalancerRunAudit
+      operationId: getCommerceFulfillmentRebalancerAuditRunsSavedFilters
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PagedResponseDtoOfRunSummaryDto:
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/RunSummaryDto'
+          type: array
+        outcomeCounts:
+          additionalProperties:
+            format: int64
+            type: integer
+          type: object
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+        viewTotals:
+          additionalProperties:
+            format: int64
+            type: integer
+          type: object
+      title: PagedResponseDtoOfRunSummaryDto
+      type: object
+    ChangeDto:
+      properties:
+        afterValue:
+          type: object
+        beforeValue:
+          type: object
+        changeCategory:
+          type: string
+        detectedAt:
+          format: date-time
+          type: string
+        eventId:
+          type: string
+        locationCode:
+          type: string
+        referenceId:
+          type: string
+        sequenceId:
+          format: int64
+          type: integer
+        subtype:
+          type: string
+        upcs:
+          items:
+            type: string
+          type: array
+      title: ChangeDto
+      type: object
+    LineRollupDto:
+      properties:
+        backordered:
+          format: int32
+          type: integer
+        evaluatedOnly:
+          format: int32
+          type: integer
+        repegged:
+          format: int32
+          type: integer
+        unchanged:
+          format: int32
+          type: integer
+        unitsRepegged:
+          format: int32
+          type: integer
+        unitsUnpegged:
+          format: int32
+          type: integer
+      title: LineRollupDto
+      type: object
+    RunCountsDto:
+      properties:
+        affected:
+          format: int32
+          type: integer
+        affectedBackorder:
+          format: int32
+          type: integer
+        affectedFuture:
+          format: int32
+          type: integer
+        createdBackorder:
+          format: int32
+          type: integer
+        createdFuture:
+          format: int32
+          type: integer
+        evaluatedBackorder:
+          format: int32
+          type: integer
+        evaluatedFuture:
+          format: int32
+          type: integer
+        eventsTracked:
+          format: int32
+          type: integer
+        reservationsEvaluated:
+          format: int32
+          type: integer
+        stealFromDonors:
+          format: int32
+          type: integer
+      title: RunCountsDto
+      type: object
+    RunSummaryDto:
+      properties:
+        completedAt:
+          format: date-time
+          type: string
+        counts:
+          $ref: '#/components/schemas/RunCountsDto'
+        displayStatus:
+          type: string
+        primaryChangeReferenceId:
+          type: string
+        primaryChangeType:
+          type: string
+        runId:
+          type: string
+        runType:
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+        summaryText:
+          type: string
+        trigger:
+          type: string
+      title: RunSummaryDto
+      type: object
+    RunDetailTabDto:
+      properties:
+        count:
+          format: int32
+          type: integer
+        name:
+          type: string
+      title: RunDetailTabDto
+      type: object
+    PageOfRuleDto:
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/RuleDto'
+          type: array
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          format: int32
+          type: integer
+        numberOfElements:
+          format: int32
+          type: integer
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
+          format: int32
+          type: integer
+        sort:
+          $ref: '#/components/schemas/Sort'
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+      title: PageOfRuleDto
+      type: object
+    ItemLinesResponseDto:
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/ItemLineDto'
+          type: array
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        rollup:
+          $ref: '#/components/schemas/LineRollupDto'
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+      title: ItemLinesResponseDto
+      type: object
+    PagedResponseDtoOfChangeDto:
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/ChangeDto'
+          type: array
+        outcomeCounts:
+          additionalProperties:
+            format: int64
+            type: integer
+          type: object
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+        viewTotals:
+          additionalProperties:
+            format: int64
+            type: integer
+          type: object
+      title: PagedResponseDtoOfChangeDto
+      type: object
+    SplitLineageOriginDto:
+      properties:
+        queue:
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        totalUnits:
+          format: int32
+          type: integer
+      title: SplitLineageOriginDto
+      type: object
+    StolenFromDto:
+      properties:
+        orderNumber:
+          format: int32
+          type: integer
+        shipDate:
+          type: string
+        unitsStolen:
+          format: int32
+          type: integer
+      title: StolenFromDto
+      type: object
+    PagedResponseDtoOfItemAuditDto:
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/ItemAuditDto'
+          type: array
+        outcomeCounts:
+          additionalProperties:
+            format: int64
+            type: integer
+          type: object
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+        viewTotals:
+          additionalProperties:
+            format: int64
+            type: integer
+          type: object
+      title: PagedResponseDtoOfItemAuditDto
+      type: object
+    SourcingDto:
+      properties:
+        atpAtScope:
+          format: int32
+          type: integer
+        atsAtScope:
+          format: int32
+          type: integer
+        balanceCalled:
+          format: int32
+          type: integer
+        balanceContracted:
+          format: int32
+          type: integer
+        balanceUncalled:
+          format: int32
+          type: integer
+        heldBeforeRun:
+          format: int32
+          type: integer
+        lostUnits:
+          format: int32
+          type: integer
+        nettingPosition:
+          format: int32
+          type: integer
+        reSecuredUnits:
+          format: int32
+          type: integer
+        stolenFrom:
+          items:
+            $ref: '#/components/schemas/StolenFromDto'
+          type: array
+      title: SourcingDto
+      type: object
+    MapOfstringAndstring:
+      additionalProperties:
+        type: string
+      title: MapOfstringAndstring
+      type: object
+    ItemLineDto:
+      properties:
+        calledQty:
+          format: int32
+          type: integer
+        lineId:
+          format: int32
+          type: integer
+        movement:
+          type: string
+        productDescription:
+          type: string
+        qty:
+          format: int32
+          type: integer
+        reservedQty:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        state:
+          type: string
+        supplyDate:
+          format: date
+          type: string
+        supplySource:
+          type: string
+        uncalledQty:
+          format: int32
+          type: integer
+        unitsChanged:
+          format: int32
+          type: integer
+      title: ItemLineDto
+      type: object
+    RuleAuditInfoDto:
+      properties:
+        createBy:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      title: RuleAuditInfoDto
+      type: object
+    RuleDto:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/RuleAuditInfoDto'
+        code:
+          type: string
+        customerRules:
+          items:
+            type: string
+          type: array
+        description:
+          type: string
+        enabled:
+          type: boolean
+        name:
+          type: string
+        productRules:
+          items:
+            $ref: '#/components/schemas/RuleReferenceDto'
+          type: array
+        rank:
+          format: int32
+          type: integer
+        shipmentRules:
+          items:
+            $ref: '#/components/schemas/RuleReferenceDto'
+          type: array
+        sortAttribute:
+          type: string
+      title: RuleDto
+      type: object
+    ItemAuditDto:
+      properties:
+        accountName:
+          type: string
+        accountNumber:
+          format: int32
+          type: integer
+        assignedPriority:
+          format: int32
+          type: integer
+        callOffState:
+          type: string
+        childShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        contractedQty:
+          format: int32
+          type: integer
+        distinctProductCount:
+          format: int32
+          type: integer
+        fulfillmentType:
+          type: string
+        isDonor:
+          type: boolean
+        lineItemCount:
+          format: int32
+          type: integer
+        locationCode:
+          type: string
+        locationName:
+          type: string
+        orderNumber:
+          format: int32
+          type: integer
+        originShipmentNumber:
+          format: int32
+          type: integer
+        outcomeCode:
+          type: string
+        outcomeText:
+          type: string
+        queue:
+          type: string
+        recipientReservationId:
+          type: string
+        reservationCategory:
+          type: string
+        reservationId:
+          type: string
+        reservationState:
+          type: string
+        reservationType:
+          type: string
+        ruleCode:
+          type: string
+        ruleDescription:
+          type: string
+        ruleName:
+          type: string
+        shipDate:
+          format: date-time
+          type: string
+        shipWindowEnd:
+          format: date-time
+          type: string
+        shipWindowStart:
+          format: date-time
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        splitGroupId:
+          type: string
+        totalUnits:
+          format: int32
+          type: integer
+        triggeringEventIds:
+          items:
+            type: string
+          type: array
+        unitsGivenUp:
+          format: int32
+          type: integer
+        view:
+          type: string
+      title: ItemAuditDto
+      type: object
+    RuleReferenceDto:
+      properties:
+        code:
+          type: string
+      title: RuleReferenceDto
+      type: object
+    Sort:
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+      title: Sort
+      type: object
+    ItemAuditDetailDto:
+      properties:
+        accountName:
+          type: string
+        accountNumber:
+          format: int32
+          type: integer
+        assignedPriority:
+          format: int32
+          type: integer
+        callOffState:
+          type: string
+        childShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        contractedQty:
+          format: int32
+          type: integer
+        distinctProductCount:
+          format: int32
+          type: integer
+        donorReservationIds:
+          items:
+            type: string
+          type: array
+        fulfillmentType:
+          type: string
+        lineItemCount:
+          format: int32
+          type: integer
+        locationCode:
+          type: string
+        locationName:
+          type: string
+        newPriority:
+          format: int32
+          type: integer
+        orderNumber:
+          format: int32
+          type: integer
+        originShipmentNumber:
+          format: int32
+          type: integer
+        outcomeCode:
+          type: string
+        outcomeText:
+          type: string
+        previousPriority:
+          format: int32
+          type: integer
+        queue:
+          type: string
+        reservationCategory:
+          type: string
+        reservationId:
+          type: string
+        reservationState:
+          type: string
+        reservationType:
+          type: string
+        ruleCode:
+          type: string
+        ruleDescription:
+          type: string
+        ruleName:
+          type: string
+        shipDate:
+          format: date-time
+          type: string
+        shipWindowEnd:
+          format: date-time
+          type: string
+        shipWindowStart:
+          format: date-time
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        sourcing:
+          $ref: '#/components/schemas/SourcingDto'
+        splitLineage:
+          $ref: '#/components/schemas/SplitLineageDto'
+        totalUnits:
+          format: int32
+          type: integer
+        triggeringEvents:
+          items:
+            $ref: '#/components/schemas/ChangeDto'
+          type: array
+        view:
+          type: string
+      title: ItemAuditDetailDto
+      type: object
+    SplitLineageEntryDto:
+      properties:
+        origin:
+          type: boolean
+        queue:
+          type: string
+        shipmentNumber:
+          format: int32
+          type: integer
+        units:
+          format: int32
+          type: integer
+      title: SplitLineageEntryDto
+      type: object
+    SplitLineageDto:
+      properties:
+        origin:
+          $ref: '#/components/schemas/SplitLineageOriginDto'
+        results:
+          items:
+            $ref: '#/components/schemas/SplitLineageEntryDto'
+          type: array
+      title: SplitLineageDto
+      type: object
+    RunDetailDto:
+      properties:
+        completedAt:
+          format: date-time
+          type: string
+        counts:
+          $ref: '#/components/schemas/RunCountsDto'
+        displayStatus:
+          type: string
+        errorDetail:
+          type: string
+        errorMessage:
+          type: string
+        finalStatus:
+          type: string
+        phase:
+          type: string
+        primaryChangeReferenceId:
+          type: string
+        primaryChangeType:
+          type: string
+        runId:
+          type: string
+        runType:
+          type: string
+        startedAt:
+          format: date-time
+          type: string
+        summaryText:
+          type: string
+        tabs:
+          items:
+            $ref: '#/components/schemas/RunDetailTabDto'
+          type: array
+        trigger:
+          type: string
+      title: RunDetailDto
+      type: object
+    Pageable:
+      properties:
+        offset:
+          format: int64
+          type: integer
+        pageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        paged:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        unpaged:
+          type: boolean
+      title: Pageable
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

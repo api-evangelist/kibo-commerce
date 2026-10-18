@@ -1,0 +1,341 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Pick Wave Rules API
+  version: '1.0'
+  description: 'Operations tagged PickWaveRules across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: PickWaveRules
+paths:
+  /commerce/rules/pickwave/{code}:
+    delete:
+      description: Deletes a pick wave rule by code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Pick Wave Rule
+      tags:
+      - PickWaveRules
+      operationId: deleteCommerceRulesPickwaveByCode
+      x-operation-id-source: derived
+    get:
+      description: Gets a pick wave rule details by code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+          description: OK
+      summary: Get Pick Wave Rule by Code
+      tags:
+      - PickWaveRules
+      operationId: getCommerceRulesPickwaveByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing pick wave rule.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PickWaveRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+          description: OK
+      summary: Update Pick Wave Rule
+      tags:
+      - PickWaveRules
+      operationId: putCommerceRulesPickwaveByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/pickwave:
+    get:
+      description: Gets a collection of pick wave rules according to any specified filter criteria and sort options.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PickWaveRuleCollection'
+          description: OK
+      summary: Get Pick Wave Rules
+      tags:
+      - PickWaveRules
+      operationId: getCommerceRulesPickwave
+      x-operation-id-source: derived
+    post:
+      description: Creates a new pick wave rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PickWaveRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PickWaveRule'
+          description: OK
+      summary: Create Pick Wave Rule
+      tags:
+      - PickWaveRules
+      operationId: postCommerceRulesPickwave
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PickWaveRule:
+      description: Represents a rule for pick wave in the product administration system.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: 'Gets or sets the unique identifier of the PickWaveRule.
+
+            If not given provided on create one will be assigned. Read-only after creation.'
+          type:
+          - string
+          - 'null'
+        customerRules:
+          description: Gets or sets the list of Customer Rule where the PickWaveRule applies.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        description:
+          description: Gets or sets the description of the PickWaveRule.
+          type:
+          - string
+          - 'null'
+        enabled:
+          description: Gets or sets whether the PickWaveRule is enabled.
+          type:
+          - boolean
+          - 'null'
+        endDate:
+          description: End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isActive:
+          description: 'Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+
+            (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+
+            This reflects the effective window alone and does not incorporate the enabled flag.'
+          type:
+          - boolean
+          - 'null'
+        name:
+          description: Gets or sets the name of the PickWaveRule.
+          type:
+          - string
+          - 'null'
+        productRules:
+          description: Gets or sets the list of product rules associated with the PickWaveRule.
+          items:
+            $ref: '#/components/schemas/ProductRuleCode'
+          type:
+          - array
+          - 'null'
+        shipmentRules:
+          description: Gets or sets the list of Shipment Rule where the PickWaveRule applies.
+          items:
+            $ref: '#/components/schemas/ShipmentRuleCode'
+          type:
+          - array
+          - 'null'
+        startDate:
+          description: Start of the rule's effective window. Null = no lower bound (already active).
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductRuleCode:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          description: Master Catalog Id of the ProductRule.
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ShipmentRuleCode:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+      type: object
+    PickWaveRuleCollection:
+      description: Represents a collection of Pick Wave Rules.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PickWaveRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

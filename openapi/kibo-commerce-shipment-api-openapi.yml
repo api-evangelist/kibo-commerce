@@ -1,0 +1,7108 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment API
+  version: '1.0'
+  description: 'Operations tagged Shipment across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Shipment
+paths:
+  /commerce/shipments/{shipmentNumber}/backorderedItems:
+    post:
+      deprecated: false
+      description: Backorder items from a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackorderItemsRequest'
+        description: backorderItemsRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Backorder Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: backorderItemsRequestDto
+      operationId: postCommerceShipmentsByShipmentNumberBackorderedItems
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      description: Update a shipment's backordered items.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackorderItemsUpdateRequest'
+        description: backorderItemsUpdateRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Backorder Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: backorderItemsUpdateRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberBackorderedItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/backordered:
+    post:
+      deprecated: false
+      description: Backorder a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BackorderShipmentRequest'
+        description: backorderShipmentRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Backorder Shipment
+      tags:
+      - Shipment
+      x-codegen-request-body-name: backorderShipmentRequestDto
+      operationId: postCommerceShipmentsByShipmentNumberBackordered
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/canceledItems:
+    put:
+      deprecated: false
+      description: Cancel items from a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CancelItemsRequest'
+        description: cancelItemsRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Cancel Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: cancelItemsRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberCanceledItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/order/{orderId}/canceled:
+    put:
+      deprecated: false
+      description: Cancel an order's shipments.
+      parameters:
+      - description: orderId
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/CancelShipment'
+        description: cancelShipmentRequestDto
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Cancel Order Shipments
+      tags:
+      - Shipment
+      x-codegen-request-body-name: cancelShipmentRequestDto
+      operationId: putCommerceShipmentsOrderByOrderIdCanceled
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/canceled:
+    put:
+      deprecated: false
+      description: Cancel a specific shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/CancelShipment'
+        description: cancelShipmentRequestDto
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Cancel Shipment
+      tags:
+      - Shipment
+      x-codegen-request-body-name: cancelShipmentRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberCanceled
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/bulk:
+    post:
+      deprecated: false
+      description: Create new shipments in bulk.
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/FulfillmentAPIShipment'
+              type: array
+        description: newShipments
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfEntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Create Shipments
+      tags:
+      - Shipment
+      x-codegen-request-body-name: newShipments
+      operationId: postCommerceShipmentsBulk
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/customerAtCurbside:
+    put:
+      deprecated: false
+      description: Indicates that the customer is ready for curbside pickup.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties:
+                type: object
+              type: object
+        description: pickupInfo
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Customer At Curbside
+      tags:
+      - Shipment
+      x-codegen-request-body-name: pickupInfo
+      operationId: putCommerceShipmentsByShipmentNumberCustomerAtCurbside
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/customerAtStore:
+    put:
+      deprecated: false
+      description: Indicates that a customer is ready for in-store pickup.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Customer At Store
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberCustomerAtStore
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/customerCaredItems:
+    post:
+      deprecated: false
+      description: Places shipment items into Customer Care.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/RejectItemsRequest'
+        description: rejectItemsRequestDto
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Customer Care Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: rejectItemsRequestDto
+      operationId: postCommerceShipmentsByShipmentNumberCustomerCaredItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/customerCared:
+    put:
+      deprecated: false
+      description: Places a shipment into Customer Care.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/RejectShipment'
+        description: rejectShipmentRequestDto
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Customer Care Shipment
+      tags:
+      - Shipment
+      x-codegen-request-body-name: rejectShipmentRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberCustomerCared
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/customerInTransit:
+    put:
+      deprecated: false
+      description: Indicates that the customer is in transit for pickup.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Customer in Transit
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberCustomerInTransit
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/order/{orderId}:
+    delete:
+      deprecated: false
+      description: Delete the shipments of an order.
+      parameters:
+      - description: orderId
+        in: path
+        name: orderId
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Order Shipments
+      tags:
+      - Shipment
+      operationId: deleteCommerceShipmentsOrderByOrderId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/destination:
+    put:
+      deprecated: false
+      description: Update a shipment's destination.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentAPIDestination'
+        description: destinationDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Destination Update
+      tags:
+      - Shipment
+      x-codegen-request-body-name: destinationDto
+      operationId: putCommerceShipmentsByShipmentNumberDestination
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/estimatedDeliveryDate:
+    delete:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Estimated Delivery Date Clear
+      tags:
+      - Shipment
+      operationId: deleteCommerceShipmentsByShipmentNumberEstimatedDeliveryDate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/estimatedDeliveryDateUpdate:
+    put:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EstimatedDeliveryDateUpdateRequest'
+        description: estimatedDeliveryDateUpdateRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Estimated Delivery Date Update
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberEstimatedDeliveryDateUpdate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/tasks/{taskName}/completed:
+    put:
+      deprecated: false
+      description: Complete a shipment task.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: taskName
+        in: path
+        name: taskName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaskComplete'
+        description: taskCompleteDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Execute Task
+      tags:
+      - Shipment
+      x-codegen-request-body-name: taskCompleteDto
+      operationId: putCommerceShipmentsByShipmentNumberTasksByTaskNameCompleted
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/fulfilled:
+    put:
+      deprecated: false
+      description: Mark a shipment as fulfilled.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Fulfill Shipment
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberFulfilled
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/locationShipmentCount:
+    get:
+      deprecated: false
+      parameters:
+      - description: bypassSearchIndex
+        in: query
+        name: bypassSearchIndex
+        required: false
+        schema:
+          type: boolean
+      - description: locationCodes
+        explode: true
+        in: query
+        name: locationCodes
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+      - description: startDateTime
+        in: query
+        name: startDateTime
+        required: true
+        schema:
+          format: date-time
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfLocationShipmentCount'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfLocationShipmentCount'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfLocationShipmentCount'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Location Shipment Count
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsLocationShipmentCount
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/locationSummaryReport:
+    get:
+      deprecated: false
+      description: Get a location summary report.
+      parameters:
+      - description: bypassSearchIndex
+        in: query
+        name: bypassSearchIndex
+        schema:
+          type: boolean
+      - description: locationCodes
+        explode: true
+        in: query
+        name: locationCodes
+        required: true
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: startDateTime
+        in: query
+        name: startDateTime
+        required: true
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfLocationSummary'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfLocationSummary'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfLocationSummary'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Location Summary Report
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsLocationSummaryReport
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}:
+    delete:
+      deprecated: false
+      description: Delete a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Shipment
+      tags:
+      - Shipment
+      operationId: deleteCommerceShipmentsByShipmentNumber
+      x-operation-id-source: derived
+    get:
+      deprecated: false
+      description: Get a specific shipment by its number.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Shipment
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumber
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      description: Update and replace an existing shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: updateFields
+        explode: true
+        in: query
+        name: updateFields
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      requestBody:
+        $ref: '#/components/requestBodies/Shipment'
+        description: newShipment
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Replace Shipment
+      tags:
+      - Shipment
+      x-codegen-request-body-name: newShipment
+      operationId: putCommerceShipmentsByShipmentNumber
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/countsByStep:
+    get:
+      deprecated: false
+      description: Get the step counts of shipment types.
+      parameters:
+      - description: assignedLocations
+        explode: true
+        in: query
+        name: assignedLocations
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: shipmentType
+        in: query
+        name: shipmentType
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfDashboardResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfDashboardResponse'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfDashboardResponse'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Shipment Step Count by Shipment Type
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsCountsByStep
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments:
+    get:
+      deprecated: false
+      description: A paged list of shipments is returned according to any specified filter criteria and sort options. These Fulfillment APIs use a different paging and filtering scheme than most other APIs in the system. For more information, see the Sorting & Filtering APIs guide in the knowledge base.
+      parameters:
+      - in: query
+        name: bypassSearchIndex
+        schema:
+          type: boolean
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: isLate
+        schema:
+          type: boolean
+      - in: query
+        name: page
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: quickSearch
+        schema:
+          type: string
+      - in: query
+        name: sort
+        schema:
+          type: string
+      - in: query
+        name: workflowTaskName
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfShipment'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Shipments
+      tags:
+      - Shipment
+      operationId: getCommerceShipments
+      x-operation-id-source: derived
+    post:
+      deprecated: false
+      description: Create a new shipment.
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/Shipment'
+        description: newShipment
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: New Shipment
+      tags:
+      - Shipment
+      x-codegen-request-body-name: newShipment
+      operationId: postCommerceShipments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/tasks:
+    get:
+      deprecated: false
+      description: Get all shipment tasks.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfTask'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfTask'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfTask'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Tasks
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumberTasks
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/workflow/variables/{variableName}:
+    get:
+      deprecated: false
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: variableName
+        in: path
+        name: variableName
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/BpmVariable'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BpmVariable'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/BpmVariable'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Workflow Variable
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumberWorkflowVariablesByVariableName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/workflow/variables:
+    get:
+      deprecated: false
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BpmVariable'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BpmVariable'
+                type: array
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/BpmVariable'
+                type: array
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Workflow Variables
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumberWorkflowVariables
+      x-operation-id-source: derived
+    post:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BpmVariable'
+        description: variableDto
+        required: true
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Set Workflow Variable
+      tags:
+      - Shipment
+      operationId: postCommerceShipmentsByShipmentNumberWorkflowVariables
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/itemsReadyForPack:
+    post:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadyForPackItemsRequest'
+        description: readyForPackItemsRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Items Ready For Pack
+      tags:
+      - Shipment
+      operationId: postCommerceShipmentsByShipmentNumberItemsReadyForPack
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/itemsReadyForPrep:
+    post:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReadyForPrepItemsRequest'
+        description: readyForPrepItemsRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Items Ready For Prep
+      tags:
+      - Shipment
+      operationId: postCommerceShipmentsByShipmentNumberItemsReadyForPrep
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/newShipmentViaProxy:
+    post:
+      deprecated: false
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/Shipment'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: New Shipment Via Proxy
+      tags:
+      - Shipment
+      operationId: postCommerceShipmentsNewShipmentViaProxy
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/pickedUpItems:
+    post:
+      deprecated: false
+      description: Mark shipment items as picked up.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PickupItemsRequest'
+        description: pickupItemsRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Picked Up Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: pickupItemsRequestDto
+      operationId: postCommerceShipmentsByShipmentNumberPickedUpItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/reassignedItems:
+    put:
+      deprecated: false
+      description: Reassign shipment items.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReassignItemsRequest'
+        description: reassignItemsRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Reassign Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: reassignItemsRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberReassignedItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/reassigned:
+    put:
+      deprecated: false
+      description: Reassign a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReassignShipment'
+        description: reassignShipmentRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Reassign Shipments
+      tags:
+      - Shipment
+      x-codegen-request-body-name: reassignShipmentRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberReassigned
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/received:
+    put:
+      deprecated: false
+      description: Mark a transfer shipment as received.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Receive Transfer
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberReceived
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/refresh:
+    put:
+      deprecated: false
+      description: Refresh a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: shouldLog
+        in: query
+        name: shouldLog
+        schema:
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Refresh Shipment
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberRefresh
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/rejectedItems:
+    put:
+      deprecated: false
+      description: Reject shipment items.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/RejectItemsRequest'
+        description: rejectItemsRequestDto
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Reject Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: rejectItemsRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberRejectedItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/rejected:
+    put:
+      deprecated: false
+      description: Reject a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/RejectShipment'
+        description: rejectShipmentRequestDto
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Reject Shipment
+      tags:
+      - Shipment
+      x-codegen-request-body-name: rejectShipmentRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberRejected
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/order-summary/html:
+    get:
+      deprecated: false
+      description: Render an order summary in HTML.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRenderedContent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRenderedContent'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRenderedContent'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Render Order Summary
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumberOrderSummaryHtml
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/rendition/html:
+    get:
+      deprecated: false
+      description: Render a packing slip in HTML.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRenderedContent'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRenderedContent'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfRenderedContent'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Render Packing Slip
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumberRenditionHtml
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/items/{lineId}/email/resend:
+    put:
+      deprecated: false
+      description: Resend an item email notification.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Resend Item Email
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberItemsByLineIdEmailResend
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/email/resend:
+    put:
+      deprecated: false
+      description: Resend a shipment confirmation email.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Resend Shipment Email
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberEmailResend
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/retried:
+    put:
+      deprecated: false
+      description: Attempt to fulfill a shipment again.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Retry Fulfilling Shipment
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberRetried
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/tasks/{taskName}/reverted:
+    put:
+      deprecated: false
+      description: Revert a shipment task.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: taskName
+        in: path
+        name: taskName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Revert Task
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberTasksByTaskNameReverted
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/received/{search}:
+    put:
+      deprecated: false
+      description: Search for and receive a transfer shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: search
+        in: path
+        name: search
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Search and Receive Transfer
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsReceivedBySearch
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/receivable/{search}:
+    get:
+      deprecated: false
+      parameters:
+      - description: search
+        in: path
+        name: search
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Search Receivable Shipment
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsReceivableBySearch
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/search:
+    post:
+      deprecated: false
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetShipmentsRequest'
+        description: request
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PagedModelOfEntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Search Shipments
+      tags:
+      - Shipment
+      operationId: postCommerceShipmentsSearch
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/tasks/{taskName}/skipped:
+    put:
+      deprecated: false
+      description: Skip a shipment task.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: taskName
+        in: path
+        name: taskName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Skip Task
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberTasksByTaskNameSkipped
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/transferredItems:
+    put:
+      deprecated: false
+      description: Transfer items from a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferItemsRequest'
+        description: transferItemsRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Transfer Items
+      tags:
+      - Shipment
+      x-codegen-request-body-name: transferItemsRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberTransferredItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/transferred:
+    put:
+      deprecated: false
+      description: Transfer a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferShipment'
+        description: transferShipmentRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Transfer Shipment
+      tags:
+      - Shipment
+      x-codegen-request-body-name: transferShipmentRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberTransferred
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/fulfillmentFields:
+    put:
+      deprecated: false
+      description: Update a shipment's fulfillment fields.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/Item'
+              type: array
+        description: items
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Fulfillment Fields
+      tags:
+      - Shipment
+      x-codegen-request-body-name: items
+      operationId: putCommerceShipmentsByShipmentNumberFulfillmentFields
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/giftCardInfo:
+    put:
+      deprecated: false
+      description: Update the gift card information of a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GiftCardInfoRequest'
+        description: giftCardInfoRequestDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Gift Card Info
+      tags:
+      - Shipment
+      x-codegen-request-body-name: giftCardInfoRequestDto
+      operationId: putCommerceShipmentsByShipmentNumberGiftCardInfo
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/lastCancellationDate:
+    put:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LastCancellationDateDto'
+        description: lastCancellationDateDto
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Last Cancellation Date
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberLastCancellationDate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/items/{lineId}/validateStock:
+    delete:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Reset Stock Validation
+      tags:
+      - Shipment
+      operationId: deleteCommerceShipmentsByShipmentNumberItemsByLineIdValidateStock
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateStockItem'
+        description: request
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Validate Stock Item
+      tags:
+      - Shipment
+      operationId: putCommerceShipmentsByShipmentNumberItemsByLineIdValidateStock
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/workflow-definition-image:
+    get:
+      deprecated: false
+      description: Get the workflow definition image of a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/svg+xml:
+              schema:
+                type: string
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Workflow Definition Image
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumberWorkflowDefinitionImage
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/workflow-instance-image:
+    get:
+      deprecated: false
+      description: Get a workflow instance image for a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/svg+xml:
+              schema:
+                type: string
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Workflow Instance Image
+      tags:
+      - Shipment
+      operationId: getCommerceShipmentsByShipmentNumberWorkflowInstanceImage
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ReadyForPrepItem:
+      properties:
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+      title: ReadyForPrepItem
+      type: object
+    CollectionModelOfTask:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/Task'
+            type: array
+          type: object
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+      title: CollectionModelOfTask
+      type: object
+    BackorderItemsUpdateRequest:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BackorderItemUpdate'
+          type: array
+      title: BackorderItemsUpdateRequest
+      type: object
+    EstimatedDeliveryDateUpdateRequest:
+      properties:
+        estimatedDeliveryDate:
+          format: date-time
+          type: string
+      title: EstimatedDeliveryDateUpdateRequest
+      type: object
+    Sla:
+      properties:
+        atRiskTrackingInfo:
+          $ref: '#/components/schemas/ThresholdTrackingInfo'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        compliantTrackingInfo:
+          $ref: '#/components/schemas/ThresholdTrackingInfo'
+        endDisplayValue:
+          type: string
+        nonCompliantTrackingInfo:
+          $ref: '#/components/schemas/ThresholdTrackingInfo'
+        slaCode:
+          type: string
+        slaComplianceLevel:
+          type: string
+        slaDefinitionId:
+          type: string
+        slaDefinitionNumber:
+          format: int32
+          type: integer
+        slaDefinitionStatus:
+          type: string
+        slaDueDate:
+          format: date-time
+          type: string
+        slaId:
+          format: int32
+          type: integer
+        slaName:
+          type: string
+        slaStatus:
+          type: string
+        startDisplayValue:
+          type: string
+      title: Sla
+      type: object
+    FulfillmentAPIPackageMeasurements:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        height:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        length:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        weight:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        width:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+      title: PackageMeasurements
+      type: object
+    InventoryAllocation:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        fulfilledDate:
+          format: date-time
+          type: string
+        inventoryId:
+          format: int32
+          type: integer
+        lotCode:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        serialNumber:
+          type: string
+        sku:
+          type: string
+        status:
+          type: string
+      title: InventoryAllocation
+      type: object
+    HandleOptionItem:
+      properties:
+        blockAssignment:
+          type: boolean
+        holdBlockAssignment:
+          type: boolean
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        reason:
+          $ref: '#/components/schemas/TaskReason'
+      title: HandleOptionItem
+      type: object
+    FulfillmentAPIAuditInfo:
+      properties:
+        createBy:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      title: AuditInfo
+      type: object
+    PackingSlipItemDetailDto:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        lineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        receivedQuantity:
+          format: int32
+          type: integer
+        substitutedQuantity:
+          format: int32
+          type: integer
+      title: PackingSlipItemDetailDto
+      type: object
+    CollectionModelOfLocationSummary:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/LocationSummary'
+            type: array
+          type: object
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+      title: CollectionModelOfLocationSummary
+      type: object
+    ShipmentItemAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type: integer
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        fullyQualifiedName:
+          type: string
+        values:
+          items:
+            type: object
+          type: array
+      title: ShipmentItemAttribute
+      type: object
+    RejectedReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: RejectedReason
+      type: object
+    DimensionsDto:
+      properties:
+        height:
+          type: number
+        length:
+          type: number
+        unit:
+          type: string
+        width:
+          type: number
+      title: DimensionsDto
+      type: object
+    FulfillmentAPITracking:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        number:
+          type: string
+        url:
+          type: string
+      title: Tracking
+      type: object
+    ReassignItemsRequest:
+      properties:
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ReassignItem'
+          type: array
+        runId:
+          type: string
+      title: ReassignItemsRequest
+      type: object
+    GiftCardInfoRequest:
+      properties:
+        email:
+          type: string
+        firstName:
+          type: string
+        giftCardMessage:
+          type: string
+        lastNameOrSurname:
+          type: string
+      title: GiftCardInfoRequest
+      type: object
+    FulfillmentAPITaskInput:
+      properties:
+        helpMessage:
+          type: string
+        label:
+          type: string
+        maxLength:
+          format: int32
+          type: integer
+        maximum:
+          type: number
+        minLength:
+          format: int32
+          type: integer
+        minimum:
+          type: number
+        name:
+          type: string
+        options:
+          items:
+            type: object
+          type: array
+        pattern:
+          type: string
+        required:
+          type: boolean
+        type:
+          enum:
+          - STRING
+          - INTEGER
+          - NUMBER
+          - BOOLEAN
+          - OBJECT
+          - LIST
+          - UNKNOWN
+          type: string
+      title: TaskInput
+      type: object
+    TransferItemsRequest:
+      properties:
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/TransferItem'
+          type: array
+      title: TransferItemsRequest
+      type: object
+    FulfillmentAPIAppeasementReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: AppeasementReason
+      type: object
+    LastCancellationDateDto:
+      properties:
+        lastCancellationDate:
+          format: date-time
+          type: string
+      title: LastCancellationDateDto
+      type: object
+    TransferItem:
+      properties:
+        blockAssignment:
+          type: boolean
+        fulfillmentLocationCode:
+          type: string
+        holdBlockAssignment:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        transferredReason:
+          $ref: '#/components/schemas/TransferredReason'
+      title: TransferItem
+      type: object
+    InvoiceVendor:
+      properties:
+        address:
+          $ref: '#/components/schemas/FulfillmentAPIAddress'
+        data:
+          type: object
+        name:
+          type: string
+        taxId:
+          type: string
+        vendorId:
+          type: string
+      title: InvoiceVendor
+      type: object
+    UriTemplate:
+      properties:
+        variableNames:
+          items:
+            type: string
+          type: array
+        variables:
+          items:
+            $ref: '#/components/schemas/TemplateVariable'
+          type: array
+      title: UriTemplate
+      type: object
+    FulfillmentAPICanceledReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: CanceledReason
+      type: object
+    FulfillmentAPIShopperNotes:
+      properties:
+        comments:
+          type: string
+        deliveryInstructions:
+          type: string
+        giftMessage:
+          type: string
+      title: ShopperNotes
+      type: object
+    FulfillmentAPIShipmentAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type: integer
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        fullyQualifiedName:
+          type: string
+        values:
+          items:
+            type: object
+          type: array
+      title: ShipmentAttribute
+      type: object
+    CancelItemsRequest:
+      properties:
+        blockAssignment:
+          type: boolean
+        holdBlockAssignment:
+          type: boolean
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/CancelItem'
+          type: array
+        sendNotifications:
+          type: boolean
+      title: CancelItemsRequest
+      type: object
+    TaskReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: TaskReason
+      type: object
+    FulfillmentAPIBundleInfo:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        imageUrl:
+          type: string
+        name:
+          type: string
+        productCode:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+      title: BundleInfo
+      type: object
+    EntityModelOfShipment:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        acceptedDate:
+          format: date-time
+          type: string
+        alternateContact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        assignedLocationCode:
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        canceledItems:
+          items:
+            $ref: '#/components/schemas/CanceledItem'
+          type: array
+        carrier:
+          type: string
+        cartId:
+          type: string
+        changeMessages:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIChangeMessage'
+          type: array
+        channel:
+          type: string
+        childShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        currencyCode:
+          type: string
+        currentRunId:
+          description: Run currently mutating this shipment (== Kibo.Jobs jobId); null when idle (FR-059d)
+          type: string
+        customer:
+          $ref: '#/components/schemas/FulfillmentAPICustomer'
+        customerAccountId:
+          format: int32
+          type: integer
+        customerAddressId:
+          format: int32
+          type: integer
+        customerTaxId:
+          type: string
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        deliveryWindow:
+          $ref: '#/components/schemas/FulfillmentAPIDeliveryWindow'
+        destination:
+          $ref: '#/components/schemas/FulfillmentAPIDestination'
+        dutyAdjustment:
+          type: number
+        dutyTotal:
+          type: number
+        email:
+          type: string
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        externalOrderId:
+          type: string
+        fulfillmentDate:
+          format: date-time
+          type: string
+        fulfillmentLocationCode:
+          type: string
+        fulfillmentPriority:
+          format: int32
+          type: integer
+        fulfillmentStatus:
+          enum:
+          - NotFulfilled
+          - Fulfilled
+          type: string
+        futureDate:
+          format: date-time
+          type: string
+        groupId:
+          type: string
+        handlingAdjustment:
+          type: number
+        handlingSubtotal:
+          type: number
+        handlingTaxAdjustment:
+          type: number
+        handlingTaxTotal:
+          type: number
+        handlingTotal:
+          type: number
+        holdReleaseDate:
+          format: date-time
+          type: string
+        isAutoAssigned:
+          type: boolean
+        isCrossDockEligible:
+          type: boolean
+        isDropship:
+          type: boolean
+        isExpress:
+          type: boolean
+        isFlatRateShipping:
+          type: boolean
+        isHistoricalImport:
+          type: boolean
+        isImmutable:
+          type: boolean
+        isOptInForSms:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+        lastCancellationDate:
+          format: date-time
+          type: string
+        lineItemSubtotal:
+          type: number
+        lineItemTaxAdjustment:
+          type: number
+        lineItemTaxTotal:
+          type: number
+        lineItemTotal:
+          type: number
+        lowestComplianceLevel:
+          type: string
+        masterTrackingNumber:
+          type: string
+        minutesSinceOnWorkflowStep:
+          format: int64
+          type: integer
+        minutesSinceOrdered:
+          format: int64
+          type: integer
+        mutabilityInfo:
+          $ref: '#/components/schemas/MutabilityInfo'
+        orderId:
+          type: string
+        orderNumber:
+          format: int32
+          type: integer
+        orderSubmitDate:
+          format: date-time
+          type: string
+        orderType:
+          enum:
+          - Offline
+          - Online
+          type: string
+        originalEdd:
+          description: First expectedDeliveryDate this shipment ever carried (write-once, never cleared); non-null marks that the shipment has, at some point, had an EDD. Server-managed (FR-060); ignored on inbound writes.
+          format: date-time
+          type: string
+        originalShipmentNumber:
+          format: int32
+          type: integer
+        packageReceivingEligible:
+          description: FR-014/FR-016 multi-package-receiving eligibility signal. Only present when the MULTI_PACKAGE_RECEIVING_FOR_TRANSFER_SHIPMENTS tenant attribute is enabled and the transfer shipment has at least one package; null otherwise so tenants without the attribute enabled see no shape change (US2-AC2).
+          type: boolean
+        packages:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIPackage'
+          type: array
+        packagesPendingCount:
+          description: 'US4 progress display: packagesTotalCount minus packagesReceivedCount. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        packagesReceivedCount:
+          description: 'US4 progress display: count of packages with receiptStatus=RECEIVED. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        packagesTotalCount:
+          description: 'US4 progress display: total expected package count. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        parentCheckoutNumber:
+          format: int32
+          type: integer
+        parentShipmentNumber:
+          format: int32
+          type: integer
+        paymentInvoice:
+          $ref: '#/components/schemas/PaymentInvoice'
+        pickStatus:
+          enum:
+          - AVAILABLE
+          - IN_WAVE
+          - PICKED
+          - TRANSFER
+          - COMPLETE
+          type: string
+        pickType:
+          enum:
+          - NORMAL
+          - SINGLE
+          - MULTIPLE
+          type: string
+        pickWaveNumber:
+          format: int32
+          type: integer
+        pickupInfo:
+          additionalProperties:
+            type: object
+          type: object
+        priorityInfo:
+          $ref: '#/components/schemas/PriorityInfo'
+        readyForPickup:
+          type: boolean
+        readyForPickupDate:
+          format: date-time
+          type: string
+        readyToCapture:
+          type: boolean
+        reassignedItems:
+          items:
+            $ref: '#/components/schemas/ReassignedItem'
+          type: array
+        receivedDate:
+          format: date-time
+          type: string
+        rejectedItems:
+          items:
+            $ref: '#/components/schemas/RejectedItem'
+          type: array
+        runInfo:
+          description: Capped per-run history of operations that created/mutated this shipment (FR-059d)
+          items:
+            $ref: '#/components/schemas/RunInfo'
+          type: array
+        sentCustomerAtStoreNotification:
+          type: boolean
+        sentCustomerInTransitNotification:
+          type: boolean
+        shipDate:
+          format: date-time
+          type: string
+        shipmentAdjustment:
+          type: number
+        shipmentAttributes:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIShipmentAttribute'
+          type: array
+        shipmentConsolidationId:
+          type: string
+        shipmentGroup:
+          type: string
+        shipmentNotes:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIShipmentNote'
+          type: array
+        shipmentNumber:
+          format: int32
+          type: integer
+        shipmentStatus:
+          enum:
+          - READY
+          - REASSIGNED
+          - BACKORDER
+          - CANCELED
+          - FULFILLED
+          - CUSTOMER_CARE
+          - DELETED
+          - FUTURE
+          type: string
+        shipmentStatusReason:
+          $ref: '#/components/schemas/FulfillmentAPIShipmentStatusReason'
+        shipmentType:
+          description: Shipment type code
+          enum:
+          - STH
+          - FXCB
+          - BOPIS
+          - BOPIS_Curbside
+          - Transfer
+          - Curbside
+          - Digital
+          - Delivery
+          example: STH
+          type: string
+        shippingAdjustment:
+          type: number
+        shippingMethodCode:
+          type: string
+        shippingMethodName:
+          type: string
+        shippingSubtotal:
+          type: number
+        shippingTaxAdjustment:
+          type: number
+        shippingTaxTotal:
+          type: number
+        shippingTotal:
+          type: number
+        shopperNotes:
+          $ref: '#/components/schemas/FulfillmentAPIShopperNotes'
+        siteId:
+          format: int32
+          type: integer
+        slas:
+          items:
+            $ref: '#/components/schemas/Sla'
+          type: array
+        substitutedItems:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPISubstitutedItem'
+          type: array
+        taxData:
+          type: object
+        tenantId:
+          format: int32
+          type: integer
+        total:
+          type: number
+        transferShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        transferredItems:
+          items:
+            $ref: '#/components/schemas/TransferredItem'
+          type: array
+        transitTime:
+          type: string
+        userId:
+          type: string
+        workflowProcessContainerId:
+          type: string
+        workflowProcessId:
+          type: string
+        workflowProcessVersion:
+          type: string
+        workflowState:
+          $ref: '#/components/schemas/FulfillmentAPIWorkflowState'
+      required:
+      - shipmentType
+      title: EntityModelOfShipment
+      type: object
+    ReassignedItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        fulfillmentLocationCode:
+          type: string
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        reassignedReason:
+          $ref: '#/components/schemas/ReassignedReason'
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: ReassignedItem
+      type: object
+    InventoryTag:
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      title: InventoryTag
+      type: object
+    ValidateStockItem:
+      properties:
+        substituteItems:
+          items:
+            $ref: '#/components/schemas/SubstituteItem'
+          type: array
+        validatedQuantity:
+          format: int32
+          type: integer
+        validationComplete:
+          type: boolean
+      title: ValidateStockItem
+      type: object
+    ReassignShipment:
+      properties:
+        blockAssignment:
+          type: boolean
+        fulfillmentLocationCode:
+          type: string
+        holdBlockAssignment:
+          type: boolean
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ReassignItem'
+          type: array
+        reassignedReason:
+          $ref: '#/components/schemas/ReassignedReason'
+        runId:
+          type: string
+      title: ReassignShipment
+      type: object
+    FulfillmentAPICustomer:
+      properties:
+        customerContact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+        data:
+          type: object
+        isDestinationCommercial:
+          type: boolean
+      title: Customer
+      type: object
+    FulfillmentAPIPhone:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        home:
+          type: string
+        mobile:
+          type: string
+        work:
+          type: string
+      title: Phone
+      type: object
+    FulfillmentAPIDestination:
+      properties:
+        data:
+          type: object
+        destinationContact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+        isDestinationCommercial:
+          type: boolean
+        locationCode:
+          type: string
+      title: Destination
+      type: object
+    LinkRelation:
+      title: LinkRelation
+      type: object
+    InvoiceLineItem:
+      properties:
+        data:
+          type: object
+        description:
+          type: string
+        lineItemType:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        totalPrice:
+          type: number
+        unitPrice:
+          type: number
+      title: InvoiceLineItem
+      type: object
+    EntityModelOfDashboardResponse:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        shipmentType:
+          type: string
+        shipmentTypeDisplayName:
+          type: string
+        steps:
+          items:
+            $ref: '#/components/schemas/DashboardStep'
+          type: array
+      title: EntityModelOfDashboardResponse
+      type: object
+    CollectionModelOfShipment:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/FulfillmentAPIShipment'
+            type: array
+          type: object
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+      title: CollectionModelOfShipment
+      type: object
+    Item:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: Item
+      type: object
+    CartonizationDto:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        boxes:
+          items:
+            $ref: '#/components/schemas/PackedBoxDto'
+          type: array
+        packingSuggestionId:
+          type: string
+      title: CartonizationDto
+      type: object
+    FulfillmentAPIDeliveryWindow:
+      properties:
+        endTime:
+          format: date-time
+          type: string
+        startTime:
+          format: date-time
+          type: string
+      title: DeliveryWindow
+      type: object
+    BackorderItem:
+      properties:
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        holdBlockAssignment:
+          type: boolean
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+      title: BackorderItem
+      type: object
+    FulfillmentAPIShipmentStatusReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: ShipmentStatusReason
+      type: object
+    FulfillmentAPISubstituteInfo:
+      properties:
+        optIn:
+          type: string
+        substituteProductCode:
+          type: string
+        substituteVariantCode:
+          type: string
+      title: SubstituteInfo
+      type: object
+    FulfillmentAPIReturnRuleInfo:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        isReturnable:
+          type: boolean
+        maxDays:
+          format: int32
+          type: integer
+        maxQty:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+      title: ReturnRuleInfo
+      type: object
+    FulfillmentAPIPickupItem:
+      properties:
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+      title: PickupItem
+      type: object
+    FulfillmentAPIGiftCard:
+      properties:
+        activationDate:
+          format: date-time
+          type: string
+        cardNumber:
+          type: string
+        code:
+          type: string
+        creditType:
+          type: string
+        creditValue:
+          type: number
+        currencyCode:
+          type: string
+        currentBalance:
+          type: number
+        customerId:
+          format: int32
+          type: integer
+        expirationDate:
+          format: date-time
+          type: string
+        initialBalance:
+          type: number
+      title: GiftCard
+      type: object
+    RejectItemsRequest:
+      properties:
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/RejectItem'
+          type: array
+      title: RejectItemsRequest
+      type: object
+    LocationShipmentCount:
+      properties:
+        locationCode:
+          type: string
+        totalShipments:
+          format: int32
+          type: integer
+      title: LocationShipmentCount
+      type: object
+    ReassignItem:
+      properties:
+        blockAssignment:
+          type: boolean
+        fulfillmentLocationCode:
+          type: string
+        holdBlockAssignment:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        reassignedReason:
+          $ref: '#/components/schemas/ReassignedReason'
+      title: ReassignItem
+      type: object
+    FulfillmentAPISubstitutedItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteItemLineIds:
+          items:
+            format: int32
+            type: integer
+          type: array
+        substituteQuantity:
+          format: int32
+          type: integer
+        substituteReason:
+          $ref: '#/components/schemas/SubstituteReason'
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: SubstitutedItem
+      type: object
+    ThresholdTrackingInfo:
+      properties:
+        code:
+          type: string
+        endDate:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+      title: ThresholdTrackingInfo
+      type: object
+    CollectionModelOfEntityModelOfShipment:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/EntityModelOfShipment'
+            type: array
+          type: object
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+      title: CollectionModelOfEntityModelOfShipment
+      type: object
+    SubstituteItem:
+      properties:
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        lineId:
+          format: int32
+          type: integer
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        substituteReason:
+          $ref: '#/components/schemas/SubstituteReason'
+        variationProductCode:
+          type: string
+      title: SubstituteItem
+      type: object
+    BpmVariable:
+      properties:
+        name:
+          type: string
+        oldValue:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+        value:
+          type: string
+      title: BpmVariable
+      type: object
+    PickupItemsRequest:
+      properties:
+        bpmVariables:
+          items:
+            $ref: '#/components/schemas/BpmVariable'
+          type: array
+        forceFulfill:
+          type: boolean
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIPickupItem'
+          type: array
+      title: PickupItemsRequest
+      type: object
+    PriorityEvent:
+      properties:
+        action:
+          type: string
+        priority:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+        ruleType:
+          type: string
+        shipmentStatus:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      title: PriorityEvent
+      type: object
+    TransferShipment:
+      properties:
+        blockAssignment:
+          type: boolean
+        fulfillmentLocationCode:
+          type: string
+        holdBlockAssignment:
+          type: boolean
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/TransferItem'
+          type: array
+        transferredReason:
+          $ref: '#/components/schemas/TransferredReason'
+      title: TransferShipment
+      type: object
+    RejectItem:
+      properties:
+        blockAssignment:
+          type: boolean
+        holdBlockAssignment:
+          type: boolean
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        rejectedReason:
+          $ref: '#/components/schemas/RejectedReason'
+      title: RejectItem
+      type: object
+    EntityModelOfRenderedContent:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        content:
+          type: string
+      title: EntityModelOfRenderedContent
+      type: object
+    FulfillmentAPIShipmentNote:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        noteId:
+          type: string
+        noteText:
+          type: string
+        role:
+          type: string
+        username:
+          type: string
+      title: ShipmentNote
+      type: object
+    FulfillmentAPIMeasurement:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        unit:
+          type: string
+        value:
+          type: number
+      title: Measurement
+      type: object
+    FulfillmentAPIShipment:
+      properties:
+        acceptedDate:
+          format: date-time
+          type: string
+        alternateContact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        assignedLocationCode:
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        canceledItems:
+          items:
+            $ref: '#/components/schemas/CanceledItem'
+          type: array
+        carrier:
+          type: string
+        cartId:
+          type: string
+        changeMessages:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIChangeMessage'
+          type: array
+        channel:
+          type: string
+        childShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        currencyCode:
+          type: string
+        currentRunId:
+          description: Run currently mutating this shipment (== Kibo.Jobs jobId); null when idle (FR-059d)
+          type: string
+        customer:
+          $ref: '#/components/schemas/FulfillmentAPICustomer'
+        customerAccountId:
+          format: int32
+          type: integer
+        customerAddressId:
+          format: int32
+          type: integer
+        customerTaxId:
+          type: string
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        deliveryWindow:
+          $ref: '#/components/schemas/FulfillmentAPIDeliveryWindow'
+        destination:
+          $ref: '#/components/schemas/FulfillmentAPIDestination'
+        dutyAdjustment:
+          type: number
+        dutyTotal:
+          type: number
+        email:
+          type: string
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        externalOrderId:
+          type: string
+        fulfillmentDate:
+          format: date-time
+          type: string
+        fulfillmentLocationCode:
+          type: string
+        fulfillmentPriority:
+          format: int32
+          type: integer
+        fulfillmentStatus:
+          enum:
+          - NotFulfilled
+          - Fulfilled
+          type: string
+        futureDate:
+          format: date-time
+          type: string
+        groupId:
+          type: string
+        handlingAdjustment:
+          type: number
+        handlingSubtotal:
+          type: number
+        handlingTaxAdjustment:
+          type: number
+        handlingTaxTotal:
+          type: number
+        handlingTotal:
+          type: number
+        holdReleaseDate:
+          format: date-time
+          type: string
+        isAutoAssigned:
+          type: boolean
+        isCrossDockEligible:
+          type: boolean
+        isDropship:
+          type: boolean
+        isExpress:
+          type: boolean
+        isFlatRateShipping:
+          type: boolean
+        isHistoricalImport:
+          type: boolean
+        isImmutable:
+          type: boolean
+        isOptInForSms:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+        lastCancellationDate:
+          format: date-time
+          type: string
+        lineItemSubtotal:
+          type: number
+        lineItemTaxAdjustment:
+          type: number
+        lineItemTaxTotal:
+          type: number
+        lineItemTotal:
+          type: number
+        lowestComplianceLevel:
+          type: string
+        masterTrackingNumber:
+          type: string
+        minutesSinceOnWorkflowStep:
+          format: int64
+          type: integer
+        minutesSinceOrdered:
+          format: int64
+          type: integer
+        mutabilityInfo:
+          $ref: '#/components/schemas/MutabilityInfo'
+        orderId:
+          type: string
+        orderNumber:
+          format: int32
+          type: integer
+        orderSubmitDate:
+          format: date-time
+          type: string
+        orderType:
+          enum:
+          - Offline
+          - Online
+          type: string
+        originalEdd:
+          description: First expectedDeliveryDate this shipment ever carried (write-once, never cleared); non-null marks that the shipment has, at some point, had an EDD. Server-managed (FR-060); ignored on inbound writes.
+          format: date-time
+          type: string
+        originalShipmentNumber:
+          format: int32
+          type: integer
+        packageReceivingEligible:
+          description: FR-014/FR-016 multi-package-receiving eligibility signal. Only present when the MULTI_PACKAGE_RECEIVING_FOR_TRANSFER_SHIPMENTS tenant attribute is enabled and the transfer shipment has at least one package; null otherwise so tenants without the attribute enabled see no shape change (US2-AC2).
+          type: boolean
+        packages:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIPackage'
+          type: array
+        packagesPendingCount:
+          description: 'US4 progress display: packagesTotalCount minus packagesReceivedCount. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        packagesReceivedCount:
+          description: 'US4 progress display: count of packages with receiptStatus=RECEIVED. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        packagesTotalCount:
+          description: 'US4 progress display: total expected package count. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        parentCheckoutNumber:
+          format: int32
+          type: integer
+        parentShipmentNumber:
+          format: int32
+          type: integer
+        paymentInvoice:
+          $ref: '#/components/schemas/PaymentInvoice'
+        pickStatus:
+          enum:
+          - AVAILABLE
+          - IN_WAVE
+          - PICKED
+          - TRANSFER
+          - COMPLETE
+          type: string
+        pickType:
+          enum:
+          - NORMAL
+          - SINGLE
+          - MULTIPLE
+          type: string
+        pickWaveNumber:
+          format: int32
+          type: integer
+        pickupInfo:
+          additionalProperties:
+            type: object
+          type: object
+        priorityInfo:
+          $ref: '#/components/schemas/PriorityInfo'
+        readyForPickup:
+          type: boolean
+        readyForPickupDate:
+          format: date-time
+          type: string
+        readyToCapture:
+          type: boolean
+        reassignedItems:
+          items:
+            $ref: '#/components/schemas/ReassignedItem'
+          type: array
+        receivedDate:
+          format: date-time
+          type: string
+        rejectedItems:
+          items:
+            $ref: '#/components/schemas/RejectedItem'
+          type: array
+        runInfo:
+          description: Capped per-run history of operations that created/mutated this shipment (FR-059d)
+          items:
+            $ref: '#/components/schemas/RunInfo'
+          type: array
+        sentCustomerAtStoreNotification:
+          type: boolean
+        sentCustomerInTransitNotification:
+          type: boolean
+        shipDate:
+          format: date-time
+          type: string
+        shipmentAdjustment:
+          type: number
+        shipmentAttributes:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIShipmentAttribute'
+          type: array
+        shipmentConsolidationId:
+          type: string
+        shipmentGroup:
+          type: string
+        shipmentNotes:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIShipmentNote'
+          type: array
+        shipmentNumber:
+          format: int32
+          type: integer
+        shipmentStatus:
+          enum:
+          - READY
+          - REASSIGNED
+          - BACKORDER
+          - CANCELED
+          - FULFILLED
+          - CUSTOMER_CARE
+          - DELETED
+          - FUTURE
+          - HOLD
+          - PARTIALLY_RECEIVED
+          type: string
+        shipmentStatusReason:
+          $ref: '#/components/schemas/FulfillmentAPIShipmentStatusReason'
+        shipmentType:
+          description: Shipment type code
+          enum:
+          - STH
+          - FXCB
+          - BOPIS
+          - BOPIS_Curbside
+          - Transfer
+          - Curbside
+          - Digital
+          - Delivery
+          example: STH
+          type: string
+        shippingAdjustment:
+          type: number
+        shippingMethodCode:
+          type: string
+        shippingMethodName:
+          type: string
+        shippingSubtotal:
+          type: number
+        shippingTaxAdjustment:
+          type: number
+        shippingTaxTotal:
+          type: number
+        shippingTotal:
+          type: number
+        shopperNotes:
+          $ref: '#/components/schemas/FulfillmentAPIShopperNotes'
+        siteId:
+          format: int32
+          type: integer
+        slas:
+          items:
+            $ref: '#/components/schemas/Sla'
+          type: array
+        substitutedItems:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPISubstitutedItem'
+          type: array
+        taxData:
+          type: object
+        tenantId:
+          format: int32
+          type: integer
+        total:
+          type: number
+        transferShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        transferredItems:
+          items:
+            $ref: '#/components/schemas/TransferredItem'
+          type: array
+        transitTime:
+          type: string
+        userId:
+          type: string
+        workflowProcessContainerId:
+          type: string
+        workflowProcessId:
+          type: string
+        workflowProcessVersion:
+          type: string
+        workflowState:
+          $ref: '#/components/schemas/FulfillmentAPIWorkflowState'
+      required:
+      - shipmentType
+      title: Shipment
+      type: object
+    DashboardStep:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        name:
+          type: string
+        total:
+          format: int32
+          type: integer
+      title: DashboardStep
+      type: object
+    PageMetadata:
+      properties:
+        number:
+          format: int64
+          type: integer
+        size:
+          format: int64
+          type: integer
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int64
+          type: integer
+      title: PageMetadata
+      type: object
+    SubstituteReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: SubstituteReason
+      type: object
+    BackorderItemUpdate:
+      properties:
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        lineId:
+          format: int32
+          type: integer
+      title: BackorderItemUpdate
+      type: object
+    FulfillmentAPIFulfillmentField:
+      properties:
+        name:
+          type: string
+        required:
+          type: boolean
+        userEnteredValue:
+          type: object
+      title: FulfillmentField
+      type: object
+    TransferredItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        fulfillmentLocationCode:
+          type: string
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        rejectedReason:
+          $ref: '#/components/schemas/RejectedReason'
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: TransferredItem
+      type: object
+    InvoiceTerms:
+      properties:
+        data:
+          type: object
+        dueDate:
+          format: date-time
+          type: string
+        paymentTerms:
+          type: string
+      title: InvoiceTerms
+      type: object
+    HandleOption:
+      properties:
+        blockAssignment:
+          type: boolean
+        holdBlockAssignment:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/HandleOptionItem'
+          type: array
+        reason:
+          $ref: '#/components/schemas/TaskReason'
+      title: HandleOption
+      type: object
+    FulfillmentAPIWorkflowState:
+      properties:
+        activeTaskName:
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        completedDate:
+          format: date-time
+          type: string
+        processInstanceId:
+          type: string
+        shipmentState:
+          type: string
+        taskList:
+          items:
+            $ref: '#/components/schemas/Task'
+          type: array
+        variables:
+          additionalProperties:
+            $ref: '#/components/schemas/BpmVariable'
+          type: object
+      title: WorkflowState
+      type: object
+    FulfillmentAPIPackage:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        carrier:
+          type: string
+        carrierName:
+          type: string
+        cartonization:
+          $ref: '#/components/schemas/CartonizationDto'
+        fullyMatched:
+          description: Whether every line item's received+substituted quantity matched its expected quantity for this package. Null until received or when not eligible/flag disabled.
+          type: boolean
+        fxcbDocumentsUrl:
+          type: string
+        fxcbPackNotificationId:
+          type: string
+        hasLabel:
+          type: boolean
+        integratorId:
+          type: string
+        labelFormat:
+          type: string
+        manifestId:
+          type: string
+        measurements:
+          $ref: '#/components/schemas/FulfillmentAPIPackageMeasurements'
+        packageConsolidationId:
+          type: string
+        packageId:
+          type: string
+        packagingType:
+          type: string
+        packingSlipItemDetails:
+          items:
+            $ref: '#/components/schemas/PackingSlipItemDetailDto'
+          type: array
+        packingSlipNumber:
+          format: int32
+          type: integer
+        receiptStatus:
+          description: Package-level receipt status (NOT_RECEIVED/RECEIVED). Null when not eligible/tenant attribute disabled.
+          enum:
+          - NOT_RECEIVED
+          - RECEIVED
+          type: string
+        receivedBy:
+          description: User ID that received this package. Null until received or when not eligible/flag disabled.
+          type: string
+        receivedDate:
+          description: Timestamp this package was marked received. Null until received or when not eligible/flag disabled.
+          format: date-time
+          type: string
+        receivingMethod:
+          description: Method used to receive this package (TRACKING_NUMBER_RECEIPT/ITEM_VALIDATION). Null until received or when not eligible/flag disabled.
+          enum:
+          - TRACKING_NUMBER_RECEIPT
+          - ITEM_VALIDATION
+          - WHOLE_SHIPMENT_RECEIPT
+          type: string
+        returnCarrier:
+          type: string
+        returnTrackingNumbers:
+          items:
+            type: string
+          type: array
+        returnTrackings:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPITracking'
+          type: array
+        shippingMethodCode:
+          type: string
+        shippingMethodName:
+          type: string
+        signatureRequired:
+          type: boolean
+        stringBarcode:
+          type: string
+        trackingNumbers:
+          items:
+            type: string
+          type: array
+        trackings:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPITracking'
+          type: array
+      title: Package
+      type: object
+    TransferredReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: TransferredReason
+      type: object
+    FulfillmentAPILink:
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        rel:
+          $ref: '#/components/schemas/LinkRelation'
+        template:
+          $ref: '#/components/schemas/UriTemplate'
+        templated:
+          type: boolean
+        title:
+          type: string
+        type:
+          type: string
+      title: Link
+      type: object
+    TemplateVariable:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - ''
+          - '?'
+          - '&'
+          - /
+          - '#'
+          - '*'
+          type: string
+      title: TemplateVariable
+      type: object
+    RejectedItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        rejectedReason:
+          $ref: '#/components/schemas/RejectedReason'
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: RejectedItem
+      type: object
+    FulfillmentAPIContact:
+      properties:
+        address:
+          $ref: '#/components/schemas/FulfillmentAPIAddress'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        companyOrOrganization:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        fullName:
+          type: string
+        id:
+          format: int32
+          type: integer
+        lastNameOrSurname:
+          type: string
+        middleNameOrInitial:
+          type: string
+        phoneNumbers:
+          $ref: '#/components/schemas/FulfillmentAPIPhone'
+        shortFullName:
+          type: string
+      title: Contact
+      type: object
+    PriorityInfo:
+      properties:
+        history:
+          items:
+            $ref: '#/components/schemas/PriorityEvent'
+          type: array
+        prioritizedAt:
+          format: date-time
+          type: string
+        priority:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+        ruleType:
+          type: string
+        statusWhenPrioritized:
+          type: string
+      title: PriorityInfo
+      type: object
+    BackorderItemsRequest:
+      properties:
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/BackorderItem'
+          type: array
+        runId:
+          type: string
+      title: BackorderItemsRequest
+      type: object
+    TaskComplete:
+      properties:
+        emailTemplateName:
+          description: Caller-supplied email template name; required when triggerEmail is true
+          type: string
+        handleOption:
+          $ref: '#/components/schemas/HandleOption'
+        recipientType:
+          description: Recipient audience (Shopper, Fulfiller, Recipient, AlternateContact); required when triggerEmail is true
+          type: string
+        taskBody:
+          additionalProperties:
+            type: object
+          type: object
+        triggerEmail:
+          description: When true, publishes a SendWorkflowTaskCompletedEmail after the task completes
+          type: boolean
+      title: TaskComplete
+      type: object
+    PackedBoxDto:
+      properties:
+        boxId:
+          format: int32
+          type: integer
+        dimensions:
+          $ref: '#/components/schemas/DimensionsDto'
+        items:
+          items:
+            $ref: '#/components/schemas/PackedItemDto'
+          type: array
+        name:
+          type: string
+        volumeUtilization:
+          type: number
+        weightUnit:
+          type: string
+        weightUsed:
+          type: number
+        weightUtilization:
+          type: number
+      title: PackedBoxDto
+      type: object
+    Task:
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+        active:
+          type: boolean
+        activeDate:
+          format: date-time
+          type: string
+        completed:
+          type: boolean
+        completedDate:
+          format: date-time
+          type: string
+        completedDurationMillis:
+          format: int64
+          type: integer
+        description:
+          type: string
+        inputs:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPITaskInput'
+          type: array
+        name:
+          type: string
+        skippable:
+          type: boolean
+        subject:
+          type: string
+        taskId:
+          type: string
+      title: Task
+      type: object
+    CanceledItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        canceledReason:
+          $ref: '#/components/schemas/FulfillmentAPICanceledReason'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: CanceledItem
+      type: object
+    InvoiceTax:
+      properties:
+        amount:
+          type: number
+        data:
+          type: object
+        jurisdiction:
+          type: string
+        rate:
+          type: number
+        type:
+          type: string
+      title: InvoiceTax
+      type: object
+    FulfillmentAPIAddress:
+      properties:
+        address1:
+          type: string
+        address2:
+          type: string
+        address3:
+          type: string
+        address4:
+          type: string
+        addressType:
+          enum:
+          - Commercial
+          - Residential
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        cityOrTown:
+          type: string
+        countryCode:
+          type: string
+        isValidated:
+          type: boolean
+        latitude:
+          type: string
+        longitude:
+          type: string
+        postalOrZipCode:
+          type: string
+        stateOrProvince:
+          type: string
+      title: Address
+      type: object
+    ReadyForPackItemsRequest:
+      properties:
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ReadyForPrepItem'
+          type: array
+      title: ReadyForPackItemsRequest
+      type: object
+    InvoiceReferences:
+      properties:
+        data:
+          type: object
+        orderNumber:
+          format: int32
+          type: integer
+        purchaseOrderNumber:
+          type: string
+        shipmentId:
+          type: string
+      title: InvoiceReferences
+      type: object
+    GetShipmentsRequest:
+      properties:
+        bypassSearchIndex:
+          type: boolean
+        filter:
+          type: string
+        isExpress:
+          type: boolean
+        isLate:
+          type: boolean
+        locationGroupCode:
+          type: string
+        page:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pickStatus:
+          enum:
+          - AVAILABLE
+          - IN_WAVE
+          - PICKED
+          - TRANSFER
+          - COMPLETE
+          type: string
+        pickWaveType:
+          enum:
+          - NORMAL
+          - SINGLE
+          - MULTIPLE
+          type: string
+        pickable:
+          type: boolean
+        quickSearch:
+          type: string
+        slaCompliance:
+          type: string
+        sort:
+          type: string
+        timePeriodUnit:
+          enum:
+          - HOURS
+          - DAYS
+          - WEEKS
+          - MONTHS
+          - YEARS
+          type: string
+        timePeriodValue:
+          format: int32
+          type: integer
+        workflowTaskName:
+          type: string
+      title: GetShipmentsRequest
+      type: object
+    FulfillmentAPIProductOption:
+      properties:
+        attributeFQN:
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        dataType:
+          type: string
+        name:
+          type: string
+        shopperEnteredValue:
+          type: object
+        stringValue:
+          type: string
+        value:
+          type: object
+      title: ProductOption
+      type: object
+    PositionDto:
+      properties:
+        x:
+          type: number
+        y:
+          type: number
+        z:
+          type: number
+      title: PositionDto
+      type: object
+    CancelItem:
+      properties:
+        canceledReason:
+          $ref: '#/components/schemas/FulfillmentAPICanceledReason'
+        lineId:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+      title: CancelItem
+      type: object
+    PackedItemDto:
+      properties:
+        dimensions:
+          $ref: '#/components/schemas/DimensionsDto'
+        lineId:
+          format: int32
+          type: integer
+        origin:
+          $ref: '#/components/schemas/PositionDto'
+        quantity:
+          format: int32
+          type: integer
+        sourceShipmentNumber:
+          format: int32
+          type: integer
+        uniqueId:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+      title: PackedItemDto
+      type: object
+    MutabilityInfo:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        blockedActions:
+          items:
+            type: string
+          type: array
+        reason:
+          type: string
+      title: MutabilityInfo
+      type: object
+    PaymentInvoice:
+      properties:
+        currency:
+          type: string
+        data:
+          type: object
+        invoiceDate:
+          format: date-time
+          type: string
+        invoiceNumber:
+          type: string
+        lineItems:
+          items:
+            $ref: '#/components/schemas/InvoiceLineItem'
+          type: array
+        rawEdiData:
+          type: string
+        references:
+          $ref: '#/components/schemas/InvoiceReferences'
+        taxes:
+          items:
+            $ref: '#/components/schemas/InvoiceTax'
+          type: array
+        terms:
+          $ref: '#/components/schemas/InvoiceTerms'
+        totalAmount:
+          type: number
+        vendor:
+          $ref: '#/components/schemas/InvoiceVendor'
+      title: PaymentInvoice
+      type: object
+    CancelShipment:
+      properties:
+        blockAssignment:
+          type: boolean
+        canceledReason:
+          $ref: '#/components/schemas/FulfillmentAPICanceledReason'
+        holdBlockAssignment:
+          type: boolean
+        sendNotifications:
+          type: boolean
+      title: CancelShipment
+      type: object
+    BackorderShipmentRequest:
+      properties:
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        runId:
+          type: string
+      title: BackorderShipmentRequest
+      type: object
+    PagedModelOfEntityModelOfShipment:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/EntityModelOfShipment'
+            type: array
+          type: object
+        _links:
+          $ref: '#/components/schemas/Links'
+        page:
+          $ref: '#/components/schemas/PageMetadata'
+      title: PagedModelOfEntityModelOfShipment
+      type: object
+    RunInfo:
+      properties:
+        action:
+          type: string
+        occurredAt:
+          format: date-time
+          type: string
+        queue:
+          type: string
+        routedLocationCode:
+          type: string
+        runId:
+          type: string
+        runType:
+          type: string
+        shipmentStatus:
+          type: string
+      title: RunInfo
+      type: object
+    CollectionModelOfLocationShipmentCount:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/LocationShipmentCount'
+            type: array
+          type: object
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+      title: CollectionModelOfLocationShipmentCount
+      type: object
+    Links:
+      properties:
+        empty:
+          type: boolean
+      title: Links
+      type: object
+    RejectShipment:
+      properties:
+        blockAssignment:
+          type: boolean
+        holdBlockAssignment:
+          type: boolean
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/RejectItem'
+          type: array
+        rejectedReason:
+          $ref: '#/components/schemas/RejectedReason'
+      title: RejectShipment
+      type: object
+    LocationSummary:
+      properties:
+        currencyCode:
+          type: string
+        currentAmount:
+          type: number
+        currentItems:
+          format: int32
+          type: integer
+        currentShipments:
+          format: int32
+          type: integer
+        locationCode:
+          type: string
+        totalAmount:
+          type: number
+        totalItems:
+          format: int32
+          type: integer
+        totalShipments:
+          format: int32
+          type: integer
+      title: LocationSummary
+      type: object
+    ReassignedReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: ReassignedReason
+      type: object
+    ReadyForPrepItemsRequest:
+      properties:
+        isUserAction:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ReadyForPrepItem'
+          type: array
+      title: ReadyForPrepItemsRequest
+      type: object
+    FulfillmentAPIChangeMessage:
+      properties:
+        amount:
+          type: number
+        appId:
+          type: string
+        appKey:
+          type: string
+        appName:
+          type: string
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        changeMessageId:
+          type: string
+        correlationId:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        identifier:
+          type: string
+        message:
+          type: string
+        metadata:
+          type: string
+        newValue:
+          type: string
+        oldValue:
+          type: string
+        subject:
+          type: string
+        subjectType:
+          type: string
+        success:
+          type: boolean
+        userDisplayName:
+          type: string
+        userFirstName:
+          type: string
+        userId:
+          type: string
+        userLastName:
+          type: string
+        verb:
+          type: string
+      title: ChangeMessage
+      type: object
+  requestBodies:
+    CancelShipment:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CancelShipment'
+      description: cancelShipmentRequestDto
+      required: true
+    RejectShipment:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RejectShipment'
+      description: rejectShipmentRequestDto
+      required: true
+    Shipment:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FulfillmentAPIShipment'
+      description: newShipment
+      required: true
+    RejectItemsRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RejectItemsRequest'
+      description: rejectItemsRequestDto
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

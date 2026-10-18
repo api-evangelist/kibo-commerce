@@ -1,0 +1,247 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Inventory
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-inventory-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-inventory-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/inventory/v1/export/create'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/export/create
+  update:
+    operationId: exportinventoryCreateExportSettings
+- target: $.paths['/commerce/inventory/v1/export/ftp/create'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/export/ftp/create
+  update:
+    operationId: exportinventoryCreateExportSettingsFTP
+- target: $.paths['/commerce/inventory/v1/export/s3/create'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/export/s3/create
+  update:
+    operationId: exportinventoryCreateExportSettingsS3
+- target: $.paths['/commerce/inventory/v1/export/{exportSettingsName}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/export/{exportSettingsName}
+  update:
+    operationId: exportinventoryDeleteExportSettings
+- target: $.paths['/commerce/inventory/v1/export/ftp/{exportSettingsName}/{exportSettingsFTPName}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/export/ftp/{exportSettingsName}/{exportSettingsFTPName}
+  update:
+    operationId: exportinventoryDeleteExportSettingsFTP
+- target: $.paths['/commerce/inventory/v1/export/s3/{exportSettingsName}/{exportSettingsS3Name}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/export/s3/{exportSettingsName}/{exportSettingsS3Name}
+  update:
+    operationId: exportinventoryDeleteExportSettingsS3
+- target: $.paths['/commerce/inventory/v1/export'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/export
+  update:
+    operationId: exportinventoryGetExportSettings
+- target: $.paths['/commerce/inventory/v1/export'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/export
+  update:
+    operationId: exportinventoryRunExport
+- target: $.paths['/commerce/inventory/v1/export/update'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/export/update
+  update:
+    operationId: exportinventoryUpdateExportSettings
+- target: $.paths['/commerce/inventory/v1/export/ftp/update'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/export/ftp/update
+  update:
+    operationId: exportinventoryUpdateExportSettingsFTP
+- target: $.paths['/commerce/inventory/v1/export/s3/update'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/export/s3/update
+  update:
+    operationId: exportinventoryUpdateExportSettingsS3
+- target: $.paths['/commerce/inventory/v5/inventory/aggregate'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/aggregate
+  update:
+    operationId: inventoryAggregate
+- target: $.paths['/commerce/inventory/v5/inventory/allocate'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/allocate
+  update:
+    operationId: inventoryallocationAllocateInventory
+- target: $.paths['/commerce/inventory/v5/inventory/deallocate'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/deallocate
+  update:
+    operationId: inventoryallocationDeallocateInventory
+- target: $.paths['/commerce/inventory/v5/inventory/fulfill'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/fulfill
+  update:
+    operationId: inventoryallocationFulfillInventory
+- target: $.paths['/commerce/inventory/v5/inventory/transitionCart'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/transitionCart
+  update:
+    operationId: inventoryallocationTransitionCart
+- target: $.paths['/commerce/inventory/v1/bin/binStatuses'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/bin/binStatuses
+  update:
+    operationId: inventorybinGetBinStatuses
+- target: $.paths['/commerce/inventory/v1/bin/binTypes'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/bin/binTypes
+  update:
+    operationId: inventorybinGetBinTypes
+- target: $.paths['/commerce/inventory/v1/bin'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/bin
+  update:
+    operationId: inventorybinGetBins
+- target: $.paths['/commerce/inventory/v1/bin'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/bin
+  update:
+    operationId: inventorybinCreateBin
+- target: $.paths['/commerce/inventory/v1/bin/loadInventory'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/bin/loadInventory
+  update:
+    operationId: inventorybinLoadInventory
+- target: $.paths['/commerce/inventory/v1/bin/searchInventory'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/bin/searchInventory
+  update:
+    operationId: inventorybinSearchBins
+- target: $.paths['/commerce/inventory/v1/bin/{bin_id}'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/bin/{bin_id}
+  update:
+    operationId: inventorybinUpdateBin
+- target: $.paths['/commerce/inventory/v1/bin/updateBins'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/bin/updateBins
+  update:
+    operationId: inventorybinUpdateBins
+- target: $.paths['/commerce/inventory/v5/inventory/blockAssignment'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/blockAssignment
+  update:
+    operationId: inventoryblockassignmentBlockAssignment
+- target: $.paths['/commerce/inventory/v1/config/fetchfile/{fetchFileConfigID}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/config/fetchfile/{fetchFileConfigID}
+  update:
+    operationId: inventoryfetchfileconfigDeleteFetchConfig
+- target: $.paths['/commerce/inventory/v1/config/fetchfile'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/config/fetchfile
+  update:
+    operationId: inventoryfetchfileconfigGetFetchConfig
+- target: $.paths['/commerce/inventory/v1/config/fetchfile'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/config/fetchfile
+  update:
+    operationId: inventoryfetchfileconfigSaveFetchConfig
+- target: $.paths['/commerce/inventory/v1/config/fetchfile/testConnection/{fetchFileConfigID}'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/config/fetchfile/testConnection/{fetchFileConfigID}
+  update:
+    operationId: inventoryfetchfileconfigTestConnection
+- target: $.paths['/adjustFutureDate/{futureInventoryID}'].put
+  description: Add derived operationId for PUT /adjustFutureDate/{futureInventoryID}
+  update:
+    operationId: inventoryfuturedateAdjustFutureDate
+- target: $.paths['/commerce/inventory/v5/inventory'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory
+  update:
+    operationId: inventoryGetInventoryPOST
+- target: $.paths['/commerce/inventory/v1/deleteOldInventory/allSilo/{months}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/deleteOldInventory/allSilo/{months}
+  update:
+    operationId: inventoryjobDeleteAllOldInventory
+- target: $.paths['/commerce/inventory/v1/deleteOldInventory/{months}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/deleteOldInventory/{months}
+  update:
+    operationId: inventoryjobDeleteOldInventory
+- target: $.paths['/commerce/inventory/v1/queue/{jobID}'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/queue/{jobID}
+  update:
+    operationId: inventoryjobGetJob
+- target: $.paths['/commerce/inventory/v1/queue'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/queue
+  update:
+    operationId: inventoryjobGetJobs
+- target: $.paths['/commerce/inventory/v1/location/{locationCode}'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/location/{locationCode}
+  update:
+    operationId: inventorylocationGetLocation
+- target: $.paths['/commerce/inventory/v1/location/{locationGroupCode}'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/location/{locationGroupCode}
+  update:
+    operationId: inventorylocationGetLocationGroups
+- target: $.paths['/commerce/inventory/v1/location'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/location
+  update:
+    operationId: inventorylocationGetLocations
+- target: $.paths['/commerce/inventory/v1/location'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/location
+  update:
+    operationId: inventorylocationSaveLocation
+- target: $.paths['/commerce/inventory/v1/locationGroup'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/locationGroup
+  update:
+    operationId: inventorylocationgroupGetLocationGroups
+- target: $.paths['/commerce/inventory/v5/inventory/getOrderItemInformation'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/getOrderItemInformation
+  update:
+    operationId: inventoryorderitemGetOrderItemInformation
+- target: $.paths['/commerce/inventory/v1/silo/siloConfig'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/silo/siloConfig
+  update:
+    operationId: inventorysiloUpdateTenantSiloConfig
+- target: $.paths['/commerce/inventory/v1/tagCategory/{tagCategoryName}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/tagCategory/{tagCategoryName}
+  update:
+    operationId: inventorytagcategoryDeleteTagCategory
+- target: $.paths['/commerce/inventory/v1/tagCategory/{tagCategoryName}'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/tagCategory/{tagCategoryName}
+  update:
+    operationId: inventorytagcategoryGetTagCategory
+- target: $.paths['/commerce/inventory/v1/tagCategory/{tagCategoryName}'].put
+  description: Add derived operationId for PUT /commerce/inventory/v1/tagCategory/{tagCategoryName}
+  update:
+    operationId: inventorytagcategoryUpdateTagCategory
+- target: $.paths['/commerce/inventory/v1/tagCategory'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/tagCategory
+  update:
+    operationId: inventorytagcategoryGetTagCategoryAll
+- target: $.paths['/commerce/inventory/v1/tagCategory/{tagCategoryName}/tag'].post
+  description: Add derived operationId for POST /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag
+  update:
+    operationId: inventorytagCreateTag
+- target: $.paths['/commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue}'].delete
+  description: Add derived operationId for DELETE /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue}
+  update:
+    operationId: inventorytagDeleteTag
+- target: $.paths['/commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue}'].get
+  description: Add derived operationId for GET /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue}
+  update:
+    operationId: inventorytagGetTag
+- target: $.paths['/commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue}'].put
+  description: Add derived operationId for PUT /commerce/inventory/v1/tagCategory/{tagCategoryName}/tag/{tagValue}
+  update:
+    operationId: inventorytagUpdateTag
+- target: $.paths['/commerce/inventory/v5/inventory/adjust'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/adjust
+  update:
+    operationId: modifyinventoryAdjust
+- target: $.paths['/commerce/inventory/v5/inventory/deleteFutureInventory'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/deleteFutureInventory
+  update:
+    operationId: modifyinventoryDeleteFutureInventory
+- target: $.paths['/commerce/inventory/v5/inventory/delete'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/delete
+  update:
+    operationId: modifyinventoryDeleteInventory
+- target: $.paths['/commerce/inventory/v5/inventory/deleteItems'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/deleteItems
+  update:
+    operationId: modifyinventoryDeleteItems
+- target: $.paths['/commerce/inventory/v5/inventory/redistribute'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/redistribute
+  update:
+    operationId: modifyinventoryRedistributeInventoryAcrossTags
+- target: $.paths['/commerce/inventory/v5/inventory/refresh'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/refresh
+  update:
+    operationId: modifyinventoryRefresh
+- target: $.paths['/commerce/inventory/v5/inventory/smart-adjust/'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/smart-adjust/
+  update:
+    operationId: modifyinventorySmartAdjustInventory
+- target: $.paths['/commerce/inventory/v5/inventory/smart-refresh/'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/smart-refresh/
+  update:
+    operationId: modifyinventorySmartRefreshInventory
+- target: $.paths['/commerce/inventory/v5/inventory/shipmentInventoryAllocations'].post
+  description: Add derived operationId for POST /commerce/inventory/v5/inventory/shipmentInventoryAllocations
+  update:
+    operationId: shipmentinventoryallocationGetShipmentInventoryAllocations

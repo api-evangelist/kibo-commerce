@@ -1,0 +1,299 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Document Property Type API
+  version: '1.0'
+  description: 'Operations tagged DocumentPropertyType across 2 of this provider''s published API definitions: openapi_openapi_content.json, kibo-commerce-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: DocumentPropertyType
+paths:
+  /content/propertytypes/{propertyTypeName}:
+    delete:
+      parameters:
+      - description: ''
+        in: path
+        name: propertyTypeName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Property Type
+      tags:
+      - DocumentPropertyType
+      operationId: deleteContentPropertytypesByPropertyTypeName
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - description: ''
+        in: path
+        name: propertyTypeName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+          description: OK
+      summary: Get Property Type
+      tags:
+      - DocumentPropertyType
+      operationId: getContentPropertytypesByPropertyTypeName
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: ''
+        in: path
+        name: propertyTypeName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyType'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/PropertyType'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/PropertyType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+          description: OK
+      summary: Update Property Type
+      tags:
+      - DocumentPropertyType
+      operationId: putContentPropertytypesByPropertyTypeName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/propertytypes:
+    get:
+      description: Retrieves a PagedCollection of PropertyTypes
+      parameters:
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyTypeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PropertyTypeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PropertyTypeCollection'
+          description: OK
+      summary: Get Property Types
+      tags:
+      - DocumentPropertyType
+      operationId: getContentPropertytypes
+      x-operation-id-source: derived
+    post:
+      description: Create Property Type. The immutable property types that are defined out-of-the-box are hidden, page_type_definition, string, int, dropzones, boolean, and datetime.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PropertyType'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/PropertyType'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/PropertyType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PropertyType'
+          description: OK
+      summary: Create Property Type
+      tags:
+      - DocumentPropertyType
+      operationId: postContentPropertytypes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PropertyTypeCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PropertyType'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PropertyType:
+      description: "The schema a document property value must implement. A propertyType is created at a tenant scope and is therefore shared amongst all child contexts (masterCatalog, catalog, site).\nA propertyType is analogous to the type argument of a class property in object oriented programming. \nA propertyType's dataType field is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology."
+      properties:
+        adminName:
+          description: The administrative name of the propertyType.
+          type:
+          - string
+          - 'null'
+        dataType:
+          description: 'The underlying value type that can be held in the document''s property value. Valid values are
+
+            string
+
+            number
+
+            boolean
+
+            datetime
+
+            json
+
+            The dataType is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.'
+          type:
+          - string
+          - 'null'
+        installationPackage:
+          description: "Optionally, a propertyType can be defined in an installationPackage and then installed into a tenant. Installed propertyTypes can only be updated via installation upgrades. \nCurrently only internal Mozu platform components can create installations. This field is system-supplied and read-only."
+          type:
+          - string
+          - 'null'
+        isAggregatable:
+          description: tbd
+          type:
+          - boolean
+          - 'null'
+        isQueryable:
+          description: tbd
+          type:
+          - boolean
+          - 'null'
+        isSortable:
+          description: tbd
+          type:
+          - boolean
+          - 'null'
+        name:
+          description: The name component of the propertyType, name@namespace. The name must be unique within the namespace component and cannot be updated.
+          type:
+          - string
+          - 'null'
+        namespace:
+          description: The namespace component of the propertyType, name@namespace. The issued dev account namespace must be used unless elevated privileges allow a blank namespace to be used. The namespace cannot be updated.
+          type:
+          - string
+          - 'null'
+        propertyTypeFQN:
+          description: The unique identifier of the propertyTYpe, represented by name@namespace. The propertyTypeFQN must be provided when creating the propertyType, or the name and namespace fields must be provided.
+          type:
+          - string
+          - 'null'
+        version:
+          description: The version of the installationPackge installed. This field is read-only.
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_content.json
+- kibo-commerce-content-openapi.yml

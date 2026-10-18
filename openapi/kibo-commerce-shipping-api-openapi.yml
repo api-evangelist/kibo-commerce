@@ -1,0 +1,1440 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipping API
+  version: '1.0'
+  description: 'Operations tagged Shipping across 3 of this provider''s published API definitions: openapi_openapi_shipping.json, kibo-commerce-shipping-openapi.yml, kibo-commerce-shipping-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Shipping
+paths:
+  /commerce/catalog/storefront/shipping/carriers:
+    get:
+      description: Get a list of supported carriers.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierResponse'
+          description: OK
+      summary: Get Carriers
+      tags:
+      - Shipping
+      operationId: getCommerceCatalogStorefrontShippingCarriers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/shipping/request-labels:
+    post:
+      description: Get Shipping Label for the Service Type Requested
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShipmentResponse'
+          description: OK
+      summary: Get Labels
+      tags:
+      - Shipping
+      operationId: postCommerceCatalogStorefrontShippingRequestLabels
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/shipping/get-labels:
+    post:
+      description: Get shipping labels by tracking number.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LabelResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LabelResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LabelResponse'
+          description: OK
+      summary: Get Labels By Tracking Number
+      tags:
+      - Shipping
+      operationId: postCommerceCatalogStorefrontShippingGetLabels
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/shipping/request-multi-rates:
+    post:
+      description: Get List of Rate Responses for a List of Rate Requests
+      parameters:
+      - description: ''
+        in: query
+        name: includeRawResponse
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/RateRequestGroup'
+              type: array
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RatesResponseGroup'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RatesResponseGroup'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/RatesResponseGroup'
+                type: array
+          description: OK
+      summary: Get Multi Rates
+      tags:
+      - Shipping
+      operationId: postCommerceCatalogStorefrontShippingRequestMultiRates
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/shipping/request-rates:
+    post:
+      description: Get Rate Responses for a Rate Request
+      parameters:
+      - description: ''
+        in: query
+        name: includeRawResponse
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RatesResponse'
+          description: OK
+      summary: Get Rates
+      tags:
+      - Shipping
+      operationId: postCommerceCatalogStorefrontShippingRequestRates
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/shipping/transit-times:
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransitTimesRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransitTimesResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransitTimesResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransitTimesResponse'
+          description: OK
+      summary: Get Transit Times
+      tags:
+      - Shipping
+      operationId: postCommerceCatalogStorefrontShippingTransitTimes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    RatesResponse:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        rates:
+          items:
+            $ref: '#/components/schemas/CarrierRatesResponse'
+          type:
+          - array
+          - 'null'
+        resolvedShippingZoneCode:
+          description: "Resolved Shipping Zone Code.  This value can be null if the tenant/site does not have shipping zones defined or there are no matching \nshipping zones for the request (e.g. the only zone defined is \"UNITED-STATES\" and the destination address of the rate request is in Canada)"
+          type:
+          - string
+          - 'null'
+        shippingZoneCodes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    TransitTimesResponse:
+      properties:
+        data:
+          type:
+          - object
+          - 'null'
+        destinationAddress:
+          $ref: '#/components/schemas/Address'
+        items:
+          items:
+            $ref: '#/components/schemas/TransitTimesItem'
+          type:
+          - array
+          - 'null'
+        originLocationCode:
+          type:
+          - string
+          - 'null'
+        shipDate:
+          format: date-time
+          type: string
+        transitTimes:
+          items:
+            $ref: '#/components/schemas/CarrierTransitTimes'
+          type:
+          - array
+          - 'null'
+      type: object
+    ShippingLabel:
+      properties:
+        imageData:
+          format: byte
+          type:
+          - string
+          - 'null'
+        imageFormat:
+          type:
+          - string
+          - 'null'
+        labelUrl:
+          type:
+          - string
+          - 'null'
+      type: object
+    RatesResponseGroup:
+      properties:
+        componentRates:
+          items:
+            $ref: '#/components/schemas/RatesResponse'
+          type:
+          - array
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        ratesResponse:
+          $ref: '#/components/schemas/RatesResponse'
+      type: object
+    CarrierResponse:
+      description: Response containing a list of Carriers supported on a tenant / site.
+      properties:
+        carriers:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeCarrier'
+          type:
+          - array
+          - 'null'
+      type: object
+    PackageLabelResponse:
+      properties:
+        label:
+          $ref: '#/components/schemas/ShippingLabel'
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingRuntimeShippingRate:
+      properties:
+        amount:
+          format: double
+          type:
+          - number
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+        content:
+          $ref: '#/components/schemas/ShippingRateLocalizedContent'
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+        daysInTransit:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        messages:
+          items:
+            $ref: '#/components/schemas/ShippingRateValidationMessage'
+          type:
+          - array
+          - 'null'
+        shippingItemRates:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeShippingItemRate'
+          type:
+          - array
+          - 'null'
+        windows:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeDeliveryWindow'
+          type:
+          - array
+          - 'null'
+      type: object
+    ShippingRuntimePackageMeasurements:
+      properties:
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    ShippingRateLocalizedContent:
+      properties:
+        localeCode:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingRuntimeShippingItemRate:
+      description: The shipping rate for a particular line item
+      properties:
+        amount:
+          format: double
+          type:
+          - number
+          - 'null'
+        itemId:
+          type:
+          - string
+          - 'null'
+        quantity:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    ShipmentResponse:
+      properties:
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        isSuccessful:
+          type: boolean
+        messages:
+          items:
+            $ref: '#/components/schemas/Notification'
+          type:
+          - array
+          - 'null'
+        packageResponses:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimePackageResponse'
+          type:
+          - array
+          - 'null'
+        shippingTotal:
+          $ref: '#/components/schemas/Money'
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingRuntimeCategory:
+      description: Categories to which the product belongs.
+      properties:
+        id:
+          format: int32
+          type: integer
+        parent:
+          $ref: '#/components/schemas/ShippingRuntimeCategory'
+      type: object
+    Contact:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+      type: object
+    ItemMeasurements:
+      properties:
+        girth:
+          description: Not exposed publicly
+          format: double
+          type:
+          - number
+          - 'null'
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    ShippingRuntimeCarrier:
+      description: A Carrier definition supported by Shipping Runtime.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        carrierId:
+          type:
+          - string
+          - 'null'
+        certified:
+          type:
+          - boolean
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        features:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        isBuiltIn:
+          type: boolean
+        logoUrl:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingRuntimeEstimatedDeliveryDate:
+      properties:
+        data:
+          type:
+          - object
+          - 'null'
+        deliveryDate:
+          type:
+          - string
+          - 'null'
+        fulfillmentMethod:
+          type:
+          - string
+          - 'null'
+        messages:
+          items:
+            $ref: '#/components/schemas/ShippingRateValidationMessage'
+          type:
+          - array
+          - 'null'
+        serviceType:
+          type:
+          - string
+          - 'null'
+        windows:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeDeliveryWindow'
+          type:
+          - array
+          - 'null'
+      type: object
+    ShippingRuntimePackage:
+      properties:
+        contentsValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        isGift:
+          type:
+          - boolean
+          - 'null'
+        measurements:
+          $ref: '#/components/schemas/ShippingRuntimePackageMeasurements'
+        packagingType:
+          description: Selected PackagingType.  Shipping provider dependent.
+          type:
+          - string
+          - 'null'
+        productSummaries:
+          description: Product details in the package
+          items:
+            $ref: '#/components/schemas/ProductSummary'
+          type:
+          - array
+          - 'null'
+        signatureOption:
+          description: 'Specify an optional signature option for this package.
+
+            If not specified, will inherit the option value from the shipment.'
+          type:
+          - string
+          - 'null'
+      type: object
+    Notification:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        source:
+          type:
+          - string
+          - 'null'
+      type: object
+    RateRequest:
+      properties:
+        attributes:
+          description: Order Attributes. Made available for Arc.js to use
+          items:
+            $ref: '#/components/schemas/RateRequestAttribute'
+          type:
+          - array
+          - 'null'
+        carrierIds:
+          description: Optional.  If one or more Carrier Ids are specified then only the rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        customAttributes:
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        data:
+          type:
+          - object
+          - 'null'
+        destinationAddress:
+          $ref: '#/components/schemas/Address'
+        estimatedShipmentDate:
+          description: Estimate Date/Time when the shipment for this will be sent.  Primarily utilize to estimate delivery date.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        handlingTotal:
+          description: The order Handling total after discounts to be used in rate calculation
+          format: double
+          type:
+          - number
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        isDestinationAddressCommercial:
+          description: Is the destination address a commercial address?
+          type:
+          - boolean
+          - 'null'
+        isoCurrencyCode:
+          type:
+          - string
+          - 'null'
+        items:
+          items:
+            $ref: '#/components/schemas/RateRequestItem'
+          type:
+          - array
+          - 'null'
+        orderDiscountedSubTotal:
+          description: The Order SubTotal After Discounts to be used in rate calculation
+          format: double
+          type:
+          - number
+          - 'null'
+        orderTotal:
+          description: The OrderTotal to be used in rate calculation
+          format: double
+          type:
+          - number
+          - 'null'
+        originAddress:
+          $ref: '#/components/schemas/Address'
+        originLocationCode:
+          description: Optional for STH rates. The location code of the origin location. Used for calculation of Delivery rates.
+          type:
+          - string
+          - 'null'
+        relatedOrderId:
+          description: 'The Order ID to be used in rate calculation
+
+            Informational only'
+          type:
+          - string
+          - 'null'
+        relatedOrderNumber:
+          description: 'The Order Number to be used in rate calculation
+
+            Informational only'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        shippingServiceTypes:
+          description: Optional.  If one or more Shipping Service Type Codes are specified then only the specified rates for the specified carrier('s/s') configured service types or shipping methods will be calculated resulting in better performance.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    RateRequestAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    ShippingRuntimeProductProperty:
+      properties:
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        dataType:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductSummary:
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeCategory'
+          type:
+          - array
+          - 'null'
+        options:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeProductOption'
+          type:
+          - array
+          - 'null'
+        price:
+          description: Price (unit price * quantity)
+          format: double
+          type: number
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          type:
+          - string
+          - 'null'
+        productDescription:
+          description: Product name/description
+          type:
+          - string
+          - 'null'
+        productType:
+          type:
+          - string
+          - 'null'
+        properties:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeProductProperty'
+          type:
+          - array
+          - 'null'
+        quantity:
+          description: Product quantity
+          format: int32
+          type: integer
+        unitMeasurements:
+          $ref: '#/components/schemas/ItemMeasurements'
+      type: object
+    CustomerReferences:
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    LabelRequest:
+      properties:
+        carrierId:
+          type:
+          - string
+          - 'null'
+        labelFormat:
+          type:
+          - string
+          - 'null'
+        packageTrackingNumber:
+          type:
+          - string
+          - 'null'
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingRateValidationMessage:
+      description: Shipping Rate Validation Message
+      properties:
+        helpLink:
+          description: Help Link
+          type:
+          - string
+          - 'null'
+        message:
+          description: Message
+          type:
+          - string
+          - 'null'
+        severity:
+          description: Severity
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingRuntimeDeliveryWindow:
+      properties:
+        dropoffTime:
+          $ref: '#/components/schemas/TimeWindow'
+        pickupTime:
+          $ref: '#/components/schemas/TimeWindow'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    CarrierTransitTimes:
+      properties:
+        carrierId:
+          type:
+          - string
+          - 'null'
+        estimatedDeliveryDates:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeEstimatedDeliveryDate'
+          type:
+          - array
+          - 'null'
+        itemIds:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    TransitTimesRequest:
+      properties:
+        data:
+          description: Custom data for the request
+          type:
+          - object
+          - 'null'
+        destinationAddress:
+          $ref: '#/components/schemas/Address'
+        fulfillmentMethod:
+          type:
+          - string
+          - 'null'
+        items:
+          items:
+            $ref: '#/components/schemas/TransitTimesItem'
+          type:
+          - array
+          - 'null'
+        originAddress:
+          $ref: '#/components/schemas/Address'
+        originLocationCode:
+          type:
+          - string
+          - 'null'
+        shipDate:
+          format: date-time
+          type: string
+        shippingServiceTypes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    ShipmentRequest:
+      properties:
+        carrierAccountNumber:
+          description: 'Optional shipper-provided carrier account number. When provided, postage is
+
+            billed to this account using SENDER billing via EasyPost options.payment,
+
+            overriding any stored-credential billing for this request. Not persisted in
+
+            Kibo; masked (last 4) in logs.'
+          type:
+          - string
+          - 'null'
+        carrierId:
+          type:
+          - string
+          - 'null'
+        consolidationReferences:
+          description: Consolidation references for Order Number, Shipment Number and Order Id
+          items:
+            $ref: '#/components/schemas/ConsolidationReference'
+          type:
+          - array
+          - 'null'
+        customAttributes:
+          description: 'Carrier specific options
+
+
+            Ex: RequiresDeliveryConfirmation when using usps with non-express mail service type.'
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        customerReferences:
+          items:
+            $ref: '#/components/schemas/CustomerReferences'
+          type:
+          - array
+          - 'null'
+        externalOrderId:
+          description: 'Optional external (non-Kibo) order identifier to print on the label.
+
+            Mapped into EasyPost PrintCustom reference lines alongside ReferenceNotes
+
+            and CustomerReferences, within the 3-line carrier capacity.'
+          type:
+          - string
+          - 'null'
+        fulfillmentMethod:
+          description: Fulfillment method for the shipment. STH / Delivery. Empty will be assumed as STH.
+          type:
+          - string
+          - 'null'
+        hazmatClassification:
+          description: 'Optional hazardous-materials classification (pass-through string). Conveyed
+
+            to the carrier via EasyPost options.hazmat. The system maintains no hazmat
+
+            taxonomy; unsupported values are rejected by EasyPost and surfaced as an error.
+
+            Never inferred or defaulted.'
+          type:
+          - string
+          - 'null'
+        isoCurrencyCode:
+          type:
+          - string
+          - 'null'
+        labelFormat:
+          description: 'Returns the Label in the requested format.
+
+            Specify either "LASER" or "THERMAL" format.
+
+            Actual supported image formats vary by carrier.'
+          type:
+          - string
+          - 'null'
+        referenceNotes:
+          description: 'Optional freeform reference notes to print on the label. Mapped into EasyPost
+
+            PrintCustom reference lines alongside ExternalOrderId and CustomerReferences,
+
+            within the 3-line carrier capacity. Truncated on overflow with a warning.'
+          type:
+          - string
+          - 'null'
+        relatedOrderId:
+          description: 'The related Order ID for this shipment request.
+
+            Informational only.'
+          type:
+          - string
+          - 'null'
+        relatedOrderNumber:
+          description: 'The related Order Number for this shipment request.
+
+            Informational only.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        relatedShipmentNumber:
+          description: 'The related Shipment Number for this shipment request.
+
+            Informational only.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        shipment:
+          $ref: '#/components/schemas/ShippingRuntimeShipment'
+        shipmentRequestType:
+          description: Selected Shipment Request Type.
+          type:
+          - string
+          - 'null'
+        shippingServiceType:
+          description: Selected Shipping Service Type.
+          type:
+          - string
+          - 'null'
+        signatureOption:
+          description: 'Specify an optional signature option for this shipment.
+
+            All packages will inherit this option value automatically.
+
+            Set this option on the package level to override this value.'
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingRuntimeProductOption:
+      properties:
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        dataType:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+    ShippingRuntimePackageResponse:
+      properties:
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        integratorId:
+          description: Easypost ShipmentId required for manifests
+          type:
+          - string
+          - 'null'
+        label:
+          $ref: '#/components/schemas/ShippingLabel'
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    Measurement:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    TransitTimesItem:
+      properties:
+        data:
+          type:
+          - object
+          - 'null'
+        itemId:
+          type:
+          - string
+          - 'null'
+        productCode:
+          type:
+          - string
+          - 'null'
+        quantity:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        unitMeasurements:
+          $ref: '#/components/schemas/ItemMeasurements'
+      type: object
+    ShippingRuntimeShipment:
+      properties:
+        customAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        destination:
+          $ref: '#/components/schemas/Contact'
+        estimatedShipmentDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        fulfillmentLocationCode:
+          type:
+          - string
+          - 'null'
+        orderTotal:
+          format: double
+          type:
+          - number
+          - 'null'
+        origin:
+          $ref: '#/components/schemas/Contact'
+        packages:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimePackage'
+          type:
+          - array
+          - 'null'
+        shippingMethodCodes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    Money:
+      properties:
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        value:
+          format: double
+          type: number
+      type: object
+    CarrierRatesResponse:
+      properties:
+        carrierId:
+          type:
+          - string
+          - 'null'
+        customAttributes:
+          deprecated: true
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        fulfillmentMethod:
+          description: The fulfillment method for which this carrier rate is applicable to. Possible values are Ship and Delivery.
+          type:
+          - string
+          - 'null'
+        shippingRates:
+          items:
+            $ref: '#/components/schemas/ShippingRuntimeShippingRate'
+          type:
+          - array
+          - 'null'
+      type: object
+    RateRequestItem:
+      description: Represents an item in a rate request, inheriting from RequestItem.
+      properties:
+        data:
+          type:
+          - object
+          - 'null'
+        fulfillmentMethod:
+          description: The fulfillment method on item to fetch rates for. Supported values are Ship and Delivery. Will assume Ship if nothing is passed.
+          type:
+          - string
+          - 'null'
+        itemId:
+          type:
+          - string
+          - 'null'
+        itemTotal:
+          description: Item total.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        productSummaries:
+          description: If Product Summaries are populated, this information will be utilized in Product Rules (e.g. ProductCode eq "ABC" or (Weight.Unit eq "lbs" and Weight.Value ge 50)
+          items:
+            $ref: '#/components/schemas/ProductSummary'
+          type:
+          - array
+          - 'null'
+        quantity:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        shipsByItself:
+          type:
+          - boolean
+          - 'null'
+        unitMeasurements:
+          $ref: '#/components/schemas/ItemMeasurements'
+      type: object
+    TimeWindow:
+      description: Represents a time window with a start and end time.
+      properties:
+        endsAt:
+          description: Gets or sets the end time of the time window.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        startsAt:
+          description: Gets or sets the start time of the time window.
+          format: date-time
+          type: string
+      type: object
+    ConsolidationReference:
+      properties:
+        relatedOrderId:
+          type:
+          - string
+          - 'null'
+        relatedOrderNumber:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        relatedShipmentNumber:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    RateRequestGroup:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        rateRequests:
+          items:
+            $ref: '#/components/schemas/RateRequest'
+          type:
+          - array
+          - 'null'
+      type: object
+    CustomAttribute:
+      properties:
+        childAttributes:
+          items:
+            $ref: '#/components/schemas/CustomAttribute'
+          type:
+          - array
+          - 'null'
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    Phone:
+      properties:
+        home:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        work:
+          type:
+          - string
+          - 'null'
+      type: object
+    LabelResponse:
+      properties:
+        packageLabels:
+          items:
+            $ref: '#/components/schemas/PackageLabelResponse'
+          type:
+          - array
+          - 'null'
+        trackingNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_shipping.json
+- kibo-commerce-shipping-openapi.yml
+- kibo-commerce-shipping-storefront-openapi.yml

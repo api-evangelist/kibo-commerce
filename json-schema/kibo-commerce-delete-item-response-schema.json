@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-delete-item-response-schema.json",
+  "title": "Delete Item Response",
+  "description": "Delete Item Response",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-inventory-openapi.yml#/components/schemas/DeleteItemResponse",
+  "properties": {
+    "dryRun": {
+      "description": "Flag used to differentiate between a test and a non-test run.",
+      "type": "boolean"
+    },
+    "itemsDeleted": {
+      "description": "Items deleted due to the request",
+      "items": {
+        "$ref": "#/$defs/M_DeleteItem"
+      },
+      "type": "array"
+    },
+    "jobIDs": {
+      "description": "Flag used to differentiate between a test and a non-test run.",
+      "type": "boolean"
+    },
+    "totalAuditsDeleted": {
+      "description": "Flag used to differentiate between a test and a non-test run.",
+      "type": "boolean"
+    },
+    "totalInventoryEntriesDeleted": {
+      "description": "Flag used to differentiate between a test and a non-test run.",
+      "type": "boolean"
+    },
+    "totalLocationsAffected": {
+      "description": "Flag used to differentiate between a test and a non-test run.",
+      "type": "boolean"
+    },
+    "totalPickWavesDeleted": {
+      "description": "Flag used to differentiate between a test and a non-test run.",
+      "type": "boolean"
+    },
+    "totalProductsDeleted": {
+      "description": "Flag used to differentiate between a test and a non-test run.",
+      "type": "boolean"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "M_DeleteItem": {
+      "description": "Delete Item Model",
+      "properties": {
+        "auditIDs": {
+          "description": "List of audit identifiers associated with the deleted item",
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "inventoryIDs": {
+          "description": "List of inventory identifiers associated with the deleted item",
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "itemIdentifier": {
+          "$ref": "#/$defs/ProductIdentifier"
+        },
+        "locationCodes": {
+          "description": "List of location codes associated with the deleted item",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "locationIDs": {
+          "description": "List of location identifiers associated with the deleted item",
+          "items": {
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "productID": {
+          "description": "Product Identifier",
+          "type": "integer"
+        }
+      },
+      "title": "M_DeleteItem",
+      "type": "object"
+    },
+    "ProductIdentifier": {
+      "description": "Product Identifier Model",
+      "properties": {
+        "partNumber": {
+          "description": "Part/Product Number",
+          "type": "string"
+        },
+        "sku": {
+          "description": "Stock Keeping Unit",
+          "type": "string"
+        },
+        "upc": {
+          "description": "Universal Product Code",
+          "type": "string"
+        }
+      },
+      "title": "ProductIdentifier",
+      "type": "object"
+    }
+  }
+}

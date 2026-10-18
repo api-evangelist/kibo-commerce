@@ -1,0 +1,1092 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-payment-schema.json",
+  "title": "Payment",
+  "description": "Payment transaction associated with this order. It is the entire payment interchange between the merchant who is forwarding the customer's payment \ninformation and the payment service who is authorizing and capturing payment. Payment can be either by credit card, check, or PayPal. (PayPal not\ncurrently supported.)",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-subscription-openapi.yml#/components/schemas/Payment",
+  "properties": {
+    "amountCollected": {
+      "description": "Amount collected on the payment",
+      "format": "double",
+      "type": "number"
+    },
+    "amountCredited": {
+      "description": "Amount credited back to the payment.",
+      "format": "double",
+      "type": "number"
+    },
+    "amountRequested": {
+      "description": "Derived from the Amount on the initial payment create, used to help storefront determine how much can be captured for multiple payments.\nSee Order.AmountRemainingForPayment for an example.",
+      "format": "double",
+      "type": "number"
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/CoreApiContractsAuditInfo"
+    },
+    "availableActions": {
+      "description": "Actions available to the payment",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "billingInfo": {
+      "$ref": "#/$defs/BillingInfo"
+    },
+    "changeMessages": {
+      "description": "Change messages related to the payment.",
+      "items": {
+        "$ref": "#/$defs/ChangeMessage"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "data": {
+      "description": "Custom data from payment providers",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "externalTransactionId": {
+      "description": "The external/third party transaction Id for this payment. This is used to store the transaction Id from digital wallet like Visa Checkout",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "gatewayGiftCard": {
+      "$ref": "#/$defs/GatewayGiftCard"
+    },
+    "groupId": {
+      "$ref": "#/$defs/PaymentActionTarget"
+    },
+    "id": {
+      "description": "Unique identifier of this order transaction.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "installmentPlanCode": {
+      "description": "Stores the Installment Plan code. Installment is only supported on subscription orders",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "interactions": {
+      "description": "List of intereactions for this transaction. A transaction is created upon authorization and lasts across the payment \ninterchange, which can consist of multiple interactions, such as consecutive captures.",
+      "items": {
+        "$ref": "#/$defs/PaymentInteraction"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "isRecurring": {
+      "description": "If true, the product is purchased or fulfilled at regular intervals, for example, \nmonthly billing or a subscription. (Not currently supported.)",
+      "type": "boolean"
+    },
+    "orderId": {
+      "description": "Unique identifier of the order with which this transaction is associated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "paymentServiceTransactionId": {
+      "description": "Unique identifier of the transaction, specified by the payment service processesing this transaction.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "paymentType": {
+      "description": "Type of Payment",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "paymentWorkflow": {
+      "description": "The source of data for this payment.  By default, this will be set to 'mozu'",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "description": "Current status of this transaction which are described by the PaymentStatusConst class.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subPayments": {
+      "description": "List of sub payments that correspond to child orders in case of multiship orders.",
+      "items": {
+        "$ref": "#/$defs/SubPayment"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "addressType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isValidated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BillingInfo": {
+      "description": "Customer's payment details such as payment type (credit card, check by mail, or PayPal)\nand cardholder information if payment is by credit card.",
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/CoreApiContractsAuditInfo"
+        },
+        "billingContact": {
+          "$ref": "#/$defs/Contact"
+        },
+        "card": {
+          "$ref": "#/$defs/PaymentCard"
+        },
+        "check": {
+          "$ref": "#/$defs/CheckPayment"
+        },
+        "customCreditType": {
+          "description": "Name of custom stored credit type",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "data": {
+          "description": "Custom data from payment providers",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "externalToken": {
+          "$ref": "#/$defs/ExternalPaymentToken"
+        },
+        "externalTransactionId": {
+          "description": "Transaction Id from third party payment source like Visa Checkout, Amazon",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isRecurring": {
+          "description": "Indicates whether the payment is used in recurring transactions. ex- subscription payments",
+          "type": "boolean"
+        },
+        "isSameBillingShippingAddress": {
+          "description": "Indicates that billing and shipping address are the same",
+          "type": "boolean"
+        },
+        "paymentType": {
+          "description": "Type of payment, such as credit card, check by mail, or PayPal.\nsee Mozu.CommerceRuntime.Contracts.Payments.PaymentTypeConst for valid values",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentWorkflow": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "purchaseOrder": {
+          "$ref": "#/$defs/PurchaseOrderPayment"
+        },
+        "recurringTransactionId": {
+          "description": "Recurring Payment Id returned by Payment Gateway\nnetworkTransactionId for vantiv\npreviousTransactionId for cybersource etc",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "storeCreditCode": {
+          "description": "The store credit to use for this purchase",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "storeCreditType": {
+          "description": "The type of store credit used for this purchase",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "token": {
+          "$ref": "#/$defs/PaymentToken"
+        }
+      },
+      "type": "object"
+    },
+    "CapturableShipmentSummary": {
+      "properties": {
+        "amountApplied": {
+          "description": "The amount applied by the payment action",
+          "format": "double",
+          "type": "number"
+        },
+        "shipmentNumber": {
+          "description": "The identifying number of the shipment affected by the payment action",
+          "format": "int32",
+          "type": "integer"
+        },
+        "shipmentTotal": {
+          "description": "The shipment's total when the payment action occurred",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ChangeMessage": {
+      "description": "A message displayed by the system based on the last  action, for example, when a product price has changed. System-supplied and read-only.",
+      "properties": {
+        "amount": {
+          "deprecated": true,
+          "description": "Monetary amount that pertains to the change if applicable",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "appId": {
+          "description": "App Id that identifies the user that performed the related change",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "appKey": {
+          "description": "App Key",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "appName": {
+          "description": "App Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attributes": {
+          "additionalProperties": {
+            "nullable": true
+          },
+          "description": "Additional Data. This property will be a Dictionary of objects.",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "correlationId": {
+          "description": "Correlation Id",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "description": "When the message was created. System-supplied. Read-only.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Unique identifier of the  message. System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "identifier": {
+          "description": "Unique identifier to what the message pertains, which can be a cart item, cart or another generic entity. System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "message": {
+          "description": "Human readable message. System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metadata": {
+          "description": "Data. This property will be a JSON array that will contain 0-N items, when there is 1 item it will still be an array containing only one item. System-supplied. Read-only.",
+          "nullable": true
+        },
+        "newValue": {
+          "deprecated": true,
+          "description": "Current price of the item. System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "oldValue": {
+          "deprecated": true,
+          "description": "Original price of the item. System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subject": {
+          "description": "Text on the subject line of the message, for example, the product name. System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subjectType": {
+          "description": "Subject of the message, for example, \"Product.\" System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "success": {
+          "description": "Indicates if the message is related to a success or failure.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "userFirstName": {
+          "description": "User First Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "userId": {
+          "description": "User Id that identifies the user that performed the related change",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "userLastName": {
+          "description": "User Last Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "userScopeType": {
+          "description": "User Type (e.g. Shopper, Admin, etc.)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "verb": {
+          "description": "Action applicable to the message. This can be \"Increased,\" when the product price has increased, \"Decreased,\" when the \nproduct price has decreased, and \"Invalidated,\" when the product is no longer available. System-supplied. Read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CheckPayment": {
+      "properties": {
+        "checkNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Contact": {
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "companyOrOrganization": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "firstName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "lastNameOrSurname": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "middleNameOrInitial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phoneNumbers": {
+          "$ref": "#/$defs/Phone"
+        }
+      },
+      "type": "object"
+    },
+    "CoreApiContractsAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ExternalPaymentToken": {
+      "description": "Structured payment token for external (non-Mozu) payment processors.\n\nDistinct from legacy PaymentToken (Apple Pay / PayPal).\n\nUsed in COM-10873 externally tokenized payments feature.\n\nValidation rules:\n- All three fields (PaymentServiceTokenId, Type, Provider) are required\n- Type must match BillingInfo.PaymentType (case-insensitive)\n- Feature gate (externalTokenizationEnabled) must be true",
+      "properties": {
+        "paymentServiceTokenId": {
+          "description": "Actual token value from the external payment provider.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider": {
+          "description": "External token provider identifier (e.g., \"Stripe\", \"Square\", \"PayPal\").",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "description": "Payment method type (e.g., \"CreditCard\", \"PayPal\", \"ApplePay\").\nMust match BillingInfo.PaymentType exactly (case-insensitive).",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "GatewayGiftCard": {
+      "properties": {
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "cardNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cardPin": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "currencyCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PaymentActionTarget": {
+      "properties": {
+        "targetId": {
+          "description": "The Id of the Checkout/Order/Return to target.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targetNumber": {
+          "description": "The number of the Checkout/Order/Return to target.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "targetType": {
+          "description": "Specifies if the Mozu.CommerceRuntime.Contracts.Payments.PaymentActionTarget.TargetId is a Checkout Id, Order Id, or Return Id.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PaymentCard": {
+      "description": "If the customer is paying by credit card, the card holder's details, such as the name on the card, number, billing \naddress, and expiration dates.",
+      "properties": {
+        "bin": {
+          "description": "Year when the card expires.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cardNumberPartOrMask": {
+          "description": "The visible part of the card number that the merchant uses to refer to \npayment information, for example, the last for digits of the card number.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "ccLastFour": {
+          "description": "Last four digit of Credit card\nOnly for OMS Only tenant.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "expireMonth": {
+          "description": "Month when the card expires.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "expireYear": {
+          "description": "Year when the card expires.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "isCardInfoSaved": {
+          "description": "If true, the card information is stored in the customer's account.",
+          "type": "boolean"
+        },
+        "isTokenized": {
+          "description": "If true, the card is tokenized by external provider",
+          "type": "boolean"
+        },
+        "isUsedRecurring": {
+          "description": "If true, the credit card is charged on a regular interval, such as for a subscription. (Not supported currently.)",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "nameOnCard": {
+          "description": "Card holder's name as it appears on the card.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentOrCardType": {
+          "description": "Card type such as Visa, MasterCard, American Express, or Discover.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentServiceCardId": {
+          "description": "Credit card number.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PaymentGatewayResponseData": {
+      "description": "Payment gateway reponse data",
+      "properties": {
+        "key": {
+          "description": "Key from payment gateway",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "Value from payment gateway",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PaymentInteraction": {
+      "description": "A single interaction of a potential list of intereactions for a transaction. The scope of the transaction is the entire payment\ninterchange. It is created upon authorization and is used for all subsequent interactions performed against the authorize,\nsuch as consecutive captures.",
+      "properties": {
+        "amount": {
+          "description": "Amount of funds associated with this interaction.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/CoreApiContractsAuditInfo"
+        },
+        "capturableShipmentsSummary": {
+          "description": "Stores pairings of shipment number to shipment total for all captured shipments. This was added for generating TLogs.",
+          "items": {
+            "$ref": "#/$defs/CapturableShipmentSummary"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "checkNumber": {
+          "description": "If paying by check, the check number.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "currencyCode": {
+          "description": "ISO currency code for the transaction. Currently, only USD is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gatewayAVSCodes": {
+          "description": "Gateway AVS Codes. Supplied by PCIaaS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gatewayAuthCode": {
+          "description": "If required by the payment gateway, the authorization code of the transaction. Supplied by PCIaaS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gatewayCVV2Codes": {
+          "description": "Gateway CVV2 Codes. Supplied by PCIaaS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gatewayInteractionId": {
+          "description": "Unique identifier of the gateway interaction. Used for credit card transactions, where the\npayment service creates a GatewayInteractionId for each transaction interaction.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "gatewayResponseCode": {
+          "description": "Gateway response code. Supplied by PCIaaS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gatewayResponseData": {
+          "description": "A List of payment response data required to act on authorization when using external order management systems",
+          "items": {
+            "$ref": "#/$defs/PaymentGatewayResponseData"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "gatewayResponseText": {
+          "description": "Gateway response text. Supplied by PCIaaS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gatewayTransactionId": {
+          "description": "Unique identifier of the transaction supplied by PCIaaS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Unique identifier of this payment transaction interaction.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "interactionDate": {
+          "description": "Date the interaction occurred",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "interactionType": {
+          "description": "Types of transaction interactions which can be \"Authorization,\" \"Capture,\" \"AuthorizeAndCapture,\"\n\"Void,\" or \"Credit,\" \"CheckRequested,\" or \"CheckReceived.\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isManual": {
+          "description": "If the payment is a manual payment, this is set to true",
+          "type": "boolean"
+        },
+        "isPending": {
+          "description": "If true, indicates payment action is still pending and not yet confirmed.",
+          "type": "boolean"
+        },
+        "isRecurring": {
+          "description": "If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription. (Not currently implemented.)",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "note": {
+          "description": "Note to be entered by merchant/application",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "orderId": {
+          "description": "Unique identifier of the order with which this transaction is associated.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentEntryStatus": {
+          "description": "Status of the payment when the transaction interaction was created",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentId": {
+          "description": "Unique identifier of the original transaction of which this current interaction is a part.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentTransactionInteractionIdReference": {
+          "description": "Unique identifier of previous PaymentTransactionInteraction that this PaymentTransactionInteraction is modifying.\nFor instance, when crediting a capture, set the PaymentTransactionInteractionIdReference to the capture PaymentTransactionInteractionID.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "refundId": {
+          "description": "Refund Id, if the interaction is for a stand alone refund.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "returnId": {
+          "description": "Return Id, if the interaction is a Credit for a return-refund.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "description": "Status of the payment transaction interaction which can be either \"Success\" or \"Failure.\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/PaymentActionTarget"
+        }
+      },
+      "type": "object"
+    },
+    "PaymentToken": {
+      "properties": {
+        "paymentServiceTokenId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Phone": {
+      "properties": {
+        "home": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mobile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "work": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PurchaseOrderCustomField": {
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PurchaseOrderPayment": {
+      "description": "Purchase order payment",
+      "properties": {
+        "customFields": {
+          "description": "Memo/custom fields",
+          "items": {
+            "$ref": "#/$defs/PurchaseOrderCustomField"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "paymentTerm": {
+          "$ref": "#/$defs/PurchaseOrderPaymentTerm"
+        },
+        "purchaseOrderNumber": {
+          "description": "Purchase order number",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PurchaseOrderPaymentTerm": {
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SubPayment": {
+      "properties": {
+        "amountCollected": {
+          "format": "double",
+          "type": "number"
+        },
+        "amountCredited": {
+          "format": "double",
+          "type": "number"
+        },
+        "amountRefunded": {
+          "format": "double",
+          "type": "number"
+        },
+        "amountRequested": {
+          "format": "double",
+          "type": "number"
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/PaymentActionTarget"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

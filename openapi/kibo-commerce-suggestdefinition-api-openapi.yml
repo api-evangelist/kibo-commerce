@@ -1,0 +1,194 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Suggest Definition API
+  version: '1.0'
+  description: 'Operations tagged SuggestDefinition across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SuggestDefinition
+paths:
+  /commerce/catalog/admin/searchSchema/suggest/{language}:
+    get:
+      parameters:
+      - description: Language code used by the site (en, es, fr)
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Downloads the suggest file for the site
+      tags:
+      - SuggestDefinition
+      operationId: getCommerceCatalogAdminSearchSchemaSuggestByLanguage
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: language code use by the site (en, es, fr)
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/plain:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Uploads a suggest file for the site in tab separated format)
+      tags:
+      - SuggestDefinition
+      operationId: putCommerceCatalogAdminSearchSchemaSuggestByLanguage
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/searchSchema/suggest/settings/{language}:
+    get:
+      parameters:
+      - description: Language code use by the site (en, es, fr)
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+          description: OK
+      summary: Gets the suggester settings for the site
+      tags:
+      - SuggestDefinition
+      operationId: getCommerceCatalogAdminSearchSchemaSuggestSettingsByLanguage
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: Language code use by the site (en, es, fr)
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          application/zip:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/Suggester'
+        description: Suggest definition in
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Suggester'
+          description: OK
+      summary: Updates the suggester settings for the site
+      tags:
+      - SuggestDefinition
+      operationId: putCommerceCatalogAdminSearchSchemaSuggestSettingsByLanguage
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Suggester:
+      properties:
+        allTermsRequired:
+          type:
+          - string
+          - 'null'
+        highlight:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

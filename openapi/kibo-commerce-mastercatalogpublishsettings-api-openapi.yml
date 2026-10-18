@@ -1,0 +1,187 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Master Catalog Publish Settings API
+  version: '1.0'
+  description: 'Operations tagged MasterCatalogPublishSettings across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: MasterCatalogPublishSettings
+paths:
+  /commerce/catalog/admin/mastercatalogs/{masterCatalogId}:
+    get:
+      description: Retrieves a specific master catalog by its Id.
+      parameters:
+      - description: ''
+        in: path
+        name: masterCatalogId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+          description: OK
+      summary: Get Master Catalog
+      tags:
+      - MasterCatalogPublishSettings
+      operationId: getCommerceCatalogAdminMastercatalogsByMasterCatalogId
+      x-operation-id-source: derived
+    put:
+      description: Update the publishing mode of a master catalog
+      parameters:
+      - description: ''
+        in: path
+        name: masterCatalogId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+          description: OK
+      summary: Update Master Catalog
+      tags:
+      - MasterCatalogPublishSettings
+      operationId: putCommerceCatalogAdminMastercatalogsByMasterCatalogId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/mastercatalogs:
+    get:
+      description: Retrieves all master catalogs.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MasterCatalogCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MasterCatalogCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MasterCatalogCollection'
+          description: OK
+      summary: Get Master Catalogs
+      tags:
+      - MasterCatalogPublishSettings
+      operationId: getCommerceCatalogAdminMastercatalogs
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    MasterCatalogCollection:
+      description: Collection of MasterCatalogs
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsMasterCatalog'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CatalogAdminsMasterCatalog:
+      properties:
+        enableLiveEdit:
+          description: If the publishingMode is Pending and LiveEditsEnabled = true, DataViewMode live can be passed in the header and live products can be directly edited.
+          type:
+          - boolean
+          - 'null'
+        id:
+          description: MasterCatalogId (readonly)
+          format: int32
+          type: integer
+        isDeleted:
+          description: Indicates whether the MasterCatalog has been deleted and should no longer be used
+          type: boolean
+        name:
+          description: Name of the MasterCatalog (readonly)
+          type:
+          - string
+          - 'null'
+        productPublishingMode:
+          description: The product publishing mode of this MasterCatalog
+          type:
+          - string
+          - 'null'
+        supportedLocaleCodes:
+          description: Master catalog supported locale codes
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

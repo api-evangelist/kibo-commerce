@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-job-queue-response-schema.json",
+  "title": "Job Queue Response",
+  "description": "Response for getting a job",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-inventory-openapi.yml#/components/schemas/JobQueueResponse",
+  "properties": {
+    "added": {
+      "description": "Time and date the job was added to the queue in ISO8601 format in UTC",
+      "type": "string"
+    },
+    "finished": {
+      "description": "Time and date the job was finished in ISO8601 format in UTC",
+      "type": "string"
+    },
+    "hasData": {
+      "description": "True if the job was not created from a fetched file",
+      "type": "boolean"
+    },
+    "itemCount": {
+      "description": "The number of items processed, only for job types REFRESH and ADJUST",
+      "type": "integer"
+    },
+    "jobID": {
+      "description": "Internal identifier that uniquely identifies a single job",
+      "type": "integer"
+    },
+    "locationCode": {
+      "description": "Unique internal Identifier of the owning location",
+      "type": "string"
+    },
+    "messages": {
+      "description": "List of messages",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "numResults": {
+      "description": "Number of results",
+      "type": "integer"
+    },
+    "originalFilename": {
+      "description": "The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process",
+      "type": "string"
+    },
+    "started": {
+      "description": "Time and date the job was started in ISO8601 format in UTC",
+      "type": "string"
+    },
+    "status": {
+      "description": "Current status of job completion",
+      "enum": [
+        "PENDING",
+        "WORKING",
+        "SUCCESS",
+        "FAILED"
+      ],
+      "type": "string"
+    },
+    "success": {
+      "description": "Flag for success",
+      "type": "boolean"
+    },
+    "tenantID": {
+      "description": "Unique internal identifier of the tenant that owns the job",
+      "type": "integer"
+    },
+    "type": {
+      "description": "Purpose of the job",
+      "enum": [
+        "REFRESH",
+        "ADJUST",
+        "RELEASE_SHIPMENTS",
+        "CREATE_PICK_WAVE",
+        "CLOSE_PICK_WAVE",
+        "PUT_AWAY_FILE",
+        "SHORT_PICK_ERROR",
+        "BIN_AUDIT_START",
+        "BIN_AUDIT_COMPLETION",
+        "CREATE_BIN_AUDIT",
+        "RELEASE_PENDING_ITEMS",
+        "ALLOCATE",
+        "DEALLOCATE",
+        "FULFILL",
+        "DELETE"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

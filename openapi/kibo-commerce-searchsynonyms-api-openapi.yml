@@ -1,0 +1,388 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Search Synonyms API
+  version: '1.0'
+  description: 'Operations tagged SearchSynonyms across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SearchSynonyms
+paths:
+  /commerce/catalog/admin/search/synonyms/{synonymId}:
+    delete:
+      description: Delete a specific synonym definition by ID.
+      parameters:
+      - in: path
+        name: synonymId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Synonym Definition
+      tags:
+      - SearchSynonyms
+      operationId: deleteCommerceCatalogAdminSearchSynonymsBySynonymId
+      x-operation-id-source: derived
+    get:
+      description: Get a specific synonym definition by ID.
+      parameters:
+      - in: path
+        name: synonymId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+          description: OK
+      summary: Get Synonym Definition
+      tags:
+      - SearchSynonyms
+      operationId: getCommerceCatalogAdminSearchSynonymsBySynonymId
+      x-operation-id-source: derived
+    put:
+      description: Update a specific synonym definition by ID.
+      parameters:
+      - in: path
+        name: synonymId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SynonymDefinition'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+          description: OK
+      summary: Update Synonym Definition
+      tags:
+      - SearchSynonyms
+      operationId: putCommerceCatalogAdminSearchSynonymsBySynonymId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/synonym-definitions/{localeCode}:
+    get:
+      description: Get synonym definition collection.
+      parameters:
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+          description: OK
+      summary: Get Synonym Definition Collection
+      tags:
+      - SearchSynonyms
+      operationId: getCommerceCatalogAdminSearchSynonymDefinitionsByLocaleCode
+      x-operation-id-source: derived
+    post:
+      description: Add or update a synonym definition collection.
+      parameters:
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SynonymDefinitionCollection'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+          description: OK
+      summary: Add Synonym Definition Collection
+      tags:
+      - SearchSynonyms
+      operationId: postCommerceCatalogAdminSearchSynonymDefinitionsByLocaleCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/master-catalog-synonym-definitions/{languageCode}:
+    get:
+      description: Get synonym definition collections.
+      parameters:
+      - in: path
+        name: languageCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionCollection'
+          description: OK
+      summary: Get Synonym Definition Collections
+      tags:
+      - SearchSynonyms
+      operationId: getCommerceCatalogAdminSearchMasterCatalogSynonymDefinitionsByLanguageCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/synonyms:
+    get:
+      description: Get synonym definitions.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinitionPagedCollection'
+          description: OK
+      summary: Get Synonym Definitions
+      tags:
+      - SearchSynonyms
+      operationId: getCommerceCatalogAdminSearchSynonyms
+      x-operation-id-source: derived
+    post:
+      description: Add synonym definition
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SynonymDefinition'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SynonymDefinition'
+          description: OK
+      summary: Add Synonym Definition
+      tags:
+      - SearchSynonyms
+      operationId: postCommerceCatalogAdminSearchSynonyms
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SynonymDefinitionCollection:
+      description: Non-paged collection of all synonyms for a Site-Locale. Used for bulk operations
+      properties:
+        localeCode:
+          description: The locale code to which this definition applies
+          type:
+          - string
+          - 'null'
+        siteId:
+          description: Read-only  Site Id
+          format: int32
+          type: integer
+        synonymDefinitions:
+          description: List of mappings for this definition
+          items:
+            $ref: '#/components/schemas/SynonymDefinition'
+          type:
+          - array
+          - 'null'
+        tenantId:
+          description: Read-only TenantId
+          format: int32
+          type: integer
+      type: object
+    SynonymDefinition:
+      properties:
+        key:
+          description: If key is defined then map is directed
+          type:
+          - string
+          - 'null'
+        synonymId:
+          description: The unique identifier for the synonym definition
+          format: int32
+          type:
+          - integer
+          - 'null'
+        synonyms:
+          description: List of synonyms.  If no key is defined the matches are bidirectional
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    SynonymDefinitionPagedCollection:
+      description: Paged collection of synonyms for a Site-Locale.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SynonymDefinition'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

@@ -1,0 +1,765 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Search Settings API
+  version: '1.0'
+  description: 'Operations tagged SearchSettings across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SearchSettings
+paths:
+  /commerce/catalog/admin/search/settings:
+    get:
+      description: Get site search settings list.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettingsCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettingsCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSettingsCollection'
+          description: OK
+      summary: Get Search Settings
+      tags:
+      - SearchSettings
+      operationId: getCommerceCatalogAdminSearchSettings
+      x-operation-id-source: derived
+    post:
+      description: Adds the Search Settings for a specific site.
+      parameters:
+      - in: query
+        name: fromSystemDefault
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: copyFromName
+        schema:
+          type: string
+      - in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: makeDefault
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchSettings'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+          description: OK
+      summary: Add Search Settings
+      tags:
+      - SearchSettings
+      operationId: postCommerceCatalogAdminSearchSettings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/settings/{name}:
+    delete:
+      description: Delete the Search Settings for a specific site by name.
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+          description: OK
+      summary: Delete Search Settings by Name
+      tags:
+      - SearchSettings
+      operationId: deleteCommerceCatalogAdminSearchSettingsByName
+      x-operation-id-source: derived
+    get:
+      description: Get specific site search settings by name.
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+          description: OK
+      summary: Get Search Settings by Name
+      tags:
+      - SearchSettings
+      operationId: getCommerceCatalogAdminSearchSettingsByName
+      x-operation-id-source: derived
+    put:
+      description: Update site search settings for a specific site by name.
+      parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchSettings'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+          description: OK
+      summary: Update Search Settings by Name
+      tags:
+      - SearchSettings
+      operationId: putCommerceCatalogAdminSearchSettingsByName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/{name}/sitesearchsettings:
+    delete:
+      description: Deletes the SiteSearchSettings for a specific SearchSetting by name.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Site Search Settings
+      tags:
+      - SearchSettings
+      operationId: deleteCommerceCatalogAdminSearchByNameSitesearchsettings
+      x-operation-id-source: derived
+    get:
+      description: Get SiteSearchSettings for a specific SearchSettings by name.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteSearchSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SiteSearchSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SiteSearchSettings'
+          description: OK
+      summary: Get Site Search Settings
+      tags:
+      - SearchSettings
+      operationId: getCommerceCatalogAdminSearchByNameSitesearchsettings
+      x-operation-id-source: derived
+    put:
+      description: Updates the SiteSearchSettings for a specific SearchSetting by name.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteSearchSettings'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteSearchSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SiteSearchSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SiteSearchSettings'
+          description: OK
+      summary: Update Site Search Settings
+      tags:
+      - SearchSettings
+      operationId: putCommerceCatalogAdminSearchByNameSitesearchsettings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/settings/systemdefault:
+    get:
+      description: Get the system default search settings.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSettings'
+          description: OK
+      summary: Get System Default Search Settings
+      tags:
+      - SearchSettings
+      operationId: getCommerceCatalogAdminSearchSettingsSystemdefault
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/spellcheck:
+    put:
+      description: Update Spellcheck for SiteSearchSettings.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpellcheckUpdate'
+        description: ''
+      responses:
+        '200':
+          description: OK
+      summary: Update Spellcheck Settings
+      tags:
+      - SearchSettings
+      operationId: putCommerceCatalogAdminSearchSpellcheck
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SpellcheckUpdate:
+      description: ''
+      properties:
+        localeCode:
+          description: e.g en-US
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          description: ''
+          format: int32
+          type: integer
+        spellcheckEnabled:
+          description: Spellcheck true/false
+          type: boolean
+        tenantId:
+          description: ''
+          format: int32
+          type: integer
+      type: object
+    Spellcheck:
+      description: ''
+      properties:
+        autocorrect:
+          description: Enables/disables the use of spell correct/auto correct at query time
+          type: boolean
+        didyoumean:
+          description: Enables/disables the use of did you mean at query time
+          type: boolean
+        spellcheckEnabled:
+          description: 'Does the spelling dictionary exists in SOLR
+
+            This determines if toggle in site search settings should be enabled/disabled'
+          type: boolean
+      type: object
+    TypoTolerance:
+      properties:
+        distance:
+          description: Typo tolerance distance for fuzzy match. Must be Integer 1 or 2.
+          format: int32
+          type: integer
+        enabled:
+          description: "Only the class itself can set Enabled to some value, \nhowever anyone could read the value in Enabled."
+          readOnly: true
+          type: boolean
+        factor:
+          description: Typo tolerance distance for fuzzy match. Must be Integer 1-10.
+          format: int32
+          type: integer
+      type: object
+    FieldValueBoost:
+      properties:
+        boostType:
+          type:
+          - string
+          - 'null'
+        fields:
+          items:
+            $ref: '#/components/schemas/BoostField'
+          type:
+          - array
+          - 'null'
+      type: object
+    SiteSearchFieldWeight:
+      description: A custom field and weight value for search relevancy
+      properties:
+        phraseWeight:
+          description: weight to apply in phrase boosting
+          format: int32
+          type: integer
+        searchFieldName:
+          description: field in the index to target
+          type:
+          - string
+          - 'null'
+        weight:
+          description: weight to apply to boost field
+          format: int32
+          type: integer
+      type: object
+    VectorSearchSettings:
+      properties:
+        applyBoostFunctions:
+          type: boolean
+        filterByThresholdDistance:
+          type:
+          - boolean
+          - 'null'
+        hybridMode:
+          format: int32
+          type: integer
+        multiplier:
+          format: double
+          type: number
+        thresholdDistance:
+          format: double
+          type: number
+        topK:
+          format: int32
+          type: integer
+      type: object
+    ListingSettings:
+      properties:
+        customBoosts:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        personalizationExperience:
+          type:
+          - string
+          - 'null'
+        personalizationFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CollapseSettings:
+      description: Settings to control product search and indexing behavior
+      properties:
+        boostFieldName:
+          type:
+          - string
+          - 'null'
+        boostRankListing:
+          type:
+          - boolean
+          - 'null'
+        boostRankSiteSearch:
+          type:
+          - boolean
+          - 'null'
+        collapseFieldName:
+          type:
+          - string
+          - 'null'
+        collapseListing:
+          type:
+          - boolean
+          - 'null'
+        collapseSiteSearch:
+          type:
+          - boolean
+          - 'null'
+        useFieldCache:
+          type:
+          - boolean
+          - 'null'
+      type: object
+    SearchSettingsCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SearchSettings'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    SiteSearchSettings:
+      properties:
+        crossFieldAdditiveScoreFactor:
+          format: double
+          type: number
+        customBoosts:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        fieldWeights:
+          items:
+            $ref: '#/components/schemas/SiteSearchFieldWeight'
+          type:
+          - array
+          - 'null'
+        minimumMatchPercents:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        multiTermSynMinimumMatchPercents:
+          description: 'if values present is used for mm when sowBehavior.WhenNoMultiTermSyn and multi term sym match found in query
+
+            if no values are present or null fallback to MinMatchPercents'
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        personalizationExperience:
+          type:
+          - string
+          - 'null'
+        personalizationFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+        phraseSlop:
+          format: int32
+          type: integer
+        searchChildProductsByDefault:
+          type: boolean
+        searchMode:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        sowBehavior:
+          description: 'controls sowBehavior (Never=0, Always=1, WhenNoMultiTermSyn=2)
+
+            never sow=false, always sow=true,  WhenNoMultiTermSyn = (depends on existance of multitermsynonym match in query)'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        spellcheck:
+          $ref: '#/components/schemas/Spellcheck'
+        twoWordPhraseBoost:
+          description: 'if true, 2 word shingles used for phrase boosting based on fields with phrase weights greater than 0
+
+            if false, only full phrase mathing used for phrase boosting'
+          type:
+          - boolean
+          - 'null'
+        typoTolerance:
+          $ref: '#/components/schemas/TypoTolerance'
+        vectorSettings:
+          $ref: '#/components/schemas/VectorSearchSettings'
+      type: object
+    SearchSettings:
+      description: Settings to control product search and indexing behavior
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        categorySuggestSettings:
+          $ref: '#/components/schemas/SuggestSettings'
+        collapseSettings:
+          $ref: '#/components/schemas/CollapseSettings'
+        description:
+          type:
+          - string
+          - 'null'
+        isDefault:
+          type: boolean
+        listingSettings:
+          $ref: '#/components/schemas/ListingSettings'
+        productSuggestSettings:
+          $ref: '#/components/schemas/ProductSuggestSettings'
+        settingsName:
+          type:
+          - string
+          - 'null'
+        siteSearchSettings:
+          $ref: '#/components/schemas/SiteSearchSettings'
+      type: object
+    SuggestSettings:
+      properties:
+        crossFieldAdditiveScoreFactor:
+          format: double
+          type: number
+        fieldWeights:
+          items:
+            $ref: '#/components/schemas/FieldWeight'
+          type:
+          - array
+          - 'null'
+        personalizationExperience:
+          type:
+          - string
+          - 'null'
+        personalizationFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+        returnFields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    BoostField:
+      properties:
+        fieldName:
+          type:
+          - string
+          - 'null'
+        valueExpressions:
+          items:
+            $ref: '#/components/schemas/BoostValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    BoostValue:
+      properties:
+        boost:
+          format: int32
+          type: integer
+        operator:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductSuggestSettings:
+      properties:
+        crossFieldAdditiveScoreFactor:
+          format: double
+          type: number
+        customBoosts:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        fieldWeights:
+          items:
+            $ref: '#/components/schemas/FieldWeight'
+          type:
+          - array
+          - 'null'
+        personalizationExperience:
+          type:
+          - string
+          - 'null'
+        personalizationFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+        returnFields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        searchChildProductsByDefault:
+          type: boolean
+      type: object
+    FieldWeight:
+      properties:
+        searchFieldName:
+          description: field in the index to target
+          type:
+          - string
+          - 'null'
+        weight:
+          description: weight to apply to boost field
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

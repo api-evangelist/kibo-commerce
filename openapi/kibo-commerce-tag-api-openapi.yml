@@ -1,0 +1,340 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Tag API
+  version: '1.0'
+  description: 'Operations tagged Tag across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Tag
+paths:
+  /commerce/catalog/admin/tags/{tagCode}:
+    delete:
+      description: Deletes a Tag specified by its tagCode.
+      parameters:
+      - description: ''
+        in: path
+        name: tagCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Tag
+      tags:
+      - Tag
+      operationId: deleteCommerceCatalogAdminTagsByTagCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a single tag.
+      parameters:
+      - description: ''
+        in: path
+        name: tagCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+          description: OK
+      summary: Get Tag
+      tags:
+      - Tag
+      operationId: getCommerceCatalogAdminTagsByTagCode
+      x-operation-id-source: derived
+    put:
+      description: Modifies a tag.
+      parameters:
+      - description: ''
+        in: path
+        name: tagCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsTag'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+          description: OK
+      summary: Update Tag
+      tags:
+      - Tag
+      operationId: putCommerceCatalogAdminTagsByTagCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/tags/node/tree:
+    get:
+      description: Retrieves the tag collection as tag tree for specified tagCode.
+      parameters:
+      - description: ''
+        in: query
+        name: tagCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagNodeTree'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TagNodeTree'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TagNodeTree'
+          description: OK
+      summary: Get Tag Collection as Tag Tree
+      tags:
+      - Tag
+      operationId: getCommerceCatalogAdminTagsNodeTree
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/tags:
+    get:
+      description: Retrieves a list of tags.
+      parameters:
+      - description: ''
+        in: query
+        name: path
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TagCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TagCollection'
+          description: OK
+      summary: Get Tags
+      tags:
+      - Tag
+      operationId: getCommerceCatalogAdminTags
+      x-operation-id-source: derived
+    post:
+      description: Creates a tag.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsTag'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsTag'
+          description: OK
+      summary: Create Tag
+      tags:
+      - Tag
+      operationId: postCommerceCatalogAdminTags
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CatalogAdminsTag:
+      description: A generic tag that can be used for any purpose.
+      properties:
+        tagCode:
+          description: A unique code per catalog. Limit 500 characters.
+          minLength: 1
+          type: string
+        tagName:
+          description: Readonly and computed from TagCode. If using hierarchical tag-codes, only the last node
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        tagPath:
+          description: Readonly and computed from TagCode. If using hierarchical tag-codes, the node path without the TagName
+          readOnly: true
+          type:
+          - string
+          - 'null'
+      required:
+      - tagCode
+      type: object
+    TagCollection:
+      description: Collection of Tags returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsTag'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    TagNode:
+      properties:
+        children:
+          items:
+            type: object
+          type:
+          - array
+          - 'null'
+        isRoot:
+          type: boolean
+        tagCode:
+          type:
+          - string
+          - 'null'
+        tagName:
+          type:
+          - string
+          - 'null'
+        tagPath:
+          type:
+          - string
+          - 'null'
+      type: object
+    TagNodeTree:
+      description: Hierarchical tree for Tags
+      properties:
+        items:
+          $ref: '#/components/schemas/TagNode'
+        success:
+          type: boolean
+        total:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

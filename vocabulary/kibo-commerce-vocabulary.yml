@@ -1,0 +1,434 @@
+generated: '2026-10-18'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/kibo-commerce-appdevelopement-openapi.yml
+- openapi/kibo-commerce-audit-logs-openapi.yml
+- openapi/kibo-commerce-catalog-admin-openapi.yml
+- openapi/kibo-commerce-catalog-storefront-openapi.yml
+- openapi/kibo-commerce-commerce-openapi.yml
+vocabulary:
+  name: Kibo Commerce Domain Vocabulary
+  description: 'Terms declared by Kibo Commerce''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-18'
+  terms:
+  - term: OrderRoutingTenant
+    definition: Classic UI API - Tenant-level routing configuration
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingDataList
+    definition: Classic UI API - Manage custom data lists
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingSettings
+    definition: Classic UI API - Order Routing Settings configuration
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingScenario
+    definition: New UI API - Manage routing scenarios
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingLocation
+    definition: Classic UI API - Location information
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingEnvironment
+    definition: Classic UI API - Environment configuration
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingStrategyExport
+    definition: New UI API - Export and import strategies
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingAfterAction
+    definition: Classic UI API - Post-routing actions
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingFilterData
+    definition: New UI API - Filter data for routing scenarios
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingStrategy
+    definition: New UI API - Manage routing strategies
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingCustomDataList
+    definition: New UI API - Manage custom data lists for filtering
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingGroup
+    definition: Classic UI API - Manage routing groups
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingSort
+    definition: Classic UI API - Configure sorting rules
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: Routing
+    definition: Classic UI API - Routing testing and debugging
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingEDD
+    definition: New UI API - Estimated delivery date routing
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingSite
+    definition: Classic UI API - Site-specific routing configuration
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: OrderRoutingFilter
+    definition: Classic UI API - Configure routing filters
+    tags:
+    - Resource Group
+    source: openapi/kibo-commerce-orderrouting-openapi.yml
+  - term: AppAuthInfo
+    definition: 'Object declared by the contract with fields: applicationId, sharedSecret.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/AppAuthInfo
+  - term: AppVersion
+    definition: 'Object declared by the contract with fields: majorVersion, minorVersion, revision.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/AppVersion
+  - term: ApplicationAttribute
+    definition: Holds attribute definitions for AppVersion
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationAttribute
+  - term: ApplicationBehavior
+    definition: 'Object declared by the contract with fields: behaviorId, packageId.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationBehavior
+  - term: ApplicationCapability
+    definition: 'Object declared by the contract with fields: applicationCapabilityId, applicationCapabilityTypeId, applicationEndPoint, capabilityTypeContractId,
+      packageId.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationCapability
+  - term: ApplicationCapabilityDomain
+    definition: 'Object declared by the contract with fields: applicationCapabilityDomainId, applicationCapabilityDomainValues1, applicationCapabilityDomainValues2,
+      applicationCapabilityTypeId, name.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationCapabilityDomain
+  - term: ApplicationCapabilityDomainValue
+    definition: 'Object declared by the contract with fields: applicationCapabilityDomainId1, applicationCapabilityDomainId2, applicationCapabilityDomainValueId,
+      displayName, valueName.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationCapabilityDomainValue
+  - term: ApplicationCapabilityType
+    definition: 'Object declared by the contract with fields: applicationCapabilities, applicationCapabilityDomains, applicationCapabilityTypeId,
+      applicationId, capabilityTypeId, capabilityTypeName, isImplemented, isInitializedByDefault, packageId.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationCapabilityType
+  - term: ApplicationEntitlement
+    definition: 'Object declared by the contract with fields: appKey, appOwnerDevAccountId, applicationEntitlementId, applicationId, applicationLicenseType,
+      applicationName, applicationStatusId, applicationTransactions, applicationVersion, deletedBy, deletedByFirstName, deletedByLastName. (14
+      more)'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationEntitlement
+  - term: ApplicationSubscription
+    definition: Defines an event that an Application Version is subscribed to.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationSubscription
+  - term: ApplicationSummary
+    definition: 'Object declared by the contract with fields: appId, appKey, appSchemeVersion, applicationId, applicationNamespace, applicationStatusId,
+      applicationStatusName, applicationTypeId, applicationVersion, hasV2Credentials, hasVersions, name. (6 more)'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationSummary
+  - term: ApplicationSummaryCollection
+    definition: Collection of products returned as a whole. A collection is not paged.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationSummaryCollection
+  - term: ApplicationTransaction
+    definition: 'Object declared by the contract with fields: applicationEntitlementId, applicationId, applicationTransactionId, isoCurrencyCode,
+      localeCode, orderNumber, siteId, tenantId, transactionDate, transactionPrice, transactionTax, transactionTotal.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationTransaction
+  - term: ApplicationVersionsCollection
+    definition: 'Object declared by the contract with fields: items, totalCount.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationVersionsCollection
+  - term: Attribute
+    definition: 'Object declared by the contract with fields: adminName, applicationAttributeId, attributeId, code, fqn, inputType, name, sequence,
+      type, vocabularyJson, vocabularyValues.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/Attribute
+  - term: AuditInfo
+    definition: 'Object declared by the contract with fields: createBy, createDate, updateBy, updateDate.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/AuditInfo
+  - term: AuthTicket
+    definition: 'Object declared by the contract with fields: accessToken, accessTokenExpiration, environmentScope, refreshToken, refreshTokenExpiration.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/AuthTicket
+  - term: AuthTicketRequest
+    definition: Complex object to have the refresh token sent in the body intead of as clear text in the query string.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/AuthTicketRequest
+  - term: BehaviorCategoryBehavior
+    definition: 'Object declared by the contract with fields: behaviorItems, id, name.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/BehaviorCategoryBehavior
+  - term: BehaviorCategoryBehaviorCollection
+    definition: 'Object declared by the contract with fields: items, totalCount.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/BehaviorCategoryBehaviorCollection
+  - term: BehaviorItem
+    definition: 'Object declared by the contract with fields: categoryId, id, isPrivate, name.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/BehaviorItem
+  - term: Event
+    definition: Describes an event that a 3rd party developer can subscribe to.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/Event
+  - term: FileMetadata
+    definition: 'Object declared by the contract with fields: auditInfo, checkSum, id, path, sizeInBytes, type.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/FileMetadata
+  - term: FolderMetadata
+    definition: 'Object declared by the contract with fields: files, fullPath, name, subFolders.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/FolderMetadata
+  - term: HeadlessAppBuildJob
+    definition: A job that represents the build of a Kibo hosted headless application.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessAppBuildJob
+  - term: HeadlessAppBuildJobResponse
+    definition: Response object for looking up headless storefront build jobs.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessAppBuildJobResponse
+  - term: HeadlessAppBuildLog
+    definition: The list of steps taken during the build job with links to logs.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessAppBuildLog
+  - term: HeadlessAppBuildStep
+    definition: A job that represents the build of a Kibo hosted headless application.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessAppBuildStep
+  - term: HeadlessAppRuntimeLog
+    definition: Response object representing a s3 object containing headless storefront runtime logs.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessAppRuntimeLog
+  - term: HeadlessAppRuntimeLogResponse
+    definition: Response object for looking up headless storefront runtime logs.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessAppRuntimeLogResponse
+  - term: HeadlessBuildTriggerResponse
+    definition: Response returned when a headless build is triggered. See Mozu.AppDev.Contracts.HeadlessBuildJobStatus for valid Mozu.AppDev.Contracts.HeadlessBuildTriggerResponse.Status
+      values.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessBuildTriggerResponse
+  - term: HeadlessEnvVar
+    definition: Read/list view of a headless environment variable. Unlike Mozu.AppDev.Contracts.HeadlessSecret, environment variable values are
+      plaintext and deliberately returned to clients. For writes, use Mozu.AppDev.Contracts.HeadlessEnvVarInput.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessEnvVar
+  - term: HeadlessEnvVarCollection
+    definition: 'Object declared by the contract with fields: items, totalCount.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessEnvVarCollection
+  - term: HeadlessEnvVarInput
+    definition: Write-only input for creating or updating a headless environment variable. The read view is Mozu.AppDev.Contracts.HeadlessEnvVar.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessEnvVarInput
+  - term: HeadlessSecret
+    definition: 'Read/list view of a headless secret: name and metadata only. This type intentionally has NO `Value` property — secret plaintext
+      is never returned to clients, and the absence of the field makes that leak unrepresentable. Do not add a `Value` here; use Mozu.AppDev.Contracts.HeadlessSecretInput
+      for writes.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessSecret
+  - term: HeadlessSecretCollection
+    definition: 'Object declared by the contract with fields: items, totalCount.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessSecretCollection
+  - term: HeadlessSecretInput
+    definition: Write-only input for creating or updating a headless secret. The read view is Mozu.AppDev.Contracts.HeadlessSecret, which intentionally
+      has no `Value` property — secret plaintext is never returned to clients.
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessSecretInput
+  - term: HttpContent
+    definition: 'Object declared by the contract with fields: headers.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HttpContent
+  - term: HttpMethod
+    definition: 'Object declared by the contract with fields: method.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HttpMethod
+  - term: HttpRequestMessage
+    definition: 'Object declared by the contract with fields: content, headers, method, options, properties, requestUri, version, versionPolicy.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HttpRequestMessage
+  - term: HttpResponseMessage
+    definition: 'Object declared by the contract with fields: content, headers, isSuccessStatusCode, reasonPhrase, requestMessage, statusCode,
+      trailingHeaders, version.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HttpResponseMessage
+  - term: HttpStatusCode
+    definition: 'Enumeration declared by the contract with values: 100, 101, 102, 103, 200, 201, 202, 203, 204, 205, 206, 207. (49 more)'
+    tags:
+    - Enumeration
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HttpStatusCode
+  - term: HttpVersionPolicy
+    definition: 'Enumeration declared by the contract with values: 0, 1, 2.'
+    tags:
+    - Enumeration
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HttpVersionPolicy
+  - term: OAuthAccessTokenResponse
+    definition: 'Object declared by the contract with fields: access_token, expires_in, refresh_token, token_type.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/OAuthAccessTokenResponse
+  - term: OauthAuthRequest
+    definition: 'Object declared by the contract with fields: client_id, client_secret, grant_type, refresh_token.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/OauthAuthRequest
+  - term: OauthAuthRequestInternal
+    definition: 'Object declared by the contract with fields: application_name, client_id, client_secret, grant_type, refresh_token.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/OauthAuthRequestInternal
+  - term: Package
+    definition: 'Object declared by the contract with fields: apiVersion, appConfigUrl, appId, appKey, appSchemeVersion, applicationAttributes,
+      applicationBehaviors, applicationCapabilities, applicationCapabilityTypes, applicationDescription, applicationDetailId, applicationEntitlements.
+      (41 more)'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/Package
+  - term: PackageCollection
+    definition: 'Object declared by the contract with fields: items, pageCount, pageSize, startIndex, totalCount.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/PackageCollection
+  - term: PackageNamesCollection
+    definition: 'Object declared by the contract with fields: items, totalCount.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/PackageNamesCollection
+  - term: PackageRequest
+    definition: 'Object declared by the contract with fields: appKey, parentThemeAppKey.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/PackageRequest
+  - term: RenameInfo
+    definition: 'Object declared by the contract with fields: newFullPath, oldFullPath.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/RenameInfo
+  - term: StringStringIEnumerableKeyValuePair
+    definition: 'Object declared by the contract with fields: key, value.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/StringStringIEnumerableKeyValuePair
+  - term: History
+    definition: 'Object declared by the contract with fields: action, appKey, correlationId, entityId, entityType, id, initiatingAppId, ipAddress,
+      objectName, siteId, tenantId, timestamp. (1 more)'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-audit-logs-openapi.yml#/components/schemas/History
+  - term: HistoryCollection
+    definition: 'Object declared by the contract with fields: items, pageCount, pageSize, startIndex, totalCount.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-audit-logs-openapi.yml#/components/schemas/HistoryCollection
+  - term: AssignedDiscount
+    definition: 'Object declared by the contract with fields: auditInfo, couponSetCode, couponSetId, discountId.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AssignedDiscount
+  - term: AttributeInProductType
+    definition: 'Object declared by the contract with fields: attributeDetail, attributeFQN, displayInfo, isAdminOnlyProperty, isHiddenProperty,
+      isInheritedFromBaseType, isMultiValueProperty, isProductDetailsOnlyProperty, isRequiredByAdmin, order, vocabularyValues.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeInProductType
+  - term: AttributeInProductTypeDisplayInfo
+    definition: 'Object declared by the contract with fields: displayIntention.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeInProductTypeDisplayInfo
+  - term: AttributeSearchSettings
+    definition: Attribute Search Settings. A container for all of the search and indexing settings of an Attribute
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeSearchSettings
+  - term: AttributeTypeRule
+    definition: Attribute Value Localized Resource
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeTypeRule
+  - term: AttributeTypeRuleCollection
+    definition: A collection of AttributeType rules
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeTypeRuleCollection
+  - term: AttributeVocabularyValueDisplayInfo
+    definition: 'Object declared by the contract with fields: cmsId, colorValue, imageUrl.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeVocabularyValueDisplayInfo
+  - term: AttributeVocabularyValueInProductType
+    definition: 'Object declared by the contract with fields: displayInfo, order, value, vocabularyValueDetail.'
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeVocabularyValueInProductType
+  - term: AttributeVocabularyValueLocalizedContent
+    definition: Attribute Value Localized Resource
+    tags:
+    - Object
+    source: openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/AttributeVocabularyValueLocalizedContent

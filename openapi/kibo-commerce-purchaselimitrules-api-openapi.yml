@@ -1,0 +1,398 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Purchase Limit Rules API
+  version: '1.0'
+  description: 'Operations tagged PurchaseLimitRules across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: PurchaseLimitRules
+paths:
+  /commerce/rules/purchaselimit/{code}:
+    delete:
+      description: Deletes a purchase limit rule by code.
+      parameters:
+      - description: The code of the purchase limit rule to delete.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Purchase Limit Rule
+      tags:
+      - PurchaseLimitRules
+      operationId: deleteCommerceRulesPurchaselimitByCode
+      x-operation-id-source: derived
+    get:
+      description: Gets purchase limit rule details by code.
+      parameters:
+      - description: The code of the purchase limit rule.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+          description: OK
+      summary: Get Purchase Limit Rule by Code
+      tags:
+      - PurchaseLimitRules
+      operationId: getCommerceRulesPurchaselimitByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing purchase limit rule.
+      parameters:
+      - description: The code of the purchase limit rule to update.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseLimitRule'
+        description: The updated purchase limit rule.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+          description: OK
+      summary: Update Purchase Limit Rule
+      tags:
+      - PurchaseLimitRules
+      operationId: putCommerceRulesPurchaselimitByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/purchaselimit:
+    get:
+      description: Gets a collection of purchase limit rules according to any specified filter criteria and sort options.
+      parameters:
+      - description: The start index for pagination.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The page size for pagination.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The sort by parameter.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: The filter parameter.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: The response groups parameter.
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRuleCollection'
+          description: OK
+      summary: Get Purchase Limit Rules
+      tags:
+      - PurchaseLimitRules
+      operationId: getCommerceRulesPurchaselimit
+      x-operation-id-source: derived
+    post:
+      description: Creates a new purchase limit rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseLimitRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitRule'
+          description: OK
+      summary: Create Purchase Limit Rule
+      tags:
+      - PurchaseLimitRules
+      operationId: postCommerceRulesPurchaselimit
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/purchaselimit/{code}/rank:
+    put:
+      description: Updates the rank for a purchase limit rule and rearranges the ranks of all other rules accordingly.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRankRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Update Purchase Limit Rule Rank
+      tags:
+      - PurchaseLimitRules
+      operationId: putCommerceRulesPurchaselimitByCodeRank
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    UpdateRankRequest:
+      description: Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule.
+      properties:
+        code:
+          description: 'Gets or sets the code of the rule to be updated.
+
+            It can be SafetyStock Code , PurchaseLimit Code or Return Rule Code'
+          type:
+          - string
+          - 'null'
+        newRank:
+          description: Gets or sets the new rank of the rule.
+          format: int32
+          type: integer
+        oldRank:
+          description: Gets or sets the old rank of the rule.
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    PurchaseLimitRule:
+      description: Purchase Limit Rule contract
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Unique identifier of the PurchaseLimit.
+          type:
+          - string
+          - 'null'
+        customerRules:
+          description: List of customer rule codes that apply to the PurchaseLimit
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        description:
+          description: PurchaseLimit description
+          type:
+          - string
+          - 'null'
+        enabled:
+          description: Indicates if the PurchaseLimit is enabled
+          type:
+          - boolean
+          - 'null'
+        endDate:
+          description: End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isActive:
+          description: 'Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+
+            (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+
+            This reflects the effective window alone and does not incorporate the enabled flag.'
+          type:
+          - boolean
+          - 'null'
+        maxQty:
+          description: Maximum quantity of the PurchaseLimit
+          format: int32
+          type: integer
+        metaData:
+          description: Metadata for the PurchaseLimit which is a json format, used to store additional information
+        name:
+          description: PurchaseLimit name
+          type:
+          - string
+          - 'null'
+        productRules:
+          description: List of product rule codes that apply to the PurchaseLimit
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        rank:
+          description: Rank of the PurchaseLimit
+          format: int32
+          type: integer
+        startDate:
+          description: Start of the rule's effective window. Null = no lower bound (already active).
+          format: date-time
+          type:
+          - string
+          - 'null'
+        validForAllSites:
+          description: Indicates if the PurchaseLimit is valid for all sites
+          type:
+          - boolean
+          - 'null'
+        validSites:
+          description: List of site IDs that the PurchaseLimit is valid for
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    PurchaseLimitRuleCollection:
+      description: Purchase Limit collection contract
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseLimitRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

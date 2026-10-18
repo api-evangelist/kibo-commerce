@@ -1,0 +1,417 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Reservation Steal For Rules API
+  version: '1.0'
+  description: 'Operations tagged ReservationStealForRules across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ReservationStealForRules
+paths:
+  /commerce/rules/reservationstealfor/{code}:
+    delete:
+      description: Permanently deletes a reservation steal-for rule (FR-013 hard delete).
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete reservation steal-for rule
+      tags:
+      - ReservationStealForRules
+      operationId: deleteCommerceRulesReservationstealforByCode
+      x-operation-id-source: derived
+    get:
+      description: Gets a reservation steal-for rule by its unique code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+          description: OK
+      summary: Get reservation steal-for rule by code
+      tags:
+      - ReservationStealForRules
+      operationId: getCommerceRulesReservationstealforByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing reservation steal-for rule with full replacement semantics (FR-009).
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationStealForRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+          description: OK
+      summary: Update reservation steal-for rule
+      tags:
+      - ReservationStealForRules
+      operationId: putCommerceRulesReservationstealforByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/reservationstealfor:
+    get:
+      description: Gets a collection of reservation steal-for rules according to any specified filter criteria and sort options.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRuleCollection'
+          description: OK
+      summary: Get reservation steal-for rules
+      tags:
+      - ReservationStealForRules
+      operationId: getCommerceRulesReservationstealfor
+      x-operation-id-source: derived
+    post:
+      description: Creates a new reservation steal-for rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationStealForRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationStealForRule'
+          description: OK
+      summary: Create reservation steal-for rule
+      tags:
+      - ReservationStealForRules
+      operationId: postCommerceRulesReservationstealfor
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/reservationstealfor/{code}/rank:
+    put:
+      description: Updates the rank for a reservation steal-for rule and atomically reorders all other rules of this type in the current master catalog.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRankRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Update reservation steal-for rule rank
+      tags:
+      - ReservationStealForRules
+      operationId: putCommerceRulesReservationstealforByCodeRank
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductRuleCode:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          description: Master Catalog Id of the ProductRule.
+          format: int32
+          type: integer
+      type: object
+    ReservationStealForRule:
+      description: 'Reservation Steal-For Rule contract (CAT-7911). Structurally identical to
+
+        Mozu.ProductAdmin.Contracts.ReservationRules.ReservationRule except it does not
+
+        have `TimeFenceDays`; instead it adds an explicit Mozu.ProductAdmin.Contracts.ReservationStealForRules.ReservationStealForRule.StartDate/Mozu.ProductAdmin.Contracts.ReservationStealForRules.ReservationStealForRule.EndDate
+
+        window during which the rule is enabled — the same effective-date-window concept used by
+
+        Discounts and Price Lists, not a reworded time fence. Fully independent of the sibling
+
+        Mozu.ProductAdmin.Contracts.ReservationStealFromRules.ReservationStealFromRule.'
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        callOffOrderRules:
+          description: Referenced call-off-order rule codes. Max 1 entry.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        code:
+          description: Unique identifier. Auto-generated when omitted on create.
+          type:
+          - string
+          - 'null'
+        customerRules:
+          description: Referenced customer rule codes. Max 1 entry.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        description:
+          description: Optional description, max 500 chars.
+          type:
+          - string
+          - 'null'
+        enabled:
+          description: Whether the rule is active. Defaults to true when omitted/null on create or update.
+          type:
+          - boolean
+          - 'null'
+        endDate:
+          description: End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isActive:
+          description: 'Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+
+            (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+
+            This reflects the effective window alone and does not incorporate the enabled flag.'
+          type:
+          - boolean
+          - 'null'
+        metaData:
+          description: Opaque JSON metadata. Passed through unchanged.
+        name:
+          description: Display name. Required, max 200 chars.
+          type:
+          - string
+          - 'null'
+        productRules:
+          description: Referenced product rules. Max 1 entry.
+          items:
+            $ref: '#/components/schemas/ProductRuleCode'
+          type:
+          - array
+          - 'null'
+        rank:
+          description: Priority rank, unique per master catalog within the tenant. Auto-assigned on create when omitted or ≤0. Rejected (not auto-assigned) on update when omitted or ≤0.
+          format: int32
+          type: integer
+        sortAttribute:
+          description: Optional tiebreaker attribute name used by the reservation-stealing engine when two candidates match. Max 50 chars.
+          type:
+          - string
+          - 'null'
+        startDate:
+          description: Start of the rule's effective window. Null = no lower bound.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        validForAllSites:
+          description: "When true the rule applies to all sites; ValidSites is ignored. When false/omitted and\n            ValidSites is also omitted, ValidSites auto-populates with the calling site from the request\n            context (FR-022); the save is rejected if no site context is available."
+          type:
+          - boolean
+          - 'null'
+        validSites:
+          description: Site IDs this rule applies to.
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    UpdateRankRequest:
+      description: Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule.
+      properties:
+        code:
+          description: 'Gets or sets the code of the rule to be updated.
+
+            It can be SafetyStock Code , PurchaseLimit Code or Return Rule Code'
+          type:
+          - string
+          - 'null'
+        newRank:
+          description: Gets or sets the new rank of the rule.
+          format: int32
+          type: integer
+        oldRank:
+          description: Gets or sets the old rank of the rule.
+          format: int32
+          type: integer
+      type: object
+    ReservationStealForRuleCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ReservationStealForRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

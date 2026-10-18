@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Pick Wave Rule Evaluate API
+  version: '1.0'
+  description: 'Operations tagged PickWaveRuleEvaluate across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: PickWaveRuleEvaluate
+paths:
+  /commerce/rules/pickwave/evaluate:
+    post:
+      description: Evaluate the pick wave rules for given products and shipment rules
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PickWaveEvalRequest'
+        description: The request containing the products and shipment rules to evaluate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveEvalResponseCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PickWaveEvalResponseCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PickWaveEvalResponseCollection'
+          description: OK
+      summary: Evaluate Pick Wave Rules
+      tags:
+      - PickWaveRuleEvaluate
+      operationId: postCommerceRulesPickwaveEvaluate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PickWaveEvalResponseCollection:
+      description: Collection of pick wave evaluation response items
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PickWaveEvalResponseItem'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PickWaveEvalResponseItem:
+      description: Pick wave evaluation response item
+      properties:
+        shipmentNumber:
+          description: Shipment number for which the pick wave rule was evaluated
+          format: int32
+          type: integer
+      type: object
+    PickWaveEvalRequest:
+      description: Request parameters for evaluating pick wave rules
+      properties:
+        fulfillmentLocationCode:
+          description: Fulfillment location code for which the pick wave rules are evaluated
+          type:
+          - string
+          - 'null'
+        pickWaveRuleCode:
+          description: Pick wave rule code to evaluate
+          type:
+          - string
+          - 'null'
+      required:
+      - fulfillmentLocationCode
+      - pickWaveRuleCode
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

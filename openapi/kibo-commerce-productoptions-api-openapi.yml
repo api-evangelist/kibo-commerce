@@ -1,0 +1,307 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Options API
+  version: '1.0'
+  description: 'Operations tagged ProductOptions across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductOptions
+paths:
+  /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN}:
+    delete:
+      description: Delete a individual option for a product.
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Option
+      tags:
+      - ProductOptions
+      operationId: deleteCommerceCatalogAdminProductsByProductCodeOptionsByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Get an individual option for a product. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+          description: OK
+      summary: Get Product Option
+      tags:
+      - ProductOptions
+      operationId: getCommerceCatalogAdminProductsByProductCodeOptionsByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Update an individual option for a product. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsProductOption'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+          description: OK
+      summary: Update Product Option
+      tags:
+      - ProductOptions
+      operationId: putCommerceCatalogAdminProductsByProductCodeOptionsByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/Options:
+    get:
+      description: Get options for a product. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsProductOption'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsProductOption'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsProductOption'
+                type: array
+          description: OK
+      summary: Get Product Options
+      tags:
+      - ProductOptions
+      operationId: getCommerceCatalogAdminProductsByProductCodeOptions
+      x-operation-id-source: derived
+    post:
+      description: Add an option to a product. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsProductOption'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsProductOption'
+          description: OK
+      summary: Add Product Option
+      tags:
+      - ProductOptions
+      operationId: postCommerceCatalogAdminProductsByProductCodeOptions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AttributeVocabularyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          minLength: 1
+          type: string
+      type: object
+    ProductOptionValue:
+      description: A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
+      properties:
+        attributeVocabularyValueDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        value: {}
+      type: object
+    CatalogAdminsProductOption:
+      description: "Product options for configurable or stand-alone products. A configurable option is one that the shopper chooses when ordering, for example, \nthe color of a T-shirt. A stand-alone option is independent of the product and can be added to the product order. For example, a monogram."
+      properties:
+        attributeFQN:
+          description: Unique identifier of the Attribute.
+          type:
+          - string
+          - 'null'
+        isProductImageGroupSelector:
+          description: Defines whether or not this option can be used to segment product images
+          type:
+          - boolean
+          - 'null'
+        values:
+          description: List of all the values for this product option.
+          items:
+            $ref: '#/components/schemas/ProductOptionValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    CatalogAdminsAttributeVocabularyValue:
+      description: Value of an attribute
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        displayOrder:
+          description: The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        mappedGenericValues:
+          description: "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time."
+          items: {}
+          maxItems: 200
+          type:
+          - array
+          - 'null'
+        productName:
+          description: The ProductName when the Attribute DataType is ProductCode.
+          type:
+          - string
+          - 'null'
+        value:
+          description: "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed."
+          maxLength: 50
+          pattern: ^[A-Za-z0-9-_\.()]*[A-Za-z0-9-_()]
+        valueSequence:
+          description: Read only System generated monotonically increasing unique sequence.
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

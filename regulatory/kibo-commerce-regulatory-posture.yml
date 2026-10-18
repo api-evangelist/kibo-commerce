@@ -1,0 +1,94 @@
+generated: '2026-10-18'
+method: searched
+probe: true
+source: https://kibocommerce.com/privacy/
+sources_read:
+- {url: 'https://kibocommerce.com/privacy/', http_status: 200, note: 'Privacy Statement, "Last updated: February 10, 2025"'}
+- {url: 'https://kibocommerce.com/gdpr/', http_status: 200}
+- {url: 'https://kibocommerce.com/accessibility-statement/', http_status: 200}
+- {url: 'https://kibocommerce.com/trust-center/', http_status: 200}
+signals:
+  data_subject_request:
+    url: https://kibocommerce.com/gdpr/
+    form: https://kibocommerce.com/wp-content/uploads/2025/04/Data-Access-and-Right-to-Erasure-Request-Form_20180427_PDF-Form-2.pdf
+    channel: kibo.gdpr@kibocommerce.com
+    stated_response_time: 'within 30 days'
+    evidence:
+    - source: https://kibocommerce.com/privacy/
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "In accordance with applicable privacy laws such as GDPR and CCPA, we provide you with a right to (i) receive a copy of the Personal Data we hold about you and (ii) erasure and/or correction of Personal Data."
+    - source: https://kibocommerce.com/privacy/
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: "Kibo generally responds to requests within 30 days of receiving a completed request form with proof of identity."
+    - source: https://kibocommerce.com/gdpr/
+      http_status: 200
+      fetched: '2026-10-18'
+      section: Requests
+      quote: "Email kibo.gdpr@kibocommerce.com AND include/attach the GDPR Request Form and the documentation specified in the GDPR form if necessary"
+    note: >-
+      A published rights process (access, erasure, correction) via a downloadable PDF form (HTTP 200) sent to a
+      dedicated mailbox, with a stated 30-day response window. Requests about data Kibo holds for a client
+      (Data Controller) are forwarded to that controller. No API endpoint for DSRs is documented.
+  data_retention:
+    url: https://kibocommerce.com/privacy/
+    section: 3. RETENTION OF PERSONAL DATA
+    stated_period: 'no more than seven (7) years'
+    evidence:
+    - source: https://kibocommerce.com/privacy/
+      http_status: 200
+      fetched: '2026-10-18'
+      section: 3. RETENTION OF PERSONAL DATA
+      quote: "Kibo retains the Personal Data it processes for no more than seven (7) years."
+    note: A single upper bound on retention of personal data; no per-category schedule is published.
+  data_residency:
+    url: https://kibocommerce.com/privacy/
+    section: 3. RETENTION OF PERSONAL DATA
+    regions: [eu, us]
+    evidence:
+    - source: https://kibocommerce.com/privacy/
+      http_status: 200
+      fetched: '2026-10-18'
+      section: 3. RETENTION OF PERSONAL DATA
+      quote: "Personal Data is processed on servers based in the EU and the United States."
+    note: >-
+      States where processing happens (EU and US); it does not say customers can choose or pin a region. The
+      trust center separately lists "Establishment of a multi-region presence" as an infrastructure capability.
+      Section 4 (International Transfers) still cites Privacy Shield as a transfer safeguard.
+  accessibility_conformance:
+    url: https://kibocommerce.com/accessibility-statement/
+    standard: [WCAG 2.1 AA]
+    scope: website
+    evidence:
+    - source: https://kibocommerce.com/accessibility-statement/
+      http_status: 200
+      fetched: '2026-10-18'
+      section: Website Accessibility Statement
+      quote: "Our ongoing accessibility effort works towards conforming to the Web Content Accessibility Guidelines (WCAG) version 2.1, level AA criteria."
+    note: >-
+      An aspirational target ("works towards conforming") for kibocommerce.com itself, not a conformance claim
+      for the commerce platform or its admin UI; no VPAT/ACR is linked.
+probed_absent:
+- signal: subprocessors
+  urls:
+  - {url: 'https://kibocommerce.com/privacy/', status: 200}
+  - {url: 'https://kibocommerce.com/trust-center/', status: 200}
+  note: >-
+    The privacy statement says "As part of Kibo's services we may contract with third-party providers to perform
+    certain functions on behalf of our clients" and describes contractual controls on them, but names no
+    subprocessors and links no subprocessor list. No list was linked from the homepage or trust center.
+- signal: incident_notification
+  urls:
+  - {url: 'https://kibocommerce.com/trust-center/', status: 200}
+  note: >-
+    The trust center cites PCI DSS, SOC1 and SOC 2 and vulnerability scanning but states no breach-notification
+    commitment or timeframe; no DPA was linked from the pages read.
+- signal: global_privacy_control
+  urls:
+  - {url: 'https://kibocommerce.com/privacy/', status: 200}
+  note: The privacy statement discusses cookies, action tags and disabling cookies in the browser; it does not mention Global Privacy Control or Do Not Track.
+- signal: ai_transparency
+  note: >-
+    The site markets AI products (e.g. "AI Vector Search") but none of the legal/trust pages read publish an AI
+    transparency or disclosure statement.

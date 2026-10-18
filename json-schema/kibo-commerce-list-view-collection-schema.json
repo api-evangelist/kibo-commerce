@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-list-view-collection-schema.json",
+  "title": "ListViewCollection",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-entities-openapi.yml#/components/schemas/ListViewCollection",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/ListView"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "pageCount": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "pageSize": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "startIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "totalCount": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ListView": {
+      "properties": {
+        "defaultSort": {
+          "description": "Indicates a default sort to be applied to the ListView.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fields": {
+          "description": "The list of ViewFields for this view. ViewFields can be used to filter or transform the underlying Entity to provide an optimized format for applications which query the ListView.  If no ViewFields are specified, entities will be returned for the View with no transform applied.",
+          "items": {
+            "$ref": "#/$defs/ListViewField"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "filter": {
+          "description": "Indicates a implicitly applied filter to the EntityList for to which the ListView is associated. All queries to the ListView will have this filter applied implicitly.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaData": {
+          "description": "An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "The name of the ListView. This must be unique for the EntityList.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "security": {
+          "description": "less restrictive than collection/list security. public | admin | owner",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "usages": {
+          "description": "Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the view should be used. Mozu uses the \"admin\" usage valued to indicate that a ListView should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ListViewField": {
+      "description": "shared by cms/mzdb.",
+      "properties": {
+        "name": {
+          "description": "The name of the field in the view.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target": {
+          "description": "A JPath query to the source property for this ViewField.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "description": "The datatype of the field. Valid values are \"string\", \"integer\", \"decimal\", \"date\", \"bool\". See SharedConstants.DataTypeConst",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

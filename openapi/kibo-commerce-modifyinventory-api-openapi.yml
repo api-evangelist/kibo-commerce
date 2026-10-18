@@ -1,0 +1,836 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Modify Inventory API
+  version: '1.0'
+  description: 'Operations tagged ModifyInventory across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ModifyInventory
+paths:
+  /commerce/inventory/v5/inventory/adjust:
+    post:
+      description: 'Adjusts the inventory count for a product at a location. It is different from Inventory Refresh because rather than stating the total quantity of the product, this adjustment specifies the amount of change in the form of increments and decrements (+/-). Increments do not require a + sign and may be sent as a simple integer, but decrements must include the – sign. For example, there would be a -2 quantity for an item if there were two fewer than in the previous count, a 2 quantity if there were two more, and a 0 quantity if there were no change.
+
+
+        These requests are placed into a queue of jobs that are processed one at a time. Due to this, the best practice is to submit fewer requests with more items per call, rather than numerous requests with a small number of items each. However, unlike the Refresh API that accepts a maximum of 12000 items per call, this Adjust API only accepts up to 1000 items. If you exceed that limit, a Bad Request error will be returned.
+
+
+        **Recommended:** Consider using the Smart Adjust endpoint instead, which automatically routes requests to sync or async processing based on payload size.'
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/AdjustRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobIDResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+          description: Forbidden
+      summary: Adjust
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventoryAdjust
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory/deleteFutureInventory:
+    post:
+      description: Deletes future inventory.
+      parameters:
+      - description: Site ID
+        in: query
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/DeleteFutureItemRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteFutureItemResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete Future Inventory
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventoryDeleteFutureInventory
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory/delete:
+    post:
+      description: 'Deletes inventory for a single product identifier (by `partNumber`, `upc`, or `sku`) across all or selected locations. Supports basic regex operators in the identifier field, making it well-suited for pattern-based deletion — for example, removing all products whose part number starts with a given prefix. The operation is asynchronous: the endpoint returns immediately with a list of job IDs (one per affected location) which you can monitor using the Get Job API. Use `dryRun: true` to preview the scope of deletion before executing. For step-by-step guidance including dry run workflow, job monitoring, and self-throttling patterns, see the Bulk Inventory Deletion guide.'
+      parameters:
+      - description: Site ID
+        in: query
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/DeleteItemRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteItemResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete Inventory
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventoryDelete
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory/deleteItems:
+    post:
+      description: 'Deletes inventory for multiple products in a single request. Accepts an array of up to 1,000 product identifiers per request (each specified by `partNumber`, `upc`, or `sku`); the recommended batch size is 500 items. The operation is asynchronous — the endpoint returns immediately with one job ID per affected location for progress tracking. Use `dryRun: true` to preview deletion scope before executing. For batch sizing, self-throttling patterns, step-by-step execution workflow, and job monitoring guidance, see the Bulk Inventory Deletion guide.'
+      parameters:
+      - description: Site ID
+        in: query
+        name: x-vol-site
+        required: false
+        schema:
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/DeleteItemsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteItemResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete Items
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventoryDeleteItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory/redistribute:
+    post:
+      description: Create jobs to redistribute inventory across tags for the given tenant
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JobQueueResponse'
+                type: array
+          description: Success
+      summary: Redistribute Inventory Across Tags
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventoryRedistribute
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory/refresh:
+    post:
+      description: 'Sets the inventory count for products at a particular location. These requests are placed into a queue of jobs that are processed one at a time. Due to this, the best practice is to submit fewer requests with more items per call, rather than numerous requests with a small number of items each. Unlike the Adjust API that only accepts a maximum of 1000 items per call, this Refresh API can accept up to 12000 items. However, Kibo recommends batches of 3000 items.
+
+
+        **Recommended:** Consider using the Smart Refresh endpoint instead, which automatically routes requests to sync or async processing based on payload size.'
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/RefreshRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobIDResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Refresh
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventoryRefresh
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory/smart-adjust/:
+    post:
+      description: Dynamically routes inventory adjustment requests to synchronous or asynchronous processing based on payload size. Smaller payloads are generally processed synchronously and return immediate results. Larger payloads are processed asynchronously and return a job ID for tracking. The request schema is identical to the standard Adjust API. For more information, see the Smart Inventory APIs guide.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdjustRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartInventoryResponse'
+          description: Successful operation
+      summary: Smart Adjust Inventory
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventorySmartAdjust
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v5/inventory/smart-refresh/:
+    post:
+      description: Dynamically routes inventory refresh requests to synchronous or asynchronous processing based on payload size. Smaller payloads are generally processed synchronously and return immediate results. Larger payloads are processed asynchronously and return a job ID for tracking. The request schema is identical to the standard Refresh API. For more information, see the Smart Inventory APIs guide.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SmartInventoryResponse'
+          description: Successful operation
+      summary: Smart Refresh Inventory
+      tags:
+      - ModifyInventory
+      operationId: postCommerceInventoryV5InventorySmartRefresh
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    InventoryItem:
+      description: Item
+      properties:
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        lotCode:
+          type: string
+        partNumber:
+          description: Part/Product Number
+          type: string
+        serialNumber:
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Item
+      type: object
+    DeleteItemResponse:
+      description: Delete Item Response
+      properties:
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        itemsDeleted:
+          description: Items deleted due to the request
+          items:
+            $ref: '#/components/schemas/M_DeleteItem'
+          type: array
+        jobIDs:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalAuditsDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalInventoryEntriesDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalLocationsAffected:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalPickWavesDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalProductsDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+      title: Delete Item Response
+      type: object
+    DeleteItemsRequest:
+      description: Request needed for deleting inventory
+      properties:
+        allLocations:
+          description: Flag used to request deletion of inventory across all locations (overrides locationCodes).
+          type: boolean
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        explicit:
+          description: Flag used to request explicit inventory, location, pick wave, and audit information for each request item.
+          type: boolean
+        items:
+          description: 'List of items to delete. Supports basic regex operators: .*+?^$[]'
+          items:
+            $ref: '#/components/schemas/InventoryItem'
+          type: array
+        locationCodes:
+          description: "An array of locationCodes to be considered for item-deletion purposes. Optional.\n    All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided."
+          items:
+            type: string
+          type: array
+        tags:
+          $ref: '#/components/schemas/tags'
+      title: Delete Item Request
+      type: object
+    AdjustRequest:
+      description: Request needed for adjusting inventory
+      properties:
+        items:
+          description: List of items to adjust
+          items:
+            $ref: '#/components/schemas/AdjustItem'
+          maxItems: 1000
+          minItems: 1
+          type: array
+        locationCode:
+          description: Location Code
+          minLength: 1
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      required:
+      - items
+      - locationCode
+      title: Adjust Request
+      type: object
+    RefreshRequest:
+      description: Request needed for refreshing inventory
+      properties:
+        items:
+          description: List of items to refresh
+          items:
+            $ref: '#/components/schemas/RefreshItem'
+          maxItems: 12000
+          minItems: 1
+          type: array
+        locationCode:
+          description: Location Code
+          minLength: 1
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      required:
+      - items
+      - locationCode
+      title: Refresh Request
+      type: object
+    DeleteFutureItemRequest:
+      description: Request needed for deleting future inventory
+      properties:
+        allLocations:
+          description: Flag used to request deletion of future inventory across all locations (overrides locationCodes).
+          type: boolean
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        explicit:
+          description: Flag used to request explicit inventory, location, pick wave, and audit information for each request item.
+          type: boolean
+        futureEndDate:
+          description: End of future date range to search on. Required Field example '2023-01-26T19:59:00+0000'
+          format: date-time
+          type: string
+        futureStartDate:
+          description: Start of future date range to search on. Required field example '2023-01-26T19:59:00+0000'
+          format: date-time
+          type: string
+        locationCodes:
+          description: "An array of locationCodes to be considered for item-deletion purposes. Optional.\n    All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided."
+          items:
+            type: string
+          type: array
+        partNumber:
+          description: 'The part number of the item to be deleted. Supports basic regex operators: .*+?^$[]'
+          type: string
+        sku:
+          description: 'The sku of the item to be deleted. Supports basic regex operators: .*+?^$[]'
+          type: string
+        upc:
+          description: 'The upc of the item to be deleted. Supports basic regex operators: .*+?^$[]'
+          type: string
+      title: Delete Future Item Request
+      type: object
+    AdjustItem:
+      description: Adjust Item
+      properties:
+        assumeInfiniteInventory:
+          description: 'Assume infinite inventory at this location for this item. When `true`, allocation is permitted even when inventory is not available, overriding standard allocation rules. Omitting the field leaves the current setting unchanged, so it can be sent on its own without a quantity change. Records with the flag set return `hasInfiniteInventory: true` from Get Inventory when `includeItemsWithInfiniteInventoryFlag` is set. For more information, see the <a href="/concept-guides/inventory#assume-infinite-inventory">Inventory guide</a>.'
+          type: boolean
+        binID:
+          description: Bin Location Identifier
+          type: integer
+        condition:
+          description: Describes the state of the product
+          maxLength: 50
+          minLength: 0
+          type: string
+        date:
+          description: Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+          format: date-time
+          type: string
+        deliveryDate:
+          description: Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'
+          format: date-time
+          type: string
+        externalID:
+          description: External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified
+          type: string
+        granularInventoryTrackingEnabled:
+          readOnly: true
+          type: boolean
+        lotCode:
+          description: Track which lot a product is manufactured in
+          maxLength: 50
+          minLength: 0
+          type: string
+        partNumber:
+          description: Part/Product Number
+          type: string
+        quantity:
+          description: Current Quantity of Item
+          type: integer
+        serialNumber:
+          description: A serial number is unique to a specific, physical unit of inventory
+          maxLength: 50
+          minLength: 0
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: Universal Product Code
+          type: string
+      required:
+      - quantity
+      title: Adjust Item
+      type: object
+    DeleteFutureItemResponse:
+      description: Delete Future Item Response
+      properties:
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        itemsDeleted:
+          description: Items deleted due to the request
+          items:
+            $ref: '#/components/schemas/M_DeleteItem'
+          type: array
+        jobIDs:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalInventoryEntriesDeleted:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        totalLocationsAffected:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+      title: Delete Future Item Response
+      type: object
+    RefreshItem:
+      description: Refresh Item
+      properties:
+        LTD:
+          description: Custom field used for store prioritization
+          type: number
+        assumeInfiniteInventory:
+          description: 'Assume infinite inventory at this location for this item. When `true`, allocation is permitted even when inventory is not available, overriding standard allocation rules. Omitting the field leaves the current setting unchanged, so it can be sent on its own without a quantity change. Records with the flag set return `hasInfiniteInventory: true` from Get Inventory when `includeItemsWithInfiniteInventoryFlag` is set. For more information, see the <a href="/concept-guides/inventory#assume-infinite-inventory">Inventory guide</a>.'
+          type: boolean
+        attributes:
+          description: List of Item Attributes. These are the legacy bitmask item attributes and are not the same as `extensibleAttributes`. Custom inventory attributes defined under **System > Schema > Inventory Attributes** are set through `extensibleAttributes` instead.
+          items:
+            type: string
+          type: array
+        binID:
+          description: Bin Location Identifier
+          type: integer
+        condition:
+          description: Describes the state of the product
+          maxLength: 50
+          minLength: 0
+          type: string
+        date:
+          description: Used by the retailer for storing information related to manufacturing date or expiry date and use date to allocate for better stock management
+          format: date-time
+          type: string
+        deliveryDate:
+          description: Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'
+          format: date-time
+          type: string
+        excessInventoryThreshold:
+          description: Threshold value after which additional inventory is considered excess. See <a href="/pages/inventory-quantity-types">Inventory Quantity Types</a>.
+          type: integer
+        extensibleAttributes:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          description: Map of Item Extensible Attributes. Each key is the attribute code of an inventory attribute defined under **System > Schema > Inventory Attributes**, and each value is an array of that attribute's values. This is the field used for custom inventory attributes - it is distinct from the legacy `attributes` field above. List input types accept multiple values; every other input type accepts exactly one. Values are always sent as strings, including booleans (`"true"` or `"false"`). A request may carry up to 100 attributes, each with up to 100 values of at most 300 characters. There is no Admin UI path for setting the first value on a record, so the first attribute must be set through this field. For examples, see the <a href="/concept-guides/inventory#managing-inventory-attributes">Inventory guide</a>.
+          type: object
+        externalID:
+          description: External Identifier for the given future inventory record. Will not create a new future inventory record unless deliveryDate is specified
+          type: string
+        floor:
+          description: Absolute minimum quantity of this item that should be in stock at any time
+          type: integer
+        granularInventoryTrackingEnabled:
+          readOnly: true
+          type: boolean
+        inventoryLocatorName:
+          description: The inventory locator name of the item
+          maxLength: 5000
+          type: string
+        lotCode:
+          description: Track which lot a product is manufactured in
+          maxLength: 50
+          minLength: 0
+          type: string
+        partNumber:
+          description: Part/Product Number
+          type: string
+        quantity:
+          description: Current Quantity of Item
+          type: integer
+        safetyStock:
+          description: Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted
+          type: integer
+        serialNumber:
+          description: A serial number is unique to a specific, physical unit of inventory
+          maxLength: 50
+          minLength: 0
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        sourceTimestamp:
+          description: Source timestamp for out-of-order protection, in the format `2020-09-28T12:00:00-0500`. When supplied, an update whose timestamp is older than the timestamp already recorded on the inventory record is skipped rather than applied, so that refreshes arriving out of order do not overwrite newer stock levels. Omit the field to apply the update unconditionally.
+          format: date-time
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: Universal Product Code
+          type: string
+      title: Refresh Item
+      type: object
+    ProductIdentifier:
+      description: Product Identifier Model
+      properties:
+        partNumber:
+          description: Part/Product Number
+          type: string
+        sku:
+          description: Stock Keeping Unit
+          type: string
+        upc:
+          description: Universal Product Code
+          type: string
+      title: ProductIdentifier
+      type: object
+    SmartInventoryResponse:
+      description: Response from smart inventory endpoints indicating the processing method used
+      properties:
+        jobID:
+          description: The job identifier for tracking asynchronous requests. This field is null for synchronous requests.
+          type:
+          - string
+          - 'null'
+        method:
+          description: 'The processing method used: ''sync'' for synchronous processing or ''async'' for asynchronous processing. Kibo determines the routing based on payload size.'
+          enum:
+          - sync
+          - async
+          type: string
+      type: object
+    M_DeleteItem:
+      description: Delete Item Model
+      properties:
+        auditIDs:
+          description: List of audit identifiers associated with the deleted item
+          items:
+            type: integer
+          type: array
+        inventoryIDs:
+          description: List of inventory identifiers associated with the deleted item
+          items:
+            type: integer
+          type: array
+        itemIdentifier:
+          $ref: '#/components/schemas/ProductIdentifier'
+        locationCodes:
+          description: List of location codes associated with the deleted item
+          items:
+            type: string
+          type: array
+        locationIDs:
+          description: List of location identifiers associated with the deleted item
+          items:
+            type: integer
+          type: array
+        productID:
+          description: Product Identifier
+          type: integer
+      title: M_DeleteItem
+      type: object
+    JobIDResponse:
+      description: Job ID Response
+      properties:
+        jobID:
+          description: Job ID
+          type: integer
+      title: Job ID Response
+      type: object
+    DeleteItemRequest:
+      description: Request needed for deleting inventory
+      properties:
+        allLocations:
+          description: Flag used to request deletion of inventory across all locations (overrides locationCodes).
+          type: boolean
+        dryRun:
+          description: Flag used to differentiate between a test and a non-test run.
+          type: boolean
+        explicit:
+          description: Flag used to request explicit inventory, location, pick wave, and audit information for each request item.
+          type: boolean
+        locationCodes:
+          description: "An array of locationCodes to be considered for item-deletion purposes. Optional.\n    All locationCodes associated with the requesting tenant will be considered if no locationCodes are provided."
+          items:
+            type: string
+          type: array
+        partNumber:
+          description: 'The part number of the item to be deleted. Supports basic regex operators: .*+?^$[]'
+          type: string
+        sku:
+          description: 'The sku of the item to be deleted. Supports basic regex operators: .*+?^$[]'
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: 'The upc of the item to be deleted. Supports basic regex operators: .*+?^$[]'
+          type: string
+      title: Delete Item Request
+      type: object
+    tags:
+      additionalProperties:
+        type: string
+      description: Associative Map of <String, String> for tagCategoryName => tagName
+      type: object
+    JobQueueResponse:
+      description: Response for getting a job
+      properties:
+        added:
+          description: Time and date the job was added to the queue in ISO8601 format in UTC
+          type: string
+        finished:
+          description: Time and date the job was finished in ISO8601 format in UTC
+          type: string
+        hasData:
+          description: True if the job was not created from a fetched file
+          type: boolean
+        itemCount:
+          description: The number of items processed, only for job types REFRESH and ADJUST
+          type: integer
+        jobID:
+          description: Internal identifier that uniquely identifies a single job
+          type: integer
+        locationCode:
+          description: Unique internal Identifier of the owning location
+          type: string
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        originalFilename:
+          description: The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process
+          type: string
+        started:
+          description: Time and date the job was started in ISO8601 format in UTC
+          type: string
+        status:
+          description: Current status of job completion
+          enum:
+          - PENDING
+          - WORKING
+          - SUCCESS
+          - FAILED
+          type: string
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Unique internal identifier of the tenant that owns the job
+          type: integer
+        type:
+          description: Purpose of the job
+          enum:
+          - REFRESH
+          - ADJUST
+          - RELEASE_SHIPMENTS
+          - CREATE_PICK_WAVE
+          - CLOSE_PICK_WAVE
+          - PUT_AWAY_FILE
+          - SHORT_PICK_ERROR
+          - BIN_AUDIT_START
+          - BIN_AUDIT_COMPLETION
+          - CREATE_BIN_AUDIT
+          - RELEASE_PENDING_ITEMS
+          - ALLOCATE
+          - DEALLOCATE
+          - FULFILL
+          - DELETE
+          type: string
+      title: Job Queue Response
+      type: object
+  requestBodies:
+    AdjustRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AdjustRequest'
+      description: Request to adjust inventory
+      required: true
+    DeleteItemRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteItemRequest'
+      description: Request to delete item(s)
+      required: true
+    DeleteItemsRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteItemsRequest'
+      description: Request to batch delete items
+      required: true
+    DeleteFutureItemRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DeleteFutureItemRequest'
+      description: Request to delete future item(s)
+      required: true
+    RefreshRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RefreshRequest'
+      description: Request to refresh inventory
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

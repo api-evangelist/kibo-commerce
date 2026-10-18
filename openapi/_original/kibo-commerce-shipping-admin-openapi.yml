@@ -1,0 +1,2290 @@
+# x-archived-from: kibo-commerce-shipping-admin-openapi.yml
+# x-archived-on: 2026-10-18
+components:
+  schemas:
+    AuditInfo:
+      properties:
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    CarrierConfiguration:
+      properties:
+        areCredentialsSet:
+          description: "Indicates whether the credentials/passwords are set.\r\n<remarks>Credetials are updated only if this flag is set to true</remarks>"
+          type: boolean
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        customTableRates:
+          description: "A list of custom table rates for the 'Custom' carrier\r\n<remarks>only use this if Id == 'Custom'</remarks>"
+          items:
+            $ref: '#/components/schemas/CustomTableRate'
+          nullable: true
+          type: array
+        enabled:
+          description: Indicates that this CarrierConfiguration should be used at runtime
+          type: boolean
+        enabledForReturns:
+          description: Indicates that this CarrierConfiguration should be the default for returns shipping
+          type: boolean
+        id:
+          description: Carrier Id (usually a shortname of a carrier, e.g. FedEx)
+          nullable: true
+          type: string
+        isDeliveryMethod:
+          type: boolean
+        settings:
+          description: Carrier Configuration Settings
+          items:
+            $ref: '#/components/schemas/Setting'
+          nullable: true
+          type: array
+      type: object
+    CarrierConfigurationCollection:
+      description: Collection of carrrier configurations.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CarrierConfiguration'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CarrierCredential:
+      description: "Stores a reference to a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet for use at different levels.\r\nValid levels include Site, Location Group, and Location. Different levels may be used for rates versus labels.\r\nSite level is overriden by Location Group level which is overriden by Location level."
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        carrierId:
+          description: "The Carrier ID associated with this carrier credential.\r\nUsually the short name of a carrier (e.g., \"FedEx\")."
+          nullable: true
+          type: string
+        credentialSet:
+          $ref: '#/components/schemas/CarrierCredentialSet'
+        locationCode:
+          description: The Location Code associated with this carrier credential, if any.
+          nullable: true
+          type: string
+        locationGroupCode:
+          description: The Location Group Code associated with this carrier credential, if any.
+          nullable: true
+          type: string
+        siteId:
+          description: The Site ID associated with this carrier credential, if any.
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    CarrierCredentialCollection:
+      description: A collection of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredential">carrier credentials</see>.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CarrierCredential'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CarrierCredentialSet:
+      description: "Stores a set of <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetValue\">carrier credential key-value pairs</see>.\r\nSets are stored at the tenant level and referenced by a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredential."
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        carrierId:
+          description: "The Carrier ID associated with this credential set.\r\nUsually the short name of a carrier (e.g., \"FedEx\")."
+          nullable: true
+          type: string
+        code:
+          description: "A unique code identifying this credential set.\r\nThe code is only guaranteed to be unique at the tenant and carrier level."
+          nullable: true
+          type: string
+        integrationId:
+          description: Specifies the ID returned from an integration.
+          nullable: true
+          type: string
+        name:
+          description: A name (i.e., nickname) for this credential set.
+          nullable: true
+          type: string
+        values:
+          description: A collection of values contained in this credential set.
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetValue'
+          nullable: true
+          type: array
+      type: object
+    CarrierCredentialSetCollection:
+      description: A collection of <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet">carrier credential sets</see>.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSet'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CarrierCredentialSetMetadata:
+      description: "The metadata for a single field on a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet.\r\nThis metadata is used during carrier installation and carrier credential set validation."
+      properties:
+        dataType:
+          $ref: '#/components/schemas/CarrierCredentialSetMetadataDataType'
+        localizations:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetMetadataLocalizedContent'
+          nullable: true
+          type: array
+        name:
+          nullable: true
+          type: string
+        required:
+          type: boolean
+      type: object
+    CarrierCredentialSetMetadataDataType:
+      description: The type of field stored in a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata item.
+      enum:
+      - String
+      - Integer
+      - Boolean
+      - Password
+      format: ''
+      type: string
+    CarrierCredentialSetMetadataLocalizedContent:
+      description: The localized content for a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata item.
+      properties:
+        description:
+          nullable: true
+          type: string
+        label:
+          nullable: true
+          type: string
+        localeCode:
+          nullable: true
+          type: string
+      type: object
+    CarrierCredentialSetValue:
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    CarrierDefinition:
+      description: "A carrier definition including config field metadata.\r\nCan either be a built-in system carrier or an Extensible Carrier installed via a <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierInstallation\">carrier installation</see>."
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        carrierId:
+          nullable: true
+          type: string
+        certified:
+          nullable: true
+          type: boolean
+        configFields:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetMetadata'
+          nullable: true
+          type: array
+        description:
+          nullable: true
+          type: string
+        features:
+          items:
+            type: string
+          nullable: true
+          type: array
+        isBuiltIn:
+          type: boolean
+        logoUrl:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    CustomTableRate:
+      description: ''
+      properties:
+        content:
+          $ref: '#/components/schemas/CustomTableRateContent'
+        deliveryDuration:
+          description: "The number of days it takes to ship the item on custom carrier types. \r\nAllowed values : EXPRESS, 1_DAY, 2_DAY, 3_DAY"
+          nullable: true
+          type: string
+        id:
+          description: The Id of the CustomTableRate
+          nullable: true
+          type: string
+        rateType:
+          description: "The type of this rate\r\n<value>see ../commerce/catalog/admin/shipping/global/carriers/custom/serviceTypes/en-us</value>"
+          nullable: true
+          type: string
+        value:
+          description: The value of this custom table rate
+          format: double
+          type: number
+      type: object
+    CustomTableRateContent:
+      description: ''
+      properties:
+        localeCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    HandlingFeeRule:
+      description: An object to group a handling fee with zones, rules, and servicetypes
+      properties:
+        appliesTo:
+          description: "The level at which this fee applies\r\n<value>shippingrate</value><value>order</value>"
+          nullable: true
+          type: string
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        fulfillmentMethod:
+          description: "Fulfillment method this rule applies to.\r\n<value>Ship</value><value>Pickup</value><value>Delivery</value>"
+          nullable: true
+          type: string
+        id:
+          description: The system generated id for this rule
+          nullable: true
+          type: string
+        locationCodes:
+          description: "Optional location codes for Pickup/Delivery rules.\r\n<remarks>Must be null for Ship rules. When empty/null for Pickup/Delivery, the rule applies to all locations.</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        productTargetRuleCodes:
+          description: "the product target rule codes associated with this rule\r\n<remarks>leave empty or null to denote all products</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        sequence:
+          description: The sequence in which this rule is preferred over others
+          format: int32
+          type: integer
+        serviceTypes:
+          description: "the servicetypes associated with this rule\r\n<remarks>leave empty or null to denote all carriers and subsequent service types</remarks>"
+          items:
+            $ref: '#/components/schemas/ServiceType'
+          nullable: true
+          type: array
+        shippingTargetRuleCodes:
+          description: "The shipping target rule codes associated with this rule\r\n<remarks>leave empty or null to denote all destinations</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        value:
+          description: The value of this fee
+          format: double
+          type: number
+        valueType:
+          description: "The type of this handling fee\r\n<value>percentage</value><value>flatrate</value>"
+          nullable: true
+          type: string
+      type: object
+    HandlingFeeRuleCollection:
+      description: A collection of FeeGroups
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    HttpContent:
+      properties:
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+      type: object
+    HttpMethod:
+      properties:
+        method:
+          nullable: true
+          type: string
+      type: object
+    HttpResponseMessage:
+      properties:
+        content:
+          $ref: '#/components/schemas/HttpContent'
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        isSuccessStatusCode:
+          readOnly: true
+          type: boolean
+        reasonPhrase:
+          nullable: true
+          type: string
+        requestMessage:
+          $ref: '#/components/schemas/ShippingAdminHttpRequestMessage'
+        statusCode:
+          $ref: '#/components/schemas/ShippingAdminHttpStatusCode'
+        trailingHeaders:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        version:
+          nullable: true
+          type: string
+      type: object
+    Option:
+      description: Option class for signature option
+      properties:
+        alternateCarrierValue:
+          description: Value required by other carrier or carrier aggragator like Easypost
+          nullable: true
+          type: string
+        carrierValue:
+          description: Value required by the actual carrier in carrier request
+          nullable: true
+          type: string
+        displayName:
+          description: User readable value to be shown to the user
+          nullable: true
+          type: string
+      type: object
+    ServiceType:
+      description: Service Type aka Shipping Method
+      properties:
+        code:
+          description: Unique Service Type Code for a particular Carrier
+          nullable: true
+          type: string
+        content:
+          $ref: '#/components/schemas/ServiceTypeLocalizedContent'
+        deliveryDuration:
+          nullable: true
+          type: string
+      type: object
+    ServiceTypeLocalizedContent:
+      properties:
+        localeCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    Setting:
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    ShippingAdminBrotliDecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/ShippingAdminDecompressedContent'
+      type: object
+    ShippingAdminByteArrayContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      type: object
+    ShippingAdminDecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      type: object
+    ShippingAdminDeflateDecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/ShippingAdminDecompressedContent'
+      type: object
+    ShippingAdminEmptyContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      type: object
+    ShippingAdminFormUrlEncodedContent:
+      allOf:
+      - $ref: '#/components/schemas/ShippingAdminByteArrayContent'
+      type: object
+    ShippingAdminGZipDecompressedContent:
+      allOf:
+      - $ref: '#/components/schemas/ShippingAdminDecompressedContent'
+      type: object
+    ShippingAdminHttpConnectionResponseContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      type: object
+    ShippingAdminHttpRequestMessage:
+      properties:
+        content:
+          $ref: '#/components/schemas/HttpContent'
+        headers:
+          items:
+            $ref: '#/components/schemas/StringStringIEnumerableKeyValuePair'
+          nullable: true
+          readOnly: true
+          type: array
+        method:
+          $ref: '#/components/schemas/HttpMethod'
+        options:
+          additionalProperties: {}
+          nullable: true
+          readOnly: true
+          type: object
+        properties:
+          additionalProperties: {}
+          deprecated: true
+          nullable: true
+          readOnly: true
+          type: object
+        requestUri:
+          format: uri
+          nullable: true
+          type: string
+        version:
+          nullable: true
+          type: string
+        versionPolicy:
+          $ref: '#/components/schemas/ShippingAdminHttpVersionPolicy'
+      type: object
+    ShippingAdminHttpStatusCode:
+      enum:
+      - Continue
+      - SwitchingProtocols
+      - Processing
+      - EarlyHints
+      - OK
+      - Created
+      - Accepted
+      - NonAuthoritativeInformation
+      - NoContent
+      - ResetContent
+      - PartialContent
+      - MultiStatus
+      - AlreadyReported
+      - IMUsed
+      - MultipleChoices
+      - Ambiguous
+      - MovedPermanently
+      - Moved
+      - Found
+      - Redirect
+      - SeeOther
+      - RedirectMethod
+      - NotModified
+      - UseProxy
+      - Unused
+      - TemporaryRedirect
+      - RedirectKeepVerb
+      - PermanentRedirect
+      - BadRequest
+      - Unauthorized
+      - PaymentRequired
+      - Forbidden
+      - NotFound
+      - MethodNotAllowed
+      - NotAcceptable
+      - ProxyAuthenticationRequired
+      - RequestTimeout
+      - Conflict
+      - Gone
+      - LengthRequired
+      - PreconditionFailed
+      - RequestEntityTooLarge
+      - RequestUriTooLong
+      - UnsupportedMediaType
+      - RequestedRangeNotSatisfiable
+      - ExpectationFailed
+      - MisdirectedRequest
+      - UnprocessableEntity
+      - Locked
+      - FailedDependency
+      - UpgradeRequired
+      - PreconditionRequired
+      - TooManyRequests
+      - RequestHeaderFieldsTooLarge
+      - UnavailableForLegalReasons
+      - InternalServerError
+      - NotImplemented
+      - BadGateway
+      - ServiceUnavailable
+      - GatewayTimeout
+      - HttpVersionNotSupported
+      - VariantAlsoNegotiates
+      - InsufficientStorage
+      - LoopDetected
+      - NotExtended
+      - NetworkAuthenticationRequired
+      format: ''
+      type: string
+    ShippingAdminHttpVersionPolicy:
+      enum:
+      - RequestVersionOrLower
+      - RequestVersionOrHigher
+      - RequestVersionExact
+      format: ''
+      type: string
+    ShippingAdminReadOnlyMemoryContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      type: object
+    ShippingAdminState:
+      properties:
+        code:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+      type: object
+    ShippingAdminStreamContent:
+      allOf:
+      - $ref: '#/components/schemas/HttpContent'
+      type: object
+    ShippingAdminStringContent:
+      allOf:
+      - $ref: '#/components/schemas/ShippingAdminByteArrayContent'
+      type: object
+    ShippingInclusionRule:
+      description: An object to bind service types to shipping target rules and/or product target rules
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        id:
+          description: The system generated id of this shipping inclusion rule
+          nullable: true
+          type: string
+        productTargetRuleCodes:
+          description: "the product target rule codes associated with this rule\r\n<remarks>leave empty or null to denote all products</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+        sequence:
+          description: The sequence in which this rule is preferred over others
+          format: int32
+          type: integer
+        serviceTypes:
+          description: "the servicetypes associated with this rule\r\n<remarks>leave empty or null to denote all carriers and subsequent service types</remarks>"
+          items:
+            $ref: '#/components/schemas/ServiceType'
+          nullable: true
+          type: array
+        shippingTargetRuleCodes:
+          description: "The shipping target rule codes associated with this rule\r\n<remarks>leave empty or null to denote all destinations</remarks>"
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ShippingInclusionRuleCollection:
+      description: A collection of methodgroup
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ShippingInclusionRule'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ShippingProfile:
+      description: ''
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Merchant entered unique identifier for a ShippingProfile
+          nullable: true
+          type: string
+        orderHandlingFeeRules:
+          description: ''
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          nullable: true
+          type: array
+        productHandlingFeeRules:
+          description: ''
+          items:
+            $ref: '#/components/schemas/HandlingFeeRule'
+          nullable: true
+          type: array
+        shippingInclusionRules:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ShippingInclusionRule'
+          nullable: true
+          type: array
+        targetedSiteIds:
+          description: "The siteid's for which this profile applies\r\n<remarks>for now there is a 1-1 relationship between this profile and site so only 1 siteid should be in this list</remarks>"
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    ShippingProfileCollection:
+      description: a collection of profiles
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ShippingProfile'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ShippingStates:
+      properties:
+        countryCode:
+          nullable: true
+          type: string
+        states:
+          items:
+            $ref: '#/components/schemas/ShippingAdminState'
+          nullable: true
+          type: array
+          uniqueItems: true
+      type: object
+    SignatureOption:
+      description: Signature options against a carrier
+      properties:
+        carrierId:
+          description: Carrier Id
+          nullable: true
+          type: string
+        isEnabled:
+          description: If carrier is enabled for signature option.
+          type: boolean
+        options:
+          description: Supported signature options
+          items:
+            $ref: '#/components/schemas/Option'
+          nullable: true
+          type: array
+      type: object
+    StringStringIEnumerableKeyValuePair:
+      properties:
+        key:
+          nullable: true
+          type: string
+        value:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    TargetRule:
+      description: An object used to define a bool expression against a particular domain type
+      properties:
+        code:
+          description: "The user defined code for this rule\r\n<remarks>must be unique</remarks>"
+          nullable: true
+          type: string
+        description:
+          description: The description of this rule
+          nullable: true
+          type: string
+        domain:
+          description: "The domain of this rule\r\n<value>Product</value><value>Order</value>"
+          nullable: true
+          type: string
+        expression:
+          description: the expression of this rule
+          nullable: true
+          type: string
+      type: object
+    TargetRuleCollection:
+      description: A collection of zones
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/TargetRule'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+info:
+  description: OpenAPI Spec for Kibo Shipping Admin Service
+  title: Shipping Admin
+openapi: 3.0.1
+paths:
+  /commerce/shipping/admin/carriers/{carrierId}:
+    delete:
+      description: Delete an existing Carrier Configuration
+      parameters:
+      - description: ''
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Carrier Configuration
+      tags:
+      - CarrierConfiguration
+    get:
+      description: Get Carrier Configuration (for this particular site)
+      parameters:
+      - description: ''
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+          description: Success
+      summary: Get carrier configuration information
+      tags:
+      - CarrierConfiguration
+    post:
+      description: Create a new carrier configuration. The settings[] field is deprecated and no longer needs to be provided when working with credential sets.
+      parameters:
+      - description: ''
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierConfiguration'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+          description: Success
+      summary: Create Carrier Configuration
+      tags:
+      - CarrierConfiguration
+    put:
+      description: Update an existing carrier configuration. The settings[] field is deprecated and no longer needs to be provided when working with credential sets.
+      parameters:
+      - description: ''
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierConfiguration'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfiguration'
+          description: Success
+      summary: Update Carrier Configuration
+      tags:
+      - CarrierConfiguration
+  /commerce/shipping/admin/carriers:
+    get:
+      description: Retrieves a list of Carrier Configurations according to any specified filter criteria and sort options
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfigurationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierConfigurationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierConfigurationCollection'
+          description: Success
+      summary: Get Carrier Configurations
+      tags:
+      - CarrierConfiguration
+  /commerce/shipping/global/carriers/{carrierId}/serviceTypes/{localeCode}:
+    get:
+      description: Retrieves the available service types for the Default Application carriers
+      parameters:
+      - description: ''
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+          description: Success
+      summary: Get Service Types (with Carrier ID)
+      tags:
+      - CarrierConfigurationGlobal
+  /commerce/shipping/global/carriers/serviceTypes/{localeCode}:
+    get:
+      description: Retrieves the available service types for the Default Application carriers
+      parameters:
+      - description: ''
+        in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+          description: Success
+      summary: Get Service Types (without Carrier ID)
+      tags:
+      - CarrierConfigurationGlobal
+  /commerce/shipping/global/carriers/signatureOptions:
+    get:
+      description: Gets all the Signature Options
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SignatureOption'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SignatureOption'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SignatureOption'
+                type: array
+          description: Success
+      summary: Gets all the Signature Options
+      tags:
+      - CarrierConfigurationGlobal
+  /commerce/shipping/admin/carriers/credentials:
+    get:
+      description: Returns a collection of all carrier credentials
+      parameters:
+      - description: The starting index.
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: The page size.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Any sorting filters.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Any query filters.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialCollection'
+          description: Success
+      summary: Get Carrier Credentials
+      tags:
+      - CarrierCredential
+  /commerce/shipping/admin/carriers/credentials/{carrierId}:
+    delete:
+      description: Deletes carrier credentials
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: The site ID, if any.
+        in: query
+        name: siteId
+        schema:
+          format: int32
+          type: integer
+      - description: The location group code, if any.
+        in: query
+        name: locationGroupCode
+        schema:
+          type: string
+      - description: The location code, if any.
+        in: query
+        name: locationCode
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Carrier Credentials
+      tags:
+      - CarrierCredential
+    get:
+      description: Retrieves carrier credentials for a specific Carrier ID
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: The site ID, if any.
+        in: query
+        name: siteId
+        schema:
+          format: int32
+          type: integer
+      - description: The location group code, if any.
+        in: query
+        name: locationGroupCode
+        schema:
+          type: string
+      - description: The location code, if any.
+        in: query
+        name: locationCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+          description: Success
+      summary: Get Carrier Credentials by ID
+      tags:
+      - CarrierCredential
+    post:
+      description: Creates new carrier credentials. See <a href="/pages/shipping-carriers-api-overview">this guide</a> for details about the fields that are required for each carrier.
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredential'
+        description: The carrier credential data.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+          description: Success
+      summary: Create Carrier Credentials
+      tags:
+      - CarrierCredential
+    put:
+      description: Updates existing carrier credentials. See <a href="/pages/shipping-carriers-api-overview">this guide</a> for details about the fields that are required for each carrier.
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: The site ID, if any.
+        in: query
+        name: siteId
+        schema:
+          format: int32
+          type: integer
+      - description: The location group code, if any.
+        in: query
+        name: locationGroupCode
+        schema:
+          type: string
+      - description: The location code, if any.
+        in: query
+        name: locationCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredential'
+        description: The carrier credential data.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredential'
+          description: Success
+      summary: Update Carrier Credentials
+      tags:
+      - CarrierCredential
+  /commerce/shipping/admin/carriers/credential-sets/{carrierId}:
+    post:
+      description: Creates a new carrier credential set. See <a href="/pages/shipping-carriers-api-overview">this guide</a> for details about the fields that are required for each carrier.
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredentialSet'
+        description: The carrier credential set data.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+          description: Success
+      summary: Create Carrier Credential Set
+      tags:
+      - CarrierCredentialSet
+  /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}:
+    delete:
+      description: Deletes a carrier credential set
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: The carrier credential set code.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Carrier Credential Set
+      tags:
+      - CarrierCredentialSet
+    get:
+      description: Returns a credential set based on a specific Carrier ID and Code
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: The carrier credential set code.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+          description: Success
+      summary: Get Carrier Credential Set
+      tags:
+      - CarrierCredentialSet
+    put:
+      description: Update an existing carrier credential set. See <a href="/pages/shipping-carriers-api-overview">this guide</a> for details about the fields that are required for each carrier.
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: The carrier credential set code.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CarrierCredentialSet'
+        description: The carrier credential set data.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSet'
+          description: Success
+      summary: Update Carrier Credential Set
+      tags:
+      - CarrierCredentialSet
+  /commerce/shipping/admin/carriers/credential-sets:
+    get:
+      description: Returns a collection of all carrier credential sets
+      parameters:
+      - description: The starting index.
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: The page size.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Any sorting filters.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Any query filters.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSetCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSetCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierCredentialSetCollection'
+          description: Success
+      summary: Get Carrier Credential Sets
+      tags:
+      - CarrierCredentialSet
+  /commerce/shipping/admin/carriers/definitions/{carrierId}:
+    get:
+      description: Retrieves the carrier definition for the specified carrier
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+          description: Success
+      summary: Get Carrier Definition
+      tags:
+      - CarrierDefinition
+  /commerce/shipping/admin/carriers/definitions:
+    get:
+      description: Retrieves all shipping carrier definitions for the specified tenant
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+          description: Success
+      summary: Get Carrier Definitions
+      tags:
+      - CarrierDefinition
+  /commerce/shipping/admin/profiles/{profilecode}/shippingstates:
+    get:
+      description: Retrieves all configured shipping states
+      parameters:
+      - in: path
+        name: profileCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+          description: Success
+      summary: Get Configured Shipping States
+      tags:
+      - ShippingProfile
+    put:
+      description: Updates the configured shipping states
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ShippingStates'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShippingStates'
+                type: array
+          description: Success
+      summary: Update States
+      tags:
+      - ShippingProfile
+  /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}:
+    delete:
+      description: Deletes an existing order handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HttpResponseMessage'
+          description: Success
+      summary: Delete Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+    get:
+      description: Retrieves an order handling fee rule by ID
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Get Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+    put:
+      description: Updates an existing order handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Update Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+  /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees:
+    get:
+      description: Retrieve all order handling fee rules
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: fulfillmentMethod
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+          description: Success
+      summary: Get Order Handling Fee Rules
+      tags:
+      - ShippingProfile
+    post:
+      description: Creates a new order handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Create Order Handling Fee Rule
+      tags:
+      - ShippingProfile
+  /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}:
+    delete:
+      description: Deletes an existing product handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+    get:
+      description: Retrieves a product handling fee rule by ID
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Get Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+    put:
+      description: Updates an existing product handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Update Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+  /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees:
+    get:
+      description: Retrieves all product handling fee rules
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: fulfillmentMethod
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRuleCollection'
+          description: Success
+      summary: Get Product Handling Fee Rules
+      tags:
+      - ShippingProfile
+    post:
+      description: Creates a new product handling fee rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HandlingFeeRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HandlingFeeRule'
+          description: Success
+      summary: Create Product Handling Fee Rule
+      tags:
+      - ShippingProfile
+  /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}:
+    delete:
+      description: Deletes an existing shipping inclusion rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+    get:
+      description: Retrieves a shipping inclusion rule by ID
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Get Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+    put:
+      description: Updates an existing shipping inclusion rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShippingInclusionRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Update Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+  /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions:
+    get:
+      description: Retrieves all shipping inclusion rules
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRuleCollection'
+          description: Success
+      summary: Get Shipping Inclusion Rules
+      tags:
+      - ShippingProfile
+    post:
+      description: Creates a new shipping inclusion rule
+      parameters:
+      - in: path
+        name: profilecode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShippingInclusionRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingInclusionRule'
+          description: Success
+      summary: Create Shipping Inclusion Rule
+      tags:
+      - ShippingProfile
+  /commerce/shipping/admin/profiles:
+    get:
+      description: Get shipping profiles for the tenant/master catalog
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShippingProfileCollection'
+          description: Success
+      summary: Get Shipping Profiles
+      tags:
+      - ShippingProfile
+  /commerce/targetrules/{code}:
+    delete:
+      description: Delete Target Rule
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Success
+      summary: Delete Target Rule
+      tags:
+      - TargetRules
+    get:
+      description: Get Target Rule
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Get Target Rule
+      tags:
+      - TargetRules
+    put:
+      description: Update Target Rule
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Update Target Rule
+      tags:
+      - TargetRules
+  /commerce/targetrules:
+    get:
+      description: Retrieves a list of TargetRules according to any specified filter criteria and sort options
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRuleCollection'
+          description: Success
+      summary: Get Target Rules
+      tags:
+      - TargetRules
+    post:
+      description: Create Target Rule
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TargetRule'
+          description: Success
+      summary: Create Target Rule
+      tags:
+      - TargetRules
+  /commerce/targetrules/validate:
+    post:
+      description: Validate Target Rule
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TargetRule'
+      responses:
+        '200':
+          description: Success
+      summary: Validate Target Rule
+      tags:
+      - TargetRules
+security:
+- bearerAuth: []
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL

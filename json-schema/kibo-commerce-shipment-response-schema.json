@@ -1,0 +1,177 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-shipment-response-schema.json",
+  "title": "ShipmentResponse",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-shipping-storefront-openapi.yml#/components/schemas/ShipmentResponse",
+  "properties": {
+    "customAttributes": {
+      "items": {
+        "$ref": "#/$defs/CustomAttribute"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "isSuccessful": {
+      "type": "boolean"
+    },
+    "messages": {
+      "items": {
+        "$ref": "#/$defs/Notification"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "packageResponses": {
+      "items": {
+        "$ref": "#/$defs/ShippingRuntimePackageResponse"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "shippingTotal": {
+      "$ref": "#/$defs/Money"
+    },
+    "trackingNumber": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "CustomAttribute": {
+      "properties": {
+        "childAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Money": {
+      "properties": {
+        "currencyCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Notification": {
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "message": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingLabel": {
+      "properties": {
+        "imageData": {
+          "format": "byte",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageFormat": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "labelUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimePackageResponse": {
+      "properties": {
+        "customAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "integratorId": {
+          "description": "Easypost ShipmentId required for manifests",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "label": {
+          "$ref": "#/$defs/ShippingLabel"
+        },
+        "trackingNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

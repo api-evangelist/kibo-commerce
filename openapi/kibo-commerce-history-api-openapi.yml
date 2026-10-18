@@ -1,0 +1,309 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce History API
+  version: '1.0'
+  description: 'Operations tagged History across 2 of this provider''s published API definitions: openapi_openapi_audit_logs.json, kibo-commerce-audit-logs-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: History
+paths:
+  /history/{rightHistoryId}/{leftHistoryId}/download:
+    get:
+      description: Downloads the entities as a ZIP file by their history IDs.
+      parameters:
+      - description: The ID of the right history record.
+        in: path
+        name: rightHistoryId
+        required: true
+        schema:
+          type: string
+      - description: The ID of the left history record.
+        in: path
+        name: leftHistoryId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Download Histories
+      tags:
+      - History
+      operationId: getHistoryByRightHistoryIdByLeftHistoryIdDownload
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /history/{historyId}/download:
+    get:
+      description: Downloads the entity as a JSON file by its history ID.
+      parameters:
+      - description: The ID of the history record.
+        in: path
+        name: historyId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Download History
+      tags:
+      - History
+      operationId: getHistoryByHistoryIdDownload
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /history:
+    get:
+      description: Retrieves a collection of history records with optional paging parameters. Paging parameters include startIndex, pageSize, sortBy, filter, q, and qLimit.
+      parameters:
+      - in: query
+        name: StartIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: PageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: SortBy
+        schema:
+          type: string
+      - in: query
+        name: Filter
+        schema:
+          type: string
+      - in: query
+        name: Q
+        schema:
+          type: string
+      - in: query
+        name: QLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HistoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HistoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HistoryCollection'
+          description: OK
+      summary: Get History
+      tags:
+      - History
+      operationId: getHistory
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /history/{historyId}:
+    get:
+      description: Retrieves a history record by its ID.
+      parameters:
+      - description: The ID of the history record.
+        in: path
+        name: historyId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/History'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/History'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/History'
+          description: OK
+      summary: Get History by ID
+      tags:
+      - History
+      operationId: getHistoryByHistoryId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /history/{historyId}/diff:
+    get:
+      description: Retrieves diff for history by ID or entity type. Retrieves the modified file(s) of given history compared to the previous. version of entity
+      parameters:
+      - description: History Id
+        in: path
+        name: historyId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+            text/json:
+              schema: {}
+            text/plain:
+              schema: {}
+          description: OK
+      summary: Get History Diff
+      tags:
+      - History
+      operationId: getHistoryByHistoryIdDiff
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    History:
+      properties:
+        action:
+          type:
+          - string
+          - 'null'
+        appKey:
+          type:
+          - string
+          - 'null'
+        correlationId:
+          type:
+          - string
+          - 'null'
+        entityId:
+          type:
+          - string
+          - 'null'
+        entityType:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        initiatingAppId:
+          type:
+          - string
+          - 'null'
+        ipAddress:
+          type:
+          - string
+          - 'null'
+        objectName:
+          type:
+          - string
+          - 'null'
+        siteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        tenantId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        timestamp:
+          format: date-time
+          type: string
+        userId:
+          type:
+          - string
+          - 'null'
+      type: object
+    HistoryCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/History'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_audit_logs.json
+- kibo-commerce-audit-logs-openapi.yml

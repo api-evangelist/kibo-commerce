@@ -1,0 +1,45 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/kibo-commerce-appdevelopement-openapi.yml, openapi/kibo-commerce-audit-logs-openapi.yml,
+  openapi/kibo-commerce-catalog-admin-openapi.yml, openapi/kibo-commerce-catalog-storefront-openapi.yml,
+  openapi/kibo-commerce-commerce-openapi.yml, openapi/kibo-commerce-content-openapi.yml, openapi/kibo-commerce-customer-openapi.yml,
+  openapi/kibo-commerce-dropship-openapi.yml, openapi/kibo-commerce-entities-openapi.yml, openapi/kibo-commerce-event-openapi.yml,
+  openapi/kibo-commerce-fulfillment-openapi.yml, openapi/kibo-commerce-gdpr-openapi.yml ...
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: JWT Authorization header using the Bearer scheme.
+  sources:
+  - openapi/kibo-commerce-appdevelopement-openapi.yml
+  - openapi/kibo-commerce-audit-logs-openapi.yml
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-catalog-storefront-openapi.yml
+  - openapi/kibo-commerce-commerce-openapi.yml
+  - openapi/kibo-commerce-content-openapi.yml
+  - openapi/kibo-commerce-customer-openapi.yml
+  - openapi/kibo-commerce-dropship-openapi.yml
+  - openapi/kibo-commerce-entities-openapi.yml
+  - openapi/kibo-commerce-event-openapi.yml
+  - openapi/kibo-commerce-fulfillment-openapi.yml
+  - openapi/kibo-commerce-gdpr-openapi.yml
+  - openapi/kibo-commerce-importexport-openapi.yml
+  - openapi/kibo-commerce-inventory-openapi.yml
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  - openapi/kibo-commerce-location-storefront-openapi.yml
+  - openapi/kibo-commerce-orderrouting-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  - openapi/kibo-commerce-reservation-openapi.yml
+  - openapi/kibo-commerce-settings-openapi.yml
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  - openapi/kibo-commerce-shipping-storefront-openapi.yml
+  - openapi/kibo-commerce-subscription-openapi.yml
+  - openapi/kibo-commerce-tenant-and-user-openapi.yml
+  - openapi/kibo-commerce-tenant-openapi.yml
+  - openapi/kibo-commerce-user-openapi.yml

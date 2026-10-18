@@ -1,0 +1,655 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-order-reservati-schema.json",
+  "title": "OrderReservati",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-reservation-openapi.yml#/components/schemas/OrderReservati",
+  "properties": {
+    "fulfillmentInfo": {
+      "$ref": "#/$defs/FulfillmentInf"
+    },
+    "orderId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "orderNumber": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "reservationItems": {
+      "items": {
+        "$ref": "#/$defs/ReservationItem"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "zipCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "addressType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isValidated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Allocati": {
+      "properties": {
+        "allocationHistory": {
+          "items": {
+            "$ref": "#/$defs/AllocationEve"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "allocationId": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "estimatedDeliveryDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fulfillmentLocationCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "futureDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isStateChange": {
+          "type": "boolean"
+        },
+        "itemId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "transferLocationCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AllocationEve": {
+      "properties": {
+        "allocatedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "deltaQuantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "runId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BundledProdu": {
+      "properties": {
+        "goodsType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "measurements": {
+          "$ref": "#/$defs/ReservationWebAPIPackageMeasurements"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optionAttributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optionValue": {
+          "nullable": true
+        },
+        "productCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Contact": {
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "companyOrOrganization": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "firstName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "lastNameOrSurname": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "middleNameOrInitial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phoneNumbers": {
+          "$ref": "#/$defs/Phone"
+        }
+      },
+      "type": "object"
+    },
+    "FulfillmentInf": {
+      "properties": {
+        "fulfillmentContact": {
+          "$ref": "#/$defs/Contact"
+        },
+        "isDestinationCommercial": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "itemLevelShippingMethod": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shippingMethodCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shippingMethodName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "InventoryTags": {
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Measurement": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Phone": {
+      "properties": {
+        "home": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mobile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "work": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Produ": {
+      "properties": {
+        "bundledProducts": {
+          "items": {
+            "$ref": "#/$defs/BundledProdu"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "condition": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "goodsType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isSplitExtrasInShipment": {
+          "type": "boolean"
+        },
+        "isTaxable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "measurements": {
+          "$ref": "#/$defs/ReservationWebAPIPackageMeasurements"
+        },
+        "mfgPartNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productUsage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/$defs/ReservationWebAPIProductProperty"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "serialNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sku": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "variationProductCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductPropertyValue": {
+      "properties": {
+        "stringValue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ReservationItem": {
+      "properties": {
+        "allocationStatus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "allocations": {
+          "items": {
+            "$ref": "#/$defs/Allocati"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "allowsBackOrder": {
+          "type": "boolean"
+        },
+        "data": {
+          "additionalProperties": {},
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "fulfillmentInfo": {
+          "$ref": "#/$defs/FulfillmentInf"
+        },
+        "fulfillmentLocationCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fulfillmentMethod": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inventoryTags": {
+          "items": {
+            "$ref": "#/$defs/InventoryTags"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "lineId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "orderItemId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "product": {
+          "$ref": "#/$defs/Produ"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "requestedShipDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shippingMethodCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "suggestions": {
+          "items": {
+            "$ref": "#/$defs/Suggesti"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "timeFenceDays": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ReservationWebAPIPackageMeasurements": {
+      "properties": {
+        "height": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "length": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "weight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "width": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationWebAPIProductProperty": {
+      "properties": {
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/ProductPropertyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Suggesti": {
+      "properties": {
+        "futureDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locationCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "suggestionType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

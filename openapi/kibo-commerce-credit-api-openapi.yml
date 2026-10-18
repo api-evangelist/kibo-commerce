@@ -1,0 +1,696 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Credit API
+  version: '1.0'
+  description: 'Operations tagged Credit across 2 of this provider''s published API definitions: openapi_openapi_customer.json, kibo-commerce-customer-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Credit
+paths:
+  /commerce/customer/credits/{code}/associate-to-shopper:
+    put:
+      description: Maps credit to the shopper.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+          description: OK
+      summary: Associate Credit To Shopper
+      tags:
+      - Credit
+      operationId: putCommerceCustomerCreditsByCodeAssociateToShopper
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/credits/{code}/auditentries:
+    get:
+      description: Retrieves a list of audit entries according to any filter criteria and sort options.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditAuditEntryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreditAuditEntryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreditAuditEntryCollection'
+          description: OK
+      summary: Get Audit Entries
+      tags:
+      - Credit
+      operationId: getCommerceCustomerCreditsByCodeAuditentries
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/credits/{code}:
+    delete:
+      description: Deletes a credit.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete credit
+      tags:
+      - Credit
+      operationId: deleteCommerceCustomerCreditsByCode
+      x-operation-id-source: derived
+    get:
+      description: Get credit specified by code.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+          description: OK
+      summary: Get credit
+      tags:
+      - Credit
+      operationId: getCommerceCustomerCreditsByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates a credit specified by a credit code.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerCredit'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+          description: OK
+      summary: Update Credit
+      tags:
+      - Credit
+      operationId: putCommerceCustomerCreditsByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/credits:
+    get:
+      description: Retrieves a list of credit collection according to any filter criteria and sort options.
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreditCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreditCollection'
+          description: OK
+      summary: Get Credits
+      tags:
+      - Credit
+      operationId: getCommerceCustomerCredits
+      x-operation-id-source: derived
+    post:
+      description: Adds credit to user account. Store credit can represent a static amount the customer can redeem at any of the tenant's sites, or a gift card registered for a customer account.
+      parameters:
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerCredit'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerCredit'
+          description: OK
+      summary: Add Credit
+      tags:
+      - Credit
+      operationId: postCommerceCustomerCredits
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/credits/{code}/transactions:
+    get:
+      description: Gets credit transactions according to any filter criteria and sort options.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransactionCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransactionCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreditTransactionCollection'
+          description: OK
+      summary: Get Transactions
+      tags:
+      - Credit
+      operationId: getCommerceCustomerCreditsByCodeTransactions
+      x-operation-id-source: derived
+    post:
+      description: Adds a credit transaction.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreditTransaction'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransaction'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreditTransaction'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreditTransaction'
+          description: OK
+      summary: Add Transaction
+      tags:
+      - Credit
+      operationId: postCommerceCustomerCreditsByCodeTransactions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/credits/{code}/Resend-Email:
+    put:
+      description: Resend email when credit is created.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Resend Credit Created Email
+      tags:
+      - Credit
+      operationId: putCommerceCustomerCreditsByCodeResendEmail
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CustomerCredit:
+      description: Represetation of a store credit or gift card.
+      properties:
+        activationDate:
+          description: 'Date the credit was activated.  Null if card is not active.
+
+            Credits must be activated before they can be used.
+
+            ReadOnly after activation'
+          format: date-time
+          type:
+          - string
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: 'Unique number identifier representing this credit.
+
+            Number may be generated or set by the Tenant
+
+            Number is unique within the Tenant context.
+
+            ReadOnly after credit creation'
+          type:
+          - string
+          - 'null'
+        creditType:
+          description: 'Type of Credit.
+
+            Mozu.Customer.Contracts.Credit.Credit.CreditTypeConst
+
+            Required.
+
+            ReadOnly after credit creation'
+          type:
+          - string
+          - 'null'
+        creditTypeId:
+          format: int32
+          type: integer
+        currencyCode:
+          description: Currency Code
+          type:
+          - string
+          - 'null'
+        currentBalance:
+          description: 'Do we want to track this here?
+
+            Current Balance
+
+            ReadOnly'
+          format: double
+          type:
+          - number
+          - 'null'
+        customCreditType:
+          description: 'Name of custom credit type
+
+            Optional.'
+          type:
+          - string
+          - 'null'
+        customerId:
+          description: 'Id of the N:Mozu.Customer
+
+            that this credit is assigned to.
+
+            Optional.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        expirationDate:
+          description: 'Date after which this credit is no longer valid
+
+            Optional
+
+            Defaults to 365 days'
+          format: date-time
+          type:
+          - string
+          - 'null'
+        initialBalance:
+          description: 'Balance assigned when credit was initially created.
+
+            May be zero and updated later.
+
+            ReadOnly after intial credit creation'
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CreditCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerCredit'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CreditTransaction:
+      description: Credit Transactions are used to make adjustments to a Credit Balance
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        comments:
+          description: Comments about the transaction.  Depending on the user interface, these comments may be readable by authorized users or customers.
+          type:
+          - string
+          - 'null'
+        data:
+          description: Custom data for credit transactions
+        id:
+          description: 'Id unique within the tenant
+
+            ReadOnly'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        impactAmount:
+          description: 'Amount to apply to Credit Balance
+
+            Required'
+          format: double
+          type:
+          - number
+          - 'null'
+        orderId:
+          type:
+          - string
+          - 'null'
+        transactionType:
+          description: "Mozu.Customer.Contracts.Credit.CreditTransaction.CreditTransactionType\n            Requried"
+          type:
+          - string
+          - 'null'
+      type: object
+    CreditAuditEntry:
+      description: 'Log entry for any change made to a Credit.
+
+
+        The system will generate all entries.  Contract is for display only.
+
+        All values are ReadOnly.'
+      properties:
+        activityType:
+          description: Mozu.Customer.Contracts.Credit.CreditAuditEntry.CreditAuditActivityType
+          type:
+          - string
+          - 'null'
+        activityTypeId:
+          format: int32
+          type: integer
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        details:
+          description: Detials of what was done
+          type:
+          - string
+          - 'null'
+      type: object
+    CreditTransactionCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CreditTransaction'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CreditAuditEntryCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CreditAuditEntry'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_customer.json
+- kibo-commerce-customer-openapi.yml

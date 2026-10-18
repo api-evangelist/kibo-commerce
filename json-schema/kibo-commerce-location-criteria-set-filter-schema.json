@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-location-criteria-set-filter-schema.json",
+  "title": "LocationCriteriaSetFilter",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-orderrouting-openapi.yml#/components/schemas/LocationCriteriaSetFilter",
+  "properties": {
+    "acceptNulls": {
+      "type": "boolean"
+    },
+    "booleanOperator": {
+      "enum": [
+        "filter.logic.equal",
+        "filter.logic.not.equal",
+        "filter.logic.greater.than",
+        "filter.logic.less.than",
+        "filter.logic.greater.or.equal",
+        "filter.logic.less.or.equal",
+        "filter.logic.in",
+        "filter.logic.not.in",
+        "filter.logic.between",
+        "filter.logic.starts.with",
+        "filter.logic.ends.with",
+        "filter.logic.contains",
+        "filter.logic.equal",
+        "filter.logic.not.equal",
+        "filter.logic.in",
+        "filter.logic.not.in",
+        "filter.logic.subset"
+      ],
+      "type": "string"
+    },
+    "created": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "creatorUsername": {
+      "type": "string"
+    },
+    "customAttributeName": {
+      "type": "string"
+    },
+    "dataPointExtensibleAttributeFQN": {
+      "type": "string"
+    },
+    "dataPointExtensibleAttributeName": {
+      "type": "string"
+    },
+    "dataPointExtensibleAttributeType": {
+      "type": "string"
+    },
+    "dataPointExtensibleFilter": {
+      "type": "boolean"
+    },
+    "definitions": {
+      "items": {
+        "$ref": "#/$defs/LocationCriteriaSetDataDefinition"
+      },
+      "type": "array"
+    },
+    "dotDelimitedPropertyName": {
+      "type": "string"
+    },
+    "environmentID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "extensibleAttributeFQN": {
+      "type": "string"
+    },
+    "extensibleAttributeName": {
+      "type": "string"
+    },
+    "extensibleFilter": {
+      "type": "boolean"
+    },
+    "filterID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "filterLogicalGroupOrderIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "filterUnit": {
+      "properties": {
+        "dimension": {
+          "type": "object"
+        },
+        "standardUnit": {
+          "properties": {
+            "dimension": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "inventoryBasedFilter": {
+      "type": "boolean"
+    },
+    "itemBasedFilter": {
+      "type": "boolean"
+    },
+    "locationBasedFilter": {
+      "type": "boolean"
+    },
+    "locationCriteriaSet": {
+      "$ref": "#/$defs/LocationCriteriaSet"
+    },
+    "name": {
+      "maxLength": 255,
+      "minLength": 1,
+      "type": "string"
+    },
+    "orderIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "orderLocationFilterEqualToLocationOrInventoryFilter": {
+      "type": "boolean"
+    },
+    "pathString": {
+      "type": "string"
+    },
+    "persisted": {
+      "type": "boolean"
+    },
+    "siteID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "suggestionEventListeners": {
+      "items": {
+        "$ref": "#/$defs/SuggestionEventListener"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "tenantID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "updated": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "updaterUsername": {
+      "type": "string"
+    },
+    "userContext": {
+      "$ref": "#/$defs/UserContextInformation"
+    }
+  },
+  "required": [
+    "booleanOperator",
+    "dotDelimitedPropertyName",
+    "environmentID",
+    "name",
+    "siteID",
+    "tenantID"
+  ],
+  "type": "object",
+  "$defs": {
+    "CacheStringBoolean": {
+      "type": "object"
+    },
+    "LocationCriteriaSet": {
+      "properties": {
+        "columnDefinitions": {
+          "items": {
+            "$ref": "#/$defs/LocationCriteriaSetDataDefinition"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "created": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "creatorUsername": {
+          "type": "string"
+        },
+        "environmentID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fileName": {
+          "maxLength": 255,
+          "minLength": 1,
+          "type": "string"
+        },
+        "locationCriteriaSetID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "locationCriteriaSetMap": {
+          "$ref": "#/$defs/SetMultimapIntegerLocationCriteriaSetRow"
+        },
+        "locationCriteriaSetRows": {
+          "$ref": "#/$defs/SetMultimapIntegerLocationCriteriaSetRow"
+        },
+        "pathString": {
+          "type": "string"
+        },
+        "persisted": {
+          "type": "boolean"
+        },
+        "readyState": {
+          "enum": [
+            "dataset.ready",
+            "dataset.processing",
+            "dataset.error.processing"
+          ],
+          "type": "string"
+        },
+        "siteID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updated": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updaterUsername": {
+          "type": "string"
+        },
+        "userContext": {
+          "$ref": "#/$defs/UserContextInformation"
+        }
+      },
+      "required": [
+        "environmentID",
+        "fileName",
+        "siteID",
+        "tenantID"
+      ],
+      "type": "object"
+    },
+    "LocationCriteriaSetDataDefinition": {
+      "properties": {
+        "columnName": {
+          "type": "string"
+        },
+        "created": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "creatorUsername": {
+          "type": "string"
+        },
+        "dataDefinitionID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dataUnitString": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "environmentID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "filterable": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pathString": {
+          "type": "string"
+        },
+        "persisted": {
+          "type": "boolean"
+        },
+        "siteID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "tenantID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "unit": {
+          "properties": {
+            "dimension": {
+              "type": "object"
+            },
+            "standardUnit": {
+              "properties": {
+                "dimension": {
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "unitType": {
+          "enum": [
+            "unit.type.currency",
+            "unit.type.distance",
+            "unit.type.length",
+            "unit.type.volume",
+            "unit.type.area",
+            "unit.type.weight",
+            "unit.type.dimensionless"
+          ],
+          "type": "string"
+        },
+        "updated": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updaterUsername": {
+          "type": "string"
+        },
+        "userContext": {
+          "$ref": "#/$defs/UserContextInformation"
+        }
+      },
+      "required": [
+        "columnName",
+        "environmentID",
+        "siteID",
+        "tenantID"
+      ],
+      "type": "object"
+    },
+    "SetMultimapIntegerLocationCriteriaSetRow": {
+      "properties": {
+        "empty": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SiteService": {
+      "type": "object"
+    },
+    "SuggestionEventListener": {
+      "type": "object"
+    },
+    "TenantAttributesCache": {
+      "properties": {
+        "underlyingCache": {
+          "$ref": "#/$defs/CacheStringBoolean"
+        }
+      },
+      "type": "object"
+    },
+    "TenantClient": {
+      "type": "object"
+    },
+    "TenantService": {
+      "properties": {
+        "tenantAttributesCache": {
+          "$ref": "#/$defs/TenantAttributesCache"
+        },
+        "tenantClient": {
+          "$ref": "#/$defs/TenantClient"
+        }
+      },
+      "type": "object"
+    },
+    "UserContextInformation": {
+      "properties": {
+        "environmentID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "loaded": {
+          "type": "boolean"
+        },
+        "pathString": {
+          "type": "string"
+        },
+        "siteID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "siteService": {
+          "$ref": "#/$defs/SiteService"
+        },
+        "tenantID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantService": {
+          "$ref": "#/$defs/TenantService"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

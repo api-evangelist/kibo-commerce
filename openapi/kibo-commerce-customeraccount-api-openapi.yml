@@ -1,0 +1,3342 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Customer Account API
+  version: '1.0'
+  description: 'Operations tagged CustomerAccount across 2 of this provider''s published API definitions: openapi_openapi_customer.json, kibo-commerce-customer-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CustomerAccount
+paths:
+  /commerce/customer/accounts/Add-Account-And-Login:
+    post:
+      description: Adds a customer to the account.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAccountAndAuthInfo'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAuthTicket'
+          description: OK
+      summary: Add Account And Login
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsAddAccountAndLogin
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/Bulk:
+    post:
+      description: Creates multiple new shopper accounts for a specified site. Allows you to create a number of new shopper accounts at one time.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CustomerAccountAndAuthInfo'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccountCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccountCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAccountCollection'
+          description: OK
+      summary: Add Accounts
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsBulk
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/Create-Login:
+    post:
+      description: Creates a login for an existing customer and logs them in automatically.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerLoginInfo'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAuthTicket'
+          description: OK
+      summary: Add Login To Existing Customer
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdCreateLogin
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/Change-Password:
+    post:
+      description: Changes a shopper's password.
+      parameters:
+      - description: Unique identifier of the shopper for whom to change the password.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: inidicates that the account should be unlocked on a successful password change.
+        in: query
+        name: unlockAccount
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerPasswordInfo'
+        description: Old password and new password.
+      responses:
+        '200':
+          description: OK
+      summary: Change Password
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdChangePassword
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/Change-Passwords:
+    post:
+      description: Changes a collection of shopper passwords
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountPasswordInfoCollection'
+        description: The collection of AccountPasswordInfo which are to be processed
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChangePasswordResultCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ChangePasswordResultCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ChangePasswordResultCollection'
+          description: OK
+      summary: Change Passwords
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsChangePasswords
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}:
+    delete:
+      description: Deletes a customer account. A customer account cannot be deleted if any orders exist, past or present. To erase a customer's personal data for a data subject erasure or right-to-deletion request under GDPR, CCPA, and other privacy regulations — including PII attached to existing orders, payments, and shipments — use the Redaction Services two-phase workflow instead.
+      parameters:
+      - description: Unique identifier of the customer account to delete.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Account
+      tags:
+      - CustomerAccount
+      operationId: deleteCommerceCustomerAccountsByAccountId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a customer account specified by its unique identifier.
+      parameters:
+      - description: Unique identifier of the customer account whose details you want to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+          description: OK
+      summary: Get Account
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountId
+      x-operation-id-source: derived
+    put:
+      description: 'Modifies an existing customer account, for example, to change the primary billing contact or change whether to accept marketing material. ote that attempting to disable an account by using the below PUT call to change the isActive parameter is unsupported, and attempts to do so will be ignored by the API. Instead, make a POST call to api/commerce/customer/accounts/{accountId}/action and provide only { "actionName": "DisableAccount" } in the request body. This will successfully disable the account and the isActive flag will be automatically set as false.'
+      parameters:
+      - description: Unique identifier of the customer account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAccount'
+        description: Properties of the customer account to update.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+          description: OK
+      summary: Update Account
+      tags:
+      - CustomerAccount
+      operationId: putCommerceCustomerAccountsByAccountId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/attributes/{attributeFQN}:
+    delete:
+      description: Deletes an account attribute specified by attributeFQN.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: userId
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Account Attribute
+      tags:
+      - CustomerAccount
+      operationId: deleteCommerceCustomerAccountsByAccountIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the contents of a particular attribute attached to a specified account.
+      parameters:
+      - description: Unique identifier of the account that contains the attribute to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Fully qualified name of the attribute that you want to retrieve.
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+          description: OK
+      summary: Get Account Attribute
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Modifies an existing attribute for an account.
+      parameters:
+      - description: Unique identifier of the account whose attribute you want to modify.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAttribute'
+        description: The new content to replace the existing attribute.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+          description: OK
+      summary: Update Account Attribute
+      tags:
+      - CustomerAccount
+      operationId: putCommerceCustomerAccountsByAccountIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/attributes:
+    get:
+      description: Retrieves a collection of account attributes according to any specified filter criteria and sort options.
+      parameters:
+      - description: Unique identifier of the customer account whose notes you want to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          default: ''
+          type: string
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttributeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttributeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttributeCollection'
+          description: OK
+      summary: Get Account Attributes
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdAttributes
+      x-operation-id-source: derived
+    post:
+      description: Adds a new account attribute.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAttribute'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+          description: OK
+      summary: Add Account Attribute
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/AuditLog/Entries:
+    get:
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAuditEntryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAuditEntryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAuditEntryCollection'
+          description: OK
+      summary: Get Account Audit Log
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdAuditLogEntries
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/cards/{cardId}:
+    delete:
+      description: Removes a card from the specified customer account.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: cardId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Account Card
+      tags:
+      - CustomerAccount
+      operationId: deleteCommerceCustomerAccountsByAccountIdCardsByCardId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a card for the specified customer account and card ID.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: cardId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Card'
+          description: OK
+      summary: Get Account Card
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdCardsByCardId
+      x-operation-id-source: derived
+    put:
+      description: Updates a card on the specific customer account.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: cardId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Card'
+          description: OK
+      summary: Update Account Card
+      tags:
+      - CustomerAccount
+      operationId: putCommerceCustomerAccountsByAccountIdCardsByCardId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/cards:
+    get:
+      description: Retrieves a list of cards for the specified customer account.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CardCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CardCollection'
+          description: OK
+      summary: Get Account Cards
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdCards
+      x-operation-id-source: derived
+    post:
+      description: Creates a card on the specific customer account.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Card'
+          description: OK
+      summary: Add Account Card
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdCards
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/contacts/{contactId}:
+    delete:
+      description: Deletes a CustomerContact for the specified customer account.
+      parameters:
+      - description: Unique identifier of the customer account whose CustomerContact you want to delete.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: contactId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Account Contact
+      tags:
+      - CustomerAccount
+      operationId: deleteCommerceCustomerAccountsByAccountIdContactsByContactId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the specified CustomerContact for a customer account, for example, a billing or shipping CustomerContact.
+      parameters:
+      - description: Unique identifier of the customer account whose CustomerContact information you want to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifier of the CustomerContact whose details you want to retrieve.
+        in: path
+        name: contactId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: If provided, the primary markings on the contact will be based on the user's preferred primary overrides
+        in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+          description: OK
+      summary: Get Account Contact
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdContactsByContactId
+      x-operation-id-source: derived
+    put:
+      description: Updates a CustomerContact for a specified customer account, for example to update addresses or change which CustomerContact is the primary CustomerContact for billing.
+      parameters:
+      - description: Unique identifier of the customer account whose CustomerContact information you want to update.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: contactId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: If provided, the primary markings on the contact will be stored as the user's preferred primary override
+        in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerContact'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+          description: OK
+      summary: Update Account Contact
+      tags:
+      - CustomerAccount
+      operationId: putCommerceCustomerAccountsByAccountIdContactsByContactId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/contacts:
+    get:
+      description: Retrieves a list of contacts for a customer according to any specified filter criteria and sort options.
+      parameters:
+      - description: Unique identifier of the customer account whose CustomerContact information you want to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: If provided, the primary markings on the contacts will be based on the user's preferred primary overrides
+        in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContactCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContactCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerContactCollection'
+          description: OK
+      summary: Get Account Contacts
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdContacts
+      x-operation-id-source: derived
+    post:
+      description: Creates a new CustomerContact for a customer account, for example, a new shipping address.
+      parameters:
+      - description: Unique identifier of the customer account to contain the new CustomerContact.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerContact'
+        description: 'Properties of the new CustomerContact. Required properties: CustomerContact.Email, ContactType.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerContact'
+          description: OK
+      summary: Add Account Contact
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdContacts
+      x-operation-id-source: derived
+    put:
+      description: Creates a new CustomerContacts for a customer account in bulk to support adding multiple contacts in a multi-ship scenario.
+      parameters:
+      - description: Unique identifier of the customer account to contain the new CustomerContact.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CustomerContact'
+              type: array
+        description: 'List of CustomerContact objects : Properties of each new CustomerContact. Required properties: CustomerContact.Email, ContactType.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContactCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerContactCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerContactCollection'
+          description: OK
+      summary: Add Account Contact List
+      tags:
+      - CustomerAccount
+      operationId: putCommerceCustomerAccountsByAccountIdContacts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/notes/{noteId}:
+    delete:
+      description: Removes a note from the specified customer account.
+      parameters:
+      - description: Unique identifier of the customer account that contains the note you want to delete.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifier of the note to delete.
+        in: path
+        name: noteId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Account Note
+      tags:
+      - CustomerAccount
+      operationId: deleteCommerceCustomerAccountsByAccountIdNotesByNoteId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the contents of a particular note attached to a specified customer account.
+      parameters:
+      - description: Unique identifier of the customer account that contains the note to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifier of a particular note that you want to retrieve.
+        in: path
+        name: noteId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+          description: OK
+      summary: Get Account Note
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdNotesByNoteId
+      x-operation-id-source: derived
+    put:
+      description: Modifies an existing note for a customer account.
+      parameters:
+      - description: Unique identifier of the customer account whose note you want to modify.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifier of the note to update.
+        in: path
+        name: noteId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerNote'
+        description: The new content to replace the existing note.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+          description: OK
+      summary: Update Account Note
+      tags:
+      - CustomerAccount
+      operationId: putCommerceCustomerAccountsByAccountIdNotesByNoteId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/notes:
+    get:
+      description: Retrieves a list of notes added to a customer account according to any specified filter criteria and sort options.
+      parameters:
+      - description: Unique identifier of the customer account whose notes you want to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          default: ''
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNoteCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNoteCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerNoteCollection'
+          description: OK
+      summary: Get Account Notes
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdNotes
+      x-operation-id-source: derived
+    post:
+      description: Adds a new note to the specified customer account.
+      parameters:
+      - description: Unique identifier of the customer account for which to create the note.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerNote'
+        description: Contents of the new note.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerNote'
+          description: OK
+      summary: Add Account Note
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdNotes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/segments:
+    get:
+      description: Retrieves a list of segments for the specified account according to any specified filter criteria and sort options.
+      parameters:
+      - description: Unique identifier of the account for which you want the list of groups.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. \n            Optional."
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          default: ''
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegmentCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegmentCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerSegmentCollection'
+          description: OK
+      summary: Get Account Segments
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdSegments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts:
+    get:
+      description: Retrieves a list of customer accounts according to any filter criteria and sort options.
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.\n            \n            For example, applications can filter on UserId to get the single record of the current customer."
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: We added this test to demo new publishing @test@. Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: fields
+        schema:
+          type: string
+      - description: a quick filter which will search a predefined set of fields for a match
+        in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: isAnonymous
+        schema:
+          type: boolean
+      - description: 'Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional.'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccountCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccountCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAccountCollection'
+          description: OK
+      summary: Get Accounts
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccounts
+      x-operation-id-source: derived
+    post:
+      description: Creates a new customer account.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAccount'
+        description: Properties of the new customer account to create.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+          description: OK
+      summary: Add Account
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccounts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/purchaseOrderAccount:
+    get:
+      description: Gets a customer's purchase order account.
+      parameters:
+      - description: Unique identifier of the account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+          description: OK
+      summary: Get Customer Purchase Order Account
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdPurchaseOrderAccount
+      x-operation-id-source: derived
+    post:
+      description: Creates a customer's purchase order account.
+      parameters:
+      - description: Unique identifier of the account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+          description: OK
+      summary: Create Customer Purchase Order Account
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdPurchaseOrderAccount
+      x-operation-id-source: derived
+    put:
+      description: Updates a customer's purchase order account.
+      parameters:
+      - description: Unique identifier of the account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+          description: OK
+      summary: Update Customer Purchase Order Account
+      tags:
+      - CustomerAccount
+      operationId: putCommerceCustomerAccountsByAccountIdPurchaseOrderAccount
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/PurchaseOrderTransaction:
+    get:
+      description: Gets a collection of Purchase order transaction logs associated with a customer account id.
+      parameters:
+      - description: Customer Account Id for which transaction logs need to be retreived
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional."
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: "Used to page results from a query. \n            Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional."
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderTransactionCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderTransactionCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderTransactionCollection'
+          description: OK
+      summary: Get Customer Purchase Order Transactions
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdPurchaseOrderTransaction
+      x-operation-id-source: derived
+    post:
+      description: Creates a purchase order transaction log (for public api use).
+      parameters:
+      - description: Unique identifier of the customer account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseOrderTransaction'
+        description: transaction log that needs to be created
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderTransaction'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderTransaction'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseOrderTransaction'
+          description: OK
+      summary: Create Purchase Order Transaction
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdPurchaseOrderTransaction
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/purchaseOrderAccounts:
+    post:
+      description: Gets a collection of customer purchase order accounts.
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: ''
+        in: query
+        name: accountType
+        schema:
+          default: B2C
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccountCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccountCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerPurchaseOrderAccountCollection'
+          description: OK
+      summary: Get Customers Purchase Order Accounts
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsPurchaseOrderAccounts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/loginstate:
+    get:
+      description: Retrieves the log-in status details of a shopper specified by account Id and user Id.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: EmailAddress of the customer whose details you want to view.
+        in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+          description: OK
+      summary: Get Login State
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdLoginstate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/loginstatebyemailaddress:
+    post:
+      description: Retrieves the log-in status details of a shopper specified by emailAdress.
+      parameters:
+      - in: query
+        name: emailAddress
+        schema:
+          type: string
+      - in: query
+        name: customerSetCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+          description: OK
+      summary: Get Login State By Email Address
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsLoginstatebyemailaddress
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/loginstatebyusername:
+    post:
+      description: Retrieves the log-in status details of a shopper specified by userName.
+      parameters:
+      - description: Unique userName of the customer whose details you want to view.
+        in: query
+        name: userName
+        schema:
+          type: string
+      - in: query
+        name: customerSetCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LoginState'
+          description: OK
+      summary: Get Login State By UserName
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsLoginstatebyusername
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/transactions:
+    get:
+      description: Gets the list of transactions on customer account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Transaction'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Transaction'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Transaction'
+                type: array
+          description: OK
+      summary: Get Transactions
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsByAccountIdTransactions
+      x-operation-id-source: derived
+    post:
+      description: Add a transaction on customer account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+          description: OK
+      summary: Add Transaction
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdTransactions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/recomputelifetimevalue:
+    post:
+      description: Triggers event to recompute customer lifetime value. The lifetime value may not immediately be recalculated, but enters a queue.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Recompute Customer Lifetime Value
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdRecomputelifetimevalue
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/transactions/{transactionId}:
+    delete:
+      description: Removes a transaction on customer account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: transactionId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Remove Transaction
+      tags:
+      - CustomerAccount
+      operationId: deleteCommerceCustomerAccountsByAccountIdTransactionsByTransactionId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/Reset-Password:
+    post:
+      description: Resets the password for a shopper specified by username or emailAddress.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerResetPasswordInfo'
+        description: Username or EmailAddress of the shopper who has requested a password reset.
+      responses:
+        '200':
+          description: OK
+      summary: Reset Password
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsResetPassword
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/current:
+    get:
+      description: Retrieves the details of a the current logged in customer account
+      parameters:
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAccount'
+          description: OK
+      summary: Retrieve Current Account
+      tags:
+      - CustomerAccount
+      operationId: getCommerceCustomerAccountsCurrent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/Set-Login-Locked:
+    post:
+      description: Sets a flag indicating whether the customers login is locked or unlocked.
+      parameters:
+      - description: The customer account id to operate on.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: boolean
+        description: True for locking the login. False for unlocking the login (default).
+      responses:
+        '200':
+          description: OK
+      summary: Set Login Locked
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdSetLoginLocked
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/{accountId}/Set-Password-Change-Required:
+    post:
+      description: Sets a flag indicating whether the customers must change their password before logging in again.
+      parameters:
+      - description: The customer account id to operate on.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: userId
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Set Password Change Required
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsByAccountIdSetPasswordChangeRequired
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/accounts/Update-Forgotten-Password:
+    post:
+      description: Updates the password for a shopper who has requested a password change and provided the new password and confirmation code.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConfirmationInfo'
+        description: 'Properties of the confirmation code. Required properties: UserName, NewPassword, and ConfirmationCode.'
+      responses:
+        '200':
+          description: OK
+      summary: Update Forgotten Password
+      tags:
+      - CustomerAccount
+      operationId: postCommerceCustomerAccountsUpdateForgottenPassword
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CustomerPurchaseOrderAccount:
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        availableBalance:
+          format: double
+          type: number
+        creditLimit:
+          format: double
+          type: number
+        customerPurchaseOrderPaymentTerms:
+          items:
+            $ref: '#/components/schemas/CustomerPurchaseOrderPaymentTerm'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        isEnabled:
+          type: boolean
+        overdraftAllowance:
+          format: double
+          type:
+          - number
+          - 'null'
+        overdraftAllowanceType:
+          description: Indicates type of overdraft. Possible values are "Percent" and "Amount"
+          type:
+          - string
+          - 'null'
+        totalAvailableBalance:
+          format: double
+          type: number
+      type: object
+    CustomerAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    ChangePasswordResult:
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        succeeded:
+          type: boolean
+      type: object
+    AccountPasswordInfo:
+      description: Password information for an Account
+      properties:
+        accountId:
+          description: The Id of the Account which this password info applies
+          format: int32
+          type: integer
+        passwordInfo:
+          $ref: '#/components/schemas/CustomerPasswordInfo'
+        unlockAccount:
+          description: Indicates to unlock the Account
+          type:
+          - boolean
+          - 'null'
+        userId:
+          description: If the account has multiple users, provide the Id of a specific user
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerAuditEntryCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerAuditEntry'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    Card:
+      properties:
+        cardNumberPart:
+          type:
+          - string
+          - 'null'
+        cardType:
+          type:
+          - string
+          - 'null'
+        contactId:
+          format: int32
+          type: integer
+        expireMonth:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        expireYear:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        id:
+          description: Card ID from Payment Service
+          type:
+          - string
+          - 'null'
+        isDefaultPayMethod:
+          type: boolean
+        nameOnCard:
+          type:
+          - string
+          - 'null'
+      type: object
+    PurchaseOrderTransaction:
+      description: Customer purchase order transaction log
+      properties:
+        additionalTransactionDetail:
+          description: Any additional transaction detail other than transaction description
+          type:
+          - string
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        author:
+          type:
+          - string
+          - 'null'
+        availableBalance:
+          description: Current available balance on Purchase Order account
+          format: double
+          type: number
+        creditLimit:
+          description: Maximum credit available on a purchase order account
+          format: double
+          type: number
+        customerPurchaseOrderAccountId:
+          description: Unique identifier for Customer purchase order account
+          format: int32
+          type: integer
+        externalId:
+          type:
+          - string
+          - 'null'
+        orderId:
+          description: Unique identifier for an order
+          type:
+          - string
+          - 'null'
+        purchaseOrderNumber:
+          description: Purchase order number
+          type:
+          - string
+          - 'null'
+        siteId:
+          description: Site Id associated with transaction log
+          format: int32
+          type: integer
+        tenantId:
+          description: Tenant Id associated with transaction log
+          format: int32
+          type: integer
+        transactionAmount:
+          description: Transaction amount in transaction log for a purchase order account
+          format: double
+          type: number
+        transactionDate:
+          description: Date when the transaction was made on a purchase order account
+          format: date-time
+          type: string
+        transactionDescription:
+          description: 'Purchase Order transaction description
+
+            Line of Credit Change
+
+            Order Submitted
+
+            Payment Collected
+
+            Payment Voided
+
+            Payment Refund
+
+            Manual Adjustment'
+          type:
+          - string
+          - 'null'
+        transactionTypeId:
+          description: ' Purchase Order transaction type
+
+            1 - Line of Credit Change
+
+            2 - Order Submitted
+
+            3 - Payment Collected
+
+            4 - Payment Voided
+
+            5 - Payment Refund
+
+            6 - Manual Adjustment'
+          format: int32
+          type: integer
+      type: object
+    CurrencyAmount:
+      description: The currency code and amount of an order listed in the order history of a customer account. Currently, only USD is supported.
+      properties:
+        amount:
+          description: Total amount of the order. Currently, only US dollar amounts are supported.
+          format: double
+          type: number
+        currencyCode:
+          description: Currency code for the amount of the order. Currently, only "USD" is supported.
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerPurchaseOrderAccountCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerPurchaseOrderAccount'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CustomerPurchaseOrderPaymentTerm:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        siteId:
+          format: int32
+          type: integer
+      type: object
+    CustomerAttributeCollection:
+      description: Collection of notes added to a customer account returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerAttribute'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CommerceSummary:
+      description: Commerce (orders and wishlists) on a customer account which lists all the orders the customer has made with the order date, order amount, and status. Includes cancellations and returns.  Also includes wishlist information.
+      properties:
+        lastOrderDate:
+          description: When the last order was placed.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        orderCount:
+          description: Number of orders listed in the order history of a customer account.
+          format: int32
+          type: integer
+        totalOrderAmount:
+          $ref: '#/components/schemas/CurrencyAmount'
+        visitsCount:
+          description: Number of visits for this customer across the entire tenant.
+          format: int32
+          type: integer
+        wishlistCount:
+          description: Number of wishlists listed in the wishlist count of a customer account
+          format: int32
+          type: integer
+      type: object
+    CustomerAccountCollection:
+      description: Collection of all the merchant's customers returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerAccount'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CardCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Card'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CustomerContactCollection:
+      description: Collection of contacts returned as a whole.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerContact'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CustomerAccountAndAuthInfo:
+      properties:
+        account:
+          $ref: '#/components/schemas/CustomerAccount'
+        authTicketTtlMinutes:
+          description: 'Optional requested duration for the authentication ticket in minutes.
+
+            Must not exceed tenant configuration or platform hard caps.
+
+            Requires ''customer-auth:configure-token-durations'' behavior.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        externalPassword:
+          type:
+          - string
+          - 'null'
+        fingerprint:
+          description: Specifies the fingerprint of the user for two-factor authentication.
+          type:
+          - string
+          - 'null'
+        isImport:
+          type: boolean
+        password:
+          type:
+          - string
+          - 'null'
+        refreshTokenTtlMinutes:
+          description: 'Optional requested duration for the refresh token in minutes.
+
+            Must not exceed tenant configuration or platform hard caps.
+
+            Requires ''customer-auth:configure-token-durations'' behavior.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        region:
+          description: Specifies the region of the user for two-factor authentication.
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerNote:
+      description: Note added to the customer account. Merchants can add internal notes, for example, to keep track of a customer's interests or complaints.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        content:
+          description: Content of the note that the merchant added.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the note.
+          format: int32
+          type: integer
+      type: object
+    CustomerSegment:
+      description: A customer segment.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Unique identifier of the customer segment.
+          type:
+          - string
+          - 'null'
+        description:
+          description: Description of the customer segment.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the customer segment.
+          format: int32
+          type: integer
+        name:
+          description: Name of the customer segment.
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerAccount:
+      description: "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \nMerchants can edit accounts to add internal notes or assign them to segments."
+      properties:
+        acceptsMarketing:
+          description: If true, the customer prefers to receive marketing material such as newsletters or email offers.
+          type: boolean
+        accountType:
+          description: Type of account.
+          type:
+          - string
+          - 'null'
+        attributes:
+          description: List of attributes for the account.
+          items:
+            $ref: '#/components/schemas/CustomerAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        commerceSummary:
+          $ref: '#/components/schemas/CommerceSummary'
+        companyOrOrganization:
+          description: The company or organization name for an account.
+          type:
+          - string
+          - 'null'
+        contacts:
+          description: List of contacts for this account. A customer account can have multiple contacts for billing and shipping addresses.
+          items:
+            $ref: '#/components/schemas/CustomerContact'
+          type:
+          - array
+          - 'null'
+        customerSet:
+          type:
+          - string
+          - 'null'
+        customerSinceDate:
+          description: Date when the customer account is created.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        emailAddress:
+          description: '"Email addresss of the customer.'
+          type:
+          - string
+          - 'null'
+        externalId:
+          type:
+          - string
+          - 'null'
+        firstName:
+          description: First name of the customer.
+          type:
+          - string
+          - 'null'
+        hasExternalPassword:
+          description: Indicates if an external password is set on this account
+          type: boolean
+        id:
+          description: Unique identifier of the account, also known as a customer number.
+          format: int32
+          type: integer
+        isActive:
+          description: Is the account active?
+          type: boolean
+        isAnonymous:
+          description: Is the account Anonymous?
+          type: boolean
+        isLocked:
+          description: Is the account locked?
+          type: boolean
+        last2FaDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastName:
+          description: Last name of the customer.
+          type:
+          - string
+          - 'null'
+        localeCode:
+          description: Locale Code.
+          type:
+          - string
+          - 'null'
+        migrationRequired:
+          description: Indicates Subscription migration is required or not.
+          type: boolean
+        notes:
+          description: "List of notes for the account. Merchants use these internal notes, for example, to make a note of a customer's interests or complaints. \nNotes are available only from the merchant's view, customers cannot view these notes."
+          items:
+            $ref: '#/components/schemas/CustomerNote'
+          type:
+          - array
+          - 'null'
+        segments:
+          description: "List of segments assigned to account. Merchants create segments, for example, to manage discounts or assign VIP status. \nThen they assign the account to the segment. An account can belong to several segments or none at all."
+          items:
+            $ref: '#/components/schemas/CustomerSegment'
+          type:
+          - array
+          - 'null'
+        taxExempt:
+          type: boolean
+        taxId:
+          type:
+          - string
+          - 'null'
+        userId:
+          description: Unique identifier of the user who is currently logged in. This is null if the user is anonymous (not logged in).  Unicode data with a maximum length of 55 characters.
+          type:
+          - string
+          - 'null'
+        userName:
+          description: User name for the customer account.
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerAuditEntry:
+      properties:
+        application:
+          description: Applicattion associated with this entry
+          type:
+          - string
+          - 'null'
+        customerAccountId:
+          description: Customer associated with this entry
+          format: int32
+          type: integer
+        customerAuditEntryId:
+          description: Id of this entry
+          format: int32
+          type: integer
+        description:
+          description: Description of the change (UI Displayable)
+          type:
+          - string
+          - 'null'
+        entryDate:
+          description: Date of the Entry
+          format: date-time
+          type: string
+        entryUser:
+          description: User ID associated with this Entry
+          type:
+          - string
+          - 'null'
+        fieldPath:
+          description: Path of the field value being changed (e.g. /Customer/Contacts/1/FirstName)
+          type:
+          - string
+          - 'null'
+        newValue:
+          description: New Value after this event
+          type:
+          - string
+          - 'null'
+        oldValue:
+          description: Original value before this event
+          type:
+          - string
+          - 'null'
+        site:
+          description: Site associated wit this entry
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerNoteCollection:
+      description: Collection of notes added to a customer account returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerNote'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerLoginInfo:
+      properties:
+        authTicketTtlMinutes:
+          description: 'Optional requested duration for the authentication ticket in minutes.
+
+            Must not exceed tenant configuration or platform hard caps.
+
+            Requires ''customer-auth:configure-token-durations'' behavior.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        externalPassword:
+          type:
+          - string
+          - 'null'
+        fingerprint:
+          description: Specifies the fingerprint of the user for two-factor authentication.
+          type:
+          - string
+          - 'null'
+        isImport:
+          type:
+          - boolean
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+        refreshTokenTtlMinutes:
+          description: 'Optional requested duration for the refresh token in minutes.
+
+            Must not exceed tenant configuration or platform hard caps.
+
+            Requires ''customer-auth:configure-token-durations'' behavior.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        region:
+          description: Specifies the region of the user for two-factor authentication.
+          type:
+          - string
+          - 'null'
+        username:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerPasswordInfo:
+      description: Old password and new password.
+      properties:
+        externalPassword:
+          description: The External Password, typically used for imports in conjunction with a custom action
+          type:
+          - string
+          - 'null'
+        newPassword:
+          description: New password.
+          type:
+          - string
+          - 'null'
+        oldPassword:
+          description: Old password.
+          type:
+          - string
+          - 'null'
+      type: object
+    Transaction:
+      properties:
+        amount:
+          format: double
+          type: number
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        date:
+          format: date-time
+          type: string
+        interactionType:
+          type:
+          - string
+          - 'null'
+        transactionId:
+          type:
+          - string
+          - 'null'
+        transactionType:
+          type:
+          - string
+          - 'null'
+        visitId:
+          type:
+          - string
+          - 'null'
+      type: object
+    PurchaseOrderTransactionCollection:
+      description: "Collection of purchase order transactions returned as a whole. \nA collection is not paged."
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseOrderTransaction'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CustomerResetPasswordInfo:
+      properties:
+        customerSetCode:
+          type:
+          - string
+          - 'null'
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerSegmentCollection:
+      description: Collection of customer segements returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerSegment'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ContactType:
+      properties:
+        isPrimary:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    LoginState:
+      properties:
+        createdOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        failedLoginAttemptCount:
+          format: int32
+          type: integer
+        firstFailedLoginAttemptOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isLocked:
+          type: boolean
+        isPasswordChangeRequired:
+          type: boolean
+        lastLockedOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastLoginOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastPasswordChangeOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        remainingLoginAttempts:
+          format: int32
+          type: integer
+        updatedOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerContact:
+      description: CustomerContact information for a customer account including the name, company, phone numbers, email addresses, and billing and shipping addresses (if supplied).
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        address:
+          $ref: '#/components/schemas/Address'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        faxNumber:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+        types:
+          items:
+            $ref: '#/components/schemas/ContactType'
+          type:
+          - array
+          - 'null'
+      type: object
+    AccountPasswordInfoCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AccountPasswordInfo'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ChangePasswordResultCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ChangePasswordResult'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ConfirmationInfo:
+      description: "Used to update a user's forgotten password. Contains the user's email address, new password, and the confirmation code \nthat is required to update the password."
+      properties:
+        confirmationCode:
+          description: Confirmation code that a user supplies when requesting a new password.
+          type:
+          - string
+          - 'null'
+        newPassword:
+          description: The user's new password.
+          type:
+          - string
+          - 'null'
+        userName:
+          description: UserName of the user who has requested a new password.
+          type:
+          - string
+          - 'null'
+      required:
+      - confirmationCode
+      - newPassword
+      - userName
+      type: object
+    Phone:
+      properties:
+        home:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        work:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerAuthTicket:
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+        accessTokenExpiration:
+          format: date-time
+          type: string
+        customerAccount:
+          $ref: '#/components/schemas/CustomerAccount'
+        jwtAccessToken:
+          type:
+          - string
+          - 'null'
+        refreshToken:
+          type:
+          - string
+          - 'null'
+        refreshTokenExpiration:
+          format: date-time
+          type: string
+        requires2FA:
+          type: boolean
+        userId:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_customer.json
+- kibo-commerce-customer-openapi.yml

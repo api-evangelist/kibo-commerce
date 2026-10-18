@@ -1,0 +1,3482 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Cart API
+  version: '1.0'
+  description: 'Operations tagged Cart across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Cart
+paths:
+  /commerce/carts/current/bulkitems:
+    post:
+      description: Adds multiple cart items to the cart of the current shopper.
+      parameters:
+      - description: When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
+        in: query
+        name: throwErrorOnInvalidItems
+        schema:
+          type: boolean
+      - description: Zip Code used for inventory reservation if cart having STH items.
+        in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CartItem'
+              type: array
+        description: The items to add to the cart
+      responses:
+        '200':
+          description: OK
+      summary: Add Items To Cart
+      tags:
+      - Cart
+      operationId: postCommerceCartsCurrentBulkitems
+      x-operation-id-source: derived
+    put:
+      description: Updates multiple cart items in the cart of the current shopper.
+      parameters:
+      - description: When set to true none of the items will be updated when some items are invalid. when set to false valid items are updated and invalid items are reverted or removed based on removeInvalidItems flag
+        in: query
+        name: throwErrorOnInvalidItems
+        schema:
+          type: boolean
+      - description: Zip Code used for inventory reservation if cart having STH items.
+        in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: When set to true and throwErrorOnInvalidItems is false, invalid items will be removed from cart instead of reverted. This parameter is ignored when throwErrorOnInvalidItems is true.
+        in: query
+        name: removeInvalidItems
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CartItem'
+              type: array
+        description: The items to update in the cart. Each item must include Id property.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CartItem'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CartItem'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CartItem'
+                type: array
+          description: OK
+      summary: Update Cart Items
+      tags:
+      - Cart
+      operationId: putCommerceCartsCurrentBulkitems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/bulkitems:
+    post:
+      description: Adds multiple cart items to the cart specified by cartId.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: When set to true none of the items will be added when some items are invalid. when set to false valid items are added and invalid items are removed
+        in: query
+        name: throwErrorOnInvalidItems
+        schema:
+          type: boolean
+      - description: Zip Code used for inventory reservation if cart having STH items.
+        in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CartItem'
+              type: array
+        description: The items to add to the cart
+      responses:
+        '200':
+          description: OK
+      summary: Add Items To Cart By CartId
+      tags:
+      - Cart
+      operationId: postCommerceCartsByCartIdBulkitems
+      x-operation-id-source: derived
+    put:
+      description: Updates multiple cart items in the cart specified by cartId.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: When set to true none of the items will be updated when some items are invalid. when set to false valid items are updated and invalid items are reverted or removed based on removeInvalidItems flag
+        in: query
+        name: throwErrorOnInvalidItems
+        schema:
+          type: boolean
+      - description: Zip Code used for inventory reservation if cart having STH items.
+        in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: When set to true and throwErrorOnInvalidItems is false, invalid items will be removed from cart instead of reverted. This parameter is ignored when throwErrorOnInvalidItems is true.
+        in: query
+        name: removeInvalidItems
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CartItem'
+              type: array
+        description: The items to update in the cart. Each item must include Id property.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CartItem'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CartItem'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CartItem'
+                type: array
+          description: OK
+      summary: Update Cart Items By CartId
+      tags:
+      - Cart
+      operationId: putCommerceCartsByCartIdBulkitems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/coupons/{couponCode}:
+    delete:
+      description: Remove a coupon that had been previously applied to the cart.
+      parameters:
+      - description: Unique identifier of the cart with the coupon you want to remove.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: Coupon code to remove.
+        in: path
+        name: couponCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Remove Coupon
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsByCartIdCouponsByCouponCode
+      x-operation-id-source: derived
+    put:
+      description: Apply coupon to the cart.
+      parameters:
+      - description: Unique identifier of the cart with which to associate the coupon.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: Coupon code that the customer supplies to get the discounted price.
+        in: path
+        name: couponCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Apply Coupon
+      tags:
+      - Cart
+      operationId: putCommerceCartsByCartIdCouponsByCouponCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/bulkitems/delete:
+    put:
+      description: Removes multiple cart items from the cart of the current shopper in a single operation.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: List of cart item IDs to remove
+      responses:
+        '200':
+          description: OK
+      summary: Delete Multiple Cart Items
+      tags:
+      - Cart
+      operationId: putCommerceCartsCurrentBulkitemsDelete
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/bulkitems/delete:
+    put:
+      description: Removes multiple cart items from the specified cart in a single operation.
+      parameters:
+      - description: Unique identifier of the cart
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: List of cart item IDs to remove
+      responses:
+        '200':
+          description: OK
+      summary: Delete Multiple Cart Items By CartId
+      tags:
+      - Cart
+      operationId: putCommerceCartsByCartIdBulkitemsDelete
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}:
+    delete:
+      description: Deletes the cart by cart ID.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Cart
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsByCartId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of the cart specified by cart ID.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Get Cart
+      tags:
+      - Cart
+      operationId: getCommerceCartsByCartId
+      x-operation-id-source: derived
+    put:
+      description: Updates the cart specified by cart ID
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+        description: 'All properties of the cart to update. Required property: Product.ProductCode.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Update Cart By Cart Id
+      tags:
+      - Cart
+      operationId: putCommerceCartsByCartId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/items/{cartItemId}:
+    delete:
+      description: Removes a particular cart item from the cart of the current shopper.
+      parameters:
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Cart Item
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsCurrentItemsByCartItemId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves an individual cart item from the cart of the current shopper specified by its cart item Id.
+      parameters:
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Get Cart Item
+      tags:
+      - Cart
+      operationId: getCommerceCartsCurrentItemsByCartItemId
+      x-operation-id-source: derived
+    put:
+      description: Updates a particular cart item in the cart of the current shopper.
+      parameters:
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+        description: 'All properties of the updated cart item. Required property: Product.ProductCode.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Update Cart Item
+      tags:
+      - Cart
+      operationId: putCommerceCartsCurrentItemsByCartItemId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/items/{cartItemId}:
+    delete:
+      description: Removes a particular cart item from the cart specified by cart item Id and cart Id.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Cart Item By CartId
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsByCartIdItemsByCartItemId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves an individual cart item from the cart by cart Id and cart item Id.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Get Cart Item By CartId
+      tags:
+      - Cart
+      operationId: getCommerceCartsByCartIdItemsByCartItemId
+      x-operation-id-source: derived
+    put:
+      description: Updates a particular cart item in the cart specified by card Id.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+        description: 'All properties of the updated cart item. Required property: Product.ProductCode.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Update Cart Item By CartId
+      tags:
+      - Cart
+      operationId: putCommerceCartsByCartIdItemsByCartItemId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/items:
+    delete:
+      description: Clears all the cart items from the cart of a current shopper.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Remove All Cart Items
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsCurrentItems
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItemCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItemCollection'
+          description: OK
+      summary: Get Cart Items
+      tags:
+      - Cart
+      operationId: getCommerceCartsCurrentItems
+      x-operation-id-source: derived
+    post:
+      description: Adds a product or other item to the cart of the current shopper.
+      parameters:
+      - description: Zip Code used for inventory reservation if cart having STH items.
+        in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+        description: 'All properties of the new cart item. Required property: Product.ProductCode.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Add Item To Cart
+      tags:
+      - Cart
+      operationId: postCommerceCartsCurrentItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/items:
+    delete:
+      description: Clears all the cart items from the cart by the cartId.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Remove All Cart Items By CartId
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsByCartIdItems
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of each cart item such as the product name, stock count, unit price, discounts, quantity ordered and total price for the cart by cartId.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItemCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItemCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItemCollection'
+          description: OK
+      summary: Get Cart Items By CartId
+      tags:
+      - Cart
+      operationId: getCommerceCartsByCartIdItems
+      x-operation-id-source: derived
+    post:
+      description: Adds a product or a cart item to the cart specified by the cart ID.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: Zip Code used for inventory reservation if cart having STH items.
+        in: query
+        name: zipCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CartItem'
+        description: 'All properties of the new cart item. Required property: Product.ProductCode.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Add Item To Cart By CartId
+      tags:
+      - Cart
+      operationId: postCommerceCartsByCartIdItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/summary:
+    get:
+      description: Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration. (Anonymous shoppers cart expires in 14 days.)
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+          description: OK
+      summary: Get Cart Summary
+      tags:
+      - Cart
+      operationId: getCommerceCartsSummary
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/summary:
+    get:
+      description: Retrieves the number of items in the specified cart, total cost of items in the cart, and whether the cart has expired by cartId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
+      parameters:
+      - in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+          description: OK
+      summary: Get Cart Summary By Cart Id
+      tags:
+      - Cart
+      operationId: getCommerceCartsByCartIdSummary
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/extendedproperties:
+    delete:
+      description: Delete extended properties on the current cart.
+      responses:
+        '200':
+          description: OK
+      summary: Delete Extended Properties
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsCurrentExtendedproperties
+      x-operation-id-source: derived
+    get:
+      description: Get extended properties on a cart.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+          description: OK
+      summary: Get Extended Properties
+      tags:
+      - Cart
+      operationId: getCommerceCartsCurrentExtendedproperties
+      x-operation-id-source: derived
+    post:
+      description: Add Extended Properties on the current cart. Store an arbitrary number of cart extended properties such as tracking strings, marketing sources, affiliates, sales personnel/data, and so on, on a per cart basis. Each cart may have none, one, or more than one entry in the extended properties collection, and all values in the extended properties collection are represented as strings. When you create an order from a cart, all extended properties are retained from the cart and copied to the order.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ExtendedProperty'
+              type: array
+        description: Extended properties
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+          description: OK
+      summary: Adds Extended Properties
+      tags:
+      - Cart
+      operationId: postCommerceCartsCurrentExtendedproperties
+      x-operation-id-source: derived
+    put:
+      description: Update extended properties on the current cart.
+      parameters:
+      - description: Allow insert or update
+        in: query
+        name: upsert
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ExtendedProperty'
+              type: array
+        description: Extended properties
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExtendedProperty'
+                type: array
+          description: OK
+      summary: Update Extended Properties
+      tags:
+      - Cart
+      operationId: putCommerceCartsCurrentExtendedproperties
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/messages:
+    delete:
+      description: Removes all messages associated with the cart of the current shopper.
+      responses:
+        '200':
+          description: OK
+      summary: Remove All Messages
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsCurrentMessages
+      x-operation-id-source: derived
+    get:
+      description: Retrieves messages to and from the current shopper. These are messages supplied by the system to notify the shopper of price increases or decreases or product unavailability.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartChangeMessageCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartChangeMessageCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartChangeMessageCollection'
+          description: OK
+      summary: Get Messages
+      tags:
+      - Cart
+      operationId: getCommerceCartsCurrentMessages
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current:
+    delete:
+      description: Deletes the cart of the current shopper.
+      responses:
+        '200':
+          description: OK
+      summary: Delete Current Cart
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsCurrent
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a cart's contents for the current shopper. If the shopper does not have an active cart on the site, one is created.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Get Or Create Cart
+      tags:
+      - Cart
+      operationId: getCommerceCartsCurrent
+      x-operation-id-source: derived
+    put:
+      description: Updates the cart of the current shopper.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+        description: 'All properties of the cart to update. Required property: Product.ProductCode.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Update Cart
+      tags:
+      - Cart
+      operationId: putCommerceCartsCurrent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/user/{userId}:
+    delete:
+      description: Deletes the cart of the user by user ID.
+      parameters:
+      - description: Unique identifier of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the customer account.
+        in: query
+        name: accountId
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete User Cart
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsUserByUserId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of the user's cart from the user ID.Shoppers are not allowed to execute this call. If this ever changes, then auth logic will need to be added
+      parameters:
+      - description: Unique identifier of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the customer account.
+        in: query
+        name: accountId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Get User Cart
+      tags:
+      - Cart
+      operationId: getCommerceCartsUserByUserId
+      x-operation-id-source: derived
+    post:
+      description: Get the current cart or create a new cart for the user specified by user ID.
+      parameters:
+      - description: Unique identifier of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the customer account.
+        in: query
+        name: accountId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Get Or Create User Cart
+      tags:
+      - Cart
+      operationId: postCommerceCartsUserByUserId
+      x-operation-id-source: derived
+    put:
+      description: Updates the cart of the user specified by user ID.
+      parameters:
+      - description: Unique identifier of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the customer account.
+        in: query
+        name: accountId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cart'
+        description: 'All properties of the cart to update. Required property: Product.ProductCode.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Update User Cart
+      tags:
+      - Cart
+      operationId: putCommerceCartsUserByUserId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/user/{userId}/summary:
+    get:
+      description: Retrieves the number of items in the active cart, total cost of items in the cart and the cart expiration by userId. All anonymous idle carts that do not proceed to checkout expire after 14 days.
+      parameters:
+      - description: Unique identifier of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the customer account.
+        in: query
+        name: accountId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartSummary'
+          description: OK
+      summary: Get User Cart Summary
+      tags:
+      - Cart
+      operationId: getCommerceCartsUserByUserIdSummary
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/rejectautodiscount/{discountId}:
+    post:
+      parameters:
+      - description: Unique Identifier of the Cart
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: discountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Reject Suggested Discount
+      tags:
+      - Cart
+      operationId: postCommerceCartsByCartIdRejectautodiscountByDiscountId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/coupons:
+    delete:
+      description: Removes all coupons that had been previously applied to the cart.
+      parameters:
+      - description: Unique identifier of the cart with the coupon you want to remove.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Cart'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Cart'
+          description: OK
+      summary: Remove Coupons
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsByCartIdCoupons
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/messages/{messageId}:
+    delete:
+      description: Removes a single message associated with the cart of the current shopper specified by messageId.
+      parameters:
+      - description: Unique identifier of the message to delete.
+        in: path
+        name: messageId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Remove Message
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsCurrentMessagesByMessageId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/items/{cartItemId}/{quantity}:
+    put:
+      description: Updates the quantity of an individual cart item in the cart of the current shopper.
+      parameters:
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      - description: New quantity for the specified cart item.
+        in: path
+        name: quantity
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemQuantityUpdate'
+        description: Update fields on the item.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Update Cart Item Quantity
+      tags:
+      - Cart
+      operationId: putCommerceCartsCurrentItemsByCartItemIdByQuantity
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/{cartId}/items/{cartItemId}/{quantity}:
+    put:
+      description: Updates the quantity of an individual cart item in the cart specified by cart Id.
+      parameters:
+      - description: Unique identifier of the cart.
+        in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the cart item.
+        in: path
+        name: cartItemId
+        required: true
+        schema:
+          type: string
+      - description: New quantity for the specified cart item.
+        in: path
+        name: quantity
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemQuantityUpdate'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CartItem'
+          description: OK
+      summary: Update Cart Item Quantity By CartId
+      tags:
+      - Cart
+      operationId: putCommerceCartsByCartIdItemsByCartItemIdByQuantity
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/carts/current/extendedproperties/{key}:
+    delete:
+      description: Delete extended property on the current cart using the key.
+      parameters:
+      - description: Unique identifier of the extended property
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Extended Property
+      tags:
+      - Cart
+      operationId: deleteCommerceCartsCurrentExtendedpropertiesByKey
+      x-operation-id-source: derived
+    put:
+      description: Update extended property on the current cart using the key.
+      parameters:
+      - description: Unique identifier of the cart item
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - description: Extended property
+        in: query
+        name: upsert
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExtendedProperty'
+        description: Extended property
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedProperty'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExtendedProperty'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExtendedProperty'
+          description: OK
+      summary: Update Extended Property
+      tags:
+      - Cart
+      operationId: putCommerceCartsCurrentExtendedpropertiesByKey
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Category:
+      description: Categories to which the product belongs. Discounts can apply to categories where any product in the category is discounted.
+      properties:
+        id:
+          description: Unique identifier of the category. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        parent:
+          $ref: '#/components/schemas/Category'
+      type: object
+    ProductPropertyValue:
+      properties:
+        stringValue:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+    CartMessage:
+      properties:
+        message:
+          type:
+          - string
+          - 'null'
+        messageType:
+          type:
+          - string
+          - 'null'
+        productsRemoved:
+          items:
+            $ref: '#/components/schemas/Product'
+          type:
+          - array
+          - 'null'
+      type: object
+    ExtendedProperty:
+      properties:
+        key:
+          maxLength: 128
+          minLength: 1
+          type: string
+        value:
+          maxLength: 800
+          type:
+          - string
+          - 'null'
+      type: object
+    PackageMeasurements:
+      description: Physical dimensions of the package required to ship the product and its weight.
+      properties:
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    ChangeMessage:
+      description: A message displayed by the system based on the last  action, for example, when a product price has changed. System-supplied and read-only.
+      properties:
+        amount:
+          deprecated: true
+          description: Monetary amount that pertains to the change if applicable
+          format: double
+          type:
+          - number
+          - 'null'
+        appId:
+          description: App Id that identifies the user that performed the related change
+          type:
+          - string
+          - 'null'
+        appKey:
+          description: App Key
+          type:
+          - string
+          - 'null'
+        appName:
+          description: App Name
+          type:
+          - string
+          - 'null'
+        attributes:
+          additionalProperties: {}
+          description: Additional Data. This property will be a Dictionary of objects.
+          type:
+          - object
+          - 'null'
+        correlationId:
+          description: Correlation Id
+          type:
+          - string
+          - 'null'
+        createDate:
+          description: When the message was created. System-supplied. Read-only.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the  message. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        identifier:
+          description: Unique identifier to what the message pertains, which can be a cart item, cart or another generic entity. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        message:
+          description: Human readable message. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: Data. This property will be a JSON array that will contain 0-N items, when there is 1 item it will still be an array containing only one item. System-supplied. Read-only.
+        newValue:
+          deprecated: true
+          description: Current price of the item. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        oldValue:
+          deprecated: true
+          description: Original price of the item. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        subject:
+          description: Text on the subject line of the message, for example, the product name. System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        subjectType:
+          description: Subject of the message, for example, "Product." System-supplied. Read-only.
+          type:
+          - string
+          - 'null'
+        success:
+          description: Indicates if the message is related to a success or failure.
+          type:
+          - boolean
+          - 'null'
+        userFirstName:
+          description: User First Name
+          type:
+          - string
+          - 'null'
+        userId:
+          description: User Id that identifies the user that performed the related change
+          type:
+          - string
+          - 'null'
+        userLastName:
+          description: User Last Name
+          type:
+          - string
+          - 'null'
+        userScopeType:
+          description: User Type (e.g. Shopper, Admin, etc.)
+          type:
+          - string
+          - 'null'
+        verb:
+          description: "Action applicable to the message. This can be \"Increased,\" when the product price has increased, \"Decreased,\" when the \nproduct price has decreased, and \"Invalidated,\" when the product is no longer available. System-supplied. Read-only."
+          type:
+          - string
+          - 'null'
+      type: object
+    CartItemCollection:
+      description: Collection of items in the cart. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CartItem'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    SuggestedDiscount:
+      properties:
+        autoAdd:
+          type: boolean
+        discountId:
+          format: int32
+          type: integer
+        hasMultipleProducts:
+          type: boolean
+        hasOptions:
+          type: boolean
+        productCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    CartSummary:
+      description: Cart summary, which is the number of items in the active cart, total cost of items in the cart, and whether the cart has expired.
+      properties:
+        hasActiveCart:
+          description: If true, the cart is active. A shopper has added an item to a cart.
+          type:
+          - boolean
+          - 'null'
+        isExpired:
+          description: "If true, the cart has reached its expiration date (Cart.ExpirationDate) and considered abandoned. \nCarts of anonymous shoppers expire after 14 days of inactivity."
+          type:
+          - boolean
+          - 'null'
+        itemCount:
+          description: Number of items in the active cart.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        total:
+          description: Total cost of items in the active cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        totalQuantity:
+          description: Total quantity of all items in the cart
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    ProductStock:
+      properties:
+        aggregateInventory:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        availableDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        availableFutureInventories:
+          format: int32
+          readOnly: true
+          type: integer
+        futureInventories:
+          items:
+            $ref: '#/components/schemas/FutureInventory'
+          type:
+          - array
+          - 'null'
+        isOnBackOrder:
+          type: boolean
+        isSubstitutable:
+          type:
+          - boolean
+          - 'null'
+        manageStock:
+          type: boolean
+        stockAvailable:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        totalAvailableStock:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    Product:
+      description: The product as it appears on the order item.
+      properties:
+        allocationExpiration:
+          description: Allocation ID associated with this product on this order.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        allocationId:
+          description: Allocation ID associated with this product on this order.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        bundledProducts:
+          description: Products bundled with this product (if the current product is a bundle)
+          items:
+            $ref: '#/components/schemas/BundledProduct'
+          type:
+          - array
+          - 'null'
+        categories:
+          description: Categories to which this product belongs.
+          items:
+            $ref: '#/components/schemas/Category'
+          type:
+          - array
+          - 'null'
+        condition:
+          description: Condition
+          type:
+          - string
+          - 'null'
+        description:
+          description: Short description of the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        discountsRestricted:
+          description: Is the product discount restricted
+          type:
+          - boolean
+          - 'null'
+        discountsRestrictedEndDate:
+          description: Product discount restriction end date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        discountsRestrictedStartDate:
+          description: Product discount restriction start date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        fulfillmentFields:
+          description: List of unique product identifiers for an item on shipment
+          items:
+            $ref: '#/components/schemas/FulfillmentField'
+          type:
+          - array
+          - 'null'
+        fulfillmentStatus:
+          description: Fulfillment status of the product.
+          type:
+          - string
+          - 'null'
+        fulfillmentTypesSupported:
+          description: Types of fulfillment that are supported for this product.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        goodsType:
+          description: Goods Type
+          type:
+          - string
+          - 'null'
+        imageAlternateText:
+          description: Descriptive text of the image associated with the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: URL of the image that appears next to the product on the order item. Optional.
+          type:
+          - string
+          - 'null'
+        isPackagedStandAlone:
+          description: Indicates that this product ships by itself.
+          type: boolean
+        isRecurring:
+          description: If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription.
+          type:
+          - boolean
+          - 'null'
+        isTaxable:
+          description: If true, the product is eligible for tax.
+          type:
+          - boolean
+          - 'null'
+        measurements:
+          $ref: '#/components/schemas/PackageMeasurements'
+        mfgPartNumber:
+          description: Manufacturing Part Number of the product.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        options:
+          description: If the product contains configurable or stand-alone options, the list of product options that the shopper selected for this product.
+          items:
+            $ref: '#/components/schemas/ProductOption'
+          type:
+          - array
+          - 'null'
+        price:
+          $ref: '#/components/schemas/ProductPrice'
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          type:
+          - string
+          - 'null'
+        productReservationId:
+          description: Reservation ID associated with this product in the bundle.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        productType:
+          description: Type of product, which can be a product with configurable options, a product with stand-alone options, or a simple product with no options.
+          type:
+          - string
+          - 'null'
+        productUsage:
+          description: Usage of the product, primarily used to indicate a bundle in this context
+          type:
+          - string
+          - 'null'
+        properties:
+          description: If the product contains properties, the list of properties that the shopper selected for this product.
+          items:
+            $ref: '#/components/schemas/ProductProperty'
+          type:
+          - array
+          - 'null'
+        serialNumber:
+          description: Serial Number
+          type:
+          - string
+          - 'null'
+        sku:
+          description: Product Identifier specific to the store
+          type:
+          - string
+          - 'null'
+        stock:
+          $ref: '#/components/schemas/ProductStock'
+        upc:
+          description: Universal Product Code of the product.
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: For configurable products, the unique identifier of the product variation that has been selected.
+          type:
+          - string
+          - 'null'
+      type: object
+    InvalidCoupon:
+      description: Represents a coupon that is considered invalid by the Mozu pricing service.
+      properties:
+        couponCode:
+          description: Code that identifies the coupon.
+          type:
+          - string
+          - 'null'
+        createDate:
+          description: Create date of the invalid coupon.
+          format: date-time
+          type: string
+        discountId:
+          format: int32
+          type: integer
+        reason:
+          description: Description text of the reason.
+          type:
+          - string
+          - 'null'
+        reasonCode:
+          description: Code that identifies the reason the coupon was invalid.
+          format: int32
+          type: integer
+      type: object
+    SubscriptionInfo:
+      properties:
+        frequency:
+          $ref: '#/components/schemas/Frequency'
+        required:
+          description: Indicates commerce item is subscribed or not.
+          type:
+          - boolean
+          - 'null'
+        trial:
+          $ref: '#/components/schemas/Trial'
+      type: object
+    AppliedDiscount:
+      description: "Discount applied to the order, which is a negative number to be subtracted from the original price to get the final price. \nIf multiple discounts for the order exist, this is the value most advantageous to the shopper."
+      properties:
+        couponCode:
+          description: Code of the coupon associated with the discount if a coupon code is required to get the discount.
+          type:
+          - string
+          - 'null'
+        data:
+          description: Stores any custom data sent from external discounts.
+          type:
+          - object
+          - 'null'
+        discount:
+          $ref: '#/components/schemas/Discount'
+        excluded:
+          description: Determines whether or not this discount is set up to be ignored by the pricing runtime.
+          type:
+          - boolean
+          - 'null'
+        groupId:
+          description: Group identifier for the discount.
+          type:
+          - string
+          - 'null'
+        impact:
+          description: Value of the discount applied. This is a negative number to be subtracted from the original price to get the final price.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    Contact:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+      type: object
+    AppliedLineItemShippingDiscount:
+      properties:
+        discount:
+          $ref: '#/components/schemas/AppliedDiscount'
+        discountQuantity:
+          description: The number of the line item that can be used for this particular discount.
+          format: int32
+          type: integer
+        impactPerUnit:
+          description: The impact of this discount pur discount quantity.
+          format: double
+          type: number
+        methodCode:
+          description: Unique identifier of the shipping method discount.
+          type:
+          - string
+          - 'null'
+      type: object
+    CoreApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AppliedLineItemProductDiscount:
+      properties:
+        appliesToSalePrice:
+          description: Determines if the discount applies to the sale price of the order
+          type:
+          - boolean
+          - 'null'
+        discountQuantity:
+          description: The number of the line item that can be used for this particular discount.
+          format: int32
+          type: integer
+      type: object
+    CommerceUnitPrice:
+      description: Pricing details for the product listed on a cart item, including the original price, discount amount, and final price.
+      properties:
+        extendedAmount:
+          description: 'Extended amount, this is in order of precedence: OverrideAmount, SaleAmount, ListAmount'
+          format: double
+          type:
+          - number
+          - 'null'
+        listAmount:
+          description: Product list amount.
+          format: double
+          type:
+          - number
+          - 'null'
+        overrideAmount:
+          description: Amount as manually overridden by the Merchant
+          format: double
+          type:
+          - number
+          - 'null'
+        saleAmount:
+          description: Sale amount indicated on the product.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    InventoryTags:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductProperty:
+      properties:
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        dataType:
+          type:
+          - string
+          - 'null'
+        isMultiValue:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        values:
+          items:
+            $ref: '#/components/schemas/ProductPropertyValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    SubstituteInfo:
+      properties:
+        optIn:
+          description: Determines if and when substitution is allowed. Allowed values are `None`, `Yes`, `No`, or `OnlyAtFulfillment`. Default is `None`.
+          type:
+          - string
+          - 'null'
+        substituteProductCode:
+          description: Allows user to provide a specific product that should be substituted if substitution occurs.
+          type:
+          - string
+          - 'null'
+        substituteVariantCode:
+          description: Allows user to provide a specific variant that should be substituted if substitution occurs.
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingGrouping:
+      properties:
+        fulfillmentLocationCode:
+          description: The Fulfillment location used by items in this grouping.
+          type:
+          - string
+          - 'null'
+        fulfillmentMethod:
+          description: The FulfillmentMethod used by items in this grouping.
+          type:
+          - string
+          - 'null'
+        handlingAmount:
+          description: Group level order handling fees.
+          format: double
+          type:
+          - number
+          - 'null'
+        handlingDiscounts:
+          items:
+            $ref: '#/components/schemas/AppliedDiscount'
+          type:
+          - array
+          - 'null'
+        handlingTax:
+          description: Group level order handling taxes.
+          format: double
+          type:
+          - number
+          - 'null'
+        handlingTaxTotal:
+          description: The total handling tax for this group, accounting for both group-level and item-level handling tax.
+          format: double
+          type: number
+        handlingTotal:
+          description: The total handling cost for this group, accounting for discounts and tax.
+          format: double
+          type: number
+        id:
+          description: A unique identifier for this grouping.
+          type:
+          - string
+          - 'null'
+        orderItemIds:
+          description: Identifiers of the items that make up this grouping.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        shippingDiscounts:
+          items:
+            $ref: '#/components/schemas/ShippingDiscount'
+          type:
+          - array
+          - 'null'
+        shippingMethodCode:
+          description: Code that uniquely identifies the shipping method such as "Ground," "Overnight".
+          type:
+          - string
+          - 'null'
+        shippingMethodName:
+          description: Readable name of the shipping method.
+          type:
+          - string
+          - 'null'
+        shippingTaxTotal:
+          description: The total shipping tax for this group, accounting for both group-level and item-level shipping tax.
+          format: double
+          type: number
+        shippingTotal:
+          description: The total shipping cost for this group, accounting for discounts and tax.
+          format: double
+          type: number
+      type: object
+    Frequency:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: int32
+          type: integer
+      type: object
+    BundledProduct:
+      description: Describes products that are bundled inside of a main bundle product.
+      properties:
+        allocationExpiration:
+          description: Allocation ID associated with this product on this order.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        allocationId:
+          description: Allocation ID associated with this product on this order.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        creditValue:
+          description: Credit value.  Only populated if the bundled product is a gift card or digital credit
+          format: double
+          type:
+          - number
+          - 'null'
+        deltaPrice:
+          description: Only populated for extras
+          format: double
+          type:
+          - number
+          - 'null'
+        description:
+          description: Short description of the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        fulfillmentStatus:
+          description: Fulfillment status of the product.
+          type:
+          - string
+          - 'null'
+        goodsType:
+          description: Goods Type
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: ImageUrl of product
+          type:
+          - string
+          - 'null'
+        isPackagedStandAlone:
+          description: Indicates that this product ships by itself.
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/PackageMeasurements'
+        name:
+          description: Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        optionAttributeFQN:
+          description: Fully Qualified Name of the selected option's attribute
+          type:
+          - string
+          - 'null'
+        optionValue:
+          description: Value of the selected option
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          type:
+          - string
+          - 'null'
+        productReservationId:
+          description: Reservation ID associated with this product in the bundle.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        quantity:
+          description: Quantity of the product included in the bundle.
+          format: int32
+          type: integer
+        stock:
+          $ref: '#/components/schemas/ProductStock'
+      type: object
+    CartItem:
+      description: Details of an item in the shopper's cart, such as the product name, stock count, unit price, discounts, quantity ordered, and total price.
+      properties:
+        adjustedLineItemSubtotal:
+          description: Order Level taxable sub total
+          format: double
+          type:
+          - number
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        autoAddDiscountId:
+          description: Track the discoutid from which the item was auto added
+          format: int32
+          type:
+          - integer
+          - 'null'
+        childItemIds:
+          description: List of Child Item Ids for this order item
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        data:
+          description: Custom data for a given vendor set within the commerce process.
+          type:
+          - object
+          - 'null'
+        discountTotal:
+          description: How much the shopper saves with the applied discount or sale price. This is a negative number.
+          format: double
+          type:
+          - number
+          - 'null'
+        discountedTotal:
+          description: Subtotal minus any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        dutyAmount:
+          description: Indicate Duty Amount for this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        extendedTotal:
+          description: Line item extended total (quantity multiplied by unit extended price) before discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        feeTotal:
+          description: Not implemented. Total cost of fees that apply to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        fulfillmentLocationCode:
+          description: Location code from which to obtain this item
+          type:
+          - string
+          - 'null'
+        fulfillmentMethod:
+          description: Fulfillment method used to fulfill this item
+          type:
+          - string
+          - 'null'
+        handlingAmount:
+          description: 'Product-level handling fee for this item (e.g. special packaging, hazmat fees).
+
+            This does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.
+
+            Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.'
+          format: double
+          type:
+          - number
+          - 'null'
+        id:
+          description: Unique identifier of the item in the cart.
+          type:
+          - string
+          - 'null'
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTags'
+          type:
+          - array
+          - 'null'
+        isAssemblyRequired:
+          description: Assembly Required for this order item
+          type: boolean
+        isRecurring:
+          description: If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+          type:
+          - boolean
+          - 'null'
+        isTaxable:
+          description: Not implemented. If true, the cart item is eligible for tax.
+          type:
+          - boolean
+          - 'null'
+        itemTaxTotal:
+          description: Total price of taxes that apply to products in this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        lineId:
+          description: 'The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or
+
+            in CommerceRuntime when a cart is converted to an order.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lineItemAdjustment:
+          format: double
+          type:
+          - number
+          - 'null'
+        localeCode:
+          description: "Locale code for language that appears in text and descriptions on the site, for example, en_US. \nThis is not the currency code. Currently only en_US is supported."
+          type:
+          - string
+          - 'null'
+        parentItemId:
+          description: Indicates Parent Item Id for this order item
+          type:
+          - string
+          - 'null'
+        priceMode:
+          description: Determines if the item is using external or internal(catalog) pricing
+          type:
+          - string
+          - 'null'
+        product:
+          $ref: '#/components/schemas/Product'
+        productDiscount:
+          $ref: '#/components/schemas/AppliedLineItemProductDiscount'
+        productDiscounts:
+          description: A list of discounts applied to the product
+          items:
+            $ref: '#/components/schemas/AppliedLineItemProductDiscount'
+          type:
+          - array
+          - 'null'
+        purchaseLocation:
+          description: 'The location where the product is being purchased.. default is null. Products can have different prices
+
+            by purchaseLocation via custom priceListResolution...'
+          type:
+          - string
+          - 'null'
+        quantity:
+          description: Number of products ordered.
+          format: int32
+          type: integer
+        shippingAmountBeforeDiscountsAndAdjustments:
+          description: Shipping amount before Discounts and adjustments
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingDiscounts:
+          description: A discount applied to the shipping
+          items:
+            $ref: '#/components/schemas/AppliedLineItemShippingDiscount'
+          type:
+          - array
+          - 'null'
+        shippingTaxTotal:
+          description: Total price of taxes that apply to the shipping of this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingTotal:
+          description: Total price of shipping that apply to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        subscription:
+          $ref: '#/components/schemas/SubscriptionInfo'
+        substituteInfo:
+          $ref: '#/components/schemas/SubstituteInfo'
+        subtotal:
+          description: Line item subtotal (quantity multiplied by price) before discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        taxData:
+          description: Storage for any additional/custom tax data.
+          type:
+          - object
+          - 'null'
+        taxableTotal:
+          description: Line item subtotal (quantity multiplied by price) before discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        total:
+          description: Total price of this cart item taking into account any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        totalWithWeightedShippingAndHandling:
+          description: Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs
+          format: double
+          type:
+          - number
+          - 'null'
+        totalWithoutWeightedShippingAndHandling:
+          description: Taxable Subtotal including Weighted Order amounts
+          format: double
+          type:
+          - number
+          - 'null'
+        unitPrice:
+          $ref: '#/components/schemas/CommerceUnitPrice'
+        weightedOrderAdjustment:
+          description: Order Level Manual Adjustment applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderDiscount:
+          description: Order Level Discount applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderDuty:
+          description: Order Level Duty applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingAdjustment:
+          description: Order-level handling manual adjustment allocated to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingFee:
+          description: 'Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).
+
+            This is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.
+
+            Total handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.'
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingFeeDiscount:
+          description: Order-level handling fee discount allocated to this item.
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderHandlingFeeTax:
+          description: 'Total handling tax for this item (covers both product-level and order-level handling tax combined).
+
+            On the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).'
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShipping:
+          description: Order Level Shipping applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShippingDiscount:
+          description: Order Level Shipping discount applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShippingManualAdjustment:
+          description: Order Level Shipping Manual Adjustment applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderShippingTax:
+          description: Order Level Shipping Tax applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+        weightedOrderTax:
+          description: Order Level tax applied to this Item
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    Cart:
+      description: "Details of the current cart, including shopper's user ID, items listed in the cart, and any system messages. \nFor each item, contains the list of available discounts and the actual discount applied to the cart item."
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        cartMessage:
+          $ref: '#/components/schemas/CartMessage'
+        cartMessages:
+          items:
+            $ref: '#/components/schemas/CartMessage'
+          type:
+          - array
+          - 'null'
+        changeMessages:
+          description: List of messages displayed by the system based on the last cart action, for example, when a product price has changed or is out-of-stock. System-supplied and read-only.
+          items:
+            $ref: '#/components/schemas/ChangeMessage'
+          type:
+          - array
+          - 'null'
+        channelCode:
+          description: Unique identifier of the channel for this item.
+          type:
+          - string
+          - 'null'
+        couponCodes:
+          description: Coupon codes associated with this order.  Only set on order import.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        currencyCode:
+          description: ISO Currency Code. Currently, only USD is supported.
+          type:
+          - string
+          - 'null'
+        customerInteractionType:
+          description: 'Determines the interaction type that a customer will use to create this object.
+
+            Valid values are: Website, Store, Call, Unknown'
+          type:
+          - string
+          - 'null'
+        data:
+          description: Custom data for a given vendor set within the commerce process.
+          type:
+          - object
+          - 'null'
+        discountThresholdMessages:
+          description: List of Mozu.CommerceRuntime.Contracts.Commerce.ThresholdMessage objects that are valid for the current value of the cart/order.
+          items:
+            $ref: '#/components/schemas/ThresholdMessage'
+          type:
+          - array
+          - 'null'
+        discountTotal:
+          description: Amount of the discounts applied to all items in the cart. This is a negative number.  This also includes the order level discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        discountedSubtotal:
+          description: Combined price for all cart items, including all selected options as well as any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        discountedTotal:
+          description: Subtotal minus the discounted total
+          format: double
+          type:
+          - number
+          - 'null'
+        expirationDate:
+          description: "When the order will no longer be active. That is, the order is considered abandoned. \nOrders of anonymous shoppers expire after 14 days of inactivity. \nAn order never expires for shoppers who are logged into their account. \nDate in UTC Date/Time."
+          format: date-time
+          type:
+          - string
+          - 'null'
+        extendedProperties:
+          description: Extra properties (key-value pairs) that extend the primary object. Think of this as a property bag of string keys and string values.
+          items:
+            $ref: '#/components/schemas/ExtendedProperty'
+          type:
+          - array
+          - 'null'
+        feeTotal:
+          description: Not implemented. Total cost of fees for all items in the cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInfo'
+        handlingAmount:
+          description: Order level handling fees excluding any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        handlingSubTotal:
+          description: Handling fees for the Order as well as CartItems (e.g. if the Cart has a $5 handling fee and an CartItem has a $2 handling fee per item quantity and the quantity of items is 2 then the value in this property would be $9)
+          format: double
+          type:
+          - number
+          - 'null'
+        handlingTaxTotal:
+          description: Total tax on handling
+          format: double
+          type:
+          - number
+          - 'null'
+        handlingTotal:
+          description: Handling fees including any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        id:
+          description: Unique identifier of the CommerceAggregate object (e.g. order, cart, wishlist, etc.).
+          type:
+          - string
+          - 'null'
+        invalidCoupons:
+          description: A list of invalid coupons that were attempted on the cart
+          items:
+            $ref: '#/components/schemas/InvalidCoupon'
+          type:
+          - array
+          - 'null'
+        itemTaxTotal:
+          description: Not implemented. Tax does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        items:
+          description: List of items in the cart.
+          items:
+            $ref: '#/components/schemas/CartItem'
+          type:
+          - array
+          - 'null'
+        lastValidationDate:
+          description: "Occasionally the commerce runtime may validate that item/product names, descriptions, and prices have not changed. \nIf changed, it updates LastValidationDate."
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lineItemSubtotalWithOrderAdjustments:
+          description: Line Item Subtotals with Order Adjustments
+          format: double
+          type:
+          - number
+          - 'null'
+        orderDiscounts:
+          description: The discount that has been applied to the cart itself. If multiple discounts exist, this is the discount that the system applies because it offers the best savings for the shopper. This is a negative number.
+          items:
+            $ref: '#/components/schemas/AppliedDiscount'
+          type:
+          - array
+          - 'null'
+        priceListCode:
+          description: Pricelist code
+          type:
+          - string
+          - 'null'
+        rejectedDiscounts:
+          items:
+            $ref: '#/components/schemas/SuggestedDiscount'
+          type:
+          - array
+          - 'null'
+        reservationId:
+          description: Inventory Reservation id for a cart.
+          type:
+          - string
+          - 'null'
+        shippingAmountBeforeDiscountsAndAdjustments:
+          description: Shipping Amount before discount and adjustments
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingGroups:
+          description: "List of groupings.\nThe grouping is determined by the ShippingGrouper based on the items in the cart. \nEach grouping represents a set of items that can be fulfilled together, typically because they share the same fulfillment method, shipping method and a location."
+          items:
+            $ref: '#/components/schemas/ShippingGrouping'
+          type:
+          - array
+          - 'null'
+        shippingSubTotal:
+          description: Shipping total without discounts applied.
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingTaxTotal:
+          description: Not implemented. Tax does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        shippingTotal:
+          description: Shipping does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        siteId:
+          description: Unique identifier of the Site.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        subtotal:
+          description: Combined price for all cart items, including all selected options but excluding any discounts.
+          format: double
+          type:
+          - number
+          - 'null'
+        suggestedDiscounts:
+          items:
+            $ref: '#/components/schemas/SuggestedDiscount'
+          type:
+          - array
+          - 'null'
+        taxData:
+          description: Storage for any additional/custom tax data.
+          type:
+          - object
+          - 'null'
+        taxTotal:
+          description: Tax does not appear on cart.
+          format: double
+          type:
+          - number
+          - 'null'
+        tenantId:
+          description: Unique identifier of the Tenant.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        total:
+          description: Final total amount of the order including all discounts, shipping, and tax.
+          format: double
+          type:
+          - number
+          - 'null'
+        userId:
+          description: Unique identifier of the shopper who created the cart.
+          type:
+          - string
+          - 'null'
+        visitId:
+          description: Identifies the Visit ID that was current when the order was placed or when the cart was last updated.
+          type:
+          - string
+          - 'null'
+        webSessionId:
+          description: Identifies the web session used to place the order or last update the cart.
+          type:
+          - string
+          - 'null'
+        zipCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductPrice:
+      description: Price of the product with any sale and discounts applied.
+      properties:
+        creditValue:
+          description: Credit Value when the product happens to be a gift card or similar product
+          format: double
+          type:
+          - number
+          - 'null'
+        isOverRidePriceSalePrice:
+          description: Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.
+          type:
+          - boolean
+          - 'null'
+        msrp:
+          description: MSRP of product.
+          format: double
+          type:
+          - number
+          - 'null'
+        price:
+          description: Price of the product. This is the price that the merchant intends to sell the product if no sale price is present.
+          format: double
+          type:
+          - number
+          - 'null'
+        priceListCode:
+          description: Pricelist code for the product
+          type:
+          - string
+          - 'null'
+        priceListEntryMode:
+          description: 'Pricelist entry mode of the product.
+
+            Note: possible values are below
+
+            1. null : Product doesn''t participate in pricelist
+
+            2. Bulk : Bulk volume price available(unit price vary based on quantity)
+
+            3. Simple:'
+          type:
+          - string
+          - 'null'
+        salePrice:
+          description: Current sale price of the product, which is a specific numerical amount (not a percentage off).
+          format: double
+          type:
+          - number
+          - 'null'
+        tenantOverridePrice:
+          description: An override price applied on the product by the tenant.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    ThresholdMessage:
+      properties:
+        discountId:
+          format: int32
+          type: integer
+        message:
+          type:
+          - string
+          - 'null'
+        requiresCouponCode:
+          type: boolean
+        showInCart:
+          type: boolean
+        showOnCheckout:
+          type: boolean
+        thresholdValue:
+          format: double
+          type: number
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    CartChangeMessageCollection:
+      description: Collection of cart messages returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ChangeMessage'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    FulfillmentInfo:
+      description: "Shipment information, which includes the shipping address, price, estimated delivery date, tracking information, method (for example, Ground, Overnight, or Pick-up), \ncarrier (for example, USPS, UPS, FedEx), and current status (for example, Not Shipped, In Transit, Delayed, or Returned To Sender)."
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        data:
+          description: Custom data originated by the shipping service.
+          type:
+          - object
+          - 'null'
+        fulfillmentContact:
+          $ref: '#/components/schemas/Contact'
+        isDestinationCommercial:
+          description: Indicates that the destination is commercial
+          type:
+          - boolean
+          - 'null'
+        shippingMethodCode:
+          description: 'Code that uniquely identifies the shipping method such as "Ground," "Overnight," or "Digital."
+
+            The site''s shipping settings lists the valid shipping methods specified for this site.'
+          type:
+          - string
+          - 'null'
+        shippingMethodName:
+          description: Readable name of the shipping method
+          type:
+          - string
+          - 'null'
+      type: object
+    FulfillmentField:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        required:
+          type: boolean
+        userEnteredValue: {}
+      type: object
+    Discount:
+      description: "Discounts that apply to the order, if any. For example, when the \nsubtotal of the order exceeds a certain amount, or for free shipping."
+      properties:
+        expirationDate:
+          description: Date when the discount expires. Default is null (no expiration date).
+          format: date-time
+          type:
+          - string
+          - 'null'
+        hasMultipleTargetProducts:
+          description: 'Indicates that the discount targets more than a product.  Used
+
+            primarily for BoGa discounts with multiple targets.'
+          type: boolean
+        id:
+          description: Unique identifier of the discount.
+          format: int32
+          type: integer
+        itemIds:
+          description: List of discounts for each order item.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          description: Name of the discount in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+      type: object
+    Measurement:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    FutureInventory:
+      properties:
+        allocated:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        available:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        deliveryDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        futureInventoryID:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        onhand:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        pending:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    ItemQuantityUpdate:
+      properties:
+        isOverRidePriceSalePrice:
+          description: Indicate that External Price (TenantOverridePrice) is a Sale Price or List Price. And is used to calculate the line item discounts.
+          type:
+          - boolean
+          - 'null'
+        tenantOverridePrice:
+          description: An external price applied to the item.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    Trial:
+      properties:
+        duration:
+          description: Trial duration in days
+          format: int32
+          type: integer
+        enabled:
+          description: Indicates if the trial is enabled
+          type: boolean
+        substituteProductCode:
+          description: Product code to substitute once the trial period is finished.
+          type:
+          - string
+          - 'null'
+        substituteProductOptions:
+          description: Configurable Options to substitute once the trial period is finished.
+          items:
+            $ref: '#/components/schemas/ProductOption'
+          type:
+          - array
+          - 'null'
+        substituteProductQuantity:
+          description: Product quantity to substitute once the trail period is finished.
+          format: int32
+          type: integer
+        substituteVariationProductCode:
+          description: Variation product code to substitute once the trail period is finished.
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductOption:
+      description: "Product option for the product listed on this order item. If the product contains \nconfigurable or stand-alone options, this is a product option that the shopper has selected."
+      properties:
+        attributeFQN:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        dataType:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the product option that appears with the order item in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        shopperEnteredValue:
+          description: The value entered by the shopper if this is an option that requires shopper input, for example, a monogram.
+        stringValue:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        value:
+          description: Value of the product option.
+      type: object
+    ShippingDiscount:
+      description: Value of the shipping discount.
+      properties:
+        discount:
+          $ref: '#/components/schemas/AppliedDiscount'
+        methodCode:
+          description: Unique identifier of the shipping method discount.
+          type:
+          - string
+          - 'null'
+      type: object
+    Phone:
+      properties:
+        home:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        work:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

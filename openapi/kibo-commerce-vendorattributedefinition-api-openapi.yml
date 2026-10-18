@@ -1,0 +1,665 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Vendor Attribute Definition API
+  version: '1.0'
+  description: 'Operations tagged VendorAttributeDefinition across 3 of this provider''s published API definitions: openapi_openapi_location.json, kibo-commerce-location-admin-openapi.yml, kibo-commerce-location-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: VendorAttributeDefinition
+paths:
+  /commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}:
+    get:
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+          description: OK
+      summary: Get Attribute
+      tags:
+      - VendorAttributeDefinition
+      operationId: getCommerceAdminVendorsAttributedefinitionAttributesByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationAttribute2'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+          description: OK
+      summary: Update Attribute
+      tags:
+      - VendorAttributeDefinition
+      operationId: putCommerceAdminVendorsAttributedefinitionAttributesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}/VocabularyValues:
+    get:
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValue'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValue'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValue'
+                type: array
+          description: OK
+      summary: Get Attribute Vocabulary Values
+      tags:
+      - VendorAttributeDefinition
+      operationId: getCommerceAdminVendorsAttributedefinitionAttributesByAttributeFQNVocabularyValues
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/admin/vendors/attributedefinition/attributes:
+    get:
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeCollection'
+          description: OK
+      summary: Get Attributes
+      tags:
+      - VendorAttributeDefinition
+      operationId: getCommerceAdminVendorsAttributedefinitionAttributes
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationAttribute2'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationAttribute2'
+          description: OK
+      summary: Create Attribute
+      tags:
+      - VendorAttributeDefinition
+      operationId: postCommerceAdminVendorsAttributedefinitionAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AttributeMetadataItem:
+      properties:
+        key:
+          maxLength: 50
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    AttributeValidation:
+      properties:
+        maxDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        maxNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        maxStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        minDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        minNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        minStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        regularExpression:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeEntityConfig:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        editable:
+          type: boolean
+        entityType:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    LocationAttribute2:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    AttributeLocalizedContent:
+      properties:
+        localeCode:
+          maxLength: 8
+          type:
+          - string
+          - 'null'
+        value:
+          maxLength: 100
+          type:
+          - string
+          - 'null'
+      type: object
+    CoreAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValue:
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeValueLocalizedContent'
+        isHidden:
+          type:
+          - boolean
+          - 'null'
+        sequence:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        value:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - value
+      type: object
+    AttributeCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationAttribute2'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AttributeValueLocalizedContent:
+      properties:
+        localeCode:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - localeCode
+      - value
+      type: object
+    AttributeInheritanceRule:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceMode:
+          type:
+          - string
+          - 'null'
+        sourceEntityType:
+          type:
+          - string
+          - 'null'
+        targetEntityType:
+          type:
+          - string
+          - 'null'
+      type: object
+    LocationAdminAttribute:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    AttributeCollection_2:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationAdminAttribute'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_location.json
+- kibo-commerce-location-admin-openapi.yml
+- kibo-commerce-location-openapi.yml

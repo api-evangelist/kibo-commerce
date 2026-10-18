@@ -1,0 +1,81 @@
+# Kibo Documentation
+
+> Product guides and walkthroughs for using the Kibo Composable Commerce Platform. Developers Data models and guides for API, API Extensions, SDKs, applications, and more
+
+- [Users (426 pages)](https://docs.kibocommerce.com/_llms/users.txt): Documentation for Users.
+- [Developers (2020 pages)](https://docs.kibocommerce.com/_llms/developers.txt): Documentation for Developers.
+
+## Solutions
+
+- [Solutions Overview](https://docs.kibocommerce.com/solutions/index.md): Explore Kibo Commerce solutions tailored for different business models and commerce strategies
+- [Order Management (OMS)](https://docs.kibocommerce.com/solutions/order-management.md): Unified order orchestration with intelligent routing and real-time inventory visibility
+- [B2B Commerce](https://docs.kibocommerce.com/solutions/b2b-commerce.md): Purpose-built commerce capabilities for complex B2B purchasing workflows and account management
+- [B2C Commerce](https://docs.kibocommerce.com/solutions/b2c-commerce.md): Flexible direct-to-consumer commerce with powerful catalog, search, and checkout capabilities
+- [Subscription Commerce](https://docs.kibocommerce.com/solutions/subscription-commerce.md): Automated recurring purchases with flexible billing models for predictable revenue
+- [Agentic Commerce](https://docs.kibocommerce.com/solutions/agentic-commerce.md): AI-powered conversational commerce and intelligent automation for Kibo Commerce
+
+- [Videos (133 pages)](https://docs.kibocommerce.com/_llms/videos.txt): Documentation for Videos.
+- [Release Notes (164 pages)](https://docs.kibocommerce.com/_llms/release-notes.txt): Documentation for Release Notes.
+
+## OpenAPI Specs
+
+- [openapi_appdevelopement](/openapi/openapi_appdevelopement.json)
+- [openapi_audit_logs](/openapi/openapi_audit_logs.json)
+- [openapi_catalog_admin](/openapi/openapi_catalog_admin.json)
+- [openapi_catalog_storefront](/openapi/openapi_catalog_storefront.json)
+- [openapi_commerce](/openapi/openapi_commerce.json)
+- [openapi_content](/openapi/openapi_content.json)
+- [openapi_customer](/openapi/openapi_customer.json)
+- [openapi_dropship](/openapi/openapi_dropship.json)
+- [openapi_entities](/openapi/openapi_entities.json)
+- [openapi_event](/openapi/openapi_event.json)
+- [openapi_fulfillment](/openapi/openapi_fulfillment.json)
+- [openapi_importexport](/openapi/openapi_importexport.json)
+- [openapi_inventory](/openapi/openapi_inventory.json)
+- [openapi_location_admin](/openapi/openapi_location_admin.json)
+- [openapi_location_storefront](/openapi/openapi_location_storefront.json)
+- [openapi_orderrouting](/openapi/openapi_orderrouting.json)
+- [openapi_pricing](/openapi/openapi_pricing.json)
+- [openapi_gdpr](/openapi/openapi_gdpr.json)
+- [openapi_reservation](/openapi/openapi_reservation.json)
+- [openapi_settings](/openapi/openapi_settings.json)
+- [openapi_shipping_admin](/openapi/openapi_shipping_admin.json)
+- [openapi_shipping_storefront](/openapi/openapi_shipping_storefront.json)
+- [openapi_subscription](/openapi/openapi_subscription.json)
+- [openapi_tenant](/openapi/openapi_tenant.json)
+- [openapi_user](/openapi/openapi_user.json)
+- [openapi](/api-reference/openapi.json)
+- [openapi](/openapi.json)
+- [openapi_graphql](/openapi/openapi_graphql.json)
+- [openapi_location](/openapi/openapi_location.json)
+- [openapi_overview](/openapi/openapi_overview.json)
+- [openapi_shipping](/openapi/openapi_shipping.json)
+- [openapi_tenant_and_user](/openapi/openapi_tenant_and_user.json)
+
+## Optional
+
+- [Log in to Kibo](https://kibocommerce.com/login)
+- [Blog](https://kibocommerce.com/blog)
+- [Support](https://kibocommerce.com/contact-us)
+- [KIBO Partners](https://github.com/KiboPartners)
+- [KIBO Software](https://github.com/KiboSoftware/)
+- [Release Notes](https://docs.kibocommerce.com/release-notes/)
+
+> The links below point to documentation indexes. Follow each `/_llms/` index recursively until you reach documentation pages.
+
+## Indexes
+
+- [Users (426 pages)](https://docs.kibocommerce.com/_llms/users.txt): Documentation for Users.
+- [Developers (2020 pages)](https://docs.kibocommerce.com/_llms/developers.txt): Documentation for Developers.
+- [Developers / API reference (1723 pages)](https://docs.kibocommerce.com/_llms/developers/api-reference.txt): Documentation for Developers / API reference.
+- [Developers / API reference / Catalog Admin (351 pages)](https://docs.kibocommerce.com/_llms/developers/api-reference/catalog-admin.txt): Documentation for Developers / API reference / Catalog Admin.
+- [Developers / API reference / Commerce (388 pages)](https://docs.kibocommerce.com/_llms/developers/api-reference/commerce.txt): Documentation for Developers / API reference / Commerce.
+- [Developers / API reference / Customer (147 pages)](https://docs.kibocommerce.com/_llms/developers/api-reference/customer.txt): Documentation for Developers / API reference / Customer.
+- [Developers / API reference / Fulfillment (219 pages)](https://docs.kibocommerce.com/_llms/developers/api-reference/fulfillment.txt): Documentation for Developers / API reference / Fulfillment.
+- [Developers / API reference / Inventory (60 pages)](https://docs.kibocommerce.com/_llms/developers/api-reference/inventory.txt): Documentation for Developers / API reference / Inventory.
+- [Developers / API reference / Location Admin (95 pages)](https://docs.kibocommerce.com/_llms/developers/api-reference/location-admin.txt): Documentation for Developers / API reference / Location Admin.
+- [Videos (133 pages)](https://docs.kibocommerce.com/_llms/videos.txt): Documentation for Videos.
+- [Release Notes (164 pages)](https://docs.kibocommerce.com/_llms/release-notes.txt): Documentation for Release Notes.
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

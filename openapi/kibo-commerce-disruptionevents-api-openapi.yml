@@ -1,0 +1,371 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Disruption Events API
+  version: '1.0'
+  description: 'Operations tagged DisruptionEvents across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: DisruptionEvents
+paths:
+  /commerce/fulfillment/rebalancer/disruptions/reservations:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: eventType
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: jobId
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: status
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: upc
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageOfDisruptionEventDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Reservation Disruptions
+      tags:
+      - DisruptionEvents
+      operationId: getCommerceFulfillmentRebalancerDisruptionsReservations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/runs/{runId}/events:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: eventType
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: jobId
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: status
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: upc
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageOfDisruptionEventDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Run Events
+      tags:
+      - DisruptionEvents
+      operationId: getCommerceFulfillmentRebalancerRunsByRunIdEvents
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/fulfillment/rebalancer/disruptions/shipments:
+    get:
+      deprecated: false
+      parameters:
+      - in: query
+        name: eventType
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: jobId
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: status
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: upc
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PageOfDisruptionEventDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: List Shipment Disruptions
+      tags:
+      - DisruptionEvents
+      operationId: getCommerceFulfillmentRebalancerDisruptionsShipments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Pageable:
+      properties:
+        offset:
+          format: int64
+          type: integer
+        pageNumber:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        paged:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/Sort'
+        unpaged:
+          type: boolean
+      title: Pageable
+      type: object
+    PageOfDisruptionEventDto:
+      properties:
+        content:
+          items:
+            $ref: '#/components/schemas/DisruptionEventDto'
+          type: array
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          format: int32
+          type: integer
+        numberOfElements:
+          format: int32
+          type: integer
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        size:
+          format: int32
+          type: integer
+        sort:
+          $ref: '#/components/schemas/Sort'
+        totalElements:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+      title: PageOfDisruptionEventDto
+      type: object
+    Sort:
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+      title: Sort
+      type: object
+    DisruptionEventDto:
+      properties:
+        affectedCallOffOrderIds:
+          items:
+            type: string
+          type: array
+        affectedReservationIds:
+          items:
+            type: string
+          type: array
+        affectedShipmentIds:
+          items:
+            format: int32
+            type: integer
+          type: array
+        deltaQty:
+          format: int32
+          type: integer
+        eventId:
+          type: string
+        eventType:
+          type: string
+        jobId:
+          type: string
+        locationCode:
+          type: string
+        newQuantity:
+          format: int32
+          type: integer
+        occurredAt:
+          format: date-time
+          type: string
+        oldQuantity:
+          format: int32
+          type: integer
+        status:
+          type: string
+        upc:
+          type: string
+      title: DisruptionEventDto
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

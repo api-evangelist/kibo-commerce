@@ -1,0 +1,95 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Stop Words API
+  version: '1.0'
+  description: 'Operations tagged StopWords across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: StopWords
+paths:
+  /commerce/catalog/admin/searchSchema/stopwords/{language}:
+    get:
+      description: Downloads the stopwords file for the language. This is a .txt file, not a JSON response.
+      parameters:
+      - description: Language code (en, es, fr)
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Stopwords
+      tags:
+      - StopWords
+      operationId: getCommerceCatalogAdminSearchSchemaStopwordsByLanguage
+      x-operation-id-source: derived
+    put:
+      description: Upload a stopwords file for a language as a list of strings. This should be a .txt file, not JSON.
+      parameters:
+      - description: Language code use by the site (en, es, fr)
+        in: path
+        name: language
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/plain:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Add Stopwords
+      tags:
+      - StopWords
+      operationId: putCommerceCatalogAdminSearchSchemaStopwordsByLanguage
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

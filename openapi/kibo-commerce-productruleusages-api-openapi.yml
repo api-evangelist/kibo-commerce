@@ -1,0 +1,116 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Rule Usages API
+  version: '1.0'
+  description: 'Operations tagged ProductRuleUsages across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductRuleUsages
+paths:
+  /commerce/rules/product/{code}/usages:
+    get:
+      description: Retrieves the usages of a product rule across rule types.
+      parameters:
+      - description: The product rule code.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: The start index.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The page size.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductRuleUsageCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductRuleUsageCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductRuleUsageCollection'
+          description: OK
+      summary: Get Product Rule Usages
+      tags:
+      - ProductRuleUsages
+      operationId: getCommerceRulesProductByCodeUsages
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductRuleUsageCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ProductRuleUsage'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductRuleUsage:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        ruleType:
+          description: The type of rule this ProductRule belongs to.
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

@@ -1,0 +1,617 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-item-schema.json",
+  "title": "Item",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-fulfillment-openapi.yml#/components/schemas/Item",
+  "properties": {
+    "actualPrice": {
+      "type": "number"
+    },
+    "allocatedQuantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "allowsBackOrder": {
+      "type": "boolean"
+    },
+    "allowsFutureAllocate": {
+      "type": "boolean"
+    },
+    "allowsSubstitution": {
+      "type": "boolean"
+    },
+    "appeasementReason": {
+      "$ref": "#/$defs/FulfillmentAPIAppeasementReason"
+    },
+    "attributes": {
+      "additionalProperties": {
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/FulfillmentAPIAuditInfo"
+    },
+    "autoSubstitution": {
+      "type": "boolean"
+    },
+    "backorderReleaseDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "bundleInfo": {
+      "$ref": "#/$defs/FulfillmentAPIBundleInfo"
+    },
+    "cartItemId": {
+      "type": "string"
+    },
+    "childItemIds": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "condition": {
+      "type": "string"
+    },
+    "contractedPrice": {
+      "type": "number"
+    },
+    "creditCurrencyCode": {
+      "type": "string"
+    },
+    "creditValue": {
+      "type": "number"
+    },
+    "data": {
+      "additionalProperties": {
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "duty": {
+      "type": "number"
+    },
+    "expectedDeliveryDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "fulfillmentFields": {
+      "items": {
+        "$ref": "#/$defs/FulfillmentAPIFulfillmentField"
+      },
+      "type": "array"
+    },
+    "giftCards": {
+      "items": {
+        "$ref": "#/$defs/FulfillmentAPIGiftCard"
+      },
+      "type": "array"
+    },
+    "giftMessage": {
+      "type": "string"
+    },
+    "goodsType": {
+      "enum": [
+        "Physical",
+        "Digital",
+        "DigitalCredit",
+        "DigitalGiftCard",
+        "Service"
+      ],
+      "type": "string"
+    },
+    "handling": {
+      "type": "number"
+    },
+    "handlingDiscount": {
+      "type": "number"
+    },
+    "handlingTax": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "inventoryAllocations": {
+      "items": {
+        "$ref": "#/$defs/InventoryAllocation"
+      },
+      "type": "array"
+    },
+    "inventoryTags": {
+      "items": {
+        "$ref": "#/$defs/InventoryTag"
+      },
+      "type": "array"
+    },
+    "isAssemblyRequired": {
+      "type": "boolean"
+    },
+    "isGift": {
+      "type": "boolean"
+    },
+    "isPackagedStandAlone": {
+      "type": "boolean"
+    },
+    "isReservedInventory": {
+      "type": "boolean"
+    },
+    "isTaxable": {
+      "type": "boolean"
+    },
+    "itemDiscount": {
+      "type": "number"
+    },
+    "itemTax": {
+      "type": "number"
+    },
+    "length": {
+      "type": "number"
+    },
+    "lineId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "lineItemAdjustment": {
+      "type": "number"
+    },
+    "lineItemCost": {
+      "type": "number"
+    },
+    "locatorName": {
+      "type": "string"
+    },
+    "manageStock": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "optionAttributeFQN": {
+      "type": "string"
+    },
+    "options": {
+      "items": {
+        "$ref": "#/$defs/FulfillmentAPIProductOption"
+      },
+      "type": "array"
+    },
+    "originalLineId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "originalOrderItemId": {
+      "type": "string"
+    },
+    "originalQuantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "overridePrice": {
+      "type": "number"
+    },
+    "parentItemId": {
+      "type": "string"
+    },
+    "partNumber": {
+      "type": "string"
+    },
+    "priceMode": {
+      "enum": [
+        "Internal",
+        "External"
+      ],
+      "type": "string"
+    },
+    "productCode": {
+      "type": "string"
+    },
+    "purchaseLocation": {
+      "type": "string"
+    },
+    "quantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "readyForPickupQuantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "returnRuleInfo": {
+      "$ref": "#/$defs/FulfillmentAPIReturnRuleInfo"
+    },
+    "serialNumber": {
+      "type": "string"
+    },
+    "shipmentItemAttributes": {
+      "items": {
+        "$ref": "#/$defs/ShipmentItemAttribute"
+      },
+      "type": "array"
+    },
+    "shipping": {
+      "type": "number"
+    },
+    "shippingDiscount": {
+      "type": "number"
+    },
+    "shippingTax": {
+      "type": "number"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "stockValidationStatus": {
+      "type": "string"
+    },
+    "substituteInfo": {
+      "$ref": "#/$defs/FulfillmentAPISubstituteInfo"
+    },
+    "substituteQuantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "substitutionType": {
+      "enum": [
+        "PRE_FULFILLMENT",
+        "AT_FULFILLMENT"
+      ],
+      "type": "string"
+    },
+    "taxData": {
+      "type": "object"
+    },
+    "taxableHandling": {
+      "type": "number"
+    },
+    "taxableLineItemCost": {
+      "type": "number"
+    },
+    "taxableShipping": {
+      "type": "number"
+    },
+    "timeFenceDays": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "transferQuantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "trueTransferQuantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "unitPrice": {
+      "type": "number"
+    },
+    "upc": {
+      "type": "string"
+    },
+    "validatedQuantity": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "variationProductCode": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "number"
+    },
+    "weightUnit": {
+      "type": "string"
+    },
+    "weightedDutyAdjustment": {
+      "type": "number"
+    },
+    "weightedHandlingAdjustment": {
+      "type": "number"
+    },
+    "weightedHandlingTaxAdjustment": {
+      "type": "number"
+    },
+    "weightedLineItemTaxAdjustment": {
+      "type": "number"
+    },
+    "weightedOrderHandlingFee": {
+      "type": "number"
+    },
+    "weightedOrderHandlingFeeDiscount": {
+      "type": "number"
+    },
+    "weightedOrderHandlingFeeTax": {
+      "type": "number"
+    },
+    "weightedShipmentAdjustment": {
+      "type": "number"
+    },
+    "weightedShippingAdjustment": {
+      "type": "number"
+    },
+    "weightedShippingTaxAdjustment": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "FulfillmentAPIAppeasementReason": {
+      "properties": {
+        "moreInfo": {
+          "type": "string"
+        },
+        "reasonCode": {
+          "type": "string"
+        }
+      },
+      "title": "AppeasementReason",
+      "type": "object"
+    },
+    "FulfillmentAPIAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "title": "AuditInfo",
+      "type": "object"
+    },
+    "FulfillmentAPIBundleInfo": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "imageUrl": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "productCode": {
+          "type": "string"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "unitPrice": {
+          "type": "number"
+        }
+      },
+      "title": "BundleInfo",
+      "type": "object"
+    },
+    "FulfillmentAPIFulfillmentField": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "userEnteredValue": {
+          "type": "object"
+        }
+      },
+      "title": "FulfillmentField",
+      "type": "object"
+    },
+    "FulfillmentAPIGiftCard": {
+      "properties": {
+        "activationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "cardNumber": {
+          "type": "string"
+        },
+        "code": {
+          "type": "string"
+        },
+        "creditType": {
+          "type": "string"
+        },
+        "creditValue": {
+          "type": "number"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "currentBalance": {
+          "type": "number"
+        },
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "initialBalance": {
+          "type": "number"
+        }
+      },
+      "title": "GiftCard",
+      "type": "object"
+    },
+    "FulfillmentAPIProductOption": {
+      "properties": {
+        "attributeFQN": {
+          "type": "string"
+        },
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "dataType": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shopperEnteredValue": {
+          "type": "object"
+        },
+        "stringValue": {
+          "type": "string"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "title": "ProductOption",
+      "type": "object"
+    },
+    "FulfillmentAPIReturnRuleInfo": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "isReturnable": {
+          "type": "boolean"
+        },
+        "maxDays": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxQty": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ruleCode": {
+          "type": "string"
+        }
+      },
+      "title": "ReturnRuleInfo",
+      "type": "object"
+    },
+    "FulfillmentAPISubstituteInfo": {
+      "properties": {
+        "optIn": {
+          "type": "string"
+        },
+        "substituteProductCode": {
+          "type": "string"
+        },
+        "substituteVariantCode": {
+          "type": "string"
+        }
+      },
+      "title": "SubstituteInfo",
+      "type": "object"
+    },
+    "InventoryAllocation": {
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/FulfillmentAPIAuditInfo"
+        },
+        "condition": {
+          "type": "string"
+        },
+        "date": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "fulfilledDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "inventoryId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "lotCode": {
+          "type": "string"
+        },
+        "originalQuantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "serialNumber": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "title": "InventoryAllocation",
+      "type": "object"
+    },
+    "InventoryTag": {
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "title": "InventoryTag",
+      "type": "object"
+    },
+    "ShipmentItemAttribute": {
+      "properties": {
+        "attributeDefinitionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/FulfillmentAPIAuditInfo"
+        },
+        "fullyQualifiedName": {
+          "type": "string"
+        },
+        "values": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "title": "ShipmentItemAttribute",
+      "type": "object"
+    }
+  }
+}

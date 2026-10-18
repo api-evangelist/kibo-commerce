@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-catalog-runtimes-category-schema.json",
+  "title": "CatalogRuntimesCategory",
+  "description": "The category hierarchy of your store as it appears on the storefront. This is the category heirarchy defined with the admin/category resource except for any categories with an IsDisplayed value set to false.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-catalog-storefront-openapi.yml#/components/schemas/CatalogRuntimesCategory",
+  "properties": {
+    "attributes": {
+      "items": {
+        "$ref": "#/$defs/CatalogRuntimesCategoryAttribute"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "categoryCode": {
+      "description": "External unique identifier of the category.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "categoryId": {
+      "description": "Internal unique identifier of the category. System-supplied and read-only.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "childrenCategories": {
+      "description": "List of subcategories that belong to this category.",
+      "items": {
+        "type": "object"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "content": {
+      "$ref": "#/$defs/CategoryContent"
+    },
+    "count": {
+      "description": "Indicates whether the category should be displayed.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "isDisplayed": {
+      "description": "Indicates whether the category should be displayed.",
+      "type": "boolean"
+    },
+    "parentCategory": {
+      "type": "object"
+    },
+    "sequence": {
+      "description": "Order in which categories appear when they are at the same level (siblings). For example, categories can be sequenced so that a specific category always appears first (or last).",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "shouldSlice": {
+      "description": "Indicates whether the category should be sliced",
+      "type": "boolean"
+    },
+    "updateDate": {
+      "description": "Last Modified Date Time",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "CatalogRuntimesCategoryAttribute": {
+      "properties": {
+        "dataType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fullyQualifiedName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {},
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CategoryContent": {
+      "description": "Name of the category and optionally, a description, page title, friendly URL, associated images, and any metadata.",
+      "properties": {
+        "categoryImages": {
+          "description": "Images associated with the category.",
+          "items": {
+            "$ref": "#/$defs/CategoryImage"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Description of the category as it appears on the storefront.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagDescription": {
+          "description": "Metadata description. Metadata can be used to manage information internally.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagKeywords": {
+          "description": "Metadata keywords. Metadata can be used to manage information internally.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagTitle": {
+          "description": "Metadata title. Metadata can be used to manage information internally.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the category as it appears on the storefront.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pageTitle": {
+          "description": "Title that appears at the top of new pages.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "slug": {
+          "description": "Human-readable identifier given to the category to create friendly URLs.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CategoryImage": {
+      "description": "Image or video associated with a category.",
+      "properties": {
+        "altText": {
+          "description": "Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cmsId": {
+          "description": "Id of the image in the CMS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageLabel": {
+          "description": "Image title.  Unicode data with a maximum length of 50 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "description": "Image URL. Unicode data with a maximum length of 4000 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mediaType": {
+          "description": "Type of media. Used by the client to determine how to render the image or video or what have you.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sequence": {
+          "description": "For categories with multiple images, the sequence is the order in which this image appears. Whole number data. Required.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "videoUrl": {
+          "description": "URL of the video. Unicode data with a maximum length of 4000 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

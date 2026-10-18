@@ -1,0 +1,499 @@
+# x-archived-from: kibo-commerce-tenant-openapi.yml
+# x-archived-on: 2026-10-18
+components:
+  schemas:
+    BaseTenantEntity:
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+      type: object
+    BaseTenantEntityInternal:
+      properties:
+        createDate:
+          format: date-time
+          type: string
+        deleteDate:
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        isDeleted:
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      type: object
+    Catalog:
+      properties:
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        masterCatalogId:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    CatalogExtended:
+      properties:
+        createDate:
+          format: date-time
+          type: string
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        deleteDate:
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        isDeleted:
+          type: boolean
+        masterCatalogId:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        tenantId:
+          format: int32
+          type: integer
+        updateDate:
+          format: date-time
+          type: string
+      type: object
+    Domain:
+      properties:
+        cName:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        domainName:
+          nullable: true
+          type: string
+        ipAddress:
+          nullable: true
+          type: string
+        isDomainManaged:
+          type: boolean
+        isInfrastructureRecord:
+          type: boolean
+        isPrimary:
+          type: boolean
+        isSystemAssigned:
+          type: boolean
+        siteId:
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          format: int32
+          type: integer
+        updateDate:
+          format: date-time
+          type: string
+        zone:
+          nullable: true
+          type: string
+      type: object
+    MasterCatalog:
+      properties:
+        catalogs:
+          items:
+            $ref: '#/components/schemas/Catalog'
+          nullable: true
+          type: array
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        name:
+          nullable: true
+          type: string
+        supportedLocaleCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    MasterCatalogExtended:
+      properties:
+        catalogs:
+          items:
+            $ref: '#/components/schemas/CatalogExtended'
+          nullable: true
+          type: array
+        createDate:
+          format: date-time
+          type: string
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        deleteDate:
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        isDeleted:
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        supportedLocaleCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        tenantId:
+          format: int32
+          type: integer
+        updateDate:
+          format: date-time
+          type: string
+      type: object
+    Site:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+        catalogId:
+          format: int32
+          type: integer
+        countryCode:
+          nullable: true
+          type: string
+        currencyCode:
+          nullable: true
+          type: string
+        domain:
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        localeCode:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        primaryCustomDomain:
+          nullable: true
+          type: string
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    SiteExtended:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+        catalogId:
+          format: int32
+          nullable: true
+          type: integer
+        countryCode:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        defaultCurrencyCode:
+          nullable: true
+          type: string
+        defaultLocaleCode:
+          nullable: true
+          type: string
+        deleteDate:
+          format: date-time
+          nullable: true
+          type: string
+        domains:
+          items:
+            $ref: '#/components/schemas/Domain'
+          nullable: true
+          type: array
+        id:
+          format: int32
+          type: integer
+        isDeleted:
+          type: boolean
+        isMozuRendered:
+          nullable: true
+          type: boolean
+        masterCatalogId:
+          format: int32
+          nullable: true
+          type: integer
+        name:
+          nullable: true
+          type: string
+        omsCatalogId:
+          format: int32
+          nullable: true
+          type: integer
+        routingTargetInfo:
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        tenantId:
+          format: int32
+          type: integer
+        updateDate:
+          format: date-time
+          type: string
+      type: object
+    Tenant:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+        domain:
+          nullable: true
+          type: string
+        expiry:
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        isDevTenant:
+          type: boolean
+        isUnified:
+          type: boolean
+        lastLoginDate:
+          format: date-time
+          nullable: true
+          type: string
+        masterCatalogs:
+          items:
+            $ref: '#/components/schemas/MasterCatalog'
+          nullable: true
+          type: array
+        name:
+          nullable: true
+          type: string
+        sites:
+          items:
+            $ref: '#/components/schemas/Site'
+          nullable: true
+          type: array
+      type: object
+    TenantAttribute:
+      properties:
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        name:
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+        value:
+          nullable: true
+      type: object
+    TenantExtended:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          nullable: true
+          type: array
+        createDate:
+          format: date-time
+          type: string
+        deleteDate:
+          format: date-time
+          nullable: true
+          type: string
+        devAccountId:
+          format: int32
+          nullable: true
+          type: integer
+        domain:
+          $ref: '#/components/schemas/Domain'
+        hardDeleteExpiry:
+          format: date-time
+          nullable: true
+          type: string
+        id:
+          format: int32
+          type: integer
+        isDeleted:
+          type: boolean
+        isDevTenant:
+          type: boolean
+        isHardDeleted:
+          nullable: true
+          type: boolean
+        isHeadless:
+          type: boolean
+        isPermanent:
+          nullable: true
+          type: boolean
+        isUnified:
+          type: boolean
+        kubeNamespace:
+          nullable: true
+          type: string
+        lastLoginDate:
+          format: date-time
+          nullable: true
+          type: string
+        masterCatalogs:
+          items:
+            $ref: '#/components/schemas/MasterCatalogExtended'
+          nullable: true
+          type: array
+        mozuInstanceId:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        omsEnabled:
+          type: boolean
+        routingTargetInfo:
+          nullable: true
+          type: string
+        scaleUnitId:
+          nullable: true
+          type: string
+        sites:
+          items:
+            $ref: '#/components/schemas/SiteExtended'
+          nullable: true
+          type: array
+        softDeleteExpiry:
+          format: date-time
+          nullable: true
+          type: string
+        status:
+          nullable: true
+          type: string
+        supportsCustomExtensions:
+          type: boolean
+        unifiedTenantType:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+info:
+  description: OpenAPI Spec for Kibo Tenant Service
+  title: Tenant
+openapi: 3.0.1
+paths:
+  /platform/tenants/{tenantId}:
+    get:
+      description: Retrieve information about a tenant. The attributes object will contain flags indicating whether or not certain features are enabled on the tenant. Kibo employees can reference <a href="/pages/tenant-attributes">this internal-only documentation</a> for a list of all attributes. </ul>
+      parameters:
+      - description: ''
+        in: path
+        name: tenantId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: OK
+      summary: Get Tenant by ID
+      tags:
+      - Tenants
+security:
+- bearerAuth: []
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL

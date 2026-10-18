@@ -1,0 +1,119 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Resend Email API
+  version: '1.0'
+  description: 'Operations tagged ShipmentResendEmail across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentResendEmail
+paths:
+  /commerce/shipments/{shipmentNumber}/resendCanceledEmail:
+    put:
+      deprecated: false
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Resend Shipment Cancel Email
+      tags:
+      - ShipmentResendEmail
+      operationId: putCommerceShipmentsByShipmentNumberResendCanceledEmail
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/resendFulfilledEmail:
+    put:
+      deprecated: false
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Resend Shipment Fulfill Email
+      tags:
+      - ShipmentResendEmail
+      operationId: putCommerceShipmentsByShipmentNumberResendFulfilledEmail
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

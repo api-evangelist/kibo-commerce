@@ -1,0 +1,40 @@
+generated: '2026-10-18'
+method: searched
+source: https://docs.kibocommerce.com/pages/api-best-practices.md, https://docs.kibocommerce.com/pages/sorting-and-filtering-apis.md
+auth_style: bearer
+idempotency:
+  coverage: none
+  note: No idempotency key mechanism found in documentation.
+pagination:
+  style: offset
+  params: page, pageSize
+  response_fields: totalCount, items
+  note: Fulfillment APIs use page/pageSize parameters. Non-fulfillment APIs use limit/offset parameters.
+rate_limit_signaling:
+  headers: Retry-After
+  status_code: 429
+  note: Rate limits return HTTP 429 with Retry-After header indicating wait time (60, 900, 1800, 2700, or 3600 seconds).
+versioning:
+  header: x-vol-version
+  note: API version can be specified via x-vol-version header. If not specified, latest version is used.
+request_tracing:
+  header: x-vol-correlation
+  note: Optional GUID used to associate multiple log entries in a cascading chain of API requests.
+filtering:
+  syntax: field-based with operators (eq, ne, gt, ge, lt, le, and, or, in, out, sw, cont, between, re, ex)
+  note: Supports complex filtering with logical operators. Fulfillment APIs use different syntax than non-fulfillment APIs.
+sorting:
+  param: sortBy
+  syntax: field+direction (asc/desc)
+  note: Multiple sort fields can be specified comma-separated.
+reversibility:
+  documented: true
+  operations:
+  - operation: CancelShipment
+    description: Cancel a shipment
+    window: Not specified in documentation
+  - operation: CancelItem
+    description: Cancel items in a fulfillment
+    window: Not specified in documentation
+  note: Kibo Commerce supports cancellation operations for shipments and items, but no specific time windows for reversals were documented.
+note: Conventions extracted from Kibo documentation. Includes detailed filtering and sorting capabilities, rate limiting with Retry-After headers, and request tracing.

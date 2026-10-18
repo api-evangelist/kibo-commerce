@@ -1,0 +1,936 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Export Inventory API
+  version: '1.0'
+  description: 'Operations tagged ExportInventory across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ExportInventory
+paths:
+  /commerce/inventory/v1/export/create:
+    post:
+      description: Creates entirely new export configurations for both FTP and S3 settings. This call allows you to specify all the values for the Export Settings object, such as file type and specific location groups or sites (which cannot be edited through FTP- or S3-specific endpoints). This is the initial setup request required to configure inventory export.
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/CreateExportSettingsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportSettingsResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Service Error
+      summary: Create Export Settings
+      tags:
+      - ExportInventory
+      operationId: postCommerceInventoryV1ExportCreate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/ftp/create:
+    post:
+      description: Creates new FTP settings and adds them to an existing Export Settings object, which may be useful if you want the export to go to a new endpoint instead of the one originally set up (or if the export needs to go to multiple endpoints). This call will not function unless you have performed the initial Create Export Settings request first.
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/CreateExportSettingsFTPRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportSettingsResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Service Error
+      summary: Create Export Settings FTP
+      tags:
+      - ExportInventory
+      operationId: postCommerceInventoryV1ExportFtpCreate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/s3/create:
+    post:
+      description: Creates new S3 settings and adds them to an existing Export Settings object, which may be useful if you want the export to go to a new endpoint instead of the one originally set up (or if the export needs to go to multiple endpoints). This call will not function unless you have performed the initial Create Export Settings request first.
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/CreateExportSettingsS3Request'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportSettingsResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Service Error
+      summary: Create Export Settings S3
+      tags:
+      - ExportInventory
+      operationId: postCommerceInventoryV1ExportS3Create
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/{exportSettingsName}:
+    delete:
+      description: Deletes the entire Export Settings object, including any FTP or S3 configurations within it.
+      parameters:
+      - description: Export Settings Name
+        in: path
+        name: exportSettingsName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete Export Settings
+      tags:
+      - ExportInventory
+      operationId: deleteCommerceInventoryV1ExportByExportSettingsName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/ftp/{exportSettingsName}/{exportSettingsFTPName}:
+    delete:
+      description: Deletes the specified FTP settings object. Not specifying the FTP Name/ID will delete all FTP settings within the Export Settings. This will not delete the entire Export Settings object.
+      parameters:
+      - description: Export Settings Name
+        in: path
+        name: exportSettingsName
+        required: true
+        schema:
+          type: string
+      - description: Export Settings FTP Name
+        in: path
+        name: exportSettingsFTPName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete Export Settings FTP
+      tags:
+      - ExportInventory
+      operationId: deleteCommerceInventoryV1ExportFtpByExportSettingsNameByExportSettingsFTPName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/s3/{exportSettingsName}/{exportSettingsS3Name}:
+    delete:
+      description: Deletes the specified S3 settings object. Not specifying the S3 Name/ID will delete all S3 settings within the Export Settings. This will not delete the entire Export Settings object.
+      parameters:
+      - description: Export Settings Name
+        in: path
+        name: exportSettingsName
+        required: true
+        schema:
+          type: string
+      - description: Export Settings S3 Name
+        in: path
+        name: exportSettingsS3Name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete Export Settings S3
+      tags:
+      - ExportInventory
+      operationId: deleteCommerceInventoryV1ExportS3ByExportSettingsNameByExportSettingsS3Name
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export:
+    get:
+      description: Get an export settings
+      parameters:
+      - description: Export Settings Name
+        in: query
+        name: exportSettingsName
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/GetExportSettingsResponse'
+                type: array
+          description: Success
+        '404':
+          description: Export Setting Not Found
+      summary: Get Export Settings
+      tags:
+      - ExportInventory
+      operationId: getCommerceInventoryV1Export
+      x-operation-id-source: derived
+    post:
+      description: Run Export Settings Job
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/ExportInventoryRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportInventoryResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Service Error
+      summary: Run Export
+      tags:
+      - ExportInventory
+      operationId: postCommerceInventoryV1Export
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/update:
+    post:
+      description: Updates the entire Export Settings object, including FTP and S3 configurations as well as file type and specific location groups or sites (which cannot be edited through FTP- or S3-specific endpoints).
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateExportSettingsRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateExportSettingsResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '404':
+          description: No Settings Found
+        '500':
+          description: Internal Service Error
+      summary: Update Export Settings
+      tags:
+      - ExportInventory
+      operationId: postCommerceInventoryV1ExportUpdate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/ftp/update:
+    post:
+      description: Updates the FTP settings within an existing Export Settings object.
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateExportSettingsFTPRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateExportSettingsFTPResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '404':
+          description: No Settings Found
+        '500':
+          description: Internal Service Error
+      summary: Update Export Settings FTP
+      tags:
+      - ExportInventory
+      operationId: postCommerceInventoryV1ExportFtpUpdate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/export/s3/update:
+    post:
+      description: Updates the S3 settings within an existing Export Settings object. Note that you cannot update location groups or sites with this request - you must use the full Update Export Settings request instead.
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateExportSettingsS3Request'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateExportSettingsS3Response'
+          description: Success
+        '400':
+          description: Bad Request
+        '404':
+          description: No Settings Found
+        '500':
+          description: Internal Service Error
+      summary: Update Export Settings S3
+      tags:
+      - ExportInventory
+      operationId: postCommerceInventoryV1ExportS3Update
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  requestBodies:
+    UpdateExportSettingsRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateExportSettingsRequest'
+      description: Request to update an existing Export Settings
+      required: true
+    CreateExportSettingsFTPRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateExportSettingsFTPRequest'
+      description: Request to create a new Export Settings FTP
+      required: true
+    ExportInventoryRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ExportInventoryRequest'
+      description: Request to run an inventory export
+      required: true
+    CreateExportSettingsRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateExportSettingsRequest'
+      description: Request to create a new Export Settings
+      required: true
+    UpdateExportSettingsS3Request:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateExportSettingsS3Request'
+      description: Request to update an existing Export Settings S3
+      required: true
+    UpdateExportSettingsFTPRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateExportSettingsFTPRequest'
+      description: Request to update an existing Export Settings FTP
+      required: true
+    CreateExportSettingsS3Request:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CreateExportSettingsS3Request'
+      description: Request to create a new Export Settings S3
+      required: true
+  schemas:
+    UpdateExportSettingsFTPResponse:
+      properties:
+        exportSettingsFTPName:
+          description: Export Settings FTP Name
+          type: string
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Tenant ID
+          type: integer
+      type: object
+    UpdateExportSettingsS3Response:
+      description: Update Export Settings S3 Response
+      properties:
+        exportSettingsID:
+          description: Export Settings ID to associate the s3 settings with
+          type: integer
+        exportSettingsS3ID:
+          description: Export Settings S3 ID
+          type: integer
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Tenant ID
+          type: integer
+      title: Update Export Settings S3 Response
+      type: object
+    ExportInventoryRequest:
+      description: Export Inventory Request
+      properties:
+        development:
+          description: Flag for sending the exports to the development droppoint
+          type: boolean
+        exportSettingsFTPName:
+          description: Name of the FTP Settings to use. Will only check for this if exportID is already set
+          type: string
+        exportSettingsName:
+          description: Name of the Export Settings to use
+          type: string
+        exportSettingsS3Name:
+          description: Name of the S3 Settings to use. Will only check for this if exportID is already set
+          type: string
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Export Inventory Request
+      type: object
+    ExportSettingsFTP:
+      description: Export Settings FTP
+      properties:
+        active:
+          description: Flag for Active State
+          type: boolean
+        controlFile:
+          description: Control File
+          type: string
+        controlFileEmail:
+          description: Control File Email
+          type: string
+        controlFileName:
+          description: Control File Name
+          type: string
+        deliveryClass:
+          description: FTP Delivery Class. Defaults to ExportDeliveryDefault
+          type: string
+        endpoint:
+          description: Endpoint
+          type: string
+        environment:
+          description: Environment
+          type: string
+        exportSettingsFTPID:
+          description: Export Settings FTP ID
+          type: integer
+        exportSettingsID:
+          description: Export Settings ID
+          type: integer
+        ftpDirectory:
+          description: FTP Server Directory
+          type: string
+        ftpDirectoryControlFile:
+          description: FTP Server Control File Directory
+          type: string
+        ftpPassword:
+          description: FTP Password
+          type: string
+        ftpPort:
+          description: FTP Server Port
+          type: integer
+        ftpServer:
+          description: FTP Server Address
+          type: string
+        ftpUser:
+          description: FTP Username
+          type: string
+        name:
+          description: Export Settings FTP Name
+          type: string
+        remoteFileName:
+          description: Remote File Name
+          type: string
+      required:
+      - name
+      - ftpServer
+      - ftpPort
+      - ftpDirectory
+      title: Export Settings FTP
+      type: object
+    ExportSettings:
+      description: Export Settings
+      properties:
+        directShip:
+          description: Flag for only using locations with Direct Ship enabled
+          type: boolean
+        exportSingleFile:
+          description: Flag for exporting as a single file
+          type: boolean
+        exportType:
+          description: Type of exportGG for the settings
+          enum:
+          - AGGREGATE
+          - LOCATION
+          type: string
+        fileFormat:
+          description: Format for the export file
+          enum:
+          - XML
+          - CSV
+          type: string
+        fileName:
+          description: Name for the export file
+          type: string
+        floor:
+          description: Floor
+          enum:
+          - FLOOR_MAX
+          - FLOOR_MIN
+          - FLOOR_AVG
+          - FLOOR_SUM
+          type: string
+        ftpInformation:
+          description: List of export FTP settings
+          items:
+            $ref: '#/components/schemas/ExportSettingsFTP'
+          type: array
+        ignoreNegativeInventoryLocations:
+          description: Flag for excluding negative inventory locations
+          type: boolean
+        includeAttributes:
+          description: Flag for including attributes
+          type: boolean
+        isClassic:
+          description: Flag for marking the setting as a classic export
+          type: boolean
+        locationGroupIDs:
+          description: Location Group Ids associated with the settings
+          items:
+            type: integer
+          type: array
+        ltd:
+          description: LTD
+          enum:
+          - LTD_MAX
+          - LTD_MIN
+          - LTD_AVG
+          - LTD_SUM
+          type: string
+        name:
+          description: Export Settings Name
+          type: string
+        onlySendActiveLocations:
+          description: Flag for only sending from active locations
+          type: boolean
+        onlySendAvailable:
+          description: Flag for only sending available
+          type: boolean
+        pickup:
+          description: Flag for only using locations with In Store Pickup enabled
+          type: boolean
+        productMapping:
+          description: Enum for export productMapping
+          enum:
+          - SWAP_PART_NUMBER_WITH_UPC
+          - SWAP_SKU_WITH_UPC
+          title: productMapping
+          type: string
+        s3Information:
+          description: List of export S3 settings
+          items:
+            $ref: '#/components/schemas/ExportSettingsS3'
+          type: array
+        safetyStock:
+          description: Safety Stock
+          enum:
+          - SAFETY_STOCK_MAX
+          - SAFETY_STOCK_MIN
+          - SAFETY_STOCK_AVG
+          - SAFETY_STOCK_SUM
+          type: string
+        shortenFilename:
+          description: Flag for using shortened filenames
+          type: boolean
+        siteIDs:
+          description: Site Ids associated with the settings
+          items:
+            type: integer
+          type: array
+        tags:
+          $ref: '#/components/schemas/tags'
+        transfer:
+          description: Flag for only using locations with Transfer enabled
+          type: boolean
+        untransformedFileName:
+          description: Untransformed File Name
+          type: string
+        untransformedZipFileName:
+          description: Untransformed Zip File Name
+          type: string
+        zipFileName:
+          description: Name for the zipped file
+          type: string
+        zipFiles:
+          description: Flag for zipping the files
+          type: boolean
+      required:
+      - name
+      - fileFormat
+      - exportType
+      - ftpInformation
+      title: Export Settings
+      type: object
+    ExportSettingsS3:
+      description: Export Settings S3
+      properties:
+        active:
+          description: Flag for Active State
+          type: boolean
+        bucket:
+          description: S3 Bucket (directory)
+          type: string
+        exportSettingsID:
+          description: Export Settings ID
+          type: integer
+        exportSettingsS3ID:
+          description: Export Settings S3 ID
+          type: integer
+        name:
+          description: Export Settings S3 Name
+          type: string
+        region:
+          description: S3 Region
+          type: string
+      required:
+      - name
+      - region
+      - bucket
+      title: Export Settings S3
+      type: object
+    ExportInventoryJobResponse:
+      description: Response for each export job creation
+      properties:
+        exportSettingsID:
+          description: Export Settings ID
+          type: integer
+        jobID:
+          description: ID of newly created job
+          type: integer
+      title: Export Inventory Job Response
+      type: object
+    CreateExportSettingsRequest:
+      description: Request needed for creating Export Settings
+      properties:
+        exportSettings:
+          $ref: '#/components/schemas/ExportSettings'
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Create Export Settings Request
+      type: object
+    UpdateExportSettingsFTPRequest:
+      description: Request needed updating existing Export Settings FTP
+      properties:
+        exportSettingsFTP:
+          $ref: '#/components/schemas/ExportSettingsFTP'
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Update Export Settings FTP Request
+      type: object
+    CreateExportSettingsS3Request:
+      description: Request needed for creating Export Settings S3
+      properties:
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+        exportSettingsS3:
+          $ref: '#/components/schemas/ExportSettingsS3'
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Create Export Settings S3 Request
+      type: object
+    DeletedCountResponse:
+      description: Deleted Count Response Model
+      properties:
+        deleted:
+          description: Count of deleted entries
+          type: integer
+      title: Deleted Count Response
+      type: object
+    UpdateExportSettingsResponse:
+      description: Update Export Settings Response
+      properties:
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        name:
+          description: Name
+          type: string
+        numResults:
+          description: Number of results
+          type: integer
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Tenant ID
+          type: integer
+      title: Update Export Settings Response
+      type: object
+    UpdateExportSettingsS3Request:
+      description: Request needed updating existing Export Settings S3
+      properties:
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+        exportSettingsS3:
+          $ref: '#/components/schemas/ExportSettingsS3'
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Update Export Settings S3 Request
+      type: object
+    ExportInventoryResponse:
+      description: Response for Export Inventory api
+      properties:
+        exportInventoryJobResponses:
+          description: List of Export Inventory Job Responses
+          items:
+            $ref: '#/components/schemas/ExportInventoryJobResponse'
+          type: array
+      title: Export Inventory Response
+      type: object
+    ExportSettingsResponse:
+      description: Job ID Response
+      properties:
+        exportSettingsFTPName:
+          description: Created Export Settings FTP Name
+          type: string
+        exportSettingsName:
+          description: Created Export Settings Name
+          type: string
+        exportSettingsS3Name:
+          description: Created Export Settings S3 Name
+          type: string
+      title: Job ID Response
+      type: object
+    CreateExportSettingsFTPRequest:
+      description: Request needed for creating Export Settings FTP
+      properties:
+        exportSettingsFTP:
+          $ref: '#/components/schemas/ExportSettingsFTP'
+        exportSettingsName:
+          description: Export Settings Name to associate the ftp settings with
+          type: string
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Create Export Settings FTP Request
+      type: object
+    UpdateExportSettingsRequest:
+      description: Request needed updating existing Export Settings
+      properties:
+        exportSettings:
+          $ref: '#/components/schemas/ExportSettings'
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Update Export Settings Request
+      type: object
+    GetExportSettingsResponse:
+      description: Response for get Export Settings
+      properties:
+        exportSettings:
+          $ref: '#/components/schemas/ExportSettings'
+      title: Get Export Settings Response
+      type: object
+    tags:
+      additionalProperties:
+        type: string
+      description: Associative Map of <String, String> for tagCategoryName => tagName
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

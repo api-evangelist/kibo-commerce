@@ -1,0 +1,75 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Pricing Storefront
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-pricing-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-pricing-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/catalog/storefront/discounts/autoaddtarget/{discountId}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/autoaddtarget/{discountId}
+  update:
+    operationId: discountsGetAutoAddTarget
+- target: $.paths['/commerce/catalog/storefront/discounts/code/{code}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/code/{code}
+  update:
+    operationId: discountsGetDiscountByCode
+- target: $.paths['/commerce/catalog/storefront/discounts/couponCode/{couponCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/couponCode/{couponCode}
+  update:
+    operationId: discountsGetDiscountByCouponCode
+- target: $.paths['/commerce/catalog/storefront/discounts/id/{id}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/id/{id}
+  update:
+    operationId: discountsGetDiscountByID
+- target: $.paths['/commerce/catalog/storefront/discounts/label/{label}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/label/{label}
+  update:
+    operationId: discountsGetDiscountsByLabel
+- target: $.paths['/commerce/catalog/storefront/discounts/products'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/discounts/products
+  update:
+    operationId: discountsGetItemDiscounts
+- target: $.paths['/commerce/catalog/storefront/discounts/products/{productCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/products/{productCode}
+  update:
+    operationId: discountsGetItemDiscountsByProduct
+- target: $.paths['/commerce/catalog/storefront/discounts/orders'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/discounts/orders
+  update:
+    operationId: discountsGetOrderLevelDiscounts
+- target: $.paths['/commerce/catalog/storefront/discounts/secure/code/{code}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/secure/code/{code}
+  update:
+    operationId: discountsGetSecureDiscountByCode
+- target: $.paths['/commerce/catalog/storefront/discounts/secure/couponCode/{couponCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/secure/couponCode/{couponCode}
+  update:
+    operationId: discountsGetSecureDiscountByCouponCode
+- target: $.paths['/commerce/catalog/storefront/discounts/secure/id/{id}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/secure/id/{id}
+  update:
+    operationId: discountsGetSecureDiscountByID
+- target: $.paths['/commerce/catalog/storefront/discounts/secure/label/{label}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/secure/label/{label}
+  update:
+    operationId: discountsGetSecureDiscountsByLabel
+- target: $.paths['/commerce/catalog/storefront/discounts/secure/products'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/discounts/secure/products
+  update:
+    operationId: productsGetSecureItemDiscounts
+- target: $.paths['/commerce/catalog/storefront/discounts/secure/products/{productCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/discounts/secure/products/{productCode}
+  update:
+    operationId: productsGetSecureItemDiscountsByProduct
+- target: $.paths['/commerce/catalog/storefront/discounts/secure/orders'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/discounts/secure/orders
+  update:
+    operationId: productsGetSecureOrderDiscounts
+- target: $.paths['/commerce/catalog/storefront/tax/estimate-order'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/tax/estimate-order
+  update:
+    operationId: taxesEstimateOrderTax

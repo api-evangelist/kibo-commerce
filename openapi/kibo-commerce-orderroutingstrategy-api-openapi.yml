@@ -1,0 +1,1065 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Strategy API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingStrategy across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: New UI API - Manage routing strategies
+  name: OrderRoutingStrategy
+paths:
+  /commerce/orders/orderrouting/api/v1/strategies/candidateSortStrategies:
+    get:
+      parameters:
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CandidateSortStrategiesModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Candidate Sort Strategies
+      tags:
+      - OrderRoutingStrategy
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesCandidateSortStrategies
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/failOverActions:
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: orderType
+        required: true
+        schema:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FailOverActionsResponseModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Fail Over Actions
+      tags:
+      - OrderRoutingStrategy
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesFailOverActions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/orderTypes:
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/OrderTypesModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Order Types
+      tags:
+      - OrderRoutingStrategy
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesOrderTypes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/sortCriteria:
+    get:
+      parameters:
+      - in: query
+        name: orderType
+        required: false
+        schema:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SortCriteriaModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Sort Criteria
+      tags:
+      - OrderRoutingStrategy
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesSortCriteria
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/{strategyID}:
+    delete:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Delete Strategy
+      tags:
+      - OrderRoutingStrategy
+      operationId: deleteCommerceOrdersOrderroutingApiV1StrategiesByStrategyID
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateStrategyResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Strategy By Id
+      tags:
+      - OrderRoutingStrategy
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesByStrategyID
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStrategyRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UpdateStrategyResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Update Strategy
+      tags:
+      - OrderRoutingStrategy
+      operationId: putCommerceOrdersOrderroutingApiV1StrategiesByStrategyID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies:
+    get:
+      parameters:
+      - in: query
+        name: pagedRequest
+        required: true
+        schema:
+          $ref: '#/components/schemas/PagedRequest'
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseStrategyResponseModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: List All Strategies
+      tags:
+      - OrderRoutingStrategy
+      operationId: getCommerceOrdersOrderroutingApiV1Strategies
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateStrategyRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/StrategyResponseModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Create Strategy
+      tags:
+      - OrderRoutingStrategy
+      operationId: postCommerceOrdersOrderroutingApiV1Strategies
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios:
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: pagedRequest
+        required: true
+        schema:
+          $ref: '#/components/schemas/PagedRequest'
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseScenarioDto'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: List Scenarios By Strategy
+      tags:
+      - OrderRoutingStrategy
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesByStrategyIDScenarios
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CandidateSortStrategiesModel:
+      properties:
+        candidateSortStrategies:
+          items:
+            enum:
+            - MINIMIZE_SHIPMENTS
+            - GROUP_RANK_AND_QUANTITY
+            - QUANTITY
+            - DISTANCE
+            type: string
+          type: array
+      type: object
+    FailOverActionsResponseModel:
+      properties:
+        failOverActions:
+          items:
+            $ref: '#/components/schemas/FailoverActionDto'
+          type: array
+      type: object
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    OrderTypesModel:
+      properties:
+        orderTypes:
+          items:
+            enum:
+            - DIRECTSHIP
+            - TRANSFER
+            - STH_CONSOLIDATED
+            - RETURN
+            - DISPOSITION
+            - DELIVERY
+            - BOPIS
+            type: string
+          type: array
+      type: object
+    StrategyResponseModel:
+      properties:
+        active:
+          type: boolean
+        candidateSortStrategy:
+          enum:
+          - MINIMIZE_SHIPMENTS
+          - GROUP_RANK_AND_QUANTITY
+          - QUANTITY
+          - DISTANCE
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        preferAtomicAssignments:
+          type: boolean
+        strategyID:
+          type: string
+      type: object
+    PagedResponseScenarioDto:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ScenarioDto'
+          type: array
+        pageNum:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        paginatedItems:
+          format: int64
+          type: integer
+        totalItems:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+      type: object
+    UpdateStrategyRequest:
+      properties:
+        active:
+          type: boolean
+        candidateSortStrategy:
+          enum:
+          - MINIMIZE_SHIPMENTS
+          - GROUP_RANK_AND_QUANTITY
+          - QUANTITY
+          - DISTANCE
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        preferAtomicAssignments:
+          type: boolean
+        scenarios:
+          items:
+            $ref: '#/components/schemas/ScenarioRankDto'
+          type: array
+      required:
+      - name
+      - orderType
+      - preferAtomicAssignments
+      type: object
+    ScenarioRankDto:
+      properties:
+        name:
+          type: string
+        rank:
+          format: int32
+          type: integer
+        scenarioID:
+          format: int32
+          type: integer
+      required:
+      - rank
+      - scenarioID
+      type: object
+    ScenarioDto:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        rank:
+          format: int32
+          type: integer
+        scenarioID:
+          format: int32
+          type: integer
+      type: object
+    PagedRequest:
+      properties:
+        pageNum:
+          format: int32
+          minimum: 0
+          type: integer
+        pageSize:
+          format: int32
+          minimum: 1
+          type: integer
+        sortDirection:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      type: object
+    SortCriteriaModel:
+      properties:
+        sortCriteria:
+          items:
+            $ref: '#/components/schemas/SortCriterionDto'
+          type: array
+      type: object
+    SortCriterionDto:
+      properties:
+        displayName:
+          type: string
+        id:
+          type: string
+      type: object
+    CreateStrategyRequest:
+      properties:
+        active:
+          type: boolean
+        candidateSortStrategy:
+          enum:
+          - MINIMIZE_SHIPMENTS
+          - GROUP_RANK_AND_QUANTITY
+          - QUANTITY
+          - DISTANCE
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        preferAtomicAssignments:
+          type: boolean
+      required:
+      - name
+      - orderType
+      - preferAtomicAssignments
+      type: object
+    FailoverActionDto:
+      properties:
+        default:
+          type: boolean
+        displayName:
+          type: string
+        id:
+          type: string
+      type: object
+    PagedResponseStrategyResponseModel:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/StrategyResponseModel'
+          type: array
+        pageNum:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        paginatedItems:
+          format: int64
+          type: integer
+        totalItems:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+      type: object
+    UpdateStrategyResponse:
+      properties:
+        active:
+          type: boolean
+        candidateSortStrategy:
+          enum:
+          - MINIMIZE_SHIPMENTS
+          - GROUP_RANK_AND_QUANTITY
+          - QUANTITY
+          - DISTANCE
+          type: string
+        description:
+          type: string
+        name:
+          type: string
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        preferAtomicAssignments:
+          type: boolean
+        scenarios:
+          items:
+            $ref: '#/components/schemas/ScenarioRankDto'
+          type: array
+        strategyID:
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

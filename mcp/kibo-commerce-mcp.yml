@@ -1,0 +1,1011 @@
+generated: '2026-10-18'
+method: probed
+status: official
+source: https://docs.kibocommerce.com/pages/kibo-mcp-server
+name: Kibo Commerce MCP servers
+description: 'Kibo publishes two hosted MCP servers: the Commerce MCP Server, a tenant-hosted HTTP endpoint at https://{host}/mcp/admin/{toolCategories?} exposing 500+ admin/runtime API operations filtered
+  by tool category (documented; gated by tenant credentials), and the Kibo Documentation MCP server at https://docs.kibocommerce.com/mcp (probed live, open).'
+deployment:
+  mode: remote
+  endpoint: https://docs.kibocommerce.com/mcp
+  auth: none
+  verified: probed
+  checked: '2026-10-18'
+  note: The probed endpoint is the documentation server. The Commerce MCP Server is per-tenant (endpoint pattern https://{host}/mcp/admin/{toolCategories?}, e.g. https://t1000000-s12345.sb.usc1.gcp.kibocommerce.com/mcp/admin/)
+    with Basic (applicationKey:clientSecret) or Bearer JWT auth; no tenant URL is public, so it is recorded as documented, not probed.
+servers:
+- name: Kibo Commerce MCP Server
+  transport: streamable-http
+  endpoint_pattern: https://{host}/mcp/admin/{toolCategories?}
+  example_endpoints:
+  - https://t1000000-s12345.sb.usc1.gcp.kibocommerce.com/mcp/admin/
+  - https://t1000000.sb.usc1.gcp.kibocommerce.com/mcp/admin/
+  auth:
+    schemes:
+    - basic
+    - bearer
+    basic: Base64(applicationKey:clientSecret) from Kibo Dev Center
+    bearer: JWT access token from the Kibo API OAuth flow
+  verified: searched
+  source: https://docs.kibocommerce.com/pages/kibo-mcp-server
+  probe:
+    url: https://t1000000.sb.usc1.gcp.kibocommerce.com/mcp/admin/
+    status: 404
+    body: 'ReverseProxy ITEM_NOT_FOUND "Item not found: Tenant" -- the docs example tenant does not exist; a real tenant host is required'
+    date: '2026-10-18'
+  tool_count: 500+ (documented; individual tool names are not published, only categories)
+  tool_listing: 'l3: table of tool CATEGORIES (Category | Description) per API group; categories are URL filters, not tool names'
+  tool_categories:
+  - category: cart.create
+    group: Commerce Runtime
+    description: Add items to carts, create carts
+  - category: cart.delete
+    group: Commerce Runtime
+    description: Remove cart items, coupons, messages
+  - category: cart.read
+    group: Commerce Runtime
+    description: Get carts, cart items, summaries
+  - category: cart.update
+    group: Commerce Runtime
+    description: Update carts, apply coupons, modify items
+  - category: channel.create
+    group: Commerce Runtime
+    description: Create channels
+  - category: channel.delete
+    group: Commerce Runtime
+    description: Delete channels
+  - category: channel.read
+    group: Commerce Runtime
+    description: Get channels
+  - category: channel.update
+    group: Commerce Runtime
+    description: Update channels
+  - category: channelgroup.create
+    group: Commerce Runtime
+    description: Create channel groups
+  - category: channelgroup.delete
+    group: Commerce Runtime
+    description: Delete channel groups
+  - category: channelgroup.read
+    group: Commerce Runtime
+    description: Get channel groups
+  - category: channelgroup.update
+    group: Commerce Runtime
+    description: Update channel groups
+  - category: checkout.create
+    group: Commerce Runtime
+    description: Create checkouts, perform checkout actions
+  - category: checkout.delete
+    group: Commerce Runtime
+    description: Remove checkout items, coupons
+  - category: checkout.read
+    group: Commerce Runtime
+    description: Get checkouts, checkout items
+  - category: checkout.update
+    group: Commerce Runtime
+    description: Update checkouts, set shipping/billing
+  - category: job.create
+    group: Commerce Runtime
+    description: Create jobs
+  - category: order.create
+    group: Commerce Runtime
+    description: Create orders, add order items
+  - category: order.delete
+    group: Commerce Runtime
+    description: Remove order items, adjustments
+  - category: order.read
+    group: Commerce Runtime
+    description: Get orders, order items, shipments
+  - category: order.update
+    group: Commerce Runtime
+    description: Update orders, fulfillment, payments
+  - category: orderattributedefinitions.create
+    group: Commerce Runtime
+    description: Create order attribute definitions
+  - category: orderattributedefinitions.read
+    group: Commerce Runtime
+    description: Get order attribute definitions
+  - category: orderattributedefinitions.update
+    group: Commerce Runtime
+    description: Update order attribute definitions
+  - category: ordervalidationcapability.create
+    group: Commerce Runtime
+    description: Create order validation capabilities
+  - category: quote.create
+    group: Commerce Runtime
+    description: Create quotes
+  - category: quote.delete
+    group: Commerce Runtime
+    description: Delete quotes
+  - category: quote.read
+    group: Commerce Runtime
+    description: Get quotes
+  - category: quote.update
+    group: Commerce Runtime
+    description: Update quotes
+  - category: return.create
+    group: Commerce Runtime
+    description: Create returns
+  - category: return.delete
+    group: Commerce Runtime
+    description: Delete returns
+  - category: return.read
+    group: Commerce Runtime
+    description: Get returns, return items
+  - category: return.update
+    group: Commerce Runtime
+    description: Update returns
+  - category: returnattributedefinitions.create
+    group: Commerce Runtime
+    description: Create return attribute definitions
+  - category: returnattributedefinitions.read
+    group: Commerce Runtime
+    description: Get return attribute definitions
+  - category: returnattributedefinitions.update
+    group: Commerce Runtime
+    description: Update return attribute definitions
+  - category: wishlist.create
+    group: Commerce Runtime
+    description: Create wishlists
+  - category: wishlist.delete
+    group: Commerce Runtime
+    description: Delete wishlists
+  - category: wishlist.read
+    group: Commerce Runtime
+    description: Get wishlists
+  - category: wishlist.update
+    group: Commerce Runtime
+    description: Update wishlists
+  - category: accountrankingrule.create
+    group: Customer
+    description: Create account ranking rules
+  - category: accountrankingrule.delete
+    group: Customer
+    description: Delete account ranking rules
+  - category: accountrankingrule.read
+    group: Customer
+    description: Get account ranking rules
+  - category: accountrankingrule.update
+    group: Customer
+    description: Update account ranking rules
+  - category: addressvalidation.create
+    group: Customer
+    description: Validate addresses
+  - category: addressvalidationcapability.create
+    group: Customer
+    description: Create address validation capabilities
+  - category: authticket.create
+    group: Customer
+    description: Create auth tickets
+  - category: authticket.read
+    group: Customer
+    description: Get auth tickets
+  - category: authticket.update
+    group: Customer
+    description: Update auth tickets
+  - category: b2baccount.create
+    group: Customer
+    description: Create B2B accounts
+  - category: b2baccount.delete
+    group: Customer
+    description: Delete B2B accounts
+  - category: b2baccount.read
+    group: Customer
+    description: Get B2B accounts
+  - category: b2baccount.update
+    group: Customer
+    description: Update B2B accounts
+  - category: b2bcontact.read
+    group: Customer
+    description: Get B2B contacts
+  - category: credit.create
+    group: Customer
+    description: Create credits
+  - category: credit.delete
+    group: Customer
+    description: Delete credits
+  - category: credit.read
+    group: Customer
+    description: Get credits
+  - category: credit.update
+    group: Customer
+    description: Update credits
+  - category: customeraccount.create
+    group: Customer
+    description: Create customer accounts
+  - category: customeraccount.delete
+    group: Customer
+    description: Delete customer accounts
+  - category: customeraccount.read
+    group: Customer
+    description: Get customer accounts
+  - category: customeraccount.update
+    group: Customer
+    description: Update customer accounts
+  - category: customeraccountattributedefinitions.create
+    group: Customer
+    description: Create customer account attribute definitions
+  - category: customeraccountattributedefinitions.read
+    group: Customer
+    description: Get customer account attribute definitions
+  - category: customeraccountattributedefinitions.update
+    group: Customer
+    description: Update customer account attribute definitions
+  - category: customerattributedefinition.create
+    group: Customer
+    description: Create customer attribute definitions
+  - category: customerattributedefinition.read
+    group: Customer
+    description: Get customer attribute definitions
+  - category: customerattributedefinition.update
+    group: Customer
+    description: Update customer attribute definitions
+  - category: customersegment.create
+    group: Customer
+    description: Create customer segments
+  - category: customersegment.delete
+    group: Customer
+    description: Delete customer segments
+  - category: customersegment.read
+    group: Customer
+    description: Get customer segments
+  - category: customersegment.update
+    group: Customer
+    description: Update customer segments
+  - category: customerset.read
+    group: Customer
+    description: Get customer sets
+  - category: customervisit.create
+    group: Customer
+    description: Create customer visits
+  - category: customervisit.read
+    group: Customer
+    description: Get customer visits
+  - category: customervisit.update
+    group: Customer
+    description: Update customer visits
+  - category: instocknotificationsubscription.create
+    group: Customer
+    description: Create in-stock notification subscriptions
+  - category: instocknotificationsubscription.delete
+    group: Customer
+    description: Delete in-stock notification subscriptions
+  - category: instocknotificationsubscription.read
+    group: Customer
+    description: Get in-stock notification subscriptions
+  - category: batchjob.create
+    group: Import / Export
+    description: Create batch jobs
+  - category: batchjob.delete
+    group: Import / Export
+    description: Delete batch jobs
+  - category: batchjob.read
+    group: Import / Export
+    description: Get batch jobs
+  - category: batchjob.update
+    group: Import / Export
+    description: Update batch jobs
+  - category: export.create
+    group: Import / Export
+    description: Create exports
+  - category: export.delete
+    group: Import / Export
+    description: Delete exports
+  - category: export.read
+    group: Import / Export
+    description: Get exports
+  - category: files.create
+    group: Import / Export
+    description: Upload files
+  - category: files.read
+    group: Import / Export
+    description: Get files
+  - category: import.create
+    group: Import / Export
+    description: Create imports
+  - category: import.delete
+    group: Import / Export
+    description: Delete imports
+  - category: import.read
+    group: Import / Export
+    description: Get imports
+  - category: location.read
+    group: Location
+    description: Get locations (storefront and admin)
+  - category: locationadmin.create
+    group: Location
+    description: Create locations
+  - category: locationadmin.delete
+    group: Location
+    description: Delete locations
+  - category: locationadmin.read
+    group: Location
+    description: Get location admin details
+  - category: locationadmin.update
+    group: Location
+    description: Update locations
+  - category: locationattributedefinitions.create
+    group: Location
+    description: Create location attribute definitions
+  - category: locationattributedefinitions.read
+    group: Location
+    description: Get location attribute definitions
+  - category: locationattributedefinitions.update
+    group: Location
+    description: Update location attribute definitions
+  - category: locationgroup.create
+    group: Location
+    description: Create location groups
+  - category: locationgroup.delete
+    group: Location
+    description: Delete location groups
+  - category: locationgroup.read
+    group: Location
+    description: Get location groups
+  - category: locationgroup.update
+    group: Location
+    description: Update location groups
+  - category: locationgroupconfiguration.read
+    group: Location
+    description: Get location group configurations
+  - category: locationgroupconfiguration.update
+    group: Location
+    description: Update location group configurations
+  - category: locationinventoryattributedefinition.create
+    group: Location
+    description: Create location inventory attribute definitions
+  - category: locationinventoryattributedefinition.read
+    group: Location
+    description: Get location inventory attribute definitions
+  - category: locationinventoryattributedefinition.update
+    group: Location
+    description: Update location inventory attribute definitions
+  - category: locationsettings.read
+    group: Location
+    description: Get location settings
+  - category: locationsettings.update
+    group: Location
+    description: Update location settings
+  - category: locationtype.create
+    group: Location
+    description: Create location types
+  - category: locationtype.delete
+    group: Location
+    description: Delete location types
+  - category: locationtype.read
+    group: Location
+    description: Get location types
+  - category: locationtype.update
+    group: Location
+    description: Update location types
+  - category: transfertimes.create
+    group: Location
+    description: Create transfer times
+  - category: transfertimes.delete
+    group: Location
+    description: Delete transfer times
+  - category: transfertimes.read
+    group: Location
+    description: Get transfer times
+  - category: transfertimes.update
+    group: Location
+    description: Update transfer times
+  - category: vendor.create
+    group: Location
+    description: Create vendors
+  - category: vendor.delete
+    group: Location
+    description: Delete vendors
+  - category: vendor.read
+    group: Location
+    description: Get vendors
+  - category: vendor.update
+    group: Location
+    description: Update vendors
+  - category: discounts.create
+    group: Pricing Runtime
+    description: Evaluate discounts
+  - category: discounts.read
+    group: Pricing Runtime
+    description: Get discounts
+  - category: products.create
+    group: Pricing Runtime
+    description: Price products
+  - category: products.read
+    group: Pricing Runtime
+    description: Get product prices
+  - category: taxes.create
+    group: Pricing Runtime
+    description: Calculate taxes
+  - category: categories.create
+    group: Product Admin
+    description: Create categories
+  - category: categories.delete
+    group: Product Admin
+    description: Delete categories
+  - category: categories.read
+    group: Product Admin
+    description: Get categories
+  - category: categories.update
+    group: Product Admin
+    description: Update categories
+  - category: categoryattributedefinition.create
+    group: Product Admin
+    description: Create category attribute definitions
+  - category: categoryattributedefinition.read
+    group: Product Admin
+    description: Get category attribute definitions
+  - category: categoryattributedefinition.update
+    group: Product Admin
+    description: Update category attribute definitions
+  - category: couponsets.create
+    group: Product Admin
+    description: Create coupon sets
+  - category: couponsets.delete
+    group: Product Admin
+    description: Delete coupon sets
+  - category: couponsets.read
+    group: Product Admin
+    description: Get coupon sets
+  - category: couponsets.update
+    group: Product Admin
+    description: Update coupon sets
+  - category: currency.create
+    group: Product Admin
+    description: Create currencies
+  - category: currency.delete
+    group: Product Admin
+    description: Delete currencies
+  - category: currency.read
+    group: Product Admin
+    description: Get currencies
+  - category: currency.update
+    group: Product Admin
+    description: Update currencies
+  - category: discounts.create
+    group: Product Admin
+    description: Create discounts
+  - category: discounts.delete
+    group: Product Admin
+    description: Delete discounts
+  - category: discounts.read
+    group: Product Admin
+    description: Get discounts
+  - category: discounts.update
+    group: Product Admin
+    description: Update discounts
+  - category: discountsettings.read
+    group: Product Admin
+    description: Get discount settings
+  - category: discountsettings.update
+    group: Product Admin
+    description: Update discount settings
+  - category: facets.create
+    group: Product Admin
+    description: Create facets
+  - category: facets.delete
+    group: Product Admin
+    description: Delete facets
+  - category: facets.read
+    group: Product Admin
+    description: Get facets
+  - category: facets.update
+    group: Product Admin
+    description: Update facets
+  - category: mastercatalogpublishsettings.read
+    group: Product Admin
+    description: Get master catalog publish settings
+  - category: mastercatalogpublishsettings.update
+    group: Product Admin
+    description: Update master catalog publish settings
+  - category: pickwaveruleevaluate.create
+    group: Product Admin
+    description: Evaluate pick wave rules
+  - category: pickwaverules.create
+    group: Product Admin
+    description: Create pick wave rules
+  - category: pickwaverules.delete
+    group: Product Admin
+    description: Delete pick wave rules
+  - category: pickwaverules.read
+    group: Product Admin
+    description: Get pick wave rules
+  - category: pickwaverules.update
+    group: Product Admin
+    description: Update pick wave rules
+  - category: pricelistentries.create
+    group: Product Admin
+    description: Create price list entries
+  - category: pricelistentries.delete
+    group: Product Admin
+    description: Delete price list entries
+  - category: pricelistentries.read
+    group: Product Admin
+    description: Get price list entries
+  - category: pricelistentries.update
+    group: Product Admin
+    description: Update price list entries
+  - category: pricelists.create
+    group: Product Admin
+    description: Create price lists
+  - category: pricelists.delete
+    group: Product Admin
+    description: Delete price lists
+  - category: pricelists.read
+    group: Product Admin
+    description: Get price lists
+  - category: pricelists.update
+    group: Product Admin
+    description: Update price lists
+  - category: productattributes.create
+    group: Product Admin
+    description: Create product attributes
+  - category: productattributes.delete
+    group: Product Admin
+    description: Delete product attributes
+  - category: productattributes.read
+    group: Product Admin
+    description: Get product attributes
+  - category: productattributes.update
+    group: Product Admin
+    description: Update product attributes
+  - category: productextras.create
+    group: Product Admin
+    description: Create product extras
+  - category: productextras.delete
+    group: Product Admin
+    description: Delete product extras
+  - category: productextras.read
+    group: Product Admin
+    description: Get product extras
+  - category: productextras.update
+    group: Product Admin
+    description: Update product extras
+  - category: productoptions.create
+    group: Product Admin
+    description: Create product options
+  - category: productoptions.delete
+    group: Product Admin
+    description: Delete product options
+  - category: productoptions.read
+    group: Product Admin
+    description: Get product options
+  - category: productoptions.update
+    group: Product Admin
+    description: Update product options
+  - category: productproperties.create
+    group: Product Admin
+    description: Create product properties
+  - category: productproperties.delete
+    group: Product Admin
+    description: Delete product properties
+  - category: productproperties.read
+    group: Product Admin
+    description: Get product properties
+  - category: productproperties.update
+    group: Product Admin
+    description: Update product properties
+  - category: productpublishing.create
+    group: Product Admin
+    description: Publish products
+  - category: productpublishing.delete
+    group: Product Admin
+    description: Discard product publishing drafts
+  - category: productpublishing.read
+    group: Product Admin
+    description: Get product publishing status
+  - category: productquickedit.create
+    group: Product Admin
+    description: Quick edit products
+  - category: productrules.create
+    group: Product Admin
+    description: Create product rules
+  - category: productrules.delete
+    group: Product Admin
+    description: Delete product rules
+  - category: productrules.read
+    group: Product Admin
+    description: Get product rules
+  - category: productrules.update
+    group: Product Admin
+    description: Update product rules
+  - category: productruleusages.read
+    group: Product Admin
+    description: Get product rule usages
+  - category: products.create
+    group: Product Admin
+    description: Create products
+  - category: products.delete
+    group: Product Admin
+    description: Delete products
+  - category: products.read
+    group: Product Admin
+    description: Get products
+  - category: products.update
+    group: Product Admin
+    description: Update products
+  - category: productsortdefinitions.create
+    group: Product Admin
+    description: Create product sort definitions
+  - category: productsortdefinitions.delete
+    group: Product Admin
+    description: Delete product sort definitions
+  - category: productsortdefinitions.read
+    group: Product Admin
+    description: Get product sort definitions
+  - category: productsortdefinitions.update
+    group: Product Admin
+    description: Update product sort definitions
+  - category: producttypes.create
+    group: Product Admin
+    description: Create product types
+  - category: producttypes.delete
+    group: Product Admin
+    description: Delete product types
+  - category: producttypes.read
+    group: Product Admin
+    description: Get product types
+  - category: producttypes.update
+    group: Product Admin
+    description: Update product types
+  - category: productvariations.create
+    group: Product Admin
+    description: Create product variations
+  - category: productvariations.delete
+    group: Product Admin
+    description: Delete product variations
+  - category: productvariations.read
+    group: Product Admin
+    description: Get product variations
+  - category: productvariations.update
+    group: Product Admin
+    description: Update product variations
+  - category: purchaselimitrules.create
+    group: Product Admin
+    description: Create purchase limit rules
+  - category: purchaselimitrules.delete
+    group: Product Admin
+    description: Delete purchase limit rules
+  - category: purchaselimitrules.read
+    group: Product Admin
+    description: Get purchase limit rules
+  - category: purchaselimitrules.update
+    group: Product Admin
+    description: Update purchase limit rules
+  - category: returnrules.create
+    group: Product Admin
+    description: Create return rules
+  - category: returnrules.delete
+    group: Product Admin
+    description: Delete return rules
+  - category: returnrules.read
+    group: Product Admin
+    description: Get return rules
+  - category: returnrules.update
+    group: Product Admin
+    description: Update return rules
+  - category: safetystockrules.create
+    group: Product Admin
+    description: Create safety stock rules
+  - category: safetystockrules.delete
+    group: Product Admin
+    description: Delete safety stock rules
+  - category: safetystockrules.read
+    group: Product Admin
+    description: Get safety stock rules
+  - category: safetystockrules.update
+    group: Product Admin
+    description: Update safety stock rules
+  - category: searchcategorysuggestsettings.delete
+    group: Product Admin
+    description: Delete search category suggest settings
+  - category: searchcategorysuggestsettings.read
+    group: Product Admin
+    description: Get search category suggest settings
+  - category: searchcategorysuggestsettings.update
+    group: Product Admin
+    description: Update search category suggest settings
+  - category: searchlistingsettings.delete
+    group: Product Admin
+    description: Delete search listing settings
+  - category: searchlistingsettings.read
+    group: Product Admin
+    description: Get search listing settings
+  - category: searchlistingsettings.update
+    group: Product Admin
+    description: Update search listing settings
+  - category: searchmerchandizingrule.create
+    group: Product Admin
+    description: Create search merchandizing rules
+  - category: searchmerchandizingrule.delete
+    group: Product Admin
+    description: Delete search merchandizing rules
+  - category: searchmerchandizingrule.read
+    group: Product Admin
+    description: Get search merchandizing rules
+  - category: searchmerchandizingrule.update
+    group: Product Admin
+    description: Update search merchandizing rules
+  - category: searchproductsuggestsettings.delete
+    group: Product Admin
+    description: Delete search product suggest settings
+  - category: searchproductsuggestsettings.read
+    group: Product Admin
+    description: Get search product suggest settings
+  - category: searchproductsuggestsettings.update
+    group: Product Admin
+    description: Update search product suggest settings
+  - category: searchredirect.create
+    group: Product Admin
+    description: Create search redirects
+  - category: searchredirect.delete
+    group: Product Admin
+    description: Delete search redirects
+  - category: searchredirect.read
+    group: Product Admin
+    description: Get search redirects
+  - category: searchredirect.update
+    group: Product Admin
+    description: Update search redirects
+  - category: searchsettings.create
+    group: Product Admin
+    description: Create search settings
+  - category: searchsettings.delete
+    group: Product Admin
+    description: Delete search settings
+  - category: searchsettings.read
+    group: Product Admin
+    description: Get search settings
+  - category: searchsettings.update
+    group: Product Admin
+    description: Update search settings
+  - category: searchsynonyms.create
+    group: Product Admin
+    description: Create search synonyms
+  - category: searchsynonyms.delete
+    group: Product Admin
+    description: Delete search synonyms
+  - category: searchsynonyms.read
+    group: Product Admin
+    description: Get search synonyms
+  - category: searchsynonyms.update
+    group: Product Admin
+    description: Update search synonyms
+  - category: searchtuningrules.create
+    group: Product Admin
+    description: Create search tuning rules
+  - category: searchtuningrules.delete
+    group: Product Admin
+    description: Delete search tuning rules
+  - category: searchtuningrules.read
+    group: Product Admin
+    description: Get search tuning rules
+  - category: searchtuningrules.update
+    group: Product Admin
+    description: Update search tuning rules
+  - category: shipmentrules.create
+    group: Product Admin
+    description: Create shipment rules
+  - category: shipmentrules.delete
+    group: Product Admin
+    description: Delete shipment rules
+  - category: shipmentrules.read
+    group: Product Admin
+    description: Get shipment rules
+  - category: shipmentrules.update
+    group: Product Admin
+    description: Update shipment rules
+  - category: tag.create
+    group: Product Admin
+    description: Create tags
+  - category: tag.delete
+    group: Product Admin
+    description: Delete tags
+  - category: tag.read
+    group: Product Admin
+    description: Get tags
+  - category: tag.update
+    group: Product Admin
+    description: Update tags
+  - category: carrierconfiguration.create
+    group: Shipping Admin
+    description: Create carrier configurations
+  - category: carrierconfiguration.delete
+    group: Shipping Admin
+    description: Delete carrier configurations
+  - category: carrierconfiguration.read
+    group: Shipping Admin
+    description: Get carrier configurations
+  - category: carrierconfiguration.update
+    group: Shipping Admin
+    description: Update carrier configurations
+  - category: carrierconfigurationglobal.read
+    group: Shipping Admin
+    description: Get global carrier configurations
+  - category: carriercredential.create
+    group: Shipping Admin
+    description: Create carrier credentials
+  - category: carriercredential.delete
+    group: Shipping Admin
+    description: Delete carrier credentials
+  - category: carriercredential.read
+    group: Shipping Admin
+    description: Get carrier credentials
+  - category: carriercredential.update
+    group: Shipping Admin
+    description: Update carrier credentials
+  - category: carriercredentialset.create
+    group: Shipping Admin
+    description: Create carrier credential sets
+  - category: carriercredentialset.delete
+    group: Shipping Admin
+    description: Delete carrier credential sets
+  - category: carriercredentialset.read
+    group: Shipping Admin
+    description: Get carrier credential sets
+  - category: carriercredentialset.update
+    group: Shipping Admin
+    description: Update carrier credential sets
+  - category: carrierdefinition.read
+    group: Shipping Admin
+    description: Get carrier definitions
+  - category: shipmentattributedefinition.create
+    group: Shipping Admin
+    description: Create shipment attribute definitions
+  - category: shipmentattributedefinition.read
+    group: Shipping Admin
+    description: Get shipment attribute definitions
+  - category: shipmentattributedefinition.update
+    group: Shipping Admin
+    description: Update shipment attribute definitions
+  - category: shippingprofile.create
+    group: Shipping Admin
+    description: Create shipping profiles
+  - category: shippingprofile.delete
+    group: Shipping Admin
+    description: Delete shipping profiles
+  - category: shippingprofile.read
+    group: Shipping Admin
+    description: Get shipping profiles
+  - category: shippingprofile.update
+    group: Shipping Admin
+    description: Update shipping profiles
+  - category: targetrules.create
+    group: Shipping Admin
+    description: Create target rules
+  - category: targetrules.delete
+    group: Shipping Admin
+    description: Delete target rules
+  - category: targetrules.read
+    group: Shipping Admin
+    description: Get target rules
+  - category: targetrules.update
+    group: Shipping Admin
+    description: Update target rules
+  - category: shipping.create
+    group: Shipping Runtime
+    description: Calculate shipping rates
+  - category: shipping.read
+    group: Shipping Runtime
+    description: Get shipping information
+  - category: cartsettings.create
+    group: Site Settings
+    description: Create cart settings
+  - category: cartsettings.read
+    group: Site Settings
+    description: Get cart settings
+  - category: cartsettings.update
+    group: Site Settings
+    description: Update cart settings
+  - category: checkoutsettings.delete
+    group: Site Settings
+    description: Delete checkout settings
+  - category: checkoutsettings.read
+    group: Site Settings
+    description: Get checkout settings
+  - category: checkoutsettings.update
+    group: Site Settings
+    description: Update checkout settings
+  - category: fulfillmentsettings.create
+    group: Site Settings
+    description: Create fulfillment settings
+  - category: fulfillmentsettings.read
+    group: Site Settings
+    description: Get fulfillment settings
+  - category: fulfillmentsettings.update
+    group: Site Settings
+    description: Update fulfillment settings
+  - category: generalsettings.create
+    group: Site Settings
+    description: Create general settings
+  - category: generalsettings.delete
+    group: Site Settings
+    description: Delete general settings
+  - category: generalsettings.read
+    group: Site Settings
+    description: Get general settings
+  - category: generalsettings.update
+    group: Site Settings
+    description: Update general settings
+  - category: inventorysettings.create
+    group: Site Settings
+    description: Create inventory settings
+  - category: inventorysettings.read
+    group: Site Settings
+    description: Get inventory settings
+  - category: inventorysettings.update
+    group: Site Settings
+    description: Update inventory settings
+  - category: returnsettings.create
+    group: Site Settings
+    description: Create return settings
+  - category: returnsettings.read
+    group: Site Settings
+    description: Get return settings
+  - category: returnsettings.update
+    group: Site Settings
+    description: Update return settings
+  - category: shippingsettings.create
+    group: Site Settings
+    description: Create shipping settings
+  - category: shippingsettings.read
+    group: Site Settings
+    description: Get shipping settings
+  - category: shippingsettings.update
+    group: Site Settings
+    description: Update shipping settings
+  - category: subscriptionsettings.create
+    group: Site Settings
+    description: Create subscription settings
+  - category: subscriptionsettings.read
+    group: Site Settings
+    description: Get subscription settings
+  - category: subscriptionsettings.update
+    group: Site Settings
+    description: Update subscription settings
+  - category: subscription.create
+    group: Subscription
+    description: Create subscriptions
+  - category: subscription.delete
+    group: Subscription
+    description: Delete subscriptions
+  - category: subscription.read
+    group: Subscription
+    description: Get subscriptions
+  - category: subscription.update
+    group: Subscription
+    description: Update subscriptions
+- name: Kibo Documentation
+  transport: streamable-http
+  endpoint: https://docs.kibocommerce.com/mcp
+  auth: none
+  verified: probed
+  source: https://docs.kibocommerce.com/pages/using-kibo-documentation-with-ai
+  probe:
+    initialize: 200
+    tools_list: 200
+    serverInfo:
+      name: Kibo Documentation
+      version: 1.0.0
+    protocolVersion: '2025-06-18'
+    date: '2026-10-18'
+  install_example: claude mcp add kibo-docs -- npx mcp-remote https://docs.kibocommerce.com/mcp
+  tools:
+  - name: search_kibo_documentation
+    description: Search across the Kibo Documentation knowledge base to find relevant information, code examples, API references, and guides. Use this tool when you need to answer questions about Kibo Documentation,
+      find specific documentation, understand how features work, or locate implementation details. The sear
+    inputs:
+    - query
+  - name: query_docs_filesystem_kibo_documentation
+    description: Run a read-only shell-like query against a virtualized, in-memory filesystem rooted at `/` that contains ONLY the Kibo Documentation documentation pages and OpenAPI specs. This is NOT a
+      shell on any real machine — nothing runs on the user's computer, the server host, or any network. The filesystem i
+    inputs:
+    - command
+  - name: submit_feedback
+    description: 'Report a problem with this documentation site so the docs team can fix it. Use when a documentation page is incorrect, outdated, confusing, incomplete, or has a broken example. This is
+      for feedback about the documentation content itself — not for product support requests or feedback about this tool '
+    inputs:
+    - path
+    - feedback
+tool_count: 316
+notes: 3 documentation tools observed via live tools/list; 313 Commerce MCP tool categories transcribed from the provider docs table.

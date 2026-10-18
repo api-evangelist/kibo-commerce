@@ -1,0 +1,162 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Search Category Suggest Settings API
+  version: '1.0'
+  description: 'Operations tagged SearchCategorySuggestSettings across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SearchCategorySuggestSettings
+paths:
+  /commerce/catalog/admin/search/{name}/categorysuggestsettings:
+    delete:
+      description: Deletes the CategorySuggestSettings for a specific SearchSetting by name.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Category Suggest Settings
+      tags:
+      - SearchCategorySuggestSettings
+      operationId: deleteCommerceCatalogAdminSearchByNameCategorysuggestsettings
+      x-operation-id-source: derived
+    get:
+      description: Get CategorySuggestSettings for a specific SearchSettings.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SuggestSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SuggestSettings'
+          description: OK
+      summary: Get Category Suggest Settings
+      tags:
+      - SearchCategorySuggestSettings
+      operationId: getCommerceCatalogAdminSearchByNameCategorysuggestsettings
+      x-operation-id-source: derived
+    put:
+      description: Adds or updates the CategorySuggestSettings for a specific SearchSetting.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestSettings'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SuggestSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SuggestSettings'
+          description: OK
+      summary: Update Category Suggest Settings
+      tags:
+      - SearchCategorySuggestSettings
+      operationId: putCommerceCatalogAdminSearchByNameCategorysuggestsettings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SuggestSettings:
+      properties:
+        crossFieldAdditiveScoreFactor:
+          format: double
+          type: number
+        fieldWeights:
+          items:
+            $ref: '#/components/schemas/FieldWeight'
+          type:
+          - array
+          - 'null'
+        personalizationExperience:
+          type:
+          - string
+          - 'null'
+        personalizationFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+        returnFields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    FieldWeight:
+      properties:
+        searchFieldName:
+          description: field in the index to target
+          type:
+          - string
+          - 'null'
+        weight:
+          description: weight to apply to boost field
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

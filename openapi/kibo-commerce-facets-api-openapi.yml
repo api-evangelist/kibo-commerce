@@ -1,0 +1,510 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Facets API
+  version: '1.0'
+  description: 'Operations tagged Facets across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Facets
+paths:
+  /commerce/catalog/admin/facets/{facetId}:
+    delete:
+      description: Deletes the Facet definition from the store.
+      parameters:
+      - description: ''
+        in: path
+        name: facetId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Facet
+      tags:
+      - Facets
+      operationId: deleteCommerceCatalogAdminFacetsByFacetId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a Facet definition.
+      parameters:
+      - description: ''
+        in: path
+        name: facetId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: validate
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Facet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Facet'
+          description: OK
+      summary: Get Facet
+      tags:
+      - Facets
+      operationId: getCommerceCatalogAdminFacetsByFacetId
+      x-operation-id-source: derived
+    put:
+      description: Modifies a Facet definition.
+      parameters:
+      - description: ''
+        in: path
+        name: facetId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Facet'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Facet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Facet'
+          description: OK
+      summary: Update Facet
+      tags:
+      - Facets
+      operationId: putCommerceCatalogAdminFacetsByFacetId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/facets/category:
+    get:
+      description: Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
+      parameters:
+      - description: ''
+        in: query
+        name: categoryId
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: categoryCode
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: includeAvailable
+        schema:
+          type: boolean
+      - description: ''
+        in: query
+        name: validate
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+          description: OK
+      summary: Get Facet Category List
+      tags:
+      - Facets
+      operationId: getCommerceCatalogAdminFacetsCategory
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/facets/category/{categoryId}:
+    get:
+      description: Retrieves a list of configured, and optionally available, Facet configurations for the specified category.
+      parameters:
+      - description: ''
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: includeAvailable
+        schema:
+          type: boolean
+      - description: ''
+        in: query
+        name: validate
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+          description: OK
+      summary: Get Facet Category List (Legacy)
+      tags:
+      - Facets
+      operationId: getCommerceCatalogAdminFacetsCategoryByCategoryId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/facets:
+    get:
+      description: Retrieves the list of Facet Definition
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FacetCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FacetCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FacetCollection'
+          description: OK
+      summary: Get facets
+      tags:
+      - Facets
+      operationId: getCommerceCatalogAdminFacets
+      x-operation-id-source: derived
+    post:
+      description: Adds a new Facet to a category in a catalog.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Facet'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Facet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Facet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Facet'
+          description: OK
+      summary: Add Facet
+      tags:
+      - Facets
+      operationId: postCommerceCatalogAdminFacets
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/facets/set/edit:
+    post:
+      description: Modifies a Facet definition.
+      parameters:
+      - description: ''
+        in: query
+        name: categoryId
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: categoryCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FacetSet'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FacetSet'
+          description: OK
+      summary: Update Facet Set
+      tags:
+      - Facets
+      operationId: postCommerceCatalogAdminFacetsSetEdit
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    FacetCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Facet'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    FacetRangeQuery:
+      properties:
+        rangeValueEnd: {}
+        rangeValueStart: {}
+      type: object
+    Facet:
+      description: The definition of a Facet
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        categoryCode:
+          description: The category that the facet is being configured at
+          type:
+          - string
+          - 'null'
+        categoryId:
+          description: The category that the facet is being configured at
+          format: int32
+          type:
+          - integer
+          - 'null'
+        facetId:
+          description: The unique identifier for the facet definition
+          format: int32
+          type:
+          - integer
+          - 'null'
+        facetType:
+          description: "The type of facet. Allowable values are: Value, RangeQuery \nMust be a valid value for DataType defined in FacetTypeConst."
+          type:
+          - string
+          - 'null'
+        isHidden:
+          description: Indicates whether the facet is hidden for the given category
+          type: boolean
+        order:
+          description: Used to order the display of the facets within a section
+          format: int32
+          type: integer
+        overrideFacetId:
+          description: The ID of a parent category's facet being overriden
+          format: int32
+          type:
+          - integer
+          - 'null'
+        rangeQueries:
+          description: List of ranges if the Facet is of type Range
+          items:
+            $ref: '#/components/schemas/FacetRangeQuery'
+          type:
+          - array
+          - 'null'
+        source:
+          $ref: '#/components/schemas/FacetSource'
+        validity:
+          $ref: '#/components/schemas/FacetValidity'
+        valueSortType:
+          description: "Determines how the facet values will be sorted in the store. \nMust be a valid value for DataType defined in FacetValueSortTypeConst. \nAllowable values are: CountAscending, CountDescending, ValuesAscending, ValuesDescending, AttributeDefinition, AttributeDefinitionDescending.\nThe default if no value is specified will be CountDescending."
+          type:
+          - string
+          - 'null'
+      type: object
+    FacetSet:
+      properties:
+        available:
+          description: Facets that are not configured, but COULD BE!
+          items:
+            $ref: '#/components/schemas/FacetSource'
+          type:
+          - array
+          - 'null'
+        configured:
+          description: Facets that are configured
+          items:
+            $ref: '#/components/schemas/Facet'
+          type:
+          - array
+          - 'null'
+      type: object
+    FacetSource:
+      properties:
+        allowsRangeQuery:
+          description: Read-only system-generated indicator of whether the source field supports RangeQuery type facets.
+          type: boolean
+        dataType:
+          description: Read-only system-generated DataType of the Attribute or Element source field. Will be valid value for DataType defined in DataTypeConst.
+          maxLength: 20
+          type:
+          - string
+          - 'null'
+        id:
+          description: Name of field, or FQN of attribute
+          type:
+          - string
+          - 'null'
+        name:
+          description: Read-only system-generated label for the source field.
+          type:
+          - string
+          - 'null'
+        type:
+          description: "The type of source field used by the facet. Allowable values are: Element, Attribute. \nMust be a valid value for DataType defined in FacetFieldTypeConst."
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    FacetValidity:
+      properties:
+        isValid:
+          type: boolean
+        reasonCode:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

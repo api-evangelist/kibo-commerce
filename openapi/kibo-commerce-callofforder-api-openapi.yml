@@ -1,0 +1,2677 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Call Off Order API
+  version: '1.0'
+  description: 'Operations tagged CallOffOrder across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CallOffOrder
+paths:
+  /commerce/callofforders/{callOffOrderId}/items:
+    post:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrderItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Add Item
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCalloffordersByCallOffOrderIdItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/aggregate:
+    get:
+      description: 'Sums `items[].requestedQty` and returns breakdowns by product code, customer, status,
+
+        and requested ship month.
+
+        Use the `filter` parameter to scope the aggregation (e.g. `items.product.productCode in [SKU1,SKU2]`,
+
+        `customerAccountId eq 1234`, `items.status ne Cancelled`,
+
+        `items.requestedShipDate ge 2026-01-01`).'
+      parameters:
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderAggregateResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderAggregateResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderAggregateResult'
+          description: OK
+      summary: Aggregate requested quantity across call-off orders spanning every site in the…
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCalloffordersAggregate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/actions/bulk-cancel:
+    post:
+      description: Bulk cancel call-off orders.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkCancelRequest'
+        description: Bulk cancel request.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkCancelResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BulkCancelResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BulkCancelResult'
+          description: OK
+      summary: Bulk cancel call-off orders
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCalloffordersActionsBulkCancel
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/cancel:
+    post:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrderAction'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Cancel Item
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCalloffordersByCallOffOrderIdItemsByItemIdCancel
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/attributes/{attributeFqn}:
+    delete:
+      description: Delete a single header-level attribute from a call-off order by FQN.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFqn
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a single header-level attribute from a call-off order by FQN
+      tags:
+      - CallOffOrder
+      operationId: deleteCommerceCalloffordersByCallOffOrderIdAttributesByAttributeFqn
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes/{attributeFqn}:
+    delete:
+      description: Delete a single line-level attribute from a call-off order item by FQN.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFqn
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete a single line-level attribute from a call-off order item by FQN
+      tags:
+      - CallOffOrder
+      operationId: deleteCommerceCalloffordersByCallOffOrderIdItemsByItemIdAttributesByAttributeFqn
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/attributes:
+    get:
+      description: Get all header-level attributes for a call-off order.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+          description: OK
+      summary: Get all header-level attributes for a call-off order
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCalloffordersByCallOffOrderIdAttributes
+      x-operation-id-source: derived
+    post:
+      description: Create header-level attributes on a call-off order.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CallOffOrderAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+          description: OK
+      summary: Create header-level attributes on a call-off order
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCalloffordersByCallOffOrderIdAttributes
+      x-operation-id-source: derived
+    put:
+      description: Update (upsert) header-level attributes on a call-off order.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: removeMissing
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CallOffOrderAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderAttribute'
+                type: array
+          description: OK
+      summary: Update (upsert) header-level attributes on a call-off order
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderIdAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes:
+    get:
+      description: Get all line-level attributes for a call-off order item.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+          description: OK
+      summary: Get all line-level attributes for a call-off order item
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCalloffordersByCallOffOrderIdItemsByItemIdAttributes
+      x-operation-id-source: derived
+    post:
+      description: Create line-level attributes on a call-off order item; skips FQNs that already exist.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CallOffOrderItemAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+          description: OK
+      summary: Create line-level attributes on a call-off order item; skips FQNs that already…
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCalloffordersByCallOffOrderIdItemsByItemIdAttributes
+      x-operation-id-source: derived
+    put:
+      description: Upsert line-level attributes on a call-off order item.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: removeMissing
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CallOffOrderItemAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CallOffOrderItemAttribute'
+                type: array
+          description: OK
+      summary: Upsert line-level attributes on a call-off order item
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderIdItemsByItemIdAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/actions:
+    get:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/plain:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Get Available Actions
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCalloffordersByCallOffOrderIdActions
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrderAction'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Perform Action
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCalloffordersByCallOffOrderIdActions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}:
+    get:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Get Call Off Order
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCalloffordersByCallOffOrderId
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrder'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Update Call Off Order
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders:
+    get:
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderCollection'
+          description: OK
+      summary: Get Call Off Orders
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCallofforders
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrder'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Create Call Off Order
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCallofforders
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/changemessages:
+    get:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderChangeMessageCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderChangeMessageCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderChangeMessageCollection'
+          description: OK
+      summary: Get Change Messages
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCalloffordersByCallOffOrderIdChangemessages
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/release:
+    post:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseCallOffOrderRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Release Call Off Order
+      tags:
+      - CallOffOrder
+      operationId: postCommerceCalloffordersByCallOffOrderIdRelease
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/credithold/reasons:
+    get:
+      description: Returns the list of available credit hold reasons for Call-Off Orders.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreditHoldReasonCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CreditHoldReasonCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CreditHoldReasonCollection'
+          description: OK
+      summary: Returns the list of available credit hold reasons for Call-Off Orders
+      tags:
+      - CallOffOrder
+      operationId: getCommerceCalloffordersCreditholdReasons
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/destination:
+    put:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Destination'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Update Item Destination
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderIdItemsByItemIdDestination
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/destination/{destinationId}:
+    put:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: destinationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Update Item Destination By Id
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderIdItemsByItemIdDestinationByDestinationId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/price/{unitPrice}:
+    put:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: unitPrice
+        required: true
+        schema:
+          format: double
+          type: number
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Update Item Price
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderIdItemsByItemIdPriceByUnitPrice
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/quantity/{quantity}:
+    put:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: quantity
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Update Item Quantity
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderIdItemsByItemIdQuantityByQuantity
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/callofforders/{callOffOrderId}/items/{itemId}/shipdate:
+    put:
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: itemId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              format: date-time
+              type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrder'
+          description: OK
+      summary: Update Item Requested Ship Date
+      tags:
+      - CallOffOrder
+      operationId: putCommerceCalloffordersByCallOffOrderIdItemsByItemIdShipdate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ReasonItemBase:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        needsMoreInfo:
+          type: boolean
+        reasonCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    Reason:
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        moreInfo:
+          type:
+          - string
+          - 'null'
+        reasonCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    PurchaseOrderPaymentTerm:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+      type: object
+    CreditHoldReasonCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CreditHoldReasonItem'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PackageMeasurements:
+      description: Physical dimensions of the package required to ship the product and its weight.
+      properties:
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    CreditHoldStatus:
+      description: 'Header-level credit-hold state for a CallOffOrder. Replaces the per-item
+
+        CreditHold + CreditHoldReason fields that lived on CallOffOrderItem prior
+
+        to this change — credit-hold is a header concern (one decision per order)
+
+        not a per-line concern.'
+      properties:
+        onHold:
+          description: True when the order is on credit hold.
+          type: boolean
+        reason:
+          $ref: '#/components/schemas/CreditHoldReason'
+      type: object
+    Destination:
+      properties:
+        data:
+          description: Custom data
+          type:
+          - object
+          - 'null'
+        destinationContact:
+          $ref: '#/components/schemas/Contact'
+        id:
+          description: An identifier for this entry.
+          type:
+          - string
+          - 'null'
+        isDestinationCommercial:
+          description: Indicates that the destination is commercial
+          type:
+          - boolean
+          - 'null'
+      type: object
+    BillingInfo:
+      description: 'Customer''s payment details such as payment type (credit card, check by mail, or PayPal)
+
+        and cardholder information if payment is by credit card.'
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        billingContact:
+          $ref: '#/components/schemas/Contact'
+        card:
+          $ref: '#/components/schemas/PaymentCard'
+        check:
+          $ref: '#/components/schemas/CheckPayment'
+        customCreditType:
+          description: Name of custom stored credit type
+          type:
+          - string
+          - 'null'
+        data:
+          description: Custom data from payment providers
+          type:
+          - object
+          - 'null'
+        externalToken:
+          $ref: '#/components/schemas/ExternalPaymentToken'
+        externalTransactionId:
+          description: Transaction Id from third party payment source like Visa Checkout, Amazon
+          type:
+          - string
+          - 'null'
+        isRecurring:
+          description: Indicates whether the payment is used in recurring transactions. ex- subscription payments
+          type: boolean
+        isSameBillingShippingAddress:
+          description: Indicates that billing and shipping address are the same
+          type: boolean
+        paymentType:
+          description: 'Type of payment, such as credit card, check by mail, or PayPal.
+
+            see Mozu.CommerceRuntime.Contracts.Payments.PaymentTypeConst for valid values'
+          type:
+          - string
+          - 'null'
+        paymentWorkflow:
+          type:
+          - string
+          - 'null'
+        purchaseOrder:
+          $ref: '#/components/schemas/PurchaseOrderPayment'
+        recurringTransactionId:
+          description: 'Recurring Payment Id returned by Payment Gateway
+
+            networkTransactionId for vantiv
+
+            previousTransactionId for cybersource etc'
+          type:
+          - string
+          - 'null'
+        storeCreditCode:
+          description: The store credit to use for this purchase
+          type:
+          - string
+          - 'null'
+        storeCreditType:
+          description: The type of store credit used for this purchase
+          type:
+          - string
+          - 'null'
+        token:
+          $ref: '#/components/schemas/PaymentToken'
+      type: object
+    BulkCancelResultItem:
+      properties:
+        cancelledResource: {}
+        error:
+          $ref: '#/components/schemas/BulkCancelError'
+        orderId:
+          type:
+          - string
+          - 'null'
+        outcome:
+          type:
+          - string
+          - 'null'
+        resourceType:
+          type:
+          - string
+          - 'null'
+      type: object
+    BulkCancelRequest:
+      properties:
+        correlationId:
+          type:
+          - string
+          - 'null'
+        orderIds:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        reason:
+          $ref: '#/components/schemas/CanceledReason'
+      type: object
+    CallOffOrderItemAttribute:
+      description: 'Custom attribute for Call-Off Order line items, following the same pattern
+
+        as CallOffOrderAttribute.'
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductStock:
+      properties:
+        aggregateInventory:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        availableDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        availableFutureInventories:
+          format: int32
+          readOnly: true
+          type: integer
+        futureInventories:
+          items:
+            $ref: '#/components/schemas/FutureInventory'
+          type:
+          - array
+          - 'null'
+        isOnBackOrder:
+          type: boolean
+        isSubstitutable:
+          type:
+          - boolean
+          - 'null'
+        manageStock:
+          type: boolean
+        stockAvailable:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        totalAvailableStock:
+          format: int32
+          readOnly: true
+          type: integer
+      type: object
+    CanceledReason:
+      allOf:
+      - $ref: '#/components/schemas/Reason'
+      - additionalProperties: false
+        type: object
+    CreditHoldReason:
+      allOf:
+      - $ref: '#/components/schemas/Reason'
+      - additionalProperties: false
+        type: object
+    CallOffPayment:
+      description: 'Optional payment commitment on a call-off order.
+
+        v1 supports only PurchaseOrder payment type.
+
+        At release, this payment is mapped onto each sibling Sales Order via
+
+        `IPaymentHandler.CreatePaymentActionAsync` with Amount = that order''s Total.'
+      properties:
+        amount:
+          description: 'Optional total authorization amount. Defaults to the call-off TotalAmount when null.
+
+            Per-destination Sales Order payment uses that order''s individual Total.'
+          format: double
+          type:
+          - number
+          - 'null'
+        billingInfo:
+          $ref: '#/components/schemas/BillingInfo'
+        data:
+          description: ERP / extensibility data bag.
+          type:
+          - object
+          - 'null'
+        paymentTerms:
+          description: Payment terms code (e.g. "Net30"). Optional; defaults to B2B account terms downstream.
+          type:
+          - string
+          - 'null'
+        paymentType:
+          description: 'Payment type — only `PurchaseOrder` is supported in v1.
+
+            See Mozu.CommerceRuntime.Contracts.CallOffOrders.CallOffPayment.PaymentTypeConst.'
+          type:
+          - string
+          - 'null'
+        purchaseOrderNumber:
+          description: Buyer's PO number. Required when Mozu.CommerceRuntime.Contracts.CallOffOrders.CallOffPayment.PaymentType is PurchaseOrder.
+          type:
+          - string
+          - 'null'
+      type: object
+    CallOffOrderChangeMessageCollection:
+      description: Paged result for Call-Off Order change-message queries.
+      properties:
+        items:
+          description: Page of change messages matching the query.
+          items:
+            $ref: '#/components/schemas/CallOffOrderChangeMessage'
+          type:
+          - array
+          - 'null'
+        pageSize:
+          description: Maximum number of records per page.
+          format: int32
+          type: integer
+        startIndex:
+          description: Zero-based index of the first record in this page.
+          format: int32
+          type: integer
+        totalCount:
+          description: Total number of matching messages across all pages.
+          format: int32
+          type: integer
+      type: object
+    Contact:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+      type: object
+    ReleaseCallOffOrderRequest:
+      description: Request payload for releasing a Call-Off Order.
+      properties:
+        itemIds:
+          description: 'Optional list of item IDs to release. When null or empty, all eligible
+
+            items on the order are released.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    CoreApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    PurchaseOrderCustomField:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    CallOffOrderDemandEntry:
+      description: 'A single bucket in a call-off order aggregate breakdown: the summed requested quantity
+
+        for a group (product code, customer account, status, or month) plus a count of matching orders.'
+      properties:
+        key:
+          description: 'The grouping key value. Meaning depends on the breakdown dimension:
+
+            product code string, customer account id string, order status string,
+
+            or ISO-8601 month string (yyyy-MM) for the monthly breakdown.'
+          type:
+          - string
+          - 'null'
+        orderCount:
+          description: Number of distinct call-off orders in this bucket.
+          format: int32
+          type: integer
+        totalRequestedQty:
+          description: Sum of `items[].requestedQty` for call-off orders in this bucket.
+          format: int64
+          type: integer
+      type: object
+    CheckPayment:
+      properties:
+        checkNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    PaymentCard:
+      description: "If the customer is paying by credit card, the card holder's details, such as the name on the card, number, billing \naddress, and expiration dates."
+      properties:
+        bin:
+          description: Year when the card expires.
+          type:
+          - string
+          - 'null'
+        cardNumberPartOrMask:
+          description: "The visible part of the card number that the merchant uses to refer to \npayment information, for example, the last for digits of the card number."
+          type:
+          - string
+          - 'null'
+        ccLastFour:
+          description: 'Last four digit of Credit card
+
+            Only for OMS Only tenant.'
+          type:
+          - string
+          - 'null'
+        expireMonth:
+          description: Month when the card expires.
+          format: int32
+          type: integer
+        expireYear:
+          description: Year when the card expires.
+          format: int32
+          type: integer
+        isCardInfoSaved:
+          description: If true, the card information is stored in the customer's account.
+          type: boolean
+        isTokenized:
+          description: If true, the card is tokenized by external provider
+          type: boolean
+        isUsedRecurring:
+          description: If true, the credit card is charged on a regular interval, such as for a subscription. (Not supported currently.)
+          type:
+          - boolean
+          - 'null'
+        nameOnCard:
+          description: Card holder's name as it appears on the card.
+          type:
+          - string
+          - 'null'
+        paymentOrCardType:
+          description: Card type such as Visa, MasterCard, American Express, or Discover.
+          type:
+          - string
+          - 'null'
+        paymentServiceCardId:
+          description: Credit card number.
+          type:
+          - string
+          - 'null'
+      type: object
+    BulkCancelResult:
+      properties:
+        correlationId:
+          type:
+          - string
+          - 'null'
+        resourceType:
+          type:
+          - string
+          - 'null'
+        results:
+          items:
+            $ref: '#/components/schemas/BulkCancelResultItem'
+          type:
+          - array
+          - 'null'
+        totalFailed:
+          format: int32
+          type: integer
+        totalProcessed:
+          format: int32
+          type: integer
+        totalRequested:
+          format: int32
+          type: integer
+        totalSucceeded:
+          format: int32
+          type: integer
+      type: object
+    CallOffOrderItem:
+      description: A requested product quantity for delivery to a specific address.
+      properties:
+        actualDeliveryDate:
+          description: Actual delivery date, recorded once the line has been physically delivered.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        attributes:
+          description: Line-level custom attributes extending AbstractAttribute.
+          items:
+            $ref: '#/components/schemas/CallOffOrderItemAttribute'
+          type:
+          - array
+          - 'null'
+        blanketOrderItemId:
+          description: 'Identifier of the Blanket Order item this item draws from. Required
+
+            when the parent call-off references a Blanket Order.'
+          type:
+          - string
+          - 'null'
+        cancelledBy:
+          description: User who cancelled this line.
+          type:
+          - string
+          - 'null'
+        cancelledDate:
+          description: Line cancellation timestamp.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        cancelledReason:
+          $ref: '#/components/schemas/CanceledReason'
+        destinationId:
+          description: 'Identifier of the Destination in the parent call-off''s Destinations
+
+            collection that this line ships to.'
+          type:
+          - string
+          - 'null'
+        eddStatus:
+          description: 'Lifecycle state of Mozu.CommerceRuntime.Contracts.CallOffOrders.CallOffOrderItem.ExpectedDeliveryDate: null until first calculated,
+
+            "Provisional" while Hold/PartiallyReserved/FullyReserved, then locked to "Final"
+
+            at release. Exposed as a string on this Contracts DTO (not the Domain-layer enum),
+
+            matching this entity''s existing convention for enum-backed fields (see FulfillmentType).'
+          type:
+          - string
+          - 'null'
+        expectedDeliveryDate:
+          description: Expected delivery date, typically provided by the supplier or fulfillment system.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        fillRate:
+          description: Computed fill ratio (ReservedQty / RequestedQty). Phase 2+.
+          format: double
+          type:
+          - number
+          - 'null'
+        fulfillmentLocationCode:
+          description: 'Pickup location code. Meaningful only when `FulfillmentType == "Pickup"`;
+
+            ignored for Ship / Digital / Curbside / Delivery (downstream Order
+
+            Routing handles those). Carried into the SalesOrder created by the
+
+            Release Rules Engine (spec 005 FR-021).'
+          type:
+          - string
+          - 'null'
+        fulfillmentType:
+          description: 'Per-line fulfillment method. One of: Ship, Pickup, Digital, Curbside, Delivery.
+
+            In a future release, CallOffOrderItem may extend FulfillableCommerceItem.'
+          type:
+          - string
+          - 'null'
+        id:
+          description: System-generated item identifier.
+          type:
+          - string
+          - 'null'
+        inventoryTags:
+          description: 'Name-value pairs scoping the inventory pool for reservation. Set at
+
+            item creation and immutable once a reservation exists.'
+          items:
+            $ref: '#/components/schemas/InventoryTags'
+          type:
+          - array
+          - 'null'
+        lineId:
+          description: Sequential line identifier within the call-off, auto-assigned.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lineTotal:
+          description: 'Total amount for this line. Client-supplied in Mode 1; computed in
+
+            Mode 2.'
+          format: double
+          type:
+          - number
+          - 'null'
+        product:
+          $ref: '#/components/schemas/CallOffOrderProductReference'
+        purchaseLocation:
+          description: 'Purchase location (store/location code) captured from the request context at
+
+            line creation. Used for catalog price resolution and carried to the released
+
+            Sales Order. Immutable after create.'
+          type:
+          - string
+          - 'null'
+        releasedDate:
+          description: Timestamp when this line was released to a Sales Order (Phase 3).
+          format: date-time
+          type:
+          - string
+          - 'null'
+        releasedQty:
+          description: 'Quantity released to a Sales Order. Written in Phase 3; zero in
+
+            Phases 1–2.'
+          format: int32
+          type: integer
+        requestedDeliveryDate:
+          description: Buyer-requested delivery date for this line.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        requestedQty:
+          description: Buyer-requested quantity.
+          format: int32
+          type: integer
+        requestedShipDate:
+          description: 'Buyer-requested ship date. Must fall within the parent Blanket Order''s
+
+            validity period when a Blanket Order is referenced.'
+          format: date-time
+          type:
+          - string
+          - 'null'
+        reservedQty:
+          description: 'Quantity reserved by the inventory reservation engine.
+
+            Written in Phase 2; zero in Phase 1.'
+          format: int32
+          type: integer
+        salesOrderId:
+          description: 'The SalesOrder id this line was released into. Null until the line
+
+            transitions to `Released` by the Release Rules Engine (spec 005).
+
+            Immutable thereafter.'
+          type:
+          - string
+          - 'null'
+        status:
+          description: 'Current line status. One of: Hold, PartiallyReserved, Released,
+
+            Converted, Cancelled.'
+          type:
+          - string
+          - 'null'
+        timeFenceDays:
+          description: 'Time-fence tolerance (days) from the ReservationRule that produced this line''s most
+
+            recent reservation delta (spec COM-10941 follow-up).'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        unitPrice:
+          description: 'Per-line unit price. Overridable — may come from the Blanket Order,
+
+            be client-supplied, or be buyer-negotiated.'
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    CallOffOrderAttribute:
+      description: 'Custom attribute for Call-Off Orders, following the same pattern
+
+        as BlanketOrderAttribute and OrderAttribute.'
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    ExternalPaymentToken:
+      description: 'Structured payment token for external (non-Mozu) payment processors.
+
+
+        Distinct from legacy PaymentToken (Apple Pay / PayPal).
+
+
+        Used in COM-10873 externally tokenized payments feature.
+
+
+        Validation rules:
+
+        - All three fields (PaymentServiceTokenId, Type, Provider) are required
+
+        - Type must match BillingInfo.PaymentType (case-insensitive)
+
+        - Feature gate (externalTokenizationEnabled) must be true'
+      properties:
+        paymentServiceTokenId:
+          description: Actual token value from the external payment provider.
+          type:
+          - string
+          - 'null'
+        provider:
+          description: External token provider identifier (e.g., "Stripe", "Square", "PayPal").
+          type:
+          - string
+          - 'null'
+        type:
+          description: 'Payment method type (e.g., "CreditCard", "PayPal", "ApplePay").
+
+            Must match BillingInfo.PaymentType exactly (case-insensitive).'
+          type:
+          - string
+          - 'null'
+      type: object
+    InventoryTags:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    BundledProduct:
+      description: Describes products that are bundled inside of a main bundle product.
+      properties:
+        allocationExpiration:
+          description: Allocation ID associated with this product on this order.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        allocationId:
+          description: Allocation ID associated with this product on this order.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        creditValue:
+          description: Credit value.  Only populated if the bundled product is a gift card or digital credit
+          format: double
+          type:
+          - number
+          - 'null'
+        deltaPrice:
+          description: Only populated for extras
+          format: double
+          type:
+          - number
+          - 'null'
+        description:
+          description: Short description of the product in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        fulfillmentStatus:
+          description: Fulfillment status of the product.
+          type:
+          - string
+          - 'null'
+        goodsType:
+          description: Goods Type
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: ImageUrl of product
+          type:
+          - string
+          - 'null'
+        isPackagedStandAlone:
+          description: Indicates that this product ships by itself.
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/PackageMeasurements'
+        name:
+          description: Name of the product, this is the current value of the product's name in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        optionAttributeFQN:
+          description: Fully Qualified Name of the selected option's attribute
+          type:
+          - string
+          - 'null'
+        optionValue:
+          description: Value of the selected option
+        productCode:
+          description: Merchant-created code that uniquely identifies the product.
+          type:
+          - string
+          - 'null'
+        productReservationId:
+          description: Reservation ID associated with this product in the bundle.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        quantity:
+          description: Quantity of the product included in the bundle.
+          format: int32
+          type: integer
+        stock:
+          $ref: '#/components/schemas/ProductStock'
+      type: object
+    CallOffOrderProductReference:
+      description: 'Lightweight product identity for Call-Off Order Items.
+
+        Extended fields are stamped from the catalog at call-off creation (Kibo mode)
+
+        and carried through to the released Sales Order, avoiding per-line catalog
+
+        lookups at release time.'
+      properties:
+        bundledProducts:
+          description: 'Bundle component lines. Populated only when Mozu.CommerceRuntime.Contracts.CallOffOrders.ProductReference.ProductUsage is "Bundle".
+
+            Stamped at create. Immutable.'
+          items:
+            $ref: '#/components/schemas/BundledProduct'
+          type:
+          - array
+          - 'null'
+        combinedProductCode:
+          description: 'Returns VariationProductCode if not null/whitespace, otherwise ProductCode.
+
+            This value is computed on the domain model and mapped directly to the contract
+
+            via Mapster convention-based mapping — no recalculation on the contract side.
+
+            UI should use the items.product.combinedproductcode filter for variation-aware
+
+            product searches instead of items.product.productcode.'
+          type:
+          - string
+          - 'null'
+        fulfillmentTypesSupported:
+          description: 'Fulfillment types the product supports (e.g. "Shipping", "Pickup"). Stamped from
+
+            the catalog at call-off creation. Immutable.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        goodsType:
+          description: 'Goods type (e.g. "Physical", "Digital", "Service"). Routes shipment creation.
+
+            Stamped at create. Immutable.'
+          type:
+          - string
+          - 'null'
+        name:
+          description: Display name of the product.
+          type:
+          - string
+          - 'null'
+        options:
+          description: Configurable option selections for this variant. Stamped at create. Immutable.
+          items:
+            $ref: '#/components/schemas/ProductOption'
+          type:
+          - array
+          - 'null'
+        productCode:
+          description: 'Product code (SKU). Must match the Blanket Order line product when
+
+            the parent call-off references a Blanket Order.'
+          type:
+          - string
+          - 'null'
+        productUsage:
+          description: 'Product usage classification (e.g. "Bundle", "Standard"). Drives bundle line
+
+            splitting at shipment creation. Stamped at create. Immutable.'
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          description: Variation product code for the selected variant. Stamped at create. Immutable.
+          type:
+          - string
+          - 'null'
+      type: object
+    CallOffOrderAction:
+      description: 'Request payload for executing a lifecycle action on a Call-Off Order
+
+        (e.g. cancel, release).'
+      properties:
+        actionName:
+          description: 'Name of the action to execute. Must be present in the call-off order''s
+
+            current AvailableActions list.'
+          type:
+          - string
+          - 'null'
+        itemIds:
+          description: 'Optional list of item IDs to target. When null or empty, the action
+
+            applies to every item on the order.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        reason:
+          $ref: '#/components/schemas/Reason'
+      type: object
+    PaymentToken:
+      properties:
+        paymentServiceTokenId:
+          type:
+          - string
+          - 'null'
+        provider:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    CallOffOrder:
+      description: A buyer's delivery request, either linked to a Blanket Order or standalone.
+      properties:
+        attributes:
+          description: 'Custom attributes extending AbstractAttribute. Flows downstream to
+
+            Sales Orders and Shipments in later phases.'
+          items:
+            $ref: '#/components/schemas/CallOffOrderAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        availableActions:
+          description: Actions valid for the current status. Computed on read; not persisted.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        blanketOrderId:
+          description: 'Identifier of the parent Blanket Order if this call-off draws from one;
+
+            null for standalone call-offs.'
+          type:
+          - string
+          - 'null'
+        cancelledBy:
+          description: User who cancelled the call-off order.
+          type:
+          - string
+          - 'null'
+        cancelledDate:
+          description: Cancellation timestamp.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        cancelledReason:
+          $ref: '#/components/schemas/CanceledReason'
+        changeMessages:
+          description: 'Change messages describing mutations to this call-off order.
+
+            Hydrated from a separate collection on read; not embedded on the document.'
+          items:
+            $ref: '#/components/schemas/CallOffOrderChangeMessage'
+          type:
+          - array
+          - 'null'
+        channelCode:
+          description: Channel origin (e.g. "wholesale", "ecommerce", "EDI").
+          type:
+          - string
+          - 'null'
+        completedAt:
+          description: Timestamp when all lines reached terminal status.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        creditHold:
+          $ref: '#/components/schemas/CreditHoldStatus'
+        currencyCode:
+          description: 'Currency code (ISO 4217). Must match the parent Blanket Order currency
+
+            when one is referenced.'
+          type:
+          - string
+          - 'null'
+        customerAccountId:
+          description: B2B Account identifier. Must reference an active B2B account.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        data:
+          description: Vendor / extension custom data, free-form JSON.
+          type:
+          - object
+          - 'null'
+        destinations:
+          description: 'Shipping destinations. Items reference these by DestinationId
+
+            (IDestinationContainer pattern).'
+          items:
+            $ref: '#/components/schemas/Destination'
+          type:
+          - array
+          - 'null'
+        externalId:
+          description: 'Buyer''s own reference number / idempotency key (e.g. release number from
+
+            an ERP). Unique per tenant when supplied.'
+          type:
+          - string
+          - 'null'
+        id:
+          description: System-generated unique identifier (MozuObjectId).
+          type:
+          - string
+          - 'null'
+        items:
+          description: Requested product line items.
+          items:
+            $ref: '#/components/schemas/CallOffOrderItem'
+          type:
+          - array
+          - 'null'
+        notes:
+          description: Structured notes attached to the call-off order.
+          items:
+            $ref: '#/components/schemas/OrderNote'
+          type:
+          - array
+          - 'null'
+        number:
+          description: Human-readable sequential number, auto-generated per tenant.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        payments:
+          description: 'Optional payment(s) on this call-off order. Max 1 in v1 (PurchaseOrder only).
+
+            At release, each sibling Sales Order carries the same PO number and billing info,
+
+            with Amount = that order''s individual Total.'
+          items:
+            $ref: '#/components/schemas/CallOffPayment'
+          type:
+          - array
+          - 'null'
+        priceListCode:
+          description: 'Resolved price list code locked at create. Null for External mode.
+
+            Not body-settable — set by the service via price-list resolution. Immutable after create.'
+          type:
+          - string
+          - 'null'
+        pricingMode:
+          description: 'Pricing mode: `Kibo` (default — prices resolved from catalog/price list) or
+
+            `External` (caller-supplied prices stored as-is). Immutable after create.
+
+            See Mozu.CommerceRuntime.Contracts.PricingModeConst.'
+          type:
+          - string
+          - 'null'
+        reservationId:
+          description: 'Inventory reservation identifier. Set when inventory is reserved
+
+            for this call-off order.'
+          type:
+          - string
+          - 'null'
+        siteId:
+          description: Site identifier. Populated from the API context on read.
+          format: int32
+          type: integer
+        status:
+          description: 'Current call-off order status. One of: Hold, PartiallyReserved,
+
+            PartiallyReleased, Completed, Cancelled.'
+          type:
+          - string
+          - 'null'
+        tenantId:
+          description: Tenant identifier. Populated from the API context on read.
+          format: int32
+          type: integer
+        totalAmount:
+          description: 'Denormalized header total — sum of non-cancelled line LineTotal values.
+
+            System-maintained; not client-settable.'
+          format: double
+          type: number
+        version:
+          description: 'Optimistic locking version. Initialized to "1" and incremented as a
+
+            string on each update.'
+          type:
+          - string
+          - 'null'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    BulkCancelError:
+      properties:
+        category:
+          type:
+          - string
+          - 'null'
+        code:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        retryable:
+          type: boolean
+      type: object
+    CallOffOrderChangeMessage:
+      description: Audit trail entry for Call-Off Order lifecycle events.
+      properties:
+        body:
+          description: Human-readable description of what changed.
+          type:
+          - string
+          - 'null'
+        callOffOrderId:
+          description: Identifier of the parent call-off order this message belongs to.
+          type:
+          - string
+          - 'null'
+        createBy:
+          description: User who triggered the change.
+          type:
+          - string
+          - 'null'
+        createDate:
+          description: Timestamp when the change was recorded.
+          format: date-time
+          type: string
+        id:
+          description: System-generated change message identifier.
+          type:
+          - string
+          - 'null'
+        identifier:
+          description: 'Optional identifier of the specific sub-entity that changed
+
+            (e.g. line id).'
+          type:
+          - string
+          - 'null'
+        newValue:
+          description: New value when the change represents a single-field mutation.
+          type:
+          - string
+          - 'null'
+        oldValue:
+          description: Prior value when the change represents a single-field mutation.
+          type:
+          - string
+          - 'null'
+        siteId:
+          description: Site identifier.
+          format: int32
+          type: integer
+        subject:
+          description: Subject of the change (e.g. "status", "line.status").
+          type:
+          - string
+          - 'null'
+        tenantId:
+          description: Tenant identifier.
+          format: int32
+          type: integer
+      type: object
+    CallOffOrderAggregateResult:
+      description: 'Result of aggregating call-off order requested quantity across all sites for a tenant.
+
+        Includes the grand total and optional breakdowns by product code, customer account,
+
+        order status, and requested ship month.'
+      properties:
+        byCustomer:
+          description: 'Requested quantity broken down by customer account. Each entry''s `Key` is the
+
+            customer account id as a string, or `"anonymous"` for orders without an account.'
+          items:
+            $ref: '#/components/schemas/CallOffOrderDemandEntry'
+          type:
+          - array
+          - 'null'
+        byProductCode:
+          description: 'Requested quantity broken down by product code. Each entry''s `Key` is a product code.
+
+            Only product codes with at least one matching item appear here.'
+          items:
+            $ref: '#/components/schemas/CallOffOrderDemandEntry'
+          type:
+          - array
+          - 'null'
+        byRequestedShipMonth:
+          description: 'Requested quantity broken down by the month of `items[].requestedShipDate`.
+
+            Each entry''s `Key` is an ISO-8601 month string (e.g. `"2026-03"`).
+
+            Items without a requested ship date are excluded from this breakdown.'
+          items:
+            $ref: '#/components/schemas/CallOffOrderDemandEntry'
+          type:
+          - array
+          - 'null'
+        byStatus:
+          description: 'Requested quantity broken down by call-off order status. Each entry''s `Key` is the
+
+            order-level status string (e.g. `"Open"`, `"Completed"`).'
+          items:
+            $ref: '#/components/schemas/CallOffOrderDemandEntry'
+          type:
+          - array
+          - 'null'
+        totalRequestedQty:
+          description: Sum of `items[].requestedQty` across all matched call-off order items.
+          format: int64
+          type: integer
+      type: object
+    OrderNote:
+      description: Internal notes that a merchant may add to the order. Maximum 250 characters.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        id:
+          description: Unique identifier of the note. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        text:
+          description: Text of the note. Maximum 250 characters.
+          maxLength: 500
+          type: string
+      type: object
+    Measurement:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    FutureInventory:
+      properties:
+        allocated:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        available:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        deliveryDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        futureInventoryID:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        onhand:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        pending:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    CreditHoldReasonItem:
+      allOf:
+      - $ref: '#/components/schemas/ReasonItemBase'
+      - additionalProperties: false
+        type: object
+    CallOffOrderCollection:
+      description: Paged result for Call-Off Order list queries.
+      properties:
+        items:
+          description: Page of call-off orders matching the query.
+          items:
+            $ref: '#/components/schemas/CallOffOrder'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          description: Total number of pages.
+          format: int32
+          type: integer
+        pageSize:
+          description: Maximum number of records per page.
+          format: int32
+          type: integer
+        startIndex:
+          description: Zero-based index of the first record in this page.
+          format: int32
+          type: integer
+        totalCount:
+          description: Total number of matching records across all pages.
+          format: int32
+          type: integer
+      type: object
+    PurchaseOrderPayment:
+      description: Purchase order payment
+      properties:
+        customFields:
+          description: Memo/custom fields
+          items:
+            $ref: '#/components/schemas/PurchaseOrderCustomField'
+          type:
+          - array
+          - 'null'
+        paymentTerm:
+          $ref: '#/components/schemas/PurchaseOrderPaymentTerm'
+        purchaseOrderNumber:
+          description: Purchase order number
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductOption:
+      description: "Product option for the product listed on this order item. If the product contains \nconfigurable or stand-alone options, this is a product option that the shopper has selected."
+      properties:
+        attributeFQN:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        dataType:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the product option that appears with the order item in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        shopperEnteredValue:
+          description: The value entered by the shopper if this is an option that requires shopper input, for example, a monogram.
+        stringValue:
+          description: Value of the product option.
+          type:
+          - string
+          - 'null'
+        value:
+          description: Value of the product option.
+      type: object
+    Phone:
+      properties:
+        home:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        work:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

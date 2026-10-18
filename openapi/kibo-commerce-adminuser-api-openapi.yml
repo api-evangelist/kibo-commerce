@@ -1,0 +1,949 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Admin User API
+  version: '1.0'
+  description: 'Operations tagged AdminUser across 3 of this provider''s published API definitions: openapi_openapi_tenant_and_user.json, kibo-commerce-tenant-and-user-openapi.yml, kibo-commerce-user-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AdminUser
+paths:
+  /platform/adminuser/accounts/{userId}/roles/{roleId}:
+    delete:
+      description: Removes a role from the specified Admin account.
+      parameters:
+      - description: Unique identifier of the user with the role to delete.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifer of the role to delete.
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Remove User Role
+      tags:
+      - AdminUser
+      operationId: deletePlatformAdminuserAccountsByUserIdRolesByRoleId
+      x-operation-id-source: derived
+    post:
+      description: Adds a role to the specified user's Admin account.
+      parameters:
+      - description: Unique identifier of the user who receives the role.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the role to add.
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Add User Role
+      tags:
+      - AdminUser
+      operationId: postPlatformAdminuserAccountsByUserIdRolesByRoleId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/{userId}/Change-Password:
+    post:
+      description: Change a password
+      parameters:
+      - description: Unique identifier of the user for whom to change the password.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordInfo'
+        description: Old password and new password.
+      responses:
+        '200':
+          description: OK
+      summary: Change Password
+      tags:
+      - AdminUser
+      operationId: postPlatformAdminuserAccountsByUserIdChangePassword
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/{userId}/Change-User-Password:
+    post:
+      description: Changes a user's password to the provided new password
+      parameters:
+      - description: Unique identifier of the user for whom to change the password.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeUserPasswordInfo'
+        description: New password info for this user
+      responses:
+        '200':
+          description: OK
+      summary: Change User Password
+      tags:
+      - AdminUser
+      operationId: postPlatformAdminuserAccountsByUserIdChangeUserPassword
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/{userId}/tenants:
+    get:
+      description: Get tenant scope for users
+      parameters:
+      - description: ''
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantCollection'
+          description: OK
+      summary: Get Tenant Scope
+      tags:
+      - AdminUser
+      operationId: getPlatformAdminuserAccountsByUserIdTenants
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/{userId}:
+    delete:
+      description: Removes a user account from the site.
+      parameters:
+      - description: Unique identifier of the user account to delete.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete User
+      tags:
+      - AdminUser
+      operationId: deletePlatformAdminuserAccountsByUserId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a user specified by user ID.
+      parameters:
+      - description: Unique identifier of the user whose details you want to view.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+      summary: Get User
+      tags:
+      - AdminUser
+      operationId: getPlatformAdminuserAccountsByUserId
+      x-operation-id-source: derived
+    put:
+      description: Modifies user information for a specified user.
+      parameters:
+      - description: Unique identifier of the user whose login information you want to change.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: 'Details of the new user account. Required properties: EmailAddress, FirstName, LastName, and Password. Note that the site ID is passed in the request header.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+      summary: Update User
+      tags:
+      - AdminUser
+      operationId: putPlatformAdminuserAccountsByUserId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/{userId}/userbyid:
+    get:
+      description: Retrieves the details of a user specified by user ID.
+      parameters:
+      - description: Unique identifier of the user whose details you want to view.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+      summary: Get User By Id
+      tags:
+      - AdminUser
+      operationId: getPlatformAdminuserAccountsByUserIdUserbyid
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/{userId}/roles:
+    get:
+      description: Retrieves all the roles for a specified user on the specified tenant.
+      parameters:
+      - description: Unique identifier of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserRoleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UserRoleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UserRoleCollection'
+          description: OK
+      summary: Get User Roles
+      tags:
+      - AdminUser
+      operationId: getPlatformAdminuserAccountsByUserIdRoles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts:
+    get:
+      description: Retrieves a list of Admin users for a specified site according to any specified filter criteria and sort options.
+      parameters:
+      - description: ''
+        in: query
+        name: emailAddress
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Users
+      tags:
+      - AdminUser
+      operationId: getPlatformAdminuserAccounts
+      x-operation-id-source: derived
+    post:
+      description: Creates a new user
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        description: The user to be created
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/User'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+      summary: Create User
+      tags:
+      - AdminUser
+      operationId: postPlatformAdminuserAccounts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/Reset-Password:
+    post:
+      description: Resets the password for a user specified by email address.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordInfo'
+        description: "Email address of the user who has requested a password reset. \n            Note that the site ID is passed in the request header."
+      responses:
+        '200':
+          description: OK
+      summary: Reset Password
+      tags:
+      - AdminUser
+      operationId: postPlatformAdminuserAccountsResetPassword
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/accounts/{userId}/unlock:
+    post:
+      description: Unlocks (or "enables") a user
+      parameters:
+      - description: The user id.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Unlock User
+      tags:
+      - AdminUser
+      operationId: postPlatformAdminuserAccountsByUserIdUnlock
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    UserRoleCollection:
+      description: Collection of UserRoles for given user.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PasswordInfo:
+      description: Old password and new password.
+      properties:
+        newPassword:
+          description: New password.
+          type:
+          - string
+          - 'null'
+        oldPassword:
+          description: Old password.
+          type:
+          - string
+          - 'null'
+      required:
+      - newPassword
+      - oldPassword
+      type: object
+    Resource:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    Site:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          type:
+          - array
+          - 'null'
+        catalogId:
+          format: int32
+          type: integer
+        countryCode:
+          type:
+          - string
+          - 'null'
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        domain:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        localeCode:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        primaryCustomDomain:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    Tenant:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          type:
+          - array
+          - 'null'
+        domain:
+          type:
+          - string
+          - 'null'
+        expiry:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        isDevTenant:
+          type: boolean
+        isUnified:
+          type: boolean
+        lastLoginDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        masterCatalogs:
+          items:
+            $ref: '#/components/schemas/MasterCatalog'
+          type:
+          - array
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        sites:
+          items:
+            $ref: '#/components/schemas/Site'
+          type:
+          - array
+          - 'null'
+      type: object
+    UserScope:
+      properties:
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    ChangeUserPasswordInfo:
+      properties:
+        newPassword:
+          type:
+          - string
+          - 'null'
+      type: object
+    UserSystemData:
+      properties:
+        createdOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        failedLoginAttemptCount:
+          format: int32
+          type: integer
+        firstFailedLoginAttemptOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isLocked:
+          type: boolean
+        isPasswordChangeRequired:
+          type: boolean
+        lastLockedOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastLoginOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastPasswordChangeOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        remainingLoginAttempts:
+          format: int32
+          type: integer
+        updatedOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ResetPasswordInfo:
+      description: Email address of the user who is requesting a new password.
+      properties:
+        emailAddress:
+          type:
+          - string
+          - 'null'
+      required:
+      - emailAddress
+      type: object
+    UserRole:
+      properties:
+        assignedInScope:
+          $ref: '#/components/schemas/UserScope'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        roleId:
+          format: int32
+          type: integer
+        roleName:
+          type:
+          - string
+          - 'null'
+        roleResources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type:
+          - array
+          - 'null'
+        roleTags:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+      type: object
+    TenantCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Tenant'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    MasterCatalog:
+      properties:
+        catalogs:
+          items:
+            $ref: '#/components/schemas/Catalog'
+          type:
+          - array
+          - 'null'
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        defaultLocaleCode:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        supportedLocaleCodes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    TenantAttribute:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type: string
+        value: {}
+      type: object
+    User:
+      properties:
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        externalId:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        identityProviderId:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type: boolean
+        lastName:
+          type:
+          - string
+          - 'null'
+        localeCode:
+          type:
+          - string
+          - 'null'
+        optInToEmail:
+          type:
+          - boolean
+          - 'null'
+        optInToTextMessage:
+          type:
+          - boolean
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+        roles:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          type:
+          - array
+          - 'null'
+        systemData:
+          $ref: '#/components/schemas/UserSystemData'
+        userName:
+          type:
+          - string
+          - 'null'
+      type: object
+    Catalog:
+      properties:
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        defaultLocaleCode:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        masterCatalogId:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_tenant_and_user.json
+- kibo-commerce-tenant-and-user-openapi.yml
+- kibo-commerce-user-openapi.yml

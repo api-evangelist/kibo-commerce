@@ -1,0 +1,595 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Customer
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-customer-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-customer-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/rules/customer/evaluate/{customerAccountId}'].post
+  description: Add derived operationId for POST /commerce/rules/customer/evaluate/{customerAccountId}
+  update:
+    operationId: accountrankingruleEvaluateCustomerRules
+- target: $.paths['/commerce/rules/customer'].get
+  description: Add derived operationId for GET /commerce/rules/customer
+  update:
+    operationId: accountrankingruleGetAllCustomerRules
+- target: $.paths['/commerce/rules/customer'].post
+  description: Add derived operationId for POST /commerce/rules/customer
+  update:
+    operationId: accountrankingruleCreateCustomerRule
+- target: $.paths['/commerce/rules/customer/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/customer/{code}
+  update:
+    operationId: accountrankingruleDeleteCustomerRuleWithCrossServiceValidation
+- target: $.paths['/commerce/rules/customer/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/customer/{code}
+  update:
+    operationId: accountrankingruleGetCustomerRuleByCode
+- target: $.paths['/commerce/rules/customer/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/customer/{code}
+  update:
+    operationId: accountrankingruleUpdateCustomerRule
+- target: $.paths['/commerce/rules/customer/{code}/usages'].get
+  description: Add derived operationId for GET /commerce/rules/customer/{code}/usages
+  update:
+    operationId: accountrankingruleGetCustomerRuleUsagesByCode
+- target: $.paths['/commerce/customer/addressvalidation'].post
+  description: Add derived operationId for POST /commerce/customer/addressvalidation
+  update:
+    operationId: addressvalidationValidateAddress
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/salesrep/{userId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/b2baccounts/{accountId}/salesrep/{userId}
+  update:
+    operationId: b2baccountRemoveSalesRepFromB2BAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/salesrep/{userId}'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts/{accountId}/salesrep/{userId}
+  update:
+    operationId: b2baccountAddSalesRepToB2BAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/addsalesreps'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts/{accountId}/addsalesreps
+  update:
+    operationId: b2baccountAddSalesRepsToB2BAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/user'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts/{accountId}/user
+  update:
+    operationId: b2baccountAddUser
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/user/{userId}/roles/{roleId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/b2baccounts/{accountId}/user/{userId}/roles/{roleId}
+  update:
+    operationId: b2baccountRemoveUserRoleAsync
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/user/{userId}/roles/{roleId}'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts/{accountId}/user/{userId}/roles/{roleId}
+  update:
+    operationId: b2baccountAddUserRoleAsync
+- target: $.paths['/commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}
+  update:
+    operationId: b2baccountRemoveARoleFromASpecificAccount
+- target: $.paths['/commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}
+  update:
+    operationId: b2baccountAssignARoleToASpecificAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/changeparent/{parentAccountId}'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts/{accountId}/changeparent/{parentAccountId}
+  update:
+    operationId: b2baccountChangeParentAccount
+- target: $.paths['/commerce/customer/b2baccounts/roles'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts/roles
+  update:
+    operationId: b2baccountCreateANewRoleAndAssociateItWithSpecifiedAccounts
+- target: $.paths['/commerce/customer/b2baccounts/priority/delete'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/priority/delete
+  update:
+    operationId: b2baccountDeleteAccountPriorities
+- target: $.paths['/commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}/apply-to-future-children/{enabled}'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}/apply-to-future-children/{enabled}
+  update:
+    operationId: b2baccountEnableOrDisableRoleInheritanceForFutureChildAccounts
+- target: $.paths['/commerce/customer/b2baccounts/priority/read'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/priority/read
+  update:
+    operationId: b2baccountGetAccountPriorities
+- target: $.paths['/commerce/customer/b2baccounts/accountsbyuser'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/accountsbyuser
+  update:
+    operationId: b2baccountGetAccountsByUser
+- target: $.paths['/commerce/customer/b2baccounts/salesrep/{userId}'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/salesrep/{userId}
+  update:
+    operationId: b2baccountGetAccountsForSalesRep
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/roles'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/roles
+  update:
+    operationId: b2baccountGetAllRolesAvailableToTheSpecifiedAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}
+  update:
+    operationId: b2baccountGetB2BAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/{accountId}
+  update:
+    operationId: b2baccountUpdateAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/attributes/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/b2baccounts/{accountId}/attributes/{attributeFQN}
+  update:
+    operationId: b2baccountDeleteB2BAccountAttribute
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/attributes/{attributeFQN}
+  update:
+    operationId: b2baccountGetB2BAccountAttribute
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/{accountId}/attributes/{attributeFQN}
+  update:
+    operationId: b2baccountUpdateB2BAccountAttribute
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/attributes'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/attributes
+  update:
+    operationId: b2baccountGetB2BAccountAttributes
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/attributes'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts/{accountId}/attributes
+  update:
+    operationId: b2baccountAddB2BAccountTAttribute
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/hierarchy'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/hierarchy
+  update:
+    operationId: b2baccountGetB2BAccountHierarchy
+- target: $.paths['/commerce/customer/b2baccounts'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts
+  update:
+    operationId: b2baccountGetB2BAccounts
+- target: $.paths['/commerce/customer/b2baccounts'].post
+  description: Add derived operationId for POST /commerce/customer/b2baccounts
+  update:
+    operationId: b2baccountAddAccount
+- target: $.paths['/commerce/customer/b2baccounts/behaviors'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/behaviors
+  update:
+    operationId: b2baccountGetBehaviorsForB2bShopper
+- target: $.paths['/commerce/customer/b2baccounts/roles/{roleId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/b2baccounts/roles/{roleId}
+  update:
+    operationId: b2baccountDeleteRoleAndAllItsAccountAssociations
+- target: $.paths['/commerce/customer/b2baccounts/roles/{roleId}'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/roles/{roleId}
+  update:
+    operationId: b2baccountGetRoleDetailsByRoleIDIncludingAssociatedAccountIDs
+- target: $.paths['/commerce/customer/b2baccounts/roles/{roleId}'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/roles/{roleId}
+  update:
+    operationId: b2baccountUpdateExistingRoleAndItsAccountAssociations
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/user/{userId}/behaviors'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/user/{userId}/behaviors
+  update:
+    operationId: b2baccountGetUserBehaviors
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/user/{userId}/roles'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/user/{userId}/roles
+  update:
+    operationId: b2baccountGetUserRolesAsync
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/users'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/users
+  update:
+    operationId: b2baccountGetUsersAsync
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/roles/{roleId}/users'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/{accountId}/roles/{roleId}/users
+  update:
+    operationId: b2baccountGetUsersByRole
+- target: $.paths['/commerce/customer/b2baccounts/behaviors/categories'].get
+  description: Add derived operationId for GET /commerce/customer/b2baccounts/behaviors/categories
+  update:
+    operationId: b2baccountGetsAllTheBehaviorCategoriesForTheB2bShopper
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/user/{userId}/remove'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/{accountId}/user/{userId}/remove
+  update:
+    operationId: b2baccountRemoveUser
+- target: $.paths['/commerce/customer/b2baccounts/priority/update'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/priority/update
+  update:
+    operationId: b2baccountUpdateAccountPriorities
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/status/{actionName}'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/{accountId}/status/{actionName}
+  update:
+    operationId: b2baccountUpdateB2BAccountStatus
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/salesrep'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/{accountId}/salesrep
+  update:
+    operationId: b2baccountUpdateSalesRepsOnB2BAccount
+- target: $.paths['/commerce/customer/b2baccounts/{accountId}/user/{userId}'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/{accountId}/user/{userId}
+  update:
+    operationId: b2baccountUpdateUser
+- target: $.paths['/commerce/customer/b2baccounts/upgradeaccounts'].put
+  description: Add derived operationId for PUT /commerce/customer/b2baccounts/upgradeaccounts
+  update:
+    operationId: b2baccountUpgradeB2CAccountsToB2B
+- target: $.paths['/commerce/customer/b2bcontacts'].get
+  description: Add derived operationId for GET /commerce/customer/b2bcontacts
+  update:
+    operationId: b2bcontactGetB2BContacts
+- target: $.paths['/commerce/customer/credits/{code}/associate-to-shopper'].put
+  description: Add derived operationId for PUT /commerce/customer/credits/{code}/associate-to-shopper
+  update:
+    operationId: creditAssociateCreditToShopper
+- target: $.paths['/commerce/customer/credits/{code}/auditentries'].get
+  description: Add derived operationId for GET /commerce/customer/credits/{code}/auditentries
+  update:
+    operationId: creditGetAuditEntries
+- target: $.paths['/commerce/customer/credits/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/credits/{code}
+  update:
+    operationId: creditDeleteCredit
+- target: $.paths['/commerce/customer/credits/{code}'].get
+  description: Add derived operationId for GET /commerce/customer/credits/{code}
+  update:
+    operationId: creditGetCredit
+- target: $.paths['/commerce/customer/credits/{code}'].put
+  description: Add derived operationId for PUT /commerce/customer/credits/{code}
+  update:
+    operationId: creditUpdateCredit
+- target: $.paths['/commerce/customer/credits'].get
+  description: Add derived operationId for GET /commerce/customer/credits
+  update:
+    operationId: creditGetCredits
+- target: $.paths['/commerce/customer/credits'].post
+  description: Add derived operationId for POST /commerce/customer/credits
+  update:
+    operationId: creditAddCredit
+- target: $.paths['/commerce/customer/credits/{code}/transactions'].get
+  description: Add derived operationId for GET /commerce/customer/credits/{code}/transactions
+  update:
+    operationId: creditGetTransactions
+- target: $.paths['/commerce/customer/credits/{code}/transactions'].post
+  description: Add derived operationId for POST /commerce/customer/credits/{code}/transactions
+  update:
+    operationId: creditAddTransaction
+- target: $.paths['/commerce/customer/credits/{code}/Resend-Email'].put
+  description: Add derived operationId for PUT /commerce/customer/credits/{code}/Resend-Email
+  update:
+    operationId: creditResendCreditCreatedEmail
+- target: $.paths['/commerce/customer/accounts/Add-Account-And-Login'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/Add-Account-And-Login
+  update:
+    operationId: customeraccountAddAccountAndLogin
+- target: $.paths['/commerce/customer/accounts/Bulk'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/Bulk
+  update:
+    operationId: customeraccountAddAccounts
+- target: $.paths['/commerce/customer/accounts/{accountId}/Create-Login'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/Create-Login
+  update:
+    operationId: customeraccountAddLoginToExistingCustomer
+- target: $.paths['/commerce/customer/accountattributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/customer/accountattributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: customeraccountattributedefinitionsGetAttribute
+- target: $.paths['/commerce/customer/accountattributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/customer/accountattributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: customeraccountattributedefinitionsUpdateAttribute
+- target: $.paths['/commerce/customer/accountattributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/customer/accountattributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: customeraccountattributedefinitionsGetAttributeVocabularyValues
+- target: $.paths['/commerce/customer/accountattributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/customer/accountattributedefinition/attributes
+  update:
+    operationId: customeraccountattributedefinitionsGetAttributes
+- target: $.paths['/commerce/customer/accountattributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/customer/accountattributedefinition/attributes
+  update:
+    operationId: customeraccountattributedefinitionsCreateAttribute
+- target: $.paths['/commerce/customer/accounts/{accountId}/Change-Password'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/Change-Password
+  update:
+    operationId: customeraccountChangePassword
+- target: $.paths['/commerce/customer/accounts/Change-Passwords'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/Change-Passwords
+  update:
+    operationId: customeraccountChangePasswords
+- target: $.paths['/commerce/customer/accounts/{accountId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/accounts/{accountId}
+  update:
+    operationId: customeraccountDeleteAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}
+  update:
+    operationId: customeraccountGetAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}'].put
+  description: Add derived operationId for PUT /commerce/customer/accounts/{accountId}
+  update:
+    operationId: customeraccountUpdateAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}/attributes/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/accounts/{accountId}/attributes/{attributeFQN}
+  update:
+    operationId: customeraccountDeleteAccountAttribute
+- target: $.paths['/commerce/customer/accounts/{accountId}/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/attributes/{attributeFQN}
+  update:
+    operationId: customeraccountGetAccountAttribute
+- target: $.paths['/commerce/customer/accounts/{accountId}/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/customer/accounts/{accountId}/attributes/{attributeFQN}
+  update:
+    operationId: customeraccountUpdateAccountAttribute
+- target: $.paths['/commerce/customer/accounts/{accountId}/attributes'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/attributes
+  update:
+    operationId: customeraccountGetAccountAttributes
+- target: $.paths['/commerce/customer/accounts/{accountId}/attributes'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/attributes
+  update:
+    operationId: customeraccountAddAccountAttribute
+- target: $.paths['/commerce/customer/accounts/{accountId}/AuditLog/Entries'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/AuditLog/Entries
+  update:
+    operationId: customeraccountGetAccountAuditLog
+- target: $.paths['/commerce/customer/accounts/{accountId}/cards/{cardId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/accounts/{accountId}/cards/{cardId}
+  update:
+    operationId: customeraccountDeleteAccountCard
+- target: $.paths['/commerce/customer/accounts/{accountId}/cards/{cardId}'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/cards/{cardId}
+  update:
+    operationId: customeraccountGetAccountCard
+- target: $.paths['/commerce/customer/accounts/{accountId}/cards/{cardId}'].put
+  description: Add derived operationId for PUT /commerce/customer/accounts/{accountId}/cards/{cardId}
+  update:
+    operationId: customeraccountUpdateAccountCard
+- target: $.paths['/commerce/customer/accounts/{accountId}/cards'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/cards
+  update:
+    operationId: customeraccountGetAccountCards
+- target: $.paths['/commerce/customer/accounts/{accountId}/cards'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/cards
+  update:
+    operationId: customeraccountAddAccountCard
+- target: $.paths['/commerce/customer/accounts/{accountId}/contacts/{contactId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/accounts/{accountId}/contacts/{contactId}
+  update:
+    operationId: customeraccountDeleteAccountContact
+- target: $.paths['/commerce/customer/accounts/{accountId}/contacts/{contactId}'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/contacts/{contactId}
+  update:
+    operationId: customeraccountGetAccountContact
+- target: $.paths['/commerce/customer/accounts/{accountId}/contacts/{contactId}'].put
+  description: Add derived operationId for PUT /commerce/customer/accounts/{accountId}/contacts/{contactId}
+  update:
+    operationId: customeraccountUpdateAccountContact
+- target: $.paths['/commerce/customer/accounts/{accountId}/contacts'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/contacts
+  update:
+    operationId: customeraccountGetAccountContacts
+- target: $.paths['/commerce/customer/accounts/{accountId}/contacts'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/contacts
+  update:
+    operationId: customeraccountAddAccountContact
+- target: $.paths['/commerce/customer/accounts/{accountId}/contacts'].put
+  description: Add derived operationId for PUT /commerce/customer/accounts/{accountId}/contacts
+  update:
+    operationId: customeraccountAddAccountContactList
+- target: $.paths['/commerce/customer/accounts/{accountId}/notes/{noteId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/accounts/{accountId}/notes/{noteId}
+  update:
+    operationId: customeraccountDeleteAccountNote
+- target: $.paths['/commerce/customer/accounts/{accountId}/notes/{noteId}'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/notes/{noteId}
+  update:
+    operationId: customeraccountGetAccountNote
+- target: $.paths['/commerce/customer/accounts/{accountId}/notes/{noteId}'].put
+  description: Add derived operationId for PUT /commerce/customer/accounts/{accountId}/notes/{noteId}
+  update:
+    operationId: customeraccountUpdateAccountNote
+- target: $.paths['/commerce/customer/accounts/{accountId}/notes'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/notes
+  update:
+    operationId: customeraccountGetAccountNotes
+- target: $.paths['/commerce/customer/accounts/{accountId}/notes'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/notes
+  update:
+    operationId: customeraccountAddAccountNote
+- target: $.paths['/commerce/customer/accounts/{accountId}/segments'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/segments
+  update:
+    operationId: customeraccountGetAccountSegments
+- target: $.paths['/commerce/customer/accounts'].get
+  description: Add derived operationId for GET /commerce/customer/accounts
+  update:
+    operationId: customeraccountGetAccounts
+- target: $.paths['/commerce/customer/accounts'].post
+  description: Add derived operationId for POST /commerce/customer/accounts
+  update:
+    operationId: customeraccountAddAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}/purchaseOrderAccount'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/purchaseOrderAccount
+  update:
+    operationId: customeraccountGetCustomerPurchaseOrderAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}/purchaseOrderAccount'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/purchaseOrderAccount
+  update:
+    operationId: customeraccountCreateCustomerPurchaseOrderAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}/purchaseOrderAccount'].put
+  description: Add derived operationId for PUT /commerce/customer/accounts/{accountId}/purchaseOrderAccount
+  update:
+    operationId: customeraccountUpdateCustomerPurchaseOrderAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}/PurchaseOrderTransaction'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/PurchaseOrderTransaction
+  update:
+    operationId: customeraccountGetCustomerPurchaseOrderTransactions
+- target: $.paths['/commerce/customer/accounts/{accountId}/PurchaseOrderTransaction'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/PurchaseOrderTransaction
+  update:
+    operationId: customeraccountCreatePurchaseOrderTransaction
+- target: $.paths['/commerce/customer/accounts/purchaseOrderAccounts'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/purchaseOrderAccounts
+  update:
+    operationId: customeraccountGetCustomersPurchaseOrderAccounts
+- target: $.paths['/commerce/customer/accounts/{accountId}/loginstate'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/loginstate
+  update:
+    operationId: customeraccountGetLoginState
+- target: $.paths['/commerce/customer/accounts/loginstatebyemailaddress'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/loginstatebyemailaddress
+  update:
+    operationId: customeraccountGetLoginStateByEmailAddress
+- target: $.paths['/commerce/customer/accounts/loginstatebyusername'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/loginstatebyusername
+  update:
+    operationId: customeraccountGetLoginStateByUserName
+- target: $.paths['/commerce/customer/accounts/{accountId}/transactions'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/{accountId}/transactions
+  update:
+    operationId: customeraccountGetTransactions
+- target: $.paths['/commerce/customer/accounts/{accountId}/transactions'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/transactions
+  update:
+    operationId: customeraccountAddTransaction
+- target: $.paths['/commerce/customer/accounts/{accountId}/recomputelifetimevalue'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/recomputelifetimevalue
+  update:
+    operationId: customeraccountRecomputeCustomerLifetimeValue
+- target: $.paths['/commerce/customer/accounts/{accountId}/transactions/{transactionId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/accounts/{accountId}/transactions/{transactionId}
+  update:
+    operationId: customeraccountRemoveTransaction
+- target: $.paths['/commerce/customer/accounts/Reset-Password'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/Reset-Password
+  update:
+    operationId: customeraccountResetPassword
+- target: $.paths['/commerce/customer/accounts/current'].get
+  description: Add derived operationId for GET /commerce/customer/accounts/current
+  update:
+    operationId: customeraccountRetrieveCurrentAccount
+- target: $.paths['/commerce/customer/accounts/{accountId}/Set-Login-Locked'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/Set-Login-Locked
+  update:
+    operationId: customeraccountSetLoginLocked
+- target: $.paths['/commerce/customer/accounts/{accountId}/Set-Password-Change-Required'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/{accountId}/Set-Password-Change-Required
+  update:
+    operationId: customeraccountSetPasswordChangeRequired
+- target: $.paths['/commerce/customer/accounts/Update-Forgotten-Password'].post
+  description: Add derived operationId for POST /commerce/customer/accounts/Update-Forgotten-Password
+  update:
+    operationId: customeraccountUpdateForgottenPassword
+- target: $.paths['/commerce/customer/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/customer/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: customerattributedefinitionGetAttribute
+- target: $.paths['/commerce/customer/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/customer/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: customerattributedefinitionUpdateAttribute
+- target: $.paths['/commerce/customer/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/customer/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: customerattributedefinitionGetAttributeVocabularyValues
+- target: $.paths['/commerce/customer/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/customer/attributedefinition/attributes
+  update:
+    operationId: customerattributedefinitionGetAttributes
+- target: $.paths['/commerce/customer/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/customer/attributedefinition/attributes
+  update:
+    operationId: customerattributedefinitionCreateAttribute
+- target: $.paths['/commerce/customer/segments/{id}/accounts'].post
+  description: Add derived operationId for POST /commerce/customer/segments/{id}/accounts
+  update:
+    operationId: customersegmentAddSegmentsAccounts
+- target: $.paths['/commerce/customer/segments/{id}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/segments/{id}
+  update:
+    operationId: customersegmentDeleteSegment
+- target: $.paths['/commerce/customer/segments/{id}'].get
+  description: Add derived operationId for GET /commerce/customer/segments/{id}
+  update:
+    operationId: customersegmentGetSegment
+- target: $.paths['/commerce/customer/segments/{id}'].put
+  description: Add derived operationId for PUT /commerce/customer/segments/{id}
+  update:
+    operationId: customersegmentUpdateSegment
+- target: $.paths['/commerce/customer/segments'].get
+  description: Add derived operationId for GET /commerce/customer/segments
+  update:
+    operationId: customersegmentGetSegments
+- target: $.paths['/commerce/customer/segments'].post
+  description: Add derived operationId for POST /commerce/customer/segments
+  update:
+    operationId: customersegmentAddsSegment
+- target: $.paths['/commerce/customer/segments/{id}/accounts/{accountId}'].delete
+  description: Add derived operationId for DELETE /commerce/customer/segments/{id}/accounts/{accountId}
+  update:
+    operationId: customersegmentRemoveSegmentAccount
+- target: $.paths['/commerce/customer/customerSets/{code}'].get
+  description: Add derived operationId for GET /commerce/customer/customerSets/{code}
+  update:
+    operationId: customersetGetCustomerSet
+- target: $.paths['/commerce/customer/customerSets'].get
+  description: Add derived operationId for GET /commerce/customer/customerSets
+  update:
+    operationId: customersetGetCustomerSets
+- target: $.paths['/commerce/customer/visits/{visitId}'].get
+  description: Add derived operationId for GET /commerce/customer/visits/{visitId}
+  update:
+    operationId: customervisitGetVisit
+- target: $.paths['/commerce/customer/visits/{visitId}'].put
+  description: Add derived operationId for PUT /commerce/customer/visits/{visitId}
+  update:
+    operationId: customervisitUpdatesVisit
+- target: $.paths['/commerce/customer/visits'].get
+  description: Add derived operationId for GET /commerce/customer/visits
+  update:
+    operationId: customervisitGetVisits
+- target: $.paths['/commerce/customer/visits'].post
+  description: Add derived operationId for POST /commerce/customer/visits
+  update:
+    operationId: customervisitAddVisit
+- target: $.paths['/commerce/instocknotifications/{id}'].delete
+  description: Add derived operationId for DELETE /commerce/instocknotifications/{id}
+  update:
+    operationId: instocknotificationsubscriptionDeleteInStockNotificationSubscription
+- target: $.paths['/commerce/instocknotifications/{id}'].get
+  description: Add derived operationId for GET /commerce/instocknotifications/{id}
+  update:
+    operationId: instocknotificationsubscriptionGetInStockNotificationSubscription
+- target: $.paths['/commerce/instocknotifications'].get
+  description: Add derived operationId for GET /commerce/instocknotifications
+  update:
+    operationId: instocknotificationsubscriptionGetInStockNotificationSubscriptions
+- target: $.paths['/commerce/instocknotifications'].post
+  description: Add derived operationId for POST /commerce/instocknotifications
+  update:
+    operationId: instocknotificationsubscriptionAddInStockNotificationSubscription
+- target: $.paths['/commerce/customer/authtickets/anonymousshopper'].get
+  description: Add derived operationId for GET /commerce/customer/authtickets/anonymousshopper
+  update:
+    operationId: storefrontauthticketCreateAnonymousShopperAuthTicket
+- target: $.paths['/commerce/customer/authtickets/2fa/auth'].post
+  description: Add derived operationId for POST /commerce/customer/authtickets/2fa/auth
+  update:
+    operationId: storefrontauthticketCreateAuthTicket
+- target: $.paths['/commerce/customer/authtickets'].post
+  description: Add derived operationId for POST /commerce/customer/authtickets
+  update:
+    operationId: storefrontauthticketCreateUserAuthTicket
+- target: $.paths['/commerce/customer/authtickets/2fa/request'].post
+  description: Add derived operationId for POST /commerce/customer/authtickets/2fa/request
+  update:
+    operationId: storefrontauthticketGenerate2FACode
+- target: $.paths['/commerce/customer/authtickets/otp/request'].post
+  description: Add derived operationId for POST /commerce/customer/authtickets/otp/request
+  update:
+    operationId: storefrontauthticketGenerateOTPCode
+- target: $.paths['/commerce/customer/authtickets/impersonatecart'].post
+  description: Add derived operationId for POST /commerce/customer/authtickets/impersonatecart
+  update:
+    operationId: storefrontauthticketImpersonateCart
+- target: $.paths['/commerce/customer/authtickets/refresh'].put
+  description: Add derived operationId for PUT /commerce/customer/authtickets/refresh
+  update:
+    operationId: storefrontauthticketRefreshUserAuthTicket
+- target: $.paths['/commerce/customer/authtickets/otp/auth'].post
+  description: Add derived operationId for POST /commerce/customer/authtickets/otp/auth
+  update:
+    operationId: storefrontauthticketValidateOTP

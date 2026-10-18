@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-translated-shipment-schema.json",
+  "title": "TranslatedShipment",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-dropship-openapi.yml#/components/schemas/TranslatedShipment",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/TranslatedShipmentItem"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "orderId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "shipmentNumber": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "shippingAddress": {
+      "$ref": "#/$defs/ShippingAddress"
+    },
+    "subtotal": {
+      "format": "double",
+      "type": "number"
+    },
+    "vendorCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ShippingAddress": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "companyOrOrganization": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "firstName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastNameOrSurname": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TranslatedShipmentItem": {
+      "properties": {
+        "imageUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lineId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "originalOrderItemId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sku": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subtotal": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unitPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "variationProductCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vendorContractedPrice": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "vendorSku": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

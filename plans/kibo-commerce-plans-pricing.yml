@@ -1,0 +1,74 @@
+generated: '2026-10-18'
+method: searched
+source: https://kibocommerce.com/pricing/
+name: Kibo Commerce pricing
+audience: business-product
+pricing_basis: tiered-subscription
+published: false
+delivery:
+  delivery: managed
+  evidence: Kibo Commerce is offered as a SaaS platform with managed hosting.
+plans:
+- name: Order Management - Starter
+  description: Foundational Package to get started with inventory management capabilities, order information and returns, omnichannel fulfillment, integration with shipping carriers, payments, and customer service capabilities.
+  price_text: Contact sales
+  features:
+  - Inventory management capabilities
+  - Order information and returns
+  - Omnichannel fulfillment
+  - Integration with shipping carriers
+  - Payments
+  - Customer service capabilities
+- name: Order Management - Essentials
+  description: Starter Package, plus customizable order routing workflows and strategies, fulfillment optimization.
+  price_text: Contact sales
+  features:
+  - All Starter features
+  - Customizable order routing workflows and strategies
+  - Fulfillment optimization
+- name: Order Management - Advanced
+  description: Essentials Package, plus catalog management, pricing lists management, promotion and discount management, subscriptions management, dropship, order management agents, reverse logistics.
+  price_text: Contact sales
+  features:
+  - All Essentials features
+  - Catalog management
+  - Pricing lists management
+  - Promotion and discount management
+  - Subscriptions management
+  - Dropship
+  - Order management agents
+  - Reverse logistics
+- name: B2C & DTC eCommerce - Starter
+  description: Foundational Package to get started with catalog management, cart & checkout, payments, order information and returns, customer service, reporting & analytics. Optional front-end hosting and management.
+  price_text: Contact sales
+  features:
+  - Catalog management
+  - Cart & checkout
+  - Payments
+  - Order information and returns
+  - Customer service
+  - Reporting & Analytics
+  - Optional front-end hosting and management
+- name: B2C & DTC eCommerce - Essentials
+  description: Starter Package, plus price lists management, promotion and discount management, merchandising tools, inventory management capabilities. Optional front-end hosting and management, subscriptions commerce, B2B commerce.
+  price_text: Contact sales
+  features:
+  - All Starter features
+  - Price lists management
+  - Promotion and discount management
+  - Merchandising tools
+  - Inventory management capabilities
+  - Optional front-end hosting and management
+  - Optional subscriptions commerce
+  - Optional B2B commerce
+- name: B2C & DTC eCommerce - Advanced
+  description: Essentials Package, plus AI powered Search engine, search and merchandising capabilities. Optional front-end hosting and management, subscriptions commerce, B2B commerce.
+  price_text: Contact sales
+  features:
+  - All Essentials features
+  - AI powered Search engine
+  - Search and merchandising capabilities
+  - Optional front-end hosting and management
+  - Optional subscriptions commerce
+  - Optional B2B commerce
+note: Kibo Commerce uses enterprise pricing model with "Contact sales" for all plans. No public pricing available. Plans are structured around product bundles (Order Management, B2C Commerce, B2B Commerce) with tiered feature sets.

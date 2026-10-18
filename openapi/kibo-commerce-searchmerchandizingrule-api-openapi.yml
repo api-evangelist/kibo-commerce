@@ -1,0 +1,494 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Search Merchandizing Rule API
+  version: '1.0'
+  description: 'Operations tagged SearchMerchandizingRule across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SearchMerchandizingRule
+paths:
+  /commerce/catalog/admin/searchmerchandizingrules/{code}/clone:
+    get:
+      description: Clones a search merchandizing rule.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+          description: OK
+      summary: Clone Search Merchandizing Rule
+      tags:
+      - SearchMerchandizingRule
+      operationId: getCommerceCatalogAdminSearchmerchandizingrulesByCodeClone
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/searchmerchandizingrules/{code}:
+    delete:
+      description: Deletes a search merchandizing rule.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Search Merchandizing Rule
+      tags:
+      - SearchMerchandizingRule
+      operationId: deleteCommerceCatalogAdminSearchmerchandizingrulesByCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a search merchandizing rule based on its code.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+          description: OK
+      summary: Get Search Merchandizing Rule
+      tags:
+      - SearchMerchandizingRule
+      operationId: getCommerceCatalogAdminSearchmerchandizingrulesByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing search merchandizing rule.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMerchandizingRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+          description: OK
+      summary: Update Search Merchandizing Rule
+      tags:
+      - SearchMerchandizingRule
+      operationId: putCommerceCatalogAdminSearchmerchandizingrulesByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/searchmerchandizingrules:
+    get:
+      description: Retrieve a list of all search merchandizing rules. You can filter this query by CategoryCode, which supports an EQ (equals) filter with the syntax /catalog/admin/searchmerchandizingrules/?filter=categorycode eq AAA
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRuleCollection'
+          description: OK
+      summary: Get Search Merchandizing Rules
+      tags:
+      - SearchMerchandizingRule
+      operationId: getCommerceCatalogAdminSearchmerchandizingrules
+      x-operation-id-source: derived
+    post:
+      description: Create a new search merchandizing rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMerchandizingRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchMerchandizingRule'
+          description: OK
+      summary: Create Search Merchandizing Rule
+      tags:
+      - SearchMerchandizingRule
+      operationId: postCommerceCatalogAdminSearchmerchandizingrules
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SearchMerchandizingRule:
+      description: Search Merchandizing Rule
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Unique identifier. Will be generated if not provided.
+          type:
+          - string
+          - 'null'
+        context:
+          $ref: '#/components/schemas/SearchMerchandizingRuleContext'
+        description:
+          type:
+          - string
+          - 'null'
+        isDisabled:
+          type:
+          - boolean
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        ruleImpact:
+          $ref: '#/components/schemas/SearchMerchandizingRuleImpact'
+        tags:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    SearchMerchandizingFilter:
+      properties:
+        exclusion:
+          type:
+          - string
+          - 'null'
+        inclusion:
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchMerchandizingImpactItem:
+      properties:
+        isPinned:
+          type: boolean
+        position:
+          format: int32
+          type: integer
+        productCode:
+          type:
+          - string
+          - 'null'
+        sliceValue:
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchMerchandizingBoostField:
+      properties:
+        fieldName:
+          type:
+          - string
+          - 'null'
+        valueExpressions:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingBoostValueExpression'
+          type:
+          - array
+          - 'null'
+      type: object
+    SearchMerchandizingRuleField:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchMerchandizingRuleCondition:
+      description: SearchMerchandizingRule Condition
+      properties:
+        fields:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingRuleField'
+          type:
+          - array
+          - 'null'
+        terms:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchType:
+      enum:
+      - 1
+      - 2
+      format: int32
+      type: integer
+    SearchMerchandizingRuleImpact:
+      description: SearchMerchandizingRule Condition
+      properties:
+        buriedItems:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingImpactItem'
+          type:
+          - array
+          - 'null'
+        excludedItems:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingImpactItem'
+          type:
+          - array
+          - 'null'
+        fieldValueBoost:
+          $ref: '#/components/schemas/SearchMerchandizingFieldValueBoost'
+        filter:
+          $ref: '#/components/schemas/SearchMerchandizingFilter'
+        rankedItems:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingImpactItem'
+          type:
+          - array
+          - 'null'
+        sortFields:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingSortField'
+          type:
+          - array
+          - 'null'
+      type: object
+    SearchMerchandizingFieldValueBoost:
+      properties:
+        boostType:
+          $ref: '#/components/schemas/SearchMerchandizingBoostType'
+        fields:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingBoostField'
+          type:
+          - array
+          - 'null'
+      type: object
+    SearchMerchandizingBoostType:
+      enum:
+      - 1
+      format: int32
+      type: integer
+    SearchMerchandizingBoostValueExpression:
+      properties:
+        boostNumber:
+          format: int32
+          type: integer
+        operator:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchMerchandizingRuleContext:
+      description: SearchMerchandizingRule Condition
+      properties:
+        condition:
+          $ref: '#/components/schemas/SearchMerchandizingRuleCondition'
+        endDate:
+          description: Defaults to MAXDATE
+          format: date-time
+          type:
+          - string
+          - 'null'
+        searchType:
+          $ref: '#/components/schemas/SearchType'
+        startDate:
+          description: StartDate
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchMerchandizingRuleCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    SearchMerchandizingSortField:
+      properties:
+        direction:
+          type:
+          - string
+          - 'null'
+        propertyName:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

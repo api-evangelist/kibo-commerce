@@ -1,0 +1,221 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Tag Category API
+  version: '1.0'
+  description: 'Operations tagged InventoryTagCategory across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryTagCategory
+paths:
+  /commerce/inventory/v1/tagCategory/{tagCategoryName}:
+    get:
+      description: Get a tag category
+      parameters:
+      - description: Tag Category Name
+        in: path
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagCategory'
+          description: Success
+        '404':
+          description: Tag Not Found
+      summary: Get Tag Category
+      tags:
+      - InventoryTagCategory
+      operationId: getCommerceInventoryV1TagCategoryByTagCategoryName
+      x-operation-id-source: derived
+    delete:
+      description: Delete a Tag category
+      parameters:
+      - description: Tag Category Name
+        in: path
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeletedCountResponse'
+          description: Success
+        '400':
+          description: Bad Request
+        '404':
+          description: Tag category Not Found
+      summary: Delete Tag Category
+      tags:
+      - InventoryTagCategory
+      operationId: deleteCommerceInventoryV1TagCategoryByTagCategoryName
+      x-operation-id-source: derived
+    put:
+      description: Update the designated tag category
+      parameters:
+      - description: Tag Category Name
+        in: path
+        name: tagCategoryName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/TagCategory'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TagCategory'
+          description: Success
+        '400':
+          description: Bad Request
+        '500':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Internal Server Error
+      summary: Update Tag Category
+      tags:
+      - InventoryTagCategory
+      operationId: putCommerceInventoryV1TagCategoryByTagCategoryName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/tagCategory:
+    get:
+      description: Get all tag categories for a tenant
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TagCategory'
+                type: array
+          description: Success
+        '404':
+          description: Tag Categories Not Found
+      summary: Get Tag Category All
+      tags:
+      - InventoryTagCategory
+      operationId: getCommerceInventoryV1TagCategory
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    TagCategory:
+      description: Request and response object for a tag category
+      properties:
+        created:
+          description: Date tag category was created.
+          type: string
+        deletion_job_ids:
+          description: List of deletion job ID's
+          items:
+            type: integer
+          type: array
+        name:
+          description: Tag Category Name
+          type: string
+        tagCategoryID:
+          description: Tag Category ID
+          type: integer
+        tags:
+          description: Tags within this category
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+      title: Tag Category Response
+      type: object
+    Tag:
+      description: Request/Response object for a tag
+      properties:
+        created:
+          description: Date this tag was created
+          type: string
+        isDefault:
+          description: Whether or not this tag is the default tag for its category.
+          type: boolean
+        percent:
+          description: Percentage of available inventory this tag will get when the percentage update is performed. Must be between 0 and 100 (inclusive).
+          type: integer
+        tagID:
+          description: Tag ID
+          type: integer
+        tagValue:
+          description: Tag Value
+          type: string
+        updated:
+          description: Date this tag was last updated
+          type: string
+      title: Tag Response
+      type: object
+    DeletedCountResponse:
+      description: Deleted Count Response Model
+      properties:
+        deleted:
+          description: Count of deleted entries
+          type: integer
+      title: Deleted Count Response
+      type: object
+    BaseResponse:
+      description: Base Response Model
+      properties:
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        success:
+          description: Flag for success
+          type: boolean
+      title: Base Response
+      type: object
+  requestBodies:
+    TagCategory:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TagCategory'
+      description: Request create or modify Tag Categories
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

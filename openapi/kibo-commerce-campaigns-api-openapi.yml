@@ -1,0 +1,245 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Campaigns API
+  version: '1.0'
+  description: 'Operations tagged Campaigns across 2 of this provider''s published API definitions: openapi_openapi_catalog_storefront.json, kibo-commerce-catalog-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Campaigns
+paths:
+  /commerce/catalog/storefront/campaigns/{campaignId}:
+    get:
+      description: Get a specific campaign by campaign id.
+      parameters:
+      - description: ''
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CampaignResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CampaignResult'
+          description: OK
+      summary: Get Search Campaign
+      tags:
+      - Campaigns
+      operationId: getCommerceCatalogStorefrontCampaignsByCampaignId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/campaigns/all:
+    get:
+      description: Get list of Search campaigns.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CampaignResult'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CampaignResult'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CampaignResult'
+                type: array
+          description: OK
+      summary: Get Search Campaigns
+      tags:
+      - Campaigns
+      operationId: getCommerceCatalogStorefrontCampaignsAll
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CampaignSiteSearchSettings:
+      properties:
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        searchTermAssociations:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    FieldValueBoost:
+      properties:
+        boostType:
+          type:
+          - string
+          - 'null'
+        fields:
+          items:
+            $ref: '#/components/schemas/BoostField'
+          type:
+          - array
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CampaignProductSuggestSettings:
+      properties:
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        searchTermAssociations:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    CampaignResult:
+      description: Campaign result from db
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        campaignDescription:
+          type:
+          - string
+          - 'null'
+        campaignEndDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        campaignId:
+          type:
+          - string
+          - 'null'
+        campaignName:
+          type:
+          - string
+          - 'null'
+        campaignStartDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        json:
+          type:
+          - string
+          - 'null'
+        listingSettings:
+          $ref: '#/components/schemas/CampaignListingSettings'
+        productSuggestSettings:
+          $ref: '#/components/schemas/CampaignProductSuggestSettings'
+        siteId:
+          format: int32
+          type: integer
+        siteSearchSettings:
+          $ref: '#/components/schemas/CampaignSiteSearchSettings'
+        statusId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    BoostField:
+      properties:
+        fieldName:
+          type:
+          - string
+          - 'null'
+        valueExpressions:
+          items:
+            $ref: '#/components/schemas/BoostValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    BoostValue:
+      properties:
+        boost:
+          format: int32
+          type: integer
+        operator:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    CampaignListingSettings:
+      properties:
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_storefront.json
+- kibo-commerce-catalog-storefront-openapi.yml

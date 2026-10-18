@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-vendor-document-schema.json",
+  "title": "VendorDocument",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-location-openapi.yml#/components/schemas/VendorDocument",
+  "properties": {
+    "auditHistory": {
+      "items": {
+        "$ref": "#/$defs/DocumentAuditEntry"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/ApiContractsAuditInfo"
+    },
+    "contentType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fileName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fileSizeBytes": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "rejectionReason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "$ref": "#/$defs/DocumentStatus"
+    },
+    "templateId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "vendorCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ApiContractsAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "DocumentAuditEntry": {
+      "properties": {
+        "action": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "actorId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "newStatus": {
+          "$ref": "#/$defs/DocumentStatus"
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "previousStatus": {
+          "$ref": "#/$defs/DocumentStatus"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DocumentStatus": {
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "format": "int32",
+      "type": "integer"
+    }
+  }
+}

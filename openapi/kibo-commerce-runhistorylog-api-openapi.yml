@@ -1,0 +1,259 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Run History Log API
+  version: '1.0'
+  description: 'Operations tagged RunHistoryLog across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: RunHistoryLog
+paths:
+  /commerce/fulfillment/rebalancer/audit/runs/{runId}/log:
+    delete:
+      deprecated: false
+      parameters:
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Run History
+      tags:
+      - RunHistoryLog
+      operationId: deleteCommerceFulfillmentRebalancerAuditRunsByRunIdLog
+      x-operation-id-source: derived
+    post:
+      deprecated: false
+      parameters:
+      - description: runId
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogBatchRequestDto'
+        description: request
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/LogBatchResponseDto'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Log
+      tags:
+      - RunHistoryLog
+      operationId: postCommerceFulfillmentRebalancerAuditRunsByRunIdLog
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    LogEntryRequestDto:
+      properties:
+        accountNumber:
+          format: int32
+          type: integer
+        assignedPriority:
+          format: int32
+          type: integer
+        childShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        distinctProductCount:
+          format: int32
+          type: integer
+        entityId:
+          type: string
+        entityType:
+          type: string
+        fulfillmentType:
+          type: string
+        inventoryRef:
+          type: string
+        lineItemCount:
+          format: int32
+          type: integer
+        lines:
+          items:
+            $ref: '#/components/schemas/Line'
+          type: array
+        locationFromCode:
+          type: string
+        locationToCode:
+          type: string
+        newPriority:
+          format: int32
+          type: integer
+        newStatus:
+          type: string
+        occurredAt:
+          format: date-time
+          type: string
+        orderId:
+          type: string
+        originShipmentNumber:
+          format: int32
+          type: integer
+        outcome:
+          type: string
+        phase:
+          type: string
+        previousPriority:
+          format: int32
+          type: integer
+        priorStatus:
+          type: string
+        reason:
+          type: string
+        ruleCode:
+          type: string
+        ruleDescription:
+          type: string
+        ruleName:
+          type: string
+        ruleRank:
+          format: int32
+          type: integer
+        ruleVersionHash:
+          type: string
+        sequenceId:
+          format: int64
+          type: integer
+        serviceOrigin:
+          type: string
+        shipWindowEnd:
+          format: date-time
+          type: string
+        shipWindowStart:
+          format: date-time
+          type: string
+        splitGroupId:
+          type: string
+        totalUnits:
+          format: int32
+          type: integer
+        triggeringEventIds:
+          items:
+            type: string
+          type: array
+      title: LogEntryRequestDto
+      type: object
+    LogBatchResponseDto:
+      properties:
+        accepted:
+          format: int32
+          type: integer
+        duplicates:
+          format: int32
+          type: integer
+      title: LogBatchResponseDto
+      type: object
+    Line:
+      properties:
+        inventoryId:
+          format: int32
+          type: integer
+        lineId:
+          format: int32
+          type: integer
+        movement:
+          type: string
+        productCode:
+          type: string
+        productDescription:
+          type: string
+        qty:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        supplyDate:
+          type: string
+        supplySource:
+          type: string
+        unitsChanged:
+          format: int32
+          type: integer
+        upc:
+          type: string
+      title: Line
+      type: object
+    LogBatchRequestDto:
+      properties:
+        entries:
+          items:
+            $ref: '#/components/schemas/LogEntryRequestDto'
+          type: array
+      title: LogBatchRequestDto
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

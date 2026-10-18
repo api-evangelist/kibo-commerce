@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Files API
+  version: '1.0'
+  description: 'Operations tagged Files across 2 of this provider''s published API definitions: openapi_openapi_importexport.json, kibo-commerce-importexport-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Files
+paths:
+  /platform/data/files/{id}/content:
+    get:
+      description: Downloads specific files by ID
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Download Files
+      tags:
+      - Files
+      operationId: getPlatformDataFilesByIdContent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/files/{id}:
+    get:
+      description: Retrieves file information by ID
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+          description: OK
+      summary: Get File
+      tags:
+      - Files
+      operationId: getPlatformDataFilesById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/files/{id}/generatelink:
+    post:
+      description: Generates a public link for the files
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: hourDuration
+        schema:
+          default: 24
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: OK
+      summary: Get Public Link
+      tags:
+      - Files
+      operationId: postPlatformDataFilesByIdGeneratelink
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/files:
+    post:
+      description: Uploads files to the system
+      parameters:
+      - in: query
+        name: fileType
+        schema:
+          type: string
+      - in: query
+        name: fileName
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              format: binary
+              type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DropLocation'
+          description: OK
+      summary: Upload Files
+      tags:
+      - Files
+      operationId: postPlatformDataFiles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    DropLocation:
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileType:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        locationType:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_importexport.json
+- kibo-commerce-importexport-openapi.yml

@@ -1,0 +1,451 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Account Ranking Rule API
+  version: '1.0'
+  description: 'Operations tagged AccountRankingRule across 2 of this provider''s published API definitions: openapi_openapi_customer.json, kibo-commerce-customer-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AccountRankingRule
+paths:
+  /commerce/rules/customer/evaluate/{customerAccountId}:
+    post:
+      parameters:
+      - description: ''
+        in: path
+        name: customerAccountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluateAccountRankingRuleRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AccountRankingRule'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AccountRankingRule'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AccountRankingRule'
+                type: array
+          description: OK
+      summary: Evaluate Customer Rules
+      tags:
+      - AccountRankingRule
+      operationId: postCommerceRulesCustomerEvaluateByCustomerAccountId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/customer:
+    get:
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          default: ''
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRuleCollection'
+          description: OK
+      summary: Get All Customer Rules
+      tags:
+      - AccountRankingRule
+      operationId: getCommerceRulesCustomer
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRankingRule'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+          description: OK
+      summary: Create Customer Rule
+      tags:
+      - AccountRankingRule
+      operationId: postCommerceRulesCustomer
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/customer/{code}:
+    delete:
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Customer Rule (with cross-service validation)
+      tags:
+      - AccountRankingRule
+      operationId: deleteCommerceRulesCustomerByCode
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+          description: OK
+      summary: Get Customer Rule by Code
+      tags:
+      - AccountRankingRule
+      operationId: getCommerceRulesCustomerByCode
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRankingRule'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountRankingRule'
+          description: OK
+      summary: Update Customer Rule
+      tags:
+      - AccountRankingRule
+      operationId: putCommerceRulesCustomerByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/customer/{code}/usages:
+    get:
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerRuleUsage'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerRuleUsage'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CustomerRuleUsage'
+                type: array
+          description: OK
+      summary: Get Customer Rule Usages by Code
+      tags:
+      - AccountRankingRule
+      operationId: getCommerceRulesCustomerByCodeUsages
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CustomerExpression:
+      properties:
+        left:
+          description: The field target of a predicate
+          type:
+          - string
+          - 'null'
+        logicalOperator:
+          description: And or Or (if Container with More than one Node)
+          type:
+          - string
+          - 'null'
+        nodes:
+          items:
+            $ref: '#/components/schemas/CustomerExpression'
+          type:
+          - array
+          - 'null'
+        operator:
+          description: The operator of a predicate
+          type:
+          - string
+          - 'null'
+        right:
+          description: The literal values of a predicate
+        type:
+          description: Container or Predicate
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerDynamicExpression:
+      description: Category
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        tree:
+          $ref: '#/components/schemas/CustomerExpression'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerRuleUsage:
+      description: Represents a customer rule usage
+      properties:
+        code:
+          description: The code/name of the rule
+          type:
+          - string
+          - 'null'
+        ruleType:
+          description: The type of rule (Return, PurchaseLimit, etc.)
+          type:
+          - string
+          - 'null'
+      type: object
+    AccountRankingRule:
+      description: Account ranking rule contract used for rules engine
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: unique code.
+          type:
+          - string
+          - 'null'
+        description:
+          description: Description for rule
+          type:
+          - string
+          - 'null'
+        expression:
+          $ref: '#/components/schemas/CustomerDynamicExpression'
+        id:
+          description: Unique id
+          format: int32
+          type: integer
+        name:
+          description: Rule name
+          type:
+          - string
+          - 'null'
+        ruleType:
+          description: Scope id
+          type:
+          - string
+          - 'null'
+      type: object
+    EvaluateAccountRankingRuleRequest:
+      properties:
+        codes:
+          description: ''
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        ruleType:
+          description: ''
+          type:
+          - string
+          - 'null'
+      type: object
+    AccountRankingRuleCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AccountRankingRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_customer.json
+- kibo-commerce-customer-openapi.yml

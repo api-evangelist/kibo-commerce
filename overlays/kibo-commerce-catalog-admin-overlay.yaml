@@ -1,0 +1,1411 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Catalog Admin
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-catalog-admin-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-catalog-admin-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/rules/backorderrebalancing/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/backorderrebalancing/{code}
+  update:
+    operationId: backorderrebalancingrulesDeleteBackOrderRebalancingRule
+- target: $.paths['/commerce/rules/backorderrebalancing/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/backorderrebalancing/{code}
+  update:
+    operationId: backorderrebalancingrulesGetBackOrderRebalancingRuleByCode
+- target: $.paths['/commerce/rules/backorderrebalancing/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/backorderrebalancing/{code}
+  update:
+    operationId: backorderrebalancingrulesUpdateBackOrderRebalancingRule
+- target: $.paths['/commerce/rules/backorderrebalancing'].get
+  description: Add derived operationId for GET /commerce/rules/backorderrebalancing
+  update:
+    operationId: backorderrebalancingrulesGetBackOrderRebalancingRules
+- target: $.paths['/commerce/rules/backorderrebalancing'].post
+  description: Add derived operationId for POST /commerce/rules/backorderrebalancing
+  update:
+    operationId: backorderrebalancingrulesCreateBackOrderRebalancingRule
+- target: $.paths['/commerce/rules/backorderrebalancing/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/backorderrebalancing/{code}/rank
+  update:
+    operationId: backorderrebalancingrulesUpdateBackOrderRebalancingRuleRank
+- target: $.paths['/commerce/rules/calloffrelease/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/calloffrelease/{code}
+  update:
+    operationId: calloffreleaserulesDeleteCallOffReleaseRule
+- target: $.paths['/commerce/rules/calloffrelease/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/calloffrelease/{code}
+  update:
+    operationId: calloffreleaserulesGetCallOffReleaseRuleByCode
+- target: $.paths['/commerce/rules/calloffrelease/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/calloffrelease/{code}
+  update:
+    operationId: calloffreleaserulesUpdateCallOffReleaseRule
+- target: $.paths['/commerce/rules/calloffrelease'].get
+  description: Add derived operationId for GET /commerce/rules/calloffrelease
+  update:
+    operationId: calloffreleaserulesGetCallOffReleaseRules
+- target: $.paths['/commerce/rules/calloffrelease'].post
+  description: Add derived operationId for POST /commerce/rules/calloffrelease
+  update:
+    operationId: calloffreleaserulesCreateCallOffReleaseRule
+- target: $.paths['/commerce/rules/calloffrelease/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/calloffrelease/{code}/rank
+  update:
+    operationId: calloffreleaserulesUpdateCallOffReleaseRuleRank
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/add-products'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/categories/{categoryId}/add-products
+  update:
+    operationId: categoriesAddProductsToCategory
+- target: $.paths['/commerce/catalog/admin/categories'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categories
+  update:
+    operationId: categoriesGetCategories
+- target: $.paths['/commerce/catalog/admin/categories'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/categories
+  update:
+    operationId: categoriesAddCategory
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/categories/{categoryId}
+  update:
+    operationId: categoriesDeleteCategory
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categories/{categoryId}
+  update:
+    operationId: categoriesGetCategory
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/categories/{categoryId}
+  update:
+    operationId: categoriesUpdateCategory
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN}
+  update:
+    operationId: categoriesDeleteCategoryAttribute
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN}
+  update:
+    operationId: categoriesGetCategoryAttribute
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN}
+  update:
+    operationId: categoriesUpdateCategoryAttribute
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/attributes'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categories/{categoryId}/attributes
+  update:
+    operationId: categoriesGetCategoryAttributes
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/attributes'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/categories/{categoryId}/attributes
+  update:
+    operationId: categoriesAddCategoryAttribute
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/children'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categories/{categoryId}/children
+  update:
+    operationId: categoriesGetChildCategories
+- target: $.paths['/commerce/catalog/admin/categories/{categoryId}/remove-products'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/categories/{categoryId}/remove-products
+  update:
+    operationId: categoriesRemoveProductsFromCategory
+- target: $.paths['/commerce/catalog/admin/categories/searchCategoryAttributes'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categories/searchCategoryAttributes
+  update:
+    operationId: categoriesSearchCategoryAttributes
+- target: $.paths['/commerce/catalog/admin/categories/ValidateDynamicExpression'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/categories/ValidateDynamicExpression
+  update:
+    operationId: categoriesValidateDynamicCategoryExpression
+- target: $.paths['/commerce/catalog/admin/categories/ValidateRealTimeDynamicExpression'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/categories/ValidateRealTimeDynamicExpression
+  update:
+    operationId: categoriesValidateRealtimeDynamicCategoryExpression
+- target: $.paths['/commerce/catalog/admin/categoryattributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categoryattributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: categoryattributedefinitionGetAttribute
+- target: $.paths['/commerce/catalog/admin/categoryattributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/categoryattributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: categoryattributedefinitionUpdateAttribute
+- target: $.paths['/commerce/catalog/admin/categoryattributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categoryattributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: categoryattributedefinitionGetAttributeVocabularyValues
+- target: $.paths['/commerce/catalog/admin/categoryattributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/categoryattributedefinition/attributes
+  update:
+    operationId: categoryattributedefinitionGetAttributes
+- target: $.paths['/commerce/catalog/admin/categoryattributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/categoryattributedefinition/attributes
+  update:
+    operationId: categoryattributedefinitionCreateAttribute
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes/remove'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes/remove
+  update:
+    operationId: couponsetsDeleteCoupons
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/assigneddiscounts'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/couponsets/{couponSetCode}/assigneddiscounts
+  update:
+    operationId: couponsetsGetAssignedDiscounts
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/assigneddiscounts'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/couponsets/{couponSetCode}/assigneddiscounts
+  update:
+    operationId: couponsetsAssignDiscountToCouponSet
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes/{couponCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes/{couponCode}
+  update:
+    operationId: couponsetsDeleteCoupon
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes/{couponCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes/{couponCode}
+  update:
+    operationId: couponsetsGetCoupon
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/couponsets/{couponSetCode}
+  update:
+    operationId: couponsetsDeleteCouponSet
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/couponsets/{couponSetCode}
+  update:
+    operationId: couponsetsGetCouponSet
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/couponsets/{couponSetCode}
+  update:
+    operationId: couponsetsUpdateCouponSet
+- target: $.paths['/commerce/catalog/admin/couponsets'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/couponsets
+  update:
+    operationId: couponsetsGetCouponSets
+- target: $.paths['/commerce/catalog/admin/couponsets'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/couponsets
+  update:
+    operationId: couponsetsAddCouponSet
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes
+  update:
+    operationId: couponsetsGetCoupons
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/couponsets/{couponSetCode}/couponcodes
+  update:
+    operationId: couponsetsAddCoupons
+- target: $.paths['/commerce/catalog/admin/couponsets/unique-code'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/couponsets/unique-code
+  update:
+    operationId: couponsetsGetUniqueCouponSetCode
+- target: $.paths['/commerce/catalog/admin/couponsets/{couponSetCode}/assigneddiscounts/{discountId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/couponsets/{couponSetCode}/assigneddiscounts/{discountId}
+  update:
+    operationId: couponsetsUnassignDiscountFromCouponSet
+- target: $.paths['/commerce/catalog/admin/couponsets/validate-unique-code'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/couponsets/validate-unique-code
+  update:
+    operationId: couponsetsValidateUniqueCouponSetCode
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode}
+  update:
+    operationId: currencyDeleteCurrencyExchangeRate
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode}
+  update:
+    operationId: currencyGetCurrencyExchangeRate
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}/exchangerates'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/currency/{currencyCode}/exchangerates
+  update:
+    operationId: currencyGetCurrencyExchangeRates
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}/exchangerates'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/currency/{currencyCode}/exchangerates
+  update:
+    operationId: currencyUpdateCurrencyExchangeRates
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}/exchangerates'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/currency/{currencyCode}/exchangerates
+  update:
+    operationId: currencyBulkUpdateCurrencyExchangeRates
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/currency/{currencyCode}
+  update:
+    operationId: currencyDeleteCurrencyLocalization
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/currency/{currencyCode}
+  update:
+    operationId: currencyGetCurrencyLocalization
+- target: $.paths['/commerce/catalog/admin/currency/{currencyCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/currency/{currencyCode}
+  update:
+    operationId: currencyUpdateCurrencyLocalization
+- target: $.paths['/commerce/catalog/admin/currency'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/currency
+  update:
+    operationId: currencyGetCurrencyLocalizations
+- target: $.paths['/commerce/catalog/admin/currency'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/currency
+  update:
+    operationId: currencyAddCurrencyLocalization
+- target: $.paths['/commerce/catalog/admin/discountsettings/{catalogId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/discountsettings/{catalogId}
+  update:
+    operationId: discountsettingsGetDiscountSettings
+- target: $.paths['/commerce/catalog/admin/discountsettings/{catalogId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/discountsettings/{catalogId}
+  update:
+    operationId: discountsettingsUpdateDiscountSettings
+- target: $.paths['/commerce/catalog/admin/discounts/generate-random-coupon'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/discounts/generate-random-coupon
+  update:
+    operationId: discountsGenerateRandomCoupon
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/discounts/{discountId}
+  update:
+    operationId: discountsDeleteDiscount
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/discounts/{discountId}
+  update:
+    operationId: discountsGetDiscount
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/discounts/{discountId}
+  update:
+    operationId: discountsUpdateDiscount
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}/content'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/discounts/{discountId}/content
+  update:
+    operationId: discountsGetDiscountContent
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}/content'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/discounts/{discountId}/content
+  update:
+    operationId: discountsUpdateDiscountContent
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}/tags'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/discounts/{discountId}/tags
+  update:
+    operationId: discountsGetDiscountTags
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}/target'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/discounts/{discountId}/target
+  update:
+    operationId: discountsGetDiscountTarget
+- target: $.paths['/commerce/catalog/admin/discounts/{discountId}/target'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/discounts/{discountId}/target
+  update:
+    operationId: discountsUpdateDiscountTarget
+- target: $.paths['/commerce/catalog/admin/discounts'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/discounts
+  update:
+    operationId: discountsGetDiscounts
+- target: $.paths['/commerce/catalog/admin/discounts'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/discounts
+  update:
+    operationId: discountsCreateDiscount
+- target: $.paths['/commerce/catalog/admin/discounts/tags'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/discounts/tags
+  update:
+    operationId: discountsUpdateDiscountTags
+- target: $.paths['/commerce/catalog/admin/discounts/expressions/validate'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/discounts/expressions/validate
+  update:
+    operationId: discountsValidateDiscountExpression
+- target: $.paths['/commerce/catalog/admin/facets/{facetId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/facets/{facetId}
+  update:
+    operationId: facetsDeleteFacet
+- target: $.paths['/commerce/catalog/admin/facets/{facetId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/facets/{facetId}
+  update:
+    operationId: facetsGetFacet
+- target: $.paths['/commerce/catalog/admin/facets/{facetId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/facets/{facetId}
+  update:
+    operationId: facetsUpdateFacet
+- target: $.paths['/commerce/catalog/admin/facets/category'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/facets/category
+  update:
+    operationId: facetsGetFacetCategoryList
+- target: $.paths['/commerce/catalog/admin/facets/category/{categoryId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/facets/category/{categoryId}
+  update:
+    operationId: facetsGetFacetCategoryListLegacy
+- target: $.paths['/commerce/catalog/admin/facets'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/facets
+  update:
+    operationId: facetsGetFacets
+- target: $.paths['/commerce/catalog/admin/facets'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/facets
+  update:
+    operationId: facetsAddFacet
+- target: $.paths['/commerce/catalog/admin/facets/set/edit'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/facets/set/edit
+  update:
+    operationId: facetsUpdateFacetSet
+- target: $.paths['/commerce/catalog/admin/searchSchema/fieldTypes/{language}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchSchema/fieldTypes/{language}
+  update:
+    operationId: fieldtypedefinitionGetFieldTypeDefinitions
+- target: $.paths['/commerce/rules/futureshipmentrebalancing/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/futureshipmentrebalancing/{code}
+  update:
+    operationId: futureshipmentrebalancingrulesDeleteFutureShipmentRebalancingRule
+- target: $.paths['/commerce/rules/futureshipmentrebalancing/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/futureshipmentrebalancing/{code}
+  update:
+    operationId: futureshipmentrebalancingrulesGetFutureShipmentRebalancingRuleByCode
+- target: $.paths['/commerce/rules/futureshipmentrebalancing/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/futureshipmentrebalancing/{code}
+  update:
+    operationId: futureshipmentrebalancingrulesUpdateFutureShipmentRebalancingRule
+- target: $.paths['/commerce/rules/futureshipmentrebalancing'].get
+  description: Add derived operationId for GET /commerce/rules/futureshipmentrebalancing
+  update:
+    operationId: futureshipmentrebalancingrulesGetFutureShipmentRebalancingRules
+- target: $.paths['/commerce/rules/futureshipmentrebalancing'].post
+  description: Add derived operationId for POST /commerce/rules/futureshipmentrebalancing
+  update:
+    operationId: futureshipmentrebalancingrulesCreateFutureShipmentRebalancingRule
+- target: $.paths['/commerce/rules/futureshipmentrebalancing/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/futureshipmentrebalancing/{code}/rank
+  update:
+    operationId: futureshipmentrebalancingrulesUpdateFutureShipmentRebalancingRuleRank
+- target: $.paths['/commerce/catalog/admin/mastercatalogs/{masterCatalogId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/mastercatalogs/{masterCatalogId}
+  update:
+    operationId: mastercatalogpublishsettingsGetMasterCatalog
+- target: $.paths['/commerce/catalog/admin/mastercatalogs/{masterCatalogId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/mastercatalogs/{masterCatalogId}
+  update:
+    operationId: mastercatalogpublishsettingsUpdateMasterCatalog
+- target: $.paths['/commerce/catalog/admin/mastercatalogs'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/mastercatalogs
+  update:
+    operationId: mastercatalogpublishsettingsGetMasterCatalogs
+- target: $.paths['/commerce/rules/pickwave/evaluate'].post
+  description: Add derived operationId for POST /commerce/rules/pickwave/evaluate
+  update:
+    operationId: pickwaveruleevaluateEvaluatePickWaveRules
+- target: $.paths['/commerce/rules/pickwave/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/pickwave/{code}
+  update:
+    operationId: pickwaverulesDeletePickWaveRule
+- target: $.paths['/commerce/rules/pickwave/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/pickwave/{code}
+  update:
+    operationId: pickwaverulesGetPickWaveRuleByCode
+- target: $.paths['/commerce/rules/pickwave/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/pickwave/{code}
+  update:
+    operationId: pickwaverulesUpdatePickWaveRule
+- target: $.paths['/commerce/rules/pickwave'].get
+  description: Add derived operationId for GET /commerce/rules/pickwave
+  update:
+    operationId: pickwaverulesGetPickWaveRules
+- target: $.paths['/commerce/rules/pickwave'].post
+  description: Add derived operationId for POST /commerce/rules/pickwave
+  update:
+    operationId: pickwaverulesCreatePickWaveRule
+- target: $.paths['/commerce/catalog/admin/pricelists/bulkaddentries'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/pricelists/bulkaddentries
+  update:
+    operationId: pricelistentriesBulkAddPriceListEntries
+- target: $.paths['/commerce/catalog/admin/pricelists/bulkdeleteentries'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/pricelists/bulkdeleteentries
+  update:
+    operationId: pricelistentriesBulkDeletePriceListEntries
+- target: $.paths['/commerce/catalog/admin/pricelists/bulkupdateentries'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/pricelists/bulkupdateentries
+  update:
+    operationId: pricelistentriesBulkUpdatePriceListEntries
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}/entries'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/pricelists/{priceListCode}/entries
+  update:
+    operationId: pricelistentriesGetPriceListEntries
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}/entries'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/pricelists/{priceListCode}/entries
+  update:
+    operationId: pricelistentriesAddPriceListEntry
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}/entries/{productCode}/{currencyCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/pricelists/{priceListCode}/entries/{productCode}/{currencyCode}
+  update:
+    operationId: pricelistentriesDeletePriceListEntryByCurrency
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}/entries/{productCode}/{currencyCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/pricelists/{priceListCode}/entries/{productCode}/{currencyCode}
+  update:
+    operationId: pricelistentriesGetPriceListEntriesByCurrency
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}/entries/{productCode}/{currencyCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/pricelists/{priceListCode}/entries/{productCode}/{currencyCode}
+  update:
+    operationId: pricelistentriesUpdatePriceListEntryByCurrency
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/pricelists/{priceListCode}
+  update:
+    operationId: pricelistsDeletePriceList
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/pricelists/{priceListCode}
+  update:
+    operationId: pricelistsGetPriceList
+- target: $.paths['/commerce/catalog/admin/pricelists/{priceListCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/pricelists/{priceListCode}
+  update:
+    operationId: pricelistsUpdatePriceList
+- target: $.paths['/commerce/catalog/admin/pricelists'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/pricelists
+  update:
+    operationId: pricelistsGetPriceLists
+- target: $.paths['/commerce/catalog/admin/pricelists'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/pricelists
+  update:
+    operationId: pricelistsAddPriceList
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/typerules'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/typerules
+  update:
+    operationId: productattributesGetAttributeTypeRules
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent
+  update:
+    operationId: productattributesGetLocalizedContent
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent
+  update:
+    operationId: productattributesAddLocalizedContent
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent
+  update:
+    operationId: productattributesUpdateLocalizedContent
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent/{localeCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent/{localeCode}
+  update:
+    operationId: productattributesDeleteLocalizedContentByLocaleCode
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent/{localeCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent/{localeCode}
+  update:
+    operationId: productattributesGetLocalizedContentByLocaleCode
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent/{localeCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent/{localeCode}
+  update:
+    operationId: productattributesUpdateLocalizedContentByLocaleCode
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: productattributesDeleteProductAttribute
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: productattributesGetProductAttribute
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: productattributesUpdateProductAttribute
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes
+  update:
+    operationId: productattributesGetProductAttributes
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/attributes
+  update:
+    operationId: productattributesAddProductAttribute
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}
+  update:
+    operationId: productattributesDeleteVocabularyValue
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}
+  update:
+    operationId: productattributesGetVocabularyValue
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}
+  update:
+    operationId: productattributesUpdateVocabularyValue
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent
+  update:
+    operationId: productattributesGetVocabularyValueLocalizedContent
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent
+  update:
+    operationId: productattributesAddVocabularyValueLocalizedContent
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent
+  update:
+    operationId: productattributesUpdateVocabularyValueLocalizedContent
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent/{localeCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent/{localeCode}
+  update:
+    operationId: productattributesDeleteVocabularyValueLocalizedContentByLocaleCode
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent/{localeCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent/{localeCode}
+  update:
+    operationId: productattributesGetVocabularyValueLocalizedContentByLocaleCode
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent/{localeCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent/{localeCode}
+  update:
+    operationId: productattributesUpdateVocabularyValueLocalizedContentByLocaleCode
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: productattributesGetVocabularyValues
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: productattributesAddVocabularyValue
+- target: $.paths['/commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: productattributesUpdateVocabularyValues
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice
+  update:
+    operationId: productextrasGetExtraLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice
+  update:
+    operationId: productextrasAddExtraLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice
+  update:
+    operationId: productextrasUpdateExtraLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice/{currencyCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice/{currencyCode}
+  update:
+    operationId: productextrasDeleteExtraLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice/{currencyCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice/{currencyCode}
+  update:
+    operationId: productextrasGetExtraLocalizedDeltaPriceByCurrency
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice/{currencyCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice/{currencyCode}
+  update:
+    operationId: productextrasUpdateExtraLocalizedDeltaPriceByCurrency
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}
+  update:
+    operationId: productextrasDeleteProductExtra
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}
+  update:
+    operationId: productextrasGetProductExtra
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}
+  update:
+    operationId: productextrasUpdateProductExtra
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Extras
+  update:
+    operationId: productextrasGetProductExtras
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Extras'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/Extras
+  update:
+    operationId: productextrasAddProductExtra
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Options/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN}
+  update:
+    operationId: productoptionsDeleteProductOption
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Options/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN}
+  update:
+    operationId: productoptionsGetProductOption
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Options/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/Options/{attributeFQN}
+  update:
+    operationId: productoptionsUpdateProductOption
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Options'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Options
+  update:
+    operationId: productoptionsGetProductOptions
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Options'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/Options
+  update:
+    operationId: productoptionsAddProductOption
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Properties
+  update:
+    operationId: productpropertiesGetProductProperties
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/Properties
+  update:
+    operationId: productpropertiesAddProductProperty
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}
+  update:
+    operationId: productpropertiesDeleteProductProperty
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}
+  update:
+    operationId: productpropertiesGetProductProperty
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}
+  update:
+    operationId: productpropertiesUpdateProductProperty
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode}
+  update:
+    operationId: productpropertiesDeleteProductPropertyLocalizedContentByLocale
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode}
+  update:
+    operationId: productpropertiesGetProductPropertyLocalizedContentByLocale
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent/{localeCode}
+  update:
+    operationId: productpropertiesUpdateProductPropertyLocalizedContentByLocale
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent
+  update:
+    operationId: productpropertiesGetProductPropertyLocalizedContents
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent
+  update:
+    operationId: productpropertiesAddProductPropertyLocalizedContent
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/Properties/{attributeFQN}/values/{value}/LocalizedContent
+  update:
+    operationId: productpropertiesUpdateProductPropertyLocalizedContent
+- target: $.paths['/commerce/catalog/admin/publishing/publishsets/{publishSetCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/publishing/publishsets/{publishSetCode}
+  update:
+    operationId: productpublishingDeletePublishSet
+- target: $.paths['/commerce/catalog/admin/publishing/publishsets/{publishSetCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/publishing/publishsets/{publishSetCode}
+  update:
+    operationId: productpublishingGetPublishSet
+- target: $.paths['/commerce/catalog/admin/publishing/publishsets'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/publishing/publishsets
+  update:
+    operationId: productpublishingGetPublishSets
+- target: $.paths['/commerce/catalog/admin/publishing/publishsets'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/publishing/publishsets
+  update:
+    operationId: productpublishingAssignProductsToPublishSets
+- target: $.paths['/commerce/catalog/admin/publishing/publishdrafts'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/publishing/publishdrafts
+  update:
+    operationId: productpublishingPublishDraftProducts
+- target: $.paths['/commerce/catalog/admin/quickedit/products/producttype'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/quickedit/products/producttype
+  update:
+    operationId: productquickeditEndpointUsedToApplyUpdatesForProductType
+- target: $.paths['/commerce/catalog/admin/quickedit/products/productincatalog'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/quickedit/products/productincatalog
+  update:
+    operationId: productquickeditQuickEditProductInCatalog
+- target: $.paths['/commerce/catalog/admin/quickedit/products'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/quickedit/products
+  update:
+    operationId: productquickeditQuickEditProducts
+- target: $.paths['/commerce/catalog/admin/quickedit/products/properties'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/quickedit/products/properties
+  update:
+    operationId: productquickeditQuickEditProperties
+- target: $.paths['/commerce/rules/product/product-rule-fields'].get
+  description: Add derived operationId for GET /commerce/rules/product/product-rule-fields
+  update:
+    operationId: productrulesGetExpressionFieldDefinition
+- target: $.paths['/commerce/rules/product/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/product/{code}
+  update:
+    operationId: productrulesDeleteProductRules
+- target: $.paths['/commerce/rules/product/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/product/{code}
+  update:
+    operationId: productrulesGetProductRuleByCode
+- target: $.paths['/commerce/rules/product/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/product/{code}
+  update:
+    operationId: productrulesUpdateProductRule
+- target: $.paths['/commerce/rules/product'].get
+  description: Add derived operationId for GET /commerce/rules/product
+  update:
+    operationId: productrulesGetProductRules
+- target: $.paths['/commerce/rules/product'].post
+  description: Add derived operationId for POST /commerce/rules/product
+  update:
+    operationId: productrulesCreateProductRule
+- target: $.paths['/commerce/rules/product/validate'].post
+  description: Add derived operationId for POST /commerce/rules/product/validate
+  update:
+    operationId: productrulesValidateExpression
+- target: $.paths['/commerce/rules/product/{code}/usages'].get
+  description: Add derived operationId for GET /commerce/rules/product/{code}/usages
+  update:
+    operationId: productruleusagesGetProductRuleUsages
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/changeproducttype'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/changeproducttype
+  update:
+    operationId: productsChangeProductType
+- target: $.paths['/commerce/catalog/admin/products/{productCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}
+  update:
+    operationId: productsDeleteProduct
+- target: $.paths['/commerce/catalog/admin/products/{productCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}
+  update:
+    operationId: productsGetProduct
+- target: $.paths['/commerce/catalog/admin/products/{productCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}
+  update:
+    operationId: productsUpdateProduct
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/ProductInCatalogs/{catalogId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/ProductInCatalogs/{catalogId}
+  update:
+    operationId: productsDeleteProductInCatalog
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/ProductInCatalogs/{catalogId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/ProductInCatalogs/{catalogId}
+  update:
+    operationId: productsGetProductInCatalog
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/ProductInCatalogs/{catalogId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/ProductInCatalogs/{catalogId}
+  update:
+    operationId: productsUpdateProductInCatalog
+- target: $.paths['/commerce/catalog/admin/products'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products
+  update:
+    operationId: productsGetProducts
+- target: $.paths['/commerce/catalog/admin/products'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products
+  update:
+    operationId: productsAddProduct
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/ProductInCatalogs'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/ProductInCatalogs
+  update:
+    operationId: productsGetProductsInCatalogs
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/ProductInCatalogs'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/ProductInCatalogs
+  update:
+    operationId: productsAddProductInCatalogs
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/ProductInCatalogs'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/ProductInCatalogs
+  update:
+    operationId: productsUpdateProductInCatalogs
+- target: $.paths['/commerce/catalog/admin/products/Actions/RenameProductCodes'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/Actions/RenameProductCodes
+  update:
+    operationId: productsRenameProductCodes
+- target: $.paths['/commerce/catalog/admin/productsV1/{productCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/productsV1/{productCode}
+  update:
+    operationId: productsv1GetProduct
+- target: $.paths['/commerce/catalog/admin/productsV1/{productCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/productsV1/{productCode}
+  update:
+    operationId: productsv1UpdateProduct
+- target: $.paths['/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs/{catalogId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs/{catalogId}
+  update:
+    operationId: productsv1GetProductInCatalog
+- target: $.paths['/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs/{catalogId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs/{catalogId}
+  update:
+    operationId: productsv1UpdateProductInCatalog
+- target: $.paths['/commerce/catalog/admin/productsV1'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/productsV1
+  update:
+    operationId: productsv1GetProducts
+- target: $.paths['/commerce/catalog/admin/productsV1'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/productsV1
+  update:
+    operationId: productsv1AddProduct
+- target: $.paths['/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs
+  update:
+    operationId: productsv1GetProductsInCatalogs
+- target: $.paths['/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs
+  update:
+    operationId: productsv1AddProductInCatalogs
+- target: $.paths['/commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/productsV1/{productCode}/ProductInCatalogs
+  update:
+    operationId: productsv1UpdateProductsInCatalogs
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/variations'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/variations
+  update:
+    operationId: producttypesGenerateProductVariations
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}
+  update:
+    operationId: producttypesDeleteProductType
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}
+  update:
+    operationId: producttypesGetProductType
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}
+  update:
+    operationId: producttypesUpdateProductType
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras/{attributeFQN}
+  update:
+    operationId: producttypesDeleteProductTypeExtra
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras/{attributeFQN}
+  update:
+    operationId: producttypesGetProductTypeExtra
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras/{attributeFQN}
+  update:
+    operationId: producttypesUpdateProductTypeExtra
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras
+  update:
+    operationId: producttypesGetProductTypeExtras
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Extras
+  update:
+    operationId: producttypesAddProductTypeExtra
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options/{attributeFQN}
+  update:
+    operationId: producttypesDeleteProductTypeOption
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options/{attributeFQN}
+  update:
+    operationId: producttypesGetProductTypeOption
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options/{attributeFQN}
+  update:
+    operationId: producttypesUpdateProductTypeOption
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options
+  update:
+    operationId: producttypesGetProductTypeOptions
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Options
+  update:
+    operationId: producttypesAddProductTypeOption
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties
+  update:
+    operationId: producttypesGetProductTypeProperties
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties
+  update:
+    operationId: producttypesAddProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties/{attributeFQN}
+  update:
+    operationId: producttypesDeleteProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties/{attributeFQN}
+  update:
+    operationId: producttypesGetProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/Properties/{attributeFQN}
+  update:
+    operationId: producttypesUpdateProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes
+  update:
+    operationId: producttypesGetProductTypes
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/producttypes
+  update:
+    operationId: producttypesAddProductType
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties
+  update:
+    operationId: producttypesGetVariantProductTypeProperties
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties
+  update:
+    operationId: producttypesAddVariantProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties/{attributeFQN}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties/{attributeFQN}
+  update:
+    operationId: producttypesDeleteVariantProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties/{attributeFQN}
+  update:
+    operationId: producttypesGetVariantProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/attributedefinition/producttypes/{productTypeId}/VariantProperties/{attributeFQN}
+  update:
+    operationId: producttypesUpdateVariantProductTypeProperty
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/variations/{variationKey}
+  update:
+    operationId: productvariationsDeleteProductVariation
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/variations/{variationKey}
+  update:
+    operationId: productvariationsGetProductVariation
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/variations/{variationKey}
+  update:
+    operationId: productvariationsUpdateProductVariation
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice/{currencyCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice/{currencyCode}
+  update:
+    operationId: productvariationsDeleteProductVariationLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice/{currencyCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice/{currencyCode}
+  update:
+    operationId: productvariationsGetProductVariationLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice/{currencyCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice/{currencyCode}
+  update:
+    operationId: productvariationsUpdateProductVariationLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice
+  update:
+    operationId: productvariationsGetProductVariationLocalizedDeltaPrices
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice
+  update:
+    operationId: productvariationsAddProductVariationLocalizedDeltaPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice
+  update:
+    operationId: productvariationsUpdateProductVariationLocalizedDeltaPrices
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice/{currencyCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice/{currencyCode}
+  update:
+    operationId: productvariationsDeleteProductVariationLocalizedPriceByCurrency
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice/{currencyCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice/{currencyCode}
+  update:
+    operationId: productvariationsGetProductVariationLocalizedPriceByCurrency
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice/{currencyCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice/{currencyCode}
+  update:
+    operationId: productvariationsUpdateProductVariationLocalizedPriceByCurrency
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice
+  update:
+    operationId: productvariationsGetProductVariationLocalizedPrices
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice
+  update:
+    operationId: productvariationsAddProductVariationLocalizedPrice
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice
+  update:
+    operationId: productvariationsUpdateProductVariationLocalizedPrices
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/products/{productCode}/variations
+  update:
+    operationId: productvariationsGetProductVariations
+- target: $.paths['/commerce/catalog/admin/products/{productCode}/variations'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/products/{productCode}/variations
+  update:
+    operationId: productvariationsUpdateProductVariations
+- target: $.paths['/commerce/catalog/admin/publishing/discarddrafts'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/publishing/discarddrafts
+  update:
+    operationId: publishingDiscardDrafts
+- target: $.paths['/commerce/rules/purchaselimit/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/purchaselimit/{code}
+  update:
+    operationId: purchaselimitrulesDeletePurchaseLimitRule
+- target: $.paths['/commerce/rules/purchaselimit/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/purchaselimit/{code}
+  update:
+    operationId: purchaselimitrulesGetPurchaseLimitRuleByCode
+- target: $.paths['/commerce/rules/purchaselimit/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/purchaselimit/{code}
+  update:
+    operationId: purchaselimitrulesUpdatePurchaseLimitRule
+- target: $.paths['/commerce/rules/purchaselimit'].get
+  description: Add derived operationId for GET /commerce/rules/purchaselimit
+  update:
+    operationId: purchaselimitrulesGetPurchaseLimitRules
+- target: $.paths['/commerce/rules/purchaselimit'].post
+  description: Add derived operationId for POST /commerce/rules/purchaselimit
+  update:
+    operationId: purchaselimitrulesCreatePurchaseLimitRule
+- target: $.paths['/commerce/rules/purchaselimit/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/purchaselimit/{code}/rank
+  update:
+    operationId: purchaselimitrulesUpdatePurchaseLimitRuleRank
+- target: $.paths['/commerce/rules/reservation/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/reservation/{code}
+  update:
+    operationId: reservationrulesDeleteReservationRule
+- target: $.paths['/commerce/rules/reservation/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/reservation/{code}
+  update:
+    operationId: reservationrulesGetReservationRuleByCode
+- target: $.paths['/commerce/rules/reservation/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/reservation/{code}
+  update:
+    operationId: reservationrulesUpdateReservationRule
+- target: $.paths['/commerce/rules/reservation'].get
+  description: Add derived operationId for GET /commerce/rules/reservation
+  update:
+    operationId: reservationrulesGetReservationRules
+- target: $.paths['/commerce/rules/reservation'].post
+  description: Add derived operationId for POST /commerce/rules/reservation
+  update:
+    operationId: reservationrulesCreateReservationRule
+- target: $.paths['/commerce/rules/reservation/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/reservation/{code}/rank
+  update:
+    operationId: reservationrulesUpdateReservationRuleRank
+- target: $.paths['/commerce/rules/reservationstealfor/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/reservationstealfor/{code}
+  update:
+    operationId: reservationstealforrulesDeleteReservationStealForRule
+- target: $.paths['/commerce/rules/reservationstealfor/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/reservationstealfor/{code}
+  update:
+    operationId: reservationstealforrulesGetReservationStealForRuleByCode
+- target: $.paths['/commerce/rules/reservationstealfor/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/reservationstealfor/{code}
+  update:
+    operationId: reservationstealforrulesUpdateReservationStealForRule
+- target: $.paths['/commerce/rules/reservationstealfor'].get
+  description: Add derived operationId for GET /commerce/rules/reservationstealfor
+  update:
+    operationId: reservationstealforrulesGetReservationStealForRules
+- target: $.paths['/commerce/rules/reservationstealfor'].post
+  description: Add derived operationId for POST /commerce/rules/reservationstealfor
+  update:
+    operationId: reservationstealforrulesCreateReservationStealForRule
+- target: $.paths['/commerce/rules/reservationstealfor/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/reservationstealfor/{code}/rank
+  update:
+    operationId: reservationstealforrulesUpdateReservationStealForRuleRank
+- target: $.paths['/commerce/rules/reservationstealfrom/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/reservationstealfrom/{code}
+  update:
+    operationId: reservationstealfromrulesDeleteReservationStealFromRule
+- target: $.paths['/commerce/rules/reservationstealfrom/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/reservationstealfrom/{code}
+  update:
+    operationId: reservationstealfromrulesGetReservationStealFromRuleByCode
+- target: $.paths['/commerce/rules/reservationstealfrom/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/reservationstealfrom/{code}
+  update:
+    operationId: reservationstealfromrulesUpdateReservationStealFromRule
+- target: $.paths['/commerce/rules/reservationstealfrom'].get
+  description: Add derived operationId for GET /commerce/rules/reservationstealfrom
+  update:
+    operationId: reservationstealfromrulesGetReservationStealFromRules
+- target: $.paths['/commerce/rules/reservationstealfrom'].post
+  description: Add derived operationId for POST /commerce/rules/reservationstealfrom
+  update:
+    operationId: reservationstealfromrulesCreateReservationStealFromRule
+- target: $.paths['/commerce/rules/reservationstealfrom/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/reservationstealfrom/{code}/rank
+  update:
+    operationId: reservationstealfromrulesUpdateReservationStealFromRuleRank
+- target: $.paths['/commerce/rules/return/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/return/{code}
+  update:
+    operationId: returnrulesDeleteReturnRule
+- target: $.paths['/commerce/rules/return/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/return/{code}
+  update:
+    operationId: returnrulesGetReturnRuleByCode
+- target: $.paths['/commerce/rules/return/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/return/{code}
+  update:
+    operationId: returnrulesUpdateReturnRule
+- target: $.paths['/commerce/rules/return'].get
+  description: Add derived operationId for GET /commerce/rules/return
+  update:
+    operationId: returnrulesGetReturnRules
+- target: $.paths['/commerce/rules/return'].post
+  description: Add derived operationId for POST /commerce/rules/return
+  update:
+    operationId: returnrulesCreateReturnRule
+- target: $.paths['/commerce/rules/return/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/return/{code}/rank
+  update:
+    operationId: returnrulesUpdateReturnRuleRank
+- target: $.paths['/commerce/rules/jobs'].post
+  description: Add derived operationId for POST /commerce/rules/jobs
+  update:
+    operationId: rulesenginejobsCreateRulesEngineJob
+- target: $.paths['/commerce/rules/safetystock/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/safetystock/{code}
+  update:
+    operationId: safetystockrulesDeleteSafetyStockRule
+- target: $.paths['/commerce/rules/safetystock/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/safetystock/{code}
+  update:
+    operationId: safetystockrulesGetSafetyStockRuleByCode
+- target: $.paths['/commerce/rules/safetystock/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/safetystock/{code}
+  update:
+    operationId: safetystockrulesUpdateSafetyStockRule
+- target: $.paths['/commerce/rules/safetystock'].get
+  description: Add derived operationId for GET /commerce/rules/safetystock
+  update:
+    operationId: safetystockrulesGetSafetyStockRules
+- target: $.paths['/commerce/rules/safetystock'].post
+  description: Add derived operationId for POST /commerce/rules/safetystock
+  update:
+    operationId: safetystockrulesCreateSafetyStockRule
+- target: $.paths['/commerce/rules/safetystock/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/safetystock/{code}/rank
+  update:
+    operationId: safetystockrulesUpdateSafetyStockRuleRank
+- target: $.paths['/commerce/catalog/admin/searchSchema/definition/{language}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchSchema/definition/{language}
+  update:
+    operationId: schemadefinitionGetSchemaDefinition
+- target: $.paths['/commerce/catalog/admin/searchSchema/definition/{language}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/searchSchema/definition/{language}
+  update:
+    operationId: schemadefinitionUpdateSchemaDefinition
+- target: $.paths['/commerce/catalog/admin/searchSchema/definition'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchSchema/definition
+  update:
+    operationId: schemadefinitionListSchemaDefinitions
+- target: $.paths['/commerce/catalog/admin/searchSchema/definition/{language}/publish'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/searchSchema/definition/{language}/publish
+  update:
+    operationId: schemadefinitionPublish
+- target: $.paths['/commerce/catalog/admin/searchSchema/definition/{language}/revert'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/searchSchema/definition/{language}/revert
+  update:
+    operationId: schemadefinitionRevert
+- target: $.paths['/commerce/catalog/admin/search/{name}/categorysuggestsettings'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/search/{name}/categorysuggestsettings
+  update:
+    operationId: searchcategorysuggestsettingsDeleteCategorySuggestSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/categorysuggestsettings'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/{name}/categorysuggestsettings
+  update:
+    operationId: searchcategorysuggestsettingsGetCategorySuggestSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/categorysuggestsettings'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/{name}/categorysuggestsettings
+  update:
+    operationId: searchcategorysuggestsettingsUpdateCategorySuggestSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/listingsettings'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/search/{name}/listingsettings
+  update:
+    operationId: searchlistingsettingsDeleteSearchListingSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/listingsettings'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/{name}/listingsettings
+  update:
+    operationId: searchlistingsettingsGetSearchListingSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/listingsettings'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/{name}/listingsettings
+  update:
+    operationId: searchlistingsettingsUpdateSearchListingSettings
+- target: $.paths['/commerce/catalog/admin/searchmerchandizingrules/{code}/clone'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchmerchandizingrules/{code}/clone
+  update:
+    operationId: searchmerchandizingruleCloneSearchMerchandizingRule
+- target: $.paths['/commerce/catalog/admin/searchmerchandizingrules/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/searchmerchandizingrules/{code}
+  update:
+    operationId: searchmerchandizingruleDeleteSearchMerchandizingRule
+- target: $.paths['/commerce/catalog/admin/searchmerchandizingrules/{code}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchmerchandizingrules/{code}
+  update:
+    operationId: searchmerchandizingruleGetSearchMerchandizingRule
+- target: $.paths['/commerce/catalog/admin/searchmerchandizingrules/{code}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/searchmerchandizingrules/{code}
+  update:
+    operationId: searchmerchandizingruleUpdateSearchMerchandizingRule
+- target: $.paths['/commerce/catalog/admin/searchmerchandizingrules'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchmerchandizingrules
+  update:
+    operationId: searchmerchandizingruleGetSearchMerchandizingRules
+- target: $.paths['/commerce/catalog/admin/searchmerchandizingrules'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/searchmerchandizingrules
+  update:
+    operationId: searchmerchandizingruleCreateSearchMerchandizingRule
+- target: $.paths['/commerce/catalog/admin/search/{name}/productsuggestsettings'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/search/{name}/productsuggestsettings
+  update:
+    operationId: searchproductsuggestsettingsDeleteProductSuggestSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/productsuggestsettings'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/{name}/productsuggestsettings
+  update:
+    operationId: searchproductsuggestsettingsGetProductSuggestSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/productsuggestsettings'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/{name}/productsuggestsettings
+  update:
+    operationId: searchproductsuggestsettingsUpdateProductSuggestSettings
+- target: $.paths['/commerce/catalog/admin/search/redirect/{redirectId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/search/redirect/{redirectId}
+  update:
+    operationId: searchredirectDeleteSearchRedirect
+- target: $.paths['/commerce/catalog/admin/search/redirect/{redirectId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/redirect/{redirectId}
+  update:
+    operationId: searchredirectGetSearchRedirect
+- target: $.paths['/commerce/catalog/admin/search/redirect/{redirectId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/redirect/{redirectId}
+  update:
+    operationId: searchredirectUpdateSearchRedirect
+- target: $.paths['/commerce/catalog/admin/search/redirect'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/redirect
+  update:
+    operationId: searchredirectGetSearchRedirects
+- target: $.paths['/commerce/catalog/admin/search/redirect'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/search/redirect
+  update:
+    operationId: searchredirectAddSearchRedirect
+- target: $.paths['/commerce/catalog/admin/search/settings'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/settings
+  update:
+    operationId: searchsettingsGetSearchSettings
+- target: $.paths['/commerce/catalog/admin/search/settings'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/search/settings
+  update:
+    operationId: searchsettingsAddSearchSettings
+- target: $.paths['/commerce/catalog/admin/search/settings/{name}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/search/settings/{name}
+  update:
+    operationId: searchsettingsDeleteSearchSettingsByName
+- target: $.paths['/commerce/catalog/admin/search/settings/{name}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/settings/{name}
+  update:
+    operationId: searchsettingsGetSearchSettingsByName
+- target: $.paths['/commerce/catalog/admin/search/settings/{name}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/settings/{name}
+  update:
+    operationId: searchsettingsUpdateSearchSettingsByName
+- target: $.paths['/commerce/catalog/admin/search/{name}/sitesearchsettings'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/search/{name}/sitesearchsettings
+  update:
+    operationId: searchsettingsDeleteSiteSearchSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/sitesearchsettings'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/{name}/sitesearchsettings
+  update:
+    operationId: searchsettingsGetSiteSearchSettings
+- target: $.paths['/commerce/catalog/admin/search/{name}/sitesearchsettings'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/{name}/sitesearchsettings
+  update:
+    operationId: searchsettingsUpdateSiteSearchSettings
+- target: $.paths['/commerce/catalog/admin/search/settings/systemdefault'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/settings/systemdefault
+  update:
+    operationId: searchsettingsGetSystemDefaultSearchSettings
+- target: $.paths['/commerce/catalog/admin/search/spellcheck'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/spellcheck
+  update:
+    operationId: searchsettingsUpdateSpellcheckSettings
+- target: $.paths['/commerce/catalog/admin/search/synonyms/{synonymId}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/search/synonyms/{synonymId}
+  update:
+    operationId: searchsynonymsDeleteSynonymDefinition
+- target: $.paths['/commerce/catalog/admin/search/synonyms/{synonymId}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/synonyms/{synonymId}
+  update:
+    operationId: searchsynonymsGetSynonymDefinition
+- target: $.paths['/commerce/catalog/admin/search/synonyms/{synonymId}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/search/synonyms/{synonymId}
+  update:
+    operationId: searchsynonymsUpdateSynonymDefinition
+- target: $.paths['/commerce/catalog/admin/search/synonym-definitions/{localeCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/synonym-definitions/{localeCode}
+  update:
+    operationId: searchsynonymsGetSynonymDefinitionCollection
+- target: $.paths['/commerce/catalog/admin/search/synonym-definitions/{localeCode}'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/search/synonym-definitions/{localeCode}
+  update:
+    operationId: searchsynonymsAddSynonymDefinitionCollection
+- target: $.paths['/commerce/catalog/admin/search/master-catalog-synonym-definitions/{languageCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/master-catalog-synonym-definitions/{languageCode}
+  update:
+    operationId: searchsynonymsGetSynonymDefinitionCollections
+- target: $.paths['/commerce/catalog/admin/search/synonyms'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/search/synonyms
+  update:
+    operationId: searchsynonymsGetSynonymDefinitions
+- target: $.paths['/commerce/catalog/admin/search/synonyms'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/search/synonyms
+  update:
+    operationId: searchsynonymsAddSynonymDefinition
+- target: $.paths['/commerce/rules/shipmentrelease/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/shipmentrelease/{code}
+  update:
+    operationId: shipmentreleaserulesDeleteShipmentReleaseRule
+- target: $.paths['/commerce/rules/shipmentrelease/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/shipmentrelease/{code}
+  update:
+    operationId: shipmentreleaserulesGetShipmentReleaseRuleByCode
+- target: $.paths['/commerce/rules/shipmentrelease/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/shipmentrelease/{code}
+  update:
+    operationId: shipmentreleaserulesUpdateShipmentReleaseRule
+- target: $.paths['/commerce/rules/shipmentrelease'].get
+  description: Add derived operationId for GET /commerce/rules/shipmentrelease
+  update:
+    operationId: shipmentreleaserulesGetShipmentReleaseRules
+- target: $.paths['/commerce/rules/shipmentrelease'].post
+  description: Add derived operationId for POST /commerce/rules/shipmentrelease
+  update:
+    operationId: shipmentreleaserulesCreateShipmentReleaseRule
+- target: $.paths['/commerce/rules/shipmentrelease/{code}/rank'].put
+  description: Add derived operationId for PUT /commerce/rules/shipmentrelease/{code}/rank
+  update:
+    operationId: shipmentreleaserulesUpdateShipmentReleaseRuleRank
+- target: $.paths['/commerce/rules/shipment/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/shipment/{code}
+  update:
+    operationId: shipmentrulesDeleteShipmentRule
+- target: $.paths['/commerce/rules/shipment/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/shipment/{code}
+  update:
+    operationId: shipmentrulesGetShipmentRuleByCode
+- target: $.paths['/commerce/rules/shipment/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/shipment/{code}
+  update:
+    operationId: shipmentrulesUpdateShipmentRule
+- target: $.paths['/commerce/rules/shipment'].get
+  description: Add derived operationId for GET /commerce/rules/shipment
+  update:
+    operationId: shipmentrulesGetShipmentRules
+- target: $.paths['/commerce/rules/shipment'].post
+  description: Add derived operationId for POST /commerce/rules/shipment
+  update:
+    operationId: shipmentrulesCreateShipmentRule
+- target: $.paths['/commerce/rules/shipment/expression/parse'].post
+  description: Add derived operationId for POST /commerce/rules/shipment/expression/parse
+  update:
+    operationId: shipmentrulesParseShipmentExpression
+- target: $.paths['/commerce/catalog/admin/searchSchema/stopwords/{language}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchSchema/stopwords/{language}
+  update:
+    operationId: stopwordsGetStopwords
+- target: $.paths['/commerce/catalog/admin/searchSchema/stopwords/{language}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/searchSchema/stopwords/{language}
+  update:
+    operationId: stopwordsAddStopwords
+- target: $.paths['/commerce/catalog/admin/searchSchema/suggest/{language}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchSchema/suggest/{language}
+  update:
+    operationId: suggestdefinitionDownloadsTheSuggestFileForTheSite
+- target: $.paths['/commerce/catalog/admin/searchSchema/suggest/{language}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/searchSchema/suggest/{language}
+  update:
+    operationId: suggestdefinitionUploadsASuggestFileForTheSiteInTabSeparatedFormat
+- target: $.paths['/commerce/catalog/admin/searchSchema/suggest/settings/{language}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchSchema/suggest/settings/{language}
+  update:
+    operationId: suggestdefinitionGetsTheSuggesterSettingsForTheSite
+- target: $.paths['/commerce/catalog/admin/searchSchema/suggest/settings/{language}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/searchSchema/suggest/settings/{language}
+  update:
+    operationId: suggestdefinitionUpdatesTheSuggesterSettingsForTheSite
+- target: $.paths['/commerce/catalog/admin/searchSchema/synonyms'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/searchSchema/synonyms
+  update:
+    operationId: synonymListSynonyms
+- target: $.paths['/commerce/catalog/admin/searchSchema/synonyms/reload'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/searchSchema/synonyms/reload
+  update:
+    operationId: synonymUpdateSynonyms
+- target: $.paths['/commerce/catalog/admin/tags/{tagCode}'].delete
+  description: Add derived operationId for DELETE /commerce/catalog/admin/tags/{tagCode}
+  update:
+    operationId: tagDeleteTag
+- target: $.paths['/commerce/catalog/admin/tags/{tagCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/tags/{tagCode}
+  update:
+    operationId: tagGetTag
+- target: $.paths['/commerce/catalog/admin/tags/{tagCode}'].put
+  description: Add derived operationId for PUT /commerce/catalog/admin/tags/{tagCode}
+  update:
+    operationId: tagUpdateTag
+- target: $.paths['/commerce/catalog/admin/tags/node/tree'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/tags/node/tree
+  update:
+    operationId: tagGetTagCollectionAsTagTree
+- target: $.paths['/commerce/catalog/admin/tags'].get
+  description: Add derived operationId for GET /commerce/catalog/admin/tags
+  update:
+    operationId: tagGetTags
+- target: $.paths['/commerce/catalog/admin/tags'].post
+  description: Add derived operationId for POST /commerce/catalog/admin/tags
+  update:
+    operationId: tagCreateTag

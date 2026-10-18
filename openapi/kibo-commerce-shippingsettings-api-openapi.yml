@@ -1,0 +1,229 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipping Settings API
+  version: '1.0'
+  description: 'Operations tagged ShippingSettings across 2 of this provider''s published API definitions: openapi_openapi_settings.json, kibo-commerce-settings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShippingSettings
+paths:
+  /commerce/settings/shipping/orderhandlingfee:
+    get:
+      deprecated: true
+      description: 'OBSOLETE: Handling fees are now defined via shipping admin
+
+        Retrieves the site''s shipping handling fee.'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+          description: OK
+      summary: Get Order Handling Fee
+      tags:
+      - ShippingSettings
+      operationId: getCommerceSettingsShippingOrderhandlingfee
+      x-operation-id-source: derived
+    post:
+      deprecated: true
+      description: 'OBSOLETE: Handling fees are now defined via shipping admin
+
+        Creates site''s shipping handling fee.'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteShippingHandlingFee'
+        description: 'New order handling fee to create. Required properties: Amount.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+          description: OK
+      summary: Create Shipping Settings
+      tags:
+      - ShippingSettings
+      operationId: postCommerceSettingsShippingOrderhandlingfee
+      x-operation-id-source: derived
+    put:
+      deprecated: true
+      description: 'OBSOLETE: Handling fees are now defined via shipping admin
+
+        Updates the site''s shipping handling fee.'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SiteShippingHandlingFee'
+        description: 'Properties of the site''s order handling fee. Required properties: Amount.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SiteShippingHandlingFee'
+          description: OK
+      summary: Update Shipping Settings
+      tags:
+      - ShippingSettings
+      operationId: putCommerceSettingsShippingOrderhandlingfee
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/settings/shipping:
+    get:
+      description: 'Retrieves site''s current shipping settings including information about the active shipping rate provider,
+
+        return address, shipping methods, and which countries that you can ship to.'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SiteShippingSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SiteShippingSettings'
+          description: OK
+      summary: Get Site Shipping Settings
+      tags:
+      - ShippingSettings
+      operationId: getCommerceSettingsShipping
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SiteShippingSignatureRequirement:
+      description: The site setting that specifies the store's handling fees
+      properties:
+        isSignatureRequired:
+          description: Is Signature Required?
+          type:
+          - boolean
+          - 'null'
+        minimumValueThreshold:
+          description: If set, this is exact amount a shipment must be greater than to trigger usage of the IsSignatureRequired property
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    SiteShippingSettings:
+      description: 'Defines the site setting for the active shipping rate provider that rate provider calculates domestic and international shipping rates.
+
+        Your site may have multiple shipping rate providers, for example, FedEx, DHL, USPS. However, only one shipping rate provider can be active at the same time.'
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        orderHandlingFee:
+          $ref: '#/components/schemas/SiteShippingHandlingFee'
+        signatureRequirement:
+          $ref: '#/components/schemas/SiteShippingSignatureRequirement'
+      type: object
+    SiteShippingHandlingFee:
+      description: The site setting that specifies the store's handling fees
+      properties:
+        amount:
+          description: Site setting for the name that appears as the sender of the shipping origin.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_settings.json
+- kibo-commerce-settings-openapi.yml

@@ -1,0 +1,81 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Storefront Search Redirect API
+  version: '1.0'
+  description: 'Operations tagged StorefrontSearchRedirect across 2 of this provider''s published API definitions: openapi_openapi_catalog_storefront.json, kibo-commerce-catalog-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: StorefrontSearchRedirect
+paths:
+  /commerce/catalog/storefront/searchredirect/{redirectId}:
+    get:
+      description: Get search redirect item by redirect Id.
+      parameters:
+      - description: ''
+        in: path
+        name: redirectId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Search Redirect
+      tags:
+      - StorefrontSearchRedirect
+      operationId: getCommerceCatalogStorefrontSearchredirectByRedirectId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/searchredirect/redirects:
+    get:
+      description: Get list of search redirect items.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Search Redirects
+      tags:
+      - StorefrontSearchRedirect
+      operationId: getCommerceCatalogStorefrontSearchredirectRedirects
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_storefront.json
+- kibo-commerce-catalog-storefront-openapi.yml

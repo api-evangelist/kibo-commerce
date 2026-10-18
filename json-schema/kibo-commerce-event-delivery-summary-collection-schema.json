@@ -1,0 +1,267 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-event-delivery-summary-collection-schema.json",
+  "title": "EventDeliverySummaryCollection",
+  "description": "Collection of event deliver summaries",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-event-openapi.yml#/components/schemas/EventDeliverySummaryCollection",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/EventDeliverySummary"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "pageCount": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "pageSize": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "startIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "totalCount": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "EventDeliveryAttempt": {
+      "description": "The external/public Event entity used specifically in PULL/POLL event scenarios",
+      "properties": {
+        "deliveryStatus": {
+          "description": "Status of the delivery process (EventDeliveryStatusType). System-supplied and read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "errorType": {
+          "description": "Type of error that occurred, if the delivery was unsuccessful",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "executionDate": {
+          "description": "The date that the delivery was attempted",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "httpStatus": {
+          "$ref": "#/$defs/HttpStatus"
+        },
+        "message": {
+          "description": "HTTP message returned by the remote endpoint",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EventDeliverySummary": {
+      "description": "The external/public Event entity used specifically in PULL/POLL event scenarios",
+      "properties": {
+        "createDate": {
+          "description": "Create Date",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deliveryAttempts": {
+          "description": "Details about each attempted delivery of the event to the endpoint",
+          "items": {
+            "$ref": "#/$defs/EventDeliveryAttempt"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "deliveryStatus": {
+          "description": "Status of the delivery process (EventDeliveryStatusType)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventSummary": {
+          "$ref": "#/$defs/EventSummary"
+        },
+        "id": {
+          "description": "The unique identifier for an event delivery summary",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "isRunning": {
+          "description": "Indicates whether delivery of the event is currently being attempted at this moment in time",
+          "type": "boolean"
+        },
+        "lastExecutionDate": {
+          "description": "The date that the delivery was last attempted (either successfully or not)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "nextExecutionDate": {
+          "description": "The date that the delivery will next be attempted, if the event has not been successfully delivered yet and there are still retries remaining",
+          "format": "date-time",
+          "type": "string"
+        },
+        "retriesRemaining": {
+          "description": "Number of delivery attempts remaining",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "description": "Update Date",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EventExtendedProperty": {
+      "description": "Event Extended Property",
+      "properties": {
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "EventSummary": {
+      "description": "Event Summary is a trimmed version of an event that is utilized when displaying the event delivery (aka webhook, HTTP callback, HTTP POST) process history/details",
+      "properties": {
+        "catalogId": {
+          "description": "Catalog Id",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "correlationId": {
+          "description": "Correlation Id",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "description": "Create Date",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entityId": {
+          "description": "Entity Id",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventId": {
+          "description": "Note: Remember in the contract version to convert this Guid to ToString(\"N\") so the dashes are not present",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "extendedProperties": {
+          "description": "Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.",
+          "items": {
+            "$ref": "#/$defs/EventExtendedProperty"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "masterCatalogId": {
+          "description": "Master Catalog Id",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "siteId": {
+          "description": "Site Id",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tenantId": {
+          "description": "Tenant Id",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "topic": {
+          "description": "Topic",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "HttpStatus": {
+      "description": "Http Status",
+      "properties": {
+        "code": {
+          "description": "The higher-level integer based HTTP Status Code returned by the remote endpoint",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Friendly text the HTTP Status Code returned by the remote endpoint",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

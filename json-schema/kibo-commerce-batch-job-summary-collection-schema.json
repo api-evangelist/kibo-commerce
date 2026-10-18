@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-batch-job-summary-collection-schema.json",
+  "title": "BatchJobSummaryCollection",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-importexport-openapi.yml#/components/schemas/BatchJobSummaryCollection",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/BatchJobSummary"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "pageCount": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "pageSize": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "startIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "totalCount": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "BatchJobItemProcessingStatuses": {
+      "enum": [
+        "Waiting",
+        "Running",
+        "ValidationFailed",
+        "Failed",
+        "Completed",
+        "Cancelled"
+      ],
+      "type": "string"
+    },
+    "BatchJobResourceSummary": {
+      "properties": {
+        "counts": {
+          "items": {
+            "$ref": "#/$defs/ProcessingCount"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "resourceType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BatchJobStatuses": {
+      "enum": [
+        "Ready",
+        "Pending",
+        "Running",
+        "Completed",
+        "Canceled"
+      ],
+      "type": "string"
+    },
+    "BatchJobSummary": {
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dateStarted": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "resources": {
+          "items": {
+            "$ref": "#/$defs/BatchJobResourceSummary"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "scheduledDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "$ref": "#/$defs/BatchJobStatuses"
+        }
+      },
+      "type": "object"
+    },
+    "ProcessingCount": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "#/$defs/BatchJobItemProcessingStatuses"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,263 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Order Routing
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-orderrouting-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-orderrouting-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filterDataLists/{listId}/download'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/filterDataLists/{listId}/download
+  update:
+    operationId: orderroutingcustomdatalistExportListEntriesAsCsv
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filterDataLists/{listId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/filterDataLists/{listId}
+  update:
+    operationId: orderroutingcustomdatalistDeleteCustomDataList
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filterDataLists/{listId}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/filterDataLists/{listId}
+  update:
+    operationId: orderroutingcustomdatalistGetCustomDataListById
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filterDataLists/{listId}'].put
+  description: Add derived operationId for PUT /commerce/orders/orderrouting/api/v1/filterDataLists/{listId}
+  update:
+    operationId: orderroutingcustomdatalistUpdateCustomDataList
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filterDataLists'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/filterDataLists
+  update:
+    operationId: orderroutingcustomdatalistListCustomDataLists
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filterDataLists'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/filterDataLists
+  update:
+    operationId: orderroutingcustomdatalistCreateCustomDataList
+- target: $.paths['/commerce/orders/orderrouting/api/v1/dataList'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/dataList
+  update:
+    operationId: orderroutingdatalistCreateCustomDataList
+- target: $.paths['/commerce/orders/orderrouting/api/v1/dataList/{dataListID}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/dataList/{dataListID}
+  update:
+    operationId: orderroutingdatalistDeleteCustomDataList
+- target: $.paths['/commerce/orders/orderrouting/api/v1/dataList/{dataListID}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/dataList/{dataListID}
+  update:
+    operationId: orderroutingdatalistGetCustomDataList
+- target: $.paths['/commerce/orders/orderrouting/api/v1/dataList/{dataListID}'].put
+  description: Add derived operationId for PUT /commerce/orders/orderrouting/api/v1/dataList/{dataListID}
+  update:
+    operationId: orderroutingdatalistUpdateCustomDataList
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/edd/suggestion'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/routing/edd/suggestion
+  update:
+    operationId: orderroutingeddSuggestRoutingWithEDD
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/filter-attributes'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/filter-attributes
+  update:
+    operationId: orderroutingfilterdataGetFilterAttributes
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/scenarios/{scenarioId}/filterLogicalGroups'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/scenarios/{scenarioId}/filterLogicalGroups
+  update:
+    operationId: orderroutingfilterdataGetFilterLogicalGroupsForScenario
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/filter-operators'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/filter-operators
+  update:
+    operationId: orderroutingfilterdataGetFilterOperators
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/filter-types'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/filter-types
+  update:
+    operationId: orderroutingfilterdataGetFilterTypes
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/scenarios/{scenarioId}/filters'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/scenarios/{scenarioId}/filters
+  update:
+    operationId: orderroutingfilterdataGetFiltersForScenario
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filter/delete/{filterID}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/filter/delete/{filterID}
+  update:
+    operationId: orderroutingfilterDeleteFilter
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filter/{filterID}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/filter/{filterID}
+  update:
+    operationId: orderroutingfilterGetFilter
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filter/criteriaSet'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/filter/criteriaSet
+  update:
+    operationId: orderroutingfilterSaveCriteriaSetFilter
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filter/customDataListFilter'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/filter/customDataListFilter
+  update:
+    operationId: orderroutingfilterSaveCustomDataListFilter
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filter/customDataValueFilter'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/filter/customDataValueFilter
+  update:
+    operationId: orderroutingfilterSaveCustomDataValueFilter
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filter/testcriteria'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/filter/testcriteria
+  update:
+    operationId: orderroutingfilterTestFilter
+- target: $.paths['/commerce/orders/orderrouting/api/v1/filter/testset'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/filter/testset
+  update:
+    operationId: orderroutingfilterTestSetFilter
+- target: $.paths['/commerce/orders/orderrouting/api/v1/group/delete/{groupID}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/group/delete/{groupID}
+  update:
+    operationId: orderroutinggroupDeleteGroup
+- target: $.paths['/commerce/orders/orderrouting/api/v1/group/{groupID}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/group/{groupID}
+  update:
+    operationId: orderroutinggroupGetGroup
+- target: $.paths['/commerce/orders/orderrouting/api/v1/group'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/group
+  update:
+    operationId: orderroutinggroupSaveGroup
+- target: $.paths['/commerce/orders/orderrouting/api/v1/group/{groupID}/setFilters'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/group/{groupID}/setFilters
+  update:
+    operationId: orderroutinggroupSetGroupFilters
+- target: $.paths['/commerce/orders/orderrouting/api/v1/group/{groupID}/setSorts'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/group/{groupID}/setSorts
+  update:
+    operationId: orderroutinggroupSetGroupSorts
+- target: $.paths['/commerce/orders/orderrouting/api/v1/group/test'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/group/test
+  update:
+    operationId: orderroutinggroupTestGroup
+- target: $.paths['/commerce/orders/orderrouting/api/v1/location/{locationCode}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/location/{locationCode}
+  update:
+    operationId: orderroutinglocationGetLocationByLocationCode
+- target: $.paths['/commerce/orders/orderrouting/api/v1/location'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/location
+  update:
+    operationId: orderroutinglocationGetLocations
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/export/csv'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/export/csv
+  update:
+    operationId: orderroutingscenarioExportScenariosToCsv
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/{scenarioID}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/{scenarioID}
+  update:
+    operationId: orderroutingscenarioDeleteScenario
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/{scenarioID}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/{scenarioID}
+  update:
+    operationId: orderroutingscenarioGetScenarioById
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/{scenarioID}'].put
+  description: Add derived operationId for PUT /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/{scenarioID}
+  update:
+    operationId: orderroutingscenarioUpdateScenario
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/import/csv'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/import/csv
+  update:
+    operationId: orderroutingscenarioImportScenariosFromCsv
+- target: $.paths['/commerce/orders/orderrouting/api/v1/settings/filterAttributes/{attributeName}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/settings/filterAttributes/{attributeName}
+  update:
+    operationId: orderroutingsettingsDeleteFilterAttribute
+- target: $.paths['/commerce/orders/orderrouting/api/v1/settings/filterAttributes/{attributeName}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/settings/filterAttributes/{attributeName}
+  update:
+    operationId: orderroutingsettingsGetFilterAttribute
+- target: $.paths['/commerce/orders/orderrouting/api/v1/settings/filterAttributes'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/settings/filterAttributes
+  update:
+    operationId: orderroutingsettingsGetFilterAttributes
+- target: $.paths['/commerce/orders/orderrouting/api/v1/settings/filterAttributes'].put
+  description: Add derived operationId for PUT /commerce/orders/orderrouting/api/v1/settings/filterAttributes
+  update:
+    operationId: orderroutingsettingsSaveFilterAttribute
+- target: $.paths['/commerce/orders/orderrouting/api/v1/settings'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/settings
+  update:
+    operationId: orderroutingsettingsDeleteOrderRoutingSettings
+- target: $.paths['/commerce/orders/orderrouting/api/v1/settings'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/settings
+  update:
+    operationId: orderroutingsettingsGetOrderRoutingSettings
+- target: $.paths['/commerce/orders/orderrouting/api/v1/settings'].put
+  description: Add derived operationId for PUT /commerce/orders/orderrouting/api/v1/settings
+  update:
+    operationId: orderroutingsettingsSaveOrderRoutingSettings
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyId}/export'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/{strategyId}/export
+  update:
+    operationId: orderroutingstrategyexportExportStrategy
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/import'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/strategies/import
+  update:
+    operationId: orderroutingstrategyexportImportStrategy
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/candidateSortStrategies'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/candidateSortStrategies
+  update:
+    operationId: orderroutingstrategyGetCandidateSortStrategies
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/failOverActions'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/failOverActions
+  update:
+    operationId: orderroutingstrategyGetFailOverActions
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/orderTypes'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/orderTypes
+  update:
+    operationId: orderroutingstrategyGetOrderTypes
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/sortCriteria'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/sortCriteria
+  update:
+    operationId: orderroutingstrategyGetSortCriteria
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/orderrouting/api/v1/strategies/{strategyID}
+  update:
+    operationId: orderroutingstrategyDeleteStrategy
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/{strategyID}
+  update:
+    operationId: orderroutingstrategyGetStrategyById
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}'].put
+  description: Add derived operationId for PUT /commerce/orders/orderrouting/api/v1/strategies/{strategyID}
+  update:
+    operationId: orderroutingstrategyUpdateStrategy
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies
+  update:
+    operationId: orderroutingstrategyListAllStrategies
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/strategies
+  update:
+    operationId: orderroutingstrategyCreateStrategy
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios
+  update:
+    operationId: orderroutingstrategyListScenariosByStrategy
+- target: $.paths['/commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios
+  update:
+    operationId: orderroutingscenarioCreateScenario
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/eddCalculationLog'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/eddCalculationLog
+  update:
+    operationId: routingGetEddCalculationLog
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/samplerequest'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/samplerequest
+  update:
+    operationId: routingGetSampleRequest
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/suggestionLog'].get
+  description: Add derived operationId for GET /commerce/orders/orderrouting/api/v1/routing/suggestionLog
+  update:
+    operationId: routingGetSuggestionLog
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/reverseLogisticsSuggestion'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/routing/reverseLogisticsSuggestion
+  update:
+    operationId: routingReverseLogisticsSuggestions
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/candidates'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/routing/candidates
+  update:
+    operationId: routingSuggestCandidates
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/suggestion'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/routing/suggestion
+  update:
+    operationId: routingSuggestRouting
+- target: $.paths['/commerce/orders/orderrouting/api/v1/routing/suggestionTest'].post
+  description: Add derived operationId for POST /commerce/orders/orderrouting/api/v1/routing/suggestionTest
+  update:
+    operationId: routingSuggestRoutingTest

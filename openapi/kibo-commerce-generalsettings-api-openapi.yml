@@ -1,0 +1,1037 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce General Settings API
+  version: '1.0'
+  description: 'Operations tagged GeneralSettings across 2 of this provider''s published API definitions: openapi_openapi_settings.json, kibo-commerce-settings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: GeneralSettings
+paths:
+  /commerce/settings/general/customroutes:
+    delete:
+      description: Deletes custom route settings.
+      responses:
+        '200':
+          description: OK
+      summary: Delete Custom Route Settings
+      tags:
+      - GeneralSettings
+      operationId: deleteCommerceSettingsGeneralCustomroutes
+      x-operation-id-source: derived
+    get:
+      description: Gets custom route settings. Custom routing allows you to display SEO-friendly URLs on your site that map behind-the-scenes to resources such as a product page or a search results page. With custom routing, you gain advanced control over the URL structures on your site and can more visibly highlight the products or categories your shoppers are interested in purchasing.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+          description: OK
+      summary: Get Custom Route Settings
+      tags:
+      - GeneralSettings
+      operationId: getCommerceSettingsGeneralCustomroutes
+      x-operation-id-source: derived
+    post:
+      description: Creates a new custom route settings. Custom routing allows you to display SEO-friendly URLs on your site that map behind-the-scenes to resources such as a product page or a search results page. With custom routing, you gain advanced control over the URL structures on your site and can more visibly highlight the products or categories your shoppers are interested in purchasing.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomRouteSettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+          description: OK
+      summary: Create Custom Route Settings
+      tags:
+      - GeneralSettings
+      operationId: postCommerceSettingsGeneralCustomroutes
+      x-operation-id-source: derived
+    put:
+      description: Updates custom route settings. Custom routing allows you to display SEO-friendly URLs on your site that map behind-the-scenes to resources such as a product page or a search results page. With custom routing, you gain advanced control over the URL structures on your site and can more visibly highlight the products or categories your shoppers are interested in purchasing.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomRouteSettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomRouteSettings'
+          description: OK
+      summary: Update Custom Route Settings
+      tags:
+      - GeneralSettings
+      operationId: putCommerceSettingsGeneralCustomroutes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/settings/general:
+    get:
+      description: Retrieves list of general settings for the site, which includes settings like theme, email, address validation etc.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+          description: OK
+      summary: Get General Settings
+      tags:
+      - GeneralSettings
+      operationId: getCommerceSettingsGeneral
+      x-operation-id-source: derived
+    put:
+      description: Updates general settings for the site, which includes settings like theme, email, address validation etc
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeneralSettings'
+        description: 'Properties of the updated general settings.
+
+          Required properties: WebsiteName, SiteTimeZone, SiteTimeFormat, SenderEmailAddress, and ReplyEmailAddress.'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GeneralSettings'
+          description: OK
+      summary: Update General Settings
+      tags:
+      - GeneralSettings
+      operationId: putCommerceSettingsGeneral
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/settings/general/taxableterritories:
+    get:
+      description: Retrieves list of taxble territories for the site.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TaxableTerritory'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TaxableTerritory'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TaxableTerritory'
+                type: array
+          description: OK
+      summary: Get Taxable Territories
+      tags:
+      - GeneralSettings
+      operationId: getCommerceSettingsGeneralTaxableterritories
+      x-operation-id-source: derived
+    post:
+      description: Creates taxble territories for the site.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxableTerritory'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxableTerritory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TaxableTerritory'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TaxableTerritory'
+          description: OK
+      summary: Adds Taxable Territory
+      tags:
+      - GeneralSettings
+      operationId: postCommerceSettingsGeneralTaxableterritories
+      x-operation-id-source: derived
+    put:
+      description: Updates taxble territories for the site.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/TaxableTerritory'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TaxableTerritory'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TaxableTerritory'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/TaxableTerritory'
+                type: array
+          description: OK
+      summary: Update Taxable Territories
+      tags:
+      - GeneralSettings
+      operationId: putCommerceSettingsGeneralTaxableterritories
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ViewAuthorizations:
+      properties:
+        enforceSitewideSSL:
+          type:
+          - boolean
+          - 'null'
+        requireAuthForLive:
+          type: boolean
+        requireAuthForPending:
+          type: boolean
+      type: object
+    ReCaptchaSettings:
+      properties:
+        actions:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        secret:
+          type:
+          - string
+          - 'null'
+        siteKey:
+          type:
+          - string
+          - 'null'
+        validScore:
+          format: double
+          type: number
+      type: object
+    SMSTypeSetting:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+      type: object
+    Route:
+      properties:
+        canonical:
+          type:
+          - boolean
+          - 'null'
+        defaults:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+        functionId:
+          type:
+          - string
+          - 'null'
+        internalRoute:
+          type:
+          - string
+          - 'null'
+        mappings:
+          additionalProperties:
+            items:
+              type: string
+            type:
+            - array
+            - 'null'
+          type:
+          - object
+          - 'null'
+        template:
+          type:
+          - string
+          - 'null'
+        urlScheme:
+          type:
+          - string
+          - 'null'
+        validators:
+          additionalProperties:
+            items:
+              type: string
+            type:
+            - array
+            - 'null'
+          type:
+          - object
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    Mapping:
+      properties:
+        beforeRouting:
+          type:
+          - boolean
+          - 'null'
+        docId:
+          type:
+          - string
+          - 'null'
+        facetId:
+          type:
+          - string
+          - 'null'
+        listFqn:
+          type:
+          - string
+          - 'null'
+        mapTo:
+          type:
+          - string
+          - 'null'
+        mappings:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+        pattern:
+          type:
+          - string
+          - 'null'
+        replacement:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    Validator:
+      properties:
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        docId:
+          type:
+          - string
+          - 'null'
+        field:
+          type:
+          - string
+          - 'null'
+        listFqn:
+          type:
+          - string
+          - 'null'
+        pattern:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        values:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    SMSTransactionSettings:
+      properties:
+        curbsideReady:
+          type:
+          - boolean
+          - 'null'
+        customerAtCurbside:
+          type:
+          - boolean
+          - 'null'
+        customerAtStore:
+          type:
+          - boolean
+          - 'null'
+        customerIntransit:
+          type:
+          - boolean
+          - 'null'
+        intransitConfirmation:
+          type:
+          - boolean
+          - 'null'
+        optOutAcknowledgement:
+          type:
+          - boolean
+          - 'null'
+        orderConfirmation:
+          type:
+          - boolean
+          - 'null'
+        orderPickupReady:
+          type:
+          - boolean
+          - 'null'
+        orderPickupReminder:
+          type:
+          - boolean
+          - 'null'
+        shipmentAssigned:
+          type:
+          - boolean
+          - 'null'
+        shipmentFulfilled:
+          type:
+          - boolean
+          - 'null'
+        shipmentItemCanceled:
+          type:
+          - boolean
+          - 'null'
+        storeItemsCanceled:
+          type:
+          - boolean
+          - 'null'
+      type: object
+    CacheSettings:
+      properties:
+        cdnCacheBustKey:
+          type:
+          - string
+          - 'null'
+      type: object
+    GeneralSettings:
+      properties:
+        allowInvalidAddresses:
+          type:
+          - boolean
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        bccEmailAddress:
+          type:
+          - string
+          - 'null'
+        cacheSettings:
+          $ref: '#/components/schemas/CacheSettings'
+        customCdnHostName:
+          type:
+          - string
+          - 'null'
+        customRoutes:
+          $ref: '#/components/schemas/CustomRouteSettings'
+        emailTransactionsOnlyOnRequest:
+          $ref: '#/components/schemas/EmailTransactionSettings'
+        emailTypes:
+          items:
+            $ref: '#/components/schemas/EmailTypeSetting'
+          type:
+          - array
+          - 'null'
+        favIconMobilePath:
+          type:
+          - string
+          - 'null'
+        favIconPath:
+          type:
+          - string
+          - 'null'
+        googleAnalyticsCode:
+          type:
+          - string
+          - 'null'
+        is2FAAlwaysRequired:
+          type:
+          - boolean
+          - 'null'
+        is2FARequiredOnFingerprintChange:
+          type:
+          - boolean
+          - 'null'
+        is2FARequiredOnRegionChange:
+          type:
+          - boolean
+          - 'null'
+        isAddressValidationEnabled:
+          type:
+          - boolean
+          - 'null'
+        isEmailOtpLoginAllowed:
+          type:
+          - boolean
+          - 'null'
+        isGoogleAnalyticsEcommerceEnabled:
+          type:
+          - boolean
+          - 'null'
+        isGoogleAnalyticsEnabled:
+          type:
+          - boolean
+          - 'null'
+        isMozuWebSite:
+          type: boolean
+        isMultishipEnabled:
+          type:
+          - boolean
+          - 'null'
+        isWishlistCreationEnabled:
+          type:
+          - boolean
+          - 'null'
+        logoPath:
+          type:
+          - string
+          - 'null'
+        logoText:
+          type:
+          - string
+          - 'null'
+        missingImageSubstitute:
+          type:
+          - string
+          - 'null'
+        mobileTheme:
+          type:
+          - string
+          - 'null'
+        reCaptchaSettings:
+          $ref: '#/components/schemas/ReCaptchaSettings'
+        replyToEmailAddress:
+          type:
+          - string
+          - 'null'
+        senderEmailAddress:
+          type:
+          - string
+          - 'null'
+        senderEmailAlias:
+          type:
+          - string
+          - 'null'
+        siteTimeFormat:
+          type:
+          - string
+          - 'null'
+        siteTimeZone:
+          type:
+          - string
+          - 'null'
+        smsTypes:
+          items:
+            $ref: '#/components/schemas/SMSTypeSetting'
+          type:
+          - array
+          - 'null'
+        supressedEmailTransactions:
+          $ref: '#/components/schemas/EmailTransactionSettings'
+        supressedSmsTransactions:
+          $ref: '#/components/schemas/SMSTransactionSettings'
+        tabletTheme:
+          type:
+          - string
+          - 'null'
+        taxableTerritories:
+          items:
+            $ref: '#/components/schemas/TaxableTerritory'
+          type:
+          - array
+          - 'null'
+        templateSiteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        theme:
+          type:
+          - string
+          - 'null'
+        viewAuthorizations:
+          $ref: '#/components/schemas/ViewAuthorizations'
+        websiteName:
+          type:
+          - string
+          - 'null'
+      type: object
+    EmailTypeSetting:
+      properties:
+        bccEmailAddressOverride:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        replyToEmailAddressOverride:
+          type:
+          - string
+          - 'null'
+        senderEmailAddressOverride:
+          type:
+          - string
+          - 'null'
+        senderEmailAliasOverride:
+          type:
+          - string
+          - 'null'
+      type: object
+    EmailTransactionSettings:
+      properties:
+        accountCreated:
+          type:
+          - boolean
+          - 'null'
+        accountDenied:
+          type:
+          - boolean
+          - 'null'
+        accountInactive:
+          type:
+          - boolean
+          - 'null'
+        backInStock:
+          type:
+          - boolean
+          - 'null'
+        backorder:
+          type:
+          - boolean
+          - 'null'
+        curbsideReady:
+          type:
+          - boolean
+          - 'null'
+        customerAtCurbside:
+          type:
+          - boolean
+          - 'null'
+        customerIntransit:
+          type:
+          - boolean
+          - 'null'
+        deliveryDateUpdated:
+          type:
+          - boolean
+          - 'null'
+        digitalItemFulfilled:
+          type:
+          - boolean
+          - 'null'
+        gatewayGiftCardCreated:
+          type:
+          - boolean
+          - 'null'
+        giftCardCreated:
+          type:
+          - boolean
+          - 'null'
+        intransitConfirmation:
+          type:
+          - boolean
+          - 'null'
+        itemSubstituted:
+          type:
+          - boolean
+          - 'null'
+        orderCancellation:
+          type:
+          - boolean
+          - 'null'
+        orderCancellationFailed:
+          type:
+          - boolean
+          - 'null'
+        orderChanged:
+          type:
+          - boolean
+          - 'null'
+        orderFulfillmentDetailsChanged:
+          type:
+          - boolean
+          - 'null'
+        orderItemsCanceled:
+          type:
+          - boolean
+          - 'null'
+        orderPickupReady:
+          type:
+          - boolean
+          - 'null'
+        orderPickupReminder:
+          type:
+          - boolean
+          - 'null'
+        orderShipped:
+          type:
+          - boolean
+          - 'null'
+        otpForLogin:
+          type:
+          - boolean
+          - 'null'
+        partialCurbsideReady:
+          type:
+          - boolean
+          - 'null'
+        partialPickupReady:
+          type:
+          - boolean
+          - 'null'
+        quoteExpired:
+          type:
+          - boolean
+          - 'null'
+        quoteInReview:
+          type:
+          - boolean
+          - 'null'
+        quoteReadyForCheckout:
+          type:
+          - boolean
+          - 'null'
+        readyForDelivery:
+          type:
+          - boolean
+          - 'null'
+        refundCreated:
+          type:
+          - boolean
+          - 'null'
+        returnAuthorized:
+          type:
+          - boolean
+          - 'null'
+        returnCancelled:
+          type:
+          - boolean
+          - 'null'
+        returnClosed:
+          type:
+          - boolean
+          - 'null'
+        returnCreated:
+          type:
+          - boolean
+          - 'null'
+        returnLabelAdded:
+          type:
+          - boolean
+          - 'null'
+        returnRejected:
+          type:
+          - boolean
+          - 'null'
+        returnUpdated:
+          type:
+          - boolean
+          - 'null'
+        shipmentAssigned:
+          type:
+          - boolean
+          - 'null'
+        shipmentBackorderDateChanged:
+          type:
+          - boolean
+          - 'null'
+        shipmentConfirmation:
+          type:
+          - boolean
+          - 'null'
+        shipmentItemCanceled:
+          type:
+          - boolean
+          - 'null'
+        shopperEmailUpdated:
+          type:
+          - boolean
+          - 'null'
+        shopperLoginCreated:
+          type:
+          - boolean
+          - 'null'
+        shopperPasswordReset:
+          type:
+          - boolean
+          - 'null'
+        shopperPasswordUpdated:
+          type:
+          - boolean
+          - 'null'
+        storeCreditCreated:
+          type:
+          - boolean
+          - 'null'
+        storeCreditUpdated:
+          type:
+          - boolean
+          - 'null'
+        subscriptionActivated:
+          type:
+          - boolean
+          - 'null'
+        subscriptionCancelled:
+          type:
+          - boolean
+          - 'null'
+        subscriptionErrored:
+          type:
+          - boolean
+          - 'null'
+        subscriptionFrequencyUpdated:
+          type:
+          - boolean
+          - 'null'
+        subscriptionItemAdded:
+          type:
+          - boolean
+          - 'null'
+        subscriptionItemQuantityUpdated:
+          type:
+          - boolean
+          - 'null'
+        subscriptionItemsCancelled:
+          type:
+          - boolean
+          - 'null'
+        subscriptionNextOrderDateUpdated:
+          type:
+          - boolean
+          - 'null'
+        subscriptionOrderReminder:
+          type:
+          - boolean
+          - 'null'
+        subscriptionOrderedNow:
+          type:
+          - boolean
+          - 'null'
+        subscriptionPauseLimitReminder:
+          type:
+          - boolean
+          - 'null'
+        subscriptionPaused:
+          type:
+          - boolean
+          - 'null'
+        subscriptionPausedReminder:
+          type:
+          - boolean
+          - 'null'
+        subscriptionPaymentUpdated:
+          type:
+          - boolean
+          - 'null'
+        subscriptionShippingInfoUpdated:
+          type:
+          - boolean
+          - 'null'
+        subscriptionSkipped:
+          type:
+          - boolean
+          - 'null'
+        substitutionPaymentRequired:
+          type:
+          - boolean
+          - 'null'
+        transferShipmentCreated:
+          type:
+          - boolean
+          - 'null'
+        transferShipmentCreatedByFulfiller:
+          type:
+          - boolean
+          - 'null'
+        transferShipmentShipped:
+          type:
+          - boolean
+          - 'null'
+      type: object
+    TaxableTerritory:
+      properties:
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isShippingTaxable:
+          type:
+          - boolean
+          - 'null'
+        stateOrProvinceCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomRouteSettings:
+      properties:
+        mappings:
+          additionalProperties:
+            $ref: '#/components/schemas/Mapping'
+          type:
+          - object
+          - 'null'
+        routes:
+          items:
+            $ref: '#/components/schemas/Route'
+          type:
+          - array
+          - 'null'
+        validators:
+          additionalProperties:
+            $ref: '#/components/schemas/Validator'
+          type:
+          - object
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_settings.json
+- kibo-commerce-settings-openapi.yml

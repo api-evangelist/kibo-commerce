@@ -1,0 +1,1249 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Location API
+  version: '1.0'
+  description: 'Operations tagged Location across 3 of this provider''s published API definitions: openapi_openapi_location.json, kibo-commerce-location-openapi.yml, kibo-commerce-location-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Location
+paths:
+  /commerce/storefront/locationUsageTypes/CS/location:
+    get:
+      description: Get the Curbside Location for the Site.
+      parameters:
+      - in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: OK
+      summary: Get Curbside Location
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationUsageTypesCSLocation
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/storefront/locationUsageTypes/DL/location:
+    get:
+      parameters:
+      - in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: OK
+      summary: Get Delivery Location
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationUsageTypesDLLocation
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/storefront/locationUsageTypes/DL/locations:
+    get:
+      description: Gets the delivery Locations for the site
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Include the location attributes associated definition
+        in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+          description: OK
+      summary: Get Delivery Locations
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationUsageTypesDLLocations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/storefront/locationUsageTypes/DS/location:
+    get:
+      description: Get the Direct Ship Location for the Site.
+      parameters:
+      - in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: OK
+      summary: Get Direct Ship Location
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationUsageTypesDSLocation
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/storefront/locationUsageTypes/SP/locations/{locationCode}:
+    get:
+      description: Get a specific in store pickup Location for the Site
+      parameters:
+      - description: ''
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      - description: Include the location attributes associated definition
+        in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: OK
+      summary: Get In Store Pickup Location
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationUsageTypesSPLocationsByLocationCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/storefront/locationUsageTypes/SP/locations:
+    get:
+      description: Gets the in store pickup Locations for the site.
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Include the location attributes associated definition
+        in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+          description: OK
+      summary: Get In Store Pickup Locations
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationUsageTypesSPLocations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/storefront/locations/{locationCode}:
+    get:
+      description: Get a Location by locationCode.
+      parameters:
+      - description: ''
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      - description: Include the location attributes associated definition
+        in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Location'
+          description: OK
+      summary: Get Location
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationsByLocationCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/storefront/locationUsageTypes/{locationUsageType}/locations:
+    get:
+      description: Get the Locations for the Site associated with the locationUsageType.
+      parameters:
+      - description: ''
+        in: path
+        name: locationUsageType
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Include the location attributes associated definition
+        in: query
+        name: includeAttributeDefinition
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationCollection'
+          description: OK
+      summary: Get Locations In Usage Type
+      tags:
+      - Location
+      operationId: getCommerceStorefrontLocationUsageTypesByLocationUsageTypeLocations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AttributeValidation:
+      properties:
+        maxDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        maxNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        maxStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        minDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        minNumericValue:
+          format: double
+          type:
+          - number
+          - 'null'
+        minStringLength:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        regularExpression:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+      type: object
+    Capacity:
+      properties:
+        shipmentsPerUnit:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        unitOfMeasure:
+          type:
+          - string
+          - 'null'
+      type: object
+    CoreAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeValueLocalizedContent:
+      properties:
+        localeCode:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - localeCode
+      - value
+      type: object
+    TimeZone:
+      properties:
+        ianaCode:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        isDaylightSavingsTime:
+          type: boolean
+        offset:
+          format: double
+          type: number
+      type: object
+    WeeklyCutoffHours:
+      properties:
+        friday:
+          $ref: '#/components/schemas/CutoffHours'
+        monday:
+          $ref: '#/components/schemas/CutoffHours'
+        saturday:
+          $ref: '#/components/schemas/CutoffHours'
+        sunday:
+          $ref: '#/components/schemas/CutoffHours'
+        thursday:
+          $ref: '#/components/schemas/CutoffHours'
+        tuesday:
+          $ref: '#/components/schemas/CutoffHours'
+        wednesday:
+          $ref: '#/components/schemas/CutoffHours'
+      type: object
+    AttributeLocalizedContent:
+      properties:
+        localeCode:
+          maxLength: 8
+          type:
+          - string
+          - 'null'
+        value:
+          maxLength: 100
+          type:
+          - string
+          - 'null'
+      type: object
+    ReceiveProcessingTime:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: int32
+          type: integer
+      type: object
+    ApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CutoffSchedule:
+      properties:
+        fulfillmentType:
+          type:
+          - string
+          - 'null'
+        times:
+          $ref: '#/components/schemas/WeeklyCutoffHours'
+      type: object
+    CutoffTimes:
+      properties:
+        schedules:
+          items:
+            $ref: '#/components/schemas/CutoffSchedule'
+          type:
+          - array
+          - 'null'
+        timeZone:
+          $ref: '#/components/schemas/TimeZone'
+      type: object
+    Coordinates:
+      properties:
+        lat:
+          format: double
+          type: number
+        lng:
+          format: double
+          type: number
+      type: object
+    LocationAttribute2:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    LocationCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Location'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AttributeMetadataItem:
+      properties:
+        key:
+          maxLength: 50
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - key
+      - value
+      type: object
+    FulfillmentProcessingTime:
+      properties:
+        fulfillmentTypeCode:
+          type:
+          - string
+          - 'null'
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: int32
+          type: integer
+      type: object
+    AttributeEntityConfig:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        editable:
+          type: boolean
+        entityType:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    Location:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        allowFulfillmentWithNoStock:
+          type: boolean
+        attributes:
+          items:
+            $ref: '#/components/schemas/LocationAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        capacity:
+          $ref: '#/components/schemas/Capacity'
+        code:
+          type:
+          - string
+          - 'null'
+        cutoffTimes:
+          $ref: '#/components/schemas/CutoffTimes'
+        deliveryConsolidation:
+          type: boolean
+        description:
+          type:
+          - string
+          - 'null'
+        dropShip:
+          $ref: '#/components/schemas/DropShip'
+        express:
+          type: boolean
+        fax:
+          type:
+          - string
+          - 'null'
+        fulfillmentTypes:
+          items:
+            $ref: '#/components/schemas/FulfillmentType'
+          type:
+          - array
+          - 'null'
+        geo:
+          $ref: '#/components/schemas/Coordinates'
+        includeInInventoryAggregrate:
+          type: boolean
+        includeInLocationExport:
+          type: boolean
+        isDisabled:
+          type: boolean
+        locationTypes:
+          items:
+            $ref: '#/components/schemas/LocationType'
+          type:
+          - array
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        note:
+          type:
+          - string
+          - 'null'
+        phone:
+          type:
+          - string
+          - 'null'
+        processingTimes:
+          $ref: '#/components/schemas/ProcessingTimes'
+        regularHours:
+          $ref: '#/components/schemas/RegularHours'
+        requiresManifest:
+          type: boolean
+        shipToHomeConsolidation:
+          type: boolean
+        shippingOriginContact:
+          $ref: '#/components/schemas/ShippingOriginContact'
+        slaConfigurations:
+          items:
+            $ref: '#/components/schemas/SlaConfiguration'
+          type:
+          - array
+          - 'null'
+        supportsInventory:
+          type: boolean
+        tags:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        transferEnabled:
+          type: boolean
+        warehouseEnabled:
+          type: boolean
+      type: object
+    CutoffHours:
+      properties:
+        endTime:
+          type:
+          - string
+          - 'null'
+        isClosed:
+          type: boolean
+        startTime:
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValue:
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeValueLocalizedContent'
+        isHidden:
+          type:
+          - boolean
+          - 'null'
+        sequence:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        value:
+          maxLength: 50
+          minLength: 1
+          type: string
+      required:
+      - value
+      type: object
+    ShippingOriginContact:
+      properties:
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeInheritanceRule:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreAuditInfo'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceMode:
+          type:
+          - string
+          - 'null'
+        sourceEntityType:
+          type:
+          - string
+          - 'null'
+        targetEntityType:
+          type:
+          - string
+          - 'null'
+      type: object
+    FulfillmentType:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    DropShip:
+      properties:
+        vendorCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    LocationType:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        code:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProcessingTimes:
+      properties:
+        fulfillment:
+          items:
+            $ref: '#/components/schemas/FulfillmentProcessingTime'
+          type:
+          - array
+          - 'null'
+        receive:
+          $ref: '#/components/schemas/ReceiveProcessingTime'
+      type: object
+    RegularHours:
+      properties:
+        friday:
+          $ref: '#/components/schemas/Hours'
+        monday:
+          $ref: '#/components/schemas/Hours'
+        saturday:
+          $ref: '#/components/schemas/Hours'
+        sunday:
+          $ref: '#/components/schemas/Hours'
+        thursday:
+          $ref: '#/components/schemas/Hours'
+        timeZone:
+          type:
+          - string
+          - 'null'
+        tuesday:
+          $ref: '#/components/schemas/Hours'
+        wednesday:
+          $ref: '#/components/schemas/Hours'
+      type: object
+    SlaConfiguration:
+      properties:
+        isEnabled:
+          type: boolean
+        slaId:
+          format: int32
+          type: integer
+        targetServiceLevelPercentage:
+          format: int32
+          type: integer
+      type: object
+    LocationAttribute:
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/LocationAttribute2'
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    Hours:
+      properties:
+        closeTime:
+          type:
+          - string
+          - 'null'
+        isClosed:
+          type: boolean
+        label:
+          type:
+          - string
+          - 'null'
+        openTime:
+          type:
+          - string
+          - 'null'
+      type: object
+    LocationStorefrontAttribute:
+      properties:
+        adminName:
+          maxLength: 50
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          maxLength: 50
+          minLength: 1
+          type: string
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/AttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        availableInRules:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/AttributeLocalizedContent'
+        dataType:
+          type:
+          - string
+          - 'null'
+        displayGroup:
+          minLength: 1
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/AttributeEntityConfig'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/AttributeInheritanceRule'
+          type:
+          - array
+          - 'null'
+        inputType:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type:
+          - boolean
+          - 'null'
+        isMultiValued:
+          type:
+          - boolean
+          - 'null'
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        isVisible:
+          type:
+          - boolean
+          - 'null'
+        namespace:
+          maxLength: 200
+          type:
+          - string
+          - 'null'
+        order:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        validation:
+          $ref: '#/components/schemas/AttributeValidation'
+        valueType:
+          minLength: 1
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      type: object
+    LocationAttribute_2:
+      properties:
+        attributeDefinition:
+          $ref: '#/components/schemas/LocationStorefrontAttribute'
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/ApiContractsAuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_location.json
+- kibo-commerce-location-openapi.yml
+- kibo-commerce-location-storefront-openapi.yml

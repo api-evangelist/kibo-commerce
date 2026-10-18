@@ -1,0 +1,151 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Inventory Allocation API
+  version: '1.0'
+  description: 'Operations tagged ShipmentInventoryAllocation across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentInventoryAllocation
+paths:
+  /commerce/inventory/v5/inventory/shipmentInventoryAllocations:
+    post:
+      description: Get future Inventory Allocations by shipment Ids
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/ShipmentInventoryAllocationRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentInventoryAllocationResponse'
+          description: Success
+        '500':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                  message:
+                    $ref: '#/components/schemas/ShipmentInventoryAllocationResponse'
+                type: object
+          description: Internal Server Error
+      summary: Get Shipment Inventory Allocations
+      tags:
+      - ShipmentInventoryAllocation
+      operationId: postCommerceInventoryV5InventoryShipmentInventoryAllocations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ShipmentAllocationsResponse:
+      description: ShipmentAllocationsResponse Object
+      properties:
+        currentAllocations:
+          $ref: '#/components/schemas/allocationList'
+        futureAllocations:
+          $ref: '#/components/schemas/allocationList'
+      title: ShipmentAllocationsResponse
+      type: object
+    ShipmentInventoryAllocationResponse:
+      description: ShipmentInventoryAllocation Response Object
+      properties:
+        shipments:
+          $ref: '#/components/schemas/shipments'
+      title: ShipmentInventoryAllocation Response
+      type: object
+    ShipmentInventoryAllocationRequest:
+      description: ShipmentInventoryAllocation Request Object
+      properties:
+        shipmentIDs:
+          description: Shipment Ids
+          items:
+            type: integer
+          type: array
+      required:
+      - shipmentIDs
+      title: ShipmentInventoryAllocation Request
+      type: object
+    InventoryAllocationResponse:
+      description: InventoryAllocationResponse Object
+      properties:
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        futureDate:
+          description: Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
+          format: date-time
+          type: string
+        lotCode:
+          type: string
+        orderItemID:
+          description: order item ID
+          title: order item ID
+          type: integer
+        quantity:
+          description: quantity
+          title: quantity
+          type: integer
+        serialNumber:
+          type: string
+        state:
+          description: state
+          title: state
+          type: string
+        tags:
+          $ref: '#/components/schemas/tags'
+        upc:
+          description: upc
+          title: upc
+          type: string
+      title: InventoryAllocationResponse
+      type: object
+    allocationList:
+      description: List of InventoryAllocationResponse objects
+      items:
+        $ref: '#/components/schemas/InventoryAllocationResponse'
+      type: array
+    tags:
+      additionalProperties:
+        type: string
+      description: Associative Map of <String, String> for tagCategoryName => tagName
+      type: object
+    shipments:
+      additionalProperties:
+        $ref: '#/components/schemas/ShipmentAllocationsResponse'
+      description: Associative Map of Map<shipmentId, ShipmentAllocationsResponse>
+      type: object
+  requestBodies:
+    ShipmentInventoryAllocationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ShipmentInventoryAllocationRequest'
+      description: Request to future and current inventory allocations of item
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

@@ -1,0 +1,341 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Export API
+  version: '1.0'
+  description: 'Operations tagged Export across 2 of this provider''s published API definitions: openapi_openapi_importexport.json, kibo-commerce-importexport-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Export
+paths:
+  /platform/data/export/{id}:
+    delete:
+      description: Deletes an existing export job. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Export Job
+      tags:
+      - Export
+      operationId: deletePlatformDataExportById
+      x-operation-id-source: derived
+    get:
+      description: Retrieves an export job by ID. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+          description: OK
+      summary: Get Export Job
+      tags:
+      - Export
+      operationId: getPlatformDataExportById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/export:
+    get:
+      description: Retrieves a list of all export jobs. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExportJob'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExportJob'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExportJob'
+                type: array
+          description: OK
+      summary: Get Export Jobs
+      tags:
+      - Export
+      operationId: getPlatformDataExport
+      x-operation-id-source: derived
+    post:
+      description: Creates a new export job. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportJob'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ExportJob'
+          description: OK
+      summary: Create Export Job
+      tags:
+      - Export
+      operationId: postPlatformDataExport
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    DropLocation:
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileType:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        locationType:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+      type: object
+    ExportResource:
+      properties:
+        configuration: {}
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        filter:
+          type:
+          - string
+          - 'null'
+        format:
+          type:
+          - string
+          - 'null'
+        isComplete:
+          type: boolean
+        resource:
+          type:
+          - string
+          - 'null'
+        stateDetails:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        statusMessage:
+          type:
+          - string
+          - 'null'
+      type: object
+    ExportJob:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        configuration: {}
+        contextOverride:
+          $ref: '#/components/schemas/ContextOverride'
+        domain:
+          type:
+          - string
+          - 'null'
+        exportDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        files:
+          items:
+            $ref: '#/components/schemas/DropLocation'
+          type:
+          - array
+          - 'null'
+        format:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        isComplete:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        requester:
+          type:
+          - string
+          - 'null'
+        resources:
+          items:
+            $ref: '#/components/schemas/ExportResource'
+          type:
+          - array
+          - 'null'
+        retryAttempts:
+          format: int32
+          type: integer
+        status:
+          type:
+          - string
+          - 'null'
+        statusDetails:
+          type:
+          - string
+          - 'null'
+        statusMessage:
+          type:
+          - string
+          - 'null'
+        tenant:
+          format: int32
+          type: integer
+      type: object
+    ContextOverride:
+      properties:
+        catalog:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        currency:
+          type:
+          - string
+          - 'null'
+        locale:
+          type:
+          - string
+          - 'null'
+        masterCatalog:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        site:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_importexport.json
+- kibo-commerce-importexport-openapi.yml

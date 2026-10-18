@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-headless-app-runtime-log-response-schema.json",
+  "title": "HeadlessAppRuntimeLogResponse",
+  "description": "Response object for looking up headless storefront runtime logs.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/HeadlessAppRuntimeLogResponse",
+  "properties": {
+    "isTruncated": {
+      "description": "Flag to indicate if all results were returned. If IsTruncated is true, use NextToken to retrieve additional results.",
+      "type": "boolean"
+    },
+    "logs": {
+      "description": "A list of items representing headless application build jobs.",
+      "items": {
+        "$ref": "#/$defs/HeadlessAppRuntimeLog"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "maxResults": {
+      "description": "The max result provided in runtime log lookup",
+      "format": "int32",
+      "type": "integer"
+    },
+    "nextToken": {
+      "description": "A token used for paginating through runtime logs on subsequent requests.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "prefix": {
+      "description": "The prefix provided in runtime log lookup",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "HeadlessAppRuntimeLog": {
+      "description": "Response object representing a s3 object containing headless storefront runtime logs.",
+      "properties": {
+        "key": {
+          "description": "The key for the s3 log object.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastModified": {
+          "description": "The last modified datetime",
+          "format": "date-time",
+          "type": "string"
+        },
+        "logUrl": {
+          "description": "The presigned URL to download the log collection, valid for 4 hours.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "size": {
+          "description": "The size of the log collection",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

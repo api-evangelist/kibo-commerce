@@ -1,0 +1,6 @@
+generated: '2026-10-18'
+method: searched
+source: https://docs.kibocommerce.com/pages/making-api-calls.md
+description: Kibo provides sandbox environments for testing with separate URLs from production. Sandbox tenants have different hostname patterns (e.g., .sandbox.mozu.com or .sb.*.kibocommerce.com).
+docs: https://docs.kibocommerce.com/pages/making-api-calls.md
+note: Sandbox environments use different URL patterns and are clearly documented. No specific test data or test cards mentioned.

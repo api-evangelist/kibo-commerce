@@ -1,0 +1,35 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Shipping Storefront
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-shipping-storefront-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-shipping-storefront-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/catalog/storefront/shipping/carriers'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/shipping/carriers
+  update:
+    operationId: shippingGetCarriers
+- target: $.paths['/commerce/catalog/storefront/shipping/request-labels'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/shipping/request-labels
+  update:
+    operationId: shippingGetLabels
+- target: $.paths['/commerce/catalog/storefront/shipping/get-labels'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/shipping/get-labels
+  update:
+    operationId: shippingGetLabelsByTrackingNumber
+- target: $.paths['/commerce/catalog/storefront/shipping/request-multi-rates'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/shipping/request-multi-rates
+  update:
+    operationId: shippingGetMultiRates
+- target: $.paths['/commerce/catalog/storefront/shipping/request-rates'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/shipping/request-rates
+  update:
+    operationId: shippingGetRates
+- target: $.paths['/commerce/catalog/storefront/shipping/transit-times'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/shipping/transit-times
+  update:
+    operationId: shippingGetTransitTimes

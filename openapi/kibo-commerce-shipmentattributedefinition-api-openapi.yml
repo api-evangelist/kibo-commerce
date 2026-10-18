@@ -1,0 +1,659 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Attribute Definition API
+  version: '1.0'
+  description: 'Operations tagged ShipmentAttributeDefinition across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentAttributeDefinition
+paths:
+  /commerce/shipments/attributedefinition/attributes/{attributeFQN}/vocabularyValues:
+    get:
+      deprecated: false
+      description: Retrieves vocabulary values for a specific attribute (if it has predefined values). Requires Order Read or Order Ship permissions.
+      parameters:
+      - description: Fully qualified name of the attribute
+        example: shipment.customField1
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Specific fields to include in response
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Response groups for selective field inclusion
+        in: query
+        name: responseGroups
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfAttributeVocabularyValue'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfAttributeVocabularyValue'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/CollectionModelOfAttributeVocabularyValue'
+          description: Successfully retrieved vocabulary values
+        '400':
+          description: Invalid attribute FQN
+        '401':
+          description: Unauthorized - authentication required
+        '403':
+          description: Forbidden - insufficient permissions (requires Order Read or Order Ship)
+        '404':
+          description: Attribute not found or has no vocabulary values
+        '500':
+          description: Internal server error
+      summary: Get attribute vocabulary values
+      tags:
+      - ShipmentAttributeDefinition
+      operationId: getCommerceShipmentsAttributedefinitionAttributesByAttributeFQNVocabularyValues
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/attributedefinition/attributes:
+    get:
+      deprecated: false
+      description: Retrieves shipment attribute definitions with optional filtering and pagination. Requires Order Read or Order Ship permissions.
+      parameters:
+      - allowEmptyValue: false
+        description: Filter criteria for attributes
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Number of items per page (0 = all)
+        example: 25
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - allowEmptyValue: false
+        description: Specific fields to include in response
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Response groups for selective field inclusion
+        in: query
+        name: responseGroups
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Sort field and direction
+        example: adminName asc
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Starting index for pagination
+        example: 0
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttributeCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttributeCollection'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttributeCollection'
+          description: Successfully retrieved attributes
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized - authentication required
+        '403':
+          description: Forbidden - insufficient permissions (requires Order Read or Order Ship)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+      summary: Get shipment attribute definitions
+      tags:
+      - ShipmentAttributeDefinition
+      operationId: getCommerceShipmentsAttributedefinitionAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/attributedefinition/items/attributes:
+    get:
+      deprecated: false
+      description: Retrieves shipment line item attribute definitions with optional filtering and pagination. Requires Order Read or Order Ship permissions.
+      parameters:
+      - allowEmptyValue: false
+        description: Filter criteria for attributes
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Number of items per page (0 = all)
+        example: 25
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - allowEmptyValue: false
+        description: Specific fields to include in response
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Response groups for selective field inclusion
+        in: query
+        name: responseGroups
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Sort field and direction
+        example: adminName asc
+        in: query
+        name: sortBy
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Starting index for pagination
+        example: 0
+        in: query
+        name: startIndex
+        required: false
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttributeCollection'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttributeCollection'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttributeCollection'
+          description: Successfully retrieved line item attributes
+        '400':
+          description: Invalid request parameters
+        '401':
+          description: Unauthorized - authentication required
+        '403':
+          description: Forbidden - insufficient permissions (requires Order Read or Order Ship)
+        '404':
+          description: Not Found
+        '500':
+          description: Internal server error
+      summary: Get shipment line item attribute definitions
+      tags:
+      - ShipmentAttributeDefinition
+      operationId: getCommerceShipmentsAttributedefinitionItemsAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/attributedefinition/attributes/{attributeFQN}:
+    get:
+      deprecated: false
+      description: Retrieves a specific shipment attribute definition by its fully qualified name. Requires Order Read or Order Ship permissions.
+      parameters:
+      - description: Fully qualified name of the attribute
+        example: shipment.customField1
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Specific fields to include in response
+        in: query
+        name: responseFields
+        required: false
+        schema:
+          type: string
+      - allowEmptyValue: false
+        description: Response groups for selective field inclusion
+        in: query
+        name: responseGroups
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttribute'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttribute'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FulfillmentAPIAttribute'
+          description: Successfully retrieved attribute
+        '400':
+          description: Invalid attribute FQN
+        '401':
+          description: Unauthorized - authentication required
+        '403':
+          description: Forbidden - insufficient permissions (requires Order Read or Order Ship)
+        '404':
+          description: Attribute not found
+        '500':
+          description: Internal server error
+      summary: Get single shipment attribute definition
+      tags:
+      - ShipmentAttributeDefinition
+      operationId: getCommerceShipmentsAttributedefinitionAttributesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    FulfillmentAPIAttributeVocabularyValue:
+      properties:
+        content:
+          $ref: '#/components/schemas/FulfillmentAPIAttributeValueLocalizedContent'
+        isHidden:
+          type: boolean
+        sequence:
+          format: int32
+          type: integer
+        value:
+          type: string
+      required:
+      - value
+      title: AttributeVocabularyValue
+      type: object
+    UriTemplate:
+      properties:
+        variableNames:
+          items:
+            type: string
+          type: array
+        variables:
+          items:
+            $ref: '#/components/schemas/TemplateVariable'
+          type: array
+      title: UriTemplate
+      type: object
+    FulfillmentAPIAttributeEntityConfig:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPICoreAuditInfo'
+        editable:
+          type: boolean
+        entityType:
+          type: string
+        id:
+          format: int32
+          type: integer
+      title: AttributeEntityConfig
+      type: object
+    FulfillmentAPIAttributeValidation:
+      properties:
+        maxDateTime:
+          format: date-time
+          type: string
+        maxNumericValue:
+          format: double
+          type: number
+        maxStringLength:
+          format: int32
+          type: integer
+        minDateTime:
+          format: date-time
+          type: string
+        minNumericValue:
+          format: double
+          type: number
+        minStringLength:
+          format: int32
+          type: integer
+        regularExpression:
+          type: string
+      title: AttributeValidation
+      type: object
+    FulfillmentAPIAttribute:
+      properties:
+        adminName:
+          type: string
+        attributeCode:
+          type: string
+        attributeFQN:
+          type: string
+        attributeMetadata:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIAttributeMetadataItem'
+          type: array
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPICoreApiContractsAuditInfo'
+        availableForDiscounts:
+          type: boolean
+        availableForOrderRouting:
+          type: boolean
+        content:
+          $ref: '#/components/schemas/FulfillmentAPIAttributeLocalizedContent'
+        dataType:
+          type: string
+        displayGroup:
+          type: string
+        entityConfigs:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIAttributeEntityConfig'
+          type: array
+        id:
+          format: int32
+          type: integer
+        inheritanceRules:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIAttributeInheritanceRule'
+          type: array
+        inputType:
+          type: string
+        isActive:
+          type: boolean
+        isMultiValued:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        isRequired:
+          type: boolean
+        isVisible:
+          type: boolean
+        namespace:
+          type: string
+        order:
+          format: int32
+          type: integer
+        validation:
+          $ref: '#/components/schemas/FulfillmentAPIAttributeValidation'
+        valueType:
+          type: string
+        vocabularyValues:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIAttributeVocabularyValue'
+          type: array
+      required:
+      - attributeCode
+      - displayGroup
+      - valueType
+      title: Attribute
+      type: object
+    FulfillmentAPICoreApiContractsAuditInfo:
+      properties:
+        createBy:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      title: CoreApiContractsAuditInfo
+      type: object
+    FulfillmentAPIAttributeLocalizedContent:
+      properties:
+        localeCode:
+          type: string
+        value:
+          type: string
+      title: AttributeLocalizedContent
+      type: object
+    FulfillmentAPIAttributeCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIAttribute'
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      title: AttributeCollection
+      type: object
+    FulfillmentAPILink:
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        rel:
+          $ref: '#/components/schemas/LinkRelation'
+        template:
+          $ref: '#/components/schemas/UriTemplate'
+        templated:
+          type: boolean
+        title:
+          type: string
+        type:
+          type: string
+      title: Link
+      type: object
+    FulfillmentAPICoreAuditInfo:
+      properties:
+        createBy:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      title: CoreAuditInfo
+      type: object
+    FulfillmentAPIAttributeMetadataItem:
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+      required:
+      - key
+      - value
+      title: AttributeMetadataItem
+      type: object
+    TemplateVariable:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - ''
+          - '?'
+          - '&'
+          - /
+          - '#'
+          - '*'
+          type: string
+      title: TemplateVariable
+      type: object
+    CollectionModelOfAttributeVocabularyValue:
+      properties:
+        _embedded:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/FulfillmentAPIAttributeVocabularyValue'
+            type: array
+          type: object
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+      title: CollectionModelOfAttributeVocabularyValue
+      type: object
+    FulfillmentAPIAttributeInheritanceRule:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPICoreAuditInfo'
+        id:
+          format: int32
+          type: integer
+        inheritanceMode:
+          type: string
+        sourceEntityType:
+          type: string
+        targetEntityType:
+          type: string
+      title: AttributeInheritanceRule
+      type: object
+    LinkRelation:
+      title: LinkRelation
+      type: object
+    FulfillmentAPIAttributeValueLocalizedContent:
+      properties:
+        localeCode:
+          type: string
+        value:
+          type: string
+      required:
+      - localeCode
+      - value
+      title: AttributeValueLocalizedContent
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

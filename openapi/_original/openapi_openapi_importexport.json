@@ -1,0 +1,1952 @@
+{
+  "components": {
+    "schemas": {
+      "AuditInfo": {
+        "properties": {
+          "createBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BatchDomains": {
+        "enum": [
+          "Catalog"
+        ],
+        "type": "string"
+      },
+      "BatchJob": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dateStarted": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/BatchDomains"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "scheduledDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BatchJobStatuses"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobAction": {
+        "properties": {
+          "action": {
+            "$ref": "#/components/schemas/BatchJobActionTypes"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobActionTypes": {
+        "enum": [
+          "Start",
+          "Reset",
+          "Cancel"
+        ],
+        "type": "string"
+      },
+      "BatchJobCollection": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/BatchJob"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobItem": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "batchJobCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "catalogId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "correlationId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "currencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dataViewMode": {
+            "$ref": "#/components/schemas/DataViewModeType"
+          },
+          "errors": {
+            "items": {
+              "$ref": "#/components/schemas/BatchJobItemError"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "httpMethod": {
+            "nullable": true,
+            "type": "string"
+          },
+          "itemKey": {
+            "nullable": true,
+            "type": "string"
+          },
+          "localeCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "masterCatalog": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "processingStatus": {
+            "$ref": "#/components/schemas/BatchJobItemProcessingStatuses"
+          },
+          "query": {
+            "nullable": true,
+            "type": "string"
+          },
+          "resourceType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "retryCount": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "siteId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "status": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "uri": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobItemError": {
+        "properties": {
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "field": {
+            "nullable": true,
+            "type": "string"
+          },
+          "itemKeys": {
+            "items": {
+              "$ref": "#/components/schemas/StringStringKeyValuePair"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "longMessage": {
+            "nullable": true,
+            "type": "string"
+          },
+          "message": {
+            "nullable": true,
+            "type": "string"
+          },
+          "subErrors": {
+            "items": {
+              "$ref": "#/components/schemas/BatchJobItemError"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobItemProcessingStatuses": {
+        "enum": [
+          "Waiting",
+          "Running",
+          "ValidationFailed",
+          "Failed",
+          "Completed",
+          "Cancelled"
+        ],
+        "type": "string"
+      },
+      "BatchJobItemResultSet": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/BatchJobItem"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobResourceSummary": {
+        "properties": {
+          "counts": {
+            "items": {
+              "$ref": "#/components/schemas/ProcessingCount"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "resourceType": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobStatuses": {
+        "enum": [
+          "Ready",
+          "Pending",
+          "Running",
+          "Completed",
+          "Canceled"
+        ],
+        "type": "string"
+      },
+      "BatchJobSummary": {
+        "properties": {
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dateStarted": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "resources": {
+            "items": {
+              "$ref": "#/components/schemas/BatchJobResourceSummary"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "scheduledDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BatchJobStatuses"
+          }
+        },
+        "type": "object"
+      },
+      "BatchJobSummaryCollection": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/BatchJobSummary"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ContextOverride": {
+        "properties": {
+          "catalog": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "currency": {
+            "nullable": true,
+            "type": "string"
+          },
+          "locale": {
+            "nullable": true,
+            "type": "string"
+          },
+          "masterCatalog": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "site": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "DataViewModeType": {
+        "enum": [
+          0,
+          1,
+          2
+        ],
+        "format": "int32",
+        "type": "integer"
+      },
+      "DropLocation": {
+        "properties": {
+          "fileName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "fileType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "locationType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "uri": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ExportJob": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "configuration": {
+            "nullable": true
+          },
+          "contextOverride": {
+            "$ref": "#/components/schemas/ContextOverride"
+          },
+          "domain": {
+            "nullable": true,
+            "type": "string"
+          },
+          "exportDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/DropLocation"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "format": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "requester": {
+            "nullable": true,
+            "type": "string"
+          },
+          "resources": {
+            "items": {
+              "$ref": "#/components/schemas/ExportResource"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "retryAttempts": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "statusDetails": {
+            "nullable": true,
+            "type": "string"
+          },
+          "statusMessage": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenant": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ExportResource": {
+        "properties": {
+          "configuration": {
+            "nullable": true
+          },
+          "fields": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "filter": {
+            "nullable": true,
+            "type": "string"
+          },
+          "format": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "resource": {
+            "nullable": true,
+            "type": "string"
+          },
+          "stateDetails": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "statusMessage": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ImportJob": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "configuration": {
+            "nullable": true
+          },
+          "contextOverride": {
+            "$ref": "#/components/schemas/ContextOverride"
+          },
+          "domain": {
+            "nullable": true,
+            "type": "string"
+          },
+          "files": {
+            "items": {
+              "$ref": "#/components/schemas/DropLocation"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "format": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "requester": {
+            "nullable": true,
+            "type": "string"
+          },
+          "resources": {
+            "items": {
+              "$ref": "#/components/schemas/ImportResource"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "statusDetails": {
+            "nullable": true,
+            "type": "string"
+          },
+          "statusMessage": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenant": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "ImportResource": {
+        "properties": {
+          "allowSyscalcValueUpdates": {
+            "type": "boolean"
+          },
+          "configuration": {
+            "nullable": true
+          },
+          "deleteOmitted": {
+            "type": "boolean"
+          },
+          "fields": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "format": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isComplete": {
+            "type": "boolean"
+          },
+          "resource": {
+            "nullable": true,
+            "type": "string"
+          },
+          "stateDetails": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "statusMessage": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ProcessingCount": {
+        "properties": {
+          "count": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "status": {
+            "$ref": "#/components/schemas/BatchJobItemProcessingStatuses"
+          }
+        },
+        "type": "object"
+      },
+      "StringStringKeyValuePair": {
+        "properties": {
+          "key": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "<div id=\"overview_IMPORTEXPORT\">\n            <h2>Import Export</h2>\n            <p>The Import Export APIs are used to \"import and export\" Kibo's resources efficiently in <strong>CSV</strong> file format.</p>\n            <p> For Importing, files are first zipped and uploaded via the <strong>Files API</strong>. Then an import job can be created, referencing the uploaded files using the <strong>Import API.</strong></p>\n            <p> For Exporting, create an export job via the  <strong></strong>Export API, specifying  the resource to be exported. Then after completion, the csv extracts can be downloaded via the <strong>File API</strong></p>\n            \n        </div>",
+    "title": "Import Export"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/platform/data/batchJob/actions/{code}": {
+      "get": {
+        "description": "Retrieves all available actions for the specified batch job",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Available Actions",
+        "tags": [
+          "BatchJob"
+        ]
+      },
+      "post": {
+        "description": "Performs an action on the specified batch job. Possible actions are start, cancel, and reset actions. Reset can only be called for jobs that are already completed or canceled, and will remove all items so that you can re-use the empty job.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchJobAction"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Perform Batch Action",
+        "tags": [
+          "BatchJob"
+        ]
+      }
+    },
+    "/platform/data/batchJob/{code}": {
+      "delete": {
+        "description": "Deletes an existing batch job",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Delete Batch Job",
+        "tags": [
+          "BatchJob"
+        ]
+      },
+      "get": {
+        "description": "Retrieves information about a specific batch job",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Batch Job",
+        "tags": [
+          "BatchJob"
+        ]
+      },
+      "put": {
+        "description": "Updates an existing batch job. Currently only allows you to change the name of a job.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Update Batch Job",
+        "tags": [
+          "BatchJob"
+        ]
+      }
+    },
+    "/platform/data/batchJob/actions/{code}/items/{correlationId}": {
+      "post": {
+        "description": "Retrieves a specific item in a batch job",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "correlationId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobItemResultSet"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobItemResultSet"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobItemResultSet"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Batch Job Item",
+        "tags": [
+          "BatchJob"
+        ]
+      }
+    },
+    "/platform/data/batchJob/actions/{code}/items": {
+      "post": {
+        "description": "Retrieve a list of all batch job items. Query for items of a specific processing status and/or resource by appending ?processingStatus={processingStatus}&resourceType={resourceType}. Resource type can be Products, ProductProperty, or Pricelistentries.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "includeCount",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "in": "query",
+            "name": "processingStatus",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "resourceType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobItemResultSet"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobItemResultSet"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobItemResultSet"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Batch Job Items",
+        "tags": [
+          "BatchJob"
+        ]
+      }
+    },
+    "/platform/data/batchJob/actions/summaries": {
+      "get": {
+        "description": "Retrieves a list of all batch job summaries",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "domain",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "includeCount",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobSummaryCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobSummaryCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobSummaryCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Batch Job Summaries",
+        "tags": [
+          "BatchJob"
+        ]
+      }
+    },
+    "/platform/data/batchJob/actions/{code}/summary": {
+      "get": {
+        "description": "Retrieves a batch job summary by its code",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "code",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobSummary"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobSummary"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobSummary"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Batch Job Summary",
+        "tags": [
+          "BatchJob"
+        ]
+      }
+    },
+    "/platform/data/batchJob": {
+      "get": {
+        "description": "Gets all batch jobs",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "domain",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "includeCount",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJobCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Batch Jobs",
+        "tags": [
+          "BatchJob"
+        ]
+      },
+      "post": {
+        "description": "Creates a new batch job",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BatchJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/BatchJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Create Batch Job",
+        "tags": [
+          "BatchJob"
+        ]
+      }
+    },
+    "/platform/data/export/{id}": {
+      "delete": {
+        "description": "Deletes an existing export job. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete Export Job",
+        "tags": [
+          "Export"
+        ]
+      },
+      "get": {
+        "description": "Retrieves an export job by ID. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Export Job",
+        "tags": [
+          "Export"
+        ]
+      }
+    },
+    "/platform/data/export": {
+      "get": {
+        "description": "Retrieves a list of all export jobs. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ExportJob"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ExportJob"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ExportJob"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Export Jobs",
+        "tags": [
+          "Export"
+        ]
+      },
+      "post": {
+        "description": "Creates a new export job. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExportJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExportJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Create Export Job",
+        "tags": [
+          "Export"
+        ]
+      }
+    },
+    "/platform/data/files/{id}/content": {
+      "get": {
+        "description": "Downloads specific files by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Download Files",
+        "tags": [
+          "Files"
+        ]
+      }
+    },
+    "/platform/data/files/{id}": {
+      "get": {
+        "description": "Retrieves file information by ID",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DropLocation"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DropLocation"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DropLocation"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get File",
+        "tags": [
+          "Files"
+        ]
+      }
+    },
+    "/platform/data/files/{id}/generatelink": {
+      "post": {
+        "description": "Generates a public link for the files",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "hourDuration",
+            "schema": {
+              "default": 24,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Public Link",
+        "tags": [
+          "Files"
+        ]
+      }
+    },
+    "/platform/data/files": {
+      "post": {
+        "description": "Uploads files to the system",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "fileType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fileName",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "format": "binary",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DropLocation"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DropLocation"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DropLocation"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Upload Files",
+        "tags": [
+          "Files"
+        ]
+      }
+    },
+    "/platform/data/import/{id}": {
+      "delete": {
+        "description": "Deletes an existing import job. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete Import Job",
+        "tags": [
+          "Import"
+        ]
+      },
+      "get": {
+        "description": "Retrieves an import job by ID. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Import Job",
+        "tags": [
+          "Import"
+        ]
+      }
+    },
+    "/platform/data/import": {
+      "get": {
+        "description": "Retrieves a list of all import jobs. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ImportJob"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ImportJob"
+                  },
+                  "type": "array"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ImportJob"
+                  },
+                  "type": "array"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Import Jobs",
+        "tags": [
+          "Import"
+        ]
+      },
+      "post": {
+        "description": "Creates a new import job. For detailed usage, file format specifications, and field references, see the [Import/Export API Overview](/pages/import-export-api-overview).",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportJob"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportJob"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportJob"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportJob"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Create Import Job",
+        "tags": [
+          "Import"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
+    }
+  ]
+}

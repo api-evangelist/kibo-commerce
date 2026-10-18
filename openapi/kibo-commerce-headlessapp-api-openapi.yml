@@ -1,0 +1,702 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Headless App API
+  version: '1.0'
+  description: 'Operations tagged HeadlessApp across 2 of this provider''s published API definitions: openapi_openapi_appdevelopement.json, kibo-commerce-appdevelopement-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: HeadlessApp
+paths:
+  /platform/appdev/headless-app/env/{branchName}/{variableName}:
+    delete:
+      description: Delete an environment variable from a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to delete the environment variable from
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The name of the environment variable to delete
+        in: path
+        name: variableName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Environment Variable
+      tags:
+      - HeadlessApp
+      operationId: deletePlatformAppdevHeadlessAppEnvByBranchNameByVariableName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/headless-app/secrets/{branchName}/{secretName}:
+    delete:
+      description: Delete a secret from a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to delete the secret from
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The name of the secret to delete
+        in: path
+        name: secretName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Secret
+      tags:
+      - HeadlessApp
+      operationId: deletePlatformAppdevHeadlessAppSecretsByBranchNameBySecretName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/headless-app/builds/{branchName}:
+    get:
+      description: Get the builds of a specific code branch for a Kibo Hosted Headless application.\r\nA Kibo site must be first linked to a headless hosted application before using this API.
+      parameters:
+      - description: The name of the branch to use for the request
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The maximum number of records to list in a single response. defaults to 20, maximum is 100
+        in: query
+        name: maxResults
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: A pagination token
+        in: query
+        name: nextToken
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildJobResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildJobResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildJobResponse'
+          description: OK
+      summary: Get Application Build Jobs
+      tags:
+      - HeadlessApp
+      operationId: getPlatformAppdevHeadlessAppBuildsByBranchName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/headless-app/builds/{branchName}/logs/{jobId}:
+    get:
+      description: Get the build logs of a specific code branch and build for a Kibo Hosted Headless application.\r\nA Kibo site must be first linked to a headless hosted application before using this API.
+      parameters:
+      - description: The name of the branch to use for the request
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: The Identifier of the build to retrieve logs for
+        in: path
+        name: jobId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildLog'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildLog'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppBuildLog'
+          description: OK
+      summary: Get Application Build Log
+      tags:
+      - HeadlessApp
+      operationId: getPlatformAppdevHeadlessAppBuildsByBranchNameLogsByJobId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/headless-app/env/{branchName}:
+    get:
+      description: List environment variables for a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to list environment variables for
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVarCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVarCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVarCollection'
+          description: OK
+      summary: Get Environment Variables
+      tags:
+      - HeadlessApp
+      operationId: getPlatformAppdevHeadlessAppEnvByBranchName
+      x-operation-id-source: derived
+    put:
+      description: Create or update a plaintext environment variable for a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to set the environment variable on
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeadlessEnvVarInput'
+        description: The environment variable name and value to set
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVar'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVar'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessEnvVar'
+          description: OK
+      summary: Put Environment Variable
+      tags:
+      - HeadlessApp
+      operationId: putPlatformAppdevHeadlessAppEnvByBranchName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/headless-app/logs/runtime:
+    get:
+      description: 'Get the runtime logs, as s3 objects, for a Kibo Hosted Headless application.
+
+        A Kibo site must be first linked to a headless hosted application before using this API.'
+      parameters:
+      - description: 'A date filter for the log results. Filters can be in the following formats:
+
+          for 2024, prefix=2024
+
+          for first month of 2024, prefix=2024-01
+
+          for first day, first month of 2024, prefix=2024-01-01'
+        in: query
+        name: prefix
+        schema:
+          type: string
+      - description: The maximum number of records to list in a single response. defaults to 300, maximum is 1000
+        in: query
+        name: maxResults
+        schema:
+          default: 300
+          format: int32
+          type: integer
+      - description: A pagination token
+        in: query
+        name: nextToken
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppRuntimeLogResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppRuntimeLogResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessAppRuntimeLogResponse'
+          description: OK
+      summary: Get Runtime Logs
+      tags:
+      - HeadlessApp
+      operationId: getPlatformAppdevHeadlessAppLogsRuntime
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/headless-app/secrets/{branchName}:
+    get:
+      description: 'List secrets for a specific branch of a Kibo Hosted Headless application.
+
+        Returns secret names and metadata only. Values are excluded from the response contract.'
+      parameters:
+      - description: The name of the branch to list secrets for
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecretCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecretCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecretCollection'
+          description: OK
+      summary: Get Secrets
+      tags:
+      - HeadlessApp
+      operationId: getPlatformAppdevHeadlessAppSecretsByBranchName
+      x-operation-id-source: derived
+    put:
+      description: Create or update an encrypted secret for a specific branch of a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to set the secret on
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HeadlessSecretInput'
+        description: The secret name and value to set
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecret'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecret'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessSecret'
+          description: OK
+      summary: Put Secret
+      tags:
+      - HeadlessApp
+      operationId: putPlatformAppdevHeadlessAppSecretsByBranchName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/headless-app/builds/{branchName}/trigger:
+    post:
+      description: Trigger a rebuild of a specific branch for a Kibo Hosted Headless application.
+      parameters:
+      - description: The name of the branch to trigger a build for
+        in: path
+        name: branchName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessBuildTriggerResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/HeadlessBuildTriggerResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/HeadlessBuildTriggerResponse'
+          description: OK
+      summary: Trigger Build
+      tags:
+      - HeadlessApp
+      operationId: postPlatformAppdevHeadlessAppBuildsByBranchNameTrigger
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    HeadlessSecretCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/HeadlessSecret'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    HeadlessSecret:
+      description: 'Read/list view of a headless secret: name and metadata only. This type intentionally has NO
+
+        `Value` property — secret plaintext is never returned to clients, and the absence of the field
+
+        makes that leak unrepresentable. Do not add a `Value` here; use Mozu.AppDev.Contracts.HeadlessSecretInput
+
+        for writes.'
+      properties:
+        lastModified:
+          description: When the secret was last modified, if known.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        name:
+          description: The secret's name.
+          type:
+          - string
+          - 'null'
+      type: object
+    HeadlessAppBuildJob:
+      description: A job that represents the build of a Kibo hosted headless application.
+      properties:
+        commitId:
+          description: The Commit ID for the build job.
+          type:
+          - string
+          - 'null'
+        commitTime:
+          description: The time of code commit for the build job.
+          format: date-time
+          type: string
+        endTime:
+          description: The end time for the build job.
+          format: date-time
+          type: string
+        jobId:
+          description: The unique identifier for a Headless Application Build Job.
+          type:
+          - string
+          - 'null'
+        startTime:
+          description: The start time for the build job.
+          format: date-time
+          type: string
+        status:
+          description: The name of the third party feature.
+          type:
+          - string
+          - 'null'
+      type: object
+    HeadlessSecretInput:
+      description: 'Write-only input for creating or updating a headless secret. The read view is
+
+        Mozu.AppDev.Contracts.HeadlessSecret, which intentionally has no `Value` property —
+
+        secret plaintext is never returned to clients.'
+      properties:
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - name
+      - value
+      type: object
+    HeadlessEnvVar:
+      description: 'Read/list view of a headless environment variable. Unlike Mozu.AppDev.Contracts.HeadlessSecret,
+
+        environment variable values are plaintext and deliberately returned to clients.
+
+        For writes, use Mozu.AppDev.Contracts.HeadlessEnvVarInput.'
+      properties:
+        lastModified:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    HeadlessEnvVarCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/HeadlessEnvVar'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    HeadlessBuildTriggerResponse:
+      description: Response returned when a headless build is triggered. See Mozu.AppDev.Contracts.HeadlessBuildJobStatus for valid Mozu.AppDev.Contracts.HeadlessBuildTriggerResponse.Status values.
+      properties:
+        branchName:
+          type:
+          - string
+          - 'null'
+        jobId:
+          type:
+          - string
+          - 'null'
+        startTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+      type: object
+    HeadlessAppBuildLog:
+      description: The list of steps taken during the build job with links to logs.
+      properties:
+        jobId:
+          type:
+          - string
+          - 'null'
+        steps:
+          items:
+            $ref: '#/components/schemas/HeadlessAppBuildStep'
+          type:
+          - array
+          - 'null'
+      type: object
+    HeadlessAppRuntimeLogResponse:
+      description: Response object for looking up headless storefront runtime logs.
+      properties:
+        isTruncated:
+          description: Flag to indicate if all results were returned. If IsTruncated is true, use NextToken to retrieve additional results.
+          type: boolean
+        logs:
+          description: A list of items representing headless application build jobs.
+          items:
+            $ref: '#/components/schemas/HeadlessAppRuntimeLog'
+          type:
+          - array
+          - 'null'
+        maxResults:
+          description: The max result provided in runtime log lookup
+          format: int32
+          type: integer
+        nextToken:
+          description: A token used for paginating through runtime logs on subsequent requests.
+          type:
+          - string
+          - 'null'
+        prefix:
+          description: The prefix provided in runtime log lookup
+          type:
+          - string
+          - 'null'
+      type: object
+    HeadlessAppBuildStep:
+      description: A job that represents the build of a Kibo hosted headless application.
+      properties:
+        endTime:
+          description: The end time for the build job step.
+          format: date-time
+          type: string
+        logUrl:
+          description: The url to access logs generated during the build step.
+          type:
+          - string
+          - 'null'
+        startTime:
+          description: The start time for the build job step.
+          format: date-time
+          type: string
+        status:
+          description: The status result of the step during the build job
+          type:
+          - string
+          - 'null'
+        stepName:
+          description: The name of the build step producing logs during the build Job.
+          type:
+          - string
+          - 'null'
+      type: object
+    HeadlessAppRuntimeLog:
+      description: Response object representing a s3 object containing headless storefront runtime logs.
+      properties:
+        key:
+          description: The key for the s3 log object.
+          type:
+          - string
+          - 'null'
+        lastModified:
+          description: The last modified datetime
+          format: date-time
+          type: string
+        logUrl:
+          description: The presigned URL to download the log collection, valid for 4 hours.
+          type:
+          - string
+          - 'null'
+        size:
+          description: The size of the log collection
+          format: int64
+          type: integer
+      type: object
+    HeadlessAppBuildJobResponse:
+      description: Response object for looking up headless storefront build jobs.
+      properties:
+        jobs:
+          description: A list of items representing headless application build jobs.
+          items:
+            $ref: '#/components/schemas/HeadlessAppBuildJob'
+          type:
+          - array
+          - 'null'
+        nextToken:
+          description: A token used for paginating through build jobs on subsequent requests.
+          type:
+          - string
+          - 'null'
+      type: object
+    HeadlessEnvVarInput:
+      description: 'Write-only input for creating or updating a headless environment variable.
+
+        The read view is Mozu.AppDev.Contracts.HeadlessEnvVar.'
+      properties:
+        name:
+          minLength: 1
+          type: string
+        value:
+          minLength: 1
+          type: string
+      required:
+      - name
+      - value
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_appdevelopement.json
+- kibo-commerce-appdevelopement-openapi.yml

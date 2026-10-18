@@ -1,0 +1,466 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce App Install API
+  version: '1.0'
+  description: 'Operations tagged AppInstall across 2 of this provider''s published API definitions: openapi_openapi_appdevelopement.json, kibo-commerce-appdevelopement-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AppInstall
+paths:
+  /platform/appdev/appinstall/application/entitlement/{applicationEntitlementId}:
+    get:
+      description: Get a specific application entitlement by ID.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationEntitlementId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+          description: OK
+      summary: Get Application
+      tags:
+      - AppInstall
+      operationId: getPlatformAppdevAppinstallApplicationEntitlementByApplicationEntitlementId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/appinstall/application/entitlement:
+    get:
+      description: Get a list of installed applications.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+          description: OK
+      summary: Get Applications
+      tags:
+      - AppInstall
+      operationId: getPlatformAppdevAppinstallApplicationEntitlement
+      x-operation-id-source: derived
+    post:
+      description: Install an application entitlement.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationEntitlement'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+          description: OK
+      summary: Install Application
+      tags:
+      - AppInstall
+      operationId: postPlatformAppdevAppinstallApplicationEntitlement
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/appinstall/applicationversion/{applicationId}/entitlements:
+    get:
+      description: Retrieve a list of entitlements for a specific application.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+          description: OK
+      summary: Get Entitlements By Application
+      tags:
+      - AppInstall
+      operationId: getPlatformAppdevAppinstallApplicationversionByApplicationIdEntitlements
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/appinstall/tenant/{tenantId}/entitlements:
+    get:
+      description: Get a list of applicaiton entitlements by tenant.
+      parameters:
+      - description: ''
+        in: path
+        name: tenantId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ApplicationEntitlement'
+                type: array
+          description: OK
+      summary: Get Entitlements By Tenant
+      tags:
+      - AppInstall
+      operationId: getPlatformAppdevAppinstallTenantByTenantIdEntitlements
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/appinstall/toproductiontenant:
+    post:
+      description: Install an application to a production tenant.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationEntitlement'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationEntitlement'
+          description: OK
+      summary: Install App To Production Tenant
+      tags:
+      - AppInstall
+      operationId: postPlatformAppdevAppinstallToproductiontenant
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ApplicationEntitlement:
+      description: ''
+      properties:
+        appKey:
+          description: ''
+          type:
+          - string
+          - 'null'
+        appOwnerDevAccountId:
+          description: Denotes the application owner dev account id
+          format: int32
+          type: integer
+        applicationEntitlementId:
+          description: ''
+          format: int32
+          type: integer
+        applicationId:
+          description: ''
+          format: int32
+          type: integer
+        applicationLicenseType:
+          description: ''
+          type:
+          - string
+          - 'null'
+        applicationName:
+          description: ''
+          type:
+          - string
+          - 'null'
+        applicationStatusId:
+          description: ''
+          type:
+          - string
+          - 'null'
+        applicationTransactions:
+          description: ''
+          items:
+            $ref: '#/components/schemas/ApplicationTransaction'
+          type:
+          - array
+          - 'null'
+        applicationVersion:
+          description: ''
+          type:
+          - string
+          - 'null'
+        deletedBy:
+          description: User id that soft-deleted this entitlement during an application delete cascade (null if active).
+          type:
+          - string
+          - 'null'
+        deletedByFirstName:
+          description: First name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).
+          type:
+          - string
+          - 'null'
+        deletedByLastName:
+          description: Last name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).
+          type:
+          - string
+          - 'null'
+        deletedDate:
+          description: UTC timestamp when this entitlement was soft-deleted during an application delete cascade (null if active).
+          format: date-time
+          type:
+          - string
+          - 'null'
+        devAccountId:
+          description: Denotes which DevAccountId is the application installed in
+          format: int32
+          type: integer
+        effectiveEndDate:
+          description: ''
+          format: date-time
+          type:
+          - string
+          - 'null'
+        effectiveStartDate:
+          description: ''
+          format: date-time
+          type:
+          - string
+          - 'null'
+        entitlementStatus:
+          description: ''
+          type:
+          - string
+          - 'null'
+        installedAppsApplicationId:
+          description: ''
+          type:
+          - string
+          - 'null'
+        installedByFirstName:
+          description: ''
+          type:
+          - string
+          - 'null'
+        installedByLastName:
+          description: ''
+          type:
+          - string
+          - 'null'
+        installedDate:
+          description: ''
+          format: date-time
+          type: string
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+        packageName:
+          description: ''
+          type:
+          - string
+          - 'null'
+        siteId:
+          description: ''
+          format: int32
+          type:
+          - integer
+          - 'null'
+        tenantId:
+          description: ''
+          format: int32
+          type: integer
+        tenantName:
+          description: ''
+          type:
+          - string
+          - 'null'
+      type: object
+    ApplicationTransaction:
+      description: ''
+      properties:
+        applicationEntitlementId:
+          description: ''
+          format: int32
+          type:
+          - integer
+          - 'null'
+        applicationId:
+          description: ''
+          format: int32
+          type: integer
+        applicationTransactionId:
+          description: ''
+          format: int32
+          type: integer
+        isoCurrencyCode:
+          description: ''
+          type:
+          - string
+          - 'null'
+        localeCode:
+          description: ''
+          format: int32
+          type: integer
+        orderNumber:
+          description: ''
+          type:
+          - string
+          - 'null'
+        siteId:
+          description: ''
+          format: int32
+          type:
+          - integer
+          - 'null'
+        tenantId:
+          description: ''
+          format: int32
+          type: integer
+        transactionDate:
+          description: ''
+          format: date-time
+          type: string
+        transactionPrice:
+          description: ''
+          format: double
+          type: number
+        transactionTax:
+          description: ''
+          format: double
+          type: number
+        transactionTotal:
+          description: ''
+          format: double
+          type: number
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_appdevelopement.json
+- kibo-commerce-appdevelopement-openapi.yml

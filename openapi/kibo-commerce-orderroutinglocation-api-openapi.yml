@@ -1,0 +1,285 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Location API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingLocation across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: Classic UI API - Location information
+  name: OrderRoutingLocation
+paths:
+  /commerce/orders/orderrouting/api/v1/location/{locationCode}:
+    get:
+      description: Retrieve a specific location by its location code.
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationResponseModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Location by Location Code
+      tags:
+      - OrderRoutingLocation
+      operationId: getCommerceOrdersOrderroutingApiV1LocationByLocationCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/location:
+    get:
+      description: Retrieve a list of locations.
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageNum
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationListResponseModel'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Locations
+      tags:
+      - OrderRoutingLocation
+      operationId: getCommerceOrdersOrderroutingApiV1Location
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    LocationResponseModel:
+      properties:
+        active:
+          type: boolean
+        addressType:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        created:
+          type: string
+        deliveryEnabled:
+          type: boolean
+        directShip:
+          type: boolean
+        express:
+          type: boolean
+        fridayHours:
+          type: string
+        latitude:
+          format: double
+          type: number
+        locationCode:
+          type: string
+        locationID:
+          format: int32
+          type: integer
+        locationName:
+          type: string
+        locationTypes:
+          items:
+            type: string
+          type: array
+        longitude:
+          format: double
+          type: number
+        mondayHours:
+          type: string
+        pickup:
+          type: boolean
+        postalCode:
+          type: string
+        requiresManifest:
+          type: boolean
+        saturdayHours:
+          type: string
+        stateOrProvince:
+          type: string
+        sundayHours:
+          type: string
+        tenantID:
+          format: int32
+          type: integer
+        thursdayHours:
+          type: string
+        timezone:
+          type: string
+        transferEnabled:
+          type: boolean
+        tuesdayHours:
+          type: string
+        updated:
+          type: string
+        wednesdayHours:
+          type: string
+        wmsEnabled:
+          type: boolean
+      type: object
+    LocationListResponseModel:
+      properties:
+        pageNum:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        paginatedResults:
+          format: int32
+          type: integer
+        results:
+          items:
+            $ref: '#/components/schemas/LocationResponseModel'
+          type: array
+        totalResults:
+          format: int64
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

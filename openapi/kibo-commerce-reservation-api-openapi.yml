@@ -1,0 +1,1542 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Reservation API
+  version: '1.0'
+  description: 'Operations tagged Reservation across 2 of this provider''s published API definitions: openapi_openapi_reservation.json, kibo-commerce-reservation-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Reservation
+paths:
+  /commerce/reservation/{reservationId}/activate:
+    put:
+      description: Activate a reservation. Kibo does not recommend using this API, as it is intended for internal use.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Activate Reservation
+      tags:
+      - Reservation
+      operationId: putCommerceReservationByReservationIdActivate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/items:
+    post:
+      description: Add an item to a reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: zipCode
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Add Item
+      tags:
+      - Reservation
+      operationId: postCommerceReservationByReservationIdItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/close:
+    put:
+      description: Close a reservation. Kibo does not recommend using this API, as it is intended for internal use.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Close Reservation
+      tags:
+      - Reservation
+      operationId: putCommerceReservationByReservationIdClose
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/converttoorderreservation:
+    post:
+      description: Converts a reservation associated with a cart to an order reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderReservati'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Convert To Order Reservation
+      tags:
+      - Reservation
+      operationId: postCommerceReservationByReservationIdConverttoorderreservation
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/getallocationstatus:
+    get:
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+            text/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+            text/plain:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: OK
+      summary: Get Allocation Status
+      tags:
+      - Reservation
+      operationId: getCommerceReservationByReservationIdGetallocationstatus
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}:
+    delete:
+      description: Delete a reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Delete Reservation
+      tags:
+      - Reservation
+      operationId: deleteCommerceReservationByReservationId
+      x-operation-id-source: derived
+    get:
+      description: Get a specific reservation by its ID.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Get Reservation By Id
+      tags:
+      - Reservation
+      operationId: getCommerceReservationByReservationId
+      x-operation-id-source: derived
+    put:
+      description: Update an existing reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservati'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Reservation
+      tags:
+      - Reservation
+      operationId: putCommerceReservationByReservationId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/summary:
+    get:
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationAggregateSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationAggregateSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationAggregateSummary'
+          description: OK
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Content Too Large
+      summary: Get Reservation Summary
+      tags:
+      - Reservation
+      operationId: getCommerceReservationSummary
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation:
+    get:
+      description: Get all reservations.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Reservations
+      tags:
+      - Reservation
+      operationId: getCommerceReservation
+      x-operation-id-source: derived
+    post:
+      description: Creates a new reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservati'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Create Reservation
+      tags:
+      - Reservation
+      operationId: postCommerceReservation
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/cart/{cartId}:
+    get:
+      description: Get reservations based on the Cart ID.
+      parameters:
+      - in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+          description: OK
+      summary: Get Reservations By Cart Id
+      tags:
+      - Reservation
+      operationId: getCommerceReservationCartByCartId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/items/{reservationItemId}/quantity/{quantity}:
+    put:
+      description: Update a reservation item's quantity. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: quantity
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentInf'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Item Quantity
+      tags:
+      - Reservation
+      operationId: putCommerceReservationByReservationIdItemsByReservationItemIdQuantityByQuantity
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/items/{reservationItemId}:
+    delete:
+      description: Remove an item from a reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Remove Item
+      tags:
+      - Reservation
+      operationId: deleteCommerceReservationByReservationIdItemsByReservationItemId
+      x-operation-id-source: derived
+    put:
+      description: Updates a reservation item. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: zipCode
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Reservation Item
+      tags:
+      - Reservation
+      operationId: putCommerceReservationByReservationIdItemsByReservationItemId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/updatetimer:
+    put:
+      description: Restart the expiration timer of a reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Timer
+      tags:
+      - Reservation
+      operationId: putCommerceReservationByReservationIdUpdatetimer
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/reservation/{reservationId}/zipcode/{zipCode}:
+    post:
+      description: Update the zip code of a reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: zipCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ReservationWebAPIOrderAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Zip Code
+      tags:
+      - Reservation
+      operationId: postCommerceReservationByReservationIdZipcodeByZipCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductPropertyValue:
+      properties:
+        stringValue:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+    AuditInf:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        createdBy:
+          type:
+          - string
+          - 'null'
+        updatedAt:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updatedBy:
+          type:
+          - string
+          - 'null'
+      type: object
+    Produ:
+      properties:
+        bundledProducts:
+          items:
+            $ref: '#/components/schemas/BundledProdu'
+          type:
+          - array
+          - 'null'
+        condition:
+          type:
+          - string
+          - 'null'
+        goodsType:
+          type:
+          - string
+          - 'null'
+        isSplitExtrasInShipment:
+          type: boolean
+        isTaxable:
+          type:
+          - boolean
+          - 'null'
+        measurements:
+          $ref: '#/components/schemas/ReservationWebAPIPackageMeasurements'
+        mfgPartNumber:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        productCode:
+          type:
+          - string
+          - 'null'
+        productType:
+          type:
+          - string
+          - 'null'
+        productUsage:
+          type:
+          - string
+          - 'null'
+        properties:
+          items:
+            $ref: '#/components/schemas/ReservationWebAPIProductProperty'
+          type:
+          - array
+          - 'null'
+        serialNumber:
+          type:
+          - string
+          - 'null'
+        sku:
+          type:
+          - string
+          - 'null'
+        variationProductCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    ReservationCollecti:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Reservati'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    Suggesti:
+      properties:
+        futureDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        locationCode:
+          type:
+          - string
+          - 'null'
+        productCode:
+          type:
+          - string
+          - 'null'
+        quantity:
+          format: int32
+          type: integer
+        suggestionType:
+          type:
+          - string
+          - 'null'
+      type: object
+    ReservationWebAPIProductProperty:
+      properties:
+        attributeFQN:
+          type:
+          - string
+          - 'null'
+        values:
+          items:
+            $ref: '#/components/schemas/ProductPropertyValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    ReservationWebAPIPackageMeasurements:
+      properties:
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    Contact:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+      type: object
+    Reservati:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInf'
+        callOffOrderId:
+          type:
+          - string
+          - 'null'
+        cartId:
+          type:
+          - string
+          - 'null'
+        changeMessages:
+          items:
+            $ref: '#/components/schemas/ReservationWebAPIChangeMessage'
+          type:
+          - array
+          - 'null'
+        consumptionHistory:
+          items:
+            $ref: '#/components/schemas/CallOffLineConsumpti'
+          type:
+          - array
+          - 'null'
+        customerAccountId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        expirationDateTime:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInf'
+        id:
+          type:
+          - string
+          - 'null'
+        items:
+          items:
+            $ref: '#/components/schemas/ReservationItem'
+          type:
+          - array
+          - 'null'
+        orderId:
+          type:
+          - string
+          - 'null'
+        orderNumber:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        reservationType:
+          type:
+          - string
+          - 'null'
+        siteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+        zipCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    AllocationEve:
+      properties:
+        allocatedAt:
+          format: date-time
+          type: string
+        deltaQuantity:
+          format: int32
+          type: integer
+        runId:
+          type:
+          - string
+          - 'null'
+      type: object
+    ReservationAggregateSummary:
+      properties:
+        allocatedDemand:
+          format: int64
+          type: integer
+        byAllocationStatus:
+          items:
+            $ref: '#/components/schemas/AllocationStatusDemandEntry'
+          type:
+          - array
+          - 'null'
+        byCustomer:
+          items:
+            $ref: '#/components/schemas/CustomerDemandEntry'
+          type:
+          - array
+          - 'null'
+        byReservationStatus:
+          items:
+            $ref: '#/components/schemas/ReservationStatusDemandEntry'
+          type:
+          - array
+          - 'null'
+        totalDemand:
+          format: int64
+          type: integer
+        unallocatedDemand:
+          format: int64
+          type: integer
+      type: object
+    ProblemDetails:
+      additionalProperties: {}
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    AllocationStatusDemandEntry:
+      properties:
+        allocationStatus:
+          type:
+          - string
+          - 'null'
+        itemCount:
+          format: int32
+          type: integer
+        totalDemand:
+          format: int64
+          type: integer
+      type: object
+    ReservationStatusDemandEntry:
+      properties:
+        reservationCount:
+          format: int32
+          type: integer
+        reservationStatus:
+          type:
+          - string
+          - 'null'
+        totalDemand:
+          format: int64
+          type: integer
+      type: object
+    InventoryTags:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    BundledProdu:
+      properties:
+        goodsType:
+          type:
+          - string
+          - 'null'
+        measurements:
+          $ref: '#/components/schemas/ReservationWebAPIPackageMeasurements'
+        name:
+          type:
+          - string
+          - 'null'
+        optionAttributeFQN:
+          type:
+          - string
+          - 'null'
+        optionValue: {}
+        productCode:
+          type:
+          - string
+          - 'null'
+        quantity:
+          format: int32
+          type: integer
+      type: object
+    ReservationWebAPIOrderAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    ReservationWebAPIChangeMessage:
+      properties:
+        appKey:
+          type:
+          - string
+          - 'null'
+        appName:
+          type:
+          - string
+          - 'null'
+        correlationId:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type: string
+        id:
+          type:
+          - string
+          - 'null'
+        identifier:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        subject:
+          type:
+          - string
+          - 'null'
+        subjectType:
+          type:
+          - string
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+        verb:
+          type:
+          - string
+          - 'null'
+      type: object
+    CallOffLineConsumpti:
+      properties:
+        consumedAt:
+          format: date-time
+          type: string
+        consumedBy:
+          type:
+          - string
+          - 'null'
+        lineId:
+          type:
+          - string
+          - 'null'
+        salesOrderId:
+          type:
+          - string
+          - 'null'
+        salesOrderNumber:
+          format: int32
+          type: integer
+      type: object
+    FulfillmentInf:
+      properties:
+        fulfillmentContact:
+          $ref: '#/components/schemas/Contact'
+        isDestinationCommercial:
+          type:
+          - boolean
+          - 'null'
+        itemLevelShippingMethod:
+          type:
+          - string
+          - 'null'
+        shippingMethodCode:
+          type:
+          - string
+          - 'null'
+        shippingMethodName:
+          type:
+          - string
+          - 'null'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    ReservationItem:
+      properties:
+        allocationStatus:
+          type:
+          - string
+          - 'null'
+        allocations:
+          items:
+            $ref: '#/components/schemas/Allocati'
+          type:
+          - array
+          - 'null'
+        allowsBackOrder:
+          type: boolean
+        data:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInf'
+        fulfillmentLocationCode:
+          type:
+          - string
+          - 'null'
+        fulfillmentMethod:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTags'
+          type:
+          - array
+          - 'null'
+        lineId:
+          format: int32
+          type: integer
+        orderItemId:
+          type:
+          - string
+          - 'null'
+        product:
+          $ref: '#/components/schemas/Produ'
+        quantity:
+          format: int32
+          type: integer
+        requestedShipDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        shippingMethodCode:
+          type:
+          - string
+          - 'null'
+        suggestions:
+          items:
+            $ref: '#/components/schemas/Suggesti'
+          type:
+          - array
+          - 'null'
+        timeFenceDays:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    Measurement:
+      properties:
+        unit:
+          type:
+          - string
+          - 'null'
+        value:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    OrderReservati:
+      properties:
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInf'
+        orderId:
+          type:
+          - string
+          - 'null'
+        orderNumber:
+          format: int32
+          type: integer
+        reservationItems:
+          items:
+            $ref: '#/components/schemas/ReservationItem'
+          type:
+          - array
+          - 'null'
+        zipCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerDemandEntry:
+      properties:
+        customerAccountId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        reservationCount:
+          format: int32
+          type: integer
+        totalDemand:
+          format: int64
+          type: integer
+      type: object
+    Allocati:
+      properties:
+        allocationHistory:
+          items:
+            $ref: '#/components/schemas/AllocationEve'
+          type:
+          - array
+          - 'null'
+        allocationId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        estimatedDeliveryDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        fulfillmentLocationCode:
+          type:
+          - string
+          - 'null'
+        futureDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isStateChange:
+          type: boolean
+        itemId:
+          type:
+          - string
+          - 'null'
+        productCode:
+          type:
+          - string
+          - 'null'
+        quantity:
+          format: int32
+          type: integer
+        transferLocationCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    Phone:
+      properties:
+        home:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        work:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_reservation.json
+- kibo-commerce-reservation-openapi.yml

@@ -1,0 +1,35 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Event Subscription
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-event-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-event-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/event/pull/{eventId}'].get
+  description: Add derived operationId for GET /event/pull/{eventId}
+  update:
+    operationId: eventGetEvent
+- target: $.paths['/event/pull'].get
+  description: Add derived operationId for GET /event/pull
+  update:
+    operationId: eventGetEvents
+- target: $.paths['/event/push/subscriptions/{subscriptionId}/deliveryattempts'].get
+  description: Add derived operationId for GET /event/push/subscriptions/{subscriptionId}/deliveryattempts
+  update:
+    operationId: eventsubscriptionGetDeliveryAttemptSummaries
+- target: $.paths['/event/push/subscriptions/deliveryattempts'].get
+  description: Add derived operationId for GET /event/push/subscriptions/deliveryattempts
+  update:
+    operationId: eventsubscriptionGetDeliveryAttemptSummariesAllSubscriptions
+- target: $.paths['/event/push/subscriptions/{subscriptionId}/deliveryattempts/{processId}'].get
+  description: Add derived operationId for GET /event/push/subscriptions/{subscriptionId}/deliveryattempts/{processId}
+  update:
+    operationId: eventsubscriptionGetDeliveryAttemptSummary
+- target: $.paths['/event/push/subscriptions'].get
+  description: Add derived operationId for GET /event/push/subscriptions
+  update:
+    operationId: eventsubscriptionGetSubscriptions

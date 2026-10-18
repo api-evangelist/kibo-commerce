@@ -1,0 +1,389 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Data API
+  version: '1.0'
+  description: 'Operations tagged ShipmentData across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentData
+paths:
+  /commerce/shipments/{shipmentNumber}/data/{key}:
+    delete:
+      deprecated: false
+      description: Delete a shipment data entry by its key.
+      parameters:
+      - description: key
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Shipment Data By Key
+      tags:
+      - ShipmentData
+      operationId: deleteCommerceShipmentsByShipmentNumberDataByKey
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/items/{lineId}/data/{key}:
+    delete:
+      deprecated: false
+      description: Delete a shipment item data record by its key.
+      parameters:
+      - description: key
+        in: path
+        name: key
+        required: true
+        schema:
+          type: string
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Shipment Item Data By Key
+      tags:
+      - ShipmentData
+      operationId: deleteCommerceShipmentsByShipmentNumberItemsByLineIdDataByKey
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/data:
+    delete:
+      deprecated: false
+      description: Delete a shipment's data.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Shipment Data
+      tags:
+      - ShipmentData
+      operationId: deleteCommerceShipmentsByShipmentNumberData
+      x-operation-id-source: derived
+    get:
+      deprecated: false
+      description: Get the data of a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/xml:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Shipment Data
+      tags:
+      - ShipmentData
+      operationId: getCommerceShipmentsByShipmentNumberData
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      description: Update and replace a shipment's data.
+      parameters:
+      - description: merge
+        in: query
+        name: merge
+        schema:
+          default: false
+          type: boolean
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/replaceShipmentDataUsingPUTData'
+        description: data
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/xml:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Replace Shipment Data
+      tags:
+      - ShipmentData
+      x-codegen-request-body-name: data
+      operationId: putCommerceShipmentsByShipmentNumberData
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/items/{lineId}/data:
+    delete:
+      deprecated: false
+      description: Delete shipment item data.
+      parameters:
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Shipment Item Data
+      tags:
+      - ShipmentData
+      operationId: deleteCommerceShipmentsByShipmentNumberItemsByLineIdData
+      x-operation-id-source: derived
+    get:
+      deprecated: false
+      description: Get the data of a shipment line item.
+      parameters:
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/xml:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Shipment Item Data
+      tags:
+      - ShipmentData
+      operationId: getCommerceShipmentsByShipmentNumberItemsByLineIdData
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      description: Replace shipment item data.
+      parameters:
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: merge
+        in: query
+        name: merge
+        schema:
+          default: false
+          type: boolean
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/replaceShipmentDataUsingPUTData'
+        description: data
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/json:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+            application/xml:
+              schema:
+                additionalProperties:
+                  type: object
+                type: object
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Replace Shipment Item Data
+      tags:
+      - ShipmentData
+      x-codegen-request-body-name: data
+      operationId: putCommerceShipmentsByShipmentNumberItemsByLineIdData
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  requestBodies:
+    replaceShipmentDataUsingPUTData:
+      content:
+        application/json:
+          schema:
+            additionalProperties:
+              type: object
+            type: object
+      description: data
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

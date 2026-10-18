@@ -1,0 +1,43 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Location Storefront
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-location-storefront-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-location-storefront-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/storefront/locationUsageTypes/CS/location'].get
+  description: Add derived operationId for GET /commerce/storefront/locationUsageTypes/CS/location
+  update:
+    operationId: locationGetCurbsideLocation
+- target: $.paths['/commerce/storefront/locationUsageTypes/DL/location'].get
+  description: Add derived operationId for GET /commerce/storefront/locationUsageTypes/DL/location
+  update:
+    operationId: locationGetDeliveryLocation
+- target: $.paths['/commerce/storefront/locationUsageTypes/DL/locations'].get
+  description: Add derived operationId for GET /commerce/storefront/locationUsageTypes/DL/locations
+  update:
+    operationId: locationGetDeliveryLocations
+- target: $.paths['/commerce/storefront/locationUsageTypes/DS/location'].get
+  description: Add derived operationId for GET /commerce/storefront/locationUsageTypes/DS/location
+  update:
+    operationId: locationGetDirectShipLocation
+- target: $.paths['/commerce/storefront/locationUsageTypes/SP/locations/{locationCode}'].get
+  description: Add derived operationId for GET /commerce/storefront/locationUsageTypes/SP/locations/{locationCode}
+  update:
+    operationId: locationGetInStorePickupLocation
+- target: $.paths['/commerce/storefront/locationUsageTypes/SP/locations'].get
+  description: Add derived operationId for GET /commerce/storefront/locationUsageTypes/SP/locations
+  update:
+    operationId: locationGetInStorePickupLocations
+- target: $.paths['/commerce/storefront/locations/{locationCode}'].get
+  description: Add derived operationId for GET /commerce/storefront/locations/{locationCode}
+  update:
+    operationId: locationGetLocation
+- target: $.paths['/commerce/storefront/locationUsageTypes/{locationUsageType}/locations'].get
+  description: Add derived operationId for GET /commerce/storefront/locationUsageTypes/{locationUsageType}/locations
+  update:
+    operationId: locationGetLocationsInUsageType

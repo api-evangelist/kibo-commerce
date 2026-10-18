@@ -1,0 +1,166 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Rules Engine Jobs API
+  version: '1.0'
+  description: 'Operations tagged RulesEngineJobs across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: RulesEngineJobs
+paths:
+  /commerce/rules/jobs:
+    post:
+      description: Creates a new rules engine job, updates matching MZDB event statuses, and enqueues a RulesEngineJobCreatedEvent for publication. Publication is fire-and-forget via the internal message bus — a 201 response confirms the job was created and events were updated, but does not guarantee consumers have received the event. StampedCount reflects the number of events modified; SkippedCount reflects events that matched but were already in the target status.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RulesEngineJobCreateRequest'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RulesEngineJobCreateResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RulesEngineJobCreateResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RulesEngineJobCreateResponse'
+          description: Created
+        '400':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Forbidden
+      summary: Create rules engine job
+      tags:
+      - RulesEngineJobs
+      operationId: postCommerceRulesJobs
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProblemDetails:
+      additionalProperties: {}
+      properties:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    RulesEngineJobCreateResponse:
+      properties:
+        eventIds:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        jobId:
+          type:
+          - string
+          - 'null'
+        jobType:
+          type:
+          - string
+          - 'null'
+        skippedCount:
+          format: int32
+          type: integer
+        stampedCount:
+          format: int32
+          type: integer
+      type: object
+    RulesEngineJobCreateRequest:
+      properties:
+        filter:
+          type:
+          - string
+          - 'null'
+        jobType:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

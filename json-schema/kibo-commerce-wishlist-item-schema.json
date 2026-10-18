@@ -1,0 +1,1350 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-wishlist-item-schema.json",
+  "title": "WishlistItem",
+  "description": "A single line item of an order.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-commerce-openapi.yml#/components/schemas/WishlistItem",
+  "properties": {
+    "adjustedLineItemSubtotal": {
+      "description": "Order Level taxable sub total",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/CoreApiContractsAuditInfo"
+    },
+    "autoAddDiscountId": {
+      "description": "Track the discoutid from which the item was auto added",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "childItemIds": {
+      "description": "List of Child Item Ids for this order item",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "comments": {
+      "description": "Comments for the wishlist item that are entered by the wishlist owner",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "data": {
+      "description": "Custom data for a given vendor set within the commerce process.",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "discountTotal": {
+      "description": "How much the shopper saves with the applied discount or sale price. This is a negative number.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "discountedTotal": {
+      "description": "Subtotal minus any discounts.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "dutyAmount": {
+      "description": "Indicate Duty Amount for this item.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "extendedTotal": {
+      "description": "Line item extended total (quantity multiplied by unit extended price) before discounts.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "feeTotal": {
+      "description": "Not implemented. Total cost of fees that apply to this item.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "handlingAmount": {
+      "description": "Product-level handling fee for this item (e.g. special packaging, hazmat fees).\nThis does NOT include order-level handling fees — those are in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.WeightedOrderHandlingFee.\nTotal handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "id": {
+      "description": "Unique identifier of the wishlist line item. System-supplied and read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "inventoryTags": {
+      "items": {
+        "$ref": "#/$defs/InventoryTags"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "isAssemblyRequired": {
+      "description": "Assembly Required for this order item",
+      "type": "boolean"
+    },
+    "isRecurring": {
+      "description": "If true, the cart item lists a product that can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isTaxable": {
+      "description": "Not implemented. If true, the cart item is eligible for tax.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "itemTaxTotal": {
+      "description": "Total price of taxes that apply to products in this item.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "lineId": {
+      "description": "The line id assigned to the order item. Visible only in the Admin, this is set from the Admin or\nin CommerceRuntime when a cart is converted to an order.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "lineItemAdjustment": {
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "localeCode": {
+      "description": "Locale code for language that appears in text and descriptions on the site, for example, en_US. \nThis is not the currency code. Currently only en_US is supported.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parentItemId": {
+      "description": "Indicates Parent Item Id for this order item",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "priceMode": {
+      "description": "Determines if the item is using external or internal(catalog) pricing",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "priorityType": {
+      "description": "Wishlist item priority that is a hint to how much this item is needed or desired",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "product": {
+      "$ref": "#/$defs/Product"
+    },
+    "productDiscount": {
+      "$ref": "#/$defs/AppliedLineItemProductDiscount"
+    },
+    "productDiscounts": {
+      "description": "A list of discounts applied to the product",
+      "items": {
+        "$ref": "#/$defs/AppliedLineItemProductDiscount"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "purchasableStatusType": {
+      "description": "Is the item purchasable?",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "purchaseLocation": {
+      "description": "The location where the product is being purchased.. default is null. Products can have different prices\nby purchaseLocation via custom priceListResolution...",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "quantity": {
+      "description": "Number of products ordered.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "shippingAmountBeforeDiscountsAndAdjustments": {
+      "description": "Shipping amount before Discounts and adjustments",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "shippingDiscounts": {
+      "description": "A discount applied to the shipping",
+      "items": {
+        "$ref": "#/$defs/AppliedLineItemShippingDiscount"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "shippingTaxTotal": {
+      "description": "Total price of taxes that apply to the shipping of this item.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "shippingTotal": {
+      "description": "Total price of shipping that apply to this item.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "substituteInfo": {
+      "$ref": "#/$defs/SubstituteInfo"
+    },
+    "subtotal": {
+      "description": "Line item subtotal (quantity multiplied by price) before discounts.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "taxData": {
+      "description": "Storage for any additional/custom tax data.",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "taxableTotal": {
+      "description": "Line item subtotal (quantity multiplied by price) before discounts.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "total": {
+      "description": "Total price of this cart item taking into account any discounts.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "totalWithWeightedShippingAndHandling": {
+      "description": "Line item total with line item, Tax, Weighted Tax with Weighted shipping and handling costs",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "totalWithoutWeightedShippingAndHandling": {
+      "description": "Taxable Subtotal including Weighted Order amounts",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "unitPrice": {
+      "$ref": "#/$defs/CommerceUnitPrice"
+    },
+    "weightedOrderAdjustment": {
+      "description": "Order Level Manual Adjustment applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderDiscount": {
+      "description": "Order Level Discount applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderDuty": {
+      "description": "Order Level Duty applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderHandlingAdjustment": {
+      "description": "Order-level handling manual adjustment allocated to this item.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderHandlingFee": {
+      "description": "Order-level handling fee allocated to this item (e.g. flat handling fee spread across all items).\nThis is separate from product-level handling in Mozu.CommerceRuntime.Contracts.Commerce.CommerceItem.HandlingAmount.\nTotal handling on the shipment = HandlingAmount + WeightedOrderHandlingFee.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderHandlingFeeDiscount": {
+      "description": "Order-level handling fee discount allocated to this item.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderHandlingFeeTax": {
+      "description": "Total handling tax for this item (covers both product-level and order-level handling tax combined).\nOn the shipment item, this is split into: HandlingTax (total) and WeightedOrderHandlingFeeTax (order-level portion only).",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderShipping": {
+      "description": "Order Level Shipping applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderShippingDiscount": {
+      "description": "Order Level Shipping discount applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderShippingManualAdjustment": {
+      "description": "Order Level Shipping Manual Adjustment applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderShippingTax": {
+      "description": "Order Level Shipping Tax applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "weightedOrderTax": {
+      "description": "Order Level tax applied to this Item",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AppliedDiscount": {
+      "description": "Discount applied to the order, which is a negative number to be subtracted from the original price to get the final price. \nIf multiple discounts for the order exist, this is the value most advantageous to the shopper.",
+      "properties": {
+        "couponCode": {
+          "description": "Code of the coupon associated with the discount if a coupon code is required to get the discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "data": {
+          "description": "Stores any custom data sent from external discounts.",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "discount": {
+          "$ref": "#/$defs/Discount"
+        },
+        "excluded": {
+          "description": "Determines whether or not this discount is set up to be ignored by the pricing runtime.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "groupId": {
+          "description": "Group identifier for the discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "impact": {
+          "description": "Value of the discount applied. This is a negative number to be subtracted from the original price to get the final price.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AppliedLineItemProductDiscount": {
+      "properties": {
+        "appliesToSalePrice": {
+          "description": "Determines if the discount applies to the sale price of the order",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "discountQuantity": {
+          "description": "The number of the line item that can be used for this particular discount.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AppliedLineItemShippingDiscount": {
+      "properties": {
+        "discount": {
+          "$ref": "#/$defs/AppliedDiscount"
+        },
+        "discountQuantity": {
+          "description": "The number of the line item that can be used for this particular discount.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "impactPerUnit": {
+          "description": "The impact of this discount pur discount quantity.",
+          "format": "double",
+          "type": "number"
+        },
+        "methodCode": {
+          "description": "Unique identifier of the shipping method discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BundledProduct": {
+      "description": "Describes products that are bundled inside of a main bundle product.",
+      "properties": {
+        "allocationExpiration": {
+          "description": "Allocation ID associated with this product on this order.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "allocationId": {
+          "description": "Allocation ID associated with this product on this order.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "creditValue": {
+          "description": "Credit value.  Only populated if the bundled product is a gift card or digital credit",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "deltaPrice": {
+          "description": "Only populated for extras",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Short description of the product in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fulfillmentStatus": {
+          "description": "Fulfillment status of the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "goodsType": {
+          "description": "Goods Type",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "description": "ImageUrl of product",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isPackagedStandAlone": {
+          "description": "Indicates that this product ships by itself.",
+          "type": "boolean"
+        },
+        "measurements": {
+          "$ref": "#/$defs/PackageMeasurements"
+        },
+        "name": {
+          "description": "Name of the product, this is the current value of the product's name in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optionAttributeFQN": {
+          "description": "Fully Qualified Name of the selected option's attribute",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optionValue": {
+          "description": "Value of the selected option",
+          "nullable": true
+        },
+        "productCode": {
+          "description": "Merchant-created code that uniquely identifies the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productReservationId": {
+          "description": "Reservation ID associated with this product in the bundle.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "Quantity of the product included in the bundle.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "stock": {
+          "$ref": "#/$defs/ProductStock"
+        }
+      },
+      "type": "object"
+    },
+    "Category": {
+      "description": "Categories to which the product belongs. Discounts can apply to categories where any product in the category is discounted.",
+      "properties": {
+        "id": {
+          "description": "Unique identifier of the category. System-supplied and read-only.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "parent": {
+          "$ref": "#/$defs/Category"
+        }
+      },
+      "type": "object"
+    },
+    "CommerceUnitPrice": {
+      "description": "Pricing details for the product listed on a cart item, including the original price, discount amount, and final price.",
+      "properties": {
+        "extendedAmount": {
+          "description": "Extended amount, this is in order of precedence: OverrideAmount, SaleAmount, ListAmount",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "listAmount": {
+          "description": "Product list amount.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "overrideAmount": {
+          "description": "Amount as manually overridden by the Merchant",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "saleAmount": {
+          "description": "Sale amount indicated on the product.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CoreApiContractsAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Discount": {
+      "description": "Discounts that apply to the order, if any. For example, when the \nsubtotal of the order exceeds a certain amount, or for free shipping.",
+      "properties": {
+        "expirationDate": {
+          "description": "Date when the discount expires. Default is null (no expiration date).",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "hasMultipleTargetProducts": {
+          "description": "Indicates that the discount targets more than a product.  Used\nprimarily for BoGa discounts with multiple targets.",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "Unique identifier of the discount.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemIds": {
+          "description": "List of discounts for each order item.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the discount in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "FulfillmentField": {
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "userEnteredValue": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "FutureInventory": {
+      "properties": {
+        "allocated": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "available": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deliveryDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "futureInventoryID": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "onhand": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "pending": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "InventoryTags": {
+      "properties": {
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Measurement": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PackageMeasurements": {
+      "description": "Physical dimensions of the package required to ship the product and its weight.",
+      "properties": {
+        "height": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "length": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "weight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "width": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "type": "object"
+    },
+    "Product": {
+      "description": "The product as it appears on the order item.",
+      "properties": {
+        "allocationExpiration": {
+          "description": "Allocation ID associated with this product on this order.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "allocationId": {
+          "description": "Allocation ID associated with this product on this order.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "bundledProducts": {
+          "description": "Products bundled with this product (if the current product is a bundle)",
+          "items": {
+            "$ref": "#/$defs/BundledProduct"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "categories": {
+          "description": "Categories to which this product belongs.",
+          "items": {
+            "$ref": "#/$defs/Category"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "condition": {
+          "description": "Condition",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Short description of the product in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discountsRestricted": {
+          "description": "Is the product discount restricted",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "discountsRestrictedEndDate": {
+          "description": "Product discount restriction end date",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discountsRestrictedStartDate": {
+          "description": "Product discount restriction start date",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fulfillmentFields": {
+          "description": "List of unique product identifiers for an item on shipment",
+          "items": {
+            "$ref": "#/$defs/FulfillmentField"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "fulfillmentStatus": {
+          "description": "Fulfillment status of the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fulfillmentTypesSupported": {
+          "description": "Types of fulfillment that are supported for this product.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "goodsType": {
+          "description": "Goods Type",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageAlternateText": {
+          "description": "Descriptive text of the image associated with the product in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "description": "URL of the image that appears next to the product on the order item. Optional.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isPackagedStandAlone": {
+          "description": "Indicates that this product ships by itself.",
+          "type": "boolean"
+        },
+        "isRecurring": {
+          "description": "If true, the product is purchased or fulfilled at regular intervals, for example, a monthly billing or a subscription.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isTaxable": {
+          "description": "If true, the product is eligible for tax.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "measurements": {
+          "$ref": "#/$defs/PackageMeasurements"
+        },
+        "mfgPartNumber": {
+          "description": "Manufacturing Part Number of the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the product, this is the current value of the product's name in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "options": {
+          "description": "If the product contains configurable or stand-alone options, the list of product options that the shopper selected for this product.",
+          "items": {
+            "$ref": "#/$defs/ProductOption"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "price": {
+          "$ref": "#/$defs/ProductPrice"
+        },
+        "productCode": {
+          "description": "Merchant-created code that uniquely identifies the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productReservationId": {
+          "description": "Reservation ID associated with this product in the bundle.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "productType": {
+          "description": "Type of product, which can be a product with configurable options, a product with stand-alone options, or a simple product with no options.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productUsage": {
+          "description": "Usage of the product, primarily used to indicate a bundle in this context",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "properties": {
+          "description": "If the product contains properties, the list of properties that the shopper selected for this product.",
+          "items": {
+            "$ref": "#/$defs/ProductProperty"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "serialNumber": {
+          "description": "Serial Number",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sku": {
+          "description": "Product Identifier specific to the store",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stock": {
+          "$ref": "#/$defs/ProductStock"
+        },
+        "upc": {
+          "description": "Universal Product Code of the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "variationProductCode": {
+          "description": "For configurable products, the unique identifier of the product variation that has been selected.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductOption": {
+      "description": "Product option for the product listed on this order item. If the product contains \nconfigurable or stand-alone options, this is a product option that the shopper has selected.",
+      "properties": {
+        "attributeFQN": {
+          "description": "Value of the product option.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataType": {
+          "description": "Value of the product option.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the product option that appears with the order item in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shopperEnteredValue": {
+          "description": "The value entered by the shopper if this is an option that requires shopper input, for example, a monogram.",
+          "nullable": true
+        },
+        "stringValue": {
+          "description": "Value of the product option.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "Value of the product option.",
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ProductPrice": {
+      "description": "Price of the product with any sale and discounts applied.",
+      "properties": {
+        "creditValue": {
+          "description": "Credit Value when the product happens to be a gift card or similar product",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "isOverRidePriceSalePrice": {
+          "description": "Indicate that External Price (TenantOverridePrice) is a Sale Price. And is used to calculate the line item discounts.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "msrp": {
+          "description": "MSRP of product.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price": {
+          "description": "Price of the product. This is the price that the merchant intends to sell the product if no sale price is present.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "priceListCode": {
+          "description": "Pricelist code for the product",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "priceListEntryMode": {
+          "description": "Pricelist entry mode of the product.\nNote: possible values are below\n1. null : Product doesn't participate in pricelist\n2. Bulk : Bulk volume price available(unit price vary based on quantity)\n3. Simple:",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "salePrice": {
+          "description": "Current sale price of the product, which is a specific numerical amount (not a percentage off).",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "tenantOverridePrice": {
+          "description": "An override price applied on the product by the tenant.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductProperty": {
+      "properties": {
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isMultiValue": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/ProductPropertyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductPropertyValue": {
+      "properties": {
+        "stringValue": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ProductStock": {
+      "properties": {
+        "aggregateInventory": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "availableDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "availableFutureInventories": {
+          "format": "int32",
+          "nullable": false,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "futureInventories": {
+          "items": {
+            "$ref": "#/$defs/FutureInventory"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "isOnBackOrder": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "isSubstitutable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "manageStock": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "stockAvailable": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "totalAvailableStock": {
+          "format": "int32",
+          "nullable": false,
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SubstituteInfo": {
+      "properties": {
+        "optIn": {
+          "description": "Determines if and when substitution is allowed. Allowed values are `None`, `Yes`, `No`, or `OnlyAtFulfillment`. Default is `None`.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "substituteProductCode": {
+          "description": "Allows user to provide a specific product that should be substituted if substitution occurs.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "substituteVariantCode": {
+          "description": "Allows user to provide a specific variant that should be substituted if substitution occurs.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,4 @@
+generated: '2026-10-18'
+method: none
+decline_codes: []
+note: Kibo Commerce integrates with third-party payment gateways (Authorize.Net, etc.) and passes through their decline codes rather than defining its own. Payment gateway response codes are gateway-specific and documented by each payment gateway provider.

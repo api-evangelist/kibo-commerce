@@ -1,0 +1,1103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-general-settings-schema.json",
+  "title": "GeneralSettings",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-settings-openapi.yml#/components/schemas/GeneralSettings",
+  "properties": {
+    "allowInvalidAddresses": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "bccEmailAddress": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cacheSettings": {
+      "$ref": "#/$defs/CacheSettings"
+    },
+    "customCdnHostName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "customRoutes": {
+      "$ref": "#/$defs/CustomRouteSettings"
+    },
+    "emailTransactionsOnlyOnRequest": {
+      "$ref": "#/$defs/EmailTransactionSettings"
+    },
+    "emailTypes": {
+      "items": {
+        "$ref": "#/$defs/EmailTypeSetting"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "favIconMobilePath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "favIconPath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "googleAnalyticsCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "is2FAAlwaysRequired": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "is2FARequiredOnFingerprintChange": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "is2FARequiredOnRegionChange": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isAddressValidationEnabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isEmailOtpLoginAllowed": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isGoogleAnalyticsEcommerceEnabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isGoogleAnalyticsEnabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isMozuWebSite": {
+      "type": "boolean"
+    },
+    "isMultishipEnabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isWishlistCreationEnabled": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "logoPath": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "logoText": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "missingImageSubstitute": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "mobileTheme": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reCaptchaSettings": {
+      "$ref": "#/$defs/ReCaptchaSettings"
+    },
+    "replyToEmailAddress": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "senderEmailAddress": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "senderEmailAlias": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "siteTimeFormat": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "siteTimeZone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "smsTypes": {
+      "items": {
+        "$ref": "#/$defs/SMSTypeSetting"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "supressedEmailTransactions": {
+      "$ref": "#/$defs/EmailTransactionSettings"
+    },
+    "supressedSmsTransactions": {
+      "$ref": "#/$defs/SMSTransactionSettings"
+    },
+    "tabletTheme": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "taxableTerritories": {
+      "items": {
+        "$ref": "#/$defs/TaxableTerritory"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "templateSiteId": {
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "theme": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "viewAuthorizations": {
+      "$ref": "#/$defs/ViewAuthorizations"
+    },
+    "websiteName": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CacheSettings": {
+      "properties": {
+        "cdnCacheBustKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomRouteSettings": {
+      "properties": {
+        "mappings": {
+          "additionalProperties": {
+            "$ref": "#/$defs/Mapping"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "routes": {
+          "items": {
+            "$ref": "#/$defs/Route"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "validators": {
+          "additionalProperties": {
+            "$ref": "#/$defs/Validator"
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EmailTransactionSettings": {
+      "properties": {
+        "accountCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "accountDenied": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "accountInactive": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "backInStock": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "backorder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "curbsideReady": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "customerAtCurbside": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "customerIntransit": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "deliveryDateUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "digitalItemFulfilled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "gatewayGiftCardCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "giftCardCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "intransitConfirmation": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "itemSubstituted": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderCancellation": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderCancellationFailed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderChanged": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderFulfillmentDetailsChanged": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderItemsCanceled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderPickupReady": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderPickupReminder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderShipped": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "otpForLogin": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "partialCurbsideReady": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "partialPickupReady": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "quoteExpired": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "quoteInReview": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "quoteReadyForCheckout": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "readyForDelivery": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "refundCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "returnAuthorized": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "returnCancelled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "returnClosed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "returnCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "returnLabelAdded": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "returnRejected": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "returnUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shipmentAssigned": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shipmentBackorderDateChanged": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shipmentConfirmation": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shipmentItemCanceled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shopperEmailUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shopperLoginCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shopperPasswordReset": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shopperPasswordUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "storeCreditCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "storeCreditUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionActivated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionCancelled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionErrored": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionFrequencyUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionItemAdded": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionItemQuantityUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionItemsCancelled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionNextOrderDateUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionOrderReminder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionOrderedNow": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionPauseLimitReminder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionPaused": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionPausedReminder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionPaymentUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionShippingInfoUpdated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "subscriptionSkipped": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "substitutionPaymentRequired": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "transferShipmentCreated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "transferShipmentCreatedByFulfiller": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "transferShipmentShipped": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EmailTypeSetting": {
+      "properties": {
+        "bccEmailAddressOverride": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "replyToEmailAddressOverride": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "senderEmailAddressOverride": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "senderEmailAliasOverride": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Mapping": {
+      "properties": {
+        "beforeRouting": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "docId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "facetId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "listFqn": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mapTo": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mappings": {
+          "additionalProperties": {
+            "nullable": true
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "pattern": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "replacement": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ReCaptchaSettings": {
+      "properties": {
+        "actions": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "secret": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "siteKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validScore": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Route": {
+      "properties": {
+        "canonical": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "defaults": {
+          "additionalProperties": {
+            "nullable": true
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "functionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "internalRoute": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mappings": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "template": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "urlScheme": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validators": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": [
+              "array",
+              "null"
+            ]
+          },
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SMSTransactionSettings": {
+      "properties": {
+        "curbsideReady": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "customerAtCurbside": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "customerAtStore": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "customerIntransit": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "intransitConfirmation": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "optOutAcknowledgement": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderConfirmation": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderPickupReady": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "orderPickupReminder": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shipmentAssigned": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shipmentFulfilled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "shipmentItemCanceled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "storeItemsCanceled": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SMSTypeSetting": {
+      "properties": {
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TaxableTerritory": {
+      "properties": {
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isShippingTaxable": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "stateOrProvinceCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Validator": {
+      "properties": {
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "docId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "field": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "listFqn": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pattern": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ViewAuthorizations": {
+      "properties": {
+        "enforceSitewideSSL": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "requireAuthForLive": {
+          "type": "boolean"
+        },
+        "requireAuthForPending": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,1097 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-transaction-set810-schema.json",
+  "title": "TransactionSet810",
+  "description": "TransactionSet810 - Complete 810 Invoice Transaction Set (Contract DTO)",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-dropship-openapi.yml#/components/schemas/TransactionSet810",
+  "properties": {
+    "administrativeCommunicationsContact": {
+      "items": {
+        "$ref": "#/$defs/AdministrativeCommunicationsContact"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "beginningSegmentForInvoice": {
+      "items": {
+        "$ref": "#/$defs/BeginningSegmentForInvoice"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "currency": {
+      "items": {
+        "$ref": "#/$defs/Currency"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "dateTimeReference": {
+      "items": {
+        "$ref": "#/$defs/DateTimeReference"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "fobRelatedInstructions": {
+      "items": {
+        "$ref": "#/$defs/FOBRelatedInstructions"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "iT1_loop": {
+      "items": {
+        "$ref": "#/$defs/IT1_Loop"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "monetaryAmountInformation": {
+      "items": {
+        "$ref": "#/$defs/MonetaryAmountInformation"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "n1_loop": {
+      "items": {
+        "$ref": "#/$defs/N1_Loop"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "taxInformation": {
+      "items": {
+        "$ref": "#/$defs/TaxInformation"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "termsOfSaleDeferredTermsOfSale": {
+      "items": {
+        "$ref": "#/$defs/TermsOfSaleDeferredTermsOfSale"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "totalMonetaryValueSummary": {
+      "items": {
+        "$ref": "#/$defs/TotalMonetaryValueSummary"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "transactionSetHeader": {
+      "items": {
+        "$ref": "#/$defs/TransactionSetHeader"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "transactionSetTrailer": {
+      "items": {
+        "$ref": "#/$defs/TransactionSetTrailer"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "transactionTotals": {
+      "items": {
+        "$ref": "#/$defs/TransactionTotals"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AdditionalItemData": {
+      "description": "Additional Item Data (IT3) - Shipped quantity information",
+      "properties": {
+        "numberOfUnitsShipped": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AdditionalNameInformation": {
+      "description": "Additional Name Information (N2) - Additional name information",
+      "properties": {
+        "name": {
+          "description": "Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AdministrativeCommunicationsContact": {
+      "description": "Administrative Communications Contact (PER) - Contact information (REUSABLE)",
+      "properties": {
+        "communicationNumber": {
+          "description": "Communication Number",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "communicationNumber1": {
+          "description": "Communication Number 1",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "communicationNumber2": {
+          "description": "Communication Number 2",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "communicationNumberQualifier": {
+          "description": "Communication Number Qualifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "communicationNumberQualifier1": {
+          "description": "Communication Number Qualifier 1",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "communicationNumberQualifier2": {
+          "description": "Communication Number Qualifier 2",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "contactFunctionCode": {
+          "description": "Contact Function Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "contactInquiryReference": {
+          "description": "Contact Inquiry Reference",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BaselineItemDataInvoice": {
+      "description": "Baseline Item Data - Invoice (IT1) - Line item information for invoice",
+      "properties": {
+        "assignedIdentification": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "basisOfUnitPriceCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productServiceID": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productServiceID1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productServiceID2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productServiceIDQualifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productServiceIDQualifier1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productServiceIDQualifier2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantityInvoiced": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitPrice": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BeginningSegmentForInvoice": {
+      "description": "Beginning Segment for Invoice (BIG) - Invoice header information",
+      "properties": {
+        "date": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "date1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "invoiceNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "purchaseOrderNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transactionSetPurposeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Currency": {
+      "description": "Currency (CUR) - Identifies the monetary unit",
+      "properties": {
+        "currencyCode": {
+          "description": "Currency Code (e.g., USD, EUR, CAD)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entityIdentifierCode": {
+          "description": "Entity Identifier Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "DateTimeReference": {
+      "description": "Date/Time Reference (DTM) - Date and time information (REUSABLE)",
+      "properties": {
+        "date": {
+          "description": "Date (CCYYMMDD format)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dateTimeQualifier": {
+          "description": "Date/Time Qualifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "time": {
+          "description": "Time (HHMM or HHMMSS format)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "timeCode": {
+          "description": "Time Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "FOBRelatedInstructions": {
+      "description": "FOB Related Instructions (FOB) - Free on board instructions",
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locationQualifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locationQualifier1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shipmentMethodOfPaymentCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transportationTermsCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transportationTermsQualifierCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "GeographicLocation": {
+      "description": "Geographic Location (N4) - City, state, postal code, and country information",
+      "properties": {
+        "cityName": {
+          "description": "City Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "description": "Country Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locationIdentifier": {
+          "description": "Location Identifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "locationQualifier": {
+          "description": "Location Qualifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "postalCode": {
+          "description": "Postal Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvinceCode": {
+          "description": "State or Province Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "IT1_Loop": {
+      "description": "IT1 Loop - Invoice Line Item Loop",
+      "properties": {
+        "additionalItemData": {
+          "items": {
+            "$ref": "#/$defs/AdditionalItemData"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "baselineItemDataInvoice": {
+          "items": {
+            "$ref": "#/$defs/BaselineItemDataInvoice"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "dateTimeReference": {
+          "items": {
+            "$ref": "#/$defs/DateTimeReference"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "itemPhysicalDetails": {
+          "items": {
+            "$ref": "#/$defs/ItemPhysicalDetails"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "piD_loop": {
+          "items": {
+            "$ref": "#/$defs/PID_Loop"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "pricingInformation": {
+          "items": {
+            "$ref": "#/$defs/PricingInformation"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "taxInformation": {
+          "items": {
+            "$ref": "#/$defs/TaxInformation"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ItemPhysicalDetails": {
+      "description": "Item Physical Details (PO4) - Physical characteristics of items",
+      "properties": {
+        "grossVolumePerPack": {
+          "description": "Gross Volume per Pack",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "grossWeightPerPack": {
+          "description": "Gross Weight per Pack",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "height": {
+          "description": "Height",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "length": {
+          "description": "Length",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pack": {
+          "description": "Pack",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "packagingCode": {
+          "description": "Packaging Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "size": {
+          "description": "Size",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode": {
+          "description": "Unit or Basis for Measurement Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode1": {
+          "description": "Unit or Basis for Measurement Code 1",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode2": {
+          "description": "Unit or Basis for Measurement Code 2",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode3": {
+          "description": "Unit or Basis for Measurement Code 3",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weightQualifier": {
+          "description": "Weight Qualifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "width": {
+          "description": "Width",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "MonetaryAmountInformation": {
+      "description": "Monetary Amount Information (AMT) - Monetary amount information (REUSABLE)",
+      "properties": {
+        "amountQualifierCode": {
+          "description": "Amount Qualifier Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "monetaryAmount": {
+          "description": "Monetary Amount",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "N1_Loop": {
+      "description": "N1 Loop - Party Identification Loop\nContains party information including identification, additional names, location, and geographic details",
+      "properties": {
+        "additionalNameInformation": {
+          "description": "N2 - Additional Name Information\nTo specify additional names or those longer than 35 characters in length",
+          "items": {
+            "$ref": "#/$defs/AdditionalNameInformation"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "administrativeCommunicationsContact": {
+          "description": "PER - Administrative Communications Contact\nTo identify a person or office to whom administrative communications should be directed",
+          "items": {
+            "$ref": "#/$defs/AdministrativeCommunicationsContact"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "geographicLocation": {
+          "description": "N4 - Geographic Location\nTo specify the geographic place of the named party",
+          "items": {
+            "$ref": "#/$defs/GeographicLocation"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "partyIdentification": {
+          "description": "N1 - Party Identification\nTo identify a party by type of organization, name, and code",
+          "items": {
+            "$ref": "#/$defs/PartyIdentification"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "partyLocation": {
+          "description": "N3 - Party Location\nTo specify the location of the named party",
+          "items": {
+            "$ref": "#/$defs/PartyLocation"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "referenceInformation": {
+          "description": "REF - Reference Information\nTo specify identifying information",
+          "items": {
+            "$ref": "#/$defs/ReferenceInformation"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PID_Loop": {
+      "description": "PID Loop - Product/Item Description Loop\nContains product/item descriptions and related information",
+      "properties": {
+        "productItemDescription": {
+          "description": "PID - Product/Item Description\nTo describe a product or process in coded or free-form format",
+          "items": {
+            "$ref": "#/$defs/ProductItemDescription"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PartyIdentification": {
+      "description": "Party Identification (N1) - Name and identification information",
+      "properties": {
+        "entityIdentifierCode": {
+          "description": "Entity Identifier Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "identificationCode": {
+          "description": "Identification Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "identificationCodeQualifier": {
+          "description": "Identification Code Qualifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PartyLocation": {
+      "description": "Party Location (N3) - Address information",
+      "properties": {
+        "addressInformation": {
+          "description": "Address Information",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PricingInformation": {
+      "description": "Pricing Information (CTP) - Pricing information for items",
+      "properties": {
+        "classOfTradeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "multiplier5": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "priceIdentifierCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "priceMultiplierQualifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitPrice": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductItemDescription": {
+      "description": "Product/Item Description (PID) - Product description information (REUSABLE)",
+      "properties": {
+        "description": {
+          "description": "Description",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "itemDescriptionTypeCode": {
+          "description": "Item Description Type Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productProcessCharacteristicCode": {
+          "description": "Product/Process Characteristic Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ReferenceInformation": {
+      "description": "Reference Information (REF) - Reference identification information (REUSABLE)",
+      "properties": {
+        "referenceIdentification": {
+          "description": "Reference Identification",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "referenceIdentificationQualifier": {
+          "description": "Reference Identification Qualifier",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TaxInformation": {
+      "description": "Tax Information (TXI) - Tax details",
+      "properties": {
+        "dollarBasisForPercent": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "monetaryAmount": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "percentageAsDecimal": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "taxExemptCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "taxIdentificationNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "taxTypeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TermsOfSaleDeferredTermsOfSale": {
+      "description": "Terms of Sale/Deferred Terms of Sale (ITD) - Terms of sale information",
+      "properties": {
+        "dayOfMonth": {
+          "description": "Day of Month",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Description",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentMethodTypeCode": {
+          "description": "Payment Method Type Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "termsBasisDateCode": {
+          "description": "Terms Basis Date Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "termsDiscountAmount": {
+          "description": "Terms Discount Amount",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "termsNetDays": {
+          "description": "Terms Net Days",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "termsTypeCode": {
+          "description": "Terms Type Code",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TotalMonetaryValueSummary": {
+      "description": "Total Monetary Value Summary (TDS) - Invoice total amounts",
+      "properties": {
+        "amount": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "amount1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TransactionSetHeader": {
+      "description": "Transaction Set Header (ST) - Starts a transaction set and assigns a control number",
+      "properties": {
+        "transactionSetControlNumber": {
+          "description": "Transaction Set Control Number",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transactionSetIdentifierCode": {
+          "description": "Transaction Set Identifier Code (e.g., \"850\" for Purchase Order)",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TransactionSetTrailer": {
+      "description": "Transaction Set Trailer (SE) - Ends a transaction set and provides segment count",
+      "properties": {
+        "numberOfIncludedSegments": {
+          "description": "Number of Included Segments (including ST and SE segments)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "transactionSetControlNumber": {
+          "description": "Transaction Set Control Number (must match ST02)",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TransactionTotals": {
+      "description": "Transaction Totals (CTT) - Transaction set totals",
+      "properties": {
+        "hashTotal": {
+          "description": "Hash Total",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "numberOfLineItems": {
+          "description": "Number of Line Items",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unitOrBasisForMeasurementCode1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "volume": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "weight": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

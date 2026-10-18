@@ -1,0 +1,7 @@
+generated: '2026-10-18'
+method: searched
+source: https://docs.kibocommerce.com/_llms/release-notes.txt
+versioning: semantic
+deprecation: null
+status_page: null
+note: Kibo follows semantic versioning with regular bi-weekly releases (approximately every 2 weeks). The current version is 1.2640 as of October 14, 2026. No explicit deprecation policy or status page was found in documentation.

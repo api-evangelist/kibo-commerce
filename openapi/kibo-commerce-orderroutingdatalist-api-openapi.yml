@@ -1,0 +1,519 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Data List API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingDataList across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: Classic UI API - Manage custom data lists
+  name: OrderRoutingDataList
+paths:
+  /commerce/orders/orderrouting/api/v1/dataList:
+    post:
+      parameters:
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataList'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomDataListResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Create Custom Data List
+      tags:
+      - OrderRoutingDataList
+      operationId: postCommerceOrdersOrderroutingApiV1DataList
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/dataList/{dataListID}:
+    delete:
+      description: Deletes a custom data list.
+      parameters:
+      - description: dataListID
+        in: path
+        name: dataListID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Delete Custom Data List
+      tags:
+      - OrderRoutingDataList
+      operationId: deleteCommerceOrdersOrderroutingApiV1DataListByDataListID
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - in: path
+        name: dataListID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomDataListResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Custom Data List
+      tags:
+      - OrderRoutingDataList
+      operationId: getCommerceOrdersOrderroutingApiV1DataListByDataListID
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: dataListID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataList'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomDataListResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Update Custom Data List
+      tags:
+      - OrderRoutingDataList
+      operationId: putCommerceOrdersOrderroutingApiV1DataListByDataListID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    TenantClient:
+      type: object
+    CustomDataListResponse:
+      properties:
+        created:
+          type: string
+        creator:
+          type: string
+        dataType:
+          enum:
+          - STRING
+          - NUMBER
+          - LOCATION
+          - DATE
+          type: string
+        entries:
+          items:
+            $ref: '#/components/schemas/CustomDataListEntryResponse'
+          type: array
+        environmentID:
+          format: int32
+          type: integer
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        notes:
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        state:
+          enum:
+          - dataset.ready
+          - dataset.processing
+          - dataset.error.processing
+          type: string
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          type: string
+        updater:
+          type: string
+      type: object
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    SiteService:
+      type: object
+    CustomDataList:
+      properties:
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customDataListID:
+          format: int32
+          type: integer
+        dataType:
+          enum:
+          - STRING
+          - NUMBER
+          - LOCATION
+          - DATE
+          type: string
+        entries:
+          items:
+            $ref: '#/components/schemas/CustomDataListEntry'
+          type: array
+        environmentID:
+          format: int32
+          type: integer
+        fileName:
+          maxLength: 255
+          minLength: 0
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        notes:
+          maxLength: 255
+          minLength: 0
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        state:
+          enum:
+          - dataset.ready
+          - dataset.processing
+          - dataset.error.processing
+          type: string
+        stringValues:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+        values:
+          items:
+            type: object
+          type: array
+          uniqueItems: true
+      required:
+      - dataType
+      - environmentID
+      - name
+      - siteID
+      - tenantID
+      type: object
+    TenantAttributesCache:
+      properties:
+        underlyingCache:
+          $ref: '#/components/schemas/CacheStringBoolean'
+      type: object
+    TenantService:
+      properties:
+        tenantAttributesCache:
+          $ref: '#/components/schemas/TenantAttributesCache'
+        tenantClient:
+          $ref: '#/components/schemas/TenantClient'
+      type: object
+    CustomDataListEntryResponse:
+      properties:
+        id:
+          format: int32
+          type: integer
+        locationAddress:
+          type: string
+        locationID:
+          format: int32
+          type: integer
+        locationName:
+          type: string
+        notes:
+          type: string
+        stringValue:
+          type: string
+      type: object
+    CustomDataListEntry:
+      properties:
+        customDataListEntryID:
+          format: int32
+          type: integer
+        data:
+          type: object
+        dataValid:
+          type: boolean
+        list:
+          type: object
+        notes:
+          maxLength: 255
+          minLength: 0
+          type: string
+        stringValue:
+          maxLength: 255
+          minLength: 0
+          type: string
+      required:
+      - stringValue
+      type: object
+    UserContextInformation:
+      properties:
+        environmentID:
+          format: int32
+          type: integer
+        loaded:
+          type: boolean
+        pathString:
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        siteService:
+          $ref: '#/components/schemas/SiteService'
+        tenantID:
+          format: int32
+          type: integer
+        tenantService:
+          $ref: '#/components/schemas/TenantService'
+      type: object
+    CacheStringBoolean:
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

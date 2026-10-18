@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-application-entitlement-schema.json",
+  "title": "ApplicationEntitlement",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationEntitlement",
+  "properties": {
+    "appKey": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appOwnerDevAccountId": {
+      "description": "Denotes the application owner dev account id",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationEntitlementId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationLicenseType": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationStatusId": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationTransactions": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/ApplicationTransaction"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "applicationVersion": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deletedBy": {
+      "description": "User id that soft-deleted this entitlement during an application delete cascade (null if active).",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deletedByFirstName": {
+      "description": "First name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deletedByLastName": {
+      "description": "Last name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "deletedDate": {
+      "description": "UTC timestamp when this entitlement was soft-deleted during an application delete cascade (null if active).",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "devAccountId": {
+      "description": "Denotes which DevAccountId is the application installed in",
+      "format": "int32",
+      "type": "integer"
+    },
+    "effectiveEndDate": {
+      "description": "",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "effectiveStartDate": {
+      "description": "",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "entitlementStatus": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "installedAppsApplicationId": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "installedByFirstName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "installedByLastName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "installedDate": {
+      "description": "",
+      "format": "date-time",
+      "type": "string"
+    },
+    "packageId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "packageName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "siteId": {
+      "description": "",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "tenantId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "tenantName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ApplicationTransaction": {
+      "description": "",
+      "properties": {
+        "applicationEntitlementId": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "applicationId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTransactionId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "isoCurrencyCode": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "localeCode": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "orderNumber": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "siteId": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tenantId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionDate": {
+          "description": "",
+          "format": "date-time",
+          "type": "string"
+        },
+        "transactionPrice": {
+          "description": "",
+          "format": "double",
+          "type": "number"
+        },
+        "transactionTax": {
+          "description": "",
+          "format": "double",
+          "type": "number"
+        },
+        "transactionTotal": {
+          "description": "",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

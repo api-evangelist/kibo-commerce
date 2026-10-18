@@ -1,0 +1,1094 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-product-validation-summary-schema.json",
+  "title": "ProductValidationSummary",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-catalog-storefront-openapi.yml#/components/schemas/ProductValidationSummary",
+  "properties": {
+    "bundledProducts": {
+      "description": "The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle",
+      "items": {
+        "$ref": "#/$defs/BundledProductSummary"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "categories": {
+      "description": "Categories to which the product belongs.",
+      "items": {
+        "$ref": "#/$defs/CatalogRuntimesCategory"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "fulfillmentTypesSupported": {
+      "description": "Indicates the fulfillment types the product supports.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "goodsType": {
+      "description": "The GoodsType of the product (Physical, Digital, DigitalCredit....)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "image": {
+      "$ref": "#/$defs/ProductImage"
+    },
+    "inventoryInfo": {
+      "$ref": "#/$defs/CatalogRuntimesProductInventoryInfo"
+    },
+    "isPackagedStandAlone": {
+      "description": "Is this product shipped in its own package",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isTaxable": {
+      "description": "If true, the product listed on the live order is subject to tax.",
+      "type": "boolean"
+    },
+    "measurements": {
+      "$ref": "#/$defs/CatalogRuntimesPackageMeasurements"
+    },
+    "mfgPartNumber": {
+      "description": "Manufacturer part number.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "price": {
+      "$ref": "#/$defs/CatalogRuntimesProductPrice"
+    },
+    "pricingBehavior": {
+      "$ref": "#/$defs/CatalogRuntimesProductPricingBehaviorInfo"
+    },
+    "productCode": {
+      "description": "Merchant-created code associated with the product, for example, a SKU.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "productName": {
+      "description": "Name of the product.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "productShortDescription": {
+      "description": "Brief description of the product typically used when the product is displayed in a list or search results.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "productType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "productUsage": {
+      "description": "The UsageType of this product (Standard, Configurable, Bundle, Component)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "properties": {
+      "description": "List of product Properties.",
+      "items": {
+        "$ref": "#/$defs/CatalogRuntimesProductProperty"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "purchasableState": {
+      "$ref": "#/$defs/ProductPurchasableState"
+    },
+    "purchaseLocation": {
+      "description": "The location where the product is being purchased.. default is null. Products can have different prices\nby purchaseLocation via custom priceListResolution....",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "upc": {
+      "description": "UPC code of the product.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "variationProductCode": {
+      "description": "For a product with options, the code of the product variation that represents the current selection of product options.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AttributeDetail": {
+      "description": "Product Attribute properties common between a Product Propery, Option, and Extra",
+      "properties": {
+        "allowFilteringAndSortingInStorefront": {
+          "description": "Indicates whether the attribute should be able to be used in filters, facets, and sorting on the public storefront.",
+          "type": "boolean"
+        },
+        "availableForOrderRouting": {
+          "description": "Indicates whether the attribute is available for order routing",
+          "type": "boolean"
+        },
+        "customWeightInStorefrontSearch": {
+          "description": "Indicates whether the attribtue value is indexed so that it can have a custom relevency weight compared to other attributes in a tokenized text search",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "dataType": {
+          "description": "The DataType of the attribute. Valid values for DataType are defined in DataTypeTypeConst.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataTypeSequence": {
+          "description": "A unique sequence of the attribute By dataType (used for common naming of fields in search index)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "description": "Description of the attribute in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "displayIntention": {
+          "description": "Am optional hint to the theme about how this attribute should be displayed (what control to use)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "indexValueWithCase": {
+          "description": "Indicates whether the attribtue value is indexed with case or not",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "inputType": {
+          "description": "The InputType type of the attribute. Valid values for InputType are defined in InputTypeConst.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the attribute in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "searchDisplayValue": {
+          "description": "If true, the system will index the display value of string attributes instead of the canonical value for searching. \nThe canonical value will always be used for filtering. Does not apply for for non-string attributes.",
+          "type": "boolean"
+        },
+        "searchableInStorefront": {
+          "description": "Indicates whether the attribute value is searchable.",
+          "type": "boolean"
+        },
+        "usageType": {
+          "description": "The UsageType of the attribute. Valid values for the usageType are defined in UsageTypeConst .",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validation": {
+          "$ref": "#/$defs/CatalogRuntimesAttributeValidation"
+        },
+        "valueType": {
+          "description": "The ValueType of the attribute. Valid values for ValueType are defined in ValueTypeTypeConst.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BundledProductSummary": {
+      "properties": {
+        "creditValue": {
+          "description": "Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "goodsType": {
+          "description": "The GoodsType of this product (Physical, Digital, DigitalCredit)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inventoryInfo": {
+          "$ref": "#/$defs/CatalogRuntimesProductInventoryInfo"
+        },
+        "isPackagedStandAlone": {
+          "description": "Is this product shipped in its own package",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "measurements": {
+          "$ref": "#/$defs/CatalogRuntimesPackageMeasurements"
+        },
+        "optionAttributeFQN": {
+          "description": "Fully Qualified Name of the selected option's attribute (only applies to Products as extras)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optionValue": {
+          "description": "Value of the selected option (only applies to Products as extras)",
+          "nullable": true
+        },
+        "productCode": {
+          "description": "Merchant-created code associated with the product, for example, a SKU.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productShortDescription": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "The quantity of the bundled product",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesAppliedDiscount": {
+      "description": "Discount applied to the product.",
+      "properties": {
+        "couponCode": {
+          "description": "If the discount is a coupon, code associated with the coupon.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discount": {
+          "$ref": "#/$defs/CatalogRuntimesDiscount"
+        },
+        "discounts": {
+          "description": "Discount name and expiration date.",
+          "items": {
+            "$ref": "#/$defs/CatalogRuntimesDiscount"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "impact": {
+          "description": "The new calculated price of the product. That is, the product price minus the discount amount.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesAttributeValidation": {
+      "description": "Used to validate attributes.",
+      "properties": {
+        "maxDateValue": {
+          "description": "For validating a DateTime attribute value, maximum datetime allowed.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maxNumericValue": {
+          "description": "For validating Number attribute value, maximum number allowed.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maxStringLength": {
+          "description": "For validating strings, maximum length allowed for a string.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minDateValue": {
+          "description": "For validating a DateTime attribute value, minimum datetime allowed.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "minNumericValue": {
+          "description": "For validating Number attribute value, minimum number allowed.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minStringLength": {
+          "description": "For validating strings, minimum length allowed for a string.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "regularExpression": {
+          "description": "Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesAttributeVocabularyValueDisplayInfo": {
+      "description": "Product Attribute properties common between a Product Propery, Option, and Extra",
+      "properties": {
+        "cmsId": {
+          "description": "Id of the image in the CMS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "colorValue": {
+          "description": "Hex Color value to display in a color picker",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "description": "URL of the image.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesCategory": {
+      "description": "The category hierarchy of your store as it appears on the storefront. This is the category heirarchy defined with the admin/category resource except for any categories with an IsDisplayed value set to false.",
+      "properties": {
+        "attributes": {
+          "items": {
+            "$ref": "#/$defs/CatalogRuntimesCategoryAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "categoryCode": {
+          "description": "External unique identifier of the category.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "categoryId": {
+          "description": "Internal unique identifier of the category. System-supplied and read-only.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "childrenCategories": {
+          "description": "List of subcategories that belong to this category.",
+          "items": {
+            "type": "object"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "content": {
+          "$ref": "#/$defs/CategoryContent"
+        },
+        "count": {
+          "description": "Indicates whether the category should be displayed.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "isDisplayed": {
+          "description": "Indicates whether the category should be displayed.",
+          "type": "boolean"
+        },
+        "parentCategory": {
+          "type": "object"
+        },
+        "sequence": {
+          "description": "Order in which categories appear when they are at the same level (siblings). For example, categories can be sequenced so that a specific category always appears first (or last).",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "shouldSlice": {
+          "description": "Indicates whether the category should be sliced",
+          "type": "boolean"
+        },
+        "updateDate": {
+          "description": "Last Modified Date Time",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesCategoryAttribute": {
+      "properties": {
+        "dataType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fullyQualifiedName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {},
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesDiscount": {
+      "description": "Discount name and expiration date.",
+      "properties": {
+        "discountId": {
+          "description": "Unique identifier of the discount.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "expirationDate": {
+          "description": "Date when the discount expires.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "friendlyDescription": {
+          "description": "Description of the discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "impact": {
+          "description": "The Impact of the individual Discount",
+          "format": "double",
+          "type": "number"
+        },
+        "name": {
+          "description": "Name of the discount.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesPackageMeasurements": {
+      "description": "Physical dimensions of the package required to ship the product and its weight.",
+      "properties": {
+        "packageHeight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "packageLength": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "packageWeight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "packageWidth": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesProductInventoryInfo": {
+      "description": "Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.",
+      "properties": {
+        "availableDate": {
+          "description": "Date the item will become available for back order if out of stock",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isSubstitutable": {
+          "description": "ReadOnly flag indicates is the product has substitutions defined",
+          "type": "boolean"
+        },
+        "manageStock": {
+          "description": "If true, the Products service manages inventory for this product.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "onlineLocationCode": {
+          "description": "Directship location code for OnlineStockAvailable",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "onlineSoftStockAvailable": {
+          "description": "Number of product items currently available for purchase.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "onlineStockAvailable": {
+          "description": "Number of product items currently available for purchase.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "outOfStockBehavior": {
+          "description": "The behvior when the ManageStock is true and the product is not in stock.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesProductPrice": {
+      "description": "Price of the product with any sale and discounts applied.",
+      "properties": {
+        "catalogListPrice": {
+          "description": "Current Price Listed in the catalog.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "catalogSalePrice": {
+          "description": "Current sale price of the product listed in the catalog. This is not typically dispalyed directly to the user as it will be listed in SalePrice if applicable.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "creditValue": {
+          "description": "Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "discount": {
+          "$ref": "#/$defs/CatalogRuntimesAppliedDiscount"
+        },
+        "effectivePricelistCode": {
+          "description": "The priceList that was applied to this product",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "msrp": {
+          "description": "Manufacturer suggested Retail price, this may be null if one is not set in the catalog.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "price": {
+          "description": "Listed Price of the product. This is the price that the merchant intends to sell the product for if no sale is active.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "priceListEntryCode": {
+          "description": "The specific PriceListCode that was applied (includes inheritence",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "priceListEntryEndDate": {
+          "description": "EndDate if PriceListEntry present.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "priceListEntryMode": {
+          "description": "IF a PriceList Entry was applied to this price it will be (simple, bulk...)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "priceType": {
+          "description": "Futher clarification of what value is being returned in the Price field",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "salePrice": {
+          "description": "Current sale price of the product. This can be either a specific numerical amount or it can be calculated based on an active discount. Optional.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "salePriceType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesProductPricingBehaviorInfo": {
+      "properties": {
+        "discountsRestricted": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "discountsRestrictedEndDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "discountsRestrictedStartDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesProductProperty": {
+      "description": "An attribute used as a property of a product",
+      "properties": {
+        "attributeDetail": {
+          "$ref": "#/$defs/AttributeDetail"
+        },
+        "attributeFQN": {
+          "description": "Attribute fully qualified name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isHidden": {
+          "description": "Indicates whether the product property should be hidden from the customer",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isMultiValue": {
+          "description": "Indicates whether it's possible for there to be more than one value in the Values field",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "propertyType": {
+          "description": "Property Type of the Property",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "description": "Value(s) of the product property",
+          "items": {
+            "$ref": "#/$defs/CatalogRuntimesProductPropertyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogRuntimesProductPropertyValue": {
+      "description": "Value of product property",
+      "properties": {
+        "displayInfo": {
+          "$ref": "#/$defs/CatalogRuntimesAttributeVocabularyValueDisplayInfo"
+        },
+        "stringValue": {
+          "description": "Localized Value in the language of the locale code",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "CategoryContent": {
+      "description": "Name of the category and optionally, a description, page title, friendly URL, associated images, and any metadata.",
+      "properties": {
+        "categoryImages": {
+          "description": "Images associated with the category.",
+          "items": {
+            "$ref": "#/$defs/CategoryImage"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Description of the category as it appears on the storefront.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagDescription": {
+          "description": "Metadata description. Metadata can be used to manage information internally.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagKeywords": {
+          "description": "Metadata keywords. Metadata can be used to manage information internally.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaTagTitle": {
+          "description": "Metadata title. Metadata can be used to manage information internally.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the category as it appears on the storefront.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pageTitle": {
+          "description": "Title that appears at the top of new pages.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "slug": {
+          "description": "Human-readable identifier given to the category to create friendly URLs.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CategoryImage": {
+      "description": "Image or video associated with a category.",
+      "properties": {
+        "altText": {
+          "description": "Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cmsId": {
+          "description": "Id of the image in the CMS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageLabel": {
+          "description": "Image title.  Unicode data with a maximum length of 50 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "description": "Image URL. Unicode data with a maximum length of 4000 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mediaType": {
+          "description": "Type of media. Used by the client to determine how to render the image or video or what have you.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sequence": {
+          "description": "For categories with multiple images, the sequence is the order in which this image appears. Whole number data. Required.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "videoUrl": {
+          "description": "URL of the video. Unicode data with a maximum length of 4000 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Measurement": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductImage": {
+      "description": "Image or video associated with a product.",
+      "properties": {
+        "altText": {
+          "description": "Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cmsId": {
+          "description": "Id of the image in the CMS.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageLabel": {
+          "description": "Image title.  Unicode data with a maximum length of 50 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "imageUrl": {
+          "description": "Image URL. Unicode data with a maximum length of 4000 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mediaType": {
+          "description": "Type of media. Used by the client to determine how to render the image or video or what have you.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productImageGroupId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sequence": {
+          "description": "For products with multiple images, the sequence is the order in which this image appears. Whole number data. Required.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "videoUrl": {
+          "description": "URL of the video. Unicode data with a maximum length of 4000 characters.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductPurchasableState": {
+      "description": "Current state of the product purchase, that is, whether it is ready to be purchased. For products with configurable options,     /// the product is purchaseable if the shopper has selected all required options. If not, a message lists which required options are missing.",
+      "properties": {
+        "isPurchasable": {
+          "description": "If true, this product is currently available for purchase. For products with options, this is false until the shopper selects all required options.",
+          "type": "boolean"
+        },
+        "messages": {
+          "description": "Message associated with this product if it is not ready to be purchased. For products with options, message contains which required options are missing.",
+          "items": {
+            "$ref": "#/$defs/ValidationMessage"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ValidationMessage": {
+      "properties": {
+        "message": {
+          "description": "Message displayed to the user when this validation failure occurred.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "severity": {
+          "description": "Severity level of the validation failure.\n Must be one of the values in SeverityConst.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "description": "What invoked the validation.  Must be one of the values in SourceTypeConst.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourceId": {
+          "description": "Unique identifier of the source that invoked the validation failure.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "validationType": {
+          "description": "Type of validation error that occurred. This can be checked programatically. \n Must be one of the values in ValidationTypeConst.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

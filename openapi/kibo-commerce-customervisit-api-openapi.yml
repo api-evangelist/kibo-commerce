@@ -1,0 +1,300 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Customer Visit API
+  version: '1.0'
+  description: 'Operations tagged CustomerVisit across 2 of this provider''s published API definitions: openapi_openapi_customer.json, kibo-commerce-customer-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CustomerVisit
+paths:
+  /commerce/customer/visits/{visitId}:
+    get:
+      description: Gets visit info specified by visit Id.
+      parameters:
+      - description: ''
+        in: path
+        name: visitId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Visit'
+          description: OK
+      summary: Get Visit
+      tags:
+      - CustomerVisit
+      operationId: getCommerceCustomerVisitsByVisitId
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing visit on the customer.
+      parameters:
+      - description: ''
+        in: path
+        name: visitId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Visit'
+          description: OK
+      summary: Updates Visit
+      tags:
+      - CustomerVisit
+      operationId: putCommerceCustomerVisitsByVisitId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/visits:
+    get:
+      description: Gets a collection of visit info specified by filter and sort order.
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisitCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VisitCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VisitCollection'
+          description: OK
+      summary: Get Visits
+      tags:
+      - CustomerVisit
+      operationId: getCommerceCustomerVisits
+      x-operation-id-source: derived
+    post:
+      description: Adds visit info on the customer.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Visit'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Visit'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Visit'
+          description: OK
+      summary: Add Visit
+      tags:
+      - CustomerVisit
+      operationId: postCommerceCustomerVisits
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    VisitCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Visit'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    Visit:
+      properties:
+        accountId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        browserLocationCode:
+          type:
+          - string
+          - 'null'
+        date:
+          format: date-time
+          type: string
+        id:
+          type:
+          - string
+          - 'null'
+        locationCode:
+          type:
+          - string
+          - 'null'
+        transactions:
+          items:
+            $ref: '#/components/schemas/Transaction'
+          type:
+          - array
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+        webReferrer:
+          type:
+          - string
+          - 'null'
+        webSessionId:
+          type:
+          - string
+          - 'null'
+        webSiteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        webUserAgent:
+          type:
+          - string
+          - 'null'
+      type: object
+    Transaction:
+      properties:
+        amount:
+          format: double
+          type: number
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        date:
+          format: date-time
+          type: string
+        interactionType:
+          type:
+          - string
+          - 'null'
+        transactionId:
+          type:
+          - string
+          - 'null'
+        transactionType:
+          type:
+          - string
+          - 'null'
+        visitId:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_customer.json
+- kibo-commerce-customer-openapi.yml

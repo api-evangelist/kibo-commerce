@@ -1,0 +1,435 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Future Shipment Rebalancing Rules API
+  version: '1.0'
+  description: 'Operations tagged FutureShipmentRebalancingRules across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: FutureShipmentRebalancingRules
+paths:
+  /commerce/rules/futureshipmentrebalancing/{code}:
+    delete:
+      description: Deletes a future shipment rebalancing rule by code.
+      parameters:
+      - description: The rule code to delete.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: Rule deleted successfully.
+        '404':
+          description: Rule not found.
+      summary: Delete future shipment rebalancing rule
+      tags:
+      - FutureShipmentRebalancingRules
+      operationId: deleteCommerceRulesFutureshipmentrebalancingByCode
+      x-operation-id-source: derived
+    get:
+      description: Gets a future shipment rebalancing rule details by code.
+      parameters:
+      - description: The unique rule code.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+          description: Rule found.
+        '404':
+          description: Rule not found.
+      summary: Get future shipment rebalancing rule by code
+      tags:
+      - FutureShipmentRebalancingRules
+      operationId: getCommerceRulesFutureshipmentrebalancingByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing future shipment rebalancing rule.
+      parameters:
+      - description: The rule code to update.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+        description: The updated rule. Code in body must match URL code.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+          description: Rule updated successfully.
+        '400':
+          description: Validation failed.
+        '404':
+          description: Rule not found.
+      summary: Update future shipment rebalancing rule
+      tags:
+      - FutureShipmentRebalancingRules
+      operationId: putCommerceRulesFutureshipmentrebalancingByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/futureshipmentrebalancing:
+    get:
+      description: Gets a collection of future shipment rebalancing rules according to any specified filter criteria and sort options.
+      parameters:
+      - description: Zero-based start index for pagination.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Number of items per page.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Sort expression (e.g. 'rank asc').
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Filter expression (e.g. 'enabled eq true').
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Response groups (currently unused).
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRuleCollection'
+          description: Rule collection returned successfully.
+        '412':
+          description: Feature not enabled for this tenant.
+      summary: Get future shipment rebalancing rules
+      tags:
+      - FutureShipmentRebalancingRules
+      operationId: getCommerceRulesFutureshipmentrebalancing
+      x-operation-id-source: derived
+    post:
+      description: Creates a new future shipment rebalancing rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+        description: The rule to create. Code is auto-generated if omitted.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+          description: OK
+        '201':
+          description: Rule created successfully.
+        '400':
+          description: Validation failed.
+        '409':
+          description: Code already exists for this tenant.
+      summary: Create future shipment rebalancing rule
+      tags:
+      - FutureShipmentRebalancingRules
+      operationId: postCommerceRulesFutureshipmentrebalancing
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/futureshipmentrebalancing/{code}/rank:
+    put:
+      description: Updates the rank for a future shipment rebalancing rule and rearranges the ranks of all other rules accordingly.
+      parameters:
+      - description: The rule code whose rank to update.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRankRequest'
+        description: Contains OldRank and NewRank values.
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: Rank updated successfully.
+        '400':
+          description: OldRank or NewRank is invalid.
+      summary: Update future shipment rebalancing rule rank
+      tags:
+      - FutureShipmentRebalancingRules
+      operationId: putCommerceRulesFutureshipmentrebalancingByCodeRank
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductRuleCode:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          description: Master Catalog Id of the ProductRule.
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    FutureShipmentRebalancingRuleCollection:
+      description: Paginated collection of Mozu.ProductAdmin.Contracts.FutureShipmentRebalancingRules.FutureShipmentRebalancingRule contract DTOs.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/FutureShipmentRebalancingRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ShipmentRuleCode:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+      type: object
+    FutureShipmentRebalancingRule:
+      description: 'Contract DTO for a FutureShipmentRebalancing rule. Rules determine priority ordering
+
+        for shipments in the Future Shipments Queue when supply changes trigger rebalancing.'
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          type:
+          - string
+          - 'null'
+        customerRules:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        enabled:
+          type:
+          - boolean
+          - 'null'
+        endDate:
+          description: End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isActive:
+          description: 'Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+
+            (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+
+            This reflects the effective window alone and does not incorporate the enabled flag.'
+          type:
+          - boolean
+          - 'null'
+        metaData: {}
+        name:
+          type:
+          - string
+          - 'null'
+        productRules:
+          items:
+            $ref: '#/components/schemas/ProductRuleCode'
+          type:
+          - array
+          - 'null'
+        rank:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        shipmentRules:
+          items:
+            $ref: '#/components/schemas/ShipmentRuleCode'
+          type:
+          - array
+          - 'null'
+        sortAttribute:
+          type:
+          - string
+          - 'null'
+        startDate:
+          description: Start of the rule's effective window. Null = no lower bound (already active).
+          format: date-time
+          type:
+          - string
+          - 'null'
+        timeFenceDays:
+          description: Time fence in days. Inclusive [0, 365].
+          format: int32
+          type: integer
+      type: object
+    UpdateRankRequest:
+      description: Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule.
+      properties:
+        code:
+          description: 'Gets or sets the code of the rule to be updated.
+
+            It can be SafetyStock Code , PurchaseLimit Code or Return Rule Code'
+          type:
+          - string
+          - 'null'
+        newRank:
+          description: Gets or sets the new rank of the rule.
+          format: int32
+          type: integer
+        oldRank:
+          description: Gets or sets the old rank of the rule.
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

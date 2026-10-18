@@ -1,0 +1,73 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Job API
+  version: '1.0'
+  description: 'Operations tagged Job across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Job
+paths:
+  /commerce/jobs/b2bOrderRelease:
+    post:
+      description: Triggers on-demand B2B Order Release job.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobKey'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/JobKey'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/JobKey'
+          description: OK
+      summary: B2B Order Release
+      tags:
+      - Job
+      operationId: postCommerceJobsB2bOrderRelease
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    JobKey:
+      properties:
+        group:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

@@ -1,0 +1,183 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Search Listing Settings API
+  version: '1.0'
+  description: 'Operations tagged SearchListingSettings across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SearchListingSettings
+paths:
+  /commerce/catalog/admin/search/{name}/listingsettings:
+    delete:
+      description: Deletes the ListingSettings for a specific SearchSetting by name.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Search Listing Settings
+      tags:
+      - SearchListingSettings
+      operationId: deleteCommerceCatalogAdminSearchByNameListingsettings
+      x-operation-id-source: derived
+    get:
+      description: Get ListingSettings for a specific SearchSettings by name.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListingSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListingSettings'
+          description: OK
+      summary: Get Search Listing Settings
+      tags:
+      - SearchListingSettings
+      operationId: getCommerceCatalogAdminSearchByNameListingsettings
+      x-operation-id-source: derived
+    put:
+      description: Adds or updates the ListingSettings for a specific SearchSetting by name.
+      parameters:
+      - description: ''
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListingSettings'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListingSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListingSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListingSettings'
+          description: OK
+      summary: Update Search Listing Settings
+      tags:
+      - SearchListingSettings
+      operationId: putCommerceCatalogAdminSearchByNameListingsettings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    FieldValueBoost:
+      properties:
+        boostType:
+          type:
+          - string
+          - 'null'
+        fields:
+          items:
+            $ref: '#/components/schemas/BoostField'
+          type:
+          - array
+          - 'null'
+      type: object
+    BoostField:
+      properties:
+        fieldName:
+          type:
+          - string
+          - 'null'
+        valueExpressions:
+          items:
+            $ref: '#/components/schemas/BoostValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    BoostValue:
+      properties:
+        boost:
+          format: int32
+          type: integer
+        operator:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    ListingSettings:
+      properties:
+        customBoosts:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        personalizationExperience:
+          type:
+          - string
+          - 'null'
+        personalizationFactor:
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

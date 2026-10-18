@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Tenant
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-tenant-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-tenant-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/platform/tenants/{tenantId}'].get
+  description: Add derived operationId for GET /platform/tenants/{tenantId}
+  update:
+    operationId: tenantsGetTenantByID

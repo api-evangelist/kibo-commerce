@@ -1,0 +1,155 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Catalog Storefront
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-catalog-storefront-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-catalog-storefront-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/catalog/storefront/campaigns/{campaignId}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/campaigns/{campaignId}
+  update:
+    operationId: campaignsGetSearchCampaign
+- target: $.paths['/commerce/catalog/storefront/campaigns/all'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/campaigns/all
+  update:
+    operationId: campaignsGetSearchCampaigns
+- target: $.paths['/commerce/catalog/storefront/categories/tree'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/categories/tree
+  update:
+    operationId: categoriesGetCategoryTree
+- target: $.paths['/commerce/catalog/storefront/categories'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/categories
+  update:
+    operationId: categoriesGetProductCategories
+- target: $.paths['/commerce/catalog/storefront/categories/{categoryId}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/categories/{categoryId}
+  update:
+    operationId: categoriesGetProductCategory
+- target: $.paths['/commerce/catalog/storefront/currencies/exchangerates'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/currencies/exchangerates
+  update:
+    operationId: currenciesGetExchangeRates
+- target: $.paths['/commerce/rules/product/evaluate/preview'].post
+  description: Add derived operationId for POST /commerce/rules/product/evaluate/preview
+  update:
+    operationId: productrulePreviewProductRule
+- target: $.paths['/commerce/catalog/storefront/productsearch/suggest'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/suggest
+  update:
+    operationId: productsearchGetSuggestedSearchTerms
+- target: $.paths['/commerce/catalog/storefront/productsearch/randomAccessCursor'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/randomAccessCursor
+  update:
+    operationId: productsearchGetsRandomAccessCursors
+- target: $.paths['/commerce/catalog/storefront/productsearch/suggest2'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/suggest2
+  update:
+    operationId: productsearchGetsSuggestedSearchTerms2
+- target: $.paths['/commerce/catalog/storefront/productsearch/searchDebug'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/searchDebug
+  update:
+    operationId: productsearchSearchDebug
+- target: $.paths['/commerce/catalog/storefront/productsearch/search'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/search
+  update:
+    operationId: productsearchSearchProducts
+- target: $.paths['/commerce/catalog/storefront/productsearch/suggestdebug'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/suggestdebug
+  update:
+    operationId: productsearchSearchSuggestionDebug
+- target: $.paths['/commerce/catalog/storefront/productsearch/siteSearch'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/siteSearch
+  update:
+    operationId: productsearchSiteSearch
+- target: $.paths['/commerce/catalog/storefront/productsearch/visualsearch'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/productsearch/visualsearch
+  update:
+    operationId: productsearchTypeAheadSearch
+- target: $.paths['/commerce/rules/purchaselimit/evaluate'].post
+  description: Add derived operationId for POST /commerce/rules/purchaselimit/evaluate
+  update:
+    operationId: rulesEvaluatePurchaseLimits
+- target: $.paths['/commerce/rules/return/evaluate'].post
+  description: Add derived operationId for POST /commerce/rules/return/evaluate
+  update:
+    operationId: rulesEvaluateReturnEligibility
+- target: $.paths['/commerce/rules/safetystock/evaluate'].post
+  description: Add derived operationId for POST /commerce/rules/safetystock/evaluate
+  update:
+    operationId: rulesEvaluateSafetyStockRules
+- target: $.paths['/commerce/catalog/storefront/searchmerchandizingrules/previewsearchmerchandizingrule'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/searchmerchandizingrules/previewsearchmerchandizingrule
+  update:
+    operationId: searchmerchandizingrulesPreviewSearchMerchandizingRule
+- target: $.paths['/commerce/catalog/storefront/productsearch/preview'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/productsearch/preview
+  update:
+    operationId: searchpreviewSearchPreview
+- target: $.paths['/commerce/catalog/storefront/productsearch/sitesearchpreview'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/productsearch/sitesearchpreview
+  update:
+    operationId: searchpreviewSiteSearchPreview
+- target: $.paths['/commerce/catalog/storefront/pricelists/{priceListCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/pricelists/{priceListCode}
+  update:
+    operationId: storefrontpricelistsGetPriceList
+- target: $.paths['/commerce/catalog/storefront/pricelists/resolved'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/pricelists/resolved
+  update:
+    operationId: storefrontpricelistsGetResolvedPriceListGET
+- target: $.paths['/commerce/catalog/storefront/pricelists/resolved'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/pricelists/resolved
+  update:
+    operationId: storefrontpricelistsGetResolvedPriceListPOST
+- target: $.paths['/commerce/catalog/storefront/products/{productCode}/configure'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/products/{productCode}/configure
+  update:
+    operationId: storefrontproductsConfigureVariationProduct
+- target: $.paths['/commerce/catalog/storefront/products/locationinventory'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/products/locationinventory
+  update:
+    operationId: storefrontproductsGetLocationInventoriesForAListOfProducts
+- target: $.paths['/commerce/catalog/storefront/products/{productCode}/locationinventory'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/products/{productCode}/locationinventory
+  update:
+    operationId: storefrontproductsGetLocationInventory
+- target: $.paths['/commerce/catalog/storefront/products/{productCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/products/{productCode}
+  update:
+    operationId: storefrontproductsGetProduct
+- target: $.paths['/commerce/catalog/storefront/products/costs'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/products/costs
+  update:
+    operationId: storefrontproductsGetProductCosts
+- target: $.paths['/commerce/catalog/storefront/products/indexing/{productCode}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/products/indexing/{productCode}
+  update:
+    operationId: storefrontproductsGetProductForIndexing
+- target: $.paths['/commerce/catalog/storefront/products/{productCode}/substitutions'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/products/{productCode}/substitutions
+  update:
+    operationId: storefrontproductsGetProductSubstitutions
+- target: $.paths['/commerce/catalog/storefront/products'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/products
+  update:
+    operationId: storefrontproductsGetProducts
+- target: $.paths['/commerce/catalog/storefront/products/{productCode}/validateDiscounts'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/products/{productCode}/validateDiscounts
+  update:
+    operationId: storefrontproductsValidateDiscounts
+- target: $.paths['/commerce/catalog/storefront/products/{productCode}/validate'].post
+  description: Add derived operationId for POST /commerce/catalog/storefront/products/{productCode}/validate
+  update:
+    operationId: storefrontproductsValidateVariantProduct
+- target: $.paths['/commerce/catalog/storefront/searchredirect/{redirectId}'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/searchredirect/{redirectId}
+  update:
+    operationId: storefrontsearchredirectGetSearchRedirect
+- target: $.paths['/commerce/catalog/storefront/searchredirect/redirects'].get
+  description: Add derived operationId for GET /commerce/catalog/storefront/searchredirect/redirects
+  update:
+    operationId: storefrontsearchredirectGetSearchRedirects

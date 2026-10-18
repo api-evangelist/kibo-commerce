@@ -1,0 +1,310 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-redaction-report-response-schema.json",
+  "title": "RedactionReportResponse",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-gdpr-openapi.yml#/components/schemas/RedactionReportResponse",
+  "properties": {
+    "affectedEntities": {
+      "$ref": "#/$defs/AffectedEntitiesResponse"
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfoResponse"
+    },
+    "createdAt": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "errorSummary": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "executionCompletedAt": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "executionStartedAt": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "operationLog": {
+      "items": {
+        "$ref": "#/$defs/OperationLogEntry"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "reportId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "request": {
+      "$ref": "#/$defs/RequestResponse"
+    },
+    "schemaVersion": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "status": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "subject": {
+      "$ref": "#/$defs/SubjectResponse"
+    },
+    "tenantId": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AffectedEntitiesResponse": {
+      "properties": {
+        "checkouts": {
+          "$ref": "#/$defs/EntityGroupResponse"
+        },
+        "customerAccountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "orders": {
+          "$ref": "#/$defs/EntityGroupResponse"
+        },
+        "payments": {
+          "$ref": "#/$defs/EntityGroupResponse"
+        },
+        "returns": {
+          "$ref": "#/$defs/EntityGroupResponse"
+        },
+        "shipments": {
+          "$ref": "#/$defs/EntityGroupResponse"
+        },
+        "wishlists": {
+          "$ref": "#/$defs/EntityGroupResponse"
+        }
+      },
+      "type": "object"
+    },
+    "AttributeFqnsResponse": {
+      "properties": {
+        "customer": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "order": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "return": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "shipment": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AuditInfoResponse": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ClearDataNodesResponse": {
+      "properties": {
+        "checkouts": {
+          "type": "boolean"
+        },
+        "orders": {
+          "type": "boolean"
+        },
+        "shipments": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "EntityGroupResponse": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "OperationLogEntry": {
+      "properties": {
+        "durationMs": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "entityId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entityType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "errorMessage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "operation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "recordsAffected": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "store": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "timestamp": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestResponse": {
+      "properties": {
+        "attributeFqns": {
+          "$ref": "#/$defs/AttributeFqnsResponse"
+        },
+        "clearDataNodes": {
+          "$ref": "#/$defs/ClearDataNodesResponse"
+        },
+        "correlationId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SubjectResponse": {
+      "properties": {
+        "customerAccountId": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "resolvedEmailAddresses": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "userId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

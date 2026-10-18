@@ -1,0 +1,46 @@
+generated: '2026-10-18'
+method: searched
+source: https://github.com/KiboSoftware
+families:
+- name: Storefront Starters
+  description: Headless storefront implementations for various frameworks
+  components:
+  - name: nextjs-storefront
+    description: Next.js storefront implementation
+    url: https://github.com/KiboSoftware/nextjs-storefront
+    language: TypeScript
+  - name: nuxt-storefront
+    description: Nuxt.js storefront implementation
+    url: https://github.com/KiboSoftware/nuxt-storefront
+    language: TypeScript
+  - name: react-storefront-demo
+    description: React storefront demo
+    url: https://github.com/KiboSoftware/react-storefront-demo
+    language: JavaScript
+  - name: react-storefront-kibo-connector
+    description: React storefront connector for Kibo
+    url: https://github.com/KiboSoftware/react-storefront-kibo-connector
+    language: JavaScript
+- name: Theme Components
+  description: Theme assets and customization components
+  components:
+  - name: kibo.theme.fulfiller
+    description: Theme assets for customizing Fulfiller UI
+    url: https://github.com/KiboSoftware/kibo.theme.fulfiller
+    language: CSS
+  - name: kibo.theme.returns
+    description: Theme assets for customizing Returns in Fulfiller
+    url: https://github.com/KiboSoftware/kibo.theme.returns
+    language: CSS
+- name: CMS Components
+  description: Content management system components and extensions
+  components:
+  - name: dc-extension-product-selector
+    description: Product selector extension for content authors to search and select products
+    url: https://github.com/KiboSoftware/dc-extension-product-selector
+    language: JavaScript
+  - name: builder
+    description: Drag and drop Visual CMS for React, Vue, Angular, and more
+    url: https://github.com/KiboSoftware/builder
+    language: TypeScript
+note: Kibo provides various UI components and storefront starters for headless commerce implementations, including framework-specific starters and theme customization assets.

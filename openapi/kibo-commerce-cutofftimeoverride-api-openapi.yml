@@ -1,0 +1,143 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Cutoff Time Override API
+  version: '1.0'
+  description: 'Operations tagged CutoffTimeOverride across 2 of this provider''s published API definitions: openapi_openapi_location.json, kibo-commerce-location-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CutoffTimeOverride
+paths:
+  /commerce/admin/locations/{locationCode}/cutofftime:
+    post:
+      description: Gets an override if available, otherwise returns the Cut Off Time of the location.
+      parameters:
+      - in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CutOffTimeRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CutoffTimeResponse'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CutoffTimeResponse'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CutoffTimeResponse'
+                type: array
+          description: OK
+      summary: Get Location Cut Off Time
+      tags:
+      - CutoffTimeOverride
+      operationId: postCommerceAdminLocationsByLocationCodeCutofftime
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CutoffTimeResponse:
+      properties:
+        date:
+          format: date-time
+          type: string
+        endTime:
+          format: date-span
+          type:
+          - string
+          - 'null'
+        fulfillmentType:
+          type:
+          - string
+          - 'null'
+        isClosed:
+          type:
+          - boolean
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        lastUpdated:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        startTime:
+          format: date-span
+          type:
+          - string
+          - 'null'
+        timeZone:
+          $ref: '#/components/schemas/TimeZone'
+      type: object
+    TimeZone:
+      properties:
+        ianaCode:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        isDaylightSavingsTime:
+          type: boolean
+        offset:
+          format: double
+          type: number
+      type: object
+    CutOffTimeRequest:
+      properties:
+        dates:
+          items:
+            format: date-time
+            type: string
+          type:
+          - array
+          - 'null'
+        fulfillmentType:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_location.json
+- kibo-commerce-location-openapi.yml

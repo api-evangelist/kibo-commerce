@@ -1,0 +1,923 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Scenario API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingScenario across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: New UI API - Manage routing scenarios
+  name: OrderRoutingScenario
+paths:
+  /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/export/csv:
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  format: byte
+                  type: string
+                type: array
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Export Scenarios To Csv
+      tags:
+      - OrderRoutingScenario
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesByStrategyIDScenariosExportCsv
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/{scenarioID}:
+    delete:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: scenarioID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Delete Scenario
+      tags:
+      - OrderRoutingScenario
+      operationId: deleteCommerceOrdersOrderroutingApiV1StrategiesByStrategyIDScenariosByScenarioID
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: scenarioID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScenarioResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Scenario By Id
+      tags:
+      - OrderRoutingScenario
+      operationId: getCommerceOrdersOrderroutingApiV1StrategiesByStrategyIDScenariosByScenarioID
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: scenarioID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertScenarioRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScenarioResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Update Scenario
+      tags:
+      - OrderRoutingScenario
+      operationId: putCommerceOrdersOrderroutingApiV1StrategiesByStrategyIDScenariosByScenarioID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios/import/csv:
+    post:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: failOnUnknownLocation
+        required: false
+        schema:
+          default: false
+          type: boolean
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                file:
+                  format: binary
+                  type: string
+              required:
+              - file
+              type: object
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Import Scenarios From Csv
+      tags:
+      - OrderRoutingScenario
+      operationId: postCommerceOrdersOrderroutingApiV1StrategiesByStrategyIDScenariosImportCsv
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/strategies/{strategyID}/scenarios:
+    post:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: strategyID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpsertScenarioRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScenarioResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Create Scenario
+      tags:
+      - OrderRoutingScenario
+      operationId: postCommerceOrdersOrderroutingApiV1StrategiesByStrategyIDScenarios
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    UpsertScenarioRequest:
+      properties:
+        active:
+          type: boolean
+        defaultGroup:
+          type: boolean
+        description:
+          type: string
+        filterLogicalGroups:
+          items:
+            $ref: '#/components/schemas/ScenarioFilterLogicalGroupUpsertRequest'
+          type: array
+        filters:
+          items:
+            $ref: '#/components/schemas/ScenarioFilterUpsertRequest'
+          type: array
+        locations:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        noMatch:
+          enum:
+          - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+          - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+          - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - CANCEL_ORDER
+          - ASSIGN_TO_CUSTOMER_CARE
+          - ASSIGN_TO_GROUP
+          - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - SEND_ORDER_TO_BIDDING
+          - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - ASSIGN_TO_BACKORDER
+          type: string
+        partialMatch:
+          enum:
+          - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+          - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+          - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - CANCEL_ORDER
+          - ASSIGN_TO_CUSTOMER_CARE
+          - ASSIGN_TO_GROUP
+          - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - SEND_ORDER_TO_BIDDING
+          - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - ASSIGN_TO_BACKORDER
+          type: string
+        primarySorting:
+          enum:
+          - RANK
+          - DISTANCE
+          - LTD
+          - COST
+          - RANDOM
+          - DATA_SET
+          - LOWEST_AVAILABLE
+          - HIGHEST_AVAILABLE
+          - EXCESS_COUNT
+          - EXCESS_PERCENTAGE
+          type: string
+        restartAttemptForNoMatch:
+          enum:
+          - START_AT_BEGINNING
+          - CURRENT_GROUP
+          - GROUP_RANK
+          type: string
+        restartAttemptForPartialAssignment:
+          enum:
+          - START_AT_BEGINNING
+          - CURRENT_GROUP
+          - GROUP_RANK
+          type: string
+        restartGroupIdForNoMatch:
+          format: int32
+          type: integer
+        restartGroupIdForPartialAssignment:
+          format: int32
+          type: integer
+        secondarySorting:
+          enum:
+          - RANK
+          - DISTANCE
+          - LTD
+          - COST
+          - RANDOM
+          - DATA_SET
+          - LOWEST_AVAILABLE
+          - HIGHEST_AVAILABLE
+          - EXCESS_COUNT
+          - EXCESS_PERCENTAGE
+          type: string
+        unselectedLocations:
+          items:
+            type: string
+          type: array
+      required:
+      - name
+      type: object
+    ScenarioResponse:
+      properties:
+        active:
+          type: boolean
+        defaultGroup:
+          type: boolean
+        description:
+          type: string
+        filterLogicalGroups:
+          items:
+            $ref: '#/components/schemas/ScenarioFilterLogicalGroupResponse'
+          type: array
+        filters:
+          items:
+            $ref: '#/components/schemas/ScenarioFilterResponse'
+          type: array
+        locations:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        noMatch:
+          enum:
+          - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+          - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+          - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - CANCEL_ORDER
+          - ASSIGN_TO_CUSTOMER_CARE
+          - ASSIGN_TO_GROUP
+          - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - SEND_ORDER_TO_BIDDING
+          - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - ASSIGN_TO_BACKORDER
+          type: string
+        partialMatch:
+          enum:
+          - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+          - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+          - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - CANCEL_ORDER
+          - ASSIGN_TO_CUSTOMER_CARE
+          - ASSIGN_TO_GROUP
+          - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - SEND_ORDER_TO_BIDDING
+          - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - ASSIGN_TO_BACKORDER
+          type: string
+        primarySorting:
+          enum:
+          - RANK
+          - DISTANCE
+          - LTD
+          - COST
+          - RANDOM
+          - DATA_SET
+          - LOWEST_AVAILABLE
+          - HIGHEST_AVAILABLE
+          - EXCESS_COUNT
+          - EXCESS_PERCENTAGE
+          type: string
+        rank:
+          format: int32
+          type: integer
+        restartAttemptForNoMatch:
+          enum:
+          - START_AT_BEGINNING
+          - CURRENT_GROUP
+          - GROUP_RANK
+          type: string
+        restartAttemptForPartialAssignment:
+          enum:
+          - START_AT_BEGINNING
+          - CURRENT_GROUP
+          - GROUP_RANK
+          type: string
+        restartGroupIdForNoMatch:
+          format: int32
+          type: integer
+        restartGroupIdForPartialAssignment:
+          format: int32
+          type: integer
+        scenarioID:
+          format: int32
+          type: integer
+        secondarySorting:
+          enum:
+          - RANK
+          - DISTANCE
+          - LTD
+          - COST
+          - RANDOM
+          - DATA_SET
+          - LOWEST_AVAILABLE
+          - HIGHEST_AVAILABLE
+          - EXCESS_COUNT
+          - EXCESS_PERCENTAGE
+          type: string
+        strategyID:
+          type: string
+        unselectedLocations:
+          items:
+            type: string
+          type: array
+      type: object
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    ScenarioFilterUpsertRequest:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.does.not.contain
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        changed:
+          type: boolean
+        customValue:
+          type: object
+        customValueUnit:
+          type: string
+        dataListID:
+          format: int32
+          type: integer
+        dataPointAttributePath:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        filterAttributePath:
+          type: string
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterType:
+          enum:
+          - filter.type.customValue
+          - filter.type.customDataList
+          - filter.type.dataSet
+          - filter.type.dataPoint
+          type: string
+        isDataPointExtensible:
+          type: boolean
+        isExtensible:
+          type: boolean
+        itemCustomAttributeName:
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+      required:
+      - booleanOperator
+      - filterAttributePath
+      - filterLogicalGroupOrderIndex
+      - filterType
+      - name
+      - orderIndex
+      type: object
+    ScenarioFilterLogicalGroupUpsertRequest:
+      properties:
+        filterLogicalGroupID:
+          format: int32
+          type: integer
+        logicalOperator:
+          enum:
+          - AND
+          - OR
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        parentOrderIndex:
+          format: int32
+          type: integer
+      required:
+      - logicalOperator
+      - orderIndex
+      type: object
+    ScenarioFilterResponse:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.does.not.contain
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        customValue:
+          type: object
+        customValueUnit:
+          type: string
+        dataListID:
+          format: int32
+          type: integer
+        dataPointAttributePath:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        filterAttributePath:
+          type: string
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterType:
+          enum:
+          - filter.type.customValue
+          - filter.type.customDataList
+          - filter.type.dataSet
+          - filter.type.dataPoint
+          type: string
+        isDataPointExtensible:
+          type: boolean
+        isExtensible:
+          type: boolean
+        itemCustomAttributeName:
+          type: string
+        name:
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+      type: object
+    ScenarioFilterLogicalGroupResponse:
+      properties:
+        filterLogicalGroupID:
+          format: int32
+          type: integer
+        isRootGroup:
+          type: boolean
+        logicalOperator:
+          enum:
+          - AND
+          - OR
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        parentOrderIndex:
+          format: int32
+          type: integer
+        scenarioID:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

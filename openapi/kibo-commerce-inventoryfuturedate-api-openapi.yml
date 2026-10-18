@@ -1,0 +1,174 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Future Date API
+  version: '1.0'
+  description: 'Operations tagged InventoryFutureDate across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryFutureDate
+paths:
+  /adjustFutureDate/{futureInventoryID}:
+    put:
+      description: Adjust future_date of future inventory
+      parameters:
+      - description: id of the future_inventory row in db
+        in: path
+        name: futureInventoryID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/AdjustFutureDateRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobQueueResponse'
+          description: Success
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+          description: Future Inventory ID not found
+      summary: Adjust Future Date
+      tags:
+      - InventoryFutureDate
+      operationId: putAdjustFutureDateByFutureInventoryID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AdjustFutureDateRequest:
+      description: Request for adjusting the future date
+      properties:
+        futureDate:
+          description: Future Date at which the inventory should be allocated against. Expected format '2020-09-28T12:00:00-0500'
+          format: date-time
+          type: string
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Adjust Future Date Request
+      type: object
+    JobQueueResponse:
+      description: Response for getting a job
+      properties:
+        added:
+          description: Time and date the job was added to the queue in ISO8601 format in UTC
+          type: string
+        finished:
+          description: Time and date the job was finished in ISO8601 format in UTC
+          type: string
+        hasData:
+          description: True if the job was not created from a fetched file
+          type: boolean
+        itemCount:
+          description: The number of items processed, only for job types REFRESH and ADJUST
+          type: integer
+        jobID:
+          description: Internal identifier that uniquely identifies a single job
+          type: integer
+        locationCode:
+          description: Unique internal Identifier of the owning location
+          type: string
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        originalFilename:
+          description: The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process
+          type: string
+        started:
+          description: Time and date the job was started in ISO8601 format in UTC
+          type: string
+        status:
+          description: Current status of job completion
+          enum:
+          - PENDING
+          - WORKING
+          - SUCCESS
+          - FAILED
+          type: string
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Unique internal identifier of the tenant that owns the job
+          type: integer
+        type:
+          description: Purpose of the job
+          enum:
+          - REFRESH
+          - ADJUST
+          - RELEASE_SHIPMENTS
+          - CREATE_PICK_WAVE
+          - CLOSE_PICK_WAVE
+          - PUT_AWAY_FILE
+          - SHORT_PICK_ERROR
+          - BIN_AUDIT_START
+          - BIN_AUDIT_COMPLETION
+          - CREATE_BIN_AUDIT
+          - RELEASE_PENDING_ITEMS
+          - ALLOCATE
+          - DEALLOCATE
+          - FULFILL
+          - DELETE
+          type: string
+      title: Job Queue Response
+      type: object
+  requestBodies:
+    AdjustFutureDateRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AdjustFutureDateRequest'
+      description: Request for adjusting the future date
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

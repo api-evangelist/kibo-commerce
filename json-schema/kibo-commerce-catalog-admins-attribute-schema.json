@@ -1,0 +1,433 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-catalog-admins-attribute-schema.json",
+  "title": "CatalogAdminsAttribute",
+  "description": "Attribute",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/CatalogAdminsAttribute",
+  "properties": {
+    "adminName": {
+      "description": "Name of the product displayed in the admin, This field does not need to be unqiue, but is required. It can include spaces...and is limited to a length of 50.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "attributeCode": {
+      "description": "Unique identifier of the Attribute. Must be unique within a namespace and cannot be changed once the attribute is created. This value will be generated and match the attribute\nsequence if not provided on create.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "attributeDataTypeSequence": {
+      "description": "Read only System generated monotonically increasing unique sequence for each attribute,DataType created (this is used to optimize indexed field names in search).",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "attributeFQN": {
+      "description": "Attribute fully qualified name, Read only value that combines namespace and attribute code as NameSpace~AttributeCode",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "attributeMetadata": {
+      "description": "Attribute Metadata. This list can contain opaque data (key value pairs) that can be used as a property bag for UI concerns.",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsAttributeMetadataItem"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "attributeSequence": {
+      "description": "Read only System generated monotonically increasing unique sequence for each attribute created.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "availableForOrderRouting": {
+      "description": "Specifies if this attribute is available for order routing",
+      "type": "boolean"
+    },
+    "availableInRules": {
+      "description": "Specifies if this attribute is available for use when building rules (e.g. Product rules, Shipment\nrules, category expressions). Purely descriptive metadata: it does not gate or validate\nrule-criteria authoring in any way.\nOmitting this property means \"leave unchanged\" on update: the stored value is preserved.\nOn create an omitted value is persisted as an explicit false.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "content": {
+      "$ref": "#/$defs/CatalogAdminsAttributeLocalizedContent"
+    },
+    "dataType": {
+      "description": "The DataType of the attribute.  Must be a valid value for DataType defined in DataTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create",
+      "maxLength": 20,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "inputType": {
+      "description": "The InputType type of the attribute. Must be a valid value for InputType defined in InputTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create",
+      "maxLength": 20,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isExtra": {
+      "description": "Specifies if this attribute can have a usage type of Extra in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isOption": {
+      "description": "Specifies if this attribute can have a usage type of Option in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isProperty": {
+      "description": "Specifies if this attribute can have a usage type of Property in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isValueMappingAttribute": {
+      "description": "Specifies if this attribute can can be used to generalize values of another attribute",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "localizedContent": {
+      "description": "The Content of an attribute. This content is always in the default language of the MasterCatalog.",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsAttributeLocalizedContent"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "masterCatalogId": {
+      "description": "Indentifier of the master that this attribute is a member of. System-supplied and read-only. Attributes will be created in the MasterCatalog of the supplied context.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "namespace": {
+      "description": "NameSpace, each application creating attributes will have a uniqe namespace to avoid name (Code) collisions. The namespace provided must be a valid registered\nnamespace. If no namespace is specified it is assumed to be the namespace of the Tenant.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "searchSettings": {
+      "$ref": "#/$defs/AttributeSearchSettings"
+    },
+    "validation": {
+      "$ref": "#/$defs/CatalogAdminsAttributeValidation"
+    },
+    "valueMappingAttributeFQN": {
+      "description": "Attribute fully qualified name of a corresponding value mapping atribuite",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "valueType": {
+      "description": "The ValueType of the attribute.  Must be a valid value for ValueType defined in ValueTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create",
+      "maxLength": 20,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "vocabularyValues": {
+      "description": "The list of Values for this attribute. Only available for ValueType:PredefinedVocabulary",
+      "items": {
+        "$ref": "#/$defs/CatalogAdminsAttributeVocabularyValue"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AttributeSearchSettings": {
+      "description": "Attribute Search Settings. A container for all of the search and indexing settings of an Attribute",
+      "properties": {
+        "allowFilteringAndSortingInStorefront": {
+          "description": "Indicates whether the attribute should be able to be used in filters, facets, and sorting on the public storefront.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "customWeightInStorefrontSearch": {
+          "description": "Indicates whether the attribute is indevidually stored as a tokenized field in search for custom term search weight",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "indexValueWithCase": {
+          "description": "Indicates whether the attribute value is case sensative for filtering and faceting. This applies to Text Admin entered attributes. \nA null value means it is not case sensative",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "searchDisplayValue": {
+          "description": "If true, the system will index the display value of string attributes instead of the canonical value for searching. \nThe canonical value will always be used for filtering. Does not apply for for non-string attributes.",
+          "type": "boolean"
+        },
+        "searchableInAdmin": {
+          "description": "Indicates whether the attribute value should be searchable in the merchant catalog admin.",
+          "type": "boolean"
+        },
+        "searchableInStorefront": {
+          "description": "Indicates whether the attribute value should be searchable on the public storefront.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AttributeVocabularyValueLocalizedContent": {
+      "description": "Attribute Value Localized Resource",
+      "properties": {
+        "localeCode": {
+          "description": "Language used for the string attribute value. Currently, only en_US is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stringValue": {
+          "description": "Localized Value in the language of the locale code",
+          "minLength": 1,
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsAttributeLocalizedContent": {
+      "description": "Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display an attribute in multiple languages yet manage it as a single attribute internally.",
+      "properties": {
+        "description": {
+          "description": "Description of the attribute in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "localeCode": {
+          "description": "Language used for the attribute name and description. Currently, only en_US is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Name of the attribute in the language specified by LocaleCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsAttributeMetadataItem": {
+      "description": "Attribute Metadata Item.  It can be utilized for storing abitrary key/value pairs of data related to an attribute.",
+      "properties": {
+        "key": {
+          "description": "The key",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "The value",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsAttributeValidation": {
+      "description": "Used to validate attributes.",
+      "properties": {
+        "maxDateValue": {
+          "description": "For validating a DateTime attribute value, maximum datetime allowed.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maxNumericValue": {
+          "description": "For validating Number attribute value, maximum number allowed.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maxStringLength": {
+          "description": "For validating strings, maximum length allowed for a string.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minDateValue": {
+          "description": "For validating a DateTime attribute value, minimum datetime allowed.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "minNumericValue": {
+          "description": "For validating Number attribute value, minimum number allowed.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minStringLength": {
+          "description": "For validating strings, minimum length allowed for a string.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "regularExpression": {
+          "description": "Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsAttributeVocabularyValue": {
+      "description": "Value of an attribute",
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+        },
+        "displayOrder": {
+          "description": "The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "localizedContent": {
+          "description": "The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.",
+          "items": {
+            "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "mappedGenericValues": {
+          "description": "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time.",
+          "items": {},
+          "maxItems": 200,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "productName": {
+          "description": "The ProductName when the Attribute DataType is ProductCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed.",
+          "maxLength": 50,
+          "nullable": false,
+          "pattern": "^[A-Za-z0-9-_\\.()]*[A-Za-z0-9-_()]"
+        },
+        "valueSequence": {
+          "description": "Read only System generated monotonically increasing unique sequence.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

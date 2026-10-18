@@ -1,0 +1,380 @@
+{
+  "components": {
+    "schemas": {
+      "History": {
+        "properties": {
+          "action": {
+            "nullable": true,
+            "type": "string"
+          },
+          "appKey": {
+            "nullable": true,
+            "type": "string"
+          },
+          "correlationId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "entityId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "entityType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "initiatingAppId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ipAddress": {
+            "nullable": true,
+            "type": "string"
+          },
+          "objectName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "siteId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "tenantId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "timestamp": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "userId": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "HistoryCollection": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/History"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "OpenAPI Spec for Kibo Audit Logs Web API",
+    "title": "Audit Logs Web"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/history/{rightHistoryId}/{leftHistoryId}/download": {
+      "get": {
+        "description": "Downloads the entities as a ZIP file by their history IDs.",
+        "parameters": [
+          {
+            "description": "The ID of the right history record.",
+            "in": "path",
+            "name": "rightHistoryId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The ID of the left history record.",
+            "in": "path",
+            "name": "leftHistoryId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Download Histories",
+        "tags": [
+          "History"
+        ]
+      }
+    },
+    "/history/{historyId}/download": {
+      "get": {
+        "description": "Downloads the entity as a JSON file by its history ID.",
+        "parameters": [
+          {
+            "description": "The ID of the history record.",
+            "in": "path",
+            "name": "historyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Download History",
+        "tags": [
+          "History"
+        ]
+      }
+    },
+    "/history": {
+      "get": {
+        "description": "Retrieves a collection of history records with optional paging parameters. Paging parameters include startIndex, pageSize, sortBy, filter, q, and qLimit.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "StartIndex",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "PageSize",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "SortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "Filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "Q",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "QLimit",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoryCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get History",
+        "tags": [
+          "History"
+        ]
+      }
+    },
+    "/history/{historyId}": {
+      "get": {
+        "description": "Retrieves a history record by its ID.",
+        "parameters": [
+          {
+            "description": "The ID of the history record.",
+            "in": "path",
+            "name": "historyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/History"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/History"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/History"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get History by ID",
+        "tags": [
+          "History"
+        ]
+      }
+    },
+    "/history/{historyId}/diff": {
+      "get": {
+        "description": "Retrieves diff for history by ID or entity type. Retrieves the modified file(s) of given history compared to the previous. version of entity",
+        "parameters": [
+          {
+            "description": "History Id",
+            "in": "path",
+            "name": "historyId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              },
+              "text/json": {
+                "schema": {}
+              },
+              "text/plain": {
+                "schema": {}
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get History Diff",
+        "tags": [
+          "History"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
+    }
+  ]
+}

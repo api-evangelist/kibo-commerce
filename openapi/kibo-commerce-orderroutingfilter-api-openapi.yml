@@ -1,0 +1,1177 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Filter API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingFilter across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: Classic UI API - Configure routing filters
+  name: OrderRoutingFilter
+paths:
+  /commerce/orders/orderrouting/api/v1/filter/delete/{filterID}:
+    delete:
+      description: Deletes a filter
+      parameters:
+      - in: path
+        name: filterID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Delete Filter
+      tags:
+      - OrderRoutingFilter
+      operationId: deleteCommerceOrdersOrderroutingApiV1FilterDeleteByFilterID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/filter/{filterID}:
+    get:
+      description: Retrieves a filter by ID.
+      parameters:
+      - in: path
+        name: filterID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filter
+      tags:
+      - OrderRoutingFilter
+      operationId: getCommerceOrdersOrderroutingApiV1FilterByFilterID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/filter/criteriaSet:
+    post:
+      description: Saves a criteria set filter.
+      parameters:
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationCriteriaSetFilter'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Save Criteria Set Filter
+      tags:
+      - OrderRoutingFilter
+      operationId: postCommerceOrdersOrderroutingApiV1FilterCriteriaSet
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/filter/customDataListFilter:
+    post:
+      description: Saves a custom data list filter.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataListFilter'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Save Custom Data List Filter
+      tags:
+      - OrderRoutingFilter
+      operationId: postCommerceOrdersOrderroutingApiV1FilterCustomDataListFilter
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/filter/customDataValueFilter:
+    post:
+      description: Saves a custom data value filter.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomDataValueFilter'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Save Custom Data Value Filter
+      tags:
+      - OrderRoutingFilter
+      operationId: postCommerceOrdersOrderroutingApiV1FilterCustomDataValueFilter
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/filter/testcriteria:
+    get:
+      description: Tests a filter.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Test Filter
+      tags:
+      - OrderRoutingFilter
+      operationId: getCommerceOrdersOrderroutingApiV1FilterTestcriteria
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/filter/testset:
+    get:
+      description: Tests a set filter.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AbstractFilter'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Test Set Filter
+      tags:
+      - OrderRoutingFilter
+      operationId: getCommerceOrdersOrderroutingApiV1FilterTestset
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    LocationCriteriaSet:
+      properties:
+        columnDefinitions:
+          items:
+            $ref: '#/components/schemas/LocationCriteriaSetDataDefinition'
+          type: array
+          uniqueItems: true
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        fileName:
+          maxLength: 255
+          minLength: 1
+          type: string
+        locationCriteriaSetID:
+          format: int32
+          type: integer
+        locationCriteriaSetMap:
+          $ref: '#/components/schemas/SetMultimapIntegerLocationCriteriaSetRow'
+        locationCriteriaSetRows:
+          $ref: '#/components/schemas/SetMultimapIntegerLocationCriteriaSetRow'
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        readyState:
+          enum:
+          - dataset.ready
+          - dataset.processing
+          - dataset.error.processing
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - environmentID
+      - fileName
+      - siteID
+      - tenantID
+      type: object
+    CustomDataListFilter:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        customDataListID:
+          format: int32
+          type: integer
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterUnit:
+          properties:
+            dimension:
+              type: object
+            standardUnit:
+              properties:
+                dimension:
+                  type: object
+              type: object
+          type: object
+        inventoryBasedFilter:
+          type: boolean
+        itemBasedFilter:
+          type: boolean
+        locationBasedFilter:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        orderLocationFilterEqualToLocationOrInventoryFilter:
+          type: boolean
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - booleanOperator
+      - dotDelimitedPropertyName
+      - environmentID
+      - name
+      - siteID
+      - tenantID
+      type: object
+    CustomDataValueFilter:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        customDataValue:
+          $ref: '#/components/schemas/CustomDataValueObject'
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterUnit:
+          properties:
+            dimension:
+              type: object
+            standardUnit:
+              properties:
+                dimension:
+                  type: object
+              type: object
+          type: object
+        inventoryBasedFilter:
+          type: boolean
+        itemBasedFilter:
+          type: boolean
+        locationBasedFilter:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        orderLocationFilterEqualToLocationOrInventoryFilter:
+          type: boolean
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - booleanOperator
+      - dotDelimitedPropertyName
+      - environmentID
+      - name
+      - siteID
+      - tenantID
+      type: object
+    TenantClient:
+      type: object
+    SetMultimapIntegerLocationCriteriaSetRow:
+      properties:
+        empty:
+          type: boolean
+      type: object
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    SiteService:
+      type: object
+    LocationCriteriaSetFilter:
+      properties:
+        acceptNulls:
+          type: boolean
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        definitions:
+          items:
+            $ref: '#/components/schemas/LocationCriteriaSetDataDefinition'
+          type: array
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterUnit:
+          properties:
+            dimension:
+              type: object
+            standardUnit:
+              properties:
+                dimension:
+                  type: object
+              type: object
+          type: object
+        inventoryBasedFilter:
+          type: boolean
+        itemBasedFilter:
+          type: boolean
+        locationBasedFilter:
+          type: boolean
+        locationCriteriaSet:
+          $ref: '#/components/schemas/LocationCriteriaSet'
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        orderLocationFilterEqualToLocationOrInventoryFilter:
+          type: boolean
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - booleanOperator
+      - dotDelimitedPropertyName
+      - environmentID
+      - name
+      - siteID
+      - tenantID
+      type: object
+    AbstractFilter:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterUnit:
+          properties:
+            dimension:
+              type: object
+            standardUnit:
+              properties:
+                dimension:
+                  type: object
+              type: object
+          type: object
+        inventoryBasedFilter:
+          type: boolean
+        itemBasedFilter:
+          type: boolean
+        locationBasedFilter:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        orderLocationFilterEqualToLocationOrInventoryFilter:
+          type: boolean
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - booleanOperator
+      - dotDelimitedPropertyName
+      - environmentID
+      - name
+      - siteID
+      - tenantID
+      type: object
+    TenantAttributesCache:
+      properties:
+        underlyingCache:
+          $ref: '#/components/schemas/CacheStringBoolean'
+      type: object
+    TenantService:
+      properties:
+        tenantAttributesCache:
+          $ref: '#/components/schemas/TenantAttributesCache'
+        tenantClient:
+          $ref: '#/components/schemas/TenantClient'
+      type: object
+    SuggestionEventListener:
+      type: object
+    CustomDataValueObject:
+      properties:
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customDataValueID:
+          format: int32
+          type: integer
+        environmentID:
+          format: int32
+          type: integer
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        stringValue:
+          type: string
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+        value:
+          type: object
+      required:
+      - environmentID
+      - name
+      - siteID
+      - stringValue
+      - tenantID
+      type: object
+    UserContextInformation:
+      properties:
+        environmentID:
+          format: int32
+          type: integer
+        loaded:
+          type: boolean
+        pathString:
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        siteService:
+          $ref: '#/components/schemas/SiteService'
+        tenantID:
+          format: int32
+          type: integer
+        tenantService:
+          $ref: '#/components/schemas/TenantService'
+      type: object
+    LocationCriteriaSetDataDefinition:
+      properties:
+        columnName:
+          type: string
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        dataDefinitionID:
+          format: int32
+          type: integer
+        dataUnitString:
+          type: string
+        defaultValue:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        filterable:
+          type: boolean
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        sortable:
+          type: boolean
+        tenantID:
+          format: int32
+          type: integer
+        unit:
+          properties:
+            dimension:
+              type: object
+            standardUnit:
+              properties:
+                dimension:
+                  type: object
+              type: object
+          type: object
+        unitType:
+          enum:
+          - unit.type.currency
+          - unit.type.distance
+          - unit.type.length
+          - unit.type.volume
+          - unit.type.area
+          - unit.type.weight
+          - unit.type.dimensionless
+          type: string
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - columnName
+      - environmentID
+      - siteID
+      - tenantID
+      type: object
+    CacheStringBoolean:
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

@@ -1,0 +1,282 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Job API
+  version: '1.0'
+  description: 'Operations tagged InventoryJob across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryJob
+paths:
+  /commerce/inventory/v1/deleteOldInventory/allSilo/{months}:
+    delete:
+      description: Deletes older records from inventory table of all silos
+      parameters:
+      - description: The x months before which we want the records to get deleted
+        in: path
+        name: months
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JobIDResponse'
+                type: array
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete All Old Inventory
+      tags:
+      - InventoryJob
+      operationId: deleteCommerceInventoryV1DeleteOldInventoryAllSiloByMonths
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/deleteOldInventory/{months}:
+    delete:
+      description: Deletes older records from inventory table
+      parameters:
+      - description: The x months before which we want the records to get deleted
+        in: path
+        name: months
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobIDResponse'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Delete Old Inventory
+      tags:
+      - InventoryJob
+      operationId: deleteCommerceInventoryV1DeleteOldInventoryByMonths
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/queue/{jobID}:
+    get:
+      description: Get the specified inventory job. Use this call to monitor the status of inventory upload, refresh, adjust, or deletion jobs. Once you have a job ID — returned by endpoints such as Delete Inventory, Delete Items, Refresh Inventory, or Adjust Inventory — continue polling this endpoint until the job reaches a terminal status (`SUCCESS` or `FAILED`). For polling patterns and monitoring guidance during bulk inventory deletions, see the Bulk Inventory Deletion guide.
+      parameters:
+      - description: Id of bin to get
+        in: path
+        name: jobID
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobQueueResponse'
+          description: Success
+        '404':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                  message:
+                    type: string
+                type: object
+          description: Job Not Found
+      summary: Get Job
+      tags:
+      - InventoryJob
+      operationId: getCommerceInventoryV1QueueByJobID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/queue:
+    get:
+      description: Get the requested jobs.
+      parameters:
+      - description: Tenant specified unique Identifier of the owning location
+        in: query
+        name: locationCode
+        required: false
+        schema:
+          type: string
+      - description: The maximum number of results to return, defaults to 100 for most
+        in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+      - description: User that owns the job
+        in: query
+        name: owner
+        required: false
+        schema:
+          type: string
+      - description: Type of the Job Queue Request
+        in: query
+        name: types
+        required: false
+        schema:
+          items:
+            enum:
+            - REFRESH
+            - ADJUST
+            - RELEASE_SHIPMENTS
+            - CREATE_PICK_WAVE
+            - CLOSE_PICK_WAVE
+            - PUT_AWAY_FILE
+            - SHORT_PICK_ERROR
+            - BIN_AUDIT_START
+            - BIN_AUDIT_COMPLETION
+            - CREATE_BIN_AUDIT
+            - RELEASE_PENDING_ITEMS
+            type: string
+          type: array
+      - description: The full name of the file that was picked up at the secure droppoint server before being split up by location.
+        in: query
+        name: originalFilename
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JobQueueResponse'
+                type: array
+          description: Success
+        '404':
+          description: Job Not Found
+      summary: Get Jobs
+      tags:
+      - InventoryJob
+      operationId: getCommerceInventoryV1Queue
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    JobIDResponse:
+      description: Job ID Response
+      properties:
+        jobID:
+          description: Job ID
+          type: integer
+      title: Job ID Response
+      type: object
+    JobQueueResponse:
+      description: Response for getting a job
+      properties:
+        added:
+          description: Time and date the job was added to the queue in ISO8601 format in UTC
+          type: string
+        finished:
+          description: Time and date the job was finished in ISO8601 format in UTC
+          type: string
+        hasData:
+          description: True if the job was not created from a fetched file
+          type: boolean
+        itemCount:
+          description: The number of items processed, only for job types REFRESH and ADJUST
+          type: integer
+        jobID:
+          description: Internal identifier that uniquely identifies a single job
+          type: integer
+        locationCode:
+          description: Unique internal Identifier of the owning location
+          type: string
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        originalFilename:
+          description: The full name of the file that was picked up at the secure droppoint server before being split up by location. Applies only to refresh and adjust jobs created via file fetch process
+          type: string
+        started:
+          description: Time and date the job was started in ISO8601 format in UTC
+          type: string
+        status:
+          description: Current status of job completion
+          enum:
+          - PENDING
+          - WORKING
+          - SUCCESS
+          - FAILED
+          type: string
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Unique internal identifier of the tenant that owns the job
+          type: integer
+        type:
+          description: Purpose of the job
+          enum:
+          - REFRESH
+          - ADJUST
+          - RELEASE_SHIPMENTS
+          - CREATE_PICK_WAVE
+          - CLOSE_PICK_WAVE
+          - PUT_AWAY_FILE
+          - SHORT_PICK_ERROR
+          - BIN_AUDIT_START
+          - BIN_AUDIT_COMPLETION
+          - CREATE_BIN_AUDIT
+          - RELEASE_PENDING_ITEMS
+          - ALLOCATE
+          - DEALLOCATE
+          - FULFILL
+          - DELETE
+          type: string
+      title: Job Queue Response
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

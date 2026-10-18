@@ -1,0 +1,1460 @@
+{
+  "components": {
+    "schemas": {
+      "Address": {
+        "properties": {
+          "address1": {
+            "nullable": true,
+            "type": "string"
+          },
+          "address2": {
+            "nullable": true,
+            "type": "string"
+          },
+          "address3": {
+            "nullable": true,
+            "type": "string"
+          },
+          "address4": {
+            "nullable": true,
+            "type": "string"
+          },
+          "addressType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "cityOrTown": {
+            "nullable": true,
+            "type": "string"
+          },
+          "countryCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isValidated": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "postalOrZipCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "stateOrProvince": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ApiContractsAuditInfo": {
+        "properties": {
+          "createBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeEntityConfig": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/CoreAuditInfo"
+          },
+          "editable": {
+            "type": "boolean"
+          },
+          "entityType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeInheritanceRule": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/CoreAuditInfo"
+          },
+          "id": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "inheritanceMode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "sourceEntityType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "targetEntityType": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeLocalizedContent": {
+        "properties": {
+          "localeCode": {
+            "maxLength": 8,
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "maxLength": 100,
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeMetadataItem": {
+        "properties": {
+          "key": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "value": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "key",
+          "value"
+        ],
+        "type": "object"
+      },
+      "AttributeValidation": {
+        "properties": {
+          "maxDateTime": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "maxNumericValue": {
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "maxStringLength": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "minDateTime": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "minNumericValue": {
+            "format": "double",
+            "nullable": true,
+            "type": "number"
+          },
+          "minStringLength": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "regularExpression": {
+            "maxLength": 200,
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "AttributeValueLocalizedContent": {
+        "properties": {
+          "localeCode": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "value": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "localeCode",
+          "value"
+        ],
+        "type": "object"
+      },
+      "AttributeVocabularyValue": {
+        "properties": {
+          "content": {
+            "$ref": "#/components/schemas/AttributeValueLocalizedContent"
+          },
+          "isHidden": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "sequence": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "value": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "value"
+        ],
+        "type": "object"
+      },
+      "Capacity": {
+        "properties": {
+          "shipmentsPerUnit": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "unitOfMeasure": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CommerceRuntimeAddress": {
+        "properties": {
+          "countryCode": {
+            "pattern": "^[A-Z]{2}$"
+          }
+        }
+      },
+      "CommerceRuntimeAttribute": {
+        "properties": {
+          "availableForOrderRouting": {
+            "nullable": false
+          }
+        }
+      },
+      "Coordinates": {
+        "properties": {
+          "lat": {
+            "format": "double",
+            "nullable": false,
+            "type": "number"
+          },
+          "lng": {
+            "format": "double",
+            "nullable": false,
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "CoreAuditInfo": {
+        "properties": {
+          "createBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CutoffHours": {
+        "properties": {
+          "endTime": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isClosed": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "startTime": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CutoffSchedule": {
+        "properties": {
+          "fulfillmentType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "times": {
+            "$ref": "#/components/schemas/WeeklyCutoffHours"
+          }
+        },
+        "type": "object"
+      },
+      "CutoffTimes": {
+        "properties": {
+          "schedules": {
+            "items": {
+              "$ref": "#/components/schemas/CutoffSchedule"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "timeZone": {
+            "$ref": "#/components/schemas/TimeZone"
+          }
+        },
+        "type": "object"
+      },
+      "DropShip": {
+        "properties": {
+          "vendorCode": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "FulfillmentProcessingTime": {
+        "properties": {
+          "fulfillmentTypeCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "unit": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "FulfillmentType": {
+        "properties": {
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Hours": {
+        "properties": {
+          "closeTime": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isClosed": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "label": {
+            "nullable": true,
+            "type": "string"
+          },
+          "openTime": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Location": {
+        "properties": {
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "allowFulfillmentWithNoStock": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "attributes": {
+            "items": {
+              "$ref": "#/components/schemas/LocationAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/ApiContractsAuditInfo"
+          },
+          "capacity": {
+            "$ref": "#/components/schemas/Capacity"
+          },
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "cutoffTimes": {
+            "$ref": "#/components/schemas/CutoffTimes"
+          },
+          "deliveryConsolidation": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "description": {
+            "nullable": true,
+            "type": "string"
+          },
+          "dropShip": {
+            "$ref": "#/components/schemas/DropShip"
+          },
+          "express": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "fax": {
+            "nullable": true,
+            "type": "string"
+          },
+          "fulfillmentTypes": {
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentType"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "geo": {
+            "$ref": "#/components/schemas/Coordinates"
+          },
+          "includeInInventoryAggregrate": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "includeInLocationExport": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "isDisabled": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "locationTypes": {
+            "items": {
+              "$ref": "#/components/schemas/LocationType"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "note": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phone": {
+            "nullable": true,
+            "type": "string"
+          },
+          "processingTimes": {
+            "$ref": "#/components/schemas/ProcessingTimes"
+          },
+          "regularHours": {
+            "$ref": "#/components/schemas/RegularHours"
+          },
+          "requiresManifest": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "shipToHomeConsolidation": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "shippingOriginContact": {
+            "$ref": "#/components/schemas/ShippingOriginContact"
+          },
+          "slaConfigurations": {
+            "items": {
+              "$ref": "#/components/schemas/SlaConfiguration"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "supportsInventory": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "transferEnabled": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "warehouseEnabled": {
+            "nullable": false,
+            "type": "boolean"
+          }
+        },
+        "type": "object"
+      },
+      "LocationAttribute": {
+        "properties": {
+          "attributeDefinition": {
+            "$ref": "#/components/schemas/LocationStorefrontAttribute"
+          },
+          "attributeDefinitionId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/ApiContractsAuditInfo"
+          },
+          "fullyQualifiedName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "values": {
+            "items": {},
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "LocationCollection": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Location"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "LocationStorefrontAttribute": {
+        "properties": {
+          "adminName": {
+            "maxLength": 50,
+            "nullable": true,
+            "type": "string"
+          },
+          "attributeCode": {
+            "maxLength": 50,
+            "minLength": 1,
+            "type": "string"
+          },
+          "attributeFQN": {
+            "nullable": true,
+            "type": "string"
+          },
+          "attributeMetadata": {
+            "items": {
+              "$ref": "#/components/schemas/AttributeMetadataItem"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/ApiContractsAuditInfo"
+          },
+          "availableForDiscounts": {
+            "type": "boolean"
+          },
+          "availableForOrderRouting": {
+            "type": "boolean"
+          },
+          "availableInRules": {
+            "type": "boolean"
+          },
+          "content": {
+            "$ref": "#/components/schemas/AttributeLocalizedContent"
+          },
+          "dataType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "displayGroup": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "entityConfigs": {
+            "items": {
+              "$ref": "#/components/schemas/AttributeEntityConfig"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "id": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "inheritanceRules": {
+            "items": {
+              "$ref": "#/components/schemas/AttributeInheritanceRule"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "inputType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isActive": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isMultiValued": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isReadOnly": {
+            "type": "boolean"
+          },
+          "isRequired": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isVisible": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "namespace": {
+            "maxLength": 200,
+            "nullable": true,
+            "type": "string"
+          },
+          "order": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "validation": {
+            "$ref": "#/components/schemas/AttributeValidation"
+          },
+          "valueType": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "vocabularyValues": {
+            "items": {
+              "$ref": "#/components/schemas/AttributeVocabularyValue"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "required": [
+          "attributeCode",
+          "displayGroup",
+          "valueType"
+        ],
+        "type": "object"
+      },
+      "LocationTimeZone": {
+        "properties": {
+          "isDaylightSavingsTime": {
+            "nullable": false
+          },
+          "offset": {
+            "nullable": false
+          }
+        }
+      },
+      "LocationType": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/ApiContractsAuditInfo"
+          },
+          "code": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ProcessingTimes": {
+        "properties": {
+          "fulfillment": {
+            "items": {
+              "$ref": "#/components/schemas/FulfillmentProcessingTime"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "receive": {
+            "$ref": "#/components/schemas/ReceiveProcessingTime"
+          }
+        },
+        "type": "object"
+      },
+      "ReceiveProcessingTime": {
+        "properties": {
+          "unit": {
+            "nullable": true,
+            "type": "string"
+          },
+          "value": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "RegularHours": {
+        "properties": {
+          "friday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "monday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "saturday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "sunday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "thursday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "timeZone": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tuesday": {
+            "$ref": "#/components/schemas/Hours"
+          },
+          "wednesday": {
+            "$ref": "#/components/schemas/Hours"
+          }
+        },
+        "type": "object"
+      },
+      "ShippingOriginContact": {
+        "properties": {
+          "companyOrOrganization": {
+            "nullable": true,
+            "type": "string"
+          },
+          "email": {
+            "nullable": true,
+            "type": "string"
+          },
+          "firstName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "lastNameOrSurname": {
+            "nullable": true,
+            "type": "string"
+          },
+          "middleNameOrInitial": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "SlaConfiguration": {
+        "properties": {
+          "isEnabled": {
+            "nullable": false,
+            "type": "boolean"
+          },
+          "slaId": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          },
+          "targetServiceLevelPercentage": {
+            "format": "int32",
+            "nullable": false,
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TimeZone": {
+        "properties": {
+          "ianaCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isDaylightSavingsTime": {
+            "type": "boolean"
+          },
+          "offset": {
+            "format": "double",
+            "type": "number"
+          }
+        },
+        "type": "object"
+      },
+      "WeeklyCutoffHours": {
+        "properties": {
+          "friday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "monday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "saturday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "sunday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "thursday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "tuesday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          },
+          "wednesday": {
+            "$ref": "#/components/schemas/CutoffHours"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "<div id=\"overview_LOCATION_STOREFRONT\">\n            <h2>LOCATION STOREFRONT</h2>\n            <p>The Location API for the storefront simply allows information about the individual fulfillment locations to be queried at the\n                storefront. These are not administrative calls for managing location records and groups - they are a set of GET\n                requests for retrieving location data.</p>\n            <p>To create and update (or perform other management actions) location records, see the Location Administration API service instead.</p>\n        </div>",
+    "title": "Location Storefront"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/commerce/storefront/locationUsageTypes/CS/location": {
+      "get": {
+        "description": "Get the Curbside Location for the Site. If the location is not associated with a location type configured for the delivery location usage type (CS), the operation returns an error.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Curbside Location",
+        "tags": [
+          "Location"
+        ]
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/DL/location": {
+      "get": {
+        "description": "Gets a specific Delivery Location for the site. If the location is not associated with a location type configured for the delivery location usage type (DL), the operation returns an error.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Delivery Location",
+        "tags": [
+          "Location"
+        ]
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/DL/locations": {
+      "get": {
+        "description": "Gets the delivery Locations for the site",
+        "parameters": [
+          {
+            "description": "",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 100,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include the location attributes associated definition",
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Delivery Locations",
+        "tags": [
+          "Location"
+        ]
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/DS/location": {
+      "get": {
+        "description": "Get the Direct Ship Location for the Site. This location acts as an origin address from which order packages will ship, as well as the location where product reservations are created when order items are submitted with the direct ship fulfillment type (DS). If the direct ship location usage type is not configured for this site, the operation returns an error.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Direct Ship Location",
+        "tags": [
+          "Location"
+        ]
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/SP/locations/{locationCode}": {
+      "get": {
+        "description": "Get a specific in store pickup Location for the Site. If the location is not associated with a location type configured for the in-store pickup location usage type (SP), the operation returns an error.",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "locationCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include the location attributes associated definition",
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get In Store Pickup Location",
+        "tags": [
+          "Location"
+        ]
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/SP/locations": {
+      "get": {
+        "description": "Gets the in store pickup Locations for the site. For example, an application could use this operation to provide a store finder feature based on the shopper's GPS coordinates.",
+        "parameters": [
+          {
+            "description": "",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 100,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include the location attributes associated definition",
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get In Store Pickup Locations",
+        "tags": [
+          "Location"
+        ]
+      }
+    },
+    "/commerce/storefront/locations/{locationCode}": {
+      "get": {
+        "description": "Get a Location by locationCode.",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "locationCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include the location attributes associated definition",
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Location"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Location",
+        "tags": [
+          "Location"
+        ]
+      }
+    },
+    "/commerce/storefront/locationUsageTypes/{locationUsageType}/locations": {
+      "get": {
+        "description": "Get the Locations for the Site associated with the locationUsageType.",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "locationUsageType",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 100,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Include the location attributes associated definition",
+            "in": "query",
+            "name": "includeAttributeDefinition",
+            "schema": {
+              "default": false,
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocationCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Locations In Usage Type",
+        "tags": [
+          "Location"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,635 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Extras API
+  version: '1.0'
+  description: 'Operations tagged ProductExtras across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductExtras
+paths:
+  /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice:
+    get:
+      description: Get extra value localized delta price. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+                type: array
+          description: OK
+      summary: Get Extra Localized Delta Price
+      tags:
+      - ProductExtras
+      operationId: getCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQNValuesByValueLocalizedDeltaPrice
+      x-operation-id-source: derived
+    post:
+      description: Add a extra value localized delta price. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+          description: OK
+      summary: Add Extra Localized Delta Price
+      tags:
+      - ProductExtras
+      operationId: postCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQNValuesByValueLocalizedDeltaPrice
+      x-operation-id-source: derived
+    put:
+      description: Update extra value localized delta price. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+                type: array
+          description: OK
+      summary: Update Extra Localized Delta Price
+      tags:
+      - ProductExtras
+      operationId: putCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQNValuesByValueLocalizedDeltaPrice
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}/Values/{value}/localizedDeltaPrice/{currencyCode}:
+    delete:
+      description: Delete extra value localized delta price.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Extra Localized Delta Price
+      tags:
+      - ProductExtras
+      operationId: deleteCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQNValuesByValueLocalizedDeltaPriceByCurrencyCode
+      x-operation-id-source: derived
+    get:
+      description: Get extra value localized delta price. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+          description: OK
+      summary: Get Extra Localized Delta Price by Currency
+      tags:
+      - ProductExtras
+      operationId: getCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQNValuesByValueLocalizedDeltaPriceByCurrencyCode
+      x-operation-id-source: derived
+    put:
+      description: Update extra value localized delta price. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+          description: OK
+      summary: Update Extra Localized Delta Price by Currency
+      tags:
+      - ProductExtras
+      operationId: putCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQNValuesByValueLocalizedDeltaPriceByCurrencyCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/Extras/{attributeFQN}:
+    delete:
+      description: Delete extra
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Extra
+      tags:
+      - ProductExtras
+      operationId: deleteCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Get individual extra. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+          description: OK
+      summary: Get Product Extra
+      tags:
+      - ProductExtras
+      operationId: getCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Update extra. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductExtra'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+          description: OK
+      summary: Update Product Extra
+      tags:
+      - ProductExtras
+      operationId: putCommerceCatalogAdminProductsByProductCodeExtrasByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/Extras:
+    get:
+      description: Get extras for the product. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtra'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtra'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductExtra'
+                type: array
+          description: OK
+      summary: Get Product Extras
+      tags:
+      - ProductExtras
+      operationId: getCommerceCatalogAdminProductsByProductCodeExtras
+      x-operation-id-source: derived
+    post:
+      description: Add extra. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductExtra'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductExtra'
+          description: OK
+      summary: Add Product Extra
+      tags:
+      - ProductExtras
+      operationId: postCommerceCatalogAdminProductsByProductCodeExtras
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductExtraValueDeltaPrice:
+      description: How much a product option costs above the cost of the base product, if at all.
+      properties:
+        currencyCode:
+          description: Which currency to use.
+          type:
+          - string
+          - 'null'
+        deltaPrice:
+          description: Amount of money saved when discounts are applied.
+          format: double
+          type: number
+      type: object
+    ProductExtraValue:
+      description: A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
+      properties:
+        attributeVocabularyValueDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        deltaPrice:
+          $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+        deltaWeight:
+          format: double
+          type:
+          - number
+          - 'null'
+        isDefaulted:
+          type:
+          - boolean
+          - 'null'
+        localizedDeltaPrice:
+          items:
+            $ref: '#/components/schemas/ProductExtraValueDeltaPrice'
+          type:
+          - array
+          - 'null'
+        quantity:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        value: {}
+      type: object
+    AttributeVocabularyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          minLength: 1
+          type: string
+      type: object
+    CatalogAdminsAttributeVocabularyValue:
+      description: Value of an attribute
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        displayOrder:
+          description: The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        mappedGenericValues:
+          description: "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time."
+          items: {}
+          maxItems: 200
+          type:
+          - array
+          - 'null'
+        productName:
+          description: The ProductName when the Attribute DataType is ProductCode.
+          type:
+          - string
+          - 'null'
+        value:
+          description: "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed."
+          maxLength: 50
+          pattern: ^[A-Za-z0-9-_\.()]*[A-Za-z0-9-_()]
+        valueSequence:
+          description: Read only System generated monotonically increasing unique sequence.
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    ProductExtra:
+      description: "Product options for configurable or stand-alone products. A configurable option is one that the shopper chooses when ordering, for example, \nthe color of a T-shirt. A stand-alone option is independent of the product and can be added to the product order. For example, a monogram."
+      properties:
+        attributeFQN:
+          description: Unique identifier of the Attribute.
+          type:
+          - string
+          - 'null'
+        isMultiSelect:
+          type:
+          - boolean
+          - 'null'
+        isRequired:
+          type:
+          - boolean
+          - 'null'
+        values:
+          items:
+            $ref: '#/components/schemas/ProductExtraValue'
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

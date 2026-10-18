@@ -1,0 +1,1321 @@
+# x-archived-from: kibo-commerce-reservation-openapi.yml
+# x-archived-on: 2026-10-18
+components:
+  schemas:
+    Address:
+      properties:
+        address1:
+          nullable: true
+          type: string
+        address2:
+          nullable: true
+          type: string
+        address3:
+          nullable: true
+          type: string
+        address4:
+          nullable: true
+          type: string
+        addressType:
+          nullable: true
+          type: string
+        cityOrTown:
+          nullable: true
+          type: string
+        countryCode:
+          nullable: true
+          type: string
+        isValidated:
+          nullable: true
+          type: boolean
+        postalOrZipCode:
+          nullable: true
+          type: string
+        stateOrProvince:
+          nullable: true
+          type: string
+      type: object
+    Allocati:
+      properties:
+        allocationHistory:
+          items:
+            $ref: '#/components/schemas/AllocationEve'
+          nullable: true
+          type: array
+        allocationId:
+          format: int32
+          nullable: true
+          type: integer
+        estimatedDeliveryDate:
+          format: date-time
+          nullable: true
+          type: string
+        fulfillmentLocationCode:
+          nullable: true
+          type: string
+        futureDate:
+          format: date-time
+          nullable: true
+          type: string
+        isStateChange:
+          type: boolean
+        itemId:
+          nullable: true
+          type: string
+        productCode:
+          nullable: true
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        transferLocationCode:
+          nullable: true
+          type: string
+      type: object
+    AllocationEve:
+      properties:
+        allocatedAt:
+          format: date-time
+          type: string
+        deltaQuantity:
+          format: int32
+          type: integer
+        runId:
+          nullable: true
+          type: string
+      type: object
+    AllocationStatusDemandEntry:
+      properties:
+        allocationStatus:
+          nullable: true
+          type: string
+        itemCount:
+          format: int32
+          type: integer
+        totalDemand:
+          format: int64
+          type: integer
+      type: object
+    AuditInf:
+      properties:
+        createdAt:
+          format: date-time
+          type: string
+        createdBy:
+          nullable: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        updatedBy:
+          nullable: true
+          type: string
+      type: object
+    BundledProdu:
+      properties:
+        goodsType:
+          nullable: true
+          type: string
+        measurements:
+          $ref: '#/components/schemas/ReservationWebAPIPackageMeasurements'
+        name:
+          nullable: true
+          type: string
+        optionAttributeFQN:
+          nullable: true
+          type: string
+        optionValue:
+          nullable: true
+        productCode:
+          nullable: true
+          type: string
+        quantity:
+          format: int32
+          type: integer
+      type: object
+    CallOffLineConsumpti:
+      properties:
+        consumedAt:
+          format: date-time
+          type: string
+        consumedBy:
+          nullable: true
+          type: string
+        lineId:
+          nullable: true
+          type: string
+        salesOrderId:
+          nullable: true
+          type: string
+        salesOrderNumber:
+          format: int32
+          type: integer
+      type: object
+    Contact:
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+        companyOrOrganization:
+          nullable: true
+          type: string
+        email:
+          nullable: true
+          type: string
+        firstName:
+          nullable: true
+          type: string
+        id:
+          format: int32
+          nullable: true
+          type: integer
+        lastNameOrSurname:
+          nullable: true
+          type: string
+        middleNameOrInitial:
+          nullable: true
+          type: string
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+      type: object
+    CustomerDemandEntry:
+      properties:
+        customerAccountId:
+          format: int32
+          nullable: true
+          type: integer
+        reservationCount:
+          format: int32
+          type: integer
+        totalDemand:
+          format: int64
+          type: integer
+      type: object
+    FulfillmentInf:
+      properties:
+        fulfillmentContact:
+          $ref: '#/components/schemas/Contact'
+        isDestinationCommercial:
+          nullable: true
+          type: boolean
+        itemLevelShippingMethod:
+          nullable: true
+          type: string
+        shippingMethodCode:
+          nullable: true
+          type: string
+        shippingMethodName:
+          nullable: true
+          type: string
+      type: object
+    HttpValidationProblemDetails:
+      properties:
+        detail:
+          nullable: true
+          type: string
+        errors:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          nullable: true
+          type: object
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    InventoryTags:
+      properties:
+        name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    Measurement:
+      properties:
+        unit:
+          nullable: true
+          type: string
+        value:
+          format: double
+          nullable: true
+          type: number
+      type: object
+    OrderReservati:
+      properties:
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInf'
+        orderId:
+          nullable: true
+          type: string
+        orderNumber:
+          format: int32
+          type: integer
+        reservationItems:
+          items:
+            $ref: '#/components/schemas/ReservationItem'
+          nullable: true
+          type: array
+        zipCode:
+          nullable: true
+          type: string
+      type: object
+    Phone:
+      properties:
+        home:
+          nullable: true
+          type: string
+        mobile:
+          nullable: true
+          type: string
+        work:
+          nullable: true
+          type: string
+      type: object
+    ProblemDetails:
+      additionalProperties: {}
+      properties:
+        detail:
+          nullable: true
+          type: string
+        instance:
+          nullable: true
+          type: string
+        status:
+          format: int32
+          nullable: true
+          type: integer
+        title:
+          nullable: true
+          type: string
+        type:
+          nullable: true
+          type: string
+      type: object
+    Produ:
+      properties:
+        bundledProducts:
+          items:
+            $ref: '#/components/schemas/BundledProdu'
+          nullable: true
+          type: array
+        condition:
+          nullable: true
+          type: string
+        goodsType:
+          nullable: true
+          type: string
+        isSplitExtrasInShipment:
+          type: boolean
+        isTaxable:
+          nullable: true
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/ReservationWebAPIPackageMeasurements'
+        mfgPartNumber:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        productCode:
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        productUsage:
+          nullable: true
+          type: string
+        properties:
+          items:
+            $ref: '#/components/schemas/ReservationWebAPIProductProperty'
+          nullable: true
+          type: array
+        serialNumber:
+          nullable: true
+          type: string
+        sku:
+          nullable: true
+          type: string
+        variationProductCode:
+          nullable: true
+          type: string
+      type: object
+    ProductPropertyValue:
+      properties:
+        stringValue:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+      type: object
+    Reservati:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInf'
+        callOffOrderId:
+          nullable: true
+          type: string
+        cartId:
+          nullable: true
+          type: string
+        changeMessages:
+          items:
+            $ref: '#/components/schemas/ReservationWebAPIChangeMessage'
+          nullable: true
+          type: array
+        consumptionHistory:
+          items:
+            $ref: '#/components/schemas/CallOffLineConsumpti'
+          nullable: true
+          type: array
+        customerAccountId:
+          format: int32
+          nullable: true
+          type: integer
+        expirationDateTime:
+          format: date-time
+          nullable: true
+          type: string
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInf'
+        id:
+          nullable: true
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/ReservationItem'
+          nullable: true
+          type: array
+        orderId:
+          nullable: true
+          type: string
+        orderNumber:
+          format: int32
+          nullable: true
+          type: integer
+        reservationType:
+          nullable: true
+          type: string
+        siteId:
+          format: int32
+          nullable: true
+          type: integer
+        status:
+          nullable: true
+          type: string
+        tenantId:
+          format: int32
+          nullable: true
+          type: integer
+        userId:
+          nullable: true
+          type: string
+        zipCode:
+          nullable: true
+          type: string
+      type: object
+    ReservationAggregateSummary:
+      properties:
+        allocatedDemand:
+          format: int64
+          type: integer
+        byAllocationStatus:
+          items:
+            $ref: '#/components/schemas/AllocationStatusDemandEntry'
+          nullable: true
+          type: array
+        byCustomer:
+          items:
+            $ref: '#/components/schemas/CustomerDemandEntry'
+          nullable: true
+          type: array
+        byReservationStatus:
+          items:
+            $ref: '#/components/schemas/ReservationStatusDemandEntry'
+          nullable: true
+          type: array
+        totalDemand:
+          format: int64
+          type: integer
+        unallocatedDemand:
+          format: int64
+          type: integer
+      type: object
+    ReservationCollecti:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Reservati'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ReservationItem:
+      properties:
+        allocationStatus:
+          nullable: true
+          type: string
+        allocations:
+          items:
+            $ref: '#/components/schemas/Allocati'
+          nullable: true
+          type: array
+        allowsBackOrder:
+          type: boolean
+        data:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        fulfillmentInfo:
+          $ref: '#/components/schemas/FulfillmentInf'
+        fulfillmentLocationCode:
+          nullable: true
+          type: string
+        fulfillmentMethod:
+          nullable: true
+          type: string
+        id:
+          nullable: true
+          type: string
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTags'
+          nullable: true
+          type: array
+        lineId:
+          format: int32
+          type: integer
+        orderItemId:
+          nullable: true
+          type: string
+        product:
+          $ref: '#/components/schemas/Produ'
+        quantity:
+          format: int32
+          type: integer
+        requestedShipDate:
+          format: date-time
+          nullable: true
+          type: string
+        shippingMethodCode:
+          nullable: true
+          type: string
+        suggestions:
+          items:
+            $ref: '#/components/schemas/Suggesti'
+          nullable: true
+          type: array
+        timeFenceDays:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    ReservationStatusDemandEntry:
+      properties:
+        reservationCount:
+          format: int32
+          type: integer
+        reservationStatus:
+          nullable: true
+          type: string
+        totalDemand:
+          format: int64
+          type: integer
+      type: object
+    ReservationWebAPIChangeMessage:
+      properties:
+        appKey:
+          nullable: true
+          type: string
+        appName:
+          nullable: true
+          type: string
+        correlationId:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        id:
+          nullable: true
+          type: string
+        identifier:
+          nullable: true
+          type: string
+        message:
+          nullable: true
+          type: string
+        subject:
+          nullable: true
+          type: string
+        subjectType:
+          nullable: true
+          type: string
+        userId:
+          nullable: true
+          type: string
+        verb:
+          nullable: true
+          type: string
+      type: object
+    ReservationWebAPIOrderAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          nullable: true
+          type: integer
+        fullyQualifiedName:
+          nullable: true
+          type: string
+        values:
+          items: {}
+          nullable: true
+          type: array
+      type: object
+    ReservationWebAPIPackageMeasurements:
+      properties:
+        height:
+          $ref: '#/components/schemas/Measurement'
+        length:
+          $ref: '#/components/schemas/Measurement'
+        weight:
+          $ref: '#/components/schemas/Measurement'
+        width:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    ReservationWebAPIProductProperty:
+      properties:
+        attributeFQN:
+          nullable: true
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/ProductPropertyValue'
+          nullable: true
+          type: array
+      type: object
+    Suggesti:
+      properties:
+        futureDate:
+          format: date-time
+          nullable: true
+          type: string
+        locationCode:
+          nullable: true
+          type: string
+        productCode:
+          nullable: true
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        suggestionType:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+info:
+  description: "<div id=\"overview_RESERVATION\">\n            <h2>RESERVATIONS</h2>\n            <p>The Reservation APIs are used to create and manage inventory reservations. This includes updating items and quantities, fulfillment methods, zip codes and pickup locations, and resetting\n                the expiration timer for a reservation. For more information, see the <a href=\"/pages/reserve-inventory-in-cart\">Reservations feature guide</a>.\n            </p>\n        </div>"
+  title: Reservation Web
+openapi: 3.0.1
+paths:
+  /commerce/reservation/{reservationId}/activate:
+    put:
+      description: Activate a reservation. Kibo does not recommend using this API, as it is intended for internal use.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Activate Reservation
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/items:
+    post:
+      description: Add an item to a reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: zipCode
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Add Item
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/close:
+    put:
+      description: Close a reservation. Kibo does not recommend using this API, as it is intended for internal use.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Close Reservation
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/converttoorderreservation:
+    post:
+      description: Converts a reservation associated with a cart to an order reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderReservati'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Convert To Order Reservation
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/getallocationstatus:
+    get:
+      description: Get Allocation Status
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+            text/json:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+            text/plain:
+              schema:
+                additionalProperties:
+                  type: string
+                type: object
+          description: OK
+      summary: Get Allocation Status
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}:
+    delete:
+      description: Delete a reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Delete Reservation
+      tags:
+      - Reservation
+    get:
+      description: Get a specific reservation by its ID.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Get Reservation By Id
+      tags:
+      - Reservation
+    put:
+      description: Update an existing reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservati'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Reservation
+      tags:
+      - Reservation
+  /commerce/reservation/summary:
+    get:
+      description: Get Reservation Summary
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationAggregateSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationAggregateSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationAggregateSummary'
+          description: OK
+        '413':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+          description: Content Too Large
+      summary: Get Reservation Summary
+      tags:
+      - Reservation
+  /commerce/reservation:
+    get:
+      description: Get all reservations.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Reservations
+      tags:
+      - Reservation
+    post:
+      description: Creates a new reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservati'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Create Reservation
+      tags:
+      - Reservation
+  /commerce/reservation/cart/{cartId}:
+    get:
+      description: Get reservations based on the Cart ID.
+      parameters:
+      - in: path
+        name: cartId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReservationCollecti'
+          description: OK
+      summary: Get Reservations By Cart Id
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/items/{reservationItemId}/quantity/{quantity}:
+    put:
+      description: Update a reservation item's quantity. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: quantity
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FulfillmentInf'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Item Quantity
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/items/{reservationItemId}:
+    delete:
+      description: Remove an item from a reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Remove Item
+      tags:
+      - Reservation
+    put:
+      description: Updates a reservation item. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: reservationItemId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: zipCode
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReservationItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Reservation Item
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/updatetimer:
+    put:
+      description: Restart the expiration timer of a reservation.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Timer
+      tags:
+      - Reservation
+  /commerce/reservation/{reservationId}/zipcode/{zipCode}:
+    post:
+      description: Update the zip code of a reservation. Set runSynchronous to "true" to perform this call synchronously with better performance time.
+      parameters:
+      - in: path
+        name: reservationId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: zipCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: runSynchronous
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ReservationWebAPIOrderAttribute'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Reservati'
+          description: OK
+      summary: Update Zip Code
+      tags:
+      - Reservation
+security:
+- bearerAuth: []
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL

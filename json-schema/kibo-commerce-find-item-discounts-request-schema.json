@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-find-item-discounts-request-schema.json",
+  "title": "FindItemDiscountsRequest",
+  "description": "Request parameters to search for discounts",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-pricing-openapi.yml#/components/schemas/FindItemDiscountsRequest",
+  "properties": {
+    "customerSegmentIds": {
+      "description": "List of customer segments that the discounts are applicable to.\nIf not specified, only discounts that are not restricted to any customer segment are returned.\nWhen specified, only discounts that are applicable to one of the specified customer segments are returned.",
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "includeUnconditional": {
+      "description": "When true, include discounts that are applied when there is no condition on the discount.\nBy default, these are not included.",
+      "type": "boolean"
+    },
+    "isPurchaseRequirement": {
+      "description": "Set false to exclude discounts that require one of the specified products to be purchased\ndefault is true",
+      "type": "boolean"
+    },
+    "isTarget": {
+      "description": "Set false to exclude discounts that require one of the specified products to be a target\nDefault is true",
+      "type": "boolean"
+    },
+    "labels": {
+      "description": "List of discount labels to filter discounts by.\nLimit: 10 labels",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "locationCodes": {
+      "description": "List of location codes to filter discounts by.\nwhen not specified all discounts are returned.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "productCodes": {
+      "description": "List of product codes to query for discounts\nLimit: 20 product codes",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "targetType": {
+      "description": "Types of discounts to search for Product, Shipping, or All\nwhen not specified, all types are returned.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object"
+}

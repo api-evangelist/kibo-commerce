@@ -1,0 +1,622 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Event Subscription API
+  version: '1.0'
+  description: 'Operations tagged EventSubscription across 2 of this provider''s published API definitions: openapi_openapi_event.json, kibo-commerce-event-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: EventSubscription
+paths:
+  /event/push/subscriptions/{subscriptionId}/deliveryattempts:
+    get:
+      description: Get delivery attempts for the specified subscription
+      parameters:
+      - description: Subscription Identifier.
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+          description: OK
+      summary: Get Delivery Attempt Summaries
+      tags:
+      - EventSubscription
+      operationId: getEventPushSubscriptionsBySubscriptionIdDeliveryattempts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /event/push/subscriptions/deliveryattempts:
+    get:
+      description: Get delivery attempts
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummaryCollection'
+          description: OK
+      summary: Get Delivery Attempt Summaries All Subscriptions
+      tags:
+      - EventSubscription
+      operationId: getEventPushSubscriptionsDeliveryattempts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /event/push/subscriptions/{subscriptionId}/deliveryattempts/{processId}:
+    get:
+      description: Get delivery attempt summary
+      parameters:
+      - description: ''
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: processId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EventDeliverySummary'
+          description: OK
+      summary: Get Delivery Attempt Summary
+      tags:
+      - EventSubscription
+      operationId: getEventPushSubscriptionsBySubscriptionIdDeliveryattemptsByProcessId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /event/push/subscriptions:
+    get:
+      description: Retrieves a list of events according to any specified filter criteria and sort options.
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: 'Used to get more specific information from the request.  Available response groups: SubscribingSites.'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SubscriptionCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SubscriptionCollection'
+          description: OK
+      summary: Get Subscriptions
+      tags:
+      - EventSubscription
+      operationId: getEventPushSubscriptions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    EventDeliveryAttempt:
+      description: The external/public Event entity used specifically in PULL/POLL event scenarios
+      properties:
+        deliveryStatus:
+          description: Status of the delivery process (EventDeliveryStatusType). System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        errorType:
+          description: Type of error that occurred, if the delivery was unsuccessful
+          type:
+          - string
+          - 'null'
+        executionDate:
+          description: The date that the delivery was attempted
+          format: date-time
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          $ref: '#/components/schemas/HttpStatus'
+        message:
+          description: HTTP message returned by the remote endpoint
+          type:
+          - string
+          - 'null'
+      type: object
+    SubscriptionCollection:
+      description: Collection of subscriptions returned as a whole.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Subscription'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    EventSummary:
+      description: Event Summary is a trimmed version of an event that is utilized when displaying the event delivery (aka webhook, HTTP callback, HTTP POST) process history/details
+      properties:
+        catalogId:
+          description: Catalog Id
+          format: int32
+          type:
+          - integer
+          - 'null'
+        correlationId:
+          description: Correlation Id
+          type:
+          - string
+          - 'null'
+        createDate:
+          description: Create Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        entityId:
+          description: Entity Id
+          type:
+          - string
+          - 'null'
+        eventId:
+          description: 'Note: Remember in the contract version to convert this Guid to ToString("N") so the dashes are not present'
+          type:
+          - string
+          - 'null'
+        extendedProperties:
+          description: 'Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.'
+          items:
+            $ref: '#/components/schemas/EventExtendedProperty'
+          type:
+          - array
+          - 'null'
+        masterCatalogId:
+          description: Master Catalog Id
+          format: int32
+          type:
+          - integer
+          - 'null'
+        siteId:
+          description: Site Id
+          format: int32
+          type:
+          - integer
+          - 'null'
+        tenantId:
+          description: Tenant Id
+          format: int32
+          type:
+          - integer
+          - 'null'
+        topic:
+          description: Topic
+          type:
+          - string
+          - 'null'
+      type: object
+    Subscription:
+      description: The subscription entity used specifically in PUSH event scenarios where a third-party desires to receive notification of events
+      properties:
+        apiVersion:
+          description: ApiVersion
+          type:
+          - string
+          - 'null'
+        appId:
+          description: Application identifier for subscription
+          type:
+          - string
+          - 'null'
+        confirmed:
+          description: A boolean value that indicates if the subscription endpoint has been confirmed
+          type:
+          - boolean
+          - 'null'
+        contentType:
+          description: 'Content type of the payload that will be delivered.  This is utilized in combination with the notification delivery type.  Example:  A HTTP Post (notification delivery type) is performed with a JSON representation of the event data (content type).'
+          type:
+          - string
+          - 'null'
+        createBy:
+          description: Identifier of the user who created the entity. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        createDate:
+          description: When the entity was created. System-supplied and read-only.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        endpoint:
+          description: The delivery endpoint that will receive notifications when events concerning the specified topics on the subscription occur.  The format of the endpoint may differ depending on the notification type.  For example, the endpoint may be a URL in some cases and an email address in others if multiple notification types are available.
+          type:
+          - string
+          - 'null'
+        id:
+          description: The unique identifier for a subscription
+          type:
+          - string
+          - 'null'
+        isActive:
+          description: A boolean value that indicates if the subscription is active.  The subscription may be inactive due to repeated downtimes at the endpoint.  If they subscription is deactivated the subscription owner or application will need to reactivate it for notifications to be delivered.
+          type:
+          - boolean
+          - 'null'
+        noCallback:
+          description: A boolean value that indicates if events should be delivered that resulted from an API call by the application.  If true, any events that occur as a result of a direct API call by the same application will not be delivered. This can prevent an endless loop in certain scenarios.
+          type:
+          - boolean
+          - 'null'
+        notificationDeliveryType:
+          description: 'Notification delivery type which is a string representation of an enumeration of values.  Example: Http (this is case insensitive, so http may also be passed in)'
+          type:
+          - string
+          - 'null'
+        subscribingTenants:
+          description: A list of subscribers or subscribing tenants that the subscription relates to
+          items:
+            $ref: '#/components/schemas/SubscribingTenant'
+          type:
+          - array
+          - 'null'
+        topics:
+          description: A list of topics that the subscription relates to
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        updateBy:
+          description: Identifier of the user who updated the entity. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        updateDate:
+          description: When the entity was updated. System-supplied and read-only.
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    EventDeliverySummaryCollection:
+      description: Collection of event deliver summaries
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/EventDeliverySummary'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    EventDeliverySummary:
+      description: The external/public Event entity used specifically in PULL/POLL event scenarios
+      properties:
+        createDate:
+          description: Create Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        deliveryAttempts:
+          description: Details about each attempted delivery of the event to the endpoint
+          items:
+            $ref: '#/components/schemas/EventDeliveryAttempt'
+          type:
+          - array
+          - 'null'
+        deliveryStatus:
+          description: Status of the delivery process (EventDeliveryStatusType)
+          type:
+          - string
+          - 'null'
+        eventSummary:
+          $ref: '#/components/schemas/EventSummary'
+        id:
+          description: The unique identifier for an event delivery summary
+          format: int32
+          type:
+          - integer
+          - 'null'
+        isRunning:
+          description: Indicates whether delivery of the event is currently being attempted at this moment in time
+          type: boolean
+        lastExecutionDate:
+          description: The date that the delivery was last attempted (either successfully or not)
+          format: date-time
+          type: string
+        nextExecutionDate:
+          description: The date that the delivery will next be attempted, if the event has not been successfully delivered yet and there are still retries remaining
+          format: date-time
+          type: string
+        retriesRemaining:
+          description: Number of delivery attempts remaining
+          format: int32
+          type:
+          - integer
+          - 'null'
+        updateDate:
+          description: Update Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    SubscribingSite:
+      description: A site that is associated with a subscription
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        isActive:
+          description: Is the subscription active at the site level?
+          type:
+          - boolean
+          - 'null'
+        siteId:
+          description: The site identifier
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    SubscribingTenant:
+      description: A tenant that is associated with a subscription
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        isActive:
+          description: Is the subscription active at the tenant level?  If the subscription context is at the Tenant Level this property will be utilized over the SiteLevel
+          type:
+          - boolean
+          - 'null'
+        subscribingContextLevelType:
+          description: 'Type of Subscribing Context
+
+            !:SubscribingContextLevelTypeConst
+
+            Derived from state of the subscription.  If any Subscribing Sites exist (e.g. subscription is not at the Tenant Level, then the value will be Site)'
+          type:
+          - string
+          - 'null'
+        subscribingSites:
+          description: Subscribing Sites
+          items:
+            $ref: '#/components/schemas/SubscribingSite'
+          type:
+          - array
+          - 'null'
+        tenantId:
+          description: The tenant identifier
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    HttpStatus:
+      description: Http Status
+      properties:
+        code:
+          description: The higher-level integer based HTTP Status Code returned by the remote endpoint
+          format: int32
+          type: integer
+        name:
+          description: Friendly text the HTTP Status Code returned by the remote endpoint
+          type:
+          - string
+          - 'null'
+      type: object
+    EventExtendedProperty:
+      description: Event Extended Property
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value: {}
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_event.json
+- kibo-commerce-event-openapi.yml

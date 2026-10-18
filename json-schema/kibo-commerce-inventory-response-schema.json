@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-inventory-response-schema.json",
+  "title": "Inventory Response",
+  "description": "Inventory Response",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-inventory-openapi.yml#/components/schemas/InventoryResponse",
+  "properties": {
+    "allocated": {
+      "description": "The quantity the location has that are already allocated.",
+      "type": "integer"
+    },
+    "attributes": {
+      "description": "List of Inventory Attributes",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "available": {
+      "description": "The quantity the location has that are available for purchase",
+      "type": "integer"
+    },
+    "blockAssignment": {
+      "description": "Whether or not the product is blocked for assignment",
+      "type": "boolean"
+    },
+    "countryCode": {
+      "description": "The country code of this location",
+      "type": "string"
+    },
+    "directShip": {
+      "description": "Whether this location can ship to a consumer",
+      "type": "boolean"
+    },
+    "distance": {
+      "description": "The distance in miles from this location to the item's destination",
+      "type": "number"
+    },
+    "externalID": {
+      "description": "External ID of the item",
+      "type": "string"
+    },
+    "floor": {
+      "description": "Absolute minimum quantity of this item that should be in stock at any time",
+      "type": "integer"
+    },
+    "futureInventory": {
+      "$ref": "#/$defs/futureInventoryArray"
+    },
+    "inventoryLocatorName": {
+      "description": "The inventory locator name of the individual item",
+      "type": "string"
+    },
+    "locationCode": {
+      "description": "Location Code",
+      "type": "string"
+    },
+    "locationName": {
+      "description": "Location Name",
+      "type": "string"
+    },
+    "ltd": {
+      "description": "Custom field used for store prioritization",
+      "type": "number"
+    },
+    "messages": {
+      "description": "List of messages",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "numResults": {
+      "description": "Number of results",
+      "type": "integer"
+    },
+    "onHand": {
+      "description": "The quantity the location has in its possession",
+      "type": "integer"
+    },
+    "partNumber": {
+      "description": "Part/Product Number",
+      "type": "string"
+    },
+    "pending": {
+      "description": "The quantity the location has that are pending.",
+      "type": "integer"
+    },
+    "pickup": {
+      "description": "Whether a consumer can pick up product at this location (store)",
+      "type": "boolean"
+    },
+    "safetyStock": {
+      "description": "Quantity of this item the location wants to keep in stock to ensure stock isn't completely depleted",
+      "type": "integer"
+    },
+    "sku": {
+      "description": "Stock Keeping Unit",
+      "type": "string"
+    },
+    "success": {
+      "description": "Flag for success",
+      "type": "boolean"
+    },
+    "taggedInventory": {
+      "$ref": "#/$defs/taggedInventoryMap"
+    },
+    "tenantID": {
+      "description": "Tenant Identifier",
+      "type": "integer"
+    },
+    "transferEnabled": {
+      "description": "Whether the location can ship to another location (store), thus restocking that location.",
+      "type": "boolean"
+    },
+    "upc": {
+      "description": "Universal Product Code",
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "InventoryFutureInventory": {
+      "description": "Future Inventory Model",
+      "properties": {
+        "allocated": {
+          "description": "Expected change in the actual allocated inventory value when this future inventory record is released.",
+          "type": "integer"
+        },
+        "available": {
+          "description": "Expected change in the actual available inventory value when this future inventory record is released.",
+          "type": "integer"
+        },
+        "createDate": {
+          "description": "Date the inventory was created.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "deliveryDate": {
+          "description": "Date at which this inventory will become available. Expected format '2020-09-28T12:00:00-0500'",
+          "format": "date-time",
+          "type": "string"
+        },
+        "futureInventoryID": {
+          "description": "Future Inventory unique identifier.",
+          "type": "integer"
+        },
+        "onhand": {
+          "description": "Expected change in the actual onhand inventory value when this future inventory record is released.",
+          "type": "integer"
+        },
+        "pending": {
+          "description": "Number of new expected pending items that would be created by releasing this future inventory record assuming no actual inventory is available",
+          "type": "integer"
+        },
+        "type": {
+          "description": "Type of future inventory update: REFRESH or ADJUST.",
+          "type": "string"
+        }
+      },
+      "title": "Future Inventory",
+      "type": "object"
+    },
+    "TagQuantity": {
+      "description": "Response object for a tag quantity",
+      "properties": {
+        "allocated": {
+          "description": "The quantity the location has that are already allocated for this tag",
+          "type": "integer"
+        },
+        "available": {
+          "description": "The quantity the location has that are available for purchase for this tag",
+          "type": "integer"
+        },
+        "futureInventory": {
+          "$ref": "#/$defs/futureInventoryArray"
+        },
+        "onHand": {
+          "description": "The quantity the the location has in its possession for this tag",
+          "type": "integer"
+        },
+        "pending": {
+          "description": "The quantity the location has that are pending for this tag",
+          "type": "integer"
+        },
+        "tags": {
+          "$ref": "#/$defs/tags"
+        }
+      },
+      "title": "Tag quantity response",
+      "type": "object"
+    },
+    "futureInventoryArray": {
+      "items": {
+        "$ref": "#/$defs/InventoryFutureInventory"
+      },
+      "type": "array"
+    },
+    "taggedInventoryMap": {
+      "items": {
+        "$ref": "#/$defs/TagQuantity"
+      },
+      "type": "array"
+    },
+    "tags": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Associative Map of <String, String> for tagCategoryName => tagName",
+      "type": "object"
+    }
+  }
+}

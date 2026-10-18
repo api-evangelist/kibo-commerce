@@ -1,0 +1,6015 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Routing API
+  version: '1.0'
+  description: 'Operations tagged Routing across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: Classic UI API - Routing testing and debugging
+  name: Routing
+paths:
+  /commerce/orders/orderrouting/api/v1/routing/eddCalculationLog:
+    get:
+      parameters:
+      - in: query
+        name: eddCalculationLogID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: orderID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: suggestionID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+                type: array
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Edd Calculation Log
+      tags:
+      - Routing
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingEddCalculationLog
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/samplerequest:
+    get:
+      description: Retrieves a sample request.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionRequest'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Sample Request
+      tags:
+      - Routing
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingSamplerequest
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/suggestionLog:
+    get:
+      description: Retrieves a log of routing suggestions for an order. You can also view suggestion logs through the Order Routing user interface.
+      parameters:
+      - in: query
+        name: orderID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: suggestionID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: responseID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: externalResponseID
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: returnID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: includeReturnLogs
+        required: false
+        schema:
+          type: boolean
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/JsonNode'
+                type: array
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Suggestion Log
+      tags:
+      - Routing
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingSuggestionLog
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/reverseLogisticsSuggestion:
+    post:
+      parameters:
+      - in: query
+        name: returnSuggestionLog
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnSuggestionRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReverseLogisticsSuggestionResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Reverse Logistics Suggestions
+      tags:
+      - Routing
+      operationId: postCommerceOrdersOrderroutingApiV1RoutingReverseLogisticsSuggestion
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/candidates:
+    post:
+      description: Suggests the routing candidates for an order.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CandidateSuggestionsRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CandidateSuggestionsResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Suggest Candidates
+      tags:
+      - Routing
+      operationId: postCommerceOrdersOrderroutingApiV1RoutingCandidates
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/suggestion:
+    post:
+      description: Suggests the routing assignment for an order.
+      parameters:
+      - in: query
+        name: returnSuggestionLog
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestionRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Suggest Routing
+      tags:
+      - Routing
+      operationId: postCommerceOrdersOrderroutingApiV1RoutingSuggestion
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/suggestionTest:
+    post:
+      description: Tests the routing suggestion logic.
+      parameters:
+      - in: query
+        name: returnSuggestionLog
+        required: false
+        schema:
+          default: true
+          type: boolean
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestionTestRequest'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestionResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Suggest Routing Test
+      tags:
+      - Routing
+      operationId: postCommerceOrdersOrderroutingApiV1RoutingSuggestionTest
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    TenantClient:
+      type: object
+    FullOrderFitSuggestionEvent:
+      allOf:
+      - $ref: '#/components/schemas/SuggestionEvent'
+      required:
+      - type
+      type: object
+    InventoryCallExceptionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        defaultResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        errors:
+          items:
+            type: string
+          type: array
+        externalResponseID:
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    FulfillmentLimit:
+      properties:
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        durationType:
+          enum:
+          - HOURS
+          - DAYS
+          - WEEKS
+          - MONTHS
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        fulfillmentLimit:
+          minimum: 0
+          type: number
+        fulfillmentLimitID:
+          format: int32
+          type: integer
+        fulfillmentType:
+          enum:
+          - ORDERS
+          - ITEMS
+          - DOLLARS
+          type: string
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - durationType
+      - environmentID
+      - fulfillmentLimit
+      - fulfillmentType
+      - siteID
+      - tenantID
+      type: object
+    AbstractFilter:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterUnit:
+          properties:
+            dimension:
+              type: object
+            standardUnit:
+              properties:
+                dimension:
+                  type: object
+              type: object
+          type: object
+        inventoryBasedFilter:
+          type: boolean
+        itemBasedFilter:
+          type: boolean
+        locationBasedFilter:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        orderLocationFilterEqualToLocationOrInventoryFilter:
+          type: boolean
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - booleanOperator
+      - dotDelimitedPropertyName
+      - environmentID
+      - name
+      - siteID
+      - tenantID
+      type: object
+    RemovedLocationCandidatesSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        removedLocationIDs:
+          items:
+            format: int32
+            type: integer
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    SuggestionEventListener:
+      type: object
+    NoRouteFoundSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        environmentID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    GroupSelectedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        group:
+          type: string
+        locations:
+          items:
+            $ref: '#/components/schemas/LocationCandidate'
+          type: array
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    ReverseLogisticsAssignmentSuggestionItem:
+      properties:
+        dispositionCondition:
+          type: string
+        orderItemID:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        returnReason:
+          type: string
+      type: object
+    STHConsolidationProcessInitiatedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        preSthConsolidationResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    OrderRoutingOrderAttribute:
+      properties:
+        fullyQualifiedName:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      type: object
+    SuggestionResponse:
+      properties:
+        assignmentSuggestionShipmentGroups:
+          items:
+            $ref: '#/components/schemas/AssignmentSuggestionShipmentGroup'
+          type: array
+        assignmentSuggestions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        attributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingOrderAttribute'
+          type: array
+        availableLocations:
+          items:
+            format: int32
+            type: integer
+          type: array
+        data:
+          additionalProperties:
+            type: string
+          type: object
+        emptyResponse:
+          type: boolean
+        externalResponseID:
+          type: string
+        futureAssignmentSuggestions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        responseID:
+          format: int32
+          type: integer
+        route:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        stateChangeSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+        suggestionLog:
+          $ref: '#/components/schemas/SuggestionLog'
+      type: object
+    ExtendedOrderInfo:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingAttribute'
+          type: array
+        orderId:
+          type: string
+        type:
+          type: string
+      type: object
+    LocationSort:
+      properties:
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        descending:
+          type: boolean
+        environmentID:
+          format: int32
+          type: integer
+        locationSortID:
+          format: int32
+          type: integer
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        sortingType:
+          enum:
+          - RANK
+          - DISTANCE
+          - LTD
+          - COST
+          - RANDOM
+          - DATA_SET
+          - LOWEST_AVAILABLE
+          type: string
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - environmentID
+      - siteID
+      - sortingType
+      - tenantID
+      type: object
+    OrderRoutingRequestLocation:
+      properties:
+        addressLine1:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        latitude:
+          format: double
+          type: number
+        locationCode:
+          type: string
+        longitude:
+          format: double
+          type: number
+        phone:
+          type: string
+        postalCode:
+          type: string
+        radius:
+          format: double
+          type: number
+        state:
+          type: string
+        unit:
+          enum:
+          - MILES
+          - KM
+          type: string
+      type: object
+    ReturnAssignmentSuggestion:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ReverseLogisticsAssignmentSuggestionItem'
+          type: array
+        locationCode:
+          type: string
+        locationID:
+          format: int32
+          type: integer
+        route:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+      type: object
+    ExtensibleInventoryAttribute:
+      properties:
+        attributeFQN:
+          type: string
+        code:
+          type: string
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+      type: object
+    LocationFulfillmentCapacity:
+      properties:
+        capacityLimit:
+          format: int32
+          type: integer
+        fulfillmentCapacityID:
+          format: int32
+          type: integer
+        locationID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        unit:
+          enum:
+          - Hour
+          - Day
+          - Week
+          - Month
+          type: string
+      required:
+      - locationID
+      - tenantID
+      type: object
+    TenantAttributesCache:
+      properties:
+        underlyingCache:
+          $ref: '#/components/schemas/CacheStringBoolean'
+      type: object
+    AssignmentSuggestion:
+      properties:
+        bopisFulfillmentDate:
+          format: date-time
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          type: integer
+        data:
+          additionalProperties:
+            type: string
+          type: object
+        futureDate:
+          format: date-time
+          type: string
+        futureDateString:
+          type: string
+        locationCode:
+          type: string
+        locationID:
+          format: int32
+          type: integer
+        orderItemID:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        receiveProcessingTimeHours:
+          format: int32
+          type: integer
+        route:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        shipmentGroup:
+          type: string
+        sthFulfillmentDate:
+          format: date-time
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          type: integer
+        transferFulfillmentDate:
+          format: date-time
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          type: integer
+        transferToLocationCode:
+          type: string
+      type: object
+    CandidateSuggestionsResponse:
+      properties:
+        candidateSuggestions:
+          items:
+            $ref: '#/components/schemas/CandidateSuggestion'
+          type: array
+      type: object
+    FilterSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        inputLocations:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        outputLocations:
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    AutoAssignLimitExceededSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        orderID:
+          format: int32
+          type: integer
+        orderItemID:
+          format: int32
+          type: integer
+        stateChange:
+          enum:
+          - CANCEL
+          - CUSTOMER_CARE
+          - AVAILABLE
+          - BACKORDER
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    OrderRoutingOrderItem:
+      properties:
+        backorderable:
+          type: boolean
+        callOffFulfillmentType:
+          type: string
+        callOffOrderItemAttributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingAttribute'
+          type: array
+        callOffRequestedQuantity:
+          type: number
+        callOffShippingAddress:
+          $ref: '#/components/schemas/OrderRoutingShippingAddress'
+        condition:
+          type: string
+        customItemData:
+          additionalProperties:
+            type: object
+          type: object
+        extendedProductInfo:
+          $ref: '#/components/schemas/ExtendedProductInfo'
+        futureDateLimit:
+          format: date-time
+          type: string
+        futureDateStart:
+          format: date-time
+          type: string
+        futureOrderable:
+          type: boolean
+        granularInventoryItem:
+          type: boolean
+        height:
+          format: double
+          type: number
+        itemDependency:
+          format: int32
+          type: integer
+        length:
+          format: double
+          type: number
+        orderItemID:
+          format: int32
+          type: integer
+        partNumber:
+          type: string
+        productTitle:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        serialNumber:
+          type: string
+        shippingMethod:
+          type: string
+        sku:
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+        taxable:
+          type: boolean
+        upc:
+          type: string
+        weight:
+          format: double
+          type: number
+        width:
+          format: double
+          type: number
+      type: object
+    FutureATPProcessInitiatedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        futureInventoryLimit:
+          format: date-time
+          type: string
+        name:
+          type: string
+        stateChangeSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    STHConsolidationForceClosestValidLocationDeterminedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        distance:
+          format: double
+          type: number
+        errors:
+          items:
+            type: string
+          type: array
+        forceSTHConsolidationLocation:
+          $ref: '#/components/schemas/OrderRoutingLocation'
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    GetInventoryResponseItem:
+      properties:
+        active:
+          type: boolean
+        allocated:
+          format: int32
+          type: integer
+        attributes:
+          items:
+            type: string
+          type: array
+        available:
+          format: int32
+          type: integer
+        blockAssignment:
+          type: boolean
+        bopisFulfillmentDate:
+          format: date-time
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          type: integer
+        condition:
+          type: string
+        countryCode:
+          type: string
+        currencyID:
+          format: int32
+          type: integer
+        date:
+          format: date-time
+          type: string
+        deliveryEnabled:
+          type: boolean
+        directShip:
+          type: boolean
+        distance:
+          format: float
+          type: number
+        excessInventoryCount:
+          format: int32
+          type: integer
+        excessInventoryPercentage:
+          format: double
+          type: number
+        excessInventoryThreshold:
+          format: int32
+          type: integer
+        extensibleInventoryAttributes:
+          items:
+            $ref: '#/components/schemas/ExtensibleInventoryAttribute'
+          type: array
+        floor:
+          format: int32
+          type: integer
+        futureInventory:
+          items:
+            $ref: '#/components/schemas/OrderRoutingFutureInventory'
+          type: array
+        hasInfiniteInventory:
+          type: boolean
+        holdBlockAssignment:
+          type: boolean
+        inventoryLocatorName:
+          type: string
+        locationCode:
+          type: string
+        locationName:
+          type: string
+        lotCode:
+          type: string
+        ltd:
+          format: int32
+          type: integer
+        onHand:
+          format: int32
+          type: integer
+        partNumber:
+          type: string
+        pending:
+          format: int32
+          type: integer
+        pickup:
+          type: boolean
+        receiveProcessingTimeHours:
+          format: int32
+          type: integer
+        retailPrice:
+          format: double
+          type: number
+        safetyStock:
+          format: int32
+          type: integer
+        serialNumber:
+          type: string
+        shortage:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        sthFulfillmentDate:
+          format: date-time
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          type: integer
+        taggedInventory:
+          items:
+            $ref: '#/components/schemas/OrderRoutingTagQuantity'
+          type: array
+        tenantID:
+          format: int32
+          type: integer
+        transferEnabled:
+          type: boolean
+        transferFulfillmentDate:
+          format: date-time
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          type: integer
+        upc:
+          type: string
+      type: object
+    MultipleConsolidationPotentialTransferAssignmentsFoundEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        potentialTransferLocationCandidates:
+          items:
+            $ref: '#/components/schemas/LocationCandidate'
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    MultipleConsolidationSkippedOriginalAssignmentsEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        newAssignmentSuggestions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        newStateChangeSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+        originalAssignmentSuggestions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        originalStateChangeSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    CandidateSuggestionsRequest:
+      properties:
+        callOffChannel:
+          type: string
+        callOffOrderAttributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingAttribute'
+          type: array
+        environmentID:
+          format: int32
+          type: integer
+        exclusionListLocationCode:
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+          type: array
+        extendedCustomerInfo:
+          $ref: '#/components/schemas/ExtendedCustomerInfo'
+        extendedOrderInfo:
+          $ref: '#/components/schemas/ExtendedOrderInfo'
+        futureDateLimit:
+          format: date-time
+          type: string
+        futureDateStart:
+          format: date-time
+          type: string
+        futureExclusionListLocationCode:
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+          type: array
+        inventoryRequestType:
+          enum:
+          - ALL
+          - ANY
+          - PARTIAL
+          - ALL_STORES
+          type: string
+        isExpress:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/OrderRoutingOrderItem'
+          type: array
+        locationCodeWhiteList:
+          items:
+            type: string
+          type: array
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        pickupLocationCode:
+          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/OrderRoutingShippingAddress'
+        sort:
+          enum:
+          - SUGGESTION_SORT
+          type: string
+        strategyID:
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+      required:
+      - items
+      - orderType
+      type: object
+    ReverseLogisticsItem:
+      properties:
+        condition:
+          type: string
+        customItemData:
+          additionalProperties:
+            type: object
+          type: object
+        dispositionCondition:
+          type: string
+        extendedProductInfo:
+          $ref: '#/components/schemas/ExtendedProductInfo'
+        height:
+          format: double
+          type: number
+        itemDependency:
+          format: int32
+          type: integer
+        length:
+          format: double
+          type: number
+        orderItemID:
+          format: int32
+          type: integer
+        partNumber:
+          type: string
+        productTitle:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        returnReason:
+          type: string
+        serialNumber:
+          type: string
+        sku:
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+        taxable:
+          type: boolean
+        upc:
+          type: string
+        weight:
+          format: double
+          type: number
+        width:
+          format: double
+          type: number
+      type: object
+    RouteSelectedSuggestionEvent:
+      properties:
+        active:
+          type: boolean
+        causeID:
+          format: int32
+          type: integer
+        environmentID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        groups:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        preferAtomicAssignment:
+          type: boolean
+        route:
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    ReverseLogisticsSuggestionResponse:
+      properties:
+        externalResponseID:
+          type: string
+        responseID:
+          format: int32
+          type: integer
+        reverseLogisticsSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/ReturnAssignmentSuggestion'
+          type: object
+        route:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        stateChangeSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/ReverseLogisticsStateChangeSuggestion'
+          type: object
+        suggestionLog:
+          $ref: '#/components/schemas/SuggestionLog'
+      type: object
+    OrderRoutingLocation:
+      properties:
+        active:
+          type: boolean
+        addressAsOneLine:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        addressType:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        created:
+          format: date-time
+          type: string
+        deliveryConsolidationEnabled:
+          type: boolean
+        deliveryEnabled:
+          type: boolean
+        directShip:
+          type: boolean
+        express:
+          type: boolean
+        formattedAddress:
+          type: string
+        fridayHours:
+          type: string
+        frozen:
+          type: boolean
+        fulfillmentCapacityLimit:
+          format: int32
+          type: integer
+        latitude:
+          format: double
+          type: number
+        locationAttributeMap:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/OrderRoutingLocationAttribute'
+            type: array
+          type: object
+        locationAttributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingLocationAttribute'
+          type: array
+        locationCode:
+          type: string
+        locationFulfillmentCapacities:
+          items:
+            $ref: '#/components/schemas/LocationFulfillmentCapacity'
+          type: array
+          uniqueItems: true
+        locationID:
+          format: int32
+          type: integer
+        locationTypes:
+          type: string
+        locationTypesList:
+          items:
+            type: string
+          type: array
+        longitude:
+          format: double
+          type: number
+        missing:
+          type: boolean
+        mondayHours:
+          type: string
+        name:
+          type: string
+        pickup:
+          type: boolean
+        postalCode:
+          type: string
+        requiresManifest:
+          type: boolean
+        saturdayHours:
+          type: string
+        state:
+          type: string
+        sthConsolidationEnabled:
+          type: boolean
+        sundayHours:
+          type: string
+        tenantID:
+          format: int32
+          type: integer
+        thursdayHours:
+          type: string
+        timezone:
+          type: string
+        transferEnabled:
+          type: boolean
+        tuesdayHours:
+          type: string
+        unit:
+          enum:
+          - Hour
+          - Day
+          - Week
+          - Month
+          type: string
+        updated:
+          format: date-time
+          type: string
+        wednesdayHours:
+          type: string
+        wmsEnabled:
+          type: boolean
+      type: object
+    ReverseLogisticsStateChangeSuggestion:
+      properties:
+        dispositionCondition:
+          type: string
+        orderItemID:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        returnReason:
+          type: string
+        stateChange:
+          enum:
+          - CANCEL
+          - CUSTOMER_CARE
+          - AVAILABLE
+          - BACKORDER
+          type: string
+      type: object
+    ConsolidationFilterMinimizationValidationTriggeredEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        consolidationLocationCandidate:
+          $ref: '#/components/schemas/LocationCandidate'
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        orderItemsToValidate:
+          items:
+            $ref: '#/components/schemas/OrderRoutingOrderItem'
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    STHConsolidationInvalidLocationOverrideSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        sthConsolidationLocationOverride:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    ExtendedProductInfo:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingAttribute'
+          type: array
+      type: object
+    UserContextInformation:
+      properties:
+        environmentID:
+          format: int32
+          type: integer
+        loaded:
+          type: boolean
+        pathString:
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        siteService:
+          $ref: '#/components/schemas/SiteService'
+        tenantID:
+          format: int32
+          type: integer
+        tenantService:
+          $ref: '#/components/schemas/TenantService'
+      type: object
+    ExclusionListEntryLocationCode:
+      properties:
+        locationCode:
+          type: string
+        orderItemID:
+          format: int32
+          type: integer
+      type: object
+    ReturnSuggestionRequest:
+      properties:
+        bundlingStrategy:
+          enum:
+          - ITEM_DEPENDENCY
+          type: string
+        customData:
+          additionalProperties:
+            type: string
+          type: object
+        environmentID:
+          format: int32
+          type: integer
+        exclusionListLocationCode:
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+          type: array
+        extendedCustomerInfo:
+          $ref: '#/components/schemas/ExtendedCustomerInfo'
+        extendedOrderInfo:
+          $ref: '#/components/schemas/ExtendedOrderInfo'
+        externalResponseID:
+          type: string
+        fraud:
+          format: int32
+          type: integer
+        isExpress:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ReverseLogisticsItem'
+          type: array
+        locationCodeWhiteList:
+          items:
+            type: string
+          type: array
+        orderID:
+          format: int32
+          type: integer
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        returnID:
+          format: int32
+          type: integer
+        shippingAddress:
+          $ref: '#/components/schemas/OrderRoutingShippingAddress'
+        strategyID:
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+        total:
+          type: number
+      required:
+      - items
+      - orderType
+      - total
+      type: object
+    GroupFilterLogicalGroupEvaluatedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        childLogicalGroupsUsed:
+          items:
+            type: string
+          type: array
+        errors:
+          items:
+            type: string
+          type: array
+        filterLogicalGroup:
+          $ref: '#/components/schemas/FilterLogicalGroup'
+        filtersUsed:
+          items:
+            type: string
+          type: array
+        inputLocations:
+          items:
+            type: string
+          type: array
+        isEarlyExit:
+          type: boolean
+        name:
+          type: string
+        outputLocations:
+          items:
+            type: string
+          type: array
+        parentFilteredCandidates:
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    FutureFirstWorkflowInitiatedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        request:
+          $ref: '#/components/schemas/SuggestionRequest'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    StateChangeSuggestion:
+      properties:
+        orderItemID:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        stateChange:
+          enum:
+          - CANCEL
+          - CUSTOMER_CARE
+          - AVAILABLE
+          - BACKORDER
+          type: string
+      type: object
+    CandidateSuggestionFutureInventory:
+      properties:
+        available:
+          format: int32
+          type: integer
+        bopisFulfillmentDate:
+          format: date-time
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          type: integer
+        futureDate:
+          format: date-time
+          type: string
+        partNumber:
+          type: string
+        receiveProcessingTimeHours:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        sthFulfillmentDate:
+          format: date-time
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          type: integer
+        transferFulfillmentDate:
+          format: date-time
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          type: integer
+        upc:
+          type: string
+      type: object
+    OverFulfilledLocationsRemovedSuggestionEvent:
+      properties:
+        capacities:
+          items:
+            $ref: '#/components/schemas/LocationFulfillmentCapacity'
+          type: array
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        fulfillmentLimit:
+          $ref: '#/components/schemas/FulfillmentLimit'
+        name:
+          type: string
+        removedLocations:
+          items:
+            $ref: '#/components/schemas/OrderRoutingLocationSummary'
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    STHConsolidationResponseNotUsedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        reason:
+          enum:
+          - NO_PICKUP_LOCATION_LOCATED
+          - NO_TRANSFER_ASSIGNMENTS
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    SuggestionUpdatedEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        filteredOutOrderItems:
+          items:
+            $ref: '#/components/schemas/OrderRoutingOrderItem'
+          type: array
+        name:
+          type: string
+        processedLocationCandidate:
+          $ref: '#/components/schemas/LocationCandidate'
+        processedLocationGroup:
+          $ref: '#/components/schemas/OrderRoutingLocationGroup'
+        remainingOrderItems:
+          items:
+            $ref: '#/components/schemas/OrderRoutingOrderItem'
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+        updatedAssignmentSuggestions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        updatedStateChangeSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+      type: object
+    GroupFilterLogicalGroupMissingRootSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        filterLogicalGroups:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    SuggestionEvent:
+      discriminator:
+        propertyName: type
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          type: string
+      required:
+      - type
+      type: object
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    NewReverseLogisticsRequestSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        request:
+          $ref: '#/components/schemas/ReturnSuggestionRequest'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      required:
+      - type
+      type: object
+    AssignmentSuggestionShipmentGroup:
+      properties:
+        data:
+          additionalProperties:
+            type: string
+          type: object
+        id:
+          type: string
+        locationCode:
+          type: string
+      type: object
+    AfterActionSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        failoverAction:
+          enum:
+          - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+          - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+          - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - CANCEL_ORDER
+          - ASSIGN_TO_CUSTOMER_CARE
+          - ASSIGN_TO_GROUP
+          - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - SEND_ORDER_TO_BIDDING
+          - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - ASSIGN_TO_BACKORDER
+          type: string
+        inputGroups:
+          items:
+            type: string
+          type: array
+        locationCandidates:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/InventoryAtLocation'
+            type: array
+          type: object
+        name:
+          type: string
+        restartAttempt:
+          enum:
+          - START_AT_BEGINNING
+          - CURRENT_GROUP
+          - GROUP_RANK
+          type: string
+        retryGroups:
+          items:
+            type: string
+          type: array
+        suggestedResponse:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    MultipleConsolidationLogicInitiatedEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        currentAssignments:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        errors:
+          items:
+            type: string
+          type: array
+        multipleConsolidationFilterFQN:
+          type: string
+        name:
+          type: string
+        remainingItemsToAssign:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    NoSTHConsolidationLocationFoundSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        preSthConsolidationResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    ExtendedCustomerInfo:
+      properties:
+        accountType:
+          type: string
+        attributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingAttribute'
+          type: array
+        companyOrOrganization:
+          type: string
+        customerId:
+          type: string
+        customerSinceDate:
+          format: date-time
+          type: string
+        externalId:
+          type: string
+        segments:
+          items:
+            type: string
+          type: array
+        taxExempt:
+          type: boolean
+        taxId:
+          type: string
+      type: object
+    SuggestionLog:
+      properties:
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        events:
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/AfterActionSortSuggestionEvent'
+            - $ref: '#/components/schemas/AfterActionSuggestionEvent'
+            - $ref: '#/components/schemas/AutoAssignLimitExceededSuggestionEvent'
+            - $ref: '#/components/schemas/ConsolidationFilterMinimizationValidationTriggeredEvent'
+            - $ref: '#/components/schemas/DefaultSuggestionEvent'
+            - $ref: '#/components/schemas/FilterSuggestionEvent'
+            - $ref: '#/components/schemas/FullOrderFitSuggestionEvent'
+            - $ref: '#/components/schemas/FutureATPProcessInitiatedSuggestionEvent'
+            - $ref: '#/components/schemas/FutureATPResponseNotUsedSuggestionEvent'
+            - $ref: '#/components/schemas/FutureATPResponseUsedSuggestionEvent'
+            - $ref: '#/components/schemas/FutureFirstWorkflowCompletedSuggestionEvent'
+            - $ref: '#/components/schemas/FutureFirstWorkflowInitiatedSuggestionEvent'
+            - $ref: '#/components/schemas/GroupFilterLogicalGroupEvaluatedSuggestionEvent'
+            - $ref: '#/components/schemas/GroupFilterLogicalGroupMissingRootSuggestionEvent'
+            - $ref: '#/components/schemas/GroupFilterSuggestionEvent'
+            - $ref: '#/components/schemas/GroupSelectedSuggestionEvent'
+            - $ref: '#/components/schemas/GroupSortSuggestionEvent'
+            - $ref: '#/components/schemas/InventoryCallExceptionEvent'
+            - $ref: '#/components/schemas/InventoryRequestSuggestionEvent'
+            - $ref: '#/components/schemas/MaxSplitsExceededSuggestionEvent'
+            - $ref: '#/components/schemas/MultipleConsolidationAssignmentsCreatedEvent'
+            - $ref: '#/components/schemas/MultipleConsolidationInitialCandidatesFoundEvent'
+            - $ref: '#/components/schemas/MultipleConsolidationLogicInitiatedEvent'
+            - $ref: '#/components/schemas/MultipleConsolidationLogicSkippedEvent'
+            - $ref: '#/components/schemas/MultipleConsolidationPotentialTransferAssignmentsFoundEvent'
+            - $ref: '#/components/schemas/MultipleConsolidationSkippedOriginalAssignmentsEvent'
+            - $ref: '#/components/schemas/NewEddRequestSuggestionEvent'
+            - $ref: '#/components/schemas/NewRequestSuggestionEvent'
+            - $ref: '#/components/schemas/NewReverseLogisticsRequestSuggestionEvent'
+            - $ref: '#/components/schemas/NoRouteFoundSuggestionEvent'
+            - $ref: '#/components/schemas/NoSTHConsolidationLocationFoundSuggestionEvent'
+            - $ref: '#/components/schemas/NonExpressLocationsFilterSuggestionEvent'
+            - $ref: '#/components/schemas/OverFulfilledLocationsRemovedSuggestionEvent'
+            - $ref: '#/components/schemas/RemovedLocationCandidatesSuggestionEvent'
+            - $ref: '#/components/schemas/ResponseCreatedSuggestionEvent'
+            - $ref: '#/components/schemas/RouteSelectedSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationForceClosestValidLocationDeterminedSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationForceInvalidShippingAddressValuesSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationForceNoGeoLocationValuesFoundSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationForceNoValidForceLocationsFoundSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationForceOverrideInitiatedSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationInvalidLocationOverrideSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationProcessInitiatedSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationResponseNotUsedSuggestionEvent'
+            - $ref: '#/components/schemas/STHConsolidationResponseUsedSuggestionEvent'
+            - $ref: '#/components/schemas/SuggestionUpdatedEvent'
+          type: array
+        externalResponseID:
+          type: string
+        fieldsForNewEddSuggestionRequest:
+          $ref: '#/components/schemas/NewEddRequestSuggestionEvent'
+        fieldsForNewReturnsSuggestionRequest:
+          $ref: '#/components/schemas/NewReverseLogisticsRequestSuggestionEvent'
+        fieldsForNewSuggestionRequest:
+          $ref: '#/components/schemas/NewRequestSuggestionEvent'
+        orderID:
+          format: int32
+          type: integer
+        orderTypeCategory:
+          enum:
+          - STANDARD
+          - REVERSE_LOGISTICS
+          - ESTIMATED_DELIVERY_DATE
+          - EDD_SUGGESTION
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        returnID:
+          format: int32
+          type: integer
+        siteID:
+          format: int32
+          type: integer
+        suggestionID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - environmentID
+      - siteID
+      - tenantID
+      type: object
+    STHConsolidationForceNoValidForceLocationsFoundSuggestionEvent:
+      allOf:
+      - $ref: '#/components/schemas/SuggestionEvent'
+      required:
+      - type
+      type: object
+    STHConsolidationResponseUsedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        mergedResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        name:
+          type: string
+        transferResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    NewRequestSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        request:
+          $ref: '#/components/schemas/SuggestionRequest'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      required:
+      - type
+      type: object
+    OrderRoutingInventoryRequest:
+      properties:
+        blockAssignment:
+          type: boolean
+        deliveryDateAfter:
+          format: date-time
+          type: string
+        deliveryDateBefore:
+          format: date-time
+          type: string
+        deliveryEnabled:
+          type: boolean
+        directShip:
+          type: boolean
+        enforceConditionAvailability:
+          type: boolean
+        excludeBlockedAssignment:
+          type: boolean
+        excludeExpiredInventory:
+          type: boolean
+        forceDefaultsForUnspecifiedTagCategories:
+          type: boolean
+        futureEndDate:
+          format: date-time
+          type: string
+        futureStartDate:
+          format: date-time
+          type: string
+        ignoreSafetyStock:
+          type: boolean
+        includeAttributes:
+          type: boolean
+        includeExcessCalculations:
+          type: boolean
+        includeFutureInventory:
+          type: boolean
+        includeInAggregateExport:
+          type: boolean
+        includeInLocationExport:
+          type: boolean
+        includeItemsWithInfiniteInventoryFlag:
+          type: boolean
+        includeNegativeFutureInventory:
+          type: boolean
+        includeNegativeInventory:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/OrderRoutingItemQuantity'
+          type: array
+        limit:
+          format: int32
+          type: integer
+        locationBlacklist:
+          items:
+            type: string
+          type: array
+        locationCode:
+          type: string
+        locationNameBlacklist:
+          items:
+            type: string
+          type: array
+        locationNameWhitelist:
+          items:
+            type: string
+          type: array
+        locationPriorityList:
+          items:
+            type: string
+          type: array
+        locationWhitelist:
+          items:
+            type: string
+          type: array
+        pageNum:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pickup:
+          type: boolean
+        preventNegativeFromSafetyStock:
+          type: boolean
+        requestLocation:
+          $ref: '#/components/schemas/OrderRoutingRequestLocation'
+        showExtensibleAttributes:
+          type: boolean
+        showExtraGranularProductFields:
+          type: boolean
+        showGranularInventory:
+          type: boolean
+        sortByEnum:
+          enum:
+          - ON_HAND
+          - AVAILABLE
+          - ALLOCATED
+          - PART_NUMBER
+          - PRODUCT_ID
+          - EXCESS
+          type: string
+        sortDescending:
+          type: boolean
+        sortableFields:
+          items:
+            type: string
+          type: array
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+        transferEnabled:
+          type: boolean
+        type:
+          enum:
+          - ALL
+          - ANY
+          - PARTIAL
+          - ALL_STORES
+          type: string
+      type: object
+    RankedLocation:
+      properties:
+        locationCode:
+          type: string
+        locationID:
+          format: int32
+          type: integer
+        rank:
+          format: int32
+          type: integer
+      type: object
+    DefaultSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        defaultStateChange:
+          enum:
+          - CANCEL
+          - CUSTOMER_CARE
+          - AVAILABLE
+          - BACKORDER
+          type: string
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    TenantService:
+      properties:
+        tenantAttributesCache:
+          $ref: '#/components/schemas/TenantAttributesCache'
+        tenantClient:
+          $ref: '#/components/schemas/TenantClient'
+      type: object
+    CandidateSuggestionInventory:
+      properties:
+        available:
+          format: int32
+          type: integer
+        bopisFulfillmentDate:
+          format: date-time
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          type: integer
+        futureInventory:
+          items:
+            $ref: '#/components/schemas/CandidateSuggestionFutureInventory'
+          type: array
+        partNumber:
+          type: string
+        receiveProcessingTimeHours:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        sthFulfillmentDate:
+          format: date-time
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          type: integer
+        transferFulfillmentDate:
+          format: date-time
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          type: integer
+        upc:
+          type: string
+      type: object
+    STHConsolidationForceOverrideInitiatedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        forceSTHConsolidationLocation:
+          $ref: '#/components/schemas/OrderRoutingLocation'
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    GroupAfterAction:
+      properties:
+        actionID:
+          format: int32
+          type: integer
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        failoverAction:
+          enum:
+          - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+          - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+          - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - CANCEL_ORDER
+          - ASSIGN_TO_CUSTOMER_CARE
+          - ASSIGN_TO_GROUP
+          - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - SEND_ORDER_TO_BIDDING
+          - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - ASSIGN_TO_BACKORDER
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        restartAttempt:
+          enum:
+          - START_AT_BEGINNING
+          - CURRENT_GROUP
+          - GROUP_RANK
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - environmentID
+      - siteID
+      - tenantID
+      type: object
+    AfterActionSortSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        inputLocations:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        outputLocations:
+          items:
+            type: string
+          type: array
+        sortStrategy:
+          enum:
+          - MINIMIZE_SHIPMENTS
+          - GROUP_RANK_AND_QUANTITY
+          - QUANTITY
+          - DISTANCE
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    JsonNode:
+      type: object
+    OrderRoutingLocationSummary:
+      properties:
+        currencyCode:
+          type: string
+        currentAmount:
+          type: number
+        currentItems:
+          format: int32
+          type: integer
+        currentOrders:
+          format: int32
+          type: integer
+        locationID:
+          format: int32
+          type: integer
+        totalAmount:
+          type: number
+        totalItems:
+          format: int32
+          type: integer
+        totalOrders:
+          format: int32
+          type: integer
+        totalShipments:
+          format: int32
+          type: integer
+      type: object
+    FutureATPResponseNotUsedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        reason:
+          enum:
+          - NO_FUTURE_INVENTORY_ASSIGNMENTS
+          - NO_FUTURE_ORDERABLE_ITEMS_REMAIN
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    OrderRoutingItemQuantity:
+      properties:
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        deliveryDateAfter:
+          format: date-time
+          type: string
+        deliveryDateBefore:
+          format: date-time
+          type: string
+        lotCode:
+          type: string
+        partNumber:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        serialNumber:
+          type: string
+        sku:
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+        upc:
+          type: string
+      type: object
+    MultipleConsolidationLogicSkippedEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        reason:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    FilterLogicalGroup:
+      properties:
+        andOperator:
+          type: boolean
+        environmentID:
+          format: int32
+          type: integer
+        filterLogicalGroupID:
+          format: int32
+          type: integer
+        groupID:
+          format: int32
+          type: integer
+        logicalOperator:
+          enum:
+          - AND
+          - OR
+          type: string
+        orOperator:
+          type: boolean
+        orderIndex:
+          format: int32
+          type: integer
+        parentOrderIndex:
+          format: int32
+          type: integer
+        rootGroup:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+      required:
+      - environmentID
+      - logicalOperator
+      - orderIndex
+      - siteID
+      - tenantID
+      type: object
+    OrderRoutingLocationAttribute:
+      properties:
+        attributeID:
+          format: int32
+          type: integer
+        attributeName:
+          type: string
+        attributeType:
+          enum:
+          - STRING
+          - DOUBLE
+          - DATE
+          - BOOLEAN
+          type: string
+        attributeValue:
+          type: string
+        id:
+          format: int32
+          type: integer
+        locationID:
+          format: int32
+          type: integer
+      type: object
+    OrderRoutingLocationGroup:
+      properties:
+        active:
+          type: boolean
+        afterActionNone:
+          $ref: '#/components/schemas/GroupAfterAction'
+        afterActionPartial:
+          $ref: '#/components/schemas/GroupAfterAction'
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        excludedLocationsFromDefaultGroup:
+          items:
+            format: int32
+            type: integer
+          type: array
+        filterLogicalGroups:
+          items:
+            $ref: '#/components/schemas/FilterLogicalGroup'
+          type: array
+          uniqueItems: true
+        filters:
+          items:
+            $ref: '#/components/schemas/AbstractFilter'
+          type: array
+          uniqueItems: true
+        fulfillmentLimit:
+          $ref: '#/components/schemas/FulfillmentLimit'
+        groupID:
+          format: int32
+          type: integer
+        isDefaultGroup:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        rank:
+          format: int32
+          type: integer
+        rankedLocations:
+          items:
+            $ref: '#/components/schemas/RankedLocation'
+          type: array
+        siteID:
+          format: int32
+          type: integer
+        sorts:
+          items:
+            $ref: '#/components/schemas/LocationSort'
+          type: array
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        useRetailerExclusionList:
+          type: boolean
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - active
+      - environmentID
+      - name
+      - rank
+      - siteID
+      - tenantID
+      type: object
+    STHConsolidationForceInvalidShippingAddressValuesSuggestionEvent:
+      allOf:
+      - $ref: '#/components/schemas/SuggestionEvent'
+      required:
+      - type
+      type: object
+    InventoryAtLocation:
+      properties:
+        actualAvailable:
+          format: int32
+          type: integer
+        attributes:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        available:
+          format: int32
+          type: integer
+        bopisFulfillmentDate:
+          format: date-time
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          type: integer
+        condition:
+          type: string
+        deliveryDate:
+          format: date-time
+          type: string
+        excessInventoryCount:
+          format: int32
+          type: integer
+        excessInventoryPercentage:
+          format: double
+          type: number
+        excessInventoryThreshold:
+          format: int32
+          type: integer
+        extensibleInventoryAttributeMap:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        extensibleInventoryAttributes:
+          items:
+            $ref: '#/components/schemas/ExtensibleInventoryAttribute'
+          type: array
+          writeOnly: true
+        floor:
+          format: int32
+          type: integer
+        ltd:
+          type: number
+        onHand:
+          format: int32
+          type: integer
+        partNumber:
+          type: string
+        receiveProcessingTimeHours:
+          format: int32
+          type: integer
+        safetyStock:
+          format: int32
+          type: integer
+        serialNumber:
+          type: string
+        sku:
+          type: string
+        sthFulfillmentDate:
+          format: date-time
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          type: integer
+        transferFulfillmentDate:
+          format: date-time
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          type: integer
+        upc:
+          type: string
+      type: object
+    STHConsolidationForceNoGeoLocationValuesFoundSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        countryCode:
+          type: string
+        errors:
+          items:
+            type: string
+          type: array
+        latitude:
+          format: double
+          type: number
+        longitude:
+          format: double
+          type: number
+        name:
+          type: string
+        postalCode:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    ResponseCreatedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        externalResponseID:
+          type: string
+        name:
+          type: string
+        response:
+          $ref: '#/components/schemas/SuggestionResponse'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    SuggestionTestRequest:
+      properties:
+        suggestionRequest:
+          $ref: '#/components/schemas/SuggestionRequest'
+        testInventoryResponses:
+          items:
+            $ref: '#/components/schemas/GetInventoryResponseItem'
+          type: array
+      type: object
+    SuggestionRequest:
+      properties:
+        bundlingStrategy:
+          enum:
+          - ITEM_DEPENDENCY
+          type: string
+        callOffChannel:
+          type: string
+        callOffOrderAttributes:
+          items:
+            $ref: '#/components/schemas/OrderRoutingAttribute'
+          type: array
+        cartID:
+          type: string
+        customData:
+          additionalProperties:
+            type: string
+          type: object
+        environmentID:
+          format: int32
+          type: integer
+        exclusionListLocationCode:
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+          type: array
+        extendedCustomerInfo:
+          $ref: '#/components/schemas/ExtendedCustomerInfo'
+        extendedOrderInfo:
+          $ref: '#/components/schemas/ExtendedOrderInfo'
+        externalResponseID:
+          type: string
+        forceSTHConsolidationOnSplitShipments:
+          type: boolean
+        fraud:
+          format: int32
+          type: integer
+        futureDateLimit:
+          format: date-time
+          type: string
+        futureDateStart:
+          format: date-time
+          type: string
+        futureExclusionListLocationCode:
+          items:
+            $ref: '#/components/schemas/ExclusionListEntryLocationCode'
+          type: array
+        inventoryRequestType:
+          enum:
+          - ALL
+          - ANY
+          - PARTIAL
+          - ALL_STORES
+          type: string
+        isExpress:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/OrderRoutingOrderItem'
+          type: array
+        locationCodeWhiteList:
+          items:
+            type: string
+          type: array
+        numShipmentsNotInRequest:
+          format: int32
+          type: integer
+        orderID:
+          format: int32
+          type: integer
+        orderType:
+          enum:
+          - DIRECTSHIP
+          - TRANSFER
+          - STH_CONSOLIDATED
+          - RETURN
+          - DISPOSITION
+          - DELIVERY
+          - BOPIS
+          type: string
+        pickupLocationCode:
+          type: string
+        shippingAddress:
+          $ref: '#/components/schemas/OrderRoutingShippingAddress'
+        shippingMethod:
+          type: string
+        sort:
+          enum:
+          - SUGGESTION_SORT
+          type: string
+        sthConsolidationLocationOverride:
+          type: string
+        strategyID:
+          type: string
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+        total:
+          type: number
+      required:
+      - items
+      - orderType
+      - total
+      type: object
+    GroupFilterSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        filterLogicalGroupsUsed:
+          items:
+            type: string
+          type: array
+        filtersUsed:
+          items:
+            type: string
+          type: array
+        inputLocations:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    MultipleConsolidationCandidate:
+      properties:
+        consolidationLocationCandidate:
+          $ref: '#/components/schemas/LocationCandidate'
+        distance:
+          type: string
+        transferLocationCandidates:
+          items:
+            $ref: '#/components/schemas/LocationCandidate'
+          type: array
+        weight:
+          format: int32
+          type: integer
+      type: object
+    OrderRoutingFutureInventory:
+      properties:
+        allocated:
+          format: int32
+          type: integer
+        available:
+          format: int32
+          type: integer
+        bopisFulfillmentDate:
+          format: date-time
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          type: integer
+        createDate:
+          format: date-time
+          type: string
+        deliveryDate:
+          format: date-time
+          type: string
+        externalID:
+          type: string
+        futureInventoryID:
+          format: int32
+          type: integer
+        onhand:
+          format: int32
+          type: integer
+        pending:
+          format: int32
+          type: integer
+        receiveProcessingTimeHours:
+          format: int32
+          type: integer
+        shortage:
+          format: int32
+          type: integer
+        sthFulfillmentDate:
+          format: date-time
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          type: integer
+        transferFulfillmentDate:
+          format: date-time
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          type: integer
+        type:
+          type: string
+      type: object
+    CandidateSuggestion:
+      properties:
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        directShip:
+          type: boolean
+        distance:
+          type: string
+        express:
+          type: boolean
+        inventory:
+          items:
+            $ref: '#/components/schemas/CandidateSuggestionInventory'
+          type: array
+        latitude:
+          format: double
+          type: number
+        locationCode:
+          type: string
+        locationName:
+          type: string
+        longitude:
+          format: double
+          type: number
+        pickup:
+          type: boolean
+        postalCode:
+          type: string
+        state:
+          type: string
+        transferEnabled:
+          type: boolean
+      type: object
+    InventoryRequestSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        environmentID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        orderID:
+          format: int32
+          type: integer
+        request:
+          $ref: '#/components/schemas/OrderRoutingInventoryRequest'
+        response:
+          items:
+            $ref: '#/components/schemas/GetInventoryResponseItem'
+          type: array
+        responseTimeMillis:
+          format: int64
+          type: integer
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    OrderRoutingAttribute:
+      properties:
+        attributeFQN:
+          type: string
+        attributeValues:
+          items:
+            type: string
+          type: array
+      type: object
+    FutureFirstWorkflowCompletedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        finalResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        name:
+          type: string
+        primaryInventoryCallFailed:
+          type: boolean
+        remainderPassAttempted:
+          type: boolean
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    OrderRoutingTagQuantity:
+      properties:
+        allocated:
+          format: int32
+          type: integer
+        available:
+          format: int32
+          type: integer
+        bopisFulfillmentDate:
+          format: date-time
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          type: integer
+        futureInventory:
+          items:
+            $ref: '#/components/schemas/OrderRoutingFutureInventory'
+          type: array
+        onHand:
+          format: int32
+          type: integer
+        pending:
+          format: int32
+          type: integer
+        receiveProcessingTimeHours:
+          format: int32
+          type: integer
+        shortage:
+          format: int32
+          type: integer
+        sthFulfillmentDate:
+          format: date-time
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          type: integer
+        tags:
+          additionalProperties:
+            type: string
+          type: object
+        transferFulfillmentDate:
+          format: date-time
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          type: integer
+      type: object
+    MaxSplitsExceededSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        limiter:
+          type: string
+        name:
+          type: string
+        orderID:
+          format: int32
+          type: integer
+        strategy:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    LocationCandidate:
+      properties:
+        distance:
+          type: string
+        group:
+          $ref: '#/components/schemas/OrderRoutingLocationGroup'
+        inventoryCollection:
+          items:
+            $ref: '#/components/schemas/InventoryAtLocation'
+          type: array
+        location:
+          $ref: '#/components/schemas/OrderRoutingLocation'
+        maxLTDValueInInventory:
+          type: number
+        rank:
+          format: int32
+          type: integer
+        totalAvailableInventory:
+          format: int32
+          type: integer
+        totalExcessInventoryCount:
+          format: int32
+          type: integer
+        totalExcessInventoryPercentage:
+          format: double
+          type: number
+      required:
+      - location
+      type: object
+    NewEddRequestSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        request:
+          $ref: '#/components/schemas/SuggestionRequest'
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      required:
+      - type
+      type: object
+    NonExpressLocationsFilterSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        filteredOutLocations:
+          items:
+            $ref: '#/components/schemas/LocationCandidate'
+          type: array
+        name:
+          type: string
+        outputLocations:
+          items:
+            $ref: '#/components/schemas/LocationCandidate'
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    SiteService:
+      type: object
+    OrderRoutingShippingAddress:
+      properties:
+        addressID:
+          format: int32
+          type: integer
+        addressLine1:
+          type: string
+        city:
+          type: string
+        countryCode:
+          type: string
+        customerID:
+          format: int32
+          type: integer
+        latitude:
+          format: double
+          type: number
+        longitude:
+          format: double
+          type: number
+        phone:
+          type: string
+        postalCode:
+          type: string
+        state:
+          type: string
+      type: object
+    MultipleConsolidationAssignmentsCreatedEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        newAssignmentsFromMultipleConsolidationLogic:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        newStateChangeSuggestionsFromMultipleConsolidationLogic:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+        updatedAssignmentSuggestions:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/AssignmentSuggestion'
+            type: array
+          type: object
+        updatedStateChangeSuggestions:
+          additionalProperties:
+            $ref: '#/components/schemas/StateChangeSuggestion'
+          type: object
+      type: object
+    GroupSortSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        inputLocations:
+          items:
+            type: string
+          type: array
+        name:
+          type: string
+        outputLocations:
+          items:
+            type: string
+          type: array
+        sorts:
+          items:
+            type: string
+          type: array
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    MultipleConsolidationInitialCandidatesFoundEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        initialMultipleConsolidationCandidates:
+          items:
+            $ref: '#/components/schemas/MultipleConsolidationCandidate'
+          type: array
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+    CacheStringBoolean:
+      type: object
+    FutureATPResponseUsedSuggestionEvent:
+      properties:
+        causeID:
+          format: int32
+          type: integer
+        errors:
+          items:
+            type: string
+          type: array
+        futureATPResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        mergedResponse:
+          $ref: '#/components/schemas/SuggestionResponse'
+        name:
+          type: string
+        type:
+          enum:
+          - NEW_REQUEST
+          - NEW_EDD_REQUEST
+          - NEW_REVERSE_LOGISTICS_REQUEST
+          - ROUTE_SELECTED
+          - MAKE_LOCATIONS_AVAILABLE
+          - NO_ROUTE_FOUND
+          - REMOVED_INACTIVE_LOCATIONS
+          - REMOVED_ON_HOLD_LOCATIONS
+          - REMOVED_OVERFULFILLED_LOCATIONS
+          - GROUP
+          - GROUP_FILTER
+          - GROUP_FILTER_LOGICAL_GROUP
+          - GROUP_FILTER_LOGICAL_GROUP_MISSING_ROOT
+          - GROUP_SORT
+          - FILTER
+          - SORT
+          - AFTER_ACTION
+          - FOUND_FULL_ORDER_LOCATION
+          - RESPONSE
+          - AFTER_ACTION_SORT
+          - DEFAULT_RESPONSE
+          - MAX_SPLITS_EXCEEDED
+          - AUTO_ASSIGN_LIMIT_EXCEEDED
+          - INVENTORY_REQUEST
+          - REMOVED_INTERNATIONAL_LOCATIONS
+          - SUGGESTION_UPDATED
+          - NON_EXPRESS_LOCATIONS_FILTERED
+          - STH_CONSOLIDATED_INITIATED
+          - STH_CONSOLIDATED_NOT_USED
+          - STH_CONSOLIDATED_USED
+          - FUTURE_ATP_INITIATED
+          - FUTURE_ATP_NOT_USED
+          - FUTURE_ATP_USED
+          - FUTURE_FIRST_WORKFLOW_INITIATED
+          - FUTURE_FIRST_WORKFLOW_COMPLETED
+          - INVENTORY_CALL_EXCEPTION
+          - STH_CONSOLIDATION_INVALID_LOCATION_OVERRIDE
+          - STH_CONSOLIDATION_FORCE_OVERRIDE_INITIATED
+          - NO_STH_CONSOLIDATION_LOCATION_FOUND
+          - CONSOLIDATION_FILTER_MINIMIZATION_VALIDATION
+          - STH_CONSOLIDATION_FORCE_CLOSEST_VALID_LOCATION_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_VALID_LOCATIONS_FOUND
+          - STH_CONSOLIDATION_FORCE_NO_GEO_LOCATION_VALUES_FOUND
+          - STH_CONSOLIDATION_FORCE_INVALID_SHIPPING_ADDRESS_VALUES
+          - MULTIPLE_CONSOLIDATION_LOGIC_INITIATED
+          - MULTIPLE_CONSOLIDATION_POTENTIAL_TRANSFER_ASSIGNMENTS_FOUND
+          - MULTIPLE_CONSOLIDATION_INITIAL_CANDIDATES_FOUND
+          - MULTIPLE_CONSOLIDATION_SKIPPED_ORIGINAL_ASSIGNMENTS
+          - MULTIPLE_CONSOLIDATION_LOGIC_SKIPPED
+          - MULTIPLE_CONSOLIDATION_ASSIGNMENTS_CREATED
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-content-http-request-message-schema.json",
+  "title": "ContentHttpRequestMessage",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-content-openapi.yml#/components/schemas/ContentHttpRequestMessage",
+  "properties": {
+    "content": {
+      "$ref": "#/$defs/ContentHttpContent"
+    },
+    "headers": {
+      "items": {
+        "$ref": "#/$defs/KeyValuePair"
+      },
+      "readOnly": true,
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "method": {
+      "$ref": "#/$defs/HttpMethod"
+    },
+    "options": {
+      "additionalProperties": {},
+      "readOnly": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "properties": {
+      "additionalProperties": {
+        "nullable": true
+      },
+      "deprecated": true,
+      "readOnly": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "requestUri": {
+      "format": "uri",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "versionPolicy": {
+      "$ref": "#/$defs/HttpVersionPolicy"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ContentHttpContent": {
+      "properties": {
+        "headers": {
+          "items": {
+            "$ref": "#/$defs/KeyValuePair"
+          },
+          "readOnly": true,
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "HttpMethod": {
+      "properties": {
+        "method": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "HttpVersionPolicy": {
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "format": "int32",
+      "type": "integer"
+    },
+    "KeyValuePair": {
+      "properties": {
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

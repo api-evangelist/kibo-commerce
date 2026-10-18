@@ -1,0 +1,216 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-entity-list-schema.json",
+  "title": "EntityList",
+  "description": "The definition of an MZDB EntityList which describes the characteristics of the EntityList on a per tenant basis. EntityLists are created at the tenant level, but instances of the EntityLists are implicitly created at the appropriate context level as entities are added or removed from the EntityList.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-entities-openapi.yml#/components/schemas/EntityList",
+  "properties": {
+    "contextLevel": {
+      "description": "At which context level are entities stored in the list. Possible values are \"tenant\", \"site\", \"masterCatalog\" or \"catalog\".  Each list instance will exist at this context level for the tenant.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "createDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "idProperty": {
+      "$ref": "#/$defs/IndexedProperty"
+    },
+    "indexA": {
+      "$ref": "#/$defs/IndexedProperty"
+    },
+    "indexB": {
+      "$ref": "#/$defs/IndexedProperty"
+    },
+    "indexC": {
+      "$ref": "#/$defs/IndexedProperty"
+    },
+    "indexD": {
+      "$ref": "#/$defs/IndexedProperty"
+    },
+    "isLocaleSpecific": {
+      "description": "Indicates whether MZDB should store entities in the EntityList instance specific to the localeCode provided.  If true, all operations on the EntityList will be filtered by the provided localeCode on the request or using the defautLocaleCode for the context.  All entities created in the EntityList will be stored with the localeCode provided on the request or the defautLocaleCode for the context as an additional implicit key. The default value is false.",
+      "type": "boolean"
+    },
+    "isSandboxDataCloningSupported": {
+      "description": "Indicates whether MZDB should clone all of the Entities in the EntityList when cloning an existing sandbox for which this list is already defined.  The default value is false.",
+      "type": "boolean"
+    },
+    "isShopperSpecific": {
+      "description": "Indicates whether MZDB should store entities in the EntityList instance specific to the current shopper on the request.  If true, all operations on the EntityList will be filtered by the id of the shopper from the shopper claims provided on the request.  All entities created in the EntityList will be stored with the id of the shopper from the shopper claims provided on the request as an additional implicit key. The default value is false.",
+      "type": "boolean"
+    },
+    "isVisibleInStorefront": {
+      "description": "Indicates whether Enitities in the EntityList are allowed to be accessed from a Mozu storefront.",
+      "type": "boolean"
+    },
+    "metadata": {
+      "description": "An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "name": {
+      "description": "The name for the EntityList which must be unique within the namespace provided.  The name and namespace are formatted as name@nameSpace when specified as fullName. An EntityLists fullName must be unique within the tenant in which it is created.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "nameSpace": {
+      "description": "The nameSpace for the EntityList which must be within the nameSpace scope of the developer Account for the creating application.  The name and namespace are formatted as name@nameSpace when specified as fullName. An EntityLists fullName must be unique within the tenant in which it is created.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tenantId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "updateDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "usages": {
+      "description": "Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the list should be used. Mozu uses the \"admin\" usage valued to indicate that an EntityList should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "useSystemAssignedId": {
+      "description": "Indicates whether or not Mozu should assign a generated identifier for each entity in the list or whether a unique identifier will be provided for each identity. If set to false, then a value must be provided for the IdProperty for the list.",
+      "type": "boolean"
+    },
+    "views": {
+      "description": "The ListViews defined for this EntityList.  ListViews may be used to automatically filter an EntityList or transform the Entities in the list to a new Schema.",
+      "items": {
+        "$ref": "#/$defs/ListView"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "IndexedProperty": {
+      "properties": {
+        "dataType": {
+          "description": "The datatype of the property. Valid values are \"string\", \"integer\", \"decimal\", \"date\", \"bool\". See SharedConstants.DataTypeConst",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "propertyName": {
+          "description": "A JPath query indicating the property that should be indexed to enable querying and sorting.  Non-indexed properties may be used in queries as long as at least one indexed property is also provided in the query.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ListView": {
+      "properties": {
+        "defaultSort": {
+          "description": "Indicates a default sort to be applied to the ListView.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fields": {
+          "description": "The list of ViewFields for this view. ViewFields can be used to filter or transform the underlying Entity to provide an optimized format for applications which query the ListView.  If no ViewFields are specified, entities will be returned for the View with no transform applied.",
+          "items": {
+            "$ref": "#/$defs/ListViewField"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "filter": {
+          "description": "Indicates a implicitly applied filter to the EntityList for to which the ListView is associated. All queries to the ListView will have this filter applied implicitly.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "metaData": {
+          "description": "An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.",
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "The name of the ListView. This must be unique for the EntityList.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "security": {
+          "description": "less restrictive than collection/list security. public | admin | owner",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "usages": {
+          "description": "Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the view should be used. Mozu uses the \"admin\" usage valued to indicate that a ListView should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ListViewField": {
+      "description": "shared by cms/mzdb.",
+      "properties": {
+        "name": {
+          "description": "The name of the field in the view.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "target": {
+          "description": "A JPath query to the source property for this ViewField.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "description": "The datatype of the field. Valid values are \"string\", \"integer\", \"decimal\", \"date\", \"bool\". See SharedConstants.DataTypeConst",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

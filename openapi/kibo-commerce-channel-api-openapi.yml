@@ -1,0 +1,296 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Channel API
+  version: '1.0'
+  description: 'Operations tagged Channel across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Channel
+paths:
+  /commerce/channels/{code}:
+    delete:
+      description: Deletes a channel specified by channel Id. After deleting this channel, assign its associated sites to another channel. Because channels are managed at the tenant level, you must associate all the tenant's sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
+      parameters:
+      - description: ID of the channel to update.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Channel
+      tags:
+      - Channel
+      operationId: deleteCommerceChannelsByCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of an channel specified by the channel ID.
+      parameters:
+      - description: Unique identifier of the channel whose details you want.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Channel'
+          description: OK
+      summary: Get Channel
+      tags:
+      - Channel
+      operationId: getCommerceChannelsByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates a channel.
+      parameters:
+      - description: ID of the channel to update.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Channel'
+        description: All properties of the channel to place.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Channel'
+          description: OK
+      summary: Update Channel
+      tags:
+      - Channel
+      operationId: putCommerceChannelsByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/channels:
+    get:
+      description: Retrieves a list of channels according to any specified filter criteria and sort options. All orders include a channel association that enables the company to perform financial reporting for each defined channel. Because channels are managed at the tenant level, you must associate all the tenant's sites with a channel. Sites that do not have a defined channel association cannot successfully submit orders.
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=50. The default value is 0. Optional."
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the channel in which the results appear. Either ascending (a-z) or descending (z-a) channel. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, \n            gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional."
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ChannelCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ChannelCollection'
+          description: OK
+      summary: Get Channels
+      tags:
+      - Channel
+      operationId: getCommerceChannels
+      x-operation-id-source: derived
+    post:
+      description: Creates a new channel that defines a new logical business division to use for financial reporting.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Channel'
+        description: All properties of the channel to place.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Channel'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Channel'
+          description: OK
+      summary: Creates Channel
+      tags:
+      - Channel
+      operationId: postCommerceChannels
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CoreApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ChannelCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Channel'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    Channel:
+      description: Channel used to group sites for commerce purposes.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        code:
+          description: Code to uniquely identify the channel.
+          type:
+          - string
+          - 'null'
+        countryCode:
+          description: Country code of the channel.
+          type:
+          - string
+          - 'null'
+        groupCode:
+          description: Code to uniquely identify the channel group, if any that contains this channel.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Friendly name of the channel.
+          type:
+          - string
+          - 'null'
+        region:
+          description: Region of the channel.
+          type:
+          - string
+          - 'null'
+        siteIds:
+          description: A list of site Id's that this channel contains.
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        tenantId:
+          description: Tenant that owns the channel.
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

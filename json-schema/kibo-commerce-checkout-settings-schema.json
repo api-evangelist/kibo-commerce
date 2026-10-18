@@ -1,0 +1,812 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-checkout-settings-schema.json",
+  "title": "CheckoutSettings",
+  "description": "Checkout and payment settings defined for this site. Can set which payment gateway to use, whether a shopper is required to login to place an order,\nwhen credit cards are authorized and charged (when the order is placed or shipped), and, in the future, \nwhether the checkout page displays an option for shoppers to receive your email marketing campaigns.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-settings-openapi.yml#/components/schemas/CheckoutSettings",
+  "properties": {
+    "customerCheckoutSettings": {
+      "$ref": "#/$defs/CustomerCheckoutSettings"
+    },
+    "orderProcessingSettings": {
+      "$ref": "#/$defs/OrderProcessingSettings"
+    },
+    "paymentSettings": {
+      "$ref": "#/$defs/PaymentSettings"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AutoCaptureJob": {
+      "description": "Contains settings for the auto-capture payment feature.",
+      "properties": {
+        "flexibleCapture": {
+          "$ref": "#/$defs/FlexibleCapture"
+        },
+        "forceCaptureOnFirstCapture": {
+          "description": "Specifies whether all available funds should be collected once any shipment is ready for capture.",
+          "type": "boolean"
+        },
+        "interval": {
+          "description": "How often this job should run in minutes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "isEnabled": {
+          "description": "Specifies whether this job should run.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerCheckoutSettings": {
+      "description": "Checkout requirements for customers, for example, whether they must login before purchasing from your store. \nOther customized checkout requirements can be defined.",
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "customerCheckoutType": {
+          "description": "Checkout login setting. Value can be either \"LoginOptional,\" where shoppers are prompted to sign in\nbut are not required to do so, or \"LoginRequired,\" where shopppers must login before purchasing.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ExternalPaymentWorkflowDefinition": {
+      "description": "This class describes credentials and enablement for the various third-party payment workflows that we will integrate with.\nExamples include Paypal Express, Amazon Payments, Google Wallet, etc.",
+      "properties": {
+        "credentials": {
+          "items": {
+            "$ref": "#/$defs/ThirdPartyCredentialField"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Information about this definition for display purposes in the 'Payment and Checkout Settings'\nadmin ui.  This field may contain valid html tags",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fullyQualifiedName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isEnabled": {
+          "type": "boolean"
+        },
+        "isLegacy": {
+          "description": "Indicates if this is a legacy implementation using ARC only\nor using the new extensible implementation.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "Should be one of Contracts.Constants.ThirdPartyWorkflowNames.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "namespace": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "FlexibleCapture": {
+      "description": "Contains settings specifying whether the auto-capture payment feature should consider pre-fulfilled shipments.",
+      "properties": {
+        "bopisFlow": {
+          "$ref": "#/$defs/FlexibleCaptureFlow"
+        },
+        "deliveryFlow": {
+          "$ref": "#/$defs/FlexibleCaptureFlow"
+        },
+        "sthFlow": {
+          "$ref": "#/$defs/FlexibleCaptureFlow"
+        }
+      },
+      "type": "object"
+    },
+    "FlexibleCaptureFlow": {
+      "description": "Specifies a pre-fulfilled shipment state that is eligible for capture.",
+      "properties": {
+        "captureBy": {
+          "description": "Look at the `ShipmentState` or the `ShipmentWorkflow`.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "captureOn": {
+          "description": "Which shipment states or workflow statuses are considered eligible for capture.",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ForceCaptureJob": {
+      "description": "Contains settings for when payments should be auto-captured regardless of shipment status.",
+      "properties": {
+        "captureAfterDays": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "interval": {
+          "description": "How often this job should run in minutes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "isEnabled": {
+          "description": "Specifies whether this job should run.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Gateway": {
+      "properties": {
+        "areGatewayCredentialFieldsSet": {
+          "description": "Returns true if Gateway CredentialsField is set. For security purposes, Gateway subresource CredentialFields will not be returned.",
+          "type": "boolean"
+        },
+        "gatewayAccount": {
+          "$ref": "#/$defs/GatewayAccount"
+        },
+        "gatewayDefinition": {
+          "$ref": "#/$defs/GatewayDefinition"
+        },
+        "siteGatewaySupportedCards": {
+          "description": "Which credit cards the Merchant supports",
+          "items": {
+            "$ref": "#/$defs/SiteGatewaySupportedCard"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "supportedCards": {
+          "description": "Which credit cards the Merchant supports",
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "GatewayAccount": {
+      "properties": {
+        "binPatterns": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "credentialFields": {
+          "items": {
+            "$ref": "#/$defs/GatewayCredentialFieldValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "gatewayDefinitionId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isActive": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "GatewayCredentialFieldDefinition": {
+      "properties": {
+        "adminDisplayOrder": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isPublic": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "GatewayCredentialFieldValue": {
+      "properties": {
+        "isValueSet": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "GatewayDefinition": {
+      "properties": {
+        "administationUi": {
+          "items": {
+            "type": "object"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "credentialDefinitions": {
+          "items": {
+            "$ref": "#/$defs/GatewayCredentialFieldDefinition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "features": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "integrationImplTypeName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "preAuthorizeDefinition": {
+          "$ref": "#/$defs/PreAuthorizeDefinition"
+        },
+        "prodServiceURL": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "supportedCards": {
+          "items": {
+            "$ref": "#/$defs/SupportedCard"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "testServiceURL": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "LocalizedContent": {
+      "properties": {
+        "localeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "OrderJobSettings": {
+      "description": "Contains settings for the auto-capture payment feature.",
+      "properties": {
+        "autoCaptureJob": {
+          "$ref": "#/$defs/AutoCaptureJob"
+        },
+        "forceCaptureJob": {
+          "$ref": "#/$defs/ForceCaptureJob"
+        }
+      },
+      "type": "object"
+    },
+    "OrderProcessingSettings": {
+      "description": "Order processing (credit card payment authorization) setting defined for this site. \nCan choose when the shopper’s credit card is authorized and charged. Possibilities include, \"authorize and charge the shopper's credit card for the full \norder amount when the order is placed,\" \"authorize the shopper's credit card for the full amount when the order is placed and charge the credit card when the order is shipped,\" or \n\"authorize and charge the shopper's credit card for the full amount when the order is shipped.\"",
+      "properties": {
+        "abandonedOrderThresholdInMinutes": {
+          "description": "Abandoned Order Threshold in minutes indicates the number of minutes until a pending order is considered abandoned.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "giftCardProcessingType": {
+          "description": "Gift card payment authorization setting. Options can be authorize and charge the shopper's credit card when the order is placed, \"AuthorizeAndCaptureOnOrderPlacement,\" \nauthorize the shopper's gift card when the order is placed and charge the gift card when it is shipped, \"AuthorizeOnOrderPlacementAndCaptureOnOrderShipment,\" \nor authorize and charge the shopper's gift card for the full amount when the order is shipped, \"AuthorizeAndCaptureOnOrderShipment.\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "giftCardRefundCreditProcessingType": {
+          "description": "GiftCrd Refund/Credit flow, wither to existing or new giftcard",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentProcessingFlowType": {
+          "description": "Credit card payment authorization setting. Options can be authorize and charge the shopper's credit card when the order is placed, \"AuthorizeAndCaptureOnOrderPlacement,\" \nauthorize the shopper's credit card when the order is placed and charge the credit card when the shipped, \"AuthorizeOnOrderPlacementAndCaptureOnOrderShipment,\" \nor authorize and charge the shopper's credit card for the full amount when the order is shipped, \"AuthorizeAndCaptureOnOrderShipment.\"",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "thirdPartyPaymentSettings": {
+          "description": "Order processing settings for Third party payments\nEx- ApplePay using AuthorizeOnOrderPlacementAndCaptureOnOrderShipment for processing orders",
+          "items": {
+            "$ref": "#/$defs/ThirdPartyPaymentSetting"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "useOverridePriceToCalculateDiscounts": {
+          "description": "Use the override price on products to calculate discounts",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PaymentSettings": {
+      "description": "Payment gateway settings defined for this site. A payment gateway is an e-commerce application service provider that authorizes \npayments for e-businesses and online retailers. You can define multiple payment gateway settings but only one is active at a time. \nAuthorize.net is the only payment gateway supported currently.",
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "externalPaymentWorkflowDefinitions": {
+          "items": {
+            "$ref": "#/$defs/ExternalPaymentWorkflowDefinition"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "gateways": {
+          "items": {
+            "$ref": "#/$defs/Gateway"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "jobSettings": {
+          "$ref": "#/$defs/OrderJobSettings"
+        },
+        "payByMail": {
+          "type": "boolean"
+        },
+        "paymentRanking": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "purchaseOrder": {
+          "$ref": "#/$defs/PurchaseOrderPaymentDefinition"
+        },
+        "refundRanking": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PreAuthorizeDefinition": {
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "preAuthorizeProdUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "preAuthorizeTestUrl": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "$ref": "#/$defs/PreAuthorizeTransactionTypeDataContract"
+        }
+      },
+      "type": "object"
+    },
+    "PreAuthorizeTransactionTypeDataContract": {
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "PurchaseOrderPaymentDefinition": {
+      "properties": {
+        "allowSplitPayment": {
+          "description": "Indicates whether another payment can be used with the purchase order",
+          "type": "boolean"
+        },
+        "customFields": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/SiteSettingsPurchaseOrderCustomField"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "isEnabled": {
+          "description": "Is purchase order payment enabled",
+          "type": "boolean"
+        },
+        "paymentTerms": {
+          "description": "Allowed net terms",
+          "items": {
+            "$ref": "#/$defs/SiteSettingsPurchaseOrderPaymentTerm"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SiteGatewaySupportedCard": {
+      "properties": {
+        "cardTypeId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "gatewayAccountId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "processingGatewayAccountId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SiteSettingsPurchaseOrderCustomField": {
+      "properties": {
+        "code": {
+          "description": "Unique code/name for memo field",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isEnabled": {
+          "description": "Whether this memo field is enabled",
+          "type": "boolean"
+        },
+        "isRequired": {
+          "description": "Whether this memo field is mandatory to be filled in when placing an order",
+          "type": "boolean"
+        },
+        "label": {
+          "description": "Memo field label that appers on the store front",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sequenceNumber": {
+          "description": "Sequence Number",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SiteSettingsPurchaseOrderPaymentTerm": {
+      "properties": {
+        "code": {
+          "description": "A unique code for purchase order payment term",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Value of the net term",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sequenceNumber": {
+          "description": "Sequence Number",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SupportedCard": {
+      "properties": {
+        "friendlyName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "paymentType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ThirdPartyCredentialField": {
+      "description": "Describes the name and value of a third party credential field.",
+      "properties": {
+        "apiName": {
+          "description": "The name of this credential that should be used for web requests.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "displayName": {
+          "description": "The displayable name of this credential field",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inputType": {
+          "description": "The input field type for the value.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isSensitive": {
+          "description": "the value holds sensitive information.",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "The value for this credential that should be used for web requests.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vocabularyValues": {
+          "items": {
+            "$ref": "#/$defs/VocabularyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ThirdPartyPaymentSetting": {
+      "properties": {
+        "paymentProcessingFlowType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "VocabularyValue": {
+      "properties": {
+        "contents": {
+          "items": {
+            "$ref": "#/$defs/LocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

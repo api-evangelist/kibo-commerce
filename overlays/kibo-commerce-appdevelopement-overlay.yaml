@@ -1,0 +1,179 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce App Development
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-appdevelopement-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-appdevelopement-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/platform/applications/authtickets'].post
+  description: Add derived operationId for POST /platform/applications/authtickets
+  update:
+    operationId: appauthticketsAppAuthenticate
+- target: $.paths['/platform/applications/authtickets/{refreshToken}'].delete
+  description: Add derived operationId for DELETE /platform/applications/authtickets/{refreshToken}
+  update:
+    operationId: appauthticketsDeleteAppAuthTicket
+- target: $.paths['/platform/applications/authtickets/oauth'].post
+  description: Add derived operationId for POST /platform/applications/authtickets/oauth
+  update:
+    operationId: appauthticketsOauthAuthenticateApp
+- target: $.paths['/platform/applications/authtickets/refresh-ticket'].put
+  description: Add derived operationId for PUT /platform/applications/authtickets/refresh-ticket
+  update:
+    operationId: appauthticketsRefreshAppAuthTicket
+- target: $.paths['/platform/appdev/appsubscriptions/events'].post
+  description: Add derived operationId for POST /platform/appdev/appsubscriptions/events
+  update:
+    operationId: appeventCreateApplicationSubscription
+- target: $.paths['/platform/appdev/appsubscriptions/events'].put
+  description: Add derived operationId for PUT /platform/appdev/appsubscriptions/events
+  update:
+    operationId: appeventUpdateApplicationSubscription
+- target: $.paths['/platform/appdev/appsubscriptions/events/{applicationSubscriptionId}'].delete
+  description: Add derived operationId for DELETE /platform/appdev/appsubscriptions/events/{applicationSubscriptionId}
+  update:
+    operationId: appeventDeleteApplicationSubscription
+- target: $.paths['/platform/appdev/appsubscriptions/{subscriptionId}'].get
+  description: Add derived operationId for GET /platform/appdev/appsubscriptions/{subscriptionId}
+  update:
+    operationId: appeventGetApplicationSubscription
+- target: $.paths['/platform/appdev/appinstall/application/entitlement/{applicationEntitlementId}'].get
+  description: Add derived operationId for GET /platform/appdev/appinstall/application/entitlement/{applicationEntitlementId}
+  update:
+    operationId: appinstallGetApplication
+- target: $.paths['/platform/appdev/appinstall/application/entitlement'].get
+  description: Add derived operationId for GET /platform/appdev/appinstall/application/entitlement
+  update:
+    operationId: appinstallGetApplications
+- target: $.paths['/platform/appdev/appinstall/application/entitlement'].post
+  description: Add derived operationId for POST /platform/appdev/appinstall/application/entitlement
+  update:
+    operationId: appinstallInstallApplication
+- target: $.paths['/platform/appdev/appinstall/applicationversion/{applicationId}/entitlements'].get
+  description: Add derived operationId for GET /platform/appdev/appinstall/applicationversion/{applicationId}/entitlements
+  update:
+    operationId: appinstallGetEntitlementsByApplication
+- target: $.paths['/platform/appdev/appinstall/tenant/{tenantId}/entitlements'].get
+  description: Add derived operationId for GET /platform/appdev/appinstall/tenant/{tenantId}/entitlements
+  update:
+    operationId: appinstallGetEntitlementsByTenant
+- target: $.paths['/platform/appdev/appinstall/toproductiontenant'].post
+  description: Add derived operationId for POST /platform/appdev/appinstall/toproductiontenant
+  update:
+    operationId: appinstallInstallAppToProductionTenant
+- target: $.paths['/platform/appdev/filebasedpackage/packages/{applicationKey}'].get
+  description: Add derived operationId for GET /platform/appdev/filebasedpackage/packages/{applicationKey}
+  update:
+    operationId: filebasedpackageGetFile
+- target: $.paths['/platform/appdev/headless-app/env/{branchName}/{variableName}'].delete
+  description: Add derived operationId for DELETE /platform/appdev/headless-app/env/{branchName}/{variableName}
+  update:
+    operationId: headlessappDeleteEnvironmentVariable
+- target: $.paths['/platform/appdev/headless-app/secrets/{branchName}/{secretName}'].delete
+  description: Add derived operationId for DELETE /platform/appdev/headless-app/secrets/{branchName}/{secretName}
+  update:
+    operationId: headlessappDeleteSecret
+- target: $.paths['/platform/appdev/headless-app/builds/{branchName}'].get
+  description: Add derived operationId for GET /platform/appdev/headless-app/builds/{branchName}
+  update:
+    operationId: headlessappGetApplicationBuildJobs
+- target: $.paths['/platform/appdev/headless-app/builds/{branchName}/logs/{jobId}'].get
+  description: Add derived operationId for GET /platform/appdev/headless-app/builds/{branchName}/logs/{jobId}
+  update:
+    operationId: headlessappGetApplicationBuildLog
+- target: $.paths['/platform/appdev/headless-app/env/{branchName}'].get
+  description: Add derived operationId for GET /platform/appdev/headless-app/env/{branchName}
+  update:
+    operationId: headlessappGetEnvironmentVariables
+- target: $.paths['/platform/appdev/headless-app/env/{branchName}'].put
+  description: Add derived operationId for PUT /platform/appdev/headless-app/env/{branchName}
+  update:
+    operationId: headlessappPutEnvironmentVariable
+- target: $.paths['/platform/appdev/headless-app/logs/runtime'].get
+  description: Add derived operationId for GET /platform/appdev/headless-app/logs/runtime
+  update:
+    operationId: headlessappGetRuntimeLogs
+- target: $.paths['/platform/appdev/headless-app/secrets/{branchName}'].get
+  description: Add derived operationId for GET /platform/appdev/headless-app/secrets/{branchName}
+  update:
+    operationId: headlessappGetSecrets
+- target: $.paths['/platform/appdev/headless-app/secrets/{branchName}'].put
+  description: Add derived operationId for PUT /platform/appdev/headless-app/secrets/{branchName}
+  update:
+    operationId: headlessappPutSecret
+- target: $.paths['/platform/appdev/headless-app/builds/{branchName}/trigger'].post
+  description: Add derived operationId for POST /platform/appdev/headless-app/builds/{branchName}/trigger
+  update:
+    operationId: headlessappTriggerBuild
+- target: $.paths['/platform/appdev/apppackages/{applicationKey}/clone/{packageName}'].post
+  description: Add derived operationId for POST /platform/appdev/apppackages/{applicationKey}/clone/{packageName}
+  update:
+    operationId: packageClonePackage
+- target: $.paths['/platform/appdev/apppackages/create'].post
+  description: Add derived operationId for POST /platform/appdev/apppackages/create
+  update:
+    operationId: packageCreateNewCorePackage
+- target: $.paths['/platform/appdev/apppackages/project'].post
+  description: Add derived operationId for POST /platform/appdev/apppackages/project
+  update:
+    operationId: packageCreatePackage
+- target: $.paths['/platform/appdev/apppackages/apps/{appId}'].get
+  description: Add derived operationId for GET /platform/appdev/apppackages/apps/{appId}
+  update:
+    operationId: packageGetApplicationSummaryChildren
+- target: $.paths['/platform/appdev/apppackages/collection'].get
+  description: Add derived operationId for GET /platform/appdev/apppackages/collection
+  update:
+    operationId: packageGetApplicationSummaryParents
+- target: $.paths['/platform/appdev/apppackages/{applicationKey}'].get
+  description: Add derived operationId for GET /platform/appdev/apppackages/{applicationKey}
+  update:
+    operationId: packageGetPackage
+- target: $.paths['/platform/appdev/apppackages/{applicationKey}'].put
+  description: Add derived operationId for PUT /platform/appdev/apppackages/{applicationKey}
+  update:
+    operationId: packageUpdatePackage
+- target: $.paths['/platform/appdev/apppackages/{packageId}/behaviors'].get
+  description: Add derived operationId for GET /platform/appdev/apppackages/{packageId}/behaviors
+  update:
+    operationId: packageGetPackageBehaviors
+- target: $.paths['/platform/appdev/apppackages/{packageId}/behaviors'].post
+  description: Add derived operationId for POST /platform/appdev/apppackages/{packageId}/behaviors
+  update:
+    operationId: packageUpdatePackageBehaviors
+- target: $.paths['/platform/appdev/apppackages/applications/{applicationKey}/packages'].get
+  description: Add derived operationId for GET /platform/appdev/apppackages/applications/{applicationKey}/packages
+  update:
+    operationId: packageGetPackages
+- target: $.paths['/platform/developer/applications/{applicationKey}/packagenames'].get
+  description: Add derived operationId for GET /platform/developer/applications/{applicationKey}/packagenames
+  update:
+    operationId: publicapplicationGetAppPackageNames
+- target: $.paths['/platform/developer/applications/versions/{nsAndAppId}'].get
+  description: Add derived operationId for GET /platform/developer/applications/versions/{nsAndAppId}
+  update:
+    operationId: publicapplicationGetAppVersions
+- target: $.paths['/platform/developer/packages/{applicationKey}/filemetadata/{filepath}'].get
+  description: Add derived operationId for GET /platform/developer/packages/{applicationKey}/filemetadata/{filepath}
+  update:
+    operationId: publicapplicationGetPackageFileMetadata
+- target: $.paths['/platform/developer/packages/{applicationKey}/metadata'].get
+  description: Add derived operationId for GET /platform/developer/packages/{applicationKey}/metadata
+  update:
+    operationId: publicapplicationGetPackageMetadata
+- target: $.paths['/platform/developer/packages/{applicationKey}/files_rename'].post
+  description: Add derived operationId for POST /platform/developer/packages/{applicationKey}/files_rename
+  update:
+    operationId: publicapplicationRenamePackageFile
+- target: $.paths['/platform/developer/packages/{applicationKey}/files/{filepath}'].delete
+  description: Add derived operationId for DELETE /platform/developer/packages/{applicationKey}/files/{filepath}
+  update:
+    operationId: publicapplicationDeletePackageFile
+- target: $.paths['/platform/developer/packages/{applicationKey}/files/{filepath}'].post
+  description: Add derived operationId for POST /platform/developer/packages/{applicationKey}/files/{filepath}
+  update:
+    operationId: publicapplicationUpsertPackageFile

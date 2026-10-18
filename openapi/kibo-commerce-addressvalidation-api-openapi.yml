@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Address Validation API
+  version: '1.0'
+  description: 'Operations tagged AddressValidation across 2 of this provider''s published API definitions: openapi_openapi_customer.json, kibo-commerce-customer-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AddressValidation
+paths:
+  /commerce/customer/addressvalidation:
+    post:
+      description: Allows merchants and services to validate an address against the configured AddressValidator capability in SiteSettings, fallback uses USPS Address Validation.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressValidationRequest'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressValidationResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AddressValidationResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AddressValidationResponse'
+          description: OK
+      summary: Validate Address
+      tags:
+      - AddressValidation
+      operationId: postCommerceCustomerAddressvalidation
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AddressValidationRequest:
+      description: Address Validation Request
+      properties:
+        address:
+          $ref: '#/components/schemas/Address'
+      type: object
+    AddressValidationResponse:
+      description: Address Validation Response
+      properties:
+        addressCandidates:
+          description: Address Candidates
+          items:
+            $ref: '#/components/schemas/Address'
+          type:
+          - array
+          - 'null'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_customer.json
+- kibo-commerce-customer-openapi.yml

@@ -1,0 +1,337 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Entity Containers API
+  version: '1.0'
+  description: 'Operations tagged EntityContainers across 2 of this provider''s published API definitions: openapi_openapi_entities.json, kibo-commerce-entities-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: EntityContainers
+paths:
+  /platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers/{entityId}:
+    get:
+      description: Get an Entity Container for a specific Entity in a ListView on an EntityList
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The name of the ListView
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+      - description: The unique Entity id
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainer'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainer'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityContainer'
+          description: OK
+      summary: Get Entity View Container
+      tags:
+      - EntityContainers
+      operationId: getPlatformEntitylistsByEntityListFullNameViewsByViewNameEntityContainersByEntityId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/entitylists/{entityListFullName}/entityContainers/{id}:
+    get:
+      description: Get a specific Entity Container from an EntityList instance
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The unique id of the Entity
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainer'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainer'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityContainer'
+          description: OK
+      summary: Get Entity Container
+      tags:
+      - EntityContainers
+      operationId: getPlatformEntitylistsByEntityListFullNameEntityContainersById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/entitylists/{entityListFullName}/entityContainers:
+    get:
+      description: Get a filtered collection of Entity Containers from an Entity List instance
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainerCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainerCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityContainerCollection'
+          description: OK
+      summary: Get Entity Containers
+      tags:
+      - EntityContainers
+      operationId: getPlatformEntitylistsByEntityListFullNameEntityContainers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/entitylists/{entityListFullName}/views/{viewName}/entityContainers:
+    get:
+      description: Get a filtered collection of Entity Containers for a ListView on an EntityList
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The name of the ListView
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainerCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityContainerCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityContainerCollection'
+          description: OK
+      summary: Get Entity View Containers
+      tags:
+      - EntityContainers
+      operationId: getPlatformEntitylistsByEntityListFullNameViewsByViewNameEntityContainers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    EntityContainer:
+      description: The metadata and Entity contents for an entity persisted in an EntityList in MZDB. The Item property contains the json representation of the Entity
+      properties:
+        catalogId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type: string
+        id:
+          description: The unique identifier for the Entity.
+          type:
+          - string
+          - 'null'
+        item:
+          description: The entity in json format.
+          type:
+          - object
+          - 'null'
+        listFullName:
+          description: The nameSpace and name for the EntityList in the format name@nameSpace.
+          type:
+          - string
+          - 'null'
+        localeCode:
+          description: The localeCode for the Entity. This will only be populated for EntityLists that are created with IsLocaleSpecific set to true.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        siteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type: string
+        userId:
+          description: The userId of the shopper account associated with this Entity. This will only be populated for EntityLists that are creaetd with IsShopperSpecific set to true.
+          type:
+          - string
+          - 'null'
+      type: object
+    EntityContainerCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/EntityContainer'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_entities.json
+- kibo-commerce-entities-openapi.yml

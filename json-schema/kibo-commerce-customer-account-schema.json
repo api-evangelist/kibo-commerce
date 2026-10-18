@@ -1,0 +1,526 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-customer-account-schema.json",
+  "title": "CustomerAccount",
+  "description": "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \nMerchants can edit accounts to add internal notes or assign them to segments.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-customer-openapi.yml#/components/schemas/CustomerAccount",
+  "properties": {
+    "acceptsMarketing": {
+      "description": "If true, the customer prefers to receive marketing material such as newsletters or email offers.",
+      "type": "boolean"
+    },
+    "accountType": {
+      "description": "Type of account.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "attributes": {
+      "description": "List of attributes for the account.",
+      "items": {
+        "$ref": "#/$defs/CustomerAttribute"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "commerceSummary": {
+      "$ref": "#/$defs/CommerceSummary"
+    },
+    "companyOrOrganization": {
+      "description": "The company or organization name for an account.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contacts": {
+      "description": "List of contacts for this account. A customer account can have multiple contacts for billing and shipping addresses.",
+      "items": {
+        "$ref": "#/$defs/CustomerContact"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "customerSet": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "customerSinceDate": {
+      "description": "Date when the customer account is created.",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "emailAddress": {
+      "description": "\"Email addresss of the customer.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "externalId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "firstName": {
+      "description": "First name of the customer.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hasExternalPassword": {
+      "description": "Indicates if an external password is set on this account",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "Unique identifier of the account, also known as a customer number.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "isActive": {
+      "description": "Is the account active?",
+      "type": "boolean"
+    },
+    "isAnonymous": {
+      "description": "Is the account Anonymous?",
+      "type": "boolean"
+    },
+    "isLocked": {
+      "description": "Is the account locked?",
+      "type": "boolean"
+    },
+    "last2FaDate": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lastName": {
+      "description": "Last name of the customer.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "localeCode": {
+      "description": "Locale Code.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "migrationRequired": {
+      "description": "Indicates Subscription migration is required or not.",
+      "type": "boolean"
+    },
+    "notes": {
+      "description": "List of notes for the account. Merchants use these internal notes, for example, to make a note of a customer's interests or complaints. \nNotes are available only from the merchant's view, customers cannot view these notes.",
+      "items": {
+        "$ref": "#/$defs/CustomerNote"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "segments": {
+      "description": "List of segments assigned to account. Merchants create segments, for example, to manage discounts or assign VIP status. \nThen they assign the account to the segment. An account can belong to several segments or none at all.",
+      "items": {
+        "$ref": "#/$defs/CustomerSegment"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "taxExempt": {
+      "type": "boolean"
+    },
+    "taxId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "userId": {
+      "description": "Unique identifier of the user who is currently logged in. This is null if the user is anonymous (not logged in).  Unicode data with a maximum length of 55 characters.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "userName": {
+      "description": "User name for the customer account.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "addressType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isValidated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CommerceSummary": {
+      "description": "Commerce (orders and wishlists) on a customer account which lists all the orders the customer has made with the order date, order amount, and status. Includes cancellations and returns.  Also includes wishlist information.",
+      "properties": {
+        "lastOrderDate": {
+          "description": "When the last order was placed.",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "orderCount": {
+          "description": "Number of orders listed in the order history of a customer account.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalOrderAmount": {
+          "$ref": "#/$defs/CurrencyAmount"
+        },
+        "visitsCount": {
+          "description": "Number of visits for this customer across the entire tenant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "wishlistCount": {
+          "description": "Number of wishlists listed in the wishlist count of a customer account",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ContactType": {
+      "properties": {
+        "isPrimary": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CurrencyAmount": {
+      "description": "The currency code and amount of an order listed in the order history of a customer account. Currently, only USD is supported.",
+      "properties": {
+        "amount": {
+          "description": "Total amount of the order. Currently, only US dollar amounts are supported.",
+          "format": "double",
+          "type": "number"
+        },
+        "currencyCode": {
+          "description": "Currency code for the amount of the order. Currently, only \"USD\" is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomerAttribute": {
+      "properties": {
+        "attributeDefinitionId": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "fullyQualifiedName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {},
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomerContact": {
+      "description": "CustomerContact information for a customer account including the name, company, phone numbers, email addresses, and billing and shipping addresses (if supplied).",
+      "properties": {
+        "accountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "companyOrOrganization": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "faxNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "firstName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastNameOrSurname": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "middleNameOrInitial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phoneNumbers": {
+          "$ref": "#/$defs/Phone"
+        },
+        "types": {
+          "items": {
+            "$ref": "#/$defs/ContactType"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomerNote": {
+      "description": "Note added to the customer account. Merchants can add internal notes, for example, to keep track of a customer's interests or complaints.",
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "content": {
+          "description": "Content of the note that the merchant added.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Unique identifier of the note.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerSegment": {
+      "description": "A customer segment.",
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "code": {
+          "description": "Unique identifier of the customer segment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "description": {
+          "description": "Description of the customer segment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Unique identifier of the customer segment.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Name of the customer segment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Phone": {
+      "properties": {
+        "home": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mobile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "work": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

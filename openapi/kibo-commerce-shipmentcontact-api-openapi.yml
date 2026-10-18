@@ -1,0 +1,452 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Contact API
+  version: '1.0'
+  description: 'Operations tagged ShipmentContact across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentContact
+paths:
+  /commerce/shipments/{shipmentNumber}/alternateContact:
+    delete:
+      deprecated: false
+      description: Delete a shipment's alternate contact details.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+      summary: Delete Alternate Contact
+      tags:
+      - ShipmentContact
+      operationId: deleteCommerceShipmentsByShipmentNumberAlternateContact
+      x-operation-id-source: derived
+    get:
+      deprecated: false
+      description: Get the designated alternate contact for a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Alternate Contact
+      tags:
+      - ShipmentContact
+      operationId: getCommerceShipmentsByShipmentNumberAlternateContact
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      description: Update the designated alternate contact of a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateContactRequest'
+        description: updateContactRequest
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Alternate Contact
+      tags:
+      - ShipmentContact
+      x-codegen-request-body-name: updateContactRequest
+      operationId: putCommerceShipmentsByShipmentNumberAlternateContact
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/customerContact:
+    get:
+      deprecated: false
+      description: Get the customer contact information of a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Customer Contact
+      tags:
+      - ShipmentContact
+      operationId: getCommerceShipmentsByShipmentNumberCustomerContact
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      description: Update the customer contact information of a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateContactRequest'
+        description: updateContactRequest
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Customer Contact
+      tags:
+      - ShipmentContact
+      x-codegen-request-body-name: updateContactRequest
+      operationId: putCommerceShipmentsByShipmentNumberCustomerContact
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/destinationContact:
+    get:
+      deprecated: false
+      description: Get the destination contact for a shipment.
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Destination Contact
+      tags:
+      - ShipmentContact
+      operationId: getCommerceShipmentsByShipmentNumberDestinationContact
+      x-operation-id-source: derived
+    put:
+      deprecated: false
+      description: Update the destination contact of a shipment.
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateContactRequest'
+        description: updateContactRequest
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfContact'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Destination Contact
+      tags:
+      - ShipmentContact
+      x-codegen-request-body-name: updateContactRequest
+      operationId: putCommerceShipmentsByShipmentNumberDestinationContact
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    FulfillmentAPIAddress:
+      properties:
+        address1:
+          type: string
+        address2:
+          type: string
+        address3:
+          type: string
+        address4:
+          type: string
+        addressType:
+          enum:
+          - Commercial
+          - Residential
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        cityOrTown:
+          type: string
+        countryCode:
+          type: string
+        isValidated:
+          type: boolean
+        latitude:
+          type: string
+        longitude:
+          type: string
+        postalOrZipCode:
+          type: string
+        stateOrProvince:
+          type: string
+      title: Address
+      type: object
+    FulfillmentAPIPhone:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        home:
+          type: string
+        mobile:
+          type: string
+        work:
+          type: string
+      title: Phone
+      type: object
+    EntityModelOfContact:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        address:
+          $ref: '#/components/schemas/FulfillmentAPIAddress'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        companyOrOrganization:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        fullName:
+          type: string
+        id:
+          format: int32
+          type: integer
+        lastNameOrSurname:
+          type: string
+        middleNameOrInitial:
+          type: string
+        phoneNumbers:
+          $ref: '#/components/schemas/FulfillmentAPIPhone'
+        shortFullName:
+          type: string
+      title: EntityModelOfContact
+      type: object
+    Links:
+      properties:
+        empty:
+          type: boolean
+      title: Links
+      type: object
+    UpdateContactRequest:
+      properties:
+        contact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+      title: UpdateContactRequest
+      type: object
+    FulfillmentAPIContact:
+      properties:
+        address:
+          $ref: '#/components/schemas/FulfillmentAPIAddress'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        companyOrOrganization:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        fullName:
+          type: string
+        id:
+          format: int32
+          type: integer
+        lastNameOrSurname:
+          type: string
+        middleNameOrInitial:
+          type: string
+        phoneNumbers:
+          $ref: '#/components/schemas/FulfillmentAPIPhone'
+        shortFullName:
+          type: string
+      title: Contact
+      type: object
+  requestBodies:
+    UpdateContactRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateContactRequest'
+      description: updateContactRequest
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

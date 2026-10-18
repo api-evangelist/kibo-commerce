@@ -1,0 +1,31 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Audit Logs Web
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-audit-logs-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-audit-logs-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/history/{rightHistoryId}/{leftHistoryId}/download'].get
+  description: Add derived operationId for GET /history/{rightHistoryId}/{leftHistoryId}/download
+  update:
+    operationId: historyDownloadHistories
+- target: $.paths['/history/{historyId}/download'].get
+  description: Add derived operationId for GET /history/{historyId}/download
+  update:
+    operationId: historyDownloadHistory
+- target: $.paths['/history'].get
+  description: Add derived operationId for GET /history
+  update:
+    operationId: historyGetHistory
+- target: $.paths['/history/{historyId}'].get
+  description: Add derived operationId for GET /history/{historyId}
+  update:
+    operationId: historyGetHistoryByID
+- target: $.paths['/history/{historyId}/diff'].get
+  description: Add derived operationId for GET /history/{historyId}/diff
+  update:
+    operationId: historyGetHistoryDiff

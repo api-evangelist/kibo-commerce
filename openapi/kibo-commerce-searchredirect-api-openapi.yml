@@ -1,0 +1,266 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Search Redirect API
+  version: '1.0'
+  description: 'Operations tagged SearchRedirect across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SearchRedirect
+paths:
+  /commerce/catalog/admin/search/redirect/{redirectId}:
+    delete:
+      description: Deletes a specific redirect for a site.
+      parameters:
+      - in: path
+        name: redirectId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+          description: OK
+      summary: Delete Search Redirect
+      tags:
+      - SearchRedirect
+      operationId: deleteCommerceCatalogAdminSearchRedirectByRedirectId
+      x-operation-id-source: derived
+    get:
+      description: Get search redirect by redirect id.
+      parameters:
+      - in: path
+        name: redirectId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+          description: OK
+      summary: Get Search Redirect
+      tags:
+      - SearchRedirect
+      operationId: getCommerceCatalogAdminSearchRedirectByRedirectId
+      x-operation-id-source: derived
+    put:
+      description: Update a search redirect for a specific site.
+      parameters:
+      - in: path
+        name: redirectId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRedirect'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+          description: OK
+      summary: Update Search Redirect
+      tags:
+      - SearchRedirect
+      operationId: putCommerceCatalogAdminSearchRedirectByRedirectId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/search/redirect:
+    get:
+      description: Get search redirect list.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirectCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirectCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchRedirectCollection'
+          description: OK
+      summary: Get Search Redirects
+      tags:
+      - SearchRedirect
+      operationId: getCommerceCatalogAdminSearchRedirect
+      x-operation-id-source: derived
+    post:
+      description: Adds a search redirect for a specific site.
+      parameters:
+      - in: query
+        name: fromSystemDefault
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchRedirect'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchRedirect'
+          description: OK
+      summary: Add Search Redirect
+      tags:
+      - SearchRedirect
+      operationId: postCommerceCatalogAdminSearchRedirect
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SearchRedirect:
+      description: Redirects based on what is entered in site search
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        redirectId:
+          type:
+          - string
+          - 'null'
+        searchTermList:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        siteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        statusId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+        url:
+          type:
+          - string
+          - 'null'
+      type: object
+    SearchRedirectCollection:
+      description: List of search redirects
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SearchRedirect'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

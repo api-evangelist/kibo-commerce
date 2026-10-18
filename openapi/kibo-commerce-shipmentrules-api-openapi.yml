@@ -1,0 +1,376 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Rules API
+  version: '1.0'
+  description: 'Operations tagged ShipmentRules across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentRules
+paths:
+  /commerce/rules/shipment/{code}:
+    delete:
+      description: Delete a shipment rule.
+      parameters:
+      - description: The code of the rule to delete.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete shipment rule
+      tags:
+      - ShipmentRules
+      operationId: deleteCommerceRulesShipmentByCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a single shipment rule.
+      parameters:
+      - description: The code of the rule.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+          description: OK
+      summary: Get shipment rule by code
+      tags:
+      - ShipmentRules
+      operationId: getCommerceRulesShipmentByCode
+      x-operation-id-source: derived
+    put:
+      description: Update an existing shipment rule.
+      parameters:
+      - description: The code of the rule to update.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentRule'
+        description: The updated shipment rule.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+          description: OK
+      summary: Update shipment rule
+      tags:
+      - ShipmentRules
+      operationId: putCommerceRulesShipmentByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/shipment:
+    get:
+      description: Retrieves a list of shipment rules.
+      parameters:
+      - description: The start index.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The page size.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The sort by.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: The filter.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: The response groups.
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShipmentRuleCollection'
+          description: OK
+      summary: Get shipment rules
+      tags:
+      - ShipmentRules
+      operationId: getCommerceRulesShipment
+      x-operation-id-source: derived
+    post:
+      description: Creates a new shipment rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShipmentRule'
+        description: The shipment rule to create.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ShipmentRule'
+          description: OK
+      summary: Create shipment rule
+      tags:
+      - ShipmentRules
+      operationId: postCommerceRulesShipment
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/shipment/expression/parse:
+    post:
+      description: Parses a shipment expression and returns the query string for retrieving shipments that match the criteria.
+      parameters:
+      - description: The fulfillment location code to filter by.
+        in: query
+        name: fulfillmentLocationCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+        description: The dynamic expression to parse.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: OK
+      summary: Parse Shipment Expression
+      tags:
+      - ShipmentRules
+      operationId: postCommerceRulesShipmentExpressionParse
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CatalogAdminsDynamicExpression:
+      description: Category
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        tree:
+          $ref: '#/components/schemas/CatalogAdminsExpression'
+      type: object
+    ShipmentRule:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Unique identifier of the ShipmentRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        description:
+          description: ShipmentRule description
+          type:
+          - string
+          - 'null'
+        expression:
+          $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+        metaData:
+          description: Additional metadata.
+        name:
+          description: ShipmentRule name
+          type:
+          - string
+          - 'null'
+        ruleType:
+          description: Discriminator identifying the rule type that owns this shipment rule. Required on create and update.
+          minLength: 1
+          type: string
+      required:
+      - ruleType
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsExpression:
+      properties:
+        left:
+          description: The field target of a predicate
+          type:
+          - string
+          - 'null'
+        logicalOperator:
+          description: And or Or (if Container with More than one Node)
+          type:
+          - string
+          - 'null'
+        nodes:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsExpression'
+          type:
+          - array
+          - 'null'
+        operator:
+          description: The operator of a predicate
+          type:
+          - string
+          - 'null'
+        right:
+          description: The literal values of a predicate
+        type:
+          description: Container or Predicate
+          type:
+          - string
+          - 'null'
+      type: object
+    ShipmentRuleCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ShipmentRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

@@ -1,0 +1,252 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Document Publishing API
+  version: '1.0'
+  description: 'Operations tagged DocumentPublishing across 2 of this provider''s published API definitions: openapi_openapi_content.json, kibo-commerce-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: DocumentPublishing
+paths:
+  /content/documentpublishing/draft:
+    get:
+      parameters:
+      - description: maximum number of items to return
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: documentLists
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDraftSummaryPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDraftSummaryPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentDraftSummaryPagedCollection'
+          description: OK
+      summary: Get Document Draft Summaries
+      tags:
+      - DocumentPublishing
+      operationId: getContentDocumentpublishingDraft
+      x-operation-id-source: derived
+    post:
+      description: Remove draft of each Document associated with te id in documentIds. Send empty body to remove all drafts
+      parameters:
+      - description: ''
+        in: query
+        name: documentLists
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+          application/octet-stream:
+            schema:
+              items:
+                type: string
+              type: array
+          text/plain:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ''
+      responses:
+        '200':
+          description: OK
+      summary: Delete Document Drafts
+      tags:
+      - DocumentPublishing
+      operationId: postContentDocumentpublishingDraft
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentpublishing/active:
+    put:
+      description: Publishes draft of each Document associated with the id in documentIds. Send empty body to publish all drafts
+      parameters:
+      - description: ''
+        in: query
+        name: documentLists
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+          application/octet-stream:
+            schema:
+              items:
+                type: string
+              type: array
+          text/plain:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ''
+      responses:
+        '200':
+          description: OK
+      summary: Publish Documents
+      tags:
+      - DocumentPublishing
+      operationId: putContentDocumentpublishingActive
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    DocumentDraftSummaryPagedCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DocumentDraftSummary'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    DocumentDraftSummary:
+      description: Summary information on a Document Draft
+      properties:
+        activeUpdateDate:
+          description: The date and time the document was last published, if any.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        activeUpdatedBy:
+          type:
+          - string
+          - 'null'
+        catalogId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        documentTypeFQN:
+          description: The full name of the documentType that underlies this document.
+          type:
+          - string
+          - 'null'
+        draftUpdateDate:
+          description: The date and time the document draft was last updated.
+          format: date-time
+          type: string
+        id:
+          description: The system generated 32 digit alpha-numeric string that uniquely identifies the document.
+          type:
+          - string
+          - 'null'
+        listFQN:
+          description: The fully qualified name of the documentList to which the document belongs.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        name:
+          description: The unique name of the document.
+          type:
+          - string
+          - 'null'
+        publishSetCode:
+          type:
+          - string
+          - 'null'
+        publishType:
+          description: "Denotes the type of draft. \n\"Created\" -- the document has never been published. \n\"Updated\" -- the document has an \"active\" version and this is a subsequent draft.\n\"Deleted\" -- the \"active\" document will be permanently deleted when this draft is published."
+          type:
+          - string
+          - 'null'
+        siteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        updatedBy:
+          description: The userId or applicationId that last updated the draft document.
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_content.json
+- kibo-commerce-content-openapi.yml

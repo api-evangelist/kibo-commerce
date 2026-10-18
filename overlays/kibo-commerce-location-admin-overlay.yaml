@@ -1,0 +1,387 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Location Admin
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-location-admin-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-location-admin-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/admin/locations/{locationCode}/attributes'].post
+  description: Add derived operationId for POST /commerce/admin/locations/{locationCode}/attributes
+  update:
+    operationId: locationadminAddLocationAttribute
+- target: $.paths['/commerce/admin/locations/cutoffoverrides/{overrideId}'].delete
+  description: Add derived operationId for DELETE /commerce/admin/locations/cutoffoverrides/{overrideId}
+  update:
+    operationId: locationadminDeleteCutoffTimeOverride
+- target: $.paths['/commerce/admin/locations/cutoffoverrides/{overrideId}'].get
+  description: Add derived operationId for GET /commerce/admin/locations/cutoffoverrides/{overrideId}
+  update:
+    operationId: locationadminGetCutoffTimeOverrideById
+- target: $.paths['/commerce/admin/locations/cutoffoverrides'].get
+  description: Add derived operationId for GET /commerce/admin/locations/cutoffoverrides
+  update:
+    operationId: locationadminGetCutoffTimeOverrides
+- target: $.paths['/commerce/admin/locations/cutoffoverrides'].post
+  description: Add derived operationId for POST /commerce/admin/locations/cutoffoverrides
+  update:
+    operationId: locationadminCreateCutoffTimeOverride
+- target: $.paths['/commerce/admin/locations/{locationCode}'].get
+  description: Add derived operationId for GET /commerce/admin/locations/{locationCode}
+  update:
+    operationId: locationadminGetLocation
+- target: $.paths['/commerce/admin/locations/{locationCode}'].patch
+  description: Add derived operationId for PATCH /commerce/admin/locations/{locationCode}
+  update:
+    operationId: locationadminPartiallyUpdateLocation
+- target: $.paths['/commerce/admin/locations/{locationCode}'].put
+  description: Add derived operationId for PUT /commerce/admin/locations/{locationCode}
+  update:
+    operationId: locationadminUpdateLocation
+- target: $.paths['/commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}'].delete
+  description: Add derived operationId for DELETE /commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}
+  update:
+    operationId: locationadminRemoveLocationAttribute
+- target: $.paths['/commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}'].get
+  description: Add derived operationId for GET /commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}
+  update:
+    operationId: locationadminGetLocationAttribute
+- target: $.paths['/commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}'].put
+  description: Add derived operationId for PUT /commerce/admin/locations/{locationCode}/attributes/{fullyQualifiedName}
+  update:
+    operationId: locationadminUpdateLocationAttribute
+- target: $.paths['/commerce/admin/locations/{locationCode}/cutofftime'].post
+  description: Add derived operationId for POST /commerce/admin/locations/{locationCode}/cutofftime
+  update:
+    operationId: locationadminGetLocationCutOffTime
+- target: $.paths['/commerce/admin/locations'].get
+  description: Add derived operationId for GET /commerce/admin/locations
+  update:
+    operationId: locationadminGetLocations
+- target: $.paths['/commerce/admin/locations'].post
+  description: Add derived operationId for POST /commerce/admin/locations
+  update:
+    operationId: locationadminAddLocation
+- target: $.paths['/commerce/admin/locations/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/admin/locations/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: locationattributedefinitionsGetAttribute
+- target: $.paths['/commerce/admin/locations/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/admin/locations/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: locationattributedefinitionsUpdateAttribute
+- target: $.paths['/commerce/admin/locations/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/admin/locations/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: locationattributedefinitionsGetAttributeVocabularyValues
+- target: $.paths['/commerce/admin/locations/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/admin/locations/attributedefinition/attributes
+  update:
+    operationId: locationattributedefinitionsGetAttributes
+- target: $.paths['/commerce/admin/locations/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/admin/locations/attributedefinition/attributes
+  update:
+    operationId: locationattributedefinitionsCreateAttribute
+- target: $.paths['/commerce/admin/locationGroups/{locationGroupCode}/locationCodes'].delete
+  description: Add derived operationId for DELETE /commerce/admin/locationGroups/{locationGroupCode}/locationCodes
+  update:
+    operationId: locationgroupRemoveLocationCodesFromALocationGroup
+- target: $.paths['/commerce/admin/locationGroups/{locationGroupCode}/locationCodes'].post
+  description: Add derived operationId for POST /commerce/admin/locationGroups/{locationGroupCode}/locationCodes
+  update:
+    operationId: locationgroupAddLocationCodesToALocationGroup
+- target: $.paths['/commerce/admin/locationGroupConfiguration/{locationGroupCode}'].get
+  description: Add derived operationId for GET /commerce/admin/locationGroupConfiguration/{locationGroupCode}
+  update:
+    operationId: locationgroupconfigurationGetLocationGroupConfiguration
+- target: $.paths['/commerce/admin/locationGroupConfiguration/{locationGroupCode}'].put
+  description: Add derived operationId for PUT /commerce/admin/locationGroupConfiguration/{locationGroupCode}
+  update:
+    operationId: locationgroupconfigurationSetLocationGroupConfiguration
+- target: $.paths['/commerce/admin/locationGroupConfiguration/location/{locationCode}'].get
+  description: Add derived operationId for GET /commerce/admin/locationGroupConfiguration/location/{locationCode}
+  update:
+    operationId: locationgroupconfigurationGetLocationGroupConfigurationByLocation
+- target: $.paths['/commerce/admin/locationGroups/{locationGroupCode}'].delete
+  description: Add derived operationId for DELETE /commerce/admin/locationGroups/{locationGroupCode}
+  update:
+    operationId: locationgroupDeleteLocationGroup
+- target: $.paths['/commerce/admin/locationGroups/{locationGroupCode}'].get
+  description: Add derived operationId for GET /commerce/admin/locationGroups/{locationGroupCode}
+  update:
+    operationId: locationgroupGetLocationGroup
+- target: $.paths['/commerce/admin/locationGroups/{locationGroupCode}'].patch
+  description: Add derived operationId for PATCH /commerce/admin/locationGroups/{locationGroupCode}
+  update:
+    operationId: locationgroupPartiallyUpdateLocationGroup
+- target: $.paths['/commerce/admin/locationGroups/{locationGroupCode}'].put
+  description: Add derived operationId for PUT /commerce/admin/locationGroups/{locationGroupCode}
+  update:
+    operationId: locationgroupUpdateLocationGroup
+- target: $.paths['/commerce/admin/locationGroups'].get
+  description: Add derived operationId for GET /commerce/admin/locationGroups
+  update:
+    operationId: locationgroupGetLocationGroups
+- target: $.paths['/commerce/admin/locationGroups'].post
+  description: Add derived operationId for POST /commerce/admin/locationGroups
+  update:
+    operationId: locationgroupAddLocationGroup
+- target: $.paths['/commerce/admin/locationsInventory/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/admin/locationsInventory/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: locationinventoryattributedefinitionGetAttribute
+- target: $.paths['/commerce/admin/locationsInventory/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/admin/locationsInventory/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: locationinventoryattributedefinitionUpdateAttribute
+- target: $.paths['/commerce/admin/locationsInventory/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/admin/locationsInventory/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: locationinventoryattributedefinitionGetAttributeVocabularyValues
+- target: $.paths['/commerce/admin/locationsInventory/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/admin/locationsInventory/attributedefinition/attributes
+  update:
+    operationId: locationinventoryattributedefinitionGetAttributes
+- target: $.paths['/commerce/admin/locationsInventory/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/admin/locationsInventory/attributedefinition/attributes
+  update:
+    operationId: locationinventoryattributedefinitionCreateAttribute
+- target: $.paths['/commerce/settings/locationUsages/{code}'].get
+  description: Add derived operationId for GET /commerce/settings/locationUsages/{code}
+  update:
+    operationId: locationsettingsGetLocationUsage
+- target: $.paths['/commerce/settings/locationUsages/{code}'].put
+  description: Add derived operationId for PUT /commerce/settings/locationUsages/{code}
+  update:
+    operationId: locationsettingsUpdateLocationUsageAsync
+- target: $.paths['/commerce/settings/locationUsages'].get
+  description: Add derived operationId for GET /commerce/settings/locationUsages
+  update:
+    operationId: locationsettingsGetLocationUsages
+- target: $.paths['/commerce/admin/locationtypes/{locationTypeCode}'].delete
+  description: Add derived operationId for DELETE /commerce/admin/locationtypes/{locationTypeCode}
+  update:
+    operationId: locationtypeDeleteLocationType
+- target: $.paths['/commerce/admin/locationtypes/{locationTypeCode}'].get
+  description: Add derived operationId for GET /commerce/admin/locationtypes/{locationTypeCode}
+  update:
+    operationId: locationtypeGetLocationType
+- target: $.paths['/commerce/admin/locationtypes/{locationTypeCode}'].put
+  description: Add derived operationId for PUT /commerce/admin/locationtypes/{locationTypeCode}
+  update:
+    operationId: locationtypeUpdateLocationType
+- target: $.paths['/commerce/admin/locationtypes'].get
+  description: Add derived operationId for GET /commerce/admin/locationtypes
+  update:
+    operationId: locationtypeGetLocationTypes
+- target: $.paths['/commerce/admin/locationtypes'].post
+  description: Add derived operationId for POST /commerce/admin/locationtypes
+  update:
+    operationId: locationtypeAddLocationTypeAsync
+- target: $.paths['/commerce/admin/locationtypes/withpagination'].get
+  description: Add derived operationId for GET /commerce/admin/locationtypes/withpagination
+  update:
+    operationId: locationtypeGetLocationTypesPaginated
+- target: $.paths['/commerce/admin/locations/transfertimes'].get
+  description: Add derived operationId for GET /commerce/admin/locations/transfertimes
+  update:
+    operationId: transfertimesGetTransferTimes
+- target: $.paths['/commerce/admin/locations/transfertimes'].post
+  description: Add derived operationId for POST /commerce/admin/locations/transfertimes
+  update:
+    operationId: transfertimesCreateTransferTime
+- target: $.paths['/commerce/admin/locations/transfertimes/{tolocationcode}'].post
+  description: Add derived operationId for POST /commerce/admin/locations/transfertimes/{tolocationcode}
+  update:
+    operationId: transfertimesGetTransferTimesByLocations
+- target: $.paths['/commerce/admin/locations/transfertimes/{id}'].delete
+  description: Add derived operationId for DELETE /commerce/admin/locations/transfertimes/{id}
+  update:
+    operationId: transfertimesDeleteTransferTime
+- target: $.paths['/commerce/admin/locations/transfertimes/{id}'].get
+  description: Add derived operationId for GET /commerce/admin/locations/transfertimes/{id}
+  update:
+    operationId: transfertimesGetsASpecifTransfertimeById
+- target: $.paths['/commerce/admin/locations/transfertimes/{id}'].put
+  description: Add derived operationId for PUT /commerce/admin/locations/transfertimes/{id}
+  update:
+    operationId: transfertimesUpdateTransferTime
+- target: $.paths['/commerce/vendors/{vendorCode}/attributes'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/attributes
+  update:
+    operationId: vendorAddVendorAttribute
+- target: $.paths['/commerce/vendors/{vendorCode}/documents/{templateId}/approve'].put
+  description: Add derived operationId for PUT /commerce/vendors/{vendorCode}/documents/{templateId}/approve
+  update:
+    operationId: vendorApproveAVendorDocumentUS3
+- target: $.paths['/commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: vendorattributedefinitionGetAttribute
+- target: $.paths['/commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: vendorattributedefinitionUpdateAttribute
+- target: $.paths['/commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/admin/vendors/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: vendorattributedefinitionGetAttributeVocabularyValues
+- target: $.paths['/commerce/admin/vendors/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/admin/vendors/attributedefinition/attributes
+  update:
+    operationId: vendorattributedefinitionGetAttributes
+- target: $.paths['/commerce/admin/vendors/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/admin/vendors/attributedefinition/attributes
+  update:
+    operationId: vendorattributedefinitionCreateAttribute
+- target: $.paths['/commerce/vendors/{vendorCode}/status'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/status
+  update:
+    operationId: vendorChangeVendorStatusWithValidationBasedOnTargetStatus
+- target: $.paths['/commerce/vendors/{vendorCode}/documents/{templateId}/download'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/documents/{templateId}/download
+  update:
+    operationId: vendorDownloadADocumentFileForAVendorAndTemplateMemoryEfficientStreaming
+- target: $.paths['/commerce/vendors/{vendorCode}/documents/{templateId}'].delete
+  description: Add derived operationId for DELETE /commerce/vendors/{vendorCode}/documents/{templateId}
+  update:
+    operationId: vendorDeleteAVendorDocumentFR022
+- target: $.paths['/commerce/vendors/{vendorCode}/documents/{templateId}'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/documents/{templateId}
+  update:
+    operationId: vendorGetASpecificDocumentForAVendorAndTemplate
+- target: $.paths['/commerce/vendors/{vendorCode}/documents/{templateId}'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/documents/{templateId}
+  update:
+    operationId: vendorUploadADocumentFromFormDataMemoryEfficientStreaming
+- target: $.paths['/commerce/vendors/document-templates/{templateId}'].get
+  description: Add derived operationId for GET /commerce/vendors/document-templates/{templateId}
+  update:
+    operationId: vendorGetASpecificDocumentTemplateByID
+- target: $.paths['/commerce/vendors/document-templates/{templateId}'].put
+  description: Add derived operationId for PUT /commerce/vendors/document-templates/{templateId}
+  update:
+    operationId: vendorUpdateAnExistingDocumentTemplate
+- target: $.paths['/commerce/vendors/{vendorCode}/compliance-status'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/compliance-status
+  update:
+    operationId: vendorGetAggregatedComplianceStatusForAllTemplatesForAVendorUS5
+- target: $.paths['/commerce/vendors/document-templates'].get
+  description: Add derived operationId for GET /commerce/vendors/document-templates
+  update:
+    operationId: vendorGetAllDocumentTemplates
+- target: $.paths['/commerce/vendors/document-templates'].post
+  description: Add derived operationId for POST /commerce/vendors/document-templates
+  update:
+    operationId: vendorCreateANewDocumentTemplate
+- target: $.paths['/commerce/vendors/{vendorCode}/documents'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/documents
+  update:
+    operationId: vendorGetAllDocumentsForAVendor
+- target: $.paths['/commerce/vendors/{vendorCode}/locations'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/locations
+  update:
+    operationId: vendorGetAllLocationsAssociatedWithAVendor
+- target: $.paths['/commerce/vendors/{vendorCode}/locations'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/locations
+  update:
+    operationId: vendorAddLocationsToAVendorBulkOperation
+- target: $.paths['/commerce/vendors/{vendorCode}/locations'].put
+  description: Add derived operationId for PUT /commerce/vendors/{vendorCode}/locations
+  update:
+    operationId: vendorUpdateVendorLocationsBulkOperationWithUpsertOrFullReplace
+- target: $.paths['/commerce/vendors/{vendorCode}/inventory-files'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/inventory-files
+  update:
+    operationId: vendorGetPagedInventoryFileRecordsForAVendor
+- target: $.paths['/commerce/vendors/{vendorCode}/inventory-files'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/inventory-files
+  update:
+    operationId: vendorCreateANewInventoryFileRecordForAVendor
+- target: $.paths['/commerce/vendors/{vendorCode}/attributes/{fullyQualifiedName}'].delete
+  description: Add derived operationId for DELETE /commerce/vendors/{vendorCode}/attributes/{fullyQualifiedName}
+  update:
+    operationId: vendorRemoveVendorAttribute
+- target: $.paths['/commerce/vendors/{vendorCode}/attributes/{fullyQualifiedName}'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/attributes/{fullyQualifiedName}
+  update:
+    operationId: vendorGetVendorAttribute
+- target: $.paths['/commerce/vendors/{vendorCode}/attributes/{fullyQualifiedName}'].put
+  description: Add derived operationId for PUT /commerce/vendors/{vendorCode}/attributes/{fullyQualifiedName}
+  update:
+    operationId: vendorUpdateVendorAttribute
+- target: $.paths['/commerce/vendors/{vendorCode}'].delete
+  description: Add derived operationId for DELETE /commerce/vendors/{vendorCode}
+  update:
+    operationId: vendorDeletesASpecificVendor
+- target: $.paths['/commerce/vendors/{vendorCode}'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}
+  update:
+    operationId: vendorGetsASpecificVendorByVendorCode
+- target: $.paths['/commerce/vendors/{vendorCode}'].put
+  description: Add derived operationId for PUT /commerce/vendors/{vendorCode}
+  update:
+    operationId: vendorUpdateASpecificVendor
+- target: $.paths['/commerce/vendors/{vendorCode}/skumappings/{upc}'].delete
+  description: Add derived operationId for DELETE /commerce/vendors/{vendorCode}/skumappings/{upc}
+  update:
+    operationId: vendorDeletesASpecificVendorSKUMapping
+- target: $.paths['/commerce/vendors/{vendorCode}/skumappings/{upc}'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/skumappings/{upc}
+  update:
+    operationId: vendorGetsASpecificVendorSKUMappingByUPC
+- target: $.paths['/commerce/vendors/{vendorCode}/skumappings/{upc}'].put
+  description: Add derived operationId for PUT /commerce/vendors/{vendorCode}/skumappings/{upc}
+  update:
+    operationId: vendorUpdateASpecificVendorSKUMapping
+- target: $.paths['/commerce/vendors/{vendorCode}/skumappings'].get
+  description: Add derived operationId for GET /commerce/vendors/{vendorCode}/skumappings
+  update:
+    operationId: vendorGetsListOfVendorSKUMappingsByFilterSortAndPaging
+- target: $.paths['/commerce/vendors/{vendorCode}/skumappings'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/skumappings
+  update:
+    operationId: vendorCreateANewVendorSKUMapping
+- target: $.paths['/commerce/vendors'].get
+  description: Add derived operationId for GET /commerce/vendors
+  update:
+    operationId: vendorGetsListOfVendorsByFilterSortAndPaging
+- target: $.paths['/commerce/vendors'].post
+  description: Add derived operationId for POST /commerce/vendors
+  update:
+    operationId: vendorCreateANewVendor
+- target: $.paths['/commerce/vendors/location/{locationCode}/skumappings'].get
+  description: Add derived operationId for GET /commerce/vendors/location/{locationCode}/skumappings
+  update:
+    operationId: vendorGetsVendorSKUMappingsForTheVendorAssociatedWithALocation
+- target: $.paths['/commerce/vendors/document-templates/install/{vendorCode}'].post
+  description: Add derived operationId for POST /commerce/vendors/document-templates/install/{vendorCode}
+  update:
+    operationId: vendorInstallAllActiveDocumentTemplatesForASpecificVendor
+- target: $.paths['/commerce/vendors/{vendorCode}/sync-users'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/sync-users
+  update:
+    operationId: vendorManuallySyncsVendorUserActiveStatusWithTheVendorSCurrentStatus
+- target: $.paths['/commerce/vendors/{vendorCode}/documents/{templateId}/reject'].put
+  description: Add derived operationId for PUT /commerce/vendors/{vendorCode}/documents/{templateId}/reject
+  update:
+    operationId: vendorRejectAVendorDocumentUS3
+- target: $.paths['/commerce/vendors/{vendorCode}/locations/delete'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/locations/delete
+  update:
+    operationId: vendorRemoveMultipleLocationsFromAVendorBulkOperationIdempotent
+- target: $.paths['/commerce/vendors/{vendorCode}/invitations/resend'].post
+  description: Add derived operationId for POST /commerce/vendors/{vendorCode}/invitations/resend
+  update:
+    operationId: vendorResendsTheOnboardingInvitationEmailForAVendor
+- target: $.paths['/commerce/vendors/{vendorCode}/inventory-files/{id}'].delete
+  description: Add derived operationId for DELETE /commerce/vendors/{vendorCode}/inventory-files/{id}
+  update:
+    operationId: vendorDeleteAnInventoryFileRecord
+- target: $.paths['/commerce/vendors/{vendorCode}/inventory-files/{id}'].put
+  description: Add derived operationId for PUT /commerce/vendors/{vendorCode}/inventory-files/{id}
+  update:
+    operationId: vendorUpdateAnInventoryFileRecordFilenameJobs

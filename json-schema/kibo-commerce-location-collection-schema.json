@@ -1,0 +1,1059 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-location-collection-schema.json",
+  "title": "LocationCollection",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-location-storefront-openapi.yml#/components/schemas/LocationCollection",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/Location"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "pageCount": {
+      "format": "int32",
+      "nullable": false,
+      "type": "integer"
+    },
+    "pageSize": {
+      "format": "int32",
+      "nullable": false,
+      "type": "integer"
+    },
+    "startIndex": {
+      "format": "int32",
+      "nullable": false,
+      "type": "integer"
+    },
+    "totalCount": {
+      "format": "int32",
+      "nullable": false,
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "addressType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isValidated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ApiContractsAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AttributeEntityConfig": {
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/CoreAuditInfo"
+        },
+        "editable": {
+          "type": "boolean"
+        },
+        "entityType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AttributeInheritanceRule": {
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/CoreAuditInfo"
+        },
+        "id": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "inheritanceMode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourceEntityType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targetEntityType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AttributeLocalizedContent": {
+      "properties": {
+        "localeCode": {
+          "maxLength": 8,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "maxLength": 100,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AttributeMetadataItem": {
+      "properties": {
+        "key": {
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "value": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "type": "object"
+    },
+    "AttributeValidation": {
+      "properties": {
+        "maxDateTime": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maxNumericValue": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maxStringLength": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minDateTime": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "minNumericValue": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minStringLength": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "regularExpression": {
+          "maxLength": 200,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AttributeValueLocalizedContent": {
+      "properties": {
+        "localeCode": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "value": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "localeCode",
+        "value"
+      ],
+      "type": "object"
+    },
+    "AttributeVocabularyValue": {
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/AttributeValueLocalizedContent"
+        },
+        "isHidden": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "sequence": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "value": {
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "Capacity": {
+      "properties": {
+        "shipmentsPerUnit": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "unitOfMeasure": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Coordinates": {
+      "properties": {
+        "lat": {
+          "format": "double",
+          "nullable": false,
+          "type": "number"
+        },
+        "lng": {
+          "format": "double",
+          "nullable": false,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CoreAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CutoffHours": {
+      "properties": {
+        "endTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isClosed": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "startTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CutoffSchedule": {
+      "properties": {
+        "fulfillmentType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "times": {
+          "$ref": "#/$defs/WeeklyCutoffHours"
+        }
+      },
+      "type": "object"
+    },
+    "CutoffTimes": {
+      "properties": {
+        "schedules": {
+          "items": {
+            "$ref": "#/$defs/CutoffSchedule"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "timeZone": {
+          "$ref": "#/$defs/TimeZone"
+        }
+      },
+      "type": "object"
+    },
+    "DropShip": {
+      "properties": {
+        "vendorCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "FulfillmentProcessingTime": {
+      "properties": {
+        "fulfillmentTypeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "FulfillmentType": {
+      "properties": {
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Hours": {
+      "properties": {
+        "closeTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isClosed": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "openTime": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "allowFulfillmentWithNoStock": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "attributes": {
+          "items": {
+            "$ref": "#/$defs/LocationAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/ApiContractsAuditInfo"
+        },
+        "capacity": {
+          "$ref": "#/$defs/Capacity"
+        },
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cutoffTimes": {
+          "$ref": "#/$defs/CutoffTimes"
+        },
+        "deliveryConsolidation": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dropShip": {
+          "$ref": "#/$defs/DropShip"
+        },
+        "express": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "fax": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fulfillmentTypes": {
+          "items": {
+            "$ref": "#/$defs/FulfillmentType"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "geo": {
+          "$ref": "#/$defs/Coordinates"
+        },
+        "includeInInventoryAggregrate": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "includeInLocationExport": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "isDisabled": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "locationTypes": {
+          "items": {
+            "$ref": "#/$defs/LocationType"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "processingTimes": {
+          "$ref": "#/$defs/ProcessingTimes"
+        },
+        "regularHours": {
+          "$ref": "#/$defs/RegularHours"
+        },
+        "requiresManifest": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "shipToHomeConsolidation": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "shippingOriginContact": {
+          "$ref": "#/$defs/ShippingOriginContact"
+        },
+        "slaConfigurations": {
+          "items": {
+            "$ref": "#/$defs/SlaConfiguration"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "supportsInventory": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "transferEnabled": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "warehouseEnabled": {
+          "nullable": false,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "LocationAttribute": {
+      "properties": {
+        "attributeDefinition": {
+          "$ref": "#/$defs/LocationStorefrontAttribute"
+        },
+        "attributeDefinitionId": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/ApiContractsAuditInfo"
+        },
+        "fullyQualifiedName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {},
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "LocationStorefrontAttribute": {
+      "properties": {
+        "adminName": {
+          "maxLength": 50,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attributeCode": {
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attributeMetadata": {
+          "items": {
+            "$ref": "#/$defs/AttributeMetadataItem"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "auditInfo": {
+          "$ref": "#/$defs/ApiContractsAuditInfo"
+        },
+        "availableForDiscounts": {
+          "type": "boolean"
+        },
+        "availableForOrderRouting": {
+          "type": "boolean"
+        },
+        "availableInRules": {
+          "type": "boolean"
+        },
+        "content": {
+          "$ref": "#/$defs/AttributeLocalizedContent"
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "displayGroup": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "entityConfigs": {
+          "items": {
+            "$ref": "#/$defs/AttributeEntityConfig"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "id": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "inheritanceRules": {
+          "items": {
+            "$ref": "#/$defs/AttributeInheritanceRule"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "inputType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isActive": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isMultiValued": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isReadOnly": {
+          "type": "boolean"
+        },
+        "isRequired": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isVisible": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "namespace": {
+          "maxLength": 200,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "order": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "validation": {
+          "$ref": "#/$defs/AttributeValidation"
+        },
+        "valueType": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "vocabularyValues": {
+          "items": {
+            "$ref": "#/$defs/AttributeVocabularyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "attributeCode",
+        "displayGroup",
+        "valueType"
+      ],
+      "type": "object"
+    },
+    "LocationType": {
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/ApiContractsAuditInfo"
+        },
+        "code": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProcessingTimes": {
+      "properties": {
+        "fulfillment": {
+          "items": {
+            "$ref": "#/$defs/FulfillmentProcessingTime"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "receive": {
+          "$ref": "#/$defs/ReceiveProcessingTime"
+        }
+      },
+      "type": "object"
+    },
+    "ReceiveProcessingTime": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RegularHours": {
+      "properties": {
+        "friday": {
+          "$ref": "#/$defs/Hours"
+        },
+        "monday": {
+          "$ref": "#/$defs/Hours"
+        },
+        "saturday": {
+          "$ref": "#/$defs/Hours"
+        },
+        "sunday": {
+          "$ref": "#/$defs/Hours"
+        },
+        "thursday": {
+          "$ref": "#/$defs/Hours"
+        },
+        "timeZone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tuesday": {
+          "$ref": "#/$defs/Hours"
+        },
+        "wednesday": {
+          "$ref": "#/$defs/Hours"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingOriginContact": {
+      "properties": {
+        "companyOrOrganization": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "firstName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "lastNameOrSurname": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "middleNameOrInitial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phoneNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SlaConfiguration": {
+      "properties": {
+        "isEnabled": {
+          "nullable": false,
+          "type": "boolean"
+        },
+        "slaId": {
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        },
+        "targetServiceLevelPercentage": {
+          "format": "int32",
+          "nullable": false,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TimeZone": {
+      "properties": {
+        "ianaCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isDaylightSavingsTime": {
+          "type": "boolean"
+        },
+        "offset": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "WeeklyCutoffHours": {
+      "properties": {
+        "friday": {
+          "$ref": "#/$defs/CutoffHours"
+        },
+        "monday": {
+          "$ref": "#/$defs/CutoffHours"
+        },
+        "saturday": {
+          "$ref": "#/$defs/CutoffHours"
+        },
+        "sunday": {
+          "$ref": "#/$defs/CutoffHours"
+        },
+        "thursday": {
+          "$ref": "#/$defs/CutoffHours"
+        },
+        "tuesday": {
+          "$ref": "#/$defs/CutoffHours"
+        },
+        "wednesday": {
+          "$ref": "#/$defs/CutoffHours"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

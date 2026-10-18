@@ -1,0 +1,181 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Settings API
+  version: '1.0'
+  description: 'Operations tagged InventorySettings across 2 of this provider''s published API definitions: openapi_openapi_settings.json, kibo-commerce-settings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventorySettings
+paths:
+  /commerce/settings/inventory/inventorySettings:
+    get:
+      description: Retrieves existing inventory settings for the site which contain inventory export job settings.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+          description: OK
+      summary: Get Inventory Settings
+      tags:
+      - InventorySettings
+      operationId: getCommerceSettingsInventoryInventorySettings
+      x-operation-id-source: derived
+    post:
+      description: Creates inventory settings for the site
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventorySettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+          description: OK
+      summary: Create Inventory Settings
+      tags:
+      - InventorySettings
+      operationId: postCommerceSettingsInventoryInventorySettings
+      x-operation-id-source: derived
+    put:
+      description: Modifies existing inventory settings
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InventorySettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/InventorySettings'
+          description: OK
+      summary: Update Inventory Settings
+      tags:
+      - InventorySettings
+      operationId: putCommerceSettingsInventoryInventorySettings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    LocationFulfillmentTypeSetting:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    InventoryExportJob:
+      allOf:
+      - $ref: '#/components/schemas/Job'
+      - additionalProperties: false
+        type: object
+    Job:
+      properties:
+        isEnabled:
+          type: boolean
+        timesOfDay:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    InventorySettings:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        inventoryExportJob:
+          $ref: '#/components/schemas/InventoryExportJob'
+        locationFulfillmentTypeSettings:
+          items:
+            $ref: '#/components/schemas/LocationFulfillmentTypeSetting'
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_settings.json
+- kibo-commerce-settings-openapi.yml

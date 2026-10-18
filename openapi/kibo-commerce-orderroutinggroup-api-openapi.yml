@@ -1,0 +1,1047 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Group API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingGroup across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: Classic UI API - Manage routing groups
+  name: OrderRoutingGroup
+paths:
+  /commerce/orders/orderrouting/api/v1/group/delete/{groupID}:
+    delete:
+      parameters:
+      - in: path
+        name: groupID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Delete Group
+      tags:
+      - OrderRoutingGroup
+      operationId: deleteCommerceOrdersOrderroutingApiV1GroupDeleteByGroupID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/group/{groupID}:
+    get:
+      description: Retrieves a routing group by ID.
+      parameters:
+      - in: path
+        name: groupID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRoutingLocationGroup'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Group
+      tags:
+      - OrderRoutingGroup
+      operationId: getCommerceOrdersOrderroutingApiV1GroupByGroupID
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/group:
+    post:
+      description: Saves a routing group.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationGroupModel'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRoutingLocationGroup'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Save Group
+      tags:
+      - OrderRoutingGroup
+      operationId: postCommerceOrdersOrderroutingApiV1Group
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/group/{groupID}/setFilters:
+    post:
+      description: Sets a routing group's filters.
+      parameters:
+      - in: path
+        name: groupID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                format: int32
+                type: integer
+              type: array
+              uniqueItems: true
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRoutingLocationGroup'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Set Group Filters
+      tags:
+      - OrderRoutingGroup
+      operationId: postCommerceOrdersOrderroutingApiV1GroupByGroupIDSetFilters
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/group/{groupID}/setSorts:
+    post:
+      description: Sets a routing group's sorting options.
+      parameters:
+      - in: path
+        name: groupID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/LocationSort'
+              type: array
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRoutingLocationGroup'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Set Group Sorts
+      tags:
+      - OrderRoutingGroup
+      operationId: postCommerceOrdersOrderroutingApiV1GroupByGroupIDSetSorts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/group/test:
+    get:
+      description: Tests a routing group.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRoutingLocationGroup'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Test Group
+      tags:
+      - OrderRoutingGroup
+      operationId: getCommerceOrdersOrderroutingApiV1GroupTest
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    TenantClient:
+      type: object
+    OrderRoutingLocationGroup:
+      properties:
+        active:
+          type: boolean
+        afterActionNone:
+          $ref: '#/components/schemas/GroupAfterAction'
+        afterActionPartial:
+          $ref: '#/components/schemas/GroupAfterAction'
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        excludedLocationsFromDefaultGroup:
+          items:
+            format: int32
+            type: integer
+          type: array
+        filterLogicalGroups:
+          items:
+            $ref: '#/components/schemas/FilterLogicalGroup'
+          type: array
+          uniqueItems: true
+        filters:
+          items:
+            $ref: '#/components/schemas/AbstractFilter'
+          type: array
+          uniqueItems: true
+        fulfillmentLimit:
+          $ref: '#/components/schemas/FulfillmentLimit'
+        groupID:
+          format: int32
+          type: integer
+        isDefaultGroup:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        rank:
+          format: int32
+          type: integer
+        rankedLocations:
+          items:
+            $ref: '#/components/schemas/RankedLocation'
+          type: array
+        siteID:
+          format: int32
+          type: integer
+        sorts:
+          items:
+            $ref: '#/components/schemas/LocationSort'
+          type: array
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        useRetailerExclusionList:
+          type: boolean
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - active
+      - environmentID
+      - name
+      - rank
+      - siteID
+      - tenantID
+      type: object
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    SiteService:
+      type: object
+    GroupAfterAction:
+      properties:
+        actionID:
+          format: int32
+          type: integer
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        failoverAction:
+          enum:
+          - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+          - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+          - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+          - CANCEL_ORDER
+          - ASSIGN_TO_CUSTOMER_CARE
+          - ASSIGN_TO_GROUP
+          - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+          - SEND_ORDER_TO_BIDDING
+          - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+          - ASSIGN_TO_BACKORDER
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        restartAttempt:
+          enum:
+          - START_AT_BEGINNING
+          - CURRENT_GROUP
+          - GROUP_RANK
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - environmentID
+      - siteID
+      - tenantID
+      type: object
+    FulfillmentLimit:
+      properties:
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        durationType:
+          enum:
+          - HOURS
+          - DAYS
+          - WEEKS
+          - MONTHS
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        fulfillmentLimit:
+          minimum: 0
+          type: number
+        fulfillmentLimitID:
+          format: int32
+          type: integer
+        fulfillmentType:
+          enum:
+          - ORDERS
+          - ITEMS
+          - DOLLARS
+          type: string
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - durationType
+      - environmentID
+      - fulfillmentLimit
+      - fulfillmentType
+      - siteID
+      - tenantID
+      type: object
+    AbstractFilter:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        customAttributeName:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        dataPointExtensibleFilter:
+          type: boolean
+        dotDelimitedPropertyName:
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        extensibleFilter:
+          type: boolean
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterUnit:
+          properties:
+            dimension:
+              type: object
+            standardUnit:
+              properties:
+                dimension:
+                  type: object
+              type: object
+          type: object
+        inventoryBasedFilter:
+          type: boolean
+        itemBasedFilter:
+          type: boolean
+        locationBasedFilter:
+          type: boolean
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        orderLocationFilterEqualToLocationOrInventoryFilter:
+          type: boolean
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - booleanOperator
+      - dotDelimitedPropertyName
+      - environmentID
+      - name
+      - siteID
+      - tenantID
+      type: object
+    LocationGroupModel:
+      properties:
+        active:
+          type: boolean
+        afterActionNone:
+          $ref: '#/components/schemas/GroupAfterAction'
+        afterActionPartial:
+          $ref: '#/components/schemas/GroupAfterAction'
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+        environmentID:
+          format: int32
+          type: integer
+        excludedLocationsFromDefaultGroup:
+          items:
+            format: int32
+            type: integer
+          type: array
+        filters:
+          items:
+            $ref: '#/components/schemas/AbstractFilter'
+          type: array
+          uniqueItems: true
+        fulfillmentLimit:
+          $ref: '#/components/schemas/FulfillmentLimit'
+        groupID:
+          format: int32
+          type: integer
+        isDefaultGroup:
+          type: boolean
+        locationIDs:
+          items:
+            format: int32
+            type: integer
+          type: array
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        rank:
+          format: int32
+          type: integer
+        rankedLocations:
+          items:
+            $ref: '#/components/schemas/RankedLocation'
+          type: array
+        routeID:
+          format: int32
+          type: integer
+        siteID:
+          format: int32
+          type: integer
+        sorts:
+          items:
+            $ref: '#/components/schemas/LocationSort'
+          type: array
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        useRetailerExclusionList:
+          type: boolean
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - active
+      - environmentID
+      - name
+      - rank
+      - routeID
+      - siteID
+      - tenantID
+      type: object
+    LocationSort:
+      properties:
+        created:
+          format: date-time
+          type: string
+        creatorUsername:
+          type: string
+        descending:
+          type: boolean
+        environmentID:
+          format: int32
+          type: integer
+        locationSortID:
+          format: int32
+          type: integer
+        name:
+          type: string
+        pathString:
+          type: string
+        persisted:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        sortingType:
+          enum:
+          - RANK
+          - DISTANCE
+          - LTD
+          - COST
+          - RANDOM
+          - DATA_SET
+          - LOWEST_AVAILABLE
+          type: string
+        suggestionEventListeners:
+          items:
+            $ref: '#/components/schemas/SuggestionEventListener'
+          type: array
+          uniqueItems: true
+        tenantID:
+          format: int32
+          type: integer
+        updated:
+          format: date-time
+          type: string
+        updaterUsername:
+          type: string
+        userContext:
+          $ref: '#/components/schemas/UserContextInformation'
+      required:
+      - environmentID
+      - siteID
+      - sortingType
+      - tenantID
+      type: object
+    TenantAttributesCache:
+      properties:
+        underlyingCache:
+          $ref: '#/components/schemas/CacheStringBoolean'
+      type: object
+    RankedLocation:
+      properties:
+        locationCode:
+          type: string
+        locationID:
+          format: int32
+          type: integer
+        rank:
+          format: int32
+          type: integer
+      type: object
+    TenantService:
+      properties:
+        tenantAttributesCache:
+          $ref: '#/components/schemas/TenantAttributesCache'
+        tenantClient:
+          $ref: '#/components/schemas/TenantClient'
+      type: object
+    SuggestionEventListener:
+      type: object
+    UserContextInformation:
+      properties:
+        environmentID:
+          format: int32
+          type: integer
+        loaded:
+          type: boolean
+        pathString:
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        siteService:
+          $ref: '#/components/schemas/SiteService'
+        tenantID:
+          format: int32
+          type: integer
+        tenantService:
+          $ref: '#/components/schemas/TenantService'
+      type: object
+    CacheStringBoolean:
+      type: object
+    FilterLogicalGroup:
+      properties:
+        andOperator:
+          type: boolean
+        environmentID:
+          format: int32
+          type: integer
+        filterLogicalGroupID:
+          format: int32
+          type: integer
+        groupID:
+          format: int32
+          type: integer
+        logicalOperator:
+          enum:
+          - AND
+          - OR
+          type: string
+        orOperator:
+          type: boolean
+        orderIndex:
+          format: int32
+          type: integer
+        parentOrderIndex:
+          format: int32
+          type: integer
+        rootGroup:
+          type: boolean
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+      required:
+      - environmentID
+      - logicalOperator
+      - orderIndex
+      - siteID
+      - tenantID
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

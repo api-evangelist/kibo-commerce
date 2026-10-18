@@ -1,0 +1,1482 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Categories API
+  version: '1.0'
+  description: 'Operations tagged Categories across 4 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, openapi_openapi_catalog_storefront.json, kibo-commerce-catalog-admin-openapi.yml, kibo-commerce-catalog-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Categories
+paths:
+  /commerce/catalog/admin/categories/{categoryId}/add-products:
+    post:
+      description: Adds the products in the provided product code list to the specified category.
+      parameters:
+      - description: Unique identifier of the category that you want produts added to.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: A list of products to be added to the category.
+      responses:
+        '200':
+          description: OK
+      summary: Add Products to Category
+      tags:
+      - Categories
+      operationId: postCommerceCatalogAdminCategoriesByCategoryIdAddProducts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories:
+    get:
+      description: Retrieves a list of categories according to any specified filter criteria and sort options. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+          description: OK
+      summary: Get Categories
+      tags:
+      - Categories
+      operationId: getCommerceCatalogAdminCategories
+      x-operation-id-source: derived
+    post:
+      description: Adds a new category to the catalog's category hierarchy. Specify a ParentCategoryID to determine where to locate the category in the hierarchy; if not specified it becomes a top-level category. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Sets the sequence number of the category to the current max sequence value plus 1 (e.g. 5 + 1 = 6)
+        in: query
+        name: incrementSequence
+        schema:
+          default: false
+          type: boolean
+      - description: If true, the provided Id value will be used as the CategoryId. If omitted or false, the system will generate a CategoryId
+        in: query
+        name: useProvidedId
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsCategory'
+        description: Properties of the new category. Required properties ParentCategoryID and Content.Name.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+          description: OK
+      summary: Add Category
+      tags:
+      - Categories
+      operationId: postCommerceCatalogAdminCategories
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/{categoryId}:
+    delete:
+      description: Deletes the category specified by its category ID. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Unique identifier of the category that you want to delete.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: If true, any subcategories of a category are deleted when this category is deleted. Otherwise only the given category is deleted. Default is false.
+        in: query
+        name: cascadeDelete
+        schema:
+          default: false
+          type: boolean
+      - description: If true, category (and optionally subcategories) will be deleted even if there are products referecing them.  Default is false.
+        in: query
+        name: forceDelete
+        schema:
+          default: false
+          type: boolean
+      - description: If true, and child categories of the given category will be reassigned to the parent of the given category. Only applies if cascadeDelete is false. Default is false.
+        in: query
+        name: reassignToParent
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Delete Category
+      tags:
+      - Categories
+      operationId: deleteCommerceCatalogAdminCategoriesByCategoryId
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a single category. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Unique identifier of the category.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+          description: OK
+      summary: Get Category
+      tags:
+      - Categories
+      operationId: getCommerceCatalogAdminCategoriesByCategoryId
+      x-operation-id-source: derived
+    put:
+      description: 'Modifies a category such as moving it to another location in the category tree, or changing whether it is visible on the storefront. This PUT replaces the existing resource, so be sure to include all the information that you want to maintain for the category. Any unspecified properties are set to null.
+
+
+        This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".'
+      parameters:
+      - description: Unique identifier of the category that you want to modify. Required.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: If true, when changing the display option for the category, change it for all subcategories also. Optional.
+        in: query
+        name: cascadeVisibility
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsCategory'
+        description: Properties of the category that you want to modify. Required properties ParentCategoryID and Content.Name.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsCategory'
+          description: OK
+      summary: Update Category
+      tags:
+      - Categories
+      operationId: putCommerceCatalogAdminCategoriesByCategoryId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/{categoryId}/attributes/{attributeFQN}:
+    delete:
+      description: Deletes the category attribute specified by its attributeFQN.
+      parameters:
+      - description: ''
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Category Attribute
+      tags:
+      - Categories
+      operationId: deleteCommerceCatalogAdminCategoriesByCategoryIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a single category attribute. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+          description: OK
+      summary: Get Category Attribute
+      tags:
+      - Categories
+      operationId: getCommerceCatalogAdminCategoriesByCategoryIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Modifies the category attribute. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryAttribute'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+          description: OK
+      summary: Update Category Attribute
+      tags:
+      - Categories
+      operationId: putCommerceCatalogAdminCategoriesByCategoryIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/{categoryId}/attributes:
+    get:
+      description: Retrieves a list of category attributes. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          default: ''
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttributeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttributeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryAttributeCollection'
+          description: OK
+      summary: Get Category Attributes
+      tags:
+      - Categories
+      operationId: getCommerceCatalogAdminCategoriesByCategoryIdAttributes
+      x-operation-id-source: derived
+    post:
+      description: Adds a new category attribute to the category. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryAttribute'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryAttribute'
+          description: OK
+      summary: Add Category Attribute
+      tags:
+      - Categories
+      operationId: postCommerceCatalogAdminCategoriesByCategoryIdAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/{categoryId}/children:
+    get:
+      description: Retrieves the immediate subcategories of a category. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Unique identifier of the category whose subcategories you want to get.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+          description: OK
+      summary: Get Child Categories
+      tags:
+      - Categories
+      operationId: getCommerceCatalogAdminCategoriesByCategoryIdChildren
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/{categoryId}/remove-products:
+    post:
+      description: Removes the products in the provided product code list from the specified category.
+      parameters:
+      - description: Unique identifier of the category that you want products removed from.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: A list of products to be removed from the category.
+      responses:
+        '200':
+          description: OK
+      summary: Remove Products from Category
+      tags:
+      - Categories
+      operationId: postCommerceCatalogAdminCategoriesByCategoryIdRemoveProducts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/searchCategoryAttributes:
+    get:
+      description: Retrieves a list of categories according to any specified filter criteria and sort options for attributes. This current version of the Categories API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access category data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+          description: OK
+      summary: Search Category Attributes
+      tags:
+      - Categories
+      operationId: getCommerceCatalogAdminCategoriesSearchCategoryAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/ValidateDynamicExpression:
+    post:
+      description: Validate an expression for a dynamic category.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+          description: OK
+      summary: Validate Dynamic Category Expression
+      tags:
+      - Categories
+      operationId: postCommerceCatalogAdminCategoriesValidateDynamicExpression
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/categories/ValidateRealTimeDynamicExpression:
+    post:
+      description: Validate an expression for a realtime dynamic category.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+          description: OK
+      summary: Validate Realtime Dynamic Category Expression
+      tags:
+      - Categories
+      operationId: postCommerceCatalogAdminCategoriesValidateRealTimeDynamicExpression
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/categories/tree:
+    get:
+      description: Retrieves the list of product categories that appear on the storefront organized in a hierarchical format. Hidden categories do not appear in the list.
+      parameters:
+      - description: Optional. If True, Return Category Attributes collection with Category
+        in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection_2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection_2'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection_2'
+          description: OK
+      summary: Get Category Tree
+      tags:
+      - Categories
+      operationId: getCommerceCatalogStorefrontCategoriesTree
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/categories:
+    get:
+      description: Retrieves a list of product categories that appear on the storefront as a flat list. Hidden categories do not appear in the list.
+      parameters:
+      - description: "Optional. A set of filter expressions representing the search parameters for a query:\n            eq=equals, ne=not equals, gt=greater than, lt = less than, gt = greater than or equals, le = less than or equals,\n            sw = starts with, or cont = contains."
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: "Optional. Used to page results from a query.\n            Indicates the zero-based offset in the complete result set where the returned entities begin.\n            For example, with a pageSize of 25, to get the 51st through the 75th items, startIndex=3.\n            The default value is 0."
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: "Optional. Used to page results from a query.\n            Indicates the maximum number of entities to return from a query. Default value: 20. Maximum value: 200."
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: "The element to sort the results by and the order in which the results appear.\n            Either ascending order (a-z) which accepts 'asc' or 'ASC' or descending order (z-a) which accepts 'desc' or 'DESC'.\n            The sortBy parameter follows an available property.\n            For example, to sort results by category ID ascending, use sortBy=categoryId asc."
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Optional. Used to include Category Attributes in response
+        in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection_2'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection_2'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection_2'
+          description: OK
+      summary: Get Product Categories
+      tags:
+      - Categories
+      operationId: getCommerceCatalogStorefrontCategories
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/categories/{categoryId}:
+    get:
+      description: Retrieves the name and details of a category that appears on the storefront.
+      parameters:
+      - description: Required. Unique identifier of the category whose details you want to get.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Optional. Allow the return of items with the IsDisplayed flag set to false.
+        in: query
+        name: allowInactive
+        schema:
+          type: boolean
+      - description: Optional. If True, Return Category Attributes collection with Category
+        in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesCategory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesCategory'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesCategory'
+          description: OK
+      summary: Get Product Category
+      tags:
+      - Categories
+      operationId: getCommerceCatalogStorefrontCategoriesByCategoryId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CatalogAdminsDynamicExpression:
+      description: Category
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        tree:
+          $ref: '#/components/schemas/CatalogAdminsExpression'
+      type: object
+    CategoryPagedCollection:
+      description: Collection of categories where categories are returned in a series of pages.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsCategory'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsCategory:
+      description: Category
+      properties:
+        activeDateEnd:
+          description: Active end Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        activeDateStart:
+          description: Active Start Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        attributes:
+          description: List of attributes for the category.
+          items:
+            $ref: '#/components/schemas/CategoryAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        catalogId:
+          description: The CatalogId that the category belongs to.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        categoryCode:
+          description: External unique identifier of the category.
+          type:
+          - string
+          - 'null'
+        categoryType:
+          description: The Type of Category Static, Dyanmic, DynamicPreComputed
+          type:
+          - string
+          - 'null'
+        childCount:
+          description: Number of subcategories that belong to this category. These subcategories are at the same level (siblings).
+          format: int32
+          type:
+          - integer
+          - 'null'
+        content:
+          $ref: '#/components/schemas/CategoryLocalizedContent'
+        dynamicExpression:
+          $ref: '#/components/schemas/CatalogAdminsDynamicExpression'
+        id:
+          description: Internal unique identifier of the category. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        isActive:
+          description: If false, the category is considered unavailable in runtime (default is true if not specified on create)
+          type:
+          - boolean
+          - 'null'
+        isDisplayed:
+          description: If true, the category appears to shoppers on the storefront.
+          type:
+          - boolean
+          - 'null'
+        localizedContent:
+          description: "Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). \nThis enables you to display a category in multiple languages yet manage it as a single category internally."
+          items:
+            $ref: '#/components/schemas/CategoryLocalizedContent'
+          type:
+          - array
+          - 'null'
+        parentCategoryCode:
+          type:
+          - string
+          - 'null'
+        parentCategoryId:
+          description: Unique identifier of the category to which this category belongs. If nil, this is a top-level category. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        parentCategoryName:
+          type:
+          - string
+          - 'null'
+        parentIsActive:
+          type:
+          - boolean
+          - 'null'
+        productCount:
+          description: Number of products contained in this category. This count includes all products contained in any subcategories of this category.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        sequence:
+          description: Order in which categories appear when they are at the same level (siblings). For example, you could change the sequence of categories so that a specific category always appears first.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        shouldSlice:
+          description: If True, search displays sliced view
+          type:
+          - boolean
+          - 'null'
+      type: object
+    CategoryAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    CategoryLocalizedImage:
+      description: Contains the image label and alternate text for a category image or video in the language specified by LocalCode.
+      properties:
+        altText:
+          description: Descriptive text associated with the image or video that appears on the storefront.
+          type:
+          - string
+          - 'null'
+        cmsId:
+          description: Id of the image in the CMS.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the image. System-supplied and read-only.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        imageLabel:
+          description: Image title that appears on the storefront.
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: URL of the image.
+          type:
+          - string
+          - 'null'
+        localeCode:
+          description: Language used for the image content.
+          type:
+          - string
+          - 'null'
+        mediaType:
+          description: Type of media. Used by the client to determine how to render the image or video or what have you.
+          type:
+          - string
+          - 'null'
+        sequence:
+          description: For categories with multiple images, the order in which this image appears on the storefront.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        videoUrl:
+          description: URL of a video associated with the category.
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsExpression:
+      properties:
+        left:
+          description: The field target of a predicate
+          type:
+          - string
+          - 'null'
+        logicalOperator:
+          description: And or Or (if Container with More than one Node)
+          type:
+          - string
+          - 'null'
+        nodes:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsExpression'
+          type:
+          - array
+          - 'null'
+        operator:
+          description: The operator of a predicate
+          type:
+          - string
+          - 'null'
+        right:
+          description: The literal values of a predicate
+        type:
+          description: Container or Predicate
+          type:
+          - string
+          - 'null'
+      type: object
+    CategoryCollection:
+      description: Collection of categories returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsCategory'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CategoryLocalizedContent:
+      description: Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display a category in multiple languages yet manage it as a single category internally.
+      properties:
+        categoryImages:
+          description: List of images associated with the category.
+          items:
+            $ref: '#/components/schemas/CategoryLocalizedImage'
+          type:
+          - array
+          - 'null'
+        description:
+          description: Description of the category to display on the storefront.
+          type:
+          - string
+          - 'null'
+        localeCode:
+          description: Lanugage used for category content. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        metaTagDescription:
+          description: Metadata description. Metadata can be used to manage information internally. Sometimes used for SEO.
+          type:
+          - string
+          - 'null'
+        metaTagKeywords:
+          description: Metadata keywords. Metadata can be used to manage information internally. Sometimes used for SEO.
+          type:
+          - string
+          - 'null'
+        metaTagTitle:
+          description: Metadata title. Metadata can be used to manage information internally. Sometimes used for SEO.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the category.
+          type:
+          - string
+          - 'null'
+        pageTitle:
+          description: Title that appears at the top of new pages.
+          type:
+          - string
+          - 'null'
+        slug:
+          description: "Human-readable identifier that you can give to the category to create friendly URLs. For example, \ninstead of \"http: //example.com/products?category=2&id=25,\" the friendly URL can be \"http: //example.com/products/category/2/25.\""
+          type:
+          - string
+          - 'null'
+      type: object
+    CategoryAttributeCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CategoryAttribute'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CatalogRuntimesCategory:
+      description: The category hierarchy of your store as it appears on the storefront. This is the category heirarchy defined with the admin/category resource except for any categories with an IsDisplayed value set to false.
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategoryAttribute'
+          type:
+          - array
+          - 'null'
+        categoryCode:
+          description: External unique identifier of the category.
+          type:
+          - string
+          - 'null'
+        categoryId:
+          description: Internal unique identifier of the category. System-supplied and read-only.
+          format: int32
+          type: integer
+        childrenCategories:
+          description: List of subcategories that belong to this category.
+          items:
+            type: object
+          type:
+          - array
+          - 'null'
+        content:
+          $ref: '#/components/schemas/CategoryContent'
+        count:
+          description: Indicates whether the category should be displayed.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        isDisplayed:
+          description: Indicates whether the category should be displayed.
+          type: boolean
+        parentCategory:
+          type: object
+        sequence:
+          description: Order in which categories appear when they are at the same level (siblings). For example, categories can be sequenced so that a specific category always appears first (or last).
+          format: int32
+          type:
+          - integer
+          - 'null'
+        shouldSlice:
+          description: Indicates whether the category should be sliced
+          type: boolean
+        updateDate:
+          description: Last Modified Date Time
+          format: date-time
+          type: string
+      type: object
+    CategoryPagedCollection_2:
+      description: Collection of categories where categories are returned in a series of pages.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CatalogRuntimesCategoryAttribute:
+      properties:
+        dataType:
+          format: int32
+          type: integer
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    CategoryCollection_2:
+      description: Collection of categories returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CategoryContent:
+      description: Name of the category and optionally, a description, page title, friendly URL, associated images, and any metadata.
+      properties:
+        categoryImages:
+          description: Images associated with the category.
+          items:
+            $ref: '#/components/schemas/CategoryImage'
+          type:
+          - array
+          - 'null'
+        description:
+          description: Description of the category as it appears on the storefront.
+          type:
+          - string
+          - 'null'
+        metaTagDescription:
+          description: Metadata description. Metadata can be used to manage information internally.
+          type:
+          - string
+          - 'null'
+        metaTagKeywords:
+          description: Metadata keywords. Metadata can be used to manage information internally.
+          type:
+          - string
+          - 'null'
+        metaTagTitle:
+          description: Metadata title. Metadata can be used to manage information internally.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the category as it appears on the storefront.
+          type:
+          - string
+          - 'null'
+        pageTitle:
+          description: Title that appears at the top of new pages.
+          type:
+          - string
+          - 'null'
+        slug:
+          description: Human-readable identifier given to the category to create friendly URLs.
+          type:
+          - string
+          - 'null'
+      type: object
+    CategoryImage:
+      description: Image or video associated with a category.
+      properties:
+        altText:
+          description: Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.
+          type:
+          - string
+          - 'null'
+        cmsId:
+          description: Id of the image in the CMS.
+          type:
+          - string
+          - 'null'
+        imageLabel:
+          description: Image title.  Unicode data with a maximum length of 50 characters.
+          type:
+          - string
+          - 'null'
+        imageUrl:
+          description: Image URL. Unicode data with a maximum length of 4000 characters.
+          type:
+          - string
+          - 'null'
+        mediaType:
+          description: Type of media. Used by the client to determine how to render the image or video or what have you.
+          type:
+          - string
+          - 'null'
+        sequence:
+          description: For categories with multiple images, the sequence is the order in which this image appears. Whole number data. Required.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        videoUrl:
+          description: URL of the video. Unicode data with a maximum length of 4000 characters.
+          type:
+          - string
+          - 'null'
+      type: object
+    CategoryPagedCollection_3:
+      description: Collection of categories where categories are returned in a series of pages.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CategoryCollection_3:
+      description: Collection of categories returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- openapi_openapi_catalog_storefront.json
+- kibo-commerce-catalog-admin-openapi.yml
+- kibo-commerce-catalog-storefront-openapi.yml

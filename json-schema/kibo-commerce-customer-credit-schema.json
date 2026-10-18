@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-customer-credit-schema.json",
+  "title": "CustomerCredit",
+  "description": "Represetation of a store credit or gift card.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-customer-openapi.yml#/components/schemas/CustomerCredit",
+  "properties": {
+    "activationDate": {
+      "description": "Date the credit was activated.  Null if card is not active.\nCredits must be activated before they can be used.\nReadOnly after activation",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "code": {
+      "description": "Unique number identifier representing this credit.\nNumber may be generated or set by the Tenant\nNumber is unique within the Tenant context.\nReadOnly after credit creation",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "creditType": {
+      "description": "Type of Credit.\nMozu.Customer.Contracts.Credit.Credit.CreditTypeConst\nRequired.\nReadOnly after credit creation",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "creditTypeId": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "currencyCode": {
+      "description": "Currency Code",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "currentBalance": {
+      "description": "Do we want to track this here?\nCurrent Balance\nReadOnly",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "customCreditType": {
+      "description": "Name of custom credit type\nOptional.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "customerId": {
+      "description": "Id of the N:Mozu.Customer\nthat this credit is assigned to.\nOptional.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "expirationDate": {
+      "description": "Date after which this credit is no longer valid\nOptional\nDefaults to 365 days",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "initialBalance": {
+      "description": "Balance assigned when credit was initially created.\nMay be zero and updated later.\nReadOnly after intial credit creation",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

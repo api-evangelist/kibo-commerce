@@ -1,0 +1,115 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Cancel Reasons API
+  version: '1.0'
+  description: 'Operations tagged CancelReasons across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CancelReasons
+paths:
+  /cancel/reasons:
+    get:
+      description: 'Returns cancellation reasons for the specified resource type and category.
+
+        Category defaults to SHOPPER. Category matching is case-insensitive.'
+      parameters:
+      - in: query
+        name: resourceType
+        schema:
+          type: string
+      - in: query
+        name: category
+        schema:
+          default: SHOPPER
+          type: string
+      - in: query
+        name: skip
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: take
+        schema:
+          default: 50
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CancelReasonCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CancelReasonCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CancelReasonCollection'
+          description: OK
+      summary: Get Cancel Reasons
+      tags:
+      - CancelReasons
+      operationId: getCancelReasons
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CancelReasonItem:
+      allOf:
+      - $ref: '#/components/schemas/ReasonItemBase'
+      - additionalProperties: false
+        type: object
+    CancelReasonCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CancelReasonItem'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ReasonItemBase:
+      properties:
+        name:
+          type:
+          - string
+          - 'null'
+        needsMoreInfo:
+          type: boolean
+        reasonCode:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

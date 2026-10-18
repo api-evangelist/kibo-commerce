@@ -1,0 +1,1229 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Documents API
+  version: '1.0'
+  description: 'Operations tagged Documents across 2 of this provider''s published API definitions: openapi_openapi_content.json, kibo-commerce-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+paths:
+  /content/documentlists/{documentListName}/documents/copy:
+    put:
+      parameters:
+      - description: DocumentListName name where the documents reside
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentCopyRequest'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/DocumentCopyRequest'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/DocumentCopyRequest'
+        description: Request containing Document Ids to copy and the destination path
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentCopyResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentCopyResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentCopyResponse'
+          description: OK
+      summary: Copy Document
+      tags:
+      - Documents
+      operationId: putContentDocumentlistsByDocumentListNameDocumentsCopy
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documents/{documentId}:
+    delete:
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Document
+      tags:
+      - Documents
+      operationId: deleteContentDocumentlistsByDocumentListNameDocumentsByDocumentId
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      - description: if this call should include a adocument that isn't active in the given preview date
+        in: query
+        name: includeInactive
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: OK
+      summary: Get Document
+      tags:
+      - Documents
+      operationId: getContentDocumentlistsByDocumentListNameDocumentsByDocumentId
+      x-operation-id-source: derived
+    patch:
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Document'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/Document'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/Document'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: OK
+      summary: Patch Document
+      tags:
+      - Documents
+      operationId: patchContentDocumentlistsByDocumentListNameDocumentsByDocumentId
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: DocumentListName name where the document resides
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: Id of the document to update
+        in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Document'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/Document'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/Document'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: OK
+      summary: Update Document
+      tags:
+      - Documents
+      operationId: putContentDocumentlistsByDocumentListNameDocumentsByDocumentId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documentTree/{documentName}:
+    get:
+      description: Retrieves a specific Document within the specified ContentCollection using the specified document name, unique within a specific folder with the specified documentId, version, and status.
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: documentName
+        required: true
+        schema:
+          type: string
+      - description: if this call should include a document that isn't active in the given preview date
+        in: query
+        name: includeInactive
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: OK
+      summary: Get Document by Path
+      tags:
+      - Documents
+      operationId: getContentDocumentlistsByDocumentListNameDocumentTreeByDocumentName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documents/{documentId}/content:
+    delete:
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Document Content
+      tags:
+      - Documents
+      operationId: deleteContentDocumentlistsByDocumentListNameDocumentsByDocumentIdContent
+      x-operation-id-source: derived
+    get:
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Document Content
+      tags:
+      - Documents
+      operationId: getContentDocumentlistsByDocumentListNameDocumentsByDocumentIdContent
+      x-operation-id-source: derived
+    head:
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: includeInactive
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Document Content Headers
+      tags:
+      - Documents
+      operationId: headContentDocumentlistsByDocumentListNameDocumentsByDocumentIdContent
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentHttpRequestMessage'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/ContentHttpRequestMessage'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/ContentHttpRequestMessage'
+      responses:
+        '200':
+          description: OK
+      summary: Update Document Content
+      tags:
+      - Documents
+      operationId: putContentDocumentlistsByDocumentListNameDocumentsByDocumentIdContent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documentTree/{documentName}/content:
+    delete:
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Document Content by Path
+      tags:
+      - Documents
+      operationId: deleteContentDocumentlistsByDocumentListNameDocumentTreeByDocumentNameContent
+      x-operation-id-source: derived
+    get:
+      description: Returns transformations on a document. For example, resizing an image.
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: documentName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Document Content by Path
+      tags:
+      - Documents
+      operationId: getContentDocumentlistsByDocumentListNameDocumentTreeByDocumentNameContent
+      x-operation-id-source: derived
+    head:
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Document Content Headers by Path
+      tags:
+      - Documents
+      operationId: headContentDocumentlistsByDocumentListNameDocumentTreeByDocumentNameContent
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: The Mozu.Content.Contracts.DocumentList in which the document resides
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: documentName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContentHttpRequestMessage'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/ContentHttpRequestMessage'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/ContentHttpRequestMessage'
+        description: Binary document content to store must be less than 16M
+      responses:
+        '200':
+          description: OK
+      summary: Update Document Content by Path
+      tags:
+      - Documents
+      operationId: putContentDocumentlistsByDocumentListNameDocumentTreeByDocumentNameContent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documents:
+    delete:
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: path
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Documents
+      tags:
+      - Documents
+      operationId: deleteContentDocumentlistsByDocumentListNameDocuments
+      x-operation-id-source: derived
+    get:
+      description: Get Documents. To search documents along a particular path, use the filter path such as in "folder1\folder2\". If no path is provided, then the query will be a global search as it searches from the root of the tree hierarchy.
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: Mozu.Content.Contracts.PropertyType filter expression to match against document properties. <seealso cref="T:Mozu.Core.FilterParsing.FilterParser" />
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Sort expression.  <seealso cref="T:Mozu.Core.FilterParsing.SortParser" />
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Page size
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: First item in the page to return from the total result set
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: if this call should include a adocument that isn't active in the given preview date
+        in: query
+        name: includeInactive
+        schema:
+          type: boolean
+      - description: path from which to return documents
+        in: query
+        name: path
+        schema:
+          type: string
+      - description: if true this call will populate Subpaths
+        in: query
+        name: includeSubPaths
+        schema:
+          default: false
+          type: boolean
+      - description: "Determines if the path parameter is used to scope the query to the specified path or ignored for a global scope.\n            Defaults to specified path only. Valid values are: SpecifiedPathOnly, Global"
+        in: query
+        name: queryScope
+        schema:
+          default: SpecifiedPathOnly
+          type: string
+      - description: 'When `true`, performs an exhaustive search guaranteeing all matching documents are returned.
+
+          Slower than the default on large lists. Returns HTTP 400 if the document list exceeds the configured
+
+          maximum size threshold (default 100,000). Defaults to `false`, optimizing for speed.'
+        in: query
+        name: fullSearch
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentCollection'
+          description: OK
+      summary: Get Documents
+      tags:
+      - Documents
+      operationId: getContentDocumentlistsByDocumentListNameDocuments
+      x-operation-id-source: derived
+    post:
+      description: Create Document. However, if you are creating an empty folder in the files list then you only need to provide the name, documentTypeFQN, and listFQN fields - replace the name value with the full path of your folder.
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Document'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/Document'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/Document'
+        description: The Mozu.Content.Contracts.Document to Add to the Mozu.Content.Contracts.DocumentList
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Document'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Document'
+          description: OK
+      summary: Create Document
+      tags:
+      - Documents
+      operationId: postContentDocumentlistsByDocumentListNameDocuments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documents/{documentId}/transform:
+    get:
+      description: Returns transformations on a document. For example, resizing an image.
+      parameters:
+      - in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: documentId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: width
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: height
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: max
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: maxWidth
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: maxHeight
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: crop
+        schema:
+          type: string
+      - in: query
+        name: quality
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Resized Image
+      tags:
+      - Documents
+      operationId: getContentDocumentlistsByDocumentListNameDocumentsByDocumentIdTransform
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documentTree/{documentName}/transform:
+    get:
+      description: Returns transformations on a document. For example, resizing an image. By Path
+      parameters:
+      - description: ''
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: documentName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: width
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: height
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: max
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: maxWidth
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: maxHeight
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: crop
+        schema:
+          type: string
+      - in: query
+        name: quality
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Resized Image by Path
+      tags:
+      - Documents
+      operationId: getContentDocumentlistsByDocumentListNameDocumentTreeByDocumentNameTransform
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documentlists/{documentListName}/documents/move:
+    put:
+      description: Move Document. This updates the path on all documents within a given source path to a new destination path, such as when moving documents between folders. Individual document moves should be made through the UpdateDocument operation instead.
+      parameters:
+      - description: DocumentListName name where the document resides
+        in: path
+        name: documentListName
+        required: true
+        schema:
+          type: string
+      - description: Source path
+        in: query
+        name: sourcePath
+        schema:
+          type: string
+      - description: Destination path
+        in: query
+        name: destPath
+        schema:
+          type: string
+      - description: Flag to rename file if duplicate filename exists in destination (defaults to true)
+        in: query
+        name: renameDuplicates
+        schema:
+          default: true
+          type: boolean
+      - description: Flag to denote whether to preview move operation or actually perform (defaults to false)
+        in: query
+        name: previewMode
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentMoveSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentMoveSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentMoveSummary'
+          description: OK
+      summary: Move Document
+      tags:
+      - Documents
+      operationId: putContentDocumentlistsByDocumentListNameDocumentsMove
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    HttpMethod:
+      properties:
+        method:
+          type:
+          - string
+          - 'null'
+      type: object
+    DocumentCopyMessage:
+      properties:
+        documentId:
+          type:
+          - string
+          - 'null'
+        documentName:
+          type:
+          - string
+          - 'null'
+        documentPublishSetCode:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        originalDocumentId:
+          type:
+          - string
+          - 'null'
+        success:
+          type: boolean
+      type: object
+    DocumentCopyRequest:
+      properties:
+        destinationPath:
+          description: The destination path to copy documents to
+          type:
+          - string
+          - 'null'
+        documentIds:
+          description: Document Id's to copy
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        updatedBy:
+          type:
+          - string
+          - 'null'
+      type: object
+    KeyValuePair:
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    HttpVersionPolicy:
+      enum:
+      - 0
+      - 1
+      - 2
+      format: int32
+      type: integer
+    Document:
+      description: 'Container for schema-enforced and schemaless data. A document is primarily used to store content (html, text,
+
+        numbers, dates, JSON, binary data) that is directly or indirectly used for the storefront website experience
+
+        and may be addressed via the Hypr theming engine language. A document belongs to a documentList and has an
+
+        underlying documentType.  The documentType describes any required and optional schema. Additionally, a binary
+
+        object may be stored on the document''s content subresource and edge cached via the Mozu CDN.'
+      properties:
+        activeDateRange:
+          $ref: '#/components/schemas/ActiveDateRange'
+        contentLength:
+          description: 'The size of the content subresource in decimal number of OCTETs.
+
+            When updating the content subresource, the  contentLength is captured from the
+
+            Content-Length header, if present, or is otherwise computed from the total size of the http body.'
+          format: int64
+          type:
+          - integer
+          - 'null'
+        contentMimeType:
+          description: 'The mime type of the document''s binary content, provided via the Content-Type header when updating the content
+
+            subresource. If no value is provided then "application/octet-stream" is set by default.'
+          type:
+          - string
+          - 'null'
+        contentUpdateDate:
+          description: 'The date and time the most recent content update was made via the content subresource. UTC date/time.
+
+            System-supplied and read-only.'
+          format: date-time
+          type:
+          - string
+          - 'null'
+        documentTypeFQN:
+          description: 'The full name of the documentType that underlies this document.
+
+            This field must be supplied upon document creation and cannot be updated.'
+          type:
+          - string
+          - 'null'
+        extension:
+          description: If applicable, the file extension associated with the document content.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Read-only, system generated 32 digit alpha-numeric string that uniquely identifies the document.
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        insertDate:
+          description: The date and time the document was added to the documentList. This field is system-supplied and read-only.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        listFQN:
+          description: 'The fully qualified name of the documentList to which the document belongs.
+
+            This field is read-only and represents which documentList the document is created in.'
+          type:
+          - string
+          - 'null'
+        name:
+          description: 'The fully qualified name of the document including path.
+
+            Unique within the documentList. This field is a required field, but it can be updated.'
+          type:
+          - string
+          - 'null'
+        path:
+          description: ReadOnly, path portion of the Name property.
+          readOnly: true
+          type:
+          - string
+          - 'null'
+        properties:
+          description: 'A JSON object of name/value pairs. Name parts are matched against the underlying documentType properties names. Any
+
+            matching name parts must have a value part that conforms to the matching property schema.
+
+            Any non-matching name/value pairs are considered dynamic schema and may have a value part of valid JSON.
+
+            The properties field can be used for sorting/filtering and can be projected in the documents returned within a
+
+            documentList view.'
+        publishSetCode:
+          description: The name of the publish set that this document belongs to, if any.
+          type:
+          - string
+          - 'null'
+        publishState:
+          description: 'The current publish status of the document. If publishing is not supported or is currently disabled in the
+
+            documentList then the value will be "active".
+
+            If publishing is supported and enabled, then the publish state may be "draft" or "active". A document may have both
+
+            an "active" and "draft" version. The publishState
+
+            denotes which version of the document being interacted with. This field is read-only.'
+          type:
+          - string
+          - 'null'
+        updateDate:
+          description: 'The date and time the most recent document update was made. If publishing is enabled, then this value will
+
+            represent
+
+            the last draft update if the publishState is draft, or the last publish date if the publishState is active.'
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ContentHttpRequestMessage:
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentHttpContent'
+        headers:
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+          readOnly: true
+          type:
+          - array
+          - 'null'
+        method:
+          $ref: '#/components/schemas/HttpMethod'
+        options:
+          additionalProperties: {}
+          readOnly: true
+          type:
+          - object
+          - 'null'
+        properties:
+          additionalProperties: {}
+          deprecated: true
+          readOnly: true
+          type:
+          - object
+          - 'null'
+        requestUri:
+          format: uri
+          type:
+          - string
+          - 'null'
+        version:
+          type:
+          - string
+          - 'null'
+        versionPolicy:
+          $ref: '#/components/schemas/HttpVersionPolicy'
+      type: object
+    DocumentCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Document'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        subPaths:
+          items:
+            type: string
+          readOnly: true
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ActiveDateRange:
+      properties:
+        endDate:
+          description: The end of the active date range for this document
+          format: date-time
+          type:
+          - string
+          - 'null'
+        startDate:
+          description: The beginning of the active date range of this document
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    DocumentMoveSummary:
+      description: Summary information for Move operation
+      properties:
+        destPath:
+          type:
+          - string
+          - 'null'
+        duplicateCount:
+          format: int64
+          type: integer
+        messages:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        moveCount:
+          format: int64
+          type: integer
+        preview:
+          type: boolean
+        renameDuplicates:
+          type: boolean
+        sourcePath:
+          type:
+          - string
+          - 'null'
+        totalCount:
+          format: int64
+          type: integer
+      type: object
+    ContentHttpContent:
+      properties:
+        headers:
+          items:
+            $ref: '#/components/schemas/KeyValuePair'
+          readOnly: true
+          type:
+          - array
+          - 'null'
+      type: object
+    DocumentCopyResponse:
+      properties:
+        messages:
+          items:
+            $ref: '#/components/schemas/DocumentCopyMessage'
+          type:
+          - array
+          - 'null'
+        numberFilesCopied:
+          format: int32
+          type: integer
+        numberFilesErrored:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_content.json
+- kibo-commerce-content-openapi.yml

@@ -1,0 +1,247 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce B2B Settings API
+  version: '1.0'
+  description: 'Operations tagged B2BSettings across 2 of this provider''s published API definitions: openapi_openapi_settings.json, kibo-commerce-settings-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: B2BSettings
+paths:
+  /commerce/settings/b2b/b2bsettings:
+    get:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+          description: OK
+      summary: Get B2BSettings
+      tags:
+      - B2BSettings
+      operationId: getCommerceSettingsB2bB2bsettings
+      x-operation-id-source: derived
+    post:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BSettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+          description: OK
+      summary: Create B2BSettings
+      tags:
+      - B2BSettings
+      operationId: postCommerceSettingsB2bB2bsettings
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BSettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BSettings'
+          description: OK
+      summary: Update B2BSettings
+      tags:
+      - B2BSettings
+      operationId: putCommerceSettingsB2bB2bsettings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    RingFenceScopeSettings:
+      properties:
+        locationGroupCode:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+      type: object
+    B2BSettings:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        blanketOrderSettings:
+          $ref: '#/components/schemas/BlanketOrderSettings'
+        callOffOrderSettings:
+          $ref: '#/components/schemas/CallOffOrderSettings'
+        orchestratorSettings:
+          $ref: '#/components/schemas/OrchestratorSettings'
+      type: object
+    CallOffOrderSettings:
+      properties:
+        releaseJob:
+          $ref: '#/components/schemas/RulesEngineJobSettings'
+      type: object
+    RulesEngineJobSettings:
+      properties:
+        interval:
+          format: int32
+          type: integer
+        intervalUnit:
+          type:
+          - string
+          - 'null'
+        isEnabled:
+          type: boolean
+      type: object
+    AllocationRebalancerSettings:
+      properties:
+        backorderAllocations:
+          $ref: '#/components/schemas/RebalancerAllocationSettings'
+        isEnabled:
+          type: boolean
+      type: object
+    RebalancerAllocationSettings:
+      properties:
+        allowPartialRelease:
+          type: boolean
+        partialReleaseType:
+          type:
+          - string
+          - 'null'
+        useCurrentInventory:
+          type: boolean
+        useFutureBeforeCurrent:
+          type: boolean
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    ReservationsJobSettings:
+      properties:
+        isEnabled:
+          type: boolean
+        useCurrentInventory:
+          type: boolean
+        useFutureBeforeCurrent:
+          type: boolean
+      type: object
+    OrchestratorSettings:
+      properties:
+        allocationRebalancer:
+          $ref: '#/components/schemas/AllocationRebalancerSettings'
+        interval:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        intervalUnit:
+          type:
+          - string
+          - 'null'
+        reservationRebalancer:
+          $ref: '#/components/schemas/ReservationRebalancerSettings'
+        reservationsJob:
+          $ref: '#/components/schemas/ReservationsJobSettings'
+        runMode:
+          type:
+          - string
+          - 'null'
+      type: object
+    ReservationRebalancerSettings:
+      properties:
+        isEnabled:
+          type: boolean
+        shipDateBufferDays:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    BlanketOrderSettings:
+      properties:
+        ringFenceScope:
+          $ref: '#/components/schemas/RingFenceScopeSettings'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_settings.json
+- kibo-commerce-settings-openapi.yml

@@ -1,0 +1,1108 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Variations API
+  version: '1.0'
+  description: 'Operations tagged ProductVariations across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductVariations
+paths:
+  /commerce/catalog/admin/products/{productCode}/variations/{variationKey}:
+    delete:
+      description: Deletes an existing product variation. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Merchant-created code associated with the product, for example, a SKU. Required.
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier for a single product variation. System-supplied and read-only.
+        in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Variation
+      tags:
+      - ProductVariations
+      operationId: deleteCommerceCatalogAdminProductsByProductCodeVariationsByVariationKey
+      x-operation-id-source: derived
+    get:
+      description: Retrieves an existing product variation for a specific product and variation key. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Merchant-created code associated with the product, for example, a SKU. Required.
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier for a single product variation. System-supplied and read-only.
+        in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariation'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariation'
+          description: OK
+      summary: Get Product Variation
+      tags:
+      - ProductVariations
+      operationId: getCommerceCatalogAdminProductsByProductCodeVariationsByVariationKey
+      x-operation-id-source: derived
+    put:
+      description: 'Modifies an existing product variation specified by its variation key. Typically used to change the price or inventory count of an existing product variation. Read-only options are ignored.
+
+
+        This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".'
+      parameters:
+      - description: Merchant-created code associated with the product, for example, a SKU. Required.
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier for a single variation. System-supplied and read-only.
+        in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariation'
+        description: Properties of the product variation that you are modifying. Required.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariation'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariation'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariation'
+          description: OK
+      summary: Update Product Variation
+      tags:
+      - ProductVariations
+      operationId: putCommerceCatalogAdminProductsByProductCodeVariationsByVariationKey
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice/{currencyCode}:
+    delete:
+      description: Delete the product variation localized delta prices for a specific currency.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Variation Localized Delta Price
+      tags:
+      - ProductVariations
+      operationId: deleteCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedDeltaPriceByCurrencyCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieve the product variation localized delta prices for a specific currency.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+          description: OK
+      summary: Get Product Variation Localized Delta Price
+      tags:
+      - ProductVariations
+      operationId: getCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedDeltaPriceByCurrencyCode
+      x-operation-id-source: derived
+    put:
+      description: Update the product variation localized delta prices for a specific currency.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariationDeltaPrice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+          description: OK
+      summary: Update Product Variation Localized Delta Price
+      tags:
+      - ProductVariations
+      operationId: putCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedDeltaPriceByCurrencyCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedDeltaPrice:
+    get:
+      description: Get product variation localized delta prices.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationDeltaPrice'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationDeltaPrice'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationDeltaPrice'
+                type: array
+          description: OK
+      summary: Get Product Variation Localized Delta Prices
+      tags:
+      - ProductVariations
+      operationId: getCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedDeltaPrice
+      x-operation-id-source: derived
+    post:
+      description: Add a product variation localized delta price.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariationDeltaPrice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+          description: OK
+      summary: Add Product Variation Localized Delta Price
+      tags:
+      - ProductVariations
+      operationId: postCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedDeltaPrice
+      x-operation-id-source: derived
+    put:
+      description: Update product variation localized delta prices.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ProductVariationDeltaPrice'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationDeltaPrice'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationDeltaPrice'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationDeltaPrice'
+                type: array
+          description: OK
+      summary: Update Product Variation Localized Delta Prices
+      tags:
+      - ProductVariations
+      operationId: putCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedDeltaPrice
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice/{currencyCode}:
+    delete:
+      description: Delete the product variation localized price for a specific currency code.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Variation Localized Price by Currency
+      tags:
+      - ProductVariations
+      operationId: deleteCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedPriceByCurrencyCode
+      x-operation-id-source: derived
+    get:
+      description: Get the product variation localized price for a specific currency code.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+          description: OK
+      summary: Get Product Variation Localized Price by Currency
+      tags:
+      - ProductVariations
+      operationId: getCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedPriceByCurrencyCode
+      x-operation-id-source: derived
+    put:
+      description: Update the product variation localized price for a specific currency code.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariationFixedPrice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+          description: OK
+      summary: Update Product Variation Localized Price by Currency
+      tags:
+      - ProductVariations
+      operationId: putCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedPriceByCurrencyCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/variations/{variationKey}/localizedPrice:
+    get:
+      description: Get product variation localized prices.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationFixedPrice'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationFixedPrice'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationFixedPrice'
+                type: array
+          description: OK
+      summary: Get Product Variation Localized Prices
+      tags:
+      - ProductVariations
+      operationId: getCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedPrice
+      x-operation-id-source: derived
+    post:
+      description: Add a product variation localized price.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariationFixedPrice'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+          description: OK
+      summary: Add Product Variation Localized Price
+      tags:
+      - ProductVariations
+      operationId: postCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedPrice
+      x-operation-id-source: derived
+    put:
+      description: Update product variation localized prices
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: variationKey
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ProductVariationFixedPrice'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationFixedPrice'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationFixedPrice'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ProductVariationFixedPrice'
+                type: array
+          description: OK
+      summary: Update Product Variation Localized Prices
+      tags:
+      - ProductVariations
+      operationId: putCommerceCatalogAdminProductsByProductCodeVariationsByVariationKeyLocalizedPrice
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/products/{productCode}/variations:
+    get:
+      description: Retrieves a paged list of product variations for a specific product according to any specified filter criteria and sort options. This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: Merchant-supplied code associated with the product, for example, a SKU. Required.
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: 'Used to page results from a query. Indicates the zero-based offset in the complete result set
+
+          where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items,
+
+          startIndex=3. The default value is 0. Optional.'
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: 'Used to page results from a query. Indicates the maximum number of entities to return from a
+
+          query. The default value is 20 and the maximum value is 200. Optional.'
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: 'The element to sort the results by and the order in which the results appear. Either ascending
+
+          (a-z) or descending (z-a) order. Optional.'
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not
+
+          equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw =
+
+          starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationPagedCollection'
+          description: OK
+      summary: Get Product Variations
+      tags:
+      - ProductVariations
+      operationId: getCommerceCatalogAdminProductsByProductCodeVariations
+      x-operation-id-source: derived
+    put:
+      description: 'Modifies multiple product variations for an existing product in one operation. Use to set IsActive to true for variations that represent configurable options for sale. Also use to change the price or inventory count of an existing product variation. Read-only options are ignored.
+
+
+        This current version of the Products API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access product data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".'
+      parameters:
+      - description: Merchant-supplied code associated with the product, for example, a SKU. Required.
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductVariationCollection'
+        description: Properties of the product variations that you are modifying. Required.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductVariationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductVariationCollection'
+          description: OK
+      summary: Update Product Variations
+      tags:
+      - ProductVariations
+      operationId: putCommerceCatalogAdminProductsByProductCodeVariations
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductPropertyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductSupplierInfo:
+      description: Supplier info for the product
+      properties:
+        cost:
+          $ref: '#/components/schemas/ProductCost'
+        distPartNumber:
+          type:
+          - string
+          - 'null'
+        mfgPartNumber:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductVariationCollection:
+      description: Collection of product variations returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ProductVariation'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductVariationPagedCollection:
+      description: Collection of product variations where the variations are returned in a series of pages.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ProductVariation'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CatalogAdminsProductPropertyValue:
+      description: A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
+      properties:
+        attributeVocabularyValueDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        content:
+          $ref: '#/components/schemas/ProductPropertyValueLocalizedContent'
+        localizedContent:
+          items:
+            $ref: '#/components/schemas/ProductPropertyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        value: {}
+      type: object
+    ProductVariation:
+      description: The ProductVariation resource helps merchants manage their products with configurable options. Using this resource, the system creates a matrix of all possible combinations of the product options and the merchant confirms which variations match products for sale. For example, a T-shirt with three color and three size options has nine possible product variations. The system keeps track of inventory for each variation.
+      properties:
+        deltaPrice:
+          $ref: '#/components/schemas/ProductVariationDeltaPrice'
+        deltaWeight:
+          description: Weight of the product with this variation.
+          format: double
+          type:
+          - number
+          - 'null'
+        fixedPrice:
+          $ref: '#/components/schemas/ProductVariationFixedPrice'
+        fixedWeight:
+          description: Fixed weight of the product with this variation.
+          format: double
+          type:
+          - number
+          - 'null'
+        fulfillmentTypesSupported:
+          description: Indicates the fulfillment types the product supports.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        isActive:
+          description: If true, the merchant accepts the variation generated from the configurable options as a product offering. If IsActive is false then the product variation is not for sale--either because it was never a product offering or it was permanently dropped. IsActive is not intended for temporary unavailability. Default is false.
+          type:
+          - boolean
+          - 'null'
+        isOrphan:
+          description: If true, the variation is no longer possible. The system sets IsOrphan to true when the merchant has changed something to make this variation impossible. For example, if the merchant stopped selling all "small" shirts, all product variations with the "small" option are set to IsOrphan. System-supplied and read-only.
+          type:
+          - boolean
+          - 'null'
+        localizedDeltaPrice:
+          description: 'How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly.
+
+            This collection allows for multiple currencies.'
+          items:
+            $ref: '#/components/schemas/ProductVariationDeltaPrice'
+          type:
+          - array
+          - 'null'
+        localizedFixedPrice:
+          description: 'Price of the variation using fixed per currency
+
+            This collection allows for multiple currencies.'
+          items:
+            $ref: '#/components/schemas/ProductVariationFixedPrice'
+          type:
+          - array
+          - 'null'
+        options:
+          description: 'List of values for this product variation: such as "small, "red.. these are read only here as the variationKey defines the values "'
+          items:
+            $ref: '#/components/schemas/ProductVariationOption'
+          type:
+          - array
+          - 'null'
+        properties:
+          description: List of properties specific to this variation
+          items:
+            $ref: '#/components/schemas/ProductVariationProperty'
+          type:
+          - array
+          - 'null'
+        supplierInfo:
+          $ref: '#/components/schemas/ProductSupplierInfo'
+        upc:
+          description: Price Lookup Unit code for the product
+          type:
+          - string
+          - 'null'
+        variationExists:
+          description: If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.
+          type:
+          - boolean
+          - 'null'
+        variationProductCode:
+          description: Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.
+          type:
+          - string
+          - 'null'
+        variationkey:
+          description: Unique identifier for a single variation ("small" + "red" + "short-sleeved"). System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          minLength: 1
+          type: string
+      type: object
+    CatalogAdminsAttributeVocabularyValue:
+      description: Value of an attribute
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        displayOrder:
+          description: The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        mappedGenericValues:
+          description: "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time."
+          items: {}
+          maxItems: 200
+          type:
+          - array
+          - 'null'
+        productName:
+          description: The ProductName when the Attribute DataType is ProductCode.
+          type:
+          - string
+          - 'null'
+        value:
+          description: "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed."
+          maxLength: 50
+          pattern: ^[A-Za-z0-9-_\.()]*[A-Za-z0-9-_()]
+        valueSequence:
+          description: Read only System generated monotonically increasing unique sequence.
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    ProductVariationProperty:
+      description: ''
+      properties:
+        attributeFQN:
+          description: Unique identifier of the Attribute.
+          type:
+          - string
+          - 'null'
+        values:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsProductPropertyValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    ProductVariationOption:
+      description: An option for a product variation. For example, a T-shirt with size and color configurable options, might have a product variation option of "size" or "color."
+      properties:
+        attributeFQN:
+          description: Unique identifier of the product variation option. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        value:
+          description: Name of the product variation option used on the admin side independent of how it appears on the storefront. For example, the internal "SZ" attribute might appear as "size" on the storefront.
+      type: object
+    ProductVariationDeltaPrice:
+      description: How much more a product variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted automatically.
+      properties:
+        creditValue:
+          description: Credit amt of the product
+          format: double
+          type:
+          - number
+          - 'null'
+        currencyCode:
+          description: Which currency is in use.
+          type:
+          - string
+          - 'null'
+        msrp:
+          description: Manufacturer Suggested Retail Price.
+          format: double
+          type:
+          - number
+          - 'null'
+        value:
+          description: How much more the variation costs above the cost of the base product.
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    ProductCost:
+      description: Price of the product and currency used.
+      properties:
+        cost:
+          description: Cost of the product. This is the price the merchant pays for the product.
+          format: double
+          type:
+          - number
+          - 'null'
+        isoCurrencyCode:
+          description: Currency code.
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductVariationFixedPrice:
+      properties:
+        creditValue:
+          description: Credit amt of the product
+          format: double
+          type:
+          - number
+          - 'null'
+        currencyCode:
+          description: Which currency is in use.
+          type:
+          - string
+          - 'null'
+        listPrice:
+          description: Variation price for fixed pricing
+          format: double
+          type:
+          - number
+          - 'null'
+        msrp:
+          description: Manufacturer Suggested Retail Price.
+          format: double
+          type:
+          - number
+          - 'null'
+        salePrice:
+          description: Variation sale price whne fixed pricing
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

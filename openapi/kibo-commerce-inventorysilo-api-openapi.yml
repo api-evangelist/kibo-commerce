@@ -1,0 +1,106 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Silo API
+  version: '1.0'
+  description: 'Operations tagged InventorySilo across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventorySilo
+paths:
+  /commerce/inventory/v1/silo/siloConfig:
+    post:
+      description: Updates tenant silo config
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/UpdateTenantSiloConfigRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantSiloConfigModel'
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Update Tenant Silo Config
+      tags:
+      - InventorySilo
+      operationId: postCommerceInventoryV1SiloSiloConfig
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    TenantSiloConfigModel:
+      description: Model of a tenant silo config.
+      properties:
+        additonalTenantsAllowed:
+          description: 'Check whether theAdditional tenants allowed or not '
+          type: boolean
+        batchWorkers:
+          description: Number of Batch Workers to run for this tenant.
+          type: integer
+        description:
+          description: Description of silo configuration
+          type: string
+        eventSenderWorkers:
+          description: Number of Event Sender Workers to run for this tenant.
+          type: integer
+        name:
+          description: Name of the Silo
+          type: string
+        siloID:
+          description: A Silo ID
+          type: integer
+        tenantID:
+          description: A Tenant ID
+          type: integer
+        usable:
+          description: Whether the  silo config is usable or not
+          type: boolean
+      title: Tenant Silo Config Model
+      type: object
+    UpdateTenantSiloConfigRequest:
+      description: Request for creating or updating tenant silo config.
+      properties:
+        batchWorkers:
+          description: Number of batch workers to run for this tenant.
+          type: integer
+        eventSenderWorkers:
+          description: Number of event sender workers to run for this tenant.
+          type: integer
+        tenantID:
+          description: A Tenant ID
+          type: integer
+      title: Create Tenant Silo Config Request
+      type: object
+  requestBodies:
+    UpdateTenantSiloConfigRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UpdateTenantSiloConfigRequest'
+      description: Request to create tenant silo config
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

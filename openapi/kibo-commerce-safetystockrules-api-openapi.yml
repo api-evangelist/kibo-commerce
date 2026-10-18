@@ -1,0 +1,411 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Safety Stock Rules API
+  version: '1.0'
+  description: 'Operations tagged SafetyStockRules across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: SafetyStockRules
+paths:
+  /commerce/rules/safetystock/{code}:
+    delete:
+      description: Deletes a safety stock rule by code.
+      parameters:
+      - description: The code of the safety stock rule to delete.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Safety Stock Rule
+      tags:
+      - SafetyStockRules
+      operationId: deleteCommerceRulesSafetystockByCode
+      x-operation-id-source: derived
+    get:
+      description: Gets safety stock rule details by code.
+      parameters:
+      - description: The code of the safety stock rule.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+          description: OK
+      summary: Get Safety Stock Rule by Code
+      tags:
+      - SafetyStockRules
+      operationId: getCommerceRulesSafetystockByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing safety stock rule.
+      parameters:
+      - description: The code of the safety stock rule to update.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SafetyStockRule'
+        description: The updated safety stock rule.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+          description: OK
+      summary: Update Safety Stock Rule
+      tags:
+      - SafetyStockRules
+      operationId: putCommerceRulesSafetystockByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/safetystock:
+    get:
+      description: Gets a collection of safety stock rules according to any specified filter criteria and sort options.
+      parameters:
+      - description: The start index for pagination.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The page size for pagination.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The sort by parameter.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: The filter parameter.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: The response groups parameter.
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRuleCollection'
+          description: OK
+      summary: Get Safety Stock Rules
+      tags:
+      - SafetyStockRules
+      operationId: getCommerceRulesSafetystock
+      x-operation-id-source: derived
+    post:
+      description: Creates a new safety stock rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SafetyStockRule'
+        description: The safety stock rule to create.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SafetyStockRule'
+          description: OK
+      summary: Create Safety Stock Rule
+      tags:
+      - SafetyStockRules
+      operationId: postCommerceRulesSafetystock
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/safetystock/{code}/rank:
+    put:
+      description: Updates the rank for a safety stock rule and rearranges the ranks of all other rules accordingly.
+      parameters:
+      - description: ''
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRankRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Update Safety Stock Rule Rank
+      tags:
+      - SafetyStockRules
+      operationId: putCommerceRulesSafetystockByCodeRank
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductRuleCode:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          description: Master Catalog Id of the ProductRule.
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    SafetyStockRuleCollection:
+      description: Represents a collection of SafetyStockRule objects with pagination information.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/SafetyStockRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    SafetyStockRule:
+      description: Represents a rule for safety stock in the product administration system.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: 'Gets or sets the unique identifier of the SafetyStockRule.
+
+            If not given provided on create one will be assigned. Read-only after creation.'
+          type:
+          - string
+          - 'null'
+        description:
+          description: Gets or sets the description of the SafetyStockRule.
+          type:
+          - string
+          - 'null'
+        enabled:
+          description: Gets or sets whether the SafetyStockRule is enabled.
+          type:
+          - boolean
+          - 'null'
+        endDate:
+          description: End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isActive:
+          description: 'Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+
+            (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+
+            This reflects the effective window alone and does not incorporate the enabled flag.'
+          type:
+          - boolean
+          - 'null'
+        locationCodes:
+          description: Gets or sets the list of location codes where the SafetyStockRule applies.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        locationGroups:
+          description: Gets or sets the list of location groups where the SafetyStockRule applies.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        metaData:
+          description: Metadata for the Safety stock rule which is a json format, used to store additional information
+        name:
+          description: Gets or sets the name of the SafetyStockRule.
+          type:
+          - string
+          - 'null'
+        productRules:
+          description: Gets or sets the list of product rules associated with the SafetyStockRule.
+          items:
+            $ref: '#/components/schemas/ProductRuleCode'
+          type:
+          - array
+          - 'null'
+        quantity:
+          description: Gets or sets the quantity defined by the SafetyStockRule.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        rank:
+          description: 'Gets or sets the rank of the SafetyStockRule.
+
+            When not given or zero, a value will be assigned.'
+          format: int32
+          type: integer
+        startDate:
+          description: Start of the rule's effective window. Null = no lower bound (already active).
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    UpdateRankRequest:
+      description: Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule.
+      properties:
+        code:
+          description: 'Gets or sets the code of the rule to be updated.
+
+            It can be SafetyStock Code , PurchaseLimit Code or Return Rule Code'
+          type:
+          - string
+          - 'null'
+        newRank:
+          description: Gets or sets the new rank of the rule.
+          format: int32
+          type: integer
+        oldRank:
+          description: Gets or sets the old rank of the rule.
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

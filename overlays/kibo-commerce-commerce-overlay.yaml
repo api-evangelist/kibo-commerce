@@ -1,0 +1,1559 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Cart/Checkout/Quote
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-commerce-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-commerce-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items'].post
+  description: Add derived operationId for POST /commerce/blanketorders/{blanketOrderId}/items
+  update:
+    operationId: blanketorderAddAnItemToABlanketOrder
+- target: $.paths['/commerce/blanketorders/aggregate'].get
+  description: Add derived operationId for GET /commerce/blanketorders/aggregate
+  update:
+    operationId: blanketorderAggregateRemainingQuantityAcrossBlanketOrdersScopedToTheCurrentTenantAndSite
+- target: $.paths['/commerce/blanketorders/actions/bulk-cancel'].post
+  description: Add derived operationId for POST /commerce/blanketorders/actions/bulk-cancel
+  update:
+    operationId: blanketorderBulkCancelBlanketOrders
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/cancel'].post
+  description: Add derived operationId for POST /commerce/blanketorders/{blanketOrderId}/cancel
+  update:
+    operationId: blanketorderCancelABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items/{itemId}/cancel'].post
+  description: Add derived operationId for POST /commerce/blanketorders/{blanketOrderId}/items/{itemId}/cancel
+  update:
+    operationId: blanketorderCancelAnItemOnABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/attributes/{attributeFqn}'].delete
+  description: Add derived operationId for DELETE /commerce/blanketorders/{blanketOrderId}/attributes/{attributeFqn}
+  update:
+    operationId: blanketorderDeleteASingleHeaderLevelAttributeFromABlanketOrderByFQN
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes/{attributeFqn}'].delete
+  description: Add derived operationId for DELETE /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes/{attributeFqn}
+  update:
+    operationId: blanketorderDeleteASingleLineLevelAttributeFromABlanketOrderItemByFQN
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}'].delete
+  description: Add derived operationId for DELETE /commerce/blanketorders/{blanketOrderId}
+  update:
+    operationId: blanketorderDeleteABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}'].get
+  description: Add derived operationId for GET /commerce/blanketorders/{blanketOrderId}
+  update:
+    operationId: blanketorderGetABlanketOrderByID
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}'].put
+  description: Add derived operationId for PUT /commerce/blanketorders/{blanketOrderId}
+  update:
+    operationId: blanketorderUpdateAnExistingBlanketOrder
+- target: $.paths['/commerce/blanketorders'].get
+  description: Add derived operationId for GET /commerce/blanketorders
+  update:
+    operationId: blanketorderGetAPagedCollectionOfBlanketOrders
+- target: $.paths['/commerce/blanketorders'].post
+  description: Add derived operationId for POST /commerce/blanketorders
+  update:
+    operationId: blanketorderCreateANewBlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/consumptionrecords/{consumptionRecordId}'].get
+  description: Add derived operationId for GET /commerce/blanketorders/{blanketOrderId}/consumptionrecords/{consumptionRecordId}
+  update:
+    operationId: blanketorderGetASingleConsumptionRecordForABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/attributes'].get
+  description: Add derived operationId for GET /commerce/blanketorders/{blanketOrderId}/attributes
+  update:
+    operationId: blanketorderGetAllHeaderLevelAttributesForABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/attributes'].post
+  description: Add derived operationId for POST /commerce/blanketorders/{blanketOrderId}/attributes
+  update:
+    operationId: blanketorderCreateHeaderLevelAttributesOnABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/blanketorders/{blanketOrderId}/attributes
+  update:
+    operationId: blanketorderUpdateUpsertHeaderLevelAttributesOnABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes'].get
+  description: Add derived operationId for GET /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes
+  update:
+    operationId: blanketorderGetAllLineLevelAttributesForABlanketOrderItem
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes'].post
+  description: Add derived operationId for POST /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes
+  update:
+    operationId: blanketorderCreateLineLevelAttributesOnABlanketOrderItemSkipsFQNsThatAlreadyExist
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/blanketorders/{blanketOrderId}/items/{itemId}/attributes
+  update:
+    operationId: blanketorderUpsertLineLevelAttributesOnABlanketOrderItem
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/consumptionrecords'].get
+  description: Add derived operationId for GET /commerce/blanketorders/{blanketOrderId}/consumptionrecords
+  update:
+    operationId: blanketorderGetConsumptionRecordsForABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/changemessages/{changeMessageId}'].delete
+  description: Add derived operationId for DELETE /commerce/blanketorders/{blanketOrderId}/changemessages/{changeMessageId}
+  update:
+    operationId: blanketorderDeletesAChangeMessageForABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/changemessages/{changeMessageId}'].get
+  description: Add derived operationId for GET /commerce/blanketorders/{blanketOrderId}/changemessages/{changeMessageId}
+  update:
+    operationId: blanketorderGetsASingleChangeMessageForABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/changemessages'].get
+  description: Add derived operationId for GET /commerce/blanketorders/{blanketOrderId}/changemessages
+  update:
+    operationId: blanketorderGetsChangeMessagesForABlanketOrder
+- target: $.paths['/commerce/blanketorders/{sourceBlanketOrderId}/rollover'].post
+  description: Add derived operationId for POST /commerce/blanketorders/{sourceBlanketOrderId}/rollover
+  update:
+    operationId: blanketorderRollOverAnExpiredBlanketOrderToCreateANewOrderWithSelectedItems
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items/{itemId}'].delete
+  description: Add derived operationId for DELETE /commerce/blanketorders/{blanketOrderId}/items/{itemId}
+  update:
+    operationId: blanketorderDeleteAnItemFromABlanketOrder
+- target: $.paths['/commerce/blanketorders/{blanketOrderId}/items/{itemId}'].put
+  description: Add derived operationId for PUT /commerce/blanketorders/{blanketOrderId}/items/{itemId}
+  update:
+    operationId: blanketorderUpdateAnItemOnABlanketOrder
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items'].post
+  description: Add derived operationId for POST /commerce/callofforders/{callOffOrderId}/items
+  update:
+    operationId: callofforderAddItem
+- target: $.paths['/commerce/callofforders/aggregate'].get
+  description: Add derived operationId for GET /commerce/callofforders/aggregate
+  update:
+    operationId: callofforderAggregateRequestedQuantityAcrossCallOffOrdersSpanningEverySiteInTheCurrentTenant
+- target: $.paths['/commerce/callofforders/actions/bulk-cancel'].post
+  description: Add derived operationId for POST /commerce/callofforders/actions/bulk-cancel
+  update:
+    operationId: callofforderBulkCancelCallOffOrders
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/cancel'].post
+  description: Add derived operationId for POST /commerce/callofforders/{callOffOrderId}/items/{itemId}/cancel
+  update:
+    operationId: callofforderCancelItem
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/attributes/{attributeFqn}'].delete
+  description: Add derived operationId for DELETE /commerce/callofforders/{callOffOrderId}/attributes/{attributeFqn}
+  update:
+    operationId: callofforderDeleteASingleHeaderLevelAttributeFromACallOffOrderByFQN
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes/{attributeFqn}'].delete
+  description: Add derived operationId for DELETE /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes/{attributeFqn}
+  update:
+    operationId: callofforderDeleteASingleLineLevelAttributeFromACallOffOrderItemByFQN
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/attributes'].get
+  description: Add derived operationId for GET /commerce/callofforders/{callOffOrderId}/attributes
+  update:
+    operationId: callofforderGetAllHeaderLevelAttributesForACallOffOrder
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/attributes'].post
+  description: Add derived operationId for POST /commerce/callofforders/{callOffOrderId}/attributes
+  update:
+    operationId: callofforderCreateHeaderLevelAttributesOnACallOffOrder
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}/attributes
+  update:
+    operationId: callofforderUpdateUpsertHeaderLevelAttributesOnACallOffOrder
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes'].get
+  description: Add derived operationId for GET /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes
+  update:
+    operationId: callofforderGetAllLineLevelAttributesForACallOffOrderItem
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes'].post
+  description: Add derived operationId for POST /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes
+  update:
+    operationId: callofforderCreateLineLevelAttributesOnACallOffOrderItemSkipsFQNsThatAlreadyExist
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}/items/{itemId}/attributes
+  update:
+    operationId: callofforderUpsertLineLevelAttributesOnACallOffOrderItem
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/actions'].get
+  description: Add derived operationId for GET /commerce/callofforders/{callOffOrderId}/actions
+  update:
+    operationId: callofforderGetAvailableActions
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/actions'].post
+  description: Add derived operationId for POST /commerce/callofforders/{callOffOrderId}/actions
+  update:
+    operationId: callofforderPerformAction
+- target: $.paths['/commerce/callofforders/{callOffOrderId}'].get
+  description: Add derived operationId for GET /commerce/callofforders/{callOffOrderId}
+  update:
+    operationId: callofforderGetCallOffOrder
+- target: $.paths['/commerce/callofforders/{callOffOrderId}'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}
+  update:
+    operationId: callofforderUpdateCallOffOrder
+- target: $.paths['/commerce/callofforders'].get
+  description: Add derived operationId for GET /commerce/callofforders
+  update:
+    operationId: callofforderGetCallOffOrders
+- target: $.paths['/commerce/callofforders'].post
+  description: Add derived operationId for POST /commerce/callofforders
+  update:
+    operationId: callofforderCreateCallOffOrder
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/changemessages'].get
+  description: Add derived operationId for GET /commerce/callofforders/{callOffOrderId}/changemessages
+  update:
+    operationId: callofforderGetChangeMessages
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/release'].post
+  description: Add derived operationId for POST /commerce/callofforders/{callOffOrderId}/release
+  update:
+    operationId: callofforderReleaseCallOffOrder
+- target: $.paths['/commerce/callofforders/credithold/reasons'].get
+  description: Add derived operationId for GET /commerce/callofforders/credithold/reasons
+  update:
+    operationId: callofforderReturnsTheListOfAvailableCreditHoldReasonsForCallOffOrders
+- target: $.paths['/commerce/rules/callOffOrder/{code}/evaluate'].post
+  description: Add derived operationId for POST /commerce/rules/callOffOrder/{code}/evaluate
+  update:
+    operationId: callofforderruleEvaluatesAnEnabledRuleAndReturnsThePagedListOfMatching
+- target: $.paths['/commerce/rules/callOffOrder'].get
+  description: Add derived operationId for GET /commerce/rules/callOffOrder
+  update:
+    operationId: callofforderruleListsCallOffOrderRulesForTheCurrentTenantWithOffsetPaging
+- target: $.paths['/commerce/rules/callOffOrder'].post
+  description: Add derived operationId for POST /commerce/rules/callOffOrder
+  update:
+    operationId: callofforderruleCreatesACallOffOrderRuleTheExpressionIsValidatedAndCanonicalized
+- target: $.paths['/commerce/rules/callOffOrder/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/rules/callOffOrder/{code}
+  update:
+    operationId: callofforderruleHardDeletesARuleByCodeV1HasNoUsageGuard
+- target: $.paths['/commerce/rules/callOffOrder/{code}'].get
+  description: Add derived operationId for GET /commerce/rules/callOffOrder/{code}
+  update:
+    operationId: callofforderruleReturnsASingleCallOffOrderRuleByItsTenantUniqueCode
+- target: $.paths['/commerce/rules/callOffOrder/{code}'].put
+  description: Add derived operationId for PUT /commerce/rules/callOffOrder/{code}
+  update:
+    operationId: callofforderruleUpdatesAnExistingRuleCodeIsImmutableABodyCodeThat
+- target: $.paths['/commerce/rules/callOffOrder/schema'].get
+  description: Add derived operationId for GET /commerce/rules/callOffOrder/schema
+  update:
+    operationId: callofforderruleReturnsTheAuthoringSchemaForCallOffOrderRulesTheCompleteSetOf
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/destination'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}/items/{itemId}/destination
+  update:
+    operationId: callofforderUpdateItemDestination
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/destination/{destinationId}'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}/items/{itemId}/destination/{destinationId}
+  update:
+    operationId: callofforderUpdateItemDestinationById
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/price/{unitPrice}'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}/items/{itemId}/price/{unitPrice}
+  update:
+    operationId: callofforderUpdateItemPrice
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/quantity/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}/items/{itemId}/quantity/{quantity}
+  update:
+    operationId: callofforderUpdateItemQuantity
+- target: $.paths['/commerce/callofforders/{callOffOrderId}/items/{itemId}/shipdate'].put
+  description: Add derived operationId for PUT /commerce/callofforders/{callOffOrderId}/items/{itemId}/shipdate
+  update:
+    operationId: callofforderUpdateItemRequestedShipDate
+- target: $.paths['/cancel/reasons'].get
+  description: Add derived operationId for GET /cancel/reasons
+  update:
+    operationId: cancelreasonsGetCancelReasons
+- target: $.paths['/commerce/carts/current/bulkitems'].post
+  description: Add derived operationId for POST /commerce/carts/current/bulkitems
+  update:
+    operationId: cartAddItemsToCart
+- target: $.paths['/commerce/carts/current/bulkitems'].put
+  description: Add derived operationId for PUT /commerce/carts/current/bulkitems
+  update:
+    operationId: cartUpdateCartItems
+- target: $.paths['/commerce/carts/{cartId}/bulkitems'].post
+  description: Add derived operationId for POST /commerce/carts/{cartId}/bulkitems
+  update:
+    operationId: cartAddItemsToCartByCartId
+- target: $.paths['/commerce/carts/{cartId}/bulkitems'].put
+  description: Add derived operationId for PUT /commerce/carts/{cartId}/bulkitems
+  update:
+    operationId: cartUpdateCartItemsByCartId
+- target: $.paths['/commerce/carts/{cartId}/coupons/{couponCode}'].delete
+  description: Add derived operationId for DELETE /commerce/carts/{cartId}/coupons/{couponCode}
+  update:
+    operationId: cartRemoveCoupon
+- target: $.paths['/commerce/carts/{cartId}/coupons/{couponCode}'].put
+  description: Add derived operationId for PUT /commerce/carts/{cartId}/coupons/{couponCode}
+  update:
+    operationId: cartApplyCoupon
+- target: $.paths['/commerce/carts/current/bulkitems/delete'].put
+  description: Add derived operationId for PUT /commerce/carts/current/bulkitems/delete
+  update:
+    operationId: cartDeleteMultipleCartItems
+- target: $.paths['/commerce/carts/{cartId}/bulkitems/delete'].put
+  description: Add derived operationId for PUT /commerce/carts/{cartId}/bulkitems/delete
+  update:
+    operationId: cartDeleteMultipleCartItemsByCartId
+- target: $.paths['/commerce/carts/{cartId}'].delete
+  description: Add derived operationId for DELETE /commerce/carts/{cartId}
+  update:
+    operationId: cartDeleteCart
+- target: $.paths['/commerce/carts/{cartId}'].get
+  description: Add derived operationId for GET /commerce/carts/{cartId}
+  update:
+    operationId: cartGetCart
+- target: $.paths['/commerce/carts/{cartId}'].put
+  description: Add derived operationId for PUT /commerce/carts/{cartId}
+  update:
+    operationId: cartUpdateCartByCartId
+- target: $.paths['/commerce/carts/current/items/{cartItemId}'].delete
+  description: Add derived operationId for DELETE /commerce/carts/current/items/{cartItemId}
+  update:
+    operationId: cartDeleteCartItem
+- target: $.paths['/commerce/carts/current/items/{cartItemId}'].get
+  description: Add derived operationId for GET /commerce/carts/current/items/{cartItemId}
+  update:
+    operationId: cartGetCartItem
+- target: $.paths['/commerce/carts/current/items/{cartItemId}'].put
+  description: Add derived operationId for PUT /commerce/carts/current/items/{cartItemId}
+  update:
+    operationId: cartUpdateCartItem
+- target: $.paths['/commerce/carts/{cartId}/items/{cartItemId}'].delete
+  description: Add derived operationId for DELETE /commerce/carts/{cartId}/items/{cartItemId}
+  update:
+    operationId: cartDeleteCartItemByCartId
+- target: $.paths['/commerce/carts/{cartId}/items/{cartItemId}'].get
+  description: Add derived operationId for GET /commerce/carts/{cartId}/items/{cartItemId}
+  update:
+    operationId: cartGetCartItemByCartId
+- target: $.paths['/commerce/carts/{cartId}/items/{cartItemId}'].put
+  description: Add derived operationId for PUT /commerce/carts/{cartId}/items/{cartItemId}
+  update:
+    operationId: cartUpdateCartItemByCartId
+- target: $.paths['/commerce/carts/current/items'].delete
+  description: Add derived operationId for DELETE /commerce/carts/current/items
+  update:
+    operationId: cartRemoveAllCartItems
+- target: $.paths['/commerce/carts/current/items'].get
+  description: Add derived operationId for GET /commerce/carts/current/items
+  update:
+    operationId: cartGetCartItems
+- target: $.paths['/commerce/carts/current/items'].post
+  description: Add derived operationId for POST /commerce/carts/current/items
+  update:
+    operationId: cartAddItemToCart
+- target: $.paths['/commerce/carts/{cartId}/items'].delete
+  description: Add derived operationId for DELETE /commerce/carts/{cartId}/items
+  update:
+    operationId: cartRemoveAllCartItemsByCartId
+- target: $.paths['/commerce/carts/{cartId}/items'].get
+  description: Add derived operationId for GET /commerce/carts/{cartId}/items
+  update:
+    operationId: cartGetCartItemsByCartId
+- target: $.paths['/commerce/carts/{cartId}/items'].post
+  description: Add derived operationId for POST /commerce/carts/{cartId}/items
+  update:
+    operationId: cartAddItemToCartByCartId
+- target: $.paths['/commerce/carts/summary'].get
+  description: Add derived operationId for GET /commerce/carts/summary
+  update:
+    operationId: cartGetCartSummary
+- target: $.paths['/commerce/carts/{cartId}/summary'].get
+  description: Add derived operationId for GET /commerce/carts/{cartId}/summary
+  update:
+    operationId: cartGetCartSummaryByCartId
+- target: $.paths['/commerce/carts/current/extendedproperties'].delete
+  description: Add derived operationId for DELETE /commerce/carts/current/extendedproperties
+  update:
+    operationId: cartDeleteExtendedProperties
+- target: $.paths['/commerce/carts/current/extendedproperties'].get
+  description: Add derived operationId for GET /commerce/carts/current/extendedproperties
+  update:
+    operationId: cartGetExtendedProperties
+- target: $.paths['/commerce/carts/current/extendedproperties'].post
+  description: Add derived operationId for POST /commerce/carts/current/extendedproperties
+  update:
+    operationId: cartAddsExtendedProperties
+- target: $.paths['/commerce/carts/current/extendedproperties'].put
+  description: Add derived operationId for PUT /commerce/carts/current/extendedproperties
+  update:
+    operationId: cartUpdateExtendedProperties
+- target: $.paths['/commerce/carts/current/messages'].delete
+  description: Add derived operationId for DELETE /commerce/carts/current/messages
+  update:
+    operationId: cartRemoveAllMessages
+- target: $.paths['/commerce/carts/current/messages'].get
+  description: Add derived operationId for GET /commerce/carts/current/messages
+  update:
+    operationId: cartGetMessages
+- target: $.paths['/commerce/carts/current'].delete
+  description: Add derived operationId for DELETE /commerce/carts/current
+  update:
+    operationId: cartDeleteCurrentCart
+- target: $.paths['/commerce/carts/current'].get
+  description: Add derived operationId for GET /commerce/carts/current
+  update:
+    operationId: cartGetOrCreateCart
+- target: $.paths['/commerce/carts/current'].put
+  description: Add derived operationId for PUT /commerce/carts/current
+  update:
+    operationId: cartUpdateCart
+- target: $.paths['/commerce/carts/user/{userId}'].delete
+  description: Add derived operationId for DELETE /commerce/carts/user/{userId}
+  update:
+    operationId: cartDeleteUserCart
+- target: $.paths['/commerce/carts/user/{userId}'].get
+  description: Add derived operationId for GET /commerce/carts/user/{userId}
+  update:
+    operationId: cartGetUserCart
+- target: $.paths['/commerce/carts/user/{userId}'].post
+  description: Add derived operationId for POST /commerce/carts/user/{userId}
+  update:
+    operationId: cartGetOrCreateUserCart
+- target: $.paths['/commerce/carts/user/{userId}'].put
+  description: Add derived operationId for PUT /commerce/carts/user/{userId}
+  update:
+    operationId: cartUpdateUserCart
+- target: $.paths['/commerce/carts/user/{userId}/summary'].get
+  description: Add derived operationId for GET /commerce/carts/user/{userId}/summary
+  update:
+    operationId: cartGetUserCartSummary
+- target: $.paths['/commerce/carts/{cartId}/rejectautodiscount/{discountId}'].post
+  description: Add derived operationId for POST /commerce/carts/{cartId}/rejectautodiscount/{discountId}
+  update:
+    operationId: cartRejectSuggestedDiscount
+- target: $.paths['/commerce/carts/{cartId}/coupons'].delete
+  description: Add derived operationId for DELETE /commerce/carts/{cartId}/coupons
+  update:
+    operationId: cartRemoveCoupons
+- target: $.paths['/commerce/carts/current/messages/{messageId}'].delete
+  description: Add derived operationId for DELETE /commerce/carts/current/messages/{messageId}
+  update:
+    operationId: cartRemoveMessage
+- target: $.paths['/commerce/carts/current/items/{cartItemId}/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/carts/current/items/{cartItemId}/{quantity}
+  update:
+    operationId: cartUpdateCartItemQuantity
+- target: $.paths['/commerce/carts/{cartId}/items/{cartItemId}/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/carts/{cartId}/items/{cartItemId}/{quantity}
+  update:
+    operationId: cartUpdateCartItemQuantityByCartId
+- target: $.paths['/commerce/carts/current/extendedproperties/{key}'].delete
+  description: Add derived operationId for DELETE /commerce/carts/current/extendedproperties/{key}
+  update:
+    operationId: cartDeleteExtendedProperty
+- target: $.paths['/commerce/carts/current/extendedproperties/{key}'].put
+  description: Add derived operationId for PUT /commerce/carts/current/extendedproperties/{key}
+  update:
+    operationId: cartUpdateExtendedProperty
+- target: $.paths['/commerce/channels/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/channels/{code}
+  update:
+    operationId: channelDeleteChannel
+- target: $.paths['/commerce/channels/{code}'].get
+  description: Add derived operationId for GET /commerce/channels/{code}
+  update:
+    operationId: channelGetChannel
+- target: $.paths['/commerce/channels/{code}'].put
+  description: Add derived operationId for PUT /commerce/channels/{code}
+  update:
+    operationId: channelUpdateChannel
+- target: $.paths['/commerce/channels'].get
+  description: Add derived operationId for GET /commerce/channels
+  update:
+    operationId: channelGetChannels
+- target: $.paths['/commerce/channels'].post
+  description: Add derived operationId for POST /commerce/channels
+  update:
+    operationId: channelCreatesChannel
+- target: $.paths['/commerce/channelgroups/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/channelgroups/{code}
+  update:
+    operationId: channelgroupDeleteChannelGroup
+- target: $.paths['/commerce/channelgroups/{code}'].get
+  description: Add derived operationId for GET /commerce/channelgroups/{code}
+  update:
+    operationId: channelgroupGetChannelGroup
+- target: $.paths['/commerce/channelgroups/{code}'].put
+  description: Add derived operationId for PUT /commerce/channelgroups/{code}
+  update:
+    operationId: channelgroupUpdatesChannelGroup
+- target: $.paths['/commerce/channelgroups'].get
+  description: Add derived operationId for GET /commerce/channelgroups
+  update:
+    operationId: channelgroupGetChannelGroups
+- target: $.paths['/commerce/channelgroups'].post
+  description: Add derived operationId for POST /commerce/channelgroups
+  update:
+    operationId: channelgroupCreatesChannelGroup
+- target: $.paths['/commerce/checkouts/{checkoutId}/items'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/items
+  update:
+    operationId: checkoutAddCheckoutItem
+- target: $.paths['/commerce/checkouts/{checkoutId}/coupons/{couponCode}'].delete
+  description: Add derived operationId for DELETE /commerce/checkouts/{checkoutId}/coupons/{couponCode}
+  update:
+    operationId: checkoutRemoveCoupon
+- target: $.paths['/commerce/checkouts/{checkoutId}/coupons/{couponCode}'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/coupons/{couponCode}
+  update:
+    operationId: checkoutApplyCoupon
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/destinations'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/items/destinations
+  update:
+    operationId: checkoutBulkUpdateItemDestinations
+- target: $.paths['/commerce/checkouts/{checkoutId}/priceList'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/priceList
+  update:
+    operationId: checkoutChangeCheckoutPriceList
+- target: $.paths['/commerce/checkouts/{checkoutId}/payments/actions'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/payments/actions
+  update:
+    operationId: checkoutCreatePaymentAction
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}'].delete
+  description: Add derived operationId for DELETE /commerce/checkouts/{checkoutId}/items/{itemId}
+  update:
+    operationId: checkoutDeleteCheckoutItem
+- target: $.paths['/commerce/checkouts/{checkoutId}/actions'].get
+  description: Add derived operationId for GET /commerce/checkouts/{checkoutId}/actions
+  update:
+    operationId: checkoutGetAvailableActions
+- target: $.paths['/commerce/checkouts/{checkoutId}/actions'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/actions
+  update:
+    operationId: checkoutPerformCheckoutAction
+- target: $.paths['/commerce/checkouts/{checkoutId}/shippingMethods'].get
+  description: Add derived operationId for GET /commerce/checkouts/{checkoutId}/shippingMethods
+  update:
+    operationId: checkoutGetAvailableShippingMethods
+- target: $.paths['/commerce/checkouts/{checkoutId}/shippingMethods'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/shippingMethods
+  update:
+    operationId: checkoutSetShippingMethods
+- target: $.paths['/commerce/checkouts/{checkoutId}'].get
+  description: Add derived operationId for GET /commerce/checkouts/{checkoutId}
+  update:
+    operationId: checkoutGetCheckout
+- target: $.paths['/commerce/checkouts/{checkoutId}'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}
+  update:
+    operationId: checkoutUpdateCheckout
+- target: $.paths['/commerce/checkouts/{checkoutId}/attributes'].get
+  description: Add derived operationId for GET /commerce/checkouts/{checkoutId}/attributes
+  update:
+    operationId: checkoutGetCheckoutAttributes
+- target: $.paths['/commerce/checkouts/{checkoutId}/attributes'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/attributes
+  update:
+    operationId: checkoutCreateCheckoutAttributes
+- target: $.paths['/commerce/checkouts/{checkoutId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/attributes
+  update:
+    operationId: checkoutUpdateCheckoutAttribute
+- target: $.paths['/commerce/checkouts'].get
+  description: Add derived operationId for GET /commerce/checkouts
+  update:
+    operationId: checkoutGetCheckouts
+- target: $.paths['/commerce/checkouts'].post
+  description: Add derived operationId for POST /commerce/checkouts
+  update:
+    operationId: checkoutCreateCheckoutFromCart
+- target: $.paths['/commerce/checkouts/{checkoutId}/destinations/{destinationId}'].delete
+  description: Add derived operationId for DELETE /commerce/checkouts/{checkoutId}/destinations/{destinationId}
+  update:
+    operationId: checkoutRemoveDestination
+- target: $.paths['/commerce/checkouts/{checkoutId}/destinations/{destinationId}'].get
+  description: Add derived operationId for GET /commerce/checkouts/{checkoutId}/destinations/{destinationId}
+  update:
+    operationId: checkoutGetDestination
+- target: $.paths['/commerce/checkouts/{checkoutId}/destinations/{destinationId}'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/destinations/{destinationId}
+  update:
+    operationId: checkoutUpdateDestination
+- target: $.paths['/commerce/checkouts/{checkoutId}/destinations'].get
+  description: Add derived operationId for GET /commerce/checkouts/{checkoutId}/destinations
+  update:
+    operationId: checkoutGetDestinations
+- target: $.paths['/commerce/checkouts/{checkoutId}/destinations'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/destinations
+  update:
+    operationId: checkoutAddDestination
+- target: $.paths['/commerce/checkouts/{checkoutId}/payments/{paymentId}/actions'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/payments/{paymentId}/actions
+  update:
+    operationId: checkoutPerformPaymentAction
+- target: $.paths['/commerce/checkouts/{checkoutId}/digitalWallet/{digitalWalletType}'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/digitalWallet/{digitalWalletType}
+  update:
+    operationId: checkoutProcessDigitalWallet
+- target: $.paths['/commerce/checkouts/{checkoutId}/coupons'].delete
+  description: Add derived operationId for DELETE /commerce/checkouts/{checkoutId}/coupons
+  update:
+    operationId: checkoutRemoveCoupons
+- target: $.paths['/commerce/checkouts/{checkoutId}/email/resend'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/email/resend
+  update:
+    operationId: checkoutResendCheckoutConfirmationEmail
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}/split'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/items/{itemId}/split
+  update:
+    operationId: checkoutSplitItem
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}/updateGiftInfo'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/items/{itemId}/updateGiftInfo
+  update:
+    operationId: checkoutUpdateCheckoutItemGiftInformation
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/deliverydates'].post
+  description: Add derived operationId for POST /commerce/checkouts/{checkoutId}/items/deliverydates
+  update:
+    operationId: checkoutUpdateDeliveryDatesOfItemsInBulk
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}/destination/{destinationId}'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/items/{itemId}/destination/{destinationId}
+  update:
+    operationId: checkoutUpdateItemDestination
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}/subscriptionInfo'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/items/{itemId}/subscriptionInfo
+  update:
+    operationId: checkoutUpdateItemSubscriptionInfo
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}/upsertSubstituteInfo'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/items/{itemId}/upsertSubstituteInfo
+  update:
+    operationId: checkoutUpdateSubstituteInfoOnCheckoutItem
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}/deliverydate'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/items/{itemId}/deliverydate
+  update:
+    operationId: checkoutUpdateTheDeliveryDateOfTheItem
+- target: $.paths['/commerce/checkouts/{checkoutId}/items/{itemId}/upsert-inventory-tags'].put
+  description: Add derived operationId for PUT /commerce/checkouts/{checkoutId}/items/{itemId}/upsert-inventory-tags
+  update:
+    operationId: checkoutUpsertInventoryTags
+- target: $.paths['/commerce/jobs/b2bOrderRelease'].post
+  description: Add derived operationId for POST /commerce/jobs/b2bOrderRelease
+  update:
+    operationId: jobB2BOrderRelease
+- target: $.paths['/commerce/orders/{orderId}/upsertalternatecontact'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/upsertalternatecontact
+  update:
+    operationId: orderAddUpdateAlternateContact
+- target: $.paths['/commerce/orders/{orderId}/adjustment'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/adjustment
+  update:
+    operationId: orderRemoveAdjustment
+- target: $.paths['/commerce/orders/{orderId}/adjustment'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/adjustment
+  update:
+    operationId: orderApplyAdjustment
+- target: $.paths['/commerce/orders/{orderId}/coupons/{couponCode}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/coupons/{couponCode}
+  update:
+    operationId: orderRemoveCoupon
+- target: $.paths['/commerce/orders/{orderId}/coupons/{couponCode}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/coupons/{couponCode}
+  update:
+    operationId: orderApplyCoupon
+- target: $.paths['/commerce/orders/{orderId}/adjustment/handling'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/adjustment/handling
+  update:
+    operationId: orderRemoveHandlingAdjustment
+- target: $.paths['/commerce/orders/{orderId}/adjustment/handling'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/adjustment/handling
+  update:
+    operationId: orderApplyHandlingAdjustment
+- target: $.paths['/commerce/orders/{orderId}/packages'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/packages
+  update:
+    operationId: orderApplyPackageToOrder
+- target: $.paths['/commerce/orders/{orderId}/adjustment/shipping'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/adjustment/shipping
+  update:
+    operationId: orderRemoveShippingAdjustment
+- target: $.paths['/commerce/orders/{orderId}/adjustment/shipping'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/adjustment/shipping
+  update:
+    operationId: orderApplyShippingAdjustment
+- target: $.paths['/commerce/orders/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/orders/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: orderattributedefinitionsGetAttribute
+- target: $.paths['/commerce/orders/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/orders/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: orderattributedefinitionsUpdateAttribute
+- target: $.paths['/commerce/orders/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/orders/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: orderattributedefinitionsGetAttributeVocabularyValues
+- target: $.paths['/commerce/orders/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/orders/attributedefinition/attributes
+  update:
+    operationId: orderattributedefinitionsGetAttributes
+- target: $.paths['/commerce/orders/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/orders/attributedefinition/attributes
+  update:
+    operationId: orderattributedefinitionsCreateAttribute
+- target: $.paths['/commerce/orders/{orderId}/payments/autocapture'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/payments/autocapture
+  update:
+    operationId: orderAutoCapturePayments
+- target: $.paths['/commerce/orders/cancel/{orderId}'].put
+  description: Add derived operationId for PUT /commerce/orders/cancel/{orderId}
+  update:
+    operationId: orderCancelOrder
+- target: $.paths['/commerce/orders/{orderId}/priceList'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/priceList
+  update:
+    operationId: orderChangeOrderPriceList
+- target: $.paths['/commerce/orders/{orderId}/users'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/users
+  update:
+    operationId: orderChangeOrderUserId
+- target: $.paths['/commerce/orders/{orderId}/shipments'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments
+  update:
+    operationId: orderCreateAShipment
+- target: $.paths['/commerce/orders/{orderId}/digitalpackages'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/digitalpackages
+  update:
+    operationId: orderCreateDigitalPackage
+- target: $.paths['/commerce/orders/{orderId}/payments/actions'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/payments/actions
+  update:
+    operationId: orderCreatePaymentAction
+- target: $.paths['/commerce/orders/{orderId}/pickups'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/pickups
+  update:
+    operationId: orderCreatePickup
+- target: $.paths['/commerce/orders/{orderId}/refunds'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/refunds
+  update:
+    operationId: orderCreateRefund
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/attributes/{attributeFqn}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/items/{orderItemId}/attributes/{attributeFqn}
+  update:
+    operationId: orderDeleteASingleLineLevelAttributeFromAnOrderItemByFQN
+- target: $.paths['/commerce/orders/{orderId}/draft'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/draft
+  update:
+    operationId: orderDeleteOrderDraft
+- target: $.paths['/commerce/orders/{orderId}/evaluaterollupstatus'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/evaluaterollupstatus
+  update:
+    operationId: orderEvaluateOrderRollupStatus
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/attributes'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/items/{orderItemId}/attributes
+  update:
+    operationId: orderGetAllLineLevelAttributesForAnOrderItem
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/attributes'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/items/{orderItemId}/attributes
+  update:
+    operationId: orderCreateLineLevelAttributesOnAnOrderItemSkipsFQNsThatAlreadyExist
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/attributes
+  update:
+    operationId: orderUpsertLineLevelAttributesOnAnOrderItem
+- target: $.paths['/commerce/orders/{orderId}/actions'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/actions
+  update:
+    operationId: orderGetAvailableActions
+- target: $.paths['/commerce/orders/{orderId}/actions'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/actions
+  update:
+    operationId: orderPerformOrderAction
+- target: $.paths['/commerce/orders/{orderId}/digitalpackages/{digitalPackageId}/actions'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/digitalpackages/{digitalPackageId}/actions
+  update:
+    operationId: orderGetAvailableDigitalPackageFulfillmentActions
+- target: $.paths['/commerce/orders/{orderId}/payments/{paymentId}/actions'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/payments/{paymentId}/actions
+  update:
+    operationId: orderGetAvailablePaymentActions
+- target: $.paths['/commerce/orders/{orderId}/payments/{paymentId}/actions'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/payments/{paymentId}/actions
+  update:
+    operationId: orderPerformPaymentAction
+- target: $.paths['/commerce/orders/{orderId}/pickups/{pickupId}/actions'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/pickups/{pickupId}/actions
+  update:
+    operationId: orderGetAvailablePickupFulfillmentActions
+- target: $.paths['/commerce/orders/{orderId}/shipments/methods'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/shipments/methods
+  update:
+    operationId: orderGetAvailableShipmentMethods
+- target: $.paths['/commerce/orders/{orderId}/billinginfo'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/billinginfo
+  update:
+    operationId: orderGetBillingInfo
+- target: $.paths['/commerce/orders/{orderId}/billinginfo'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/billinginfo
+  update:
+    operationId: orderSetBillingInfo
+- target: $.paths['/commerce/orders/{orderId}/digitalpackages/{digitalPackageId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/digitalpackages/{digitalPackageId}
+  update:
+    operationId: orderDeleteDigitalPackage
+- target: $.paths['/commerce/orders/{orderId}/digitalpackages/{digitalPackageId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/digitalpackages/{digitalPackageId}
+  update:
+    operationId: orderGetDigitalPackage
+- target: $.paths['/commerce/orders/{orderId}/digitalpackages/{digitalPackageId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/digitalpackages/{digitalPackageId}
+  update:
+    operationId: orderUpdateDigitalPackage
+- target: $.paths['/commerce/orders/{orderId}/extendedproperties'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/extendedproperties
+  update:
+    operationId: orderDeleteExtendedProperties
+- target: $.paths['/commerce/orders/{orderId}/extendedproperties'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/extendedproperties
+  update:
+    operationId: orderGetExtendedProperties
+- target: $.paths['/commerce/orders/{orderId}/extendedproperties'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/extendedproperties
+  update:
+    operationId: orderAddsExtendedProperties
+- target: $.paths['/commerce/orders/{orderId}/extendedproperties'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/extendedproperties
+  update:
+    operationId: orderUpdatedExtendedProperties
+- target: $.paths['/commerce/orders/{orderId}/fulfillmentinfo'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/fulfillmentinfo
+  update:
+    operationId: orderGetFulfillmentInfo
+- target: $.paths['/commerce/orders/{orderId}/fulfillmentinfo'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/fulfillmentinfo
+  update:
+    operationId: orderSetFulfillmentInfo
+- target: $.paths['/commerce/orders/{orderId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}
+  update:
+    operationId: orderGetOrder
+- target: $.paths['/commerce/orders/{orderId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}
+  update:
+    operationId: orderUpdateOrder
+- target: $.paths['/commerce/orders/{orderId}/attributes'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/attributes
+  update:
+    operationId: orderGetOrderAttributes
+- target: $.paths['/commerce/orders/{orderId}/attributes'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/attributes
+  update:
+    operationId: orderCreateOrderAttributes
+- target: $.paths['/commerce/orders/{orderId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/attributes
+  update:
+    operationId: orderUpdateOrderAttributes
+- target: $.paths['/commerce/orders/cancel/reasons'].get
+  description: Add derived operationId for GET /commerce/orders/cancel/reasons
+  update:
+    operationId: orderGetOrderCancelReasons
+- target: $.paths['/commerce/orders/{orderId}/data'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/data
+  update:
+    operationId: orderGetOrderData
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/items/{orderItemId}
+  update:
+    operationId: orderDeleteOrderItem
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/items/{orderItemId}
+  update:
+    operationId: orderGetOrderItem
+- target: $.paths['/commerce/orders/{orderId}/item/{orderItemId}/data'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/item/{orderItemId}/data
+  update:
+    operationId: orderGetOrderItemData
+- target: $.paths['/commerce/orders/{orderId}/items/{lineId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/items/{lineId}
+  update:
+    operationId: orderGetOrderItemViaLineId
+- target: $.paths['/commerce/orders/{orderId}/items'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/items
+  update:
+    operationId: orderGetOrderItems
+- target: $.paths['/commerce/orders/{orderId}/items'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/items
+  update:
+    operationId: orderCreateOrderItem
+- target: $.paths['/commerce/orders/{orderId}/notes/{noteId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/notes/{noteId}
+  update:
+    operationId: orderDeleteOrderNote
+- target: $.paths['/commerce/orders/{orderId}/notes/{noteId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/notes/{noteId}
+  update:
+    operationId: orderGetOrderNote
+- target: $.paths['/commerce/orders/{orderId}/notes/{noteId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/notes/{noteId}
+  update:
+    operationId: orderUpdateOrderNote
+- target: $.paths['/commerce/orders/{orderId}/notes'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/notes
+  update:
+    operationId: orderGetOrderNotes
+- target: $.paths['/commerce/orders/{orderId}/notes'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/notes
+  update:
+    operationId: orderCreateOrderNote
+- target: $.paths['/commerce/orders/{orderId}/packages/{packageId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/packages/{packageId}
+  update:
+    operationId: orderDeleteOrderPackage
+- target: $.paths['/commerce/orders/{orderId}/packages/{packageId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/packages/{packageId}
+  update:
+    operationId: orderGetOrderPackage
+- target: $.paths['/commerce/orders/{orderId}/packages/{packageId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/packages/{packageId}
+  update:
+    operationId: orderUpdateOrderPackage
+- target: $.paths['/commerce/orders/{orderId}/packages/{packageId}/label'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/packages/{packageId}/label
+  update:
+    operationId: orderGetOrderPackageLabel
+- target: $.paths['/commerce/orders/{orderId}/returnableitems'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/returnableitems
+  update:
+    operationId: orderGetOrderReturnableItems
+- target: $.paths['/commerce/orders'].get
+  description: Add derived operationId for GET /commerce/orders
+  update:
+    operationId: orderGetOrders
+- target: $.paths['/commerce/orders'].post
+  description: Add derived operationId for POST /commerce/orders
+  update:
+    operationId: orderCreateOrder
+- target: $.paths['/commerce/orders/{orderId}/payments/{paymentId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/payments/{paymentId}
+  update:
+    operationId: orderGetPayment
+- target: $.paths['/commerce/orders/{orderId}/payments'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/payments
+  update:
+    operationId: orderGetPayments
+- target: $.paths['/commerce/orders/{orderId}/pickups/{pickupId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/pickups/{pickupId}
+  update:
+    operationId: orderDeletePickup
+- target: $.paths['/commerce/orders/{orderId}/pickups/{pickupId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/pickups/{pickupId}
+  update:
+    operationId: orderGetPickup
+- target: $.paths['/commerce/orders/{orderId}/pickups/{pickupId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/pickups/{pickupId}
+  update:
+    operationId: orderUpdatePickup
+- target: $.paths['/commerce/orders/queuedorders/historical/{orderId}'].get
+  description: Add derived operationId for GET /commerce/orders/queuedorders/historical/{orderId}
+  update:
+    operationId: orderGetQueuedHistoricalOrder
+- target: $.paths['/commerce/orders/queuedorders/historical'].get
+  description: Add derived operationId for GET /commerce/orders/queuedorders/historical
+  update:
+    operationId: orderGetQueuedHistoricalOrders
+- target: $.paths['/commerce/orders/queuedorders/{orderId}'].get
+  description: Add derived operationId for GET /commerce/orders/queuedorders/{orderId}
+  update:
+    operationId: orderGetQueuedOrder
+- target: $.paths['/commerce/orders/queuedorders'].get
+  description: Add derived operationId for GET /commerce/orders/queuedorders
+  update:
+    operationId: orderGetQueuedOrders
+- target: $.paths['/commerce/orders/refunds/refundreasons'].get
+  description: Add derived operationId for GET /commerce/orders/refunds/refundreasons
+  update:
+    operationId: orderGetRefundReasons
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/shipments/{shipmentId}
+  update:
+    operationId: orderDeleteAnExistingOrderShipment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentId}'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/shipments/{shipmentId}
+  update:
+    operationId: orderGetShipment
+- target: $.paths['/commerce/orders/{orderId}/taxableorders'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/taxableorders
+  update:
+    operationId: orderGetTaxableOrders
+- target: $.paths['/commerce/orders/{orderId}/validationresults'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/validationresults
+  update:
+    operationId: orderGetValidationResults
+- target: $.paths['/commerce/orders/{orderId}/validationresults'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/validationresults
+  update:
+    operationId: orderAddValidationResult
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes
+  update:
+    operationId: orderDeletesAttributesFromAShipment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes
+  update:
+    operationId: orderGetsAllAttributesForAShipment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes
+  update:
+    operationId: orderCreatesAttributesOnAShipment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/shipments/{shipmentNumber}/attributes
+  update:
+    operationId: orderUpdatesAttributesOnAShipment
+- target: $.paths['/commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: orderlineattributedefinitionGetAttribute
+- target: $.paths['/commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: orderlineattributedefinitionUpdateAttribute
+- target: $.paths['/commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/orders/lineitems/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: orderlineattributedefinitionGetAttributeVocabularyValues
+- target: $.paths['/commerce/orders/lineitems/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/orders/lineitems/attributedefinition/attributes
+  update:
+    operationId: orderlineattributedefinitionGetAttributes
+- target: $.paths['/commerce/orders/lineitems/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/orders/lineitems/attributedefinition/attributes
+  update:
+    operationId: orderlineattributedefinitionCreateAttribute
+- target: $.paths['/commerce/orders/{orderId}/fulfillment/actions'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/fulfillment/actions
+  update:
+    operationId: orderPerformFulfillmentAction
+- target: $.paths['/commerce/orders/price'].post
+  description: Add derived operationId for POST /commerce/orders/price
+  update:
+    operationId: orderPriceOrder
+- target: $.paths['/commerce/orders/{orderId}/digitalWallet/{digitalWalletType}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/digitalWallet/{digitalWalletType}
+  update:
+    operationId: orderProcessDigitalWallet
+- target: $.paths['/commerce/orders/{orderId}/processreturnrules'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/processreturnrules
+  update:
+    operationId: orderProcessReturnRules
+- target: $.paths['/commerce/orders/{orderId}/removealternatecontact'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/removealternatecontact
+  update:
+    operationId: orderRemoveAlternateContact
+- target: $.paths['/commerce/orders/{orderId}/coupons'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/coupons
+  update:
+    operationId: orderRemoveCoupons
+- target: $.paths['/commerce/orders/{orderId}/shipments/repricecanceledshipment'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/repricecanceledshipment
+  update:
+    operationId: orderRepriceCanceledShipment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/reprice'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/{shipmentNumber}/reprice
+  update:
+    operationId: orderRepriceShipment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/repricesubstitutes'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/{shipmentNumber}/repricesubstitutes
+  update:
+    operationId: orderRepriceSubstitutes
+- target: $.paths['/commerce/orders/{orderId}/giftcard/{giftcardId}/resend'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/giftcard/{giftcardId}/resend
+  update:
+    operationId: orderResendGatewayGiftCardEmail
+- target: $.paths['/commerce/orders/{orderId}/email/resend'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/email/resend
+  update:
+    operationId: orderResendOrderConfirmationEmail
+- target: $.paths['/commerce/orders/{orderId}/fulfillment/email/resend'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/fulfillment/email/resend
+  update:
+    operationId: orderResendPackageFulfillmentEmail
+- target: $.paths['/commerce/orders/{orderId}/refunds/{refundId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/refunds/{refundId}
+  update:
+    operationId: orderResendRefundEmail
+- target: $.paths['/commerce/orders/{orderId}/packages/{packageId}/actions'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/packages/{packageId}/actions
+  update:
+    operationId: orderRetrievesAvailableFulfillmentActions
+- target: $.paths['/commerce/orders/sms/optout/{siteId}'].put
+  description: Add derived operationId for PUT /commerce/orders/sms/optout/{siteId}
+  update:
+    operationId: orderSmsOptOut
+- target: $.paths['/commerce/orders/{orderId}/converttoship'].get
+  description: Add derived operationId for GET /commerce/orders/{orderId}/converttoship
+  update:
+    operationId: orderSplitOrderIntoShipment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/split'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/{shipmentNumber}/split
+  update:
+    operationId: orderSplitShipments
+- target: $.paths['/commerce/orders/{orderId}/extendedproperties/{key}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/extendedproperties/{key}
+  update:
+    operationId: orderDeleteExtendedProperty
+- target: $.paths['/commerce/orders/{orderId}/extendedproperties/{key}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/extendedproperties/{key}
+  update:
+    operationId: orderUpdateExtendedProperty
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/dutyAmount/{dutyAmount}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/dutyAmount/{dutyAmount}
+  update:
+    operationId: orderUpdateItemDuty
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/fulfillment'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/fulfillment
+  update:
+    operationId: orderUpdateItemFulfillment
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/price/{price}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/price/{price}
+  update:
+    operationId: orderUpdateItemProductPrice
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/quantity/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/quantity/{quantity}
+  update:
+    operationId: orderUpdateItemQuantity
+- target: $.paths['/commerce/orders/{orderId}/data/{orderDataId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/data/{orderDataId}
+  update:
+    operationId: orderDeleteOrderData
+- target: $.paths['/commerce/orders/{orderId}/data/{orderDataId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/data/{orderDataId}
+  update:
+    operationId: orderUpdateOrderData
+- target: $.paths['/commerce/orders/{orderId}/discounts/{discountId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/discounts/{discountId}
+  update:
+    operationId: orderUpdateOrderDiscount
+- target: $.paths['/commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId}'].delete
+  description: Add derived operationId for DELETE /commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId}
+  update:
+    operationId: orderDeleteOrderItemData
+- target: $.paths['/commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/item/{orderItemId}/data/{orderItemDataId}
+  update:
+    operationId: orderUpdateOrderItemData
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/discounts/{discountId}'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/discounts/{discountId}
+  update:
+    operationId: orderUpdateOrderItemDiscount
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/updateGiftInfo'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/updateGiftInfo
+  update:
+    operationId: orderUpdateOrderItemGiftInformation
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/subscriptionInfo'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/subscriptionInfo
+  update:
+    operationId: orderUpdateOrderItemSubscriptionInfo
+- target: $.paths['/commerce/orders/{orderId}/updateorderrestrictions'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/updateorderrestrictions
+  update:
+    operationId: orderUpdateOrderRestrictions
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments
+  update:
+    operationId: orderUpdateShipmentAdjustments
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments/bulk'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/{shipmentNumber}/adjustments/bulk
+  update:
+    operationId: orderUpdateShipmentAndMultipleShipmentItemsAdjustment
+- target: $.paths['/commerce/orders/{orderId}/shipments/{shipmentNumber}/item/{itemId}/adjustments'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/{shipmentNumber}/item/{itemId}/adjustments
+  update:
+    operationId: orderUpdateShipmentItem
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/UpdateShippingAndSuggestions'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/UpdateShippingAndSuggestions
+  update:
+    operationId: orderUpdateShippingAndSuggestions
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/deliverydate'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/deliverydate
+  update:
+    operationId: orderUpdateTheDeliveryDateOfOrderItem
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/upsertSubstituteInfo'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/upsertSubstituteInfo
+  update:
+    operationId: orderUpdatesSubstituteInfoOnOrderItem
+- target: $.paths['/commerce/orders/{orderId}/shipments/upsertgiftmessage'].post
+  description: Add derived operationId for POST /commerce/orders/{orderId}/shipments/upsertgiftmessage
+  update:
+    operationId: orderUpsertGiftMessage
+- target: $.paths['/commerce/orders/{orderId}/items/{orderItemId}/upsertInventoryTags'].put
+  description: Add derived operationId for PUT /commerce/orders/{orderId}/items/{orderItemId}/upsertInventoryTags
+  update:
+    operationId: orderUpsertInventoryTagsOnOrderItem
+- target: $.paths['/commerce/quotes/{quoteId}/coupons/{couponCode}'].delete
+  description: Add derived operationId for DELETE /commerce/quotes/{quoteId}/coupons/{couponCode}
+  update:
+    operationId: quoteRemoveCoupon
+- target: $.paths['/commerce/quotes/{quoteId}/coupons/{couponCode}'].put
+  description: Add derived operationId for PUT /commerce/quotes/{quoteId}/coupons/{couponCode}
+  update:
+    operationId: quoteApplyCoupon
+- target: $.paths['/commerce/quotes/{quoteId}/copy'].post
+  description: Add derived operationId for POST /commerce/quotes/{quoteId}/copy
+  update:
+    operationId: quoteCopyQuote
+- target: $.paths['/commerce/quotes/create/{cartId}'].post
+  description: Add derived operationId for POST /commerce/quotes/create/{cartId}
+  update:
+    operationId: quoteCreateQuoteFromCart
+- target: $.paths['/commerce/quotes/{quoteId}/comments'].get
+  description: Add derived operationId for GET /commerce/quotes/{quoteId}/comments
+  update:
+    operationId: quoteGetAllQuoteComments
+- target: $.paths['/commerce/quotes/{quoteId}/comments'].post
+  description: Add derived operationId for POST /commerce/quotes/{quoteId}/comments
+  update:
+    operationId: quoteCreateComment
+- target: $.paths['/commerce/quotes/{quoteId}/shippingMethods'].get
+  description: Add derived operationId for GET /commerce/quotes/{quoteId}/shippingMethods
+  update:
+    operationId: quoteGetAvailableShippingMethods
+- target: $.paths['/commerce/quotes/{quoteId}'].delete
+  description: Add derived operationId for DELETE /commerce/quotes/{quoteId}
+  update:
+    operationId: quoteDeleteQuote
+- target: $.paths['/commerce/quotes/{quoteId}'].get
+  description: Add derived operationId for GET /commerce/quotes/{quoteId}
+  update:
+    operationId: quoteGetQuote
+- target: $.paths['/commerce/quotes/{quoteId}'].put
+  description: Add derived operationId for PUT /commerce/quotes/{quoteId}
+  update:
+    operationId: quoteUpdateQuote
+- target: $.paths['/commerce/quotes/customers/{customerAccountId}/{quoteName}'].get
+  description: Add derived operationId for GET /commerce/quotes/customers/{customerAccountId}/{quoteName}
+  update:
+    operationId: quoteGetQuoteByName
+- target: $.paths['/commerce/quotes/{quoteId}/comments/{commentId}'].get
+  description: Add derived operationId for GET /commerce/quotes/{quoteId}/comments/{commentId}
+  update:
+    operationId: quoteGetQuoteComment
+- target: $.paths['/commerce/quotes/{quoteId}/items/{quoteItemId}'].delete
+  description: Add derived operationId for DELETE /commerce/quotes/{quoteId}/items/{quoteItemId}
+  update:
+    operationId: quoteDeleteQuoteItem
+- target: $.paths['/commerce/quotes/{quoteId}/items/{quoteItemId}'].get
+  description: Add derived operationId for GET /commerce/quotes/{quoteId}/items/{quoteItemId}
+  update:
+    operationId: quoteGetQuoteItem
+- target: $.paths['/commerce/quotes/{quoteId}/items'].get
+  description: Add derived operationId for GET /commerce/quotes/{quoteId}/items
+  update:
+    operationId: quoteGetQuoteItems
+- target: $.paths['/commerce/quotes/{quoteId}/items'].post
+  description: Add derived operationId for POST /commerce/quotes/{quoteId}/items
+  update:
+    operationId: quoteAddItemToQuote
+- target: $.paths['/commerce/quotes/customers/{customerAccountId}/{quoteName}/items'].get
+  description: Add derived operationId for GET /commerce/quotes/customers/{customerAccountId}/{quoteName}/items
+  update:
+    operationId: quoteGetQuoteItemsByQuoteName
+- target: $.paths['/commerce/quotes'].get
+  description: Add derived operationId for GET /commerce/quotes
+  update:
+    operationId: quoteGetQuotes
+- target: $.paths['/commerce/quotes'].post
+  description: Add derived operationId for POST /commerce/quotes
+  update:
+    operationId: quoteCreateQuote
+- target: $.paths['/commerce/quotes/{quoteId}/coupons'].delete
+  description: Add derived operationId for DELETE /commerce/quotes/{quoteId}/coupons
+  update:
+    operationId: quoteRemoveCoupons
+- target: $.paths['/commerce/quotes/{quoteId}/email'].post
+  description: Add derived operationId for POST /commerce/quotes/{quoteId}/email
+  update:
+    operationId: quoteSendQuoteEmail
+- target: $.paths['/commerce/quotes/{quoteId}/fulfillmentInfo'].post
+  description: Add derived operationId for POST /commerce/quotes/{quoteId}/fulfillmentInfo
+  update:
+    operationId: quoteUpdateFulfillmentInfo
+- target: $.paths['/commerce/quotes/{quoteId}/items/{quoteItemId}/fulfillment'].put
+  description: Add derived operationId for PUT /commerce/quotes/{quoteId}/items/{quoteItemId}/fulfillment
+  update:
+    operationId: quoteUpdateItemFulfillment
+- target: $.paths['/commerce/quotes/{quoteId}/items/{quoteItemId}/price/{price}'].put
+  description: Add derived operationId for PUT /commerce/quotes/{quoteId}/items/{quoteItemId}/price/{price}
+  update:
+    operationId: quoteUpdateItemProductPrice
+- target: $.paths['/commerce/quotes/{quoteId}/items/{quoteItemId}/quantity/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/quotes/{quoteId}/items/{quoteItemId}/quantity/{quantity}
+  update:
+    operationId: quoteUpdateItemQuantity
+- target: $.paths['/commerce/quotes/{quoteId}/adjustments'].post
+  description: Add derived operationId for POST /commerce/quotes/{quoteId}/adjustments
+  update:
+    operationId: quoteUpdateQuoteAdjustments
+- target: $.paths['/commerce/jobs/release-rules/call-offs/{callOffOrderId}/runs'].get
+  description: Add derived operationId for GET /commerce/jobs/release-rules/call-offs/{callOffOrderId}/runs
+  update:
+    operationId: releaserulesGETCallOffsCallOffOrderIdRunsEveryAuditRecordThatTouched
+- target: $.paths['/commerce/jobs/release-rules/rules/{ruleId}/recent'].get
+  description: Add derived operationId for GET /commerce/jobs/release-rules/rules/{ruleId}/recent
+  update:
+    operationId: releaserulesGETRulesRuleIdRecentRecordsForOneRuleWithinAnOptional
+- target: $.paths['/commerce/jobs/release-rules/runs'].get
+  description: Add derived operationId for GET /commerce/jobs/release-rules/runs
+  update:
+    operationId: releaserulesGETRunsPerRunSummariesAggregatedOutcomeCountsWithinAn
+- target: $.paths['/commerce/jobs/release-rules/runs/{runId}'].get
+  description: Add derived operationId for GET /commerce/jobs/release-rules/runs/{runId}
+  update:
+    operationId: releaserulesGETRunsRunIdEveryAuditRecordProducedByASingleRunIn
+- target: $.paths['/commerce/jobs/release-rules/run'].post
+  description: Add derived operationId for POST /commerce/jobs/release-rules/run
+  update:
+    operationId: releaserulesTriggersAnOnDemandReleaseRulesEngineRunForTheCallerS
+- target: $.paths['/commerce/jobs/reservation-rules/call-offs/{callOffOrderId}/runs'].get
+  description: Add derived operationId for GET /commerce/jobs/reservation-rules/call-offs/{callOffOrderId}/runs
+  update:
+    operationId: reservationrulesGETCallOffsCallOffOrderIdRunsEveryAuditRecordThatTouched
+- target: $.paths['/commerce/jobs/reservation-rules/rules/{ruleId}/recent'].get
+  description: Add derived operationId for GET /commerce/jobs/reservation-rules/rules/{ruleId}/recent
+  update:
+    operationId: reservationrulesGETRulesRuleIdRecentRecordsForOneRuleWithinAnOptional
+- target: $.paths['/commerce/jobs/reservation-rules/runs'].get
+  description: Add derived operationId for GET /commerce/jobs/reservation-rules/runs
+  update:
+    operationId: reservationrulesGETRunsPerRunSummariesAggregatedCountsByOutcomeWithinAn
+- target: $.paths['/commerce/jobs/reservation-rules/runs/{runId}'].get
+  description: Add derived operationId for GET /commerce/jobs/reservation-rules/runs/{runId}
+  update:
+    operationId: reservationrulesGETRunsRunIdEveryAuditRecordProducedByASingleRunIn
+- target: $.paths['/commerce/jobs/reservation-rules/run'].post
+  description: Add derived operationId for POST /commerce/jobs/reservation-rules/run
+  update:
+    operationId: reservationrulesTriggersAnOnDemandReservationRulesEngineRunForTheCallerS
+- target: $.paths['/commerce/returns/{returnId}/packages'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/packages
+  update:
+    operationId: returnAddPackageToReturn
+- target: $.paths['/commerce/returns/attributedefinition/attributes/{attributeFQN}'].get
+  description: Add derived operationId for GET /commerce/returns/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: returnattributedefinitionsGetAttribute
+- target: $.paths['/commerce/returns/attributedefinition/attributes/{attributeFQN}'].put
+  description: Add derived operationId for PUT /commerce/returns/attributedefinition/attributes/{attributeFQN}
+  update:
+    operationId: returnattributedefinitionsUpdateAttribute
+- target: $.paths['/commerce/returns/attributedefinition/attributes/{attributeFQN}/VocabularyValues'].get
+  description: Add derived operationId for GET /commerce/returns/attributedefinition/attributes/{attributeFQN}/VocabularyValues
+  update:
+    operationId: returnattributedefinitionsGetAttributeVocabularyValues
+- target: $.paths['/commerce/returns/attributedefinition/attributes'].get
+  description: Add derived operationId for GET /commerce/returns/attributedefinition/attributes
+  update:
+    operationId: returnattributedefinitionsGetAttributes
+- target: $.paths['/commerce/returns/attributedefinition/attributes'].post
+  description: Add derived operationId for POST /commerce/returns/attributedefinition/attributes
+  update:
+    operationId: returnattributedefinitionsCreateAttribute
+- target: $.paths['/commerce/returns/{returnId}/autorefund'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/autorefund
+  update:
+    operationId: returnAutoRefundReturn
+- target: $.paths['/commerce/returns/{returnId}/payments/actions'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/payments/actions
+  update:
+    operationId: returnCreatePaymentActionForReturn
+- target: $.paths['/commerce/returns/{returnId}/shipments'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/shipments
+  update:
+    operationId: returnCreateReturnShipment
+- target: $.paths['/commerce/returns/{returnId}/ship'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/ship
+  update:
+    operationId: returnCreateReturnShippingOrder
+- target: $.paths['/commerce/returns/{orderId}/items/{orderItemId}'].delete
+  description: Add derived operationId for DELETE /commerce/returns/{orderId}/items/{orderItemId}
+  update:
+    operationId: returnDeleteOrderItem
+- target: $.paths['/commerce/returns/{returnId}/disposition'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/disposition
+  update:
+    operationId: returnDisposeReturnItems
+- target: $.paths['/commerce/returns/{returnId}/actions'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/actions
+  update:
+    operationId: returnGetAvailableReturnActions
+- target: $.paths['/commerce/returns/restock/conditions'].get
+  description: Add derived operationId for GET /commerce/returns/restock/conditions
+  update:
+    operationId: returnGetItemConditions
+- target: $.paths['/commerce/returns/{returnId}/payments/{paymentId}'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/payments/{paymentId}
+  update:
+    operationId: returnGetPayment
+- target: $.paths['/commerce/returns/{returnId}/paymentDistribution'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/paymentDistribution
+  update:
+    operationId: returnGetPaymentDistribution
+- target: $.paths['/commerce/returns/{returnId}/payments'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/payments
+  update:
+    operationId: returnGetPayments
+- target: $.paths['/commerce/returns/reasons'].get
+  description: Add derived operationId for GET /commerce/returns/reasons
+  update:
+    operationId: returnGetReasons
+- target: $.paths['/commerce/returns/{returnId}'].delete
+  description: Add derived operationId for DELETE /commerce/returns/{returnId}
+  update:
+    operationId: returnDeleteReturn
+- target: $.paths['/commerce/returns/{returnId}'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}
+  update:
+    operationId: returnGetReturn
+- target: $.paths['/commerce/returns/{returnId}'].put
+  description: Add derived operationId for PUT /commerce/returns/{returnId}
+  update:
+    operationId: returnUpdateReturn
+- target: $.paths['/commerce/returns/{returnId}/attributes'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/attributes
+  update:
+    operationId: returnGetReturnAttributes
+- target: $.paths['/commerce/returns/{returnId}/attributes'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/attributes
+  update:
+    operationId: returnCreateReturnAttributes
+- target: $.paths['/commerce/returns/{returnId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/returns/{returnId}/attributes
+  update:
+    operationId: returnUpdateReturnAttributes
+- target: $.paths['/commerce/returns/{returnId}/items/{returnItemId}'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/items/{returnItemId}
+  update:
+    operationId: returnGetReturnItem
+- target: $.paths['/commerce/returns/{returnId}/items/{returnItemId}/attributes'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/items/{returnItemId}/attributes
+  update:
+    operationId: returnGetReturnItemAttributes
+- target: $.paths['/commerce/returns/{returnId}/items/{returnItemId}/attributes'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/items/{returnItemId}/attributes
+  update:
+    operationId: returnCreateReturnItemAttributes
+- target: $.paths['/commerce/returns/{returnId}/items/{returnItemId}/attributes'].put
+  description: Add derived operationId for PUT /commerce/returns/{returnId}/items/{returnItemId}/attributes
+  update:
+    operationId: returnUpdateReturnItemAttributes
+- target: $.paths['/commerce/returns/{returnId}/items'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/items
+  update:
+    operationId: returnGetReturnItems
+- target: $.paths['/commerce/returns/{returnId}/items'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/items
+  update:
+    operationId: returnCreateReturnItem
+- target: $.paths['/commerce/returns/{returnId}/shipping/label'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/shipping/label
+  update:
+    operationId: returnGetReturnLabel
+- target: $.paths['/commerce/returns/{returnId}/notes/{noteId}'].delete
+  description: Add derived operationId for DELETE /commerce/returns/{returnId}/notes/{noteId}
+  update:
+    operationId: returnDeleteReturnNote
+- target: $.paths['/commerce/returns/{returnId}/notes/{noteId}'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/notes/{noteId}
+  update:
+    operationId: returnGetReturnNote
+- target: $.paths['/commerce/returns/{returnId}/notes/{noteId}'].put
+  description: Add derived operationId for PUT /commerce/returns/{returnId}/notes/{noteId}
+  update:
+    operationId: returnUpdateReturnNote
+- target: $.paths['/commerce/returns/{returnId}/notes'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/notes
+  update:
+    operationId: returnGetReturnNotes
+- target: $.paths['/commerce/returns/{returnId}/notes'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/notes
+  update:
+    operationId: returnCreateReturnNote
+- target: $.paths['/commerce/returns/{returnId}/packages/{packageId}'].delete
+  description: Add derived operationId for DELETE /commerce/returns/{returnId}/packages/{packageId}
+  update:
+    operationId: returnDeleteReturnPackage
+- target: $.paths['/commerce/returns/{returnId}/packages/{packageId}'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/packages/{packageId}
+  update:
+    operationId: returnGetReturnPackage
+- target: $.paths['/commerce/returns/{returnId}/packages/{packageId}'].put
+  description: Add derived operationId for PUT /commerce/returns/{returnId}/packages/{packageId}
+  update:
+    operationId: returnUpdateReturnPackage
+- target: $.paths['/commerce/returns/{returnId}/packages/{packageId}/label'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/packages/{packageId}/label
+  update:
+    operationId: returnGetReturnPackageLabel
+- target: $.paths['/commerce/returns/{returnId}/shipments/{shipmentId}'].delete
+  description: Add derived operationId for DELETE /commerce/returns/{returnId}/shipments/{shipmentId}
+  update:
+    operationId: returnDeleteReturnShipment
+- target: $.paths['/commerce/returns/{returnId}/shipments/{shipmentId}'].get
+  description: Add derived operationId for GET /commerce/returns/{returnId}/shipments/{shipmentId}
+  update:
+    operationId: returnGetReturnShipment
+- target: $.paths['/commerce/returns'].get
+  description: Add derived operationId for GET /commerce/returns
+  update:
+    operationId: returnGetReturns
+- target: $.paths['/commerce/returns'].post
+  description: Add derived operationId for POST /commerce/returns
+  update:
+    operationId: returnCreateReturns
+- target: $.paths['/commerce/returns/{returnId}/payments/{paymentId}/actions'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/payments/{paymentId}/actions
+  update:
+    operationId: returnPerformPaymentActionForReturn
+- target: $.paths['/commerce/returns/actions'].post
+  description: Add derived operationId for POST /commerce/returns/actions
+  update:
+    operationId: returnPerformReturnAction
+- target: $.paths['/commerce/returns/email/resend'].put
+  description: Add derived operationId for PUT /commerce/returns/email/resend
+  update:
+    operationId: returnResendReturnEmail
+- target: $.paths['/commerce/returns/{returnId}/restock'].post
+  description: Add derived operationId for POST /commerce/returns/{returnId}/restock
+  update:
+    operationId: returnRestockReturnItems
+- target: $.paths['/commerce/wishlists/{wishlistId}'].delete
+  description: Add derived operationId for DELETE /commerce/wishlists/{wishlistId}
+  update:
+    operationId: wishlistDeletesWishlist
+- target: $.paths['/commerce/wishlists/{wishlistId}'].get
+  description: Add derived operationId for GET /commerce/wishlists/{wishlistId}
+  update:
+    operationId: wishlistGetWishlist
+- target: $.paths['/commerce/wishlists/{wishlistId}'].put
+  description: Add derived operationId for PUT /commerce/wishlists/{wishlistId}
+  update:
+    operationId: wishlistUpdateWishlist
+- target: $.paths['/commerce/wishlists/customers/{customerAccountId}/{wishlistName}'].get
+  description: Add derived operationId for GET /commerce/wishlists/customers/{customerAccountId}/{wishlistName}
+  update:
+    operationId: wishlistGetWishlistByName
+- target: $.paths['/commerce/wishlists/{wishlistId}/items/{wishlistItemId}'].delete
+  description: Add derived operationId for DELETE /commerce/wishlists/{wishlistId}/items/{wishlistItemId}
+  update:
+    operationId: wishlistDeleteWishlistItem
+- target: $.paths['/commerce/wishlists/{wishlistId}/items/{wishlistItemId}'].get
+  description: Add derived operationId for GET /commerce/wishlists/{wishlistId}/items/{wishlistItemId}
+  update:
+    operationId: wishlistGetWishlistItem
+- target: $.paths['/commerce/wishlists/{wishlistId}/items/{wishlistItemId}'].put
+  description: Add derived operationId for PUT /commerce/wishlists/{wishlistId}/items/{wishlistItemId}
+  update:
+    operationId: wishlistUpdateWishlistItem
+- target: $.paths['/commerce/wishlists/{wishlistId}/items'].delete
+  description: Add derived operationId for DELETE /commerce/wishlists/{wishlistId}/items
+  update:
+    operationId: wishlistRemoveAllWishlistItems
+- target: $.paths['/commerce/wishlists/{wishlistId}/items'].get
+  description: Add derived operationId for GET /commerce/wishlists/{wishlistId}/items
+  update:
+    operationId: wishlistGetWishlistItems
+- target: $.paths['/commerce/wishlists/{wishlistId}/items'].post
+  description: Add derived operationId for POST /commerce/wishlists/{wishlistId}/items
+  update:
+    operationId: wishlistAddItemToWishlist
+- target: $.paths['/commerce/wishlists/customers/{customerAccountId}/{wishlistName}/items'].get
+  description: Add derived operationId for GET /commerce/wishlists/customers/{customerAccountId}/{wishlistName}/items
+  update:
+    operationId: wishlistGetWishlistItemsByWishlistName
+- target: $.paths['/commerce/wishlists'].get
+  description: Add derived operationId for GET /commerce/wishlists
+  update:
+    operationId: wishlistGetWishlists
+- target: $.paths['/commerce/wishlists'].post
+  description: Add derived operationId for POST /commerce/wishlists
+  update:
+    operationId: wishlistCreateWishlist
+- target: $.paths['/commerce/wishlists/{wishlistId}/items/{wishlistItemId}/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/wishlists/{wishlistId}/items/{wishlistItemId}/{quantity}
+  update:
+    operationId: wishlistUpdateWishlistItemQuantity

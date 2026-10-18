@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Redaction
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-gdpr-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-gdpr-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/platform/data/redaction/execute/{reportId}'].post
+  description: Add derived operationId for POST /platform/data/redaction/execute/{reportId}
+  update:
+    operationId: redactionExecuteRedaction
+- target: $.paths['/platform/data/redaction/report/{reportId}'].get
+  description: Add derived operationId for GET /platform/data/redaction/report/{reportId}
+  update:
+    operationId: redactionGetRedactionReport
+- target: $.paths['/platform/data/redaction/report'].get
+  description: Add derived operationId for GET /platform/data/redaction/report
+  update:
+    operationId: redactionListRedactionReports
+- target: $.paths['/platform/data/redaction/report'].post
+  description: Add derived operationId for POST /platform/data/redaction/report
+  update:
+    operationId: redactionGenerateRedactionReport

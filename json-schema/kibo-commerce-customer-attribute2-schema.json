@@ -1,0 +1,306 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-customer-attribute2-schema.json",
+  "title": "CustomerAttribute2",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-customer-openapi.yml#/components/schemas/CustomerAttribute2",
+  "properties": {
+    "adminName": {
+      "maxLength": 50,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "attributeCode": {
+      "maxLength": 50,
+      "minLength": 1,
+      "type": "string"
+    },
+    "attributeFQN": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "attributeMetadata": {
+      "items": {
+        "$ref": "#/$defs/AttributeMetadataItem"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "availableForDiscounts": {
+      "type": "boolean"
+    },
+    "availableForOrderRouting": {
+      "type": "boolean"
+    },
+    "content": {
+      "$ref": "#/$defs/AttributeLocalizedContent"
+    },
+    "dataType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "displayGroup": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "id": {
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "inputType": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isActive": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isMultiValued": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isReadOnly": {
+      "type": "boolean"
+    },
+    "isRequired": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isVisible": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "namespace": {
+      "maxLength": 200,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "order": {
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "validation": {
+      "$ref": "#/$defs/AttributeValidation"
+    },
+    "valueType": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "vocabularyValues": {
+      "items": {
+        "$ref": "#/$defs/AttributeVocabularyValue"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "attributeCode",
+    "displayGroup",
+    "valueType"
+  ],
+  "type": "object",
+  "$defs": {
+    "AttributeLocalizedContent": {
+      "properties": {
+        "localeCode": {
+          "maxLength": 8,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "maxLength": 100,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AttributeMetadataItem": {
+      "properties": {
+        "key": {
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "value": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "type": "object"
+    },
+    "AttributeValidation": {
+      "properties": {
+        "maxDateTime": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "maxNumericValue": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "maxStringLength": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "minDateTime": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "minNumericValue": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "minStringLength": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "regularExpression": {
+          "maxLength": 200,
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "AttributeValueLocalizedContent": {
+      "properties": {
+        "localeCode": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "value": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "localeCode",
+        "value"
+      ],
+      "type": "object"
+    },
+    "AttributeVocabularyValue": {
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/AttributeValueLocalizedContent"
+        },
+        "isHidden": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "sequence": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "value": {
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "type": "object"
+    },
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

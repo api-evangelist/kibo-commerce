@@ -1,0 +1,217 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Carrier Definition API
+  version: '1.0'
+  description: 'Operations tagged CarrierDefinition across 3 of this provider''s published API definitions: openapi_openapi_shipping.json, kibo-commerce-shipping-admin-openapi.yml, kibo-commerce-shipping-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CarrierDefinition
+paths:
+  /commerce/shipping/admin/carriers/definitions/{carrierId}:
+    get:
+      description: Retrieves the carrier definition for the specified carrier
+      parameters:
+      - description: The carrier ID.
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CarrierDefinition'
+          description: Success
+      summary: Get Carrier Definition
+      tags:
+      - CarrierDefinition
+      operationId: getCommerceShippingAdminCarriersDefinitionsByCarrierId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/admin/carriers/definitions:
+    get:
+      description: Retrieves all shipping carrier definitions for the specified tenant
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CarrierDefinition'
+                type: array
+          description: Success
+      summary: Get Carrier Definitions
+      tags:
+      - CarrierDefinition
+      operationId: getCommerceShippingAdminCarriersDefinitions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CarrierCredentialSetMetadataDataType:
+      description: The type of field stored in a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata item.
+      enum:
+      - String
+      - Integer
+      - Boolean
+      - Password
+      format: ''
+      type: string
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CarrierCredentialSetMetadataLocalizedContent:
+      description: The localized content for a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata item.
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        localeCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    CarrierDefinition:
+      description: 'A carrier definition including config field metadata.
+
+        Can either be a built-in system carrier or an Extensible Carrier installed via a <see cref="T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierInstallation">carrier installation</see>.'
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        carrierId:
+          type:
+          - string
+          - 'null'
+        certified:
+          type:
+          - boolean
+          - 'null'
+        configFields:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetMetadata'
+          type:
+          - array
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        features:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        isBuiltIn:
+          type: boolean
+        logoUrl:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    CarrierCredentialSetMetadata:
+      description: 'The metadata for a single field on a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet.
+
+        This metadata is used during carrier installation and carrier credential set validation.'
+      properties:
+        dataType:
+          $ref: '#/components/schemas/CarrierCredentialSetMetadataDataType'
+        localizations:
+          items:
+            $ref: '#/components/schemas/CarrierCredentialSetMetadataLocalizedContent'
+          type:
+          - array
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        required:
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_shipping.json
+- kibo-commerce-shipping-admin-openapi.yml
+- kibo-commerce-shipping-openapi.yml

@@ -1,0 +1,281 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-custom-data-value-filter-schema.json",
+  "title": "CustomDataValueFilter",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-orderrouting-openapi.yml#/components/schemas/CustomDataValueFilter",
+  "properties": {
+    "booleanOperator": {
+      "enum": [
+        "filter.logic.equal",
+        "filter.logic.not.equal",
+        "filter.logic.greater.than",
+        "filter.logic.less.than",
+        "filter.logic.greater.or.equal",
+        "filter.logic.less.or.equal",
+        "filter.logic.in",
+        "filter.logic.not.in",
+        "filter.logic.between",
+        "filter.logic.starts.with",
+        "filter.logic.ends.with",
+        "filter.logic.contains",
+        "filter.logic.equal",
+        "filter.logic.not.equal",
+        "filter.logic.in",
+        "filter.logic.not.in",
+        "filter.logic.subset"
+      ],
+      "type": "string"
+    },
+    "created": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "creatorUsername": {
+      "type": "string"
+    },
+    "customAttributeName": {
+      "type": "string"
+    },
+    "customDataValue": {
+      "$ref": "#/$defs/CustomDataValueObject"
+    },
+    "dataPointExtensibleAttributeFQN": {
+      "type": "string"
+    },
+    "dataPointExtensibleAttributeName": {
+      "type": "string"
+    },
+    "dataPointExtensibleAttributeType": {
+      "type": "string"
+    },
+    "dataPointExtensibleFilter": {
+      "type": "boolean"
+    },
+    "dotDelimitedPropertyName": {
+      "type": "string"
+    },
+    "environmentID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "extensibleAttributeFQN": {
+      "type": "string"
+    },
+    "extensibleAttributeName": {
+      "type": "string"
+    },
+    "extensibleFilter": {
+      "type": "boolean"
+    },
+    "filterID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "filterLogicalGroupOrderIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "filterUnit": {
+      "properties": {
+        "dimension": {
+          "type": "object"
+        },
+        "standardUnit": {
+          "properties": {
+            "dimension": {
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "inventoryBasedFilter": {
+      "type": "boolean"
+    },
+    "itemBasedFilter": {
+      "type": "boolean"
+    },
+    "locationBasedFilter": {
+      "type": "boolean"
+    },
+    "name": {
+      "maxLength": 255,
+      "minLength": 1,
+      "type": "string"
+    },
+    "orderIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "orderLocationFilterEqualToLocationOrInventoryFilter": {
+      "type": "boolean"
+    },
+    "pathString": {
+      "type": "string"
+    },
+    "persisted": {
+      "type": "boolean"
+    },
+    "siteID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "suggestionEventListeners": {
+      "items": {
+        "$ref": "#/$defs/SuggestionEventListener"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "tenantID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "updated": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "updaterUsername": {
+      "type": "string"
+    },
+    "userContext": {
+      "$ref": "#/$defs/UserContextInformation"
+    }
+  },
+  "required": [
+    "booleanOperator",
+    "dotDelimitedPropertyName",
+    "environmentID",
+    "name",
+    "siteID",
+    "tenantID"
+  ],
+  "type": "object",
+  "$defs": {
+    "CacheStringBoolean": {
+      "type": "object"
+    },
+    "CustomDataValueObject": {
+      "properties": {
+        "created": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "creatorUsername": {
+          "type": "string"
+        },
+        "customDataValueID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "environmentID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pathString": {
+          "type": "string"
+        },
+        "persisted": {
+          "type": "boolean"
+        },
+        "siteID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "stringValue": {
+          "type": "string"
+        },
+        "tenantID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updated": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updaterUsername": {
+          "type": "string"
+        },
+        "userContext": {
+          "$ref": "#/$defs/UserContextInformation"
+        },
+        "value": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "environmentID",
+        "name",
+        "siteID",
+        "stringValue",
+        "tenantID"
+      ],
+      "type": "object"
+    },
+    "SiteService": {
+      "type": "object"
+    },
+    "SuggestionEventListener": {
+      "type": "object"
+    },
+    "TenantAttributesCache": {
+      "properties": {
+        "underlyingCache": {
+          "$ref": "#/$defs/CacheStringBoolean"
+        }
+      },
+      "type": "object"
+    },
+    "TenantClient": {
+      "type": "object"
+    },
+    "TenantService": {
+      "properties": {
+        "tenantAttributesCache": {
+          "$ref": "#/$defs/TenantAttributesCache"
+        },
+        "tenantClient": {
+          "$ref": "#/$defs/TenantClient"
+        }
+      },
+      "type": "object"
+    },
+    "UserContextInformation": {
+      "properties": {
+        "environmentID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "loaded": {
+          "type": "boolean"
+        },
+        "pathString": {
+          "type": "string"
+        },
+        "siteID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "siteService": {
+          "$ref": "#/$defs/SiteService"
+        },
+        "tenantID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantService": {
+          "$ref": "#/$defs/TenantService"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

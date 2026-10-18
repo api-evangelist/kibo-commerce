@@ -1,0 +1,19 @@
+generated: '2026-10-18'
+method: none
+source:
+- https://zapier.com/apps/kibo-commerce/integrations
+- https://n8n.io/integrations/kibo-commerce/
+- https://composio.dev/toolkits/kibo-commerce
+- https://monid.ai/tools/kibo-commerce
+checked:
+- https://composio.dev/toolkits/kibo-commerce
+- https://kibocommerce.com/platform/connect-hub/
+- https://monid.ai/tools/kibo-commerce
+- https://n8n.io/integrations/kibo-commerce/
+- https://partners.kibocommerce.com/integrations/
+- https://zapier.com/apps/kibo-commerce/integrations
+summary: Kibo has a Connect Hub for commerce integrations and mentions MCP Server for agentic AI integrations, but
+  no specific integration partners were listed on the pages checked.
+marketplace_apps: []
+edges: []
+templates: []

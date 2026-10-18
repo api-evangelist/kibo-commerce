@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-scenario-response-schema.json",
+  "title": "ScenarioResponse",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-orderrouting-openapi.yml#/components/schemas/ScenarioResponse",
+  "properties": {
+    "active": {
+      "type": "boolean"
+    },
+    "defaultGroup": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string"
+    },
+    "filterLogicalGroups": {
+      "items": {
+        "$ref": "#/$defs/ScenarioFilterLogicalGroupResponse"
+      },
+      "type": "array"
+    },
+    "filters": {
+      "items": {
+        "$ref": "#/$defs/ScenarioFilterResponse"
+      },
+      "type": "array"
+    },
+    "locations": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "noMatch": {
+      "enum": [
+        "LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED",
+        "LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY",
+        "QUANTITY_SPLIT_ASSIGN_IF_FULFILLED",
+        "QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY",
+        "CANCEL_ORDER",
+        "ASSIGN_TO_CUSTOMER_CARE",
+        "ASSIGN_TO_GROUP",
+        "LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY",
+        "QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY",
+        "SEND_ORDER_TO_BIDDING",
+        "LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY",
+        "QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY",
+        "ASSIGN_TO_BACKORDER"
+      ],
+      "type": "string"
+    },
+    "partialMatch": {
+      "enum": [
+        "LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED",
+        "LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY",
+        "QUANTITY_SPLIT_ASSIGN_IF_FULFILLED",
+        "QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY",
+        "CANCEL_ORDER",
+        "ASSIGN_TO_CUSTOMER_CARE",
+        "ASSIGN_TO_GROUP",
+        "LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY",
+        "QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY",
+        "SEND_ORDER_TO_BIDDING",
+        "LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY",
+        "QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY",
+        "ASSIGN_TO_BACKORDER"
+      ],
+      "type": "string"
+    },
+    "primarySorting": {
+      "enum": [
+        "RANK",
+        "DISTANCE",
+        "LTD",
+        "COST",
+        "RANDOM",
+        "DATA_SET",
+        "LOWEST_AVAILABLE",
+        "HIGHEST_AVAILABLE",
+        "EXCESS_COUNT",
+        "EXCESS_PERCENTAGE"
+      ],
+      "type": "string"
+    },
+    "rank": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "restartAttemptForNoMatch": {
+      "enum": [
+        "START_AT_BEGINNING",
+        "CURRENT_GROUP",
+        "GROUP_RANK"
+      ],
+      "type": "string"
+    },
+    "restartAttemptForPartialAssignment": {
+      "enum": [
+        "START_AT_BEGINNING",
+        "CURRENT_GROUP",
+        "GROUP_RANK"
+      ],
+      "type": "string"
+    },
+    "restartGroupIdForNoMatch": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "restartGroupIdForPartialAssignment": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "scenarioID": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "secondarySorting": {
+      "enum": [
+        "RANK",
+        "DISTANCE",
+        "LTD",
+        "COST",
+        "RANDOM",
+        "DATA_SET",
+        "LOWEST_AVAILABLE",
+        "HIGHEST_AVAILABLE",
+        "EXCESS_COUNT",
+        "EXCESS_PERCENTAGE"
+      ],
+      "type": "string"
+    },
+    "strategyID": {
+      "type": "string"
+    },
+    "unselectedLocations": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ScenarioFilterLogicalGroupResponse": {
+      "properties": {
+        "filterLogicalGroupID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isRootGroup": {
+          "type": "boolean"
+        },
+        "logicalOperator": {
+          "enum": [
+            "AND",
+            "OR"
+          ],
+          "type": "string"
+        },
+        "orderIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "parentOrderIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "scenarioID": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ScenarioFilterResponse": {
+      "properties": {
+        "booleanOperator": {
+          "enum": [
+            "filter.logic.equal",
+            "filter.logic.not.equal",
+            "filter.logic.greater.than",
+            "filter.logic.less.than",
+            "filter.logic.greater.or.equal",
+            "filter.logic.less.or.equal",
+            "filter.logic.in",
+            "filter.logic.not.in",
+            "filter.logic.between",
+            "filter.logic.starts.with",
+            "filter.logic.ends.with",
+            "filter.logic.contains",
+            "filter.logic.does.not.contain",
+            "filter.logic.equal",
+            "filter.logic.not.equal",
+            "filter.logic.in",
+            "filter.logic.not.in",
+            "filter.logic.subset"
+          ],
+          "type": "string"
+        },
+        "customValue": {
+          "type": "object"
+        },
+        "customValueUnit": {
+          "type": "string"
+        },
+        "dataListID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dataPointAttributePath": {
+          "type": "string"
+        },
+        "dataPointExtensibleAttributeFQN": {
+          "type": "string"
+        },
+        "dataPointExtensibleAttributeName": {
+          "type": "string"
+        },
+        "dataPointExtensibleAttributeType": {
+          "type": "string"
+        },
+        "extensibleAttributeFQN": {
+          "type": "string"
+        },
+        "extensibleAttributeName": {
+          "type": "string"
+        },
+        "filterAttributePath": {
+          "type": "string"
+        },
+        "filterID": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "filterLogicalGroupOrderIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "filterType": {
+          "enum": [
+            "filter.type.customValue",
+            "filter.type.customDataList",
+            "filter.type.dataSet",
+            "filter.type.dataPoint"
+          ],
+          "type": "string"
+        },
+        "isDataPointExtensible": {
+          "type": "boolean"
+        },
+        "isExtensible": {
+          "type": "boolean"
+        },
+        "itemCustomAttributeName": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orderIndex": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

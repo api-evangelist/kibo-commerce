@@ -1,0 +1,5234 @@
+# x-archived-from: kibo-commerce-catalog-storefront-openapi.yml
+# x-archived-on: 2026-10-18
+components:
+  schemas:
+    AttributeDetail:
+      description: Product Attribute properties common between a Product Propery, Option, and Extra
+      properties:
+        allowFilteringAndSortingInStorefront:
+          description: Indicates whether the attribute should be able to be used in filters, facets, and sorting on the public storefront.
+          type: boolean
+        availableForOrderRouting:
+          description: Indicates whether the attribute is available for order routing
+          type: boolean
+        customWeightInStorefrontSearch:
+          description: Indicates whether the attribtue value is indexed so that it can have a custom relevency weight compared to other attributes in a tokenized text search
+          nullable: true
+          type: boolean
+        dataType:
+          description: The DataType of the attribute. Valid values for DataType are defined in DataTypeTypeConst.
+          nullable: true
+          type: string
+        dataTypeSequence:
+          description: A unique sequence of the attribute By dataType (used for common naming of fields in search index)
+          format: int32
+          type: integer
+        description:
+          description: Description of the attribute in the language specified by LocaleCode.
+          nullable: true
+          type: string
+        displayIntention:
+          description: Am optional hint to the theme about how this attribute should be displayed (what control to use)
+          nullable: true
+          type: string
+        indexValueWithCase:
+          description: Indicates whether the attribtue value is indexed with case or not
+          nullable: true
+          type: boolean
+        inputType:
+          description: The InputType type of the attribute. Valid values for InputType are defined in InputTypeConst.
+          nullable: true
+          type: string
+        name:
+          description: Name of the attribute in the language specified by LocaleCode.
+          nullable: true
+          type: string
+        searchDisplayValue:
+          description: "If true, the system will index the display value of string attributes instead of the canonical value for searching. \nThe canonical value will always be used for filtering. Does not apply for for non-string attributes."
+          type: boolean
+        searchableInStorefront:
+          description: Indicates whether the attribute value is searchable.
+          type: boolean
+        usageType:
+          description: The UsageType of the attribute. Valid values for the usageType are defined in UsageTypeConst .
+          nullable: true
+          type: string
+        validation:
+          $ref: '#/components/schemas/CatalogRuntimesAttributeValidation'
+        valueType:
+          description: The ValueType of the attribute. Valid values for ValueType are defined in ValueTypeTypeConst.
+          nullable: true
+          type: string
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          nullable: true
+          type: string
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        updateBy:
+          nullable: true
+          type: string
+        updateDate:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    BoostField:
+      properties:
+        fieldName:
+          nullable: true
+          type: string
+        valueExpressions:
+          items:
+            $ref: '#/components/schemas/BoostValue'
+          nullable: true
+          type: array
+      type: object
+    BoostValue:
+      properties:
+        boost:
+          format: int32
+          type: integer
+        operator:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    BundledProductBase:
+      description: Details of a product, including its product code, name, description, options (if any), and current state--whether the product can be purchased given the options selected currently.
+      properties:
+        creditValue:
+          description: Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....
+          format: double
+          nullable: true
+          type: number
+        goodsType:
+          description: The GoodsType of this product (Physical, Digital, DigitalCredit)
+          nullable: true
+          type: string
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        isPackagedStandAlone:
+          description: Is this product shipped in its own package
+          nullable: true
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        optionAttributeFQN:
+          description: Fully Qualified Name of the selected option's attribute (only applies to Products as extras)
+          nullable: true
+          type: string
+        optionValue:
+          description: Value of the selected option (only applies to Products as extras)
+          nullable: true
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        quantity:
+          description: The quantity of the bundled product
+          format: int32
+          type: integer
+      type: object
+    BundledProductSummary:
+      properties:
+        creditValue:
+          description: Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....
+          format: double
+          nullable: true
+          type: number
+        goodsType:
+          description: The GoodsType of this product (Physical, Digital, DigitalCredit)
+          nullable: true
+          type: string
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        isPackagedStandAlone:
+          description: Is this product shipped in its own package
+          nullable: true
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        optionAttributeFQN:
+          description: Fully Qualified Name of the selected option's attribute (only applies to Products as extras)
+          nullable: true
+          type: string
+        optionValue:
+          description: Value of the selected option (only applies to Products as extras)
+          nullable: true
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productName:
+          nullable: true
+          type: string
+        productShortDescription:
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        quantity:
+          description: The quantity of the bundled product
+          format: int32
+          type: integer
+      type: object
+    CampaignListingSettings:
+      properties:
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+      type: object
+    CampaignProductSuggestSettings:
+      properties:
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        searchTermAssociations:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    CampaignResult:
+      description: Campaign result from db
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        campaignDescription:
+          nullable: true
+          type: string
+        campaignEndDate:
+          format: date-time
+          nullable: true
+          type: string
+        campaignId:
+          nullable: true
+          type: string
+        campaignName:
+          nullable: true
+          type: string
+        campaignStartDate:
+          format: date-time
+          nullable: true
+          type: string
+        json:
+          nullable: true
+          type: string
+        listingSettings:
+          $ref: '#/components/schemas/CampaignListingSettings'
+        productSuggestSettings:
+          $ref: '#/components/schemas/CampaignProductSuggestSettings'
+        siteId:
+          format: int32
+          type: integer
+        siteSearchSettings:
+          $ref: '#/components/schemas/CampaignSiteSearchSettings'
+        statusId:
+          format: int32
+          nullable: true
+          type: integer
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    CampaignSiteSearchSettings:
+      properties:
+        fieldValueBoost:
+          $ref: '#/components/schemas/FieldValueBoost'
+        searchTermAssociations:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    CandidateCorrection:
+      description: Spell correction
+      properties:
+        query:
+          description: Collation query from search engine
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesAppliedDiscount:
+      description: Discount applied to the product.
+      properties:
+        couponCode:
+          description: If the discount is a coupon, code associated with the coupon.
+          nullable: true
+          type: string
+        discount:
+          $ref: '#/components/schemas/CatalogRuntimesDiscount'
+        discounts:
+          description: Discount name and expiration date.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesDiscount'
+          nullable: true
+          type: array
+        impact:
+          description: The new calculated price of the product. That is, the product price minus the discount amount.
+          format: double
+          type: number
+      type: object
+    CatalogRuntimesAttributeValidation:
+      description: Used to validate attributes.
+      properties:
+        maxDateValue:
+          description: For validating a DateTime attribute value, maximum datetime allowed.
+          format: date-time
+          nullable: true
+          type: string
+        maxNumericValue:
+          description: For validating Number attribute value, maximum number allowed.
+          format: double
+          nullable: true
+          type: number
+        maxStringLength:
+          description: For validating strings, maximum length allowed for a string.
+          format: int32
+          nullable: true
+          type: integer
+        minDateValue:
+          description: For validating a DateTime attribute value, minimum datetime allowed.
+          format: date-time
+          nullable: true
+          type: string
+        minNumericValue:
+          description: For validating Number attribute value, minimum number allowed.
+          format: double
+          nullable: true
+          type: number
+        minStringLength:
+          description: For validating strings, minimum length allowed for a string.
+          format: int32
+          nullable: true
+          type: integer
+        regularExpression:
+          description: Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesAttributeVocabularyValueDisplayInfo:
+      description: Product Attribute properties common between a Product Propery, Option, and Extra
+      properties:
+        cmsId:
+          description: Id of the image in the CMS.
+          nullable: true
+          type: string
+        colorValue:
+          description: Hex Color value to display in a color picker
+          nullable: true
+          type: string
+        imageUrl:
+          description: URL of the image.
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesBundledProduct:
+      properties:
+        content:
+          $ref: '#/components/schemas/ProductContent'
+        creditValue:
+          description: Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....
+          format: double
+          nullable: true
+          type: number
+        goodsType:
+          description: The GoodsType of this product (Physical, Digital, DigitalCredit)
+          nullable: true
+          type: string
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        isPackagedStandAlone:
+          description: Is this product shipped in its own package
+          nullable: true
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        optionAttributeFQN:
+          description: Fully Qualified Name of the selected option's attribute (only applies to Products as extras)
+          nullable: true
+          type: string
+        optionValue:
+          description: Value of the selected option (only applies to Products as extras)
+          nullable: true
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        quantity:
+          description: The quantity of the bundled product
+          format: int32
+          type: integer
+      type: object
+    CatalogRuntimesCategory:
+      description: The category hierarchy of your store as it appears on the storefront. This is the category heirarchy defined with the admin/category resource except for any categories with an IsDisplayed value set to false.
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategoryAttribute'
+          nullable: true
+          type: array
+        categoryCode:
+          description: External unique identifier of the category.
+          nullable: true
+          type: string
+        categoryId:
+          description: Internal unique identifier of the category. System-supplied and read-only.
+          format: int32
+          type: integer
+        childrenCategories:
+          description: List of subcategories that belong to this category.
+          items:
+            type: object
+          nullable: true
+          type: array
+        content:
+          $ref: '#/components/schemas/CategoryContent'
+        count:
+          description: Indicates whether the category should be displayed.
+          format: int32
+          nullable: true
+          type: integer
+        isDisplayed:
+          description: Indicates whether the category should be displayed.
+          type: boolean
+        parentCategory:
+          type: object
+        sequence:
+          description: Order in which categories appear when they are at the same level (siblings). For example, categories can be sequenced so that a specific category always appears first (or last).
+          format: int32
+          nullable: true
+          type: integer
+        shouldSlice:
+          description: Indicates whether the category should be sliced
+          type: boolean
+        updateDate:
+          description: Last Modified Date Time
+          format: date-time
+          type: string
+      type: object
+    CatalogRuntimesCategoryAttribute:
+      properties:
+        dataType:
+          format: int32
+          type: integer
+        fullyQualifiedName:
+          nullable: true
+          type: string
+        values:
+          items: {}
+          nullable: true
+          type: array
+      type: object
+    CatalogRuntimesCurrencyExchangeRate:
+      description: The currency exchange rates from one currency to another.
+      properties:
+        decimalPlaces:
+          description: Number of decimal places
+          format: int32
+          nullable: true
+          type: integer
+        fromCurrencyCode:
+          description: The source currency code
+          nullable: true
+          type: string
+        multiplier:
+          description: An additional multiplier to use in calculations
+          format: double
+          nullable: true
+          type: number
+        rate:
+          description: The exchange rate
+          format: double
+          nullable: true
+          type: number
+        referenceData:
+          description: Reference data for miscellaneous metadata from updates
+          nullable: true
+          type: string
+        roundingStrategy:
+          description: Rounding strategy
+          format: int32
+          nullable: true
+          type: integer
+        toCurrencyCode:
+          description: The target currency code
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesDiscount:
+      description: Discount name and expiration date.
+      properties:
+        discountId:
+          description: Unique identifier of the discount.
+          format: int32
+          type: integer
+        expirationDate:
+          description: Date when the discount expires.
+          format: date-time
+          nullable: true
+          type: string
+        friendlyDescription:
+          description: Description of the discount.
+          nullable: true
+          type: string
+        impact:
+          description: The Impact of the individual Discount
+          format: double
+          type: number
+        name:
+          description: Name of the discount.
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesDynamicExpression:
+      description: Category
+      properties:
+        text:
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesFacet:
+      description: For faceted searches, name of the facet and list of facet values. For example, a facet called "Brands" may have the facet values "Apple," "Motorola," and "Samsung."
+      properties:
+        facetType:
+          description: Value, RangeQuery, Hierarchy
+          nullable: true
+          type: string
+        field:
+          nullable: true
+          type: string
+        label:
+          nullable: true
+          type: string
+        values:
+          items:
+            $ref: '#/components/schemas/FacetValue'
+          nullable: true
+          type: array
+      type: object
+    CatalogRuntimesFutureInventory:
+      description: The future inventory for a product at a specific Location
+      properties:
+        allocated:
+          format: int32
+          nullable: true
+          type: integer
+        available:
+          format: int32
+          nullable: true
+          type: integer
+        bopisProcessingTimeDate:
+          format: int32
+          nullable: true
+          type: integer
+        bopisProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+        createDate:
+          format: date-time
+          nullable: true
+          type: string
+        deliveryDate:
+          format: date-time
+          nullable: true
+          type: string
+        futureInventoryID:
+          format: int32
+          nullable: true
+          type: integer
+        onhand:
+          format: int32
+          nullable: true
+          type: integer
+        pending:
+          format: int32
+          nullable: true
+          type: integer
+        sthFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+        transferFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    CatalogRuntimesInventoryTag:
+      description: The tags for the inventory
+      properties:
+        name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesPackageMeasurements:
+      description: Physical dimensions of the package required to ship the product and its weight.
+      properties:
+        packageHeight:
+          $ref: '#/components/schemas/Measurement'
+        packageLength:
+          $ref: '#/components/schemas/Measurement'
+        packageWeight:
+          $ref: '#/components/schemas/Measurement'
+        packageWidth:
+          $ref: '#/components/schemas/Measurement'
+      type: object
+    CatalogRuntimesPriceList:
+      properties:
+        ancestors:
+          items:
+            $ref: '#/components/schemas/PriceListNode'
+          nullable: true
+          type: array
+        descendants:
+          items:
+            $ref: '#/components/schemas/PriceListNode'
+          nullable: true
+          type: array
+        description:
+          nullable: true
+          type: string
+        enabled:
+          type: boolean
+        filteredInStoreFront:
+          type: boolean
+        isIndexed:
+          nullable: true
+          type: boolean
+        isSiteDefault:
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        priceListCode:
+          nullable: true
+          type: string
+        priceListId:
+          format: int32
+          type: integer
+        resolvable:
+          type: boolean
+        validSites:
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    CatalogRuntimesProduct:
+      description: Details of a product, including its product code, name, description, options (if any), and current state--whether the product can be purchased given the options selected currently.
+      properties:
+        availableShippingDiscounts:
+          description: List of potential shipping discounts available for this product.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesDiscount'
+          nullable: true
+          type: array
+        bundledProducts:
+          description: The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesBundledProduct'
+          nullable: true
+          type: array
+        catalogEndDate:
+          format: date-time
+          nullable: true
+          type: string
+        catalogStartDate:
+          format: date-time
+          nullable: true
+          type: string
+        categories:
+          description: List of categories to which this product belongs.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          nullable: true
+          type: array
+        collectionMembersProductContent:
+          description: Only used for indexing
+          items:
+            $ref: '#/components/schemas/ProductContent'
+          nullable: true
+          type: array
+        content:
+          $ref: '#/components/schemas/ProductContent'
+        costPriceMargin:
+          format: double
+          nullable: true
+          type: number
+        createDate:
+          description: When the product was created with the product admin resource.
+          format: date-time
+          type: string
+        dateFirstAvailableInCatalog:
+          format: date-time
+          nullable: true
+          type: string
+        daysAvailableInCatalog:
+          format: int32
+          nullable: true
+          type: integer
+        fulfillmentTypesSupported:
+          description: Indicates the fulfillment types the product supports.
+          items:
+            type: string
+          nullable: true
+          type: array
+        goodsType:
+          description: The GoodsType of the product (Physical, Digital, DigitalCredit....)
+          nullable: true
+          type: string
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        isActive:
+          description: If true, the product exists. If not, the product should not appear in search results.
+          nullable: true
+          type: boolean
+        isPackagedStandAlone:
+          description: Is this product shipped in its own package
+          nullable: true
+          type: boolean
+        isRecurring:
+          description: If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+          type: boolean
+        isTaxable:
+          description: If true, the product is subject to tax.
+          type: boolean
+        locationsInStock:
+          description: Any location code (eq) or array of location codes which are in stock.
+          items:
+            type: string
+          nullable: true
+          type: array
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        mfgPartNumber:
+          description: Manufacturer part number.
+          nullable: true
+          type: string
+        mfgPartNumbers:
+          description: Manufacturer part numbers (populated for configurable products).
+          items:
+            type: string
+          nullable: true
+          type: array
+        options:
+          description: "List of the product's configurable options and extras. \nIncludes whether an option is configurable (for example, a T-shirt) or an Extra (for example, monogram or gift-wrapping)."
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductOption'
+          nullable: true
+          type: array
+        personalizationScore:
+          format: double
+          type: number
+        price:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        priceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+        pricingBehavior:
+          $ref: '#/components/schemas/CatalogRuntimesProductPricingBehaviorInfo'
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productCollectionMembers:
+          description: 'list of member products that are part of the collection
+
+            This requires that the ProductUsage be set to Collection'
+          items:
+            $ref: '#/components/schemas/ProductCollectionMember'
+          nullable: true
+          type: array
+        productCollections:
+          description: List of product codes of product collections that this product is a member of.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductCollectionInfo'
+          nullable: true
+          type: array
+        productImageGroups:
+          description: 'List of the image groups this product uses.
+
+            Image groups are used to map different images to different product options.
+
+            If the product doesn''t have options then all images will be in the default
+
+            image group.'
+          items:
+            $ref: '#/components/schemas/ProductImageGroup'
+          nullable: true
+          type: array
+        productRules:
+          items:
+            type: string
+          nullable: true
+          type: array
+        productSequence:
+          description: System generated monotonically increasing sequence
+          format: int32
+          nullable: true
+          type: integer
+        productType:
+          nullable: true
+          type: string
+        productTypeId:
+          format: int32
+          nullable: true
+          type: integer
+        productUsage:
+          description: The UsageType of this product (Standard, Configurable, Bundle, Component, Collection)
+          nullable: true
+          type: string
+        properties:
+          description: List of product properties. These are attributes that might apply to multiple products, for example, price, size, manufacturer. These attributes cannot be configured by the shopper.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductProperty'
+          nullable: true
+          type: array
+        publishState:
+          description: Represents the published state of the product returned. Valid values for ValueType are defined in PublishStateConst.
+          nullable: true
+          type: string
+        purchasableState:
+          $ref: '#/components/schemas/ProductPurchasableState'
+        purchaseLocation:
+          description: 'The location where the product is being purchased.. default is null. Products can have different prices
+
+            by purchaseLocation via custom priceListResolution....'
+          nullable: true
+          type: string
+        score:
+          description: The item's search engine relevancy score.
+          format: double
+          type: number
+        sliceValue:
+          description: Readonly value of the selected value of the option corresponding to the Mozu.ProductRuntime.Contracts.Product.SlicingAttributeFQN
+          nullable: true
+          type: string
+        slicingAttributeFQN:
+          nullable: true
+          type: string
+        upCs:
+          description: UPC code of the products (populated for configurable products).
+          items:
+            type: string
+          nullable: true
+          type: array
+        upc:
+          description: UPC code of the product.
+          nullable: true
+          type: string
+        updateDate:
+          description: When the product was last modified with the product admin resource.
+          format: date-time
+          type: string
+        validPriceLists:
+          description: List of valid pricelists for the product
+          items:
+            type: string
+          nullable: true
+          type: array
+        variationProductCode:
+          description: When a configurable product has IsPurchasable=true on a GetProduct, this property will be populated for submission to cart.
+          nullable: true
+          type: string
+        variations:
+          items:
+            $ref: '#/components/schemas/VariationSummary'
+          nullable: true
+          type: array
+        volumePriceBands:
+          description: For products with bulk pricing... this will be populated with pricebands, depending on what options have been selected...
+          items:
+            $ref: '#/components/schemas/ProductVolumePrice'
+          nullable: true
+          type: array
+        volumePriceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+      type: object
+    CatalogRuntimesProductCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProduct'
+          nullable: true
+          type: array
+        nextCursorMark:
+          description: 'If a cursorMark is provided on the request, then the nextCursorMark will be populated on the response.
+
+            Provide this value as the cursorMark argument on the next request. If a cursorMark is provided on the request and the nextCursorMark value is null, then the end of the resultset was reached'
+          nullable: true
+          type: string
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CatalogRuntimesProductCollectionInfo:
+      properties:
+        isPrimary:
+          description: True if the collection is the primary collection for the containing product.
+          type: boolean
+        productCode:
+          description: Product Code of the collection
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesProductCollectionMemberKey:
+      description: This is the key of the product collection member.  For now, it's just product code, but may expand in future
+      properties:
+        value:
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesProductCost:
+      description: The inventory for a product at a specific Location
+      properties:
+        cost:
+          format: double
+          type: number
+        productCode:
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesProductImageGroupTag:
+      properties:
+        attributeFqn:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesProductInventoryInfo:
+      description: Use the Products resource to create and manage products for your store. You can create products with options that a shopper configures (such as a T-shirt color and size). The system can manage inventory for all combinations of your product options, and can calculate tax and shipping costs.
+      properties:
+        availableDate:
+          description: Date the item will become available for back order if out of stock
+          format: date-time
+          nullable: true
+          type: string
+        isSubstitutable:
+          description: ReadOnly flag indicates is the product has substitutions defined
+          type: boolean
+        manageStock:
+          description: If true, the Products service manages inventory for this product.
+          nullable: true
+          type: boolean
+        onlineLocationCode:
+          description: Directship location code for OnlineStockAvailable
+          nullable: true
+          type: string
+        onlineSoftStockAvailable:
+          description: Number of product items currently available for purchase.
+          format: int32
+          nullable: true
+          type: integer
+        onlineStockAvailable:
+          description: Number of product items currently available for purchase.
+          format: int32
+          nullable: true
+          type: integer
+        outOfStockBehavior:
+          description: The behvior when the ManageStock is true and the product is not in stock.
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesProductOption:
+      description: An option for a product and its list of values, if any. Also includes whether the option is configurable or stand-alone, whether it is required, whether it can have mulitple values and whether the shopper can supply its value (for example, engraved initials).
+      properties:
+        attributeDetail:
+          $ref: '#/components/schemas/AttributeDetail'
+        attributeFQN:
+          description: Attribute fully qualified name
+          nullable: true
+          type: string
+        isMultiValue:
+          description: If true, more than one value can be assigned to an option. Only possible with stand-alone options.
+          nullable: true
+          type: boolean
+        isProductImageGroupSelector:
+          type: boolean
+        isRequired:
+          description: If true, the shopper must provide a value for the option before it can be purchased.
+          nullable: true
+          type: boolean
+        values:
+          description: Possible choices for an option, for example, values of the option "Color" can be "red," "white," and "blue."
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductOptionValue'
+          nullable: true
+          type: array
+      type: object
+    CatalogRuntimesProductOptionValue:
+      description: Value of product option..."red," "white," "blue."
+      properties:
+        attributeValueId:
+          description: Unique Id for the Value
+          format: int32
+          type: integer
+        bundledProduct:
+          $ref: '#/components/schemas/CatalogRuntimesBundledProduct'
+        deltaPrice:
+          description: How much this option costs above the cost of the product.
+          format: double
+          nullable: true
+          type: number
+        deltaWeight:
+          description: How much this option weighs above the weight of the product.
+          format: double
+          nullable: true
+          type: number
+        displayInfo:
+          $ref: '#/components/schemas/CatalogRuntimesAttributeVocabularyValueDisplayInfo'
+        isDefault:
+          description: If true, this is the default value that the merchant supplied.
+          nullable: true
+          type: boolean
+        isEnabled:
+          description: If true, this option is enabled and can be selected. During configuration, this returns false of this option value is invalid with other current selected options.
+          nullable: true
+          type: boolean
+        isSelected:
+          description: If true, this is the option that is currently selected. It can be either the default value or one that the shopper has selected.
+          nullable: true
+          type: boolean
+        shopperEnteredValue:
+          description: How much this option costs above the cost of the product.
+          nullable: true
+        stringValue:
+          description: Localized Value in the language of the locale code only available for dataType string
+          nullable: true
+          type: string
+        value:
+          nullable: true
+      type: object
+    CatalogRuntimesProductPrice:
+      description: Price of the product with any sale and discounts applied.
+      properties:
+        catalogListPrice:
+          description: Current Price Listed in the catalog.
+          format: double
+          nullable: true
+          type: number
+        catalogSalePrice:
+          description: Current sale price of the product listed in the catalog. This is not typically dispalyed directly to the user as it will be listed in SalePrice if applicable.
+          format: double
+          nullable: true
+          type: number
+        creditValue:
+          description: Credit Value applicable to this product. Should only be present on DigitalCredit goodsType....
+          format: double
+          nullable: true
+          type: number
+        discount:
+          $ref: '#/components/schemas/CatalogRuntimesAppliedDiscount'
+        effectivePricelistCode:
+          description: The priceList that was applied to this product
+          nullable: true
+          type: string
+        msrp:
+          description: Manufacturer suggested Retail price, this may be null if one is not set in the catalog.
+          format: double
+          nullable: true
+          type: number
+        price:
+          description: Listed Price of the product. This is the price that the merchant intends to sell the product for if no sale is active.
+          format: double
+          nullable: true
+          type: number
+        priceListEntryCode:
+          description: The specific PriceListCode that was applied (includes inheritence
+          nullable: true
+          type: string
+        priceListEntryEndDate:
+          description: EndDate if PriceListEntry present.
+          format: date-time
+          nullable: true
+          type: string
+        priceListEntryMode:
+          description: IF a PriceList Entry was applied to this price it will be (simple, bulk...)
+          nullable: true
+          type: string
+        priceType:
+          description: Futher clarification of what value is being returned in the Price field
+          nullable: true
+          type: string
+        salePrice:
+          description: Current sale price of the product. This can be either a specific numerical amount or it can be calculated based on an active discount. Optional.
+          format: double
+          nullable: true
+          type: number
+        salePriceType:
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesProductPricingBehaviorInfo:
+      properties:
+        discountsRestricted:
+          nullable: true
+          type: boolean
+        discountsRestrictedEndDate:
+          format: date-time
+          nullable: true
+          type: string
+        discountsRestrictedStartDate:
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesProductProperty:
+      description: An attribute used as a property of a product
+      properties:
+        attributeDetail:
+          $ref: '#/components/schemas/AttributeDetail'
+        attributeFQN:
+          description: Attribute fully qualified name
+          nullable: true
+          type: string
+        isHidden:
+          description: Indicates whether the product property should be hidden from the customer
+          nullable: true
+          type: boolean
+        isMultiValue:
+          description: Indicates whether it's possible for there to be more than one value in the Values field
+          nullable: true
+          type: boolean
+        propertyType:
+          description: Property Type of the Property
+          nullable: true
+          type: string
+        values:
+          description: Value(s) of the product property
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductPropertyValue'
+          nullable: true
+          type: array
+      type: object
+    CatalogRuntimesProductPropertyValue:
+      description: Value of product property
+      properties:
+        displayInfo:
+          $ref: '#/components/schemas/CatalogRuntimesAttributeVocabularyValueDisplayInfo'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          nullable: true
+          type: string
+        value:
+          nullable: true
+      type: object
+    CatalogRuntimesProductRule:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          nullable: true
+          type: string
+        description:
+          description: ProductRule description
+          nullable: true
+          type: string
+        expression:
+          $ref: '#/components/schemas/CatalogRuntimesDynamicExpression'
+        name:
+          description: ProductRule name
+          nullable: true
+          type: string
+        scope:
+          nullable: true
+          type: string
+      type: object
+    CatalogRuntimesSearchMerchandizingRule:
+      description: Search Merchandizing Rule
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Unique identifier. Will be generated if not provided.
+          maxLength: 50
+          minLength: 0
+          nullable: true
+          type: string
+        context:
+          $ref: '#/components/schemas/SearchMerchandizingRuleContext'
+        description:
+          nullable: true
+          type: string
+        isPersonalizationEnabled:
+          type: boolean
+        name:
+          nullable: true
+          type: string
+        ruleImpact:
+          $ref: '#/components/schemas/SearchMerchandizingRuleImpact'
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    CatalogRuntimesSearchMerchandizingRuleCondition:
+      properties:
+        fields:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingRuleField'
+          nullable: true
+          type: array
+        terms:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    CatalogRuntimesSpellcheck:
+      description: Spellcheck related results
+      properties:
+        autoCorrected:
+          nullable: true
+          type: boolean
+        candidateCorrections:
+          items:
+            $ref: '#/components/schemas/CandidateCorrection'
+          nullable: true
+          type: array
+        correctedQuery:
+          nullable: true
+          type: string
+        originalQuery:
+          nullable: true
+          type: string
+      type: object
+    CategoryCollection:
+      description: Collection of categories returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CategoryContent:
+      description: Name of the category and optionally, a description, page title, friendly URL, associated images, and any metadata.
+      properties:
+        categoryImages:
+          description: Images associated with the category.
+          items:
+            $ref: '#/components/schemas/CategoryImage'
+          nullable: true
+          type: array
+        description:
+          description: Description of the category as it appears on the storefront.
+          nullable: true
+          type: string
+        metaTagDescription:
+          description: Metadata description. Metadata can be used to manage information internally.
+          nullable: true
+          type: string
+        metaTagKeywords:
+          description: Metadata keywords. Metadata can be used to manage information internally.
+          nullable: true
+          type: string
+        metaTagTitle:
+          description: Metadata title. Metadata can be used to manage information internally.
+          nullable: true
+          type: string
+        name:
+          description: Name of the category as it appears on the storefront.
+          nullable: true
+          type: string
+        pageTitle:
+          description: Title that appears at the top of new pages.
+          nullable: true
+          type: string
+        slug:
+          description: Human-readable identifier given to the category to create friendly URLs.
+          nullable: true
+          type: string
+      type: object
+    CategoryImage:
+      description: Image or video associated with a category.
+      properties:
+        altText:
+          description: Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.
+          nullable: true
+          type: string
+        cmsId:
+          description: Id of the image in the CMS.
+          nullable: true
+          type: string
+        imageLabel:
+          description: Image title.  Unicode data with a maximum length of 50 characters.
+          nullable: true
+          type: string
+        imageUrl:
+          description: Image URL. Unicode data with a maximum length of 4000 characters.
+          nullable: true
+          type: string
+        mediaType:
+          description: Type of media. Used by the client to determine how to render the image or video or what have you.
+          nullable: true
+          type: string
+        sequence:
+          description: For categories with multiple images, the sequence is the order in which this image appears. Whole number data. Required.
+          format: int32
+          nullable: true
+          type: integer
+        videoUrl:
+          description: URL of the video. Unicode data with a maximum length of 4000 characters.
+          nullable: true
+          type: string
+      type: object
+    CategoryPagedCollection:
+      description: Collection of categories where categories are returned in a series of pages.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          nullable: true
+          type: array
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ConfiguredProduct:
+      description: Product as it is currently configured on the storefront. The configuration changes each time the shopper changes the product order.
+      properties:
+        availableShippingDiscounts:
+          description: List of potential shipping discounts available for this product.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesDiscount'
+          nullable: true
+          type: array
+        fulfillmentTypesSupported:
+          description: Indicates the fulfillment types the product supports.
+          items:
+            type: string
+          nullable: true
+          type: array
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        mfgPartNumber:
+          description: Manufacturer part number.
+          nullable: true
+          type: string
+        options:
+          description: Remaining options and option values that can be selected given the shopper's current selection of options.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductOption'
+          nullable: true
+          type: array
+        price:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        priceListEntryTypeProperty:
+          $ref: '#/components/schemas/CatalogRuntimesProductProperty'
+        priceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productImages:
+          description: Images associated with the product.
+          items:
+            $ref: '#/components/schemas/ProductImage'
+          nullable: true
+          type: array
+        properties:
+          description: Remaining options and option values that can be selected given the shopper's current selection of options.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductProperty'
+          nullable: true
+          type: array
+        purchasableState:
+          $ref: '#/components/schemas/ProductPurchasableState'
+        purchaseLocation:
+          description: 'The location where the product is being purchased.. default is null. Products can have different prices
+
+            by purchaseLocation via custom priceListResolution....'
+          nullable: true
+          type: string
+        upc:
+          description: UPC code of the product.
+          nullable: true
+          type: string
+        variationProductCode:
+          description: "For a product with options, the code of the product variation that represents the current selection of product options. \nQuestion: is this right?"
+          nullable: true
+          type: string
+        volumePriceBands:
+          description: For products with bulk pricing... this will be populated with pricebands, depending on what options have been selected...
+          items:
+            $ref: '#/components/schemas/ProductVolumePrice'
+          nullable: true
+          type: array
+        volumePriceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+      type: object
+    DiscountSelections:
+      description: Discount Selections
+      properties:
+        discountIds:
+          description: Discount Ids
+          items:
+            format: int32
+            type: integer
+          nullable: true
+          type: array
+      type: object
+    DiscountValidationSummary:
+      description: Provides a summary (more accurately it is a container) for valid discounts for potentially valid discounts for a product
+      properties:
+        applicableDiscounts:
+          description: Applicable/Valid Discounts
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesDiscount'
+          nullable: true
+          type: array
+      type: object
+    FacetValue:
+      description: ''
+      properties:
+        childrenFacetValues:
+          description: When hierarchical Facet
+          items:
+            type: object
+          nullable: true
+          type: array
+        count:
+          description: Number of occurrences of FacetValue in result set.
+          format: int32
+          type: integer
+        filterValue:
+          description: Submit this as a facet value filter
+          nullable: true
+          type: string
+        isApplied:
+          description: True if this FacetValue was supplied as a facet value filter in the current search
+          nullable: true
+          type: boolean
+        isDisplayed:
+          description: Indicates whether the FacetValue should be displayed
+          type: boolean
+        label:
+          nullable: true
+          type: string
+        parentFacetValue:
+          description: When hierarchical Facet
+          nullable: true
+          type: string
+        rangeQueryValueEnd:
+          description: When range query Facet
+          nullable: true
+          type: string
+        rangeQueryValueStart:
+          description: When range query Facet
+          nullable: true
+          type: string
+        value:
+          description: String representation of Facet Value
+          nullable: true
+          type: string
+      type: object
+    FieldValueBoost:
+      properties:
+        boostType:
+          nullable: true
+          type: string
+        fields:
+          items:
+            $ref: '#/components/schemas/BoostField'
+          nullable: true
+          type: array
+      type: object
+    FindProductsPreviewParameters:
+      description: This should follow the immutable DTO pattern
+      properties:
+        campaignSettings:
+          $ref: '#/components/schemas/PreviewCampaignSettings'
+        fieldList:
+          items:
+            type: string
+          nullable: true
+          type: array
+        mid:
+          nullable: true
+          type: string
+        pageSize:
+          format: int32
+          nullable: true
+          type: integer
+        query:
+          nullable: true
+          type: string
+        searchSettings:
+          nullable: true
+          type: string
+        searchType:
+          nullable: true
+          type: string
+        startIndex:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    GranularInventoryField:
+      description: Inventory for a product at a specific location
+      properties:
+        condition:
+          description: Condition
+          nullable: true
+          type: string
+        serialNumber:
+          description: Serial Number
+          nullable: true
+          type: string
+      type: object
+    LocationInventory:
+      description: The inventory for a product at a specific Location
+      properties:
+        bopisFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+        futureInventories:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesFutureInventory'
+          nullable: true
+          type: array
+        infiniteInventory:
+          nullable: true
+          type: boolean
+        locationCode:
+          nullable: true
+          type: string
+        mfgPartNumber:
+          nullable: true
+          type: string
+        productCode:
+          nullable: true
+          type: string
+        segmentedQuantities:
+          items:
+            $ref: '#/components/schemas/SegmentedQuantity'
+          nullable: true
+          type: array
+        sku:
+          nullable: true
+          type: string
+        softStockAvailable:
+          format: int32
+          nullable: true
+          type: integer
+        sthFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+        stockAvailable:
+          format: int32
+          nullable: true
+          type: integer
+        transferFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    LocationInventoryCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/LocationInventory'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    LocationInventoryQuery:
+      description: The inventory for a product at a specific Location
+      properties:
+        forceDefaultsForUnspecifiedTagCategories:
+          deprecated: true
+          type: boolean
+        granularInventoryFields:
+          $ref: '#/components/schemas/GranularInventoryField'
+        includeFutureInventory:
+          type: boolean
+        includeInfiniteInventory:
+          type: boolean
+        includeSegmentedInventory:
+          type: boolean
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesInventoryTag'
+          nullable: true
+          type: array
+        locationCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        productCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    Measurement:
+      properties:
+        unit:
+          nullable: true
+          type: string
+        value:
+          format: double
+          nullable: true
+          type: number
+      type: object
+    MerchandizingRulePreviewResult:
+      description: SearchMerchandizingPreview requires Position, IsRanked, IsPinned, IsBuried
+      type: object
+    PreviewCampaignSettings:
+      properties:
+        campaignEndDate:
+          format: date-time
+          nullable: true
+          type: string
+        campaignName:
+          nullable: true
+          type: string
+        campaignStartDate:
+          format: date-time
+          nullable: true
+          type: string
+        listingSettings:
+          $ref: '#/components/schemas/CampaignListingSettings'
+        productSuggestSettings:
+          $ref: '#/components/schemas/CampaignProductSuggestSettings'
+        siteSearchSettings:
+          $ref: '#/components/schemas/CampaignSiteSearchSettings'
+      type: object
+    PriceListNode:
+      properties:
+        parentPriceListId:
+          format: int32
+          nullable: true
+          type: integer
+        priceListCode:
+          nullable: true
+          type: string
+        priceListId:
+          format: int32
+          type: integer
+        priceListLevel:
+          format: int32
+          type: integer
+      type: object
+    ProductBaseProductSearchResult:
+      properties:
+        facets:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesFacet'
+          nullable: true
+          type: array
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProduct'
+          nullable: true
+          type: array
+        nextCursorMark:
+          nullable: true
+          type: string
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        searchEngine:
+          nullable: true
+          type: string
+        searchRedirect:
+          nullable: true
+          type: string
+        solrDebugInfo:
+          $ref: '#/components/schemas/SolrDebugInfo'
+        spellcheck:
+          $ref: '#/components/schemas/CatalogRuntimesSpellcheck'
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductCollectionMember:
+      description: List of products that belong to a product collection product.
+      properties:
+        memberKey:
+          $ref: '#/components/schemas/CatalogRuntimesProductCollectionMemberKey'
+      type: object
+    ProductContent:
+      description: Name of the product and, if supplied, description, metatags, friendly URL, and associated images.
+      properties:
+        metaTagDescription:
+          description: Metadata description used to manage information internally.
+          nullable: true
+          type: string
+        metaTagKeywords:
+          description: Metadata keywords used to manage information internally.
+          nullable: true
+          type: string
+        metaTagTitle:
+          description: Metadata title used to manage information internally.
+          nullable: true
+          type: string
+        productFullDescription:
+          description: Detailed description of the product typically used for a product details page.
+          nullable: true
+          type: string
+        productImages:
+          description: Images associated with the product.
+          items:
+            $ref: '#/components/schemas/ProductImage'
+          nullable: true
+          type: array
+        productName:
+          description: Name of the product.
+          nullable: true
+          type: string
+        productShortDescription:
+          description: Brief description of the product typically used when the product is displayed in a list or search results.
+          nullable: true
+          type: string
+        seoFriendlyUrl:
+          description: Human-readable identifier defined for the product to create friendly URLs.
+          nullable: true
+          type: string
+      type: object
+    ProductCostCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductCost'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductCostQuery:
+      properties:
+        productCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ProductForIndexing:
+      properties:
+        availableShippingDiscounts:
+          description: List of potential shipping discounts available for this product.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesDiscount'
+          nullable: true
+          type: array
+        bundledProducts:
+          description: The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesBundledProduct'
+          nullable: true
+          type: array
+        catalogEndDate:
+          format: date-time
+          nullable: true
+          type: string
+        catalogStartDate:
+          format: date-time
+          nullable: true
+          type: string
+        categories:
+          description: List of categories to which this product belongs.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          nullable: true
+          type: array
+        collectionMembersProductContent:
+          description: Only used for indexing
+          items:
+            $ref: '#/components/schemas/ProductContent'
+          nullable: true
+          type: array
+        content:
+          $ref: '#/components/schemas/ProductContent'
+        costPriceMargin:
+          format: double
+          nullable: true
+          type: number
+        createDate:
+          description: When the product was created with the product admin resource.
+          format: date-time
+          type: string
+        dateFirstAvailableInCatalog:
+          format: date-time
+          nullable: true
+          type: string
+        daysAvailableInCatalog:
+          format: int32
+          nullable: true
+          type: integer
+        fulfillmentTypesSupported:
+          description: Indicates the fulfillment types the product supports.
+          items:
+            type: string
+          nullable: true
+          type: array
+        goodsType:
+          description: The GoodsType of the product (Physical, Digital, DigitalCredit....)
+          nullable: true
+          type: string
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        isActive:
+          description: If true, the product exists. If not, the product should not appear in search results.
+          nullable: true
+          type: boolean
+        isPackagedStandAlone:
+          description: Is this product shipped in its own package
+          nullable: true
+          type: boolean
+        isRecurring:
+          description: If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+          type: boolean
+        isTaxable:
+          description: If true, the product is subject to tax.
+          type: boolean
+        locationsInStock:
+          description: Any location code (eq) or array of location codes which are in stock.
+          items:
+            type: string
+          nullable: true
+          type: array
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        mfgPartNumber:
+          description: Manufacturer part number.
+          nullable: true
+          type: string
+        mfgPartNumbers:
+          description: Manufacturer part numbers (populated for configurable products).
+          items:
+            type: string
+          nullable: true
+          type: array
+        options:
+          description: "List of the product's configurable options and extras. \nIncludes whether an option is configurable (for example, a T-shirt) or an Extra (for example, monogram or gift-wrapping)."
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductOption'
+          nullable: true
+          type: array
+        personalizationScore:
+          format: double
+          type: number
+        price:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        priceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+        pricingBehavior:
+          $ref: '#/components/schemas/CatalogRuntimesProductPricingBehaviorInfo'
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productCollectionMembers:
+          description: 'list of member products that are part of the collection
+
+            This requires that the ProductUsage be set to Collection'
+          items:
+            $ref: '#/components/schemas/ProductCollectionMember'
+          nullable: true
+          type: array
+        productCollections:
+          description: List of product codes of product collections that this product is a member of.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductCollectionInfo'
+          nullable: true
+          type: array
+        productImageGroups:
+          description: 'List of the image groups this product uses.
+
+            Image groups are used to map different images to different product options.
+
+            If the product doesn''t have options then all images will be in the default
+
+            image group.'
+          items:
+            $ref: '#/components/schemas/ProductImageGroup'
+          nullable: true
+          type: array
+        productRules:
+          items:
+            type: string
+          nullable: true
+          type: array
+        productSequence:
+          description: System generated monotonically increasing sequence
+          format: int32
+          nullable: true
+          type: integer
+        productType:
+          nullable: true
+          type: string
+        productTypeId:
+          format: int32
+          nullable: true
+          type: integer
+        productUsage:
+          description: The UsageType of this product (Standard, Configurable, Bundle, Component, Collection)
+          nullable: true
+          type: string
+        properties:
+          description: List of product properties. These are attributes that might apply to multiple products, for example, price, size, manufacturer. These attributes cannot be configured by the shopper.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductProperty'
+          nullable: true
+          type: array
+        publishState:
+          description: Represents the published state of the product returned. Valid values for ValueType are defined in PublishStateConst.
+          nullable: true
+          type: string
+        purchasableState:
+          $ref: '#/components/schemas/ProductPurchasableState'
+        purchaseLocation:
+          description: 'The location where the product is being purchased.. default is null. Products can have different prices
+
+            by purchaseLocation via custom priceListResolution....'
+          nullable: true
+          type: string
+        score:
+          description: The item's search engine relevancy score.
+          format: double
+          type: number
+        sliceValue:
+          description: Readonly value of the selected value of the option corresponding to the Mozu.ProductRuntime.Contracts.Product.SlicingAttributeFQN
+          nullable: true
+          type: string
+        slices:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProduct'
+          nullable: true
+          type: array
+        slicingAttributeFQN:
+          nullable: true
+          type: string
+        upCs:
+          description: UPC code of the products (populated for configurable products).
+          items:
+            type: string
+          nullable: true
+          type: array
+        upc:
+          description: UPC code of the product.
+          nullable: true
+          type: string
+        updateDate:
+          description: When the product was last modified with the product admin resource.
+          format: date-time
+          type: string
+        validPriceLists:
+          description: List of valid pricelists for the product
+          items:
+            type: string
+          nullable: true
+          type: array
+        variationProductCode:
+          description: When a configurable product has IsPurchasable=true on a GetProduct, this property will be populated for submission to cart.
+          nullable: true
+          type: string
+        variationProducts:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProduct'
+          nullable: true
+          type: array
+        variations:
+          items:
+            $ref: '#/components/schemas/VariationSummary'
+          nullable: true
+          type: array
+        volumePriceBands:
+          description: For products with bulk pricing... this will be populated with pricebands, depending on what options have been selected...
+          items:
+            $ref: '#/components/schemas/ProductVolumePrice'
+          nullable: true
+          type: array
+        volumePriceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+      type: object
+    ProductImage:
+      description: Image or video associated with a product.
+      properties:
+        altText:
+          description: Descriptive text associated with the image. Unicode data with a maximum length of 200 characters.
+          nullable: true
+          type: string
+        cmsId:
+          description: Id of the image in the CMS.
+          nullable: true
+          type: string
+        imageLabel:
+          description: Image title.  Unicode data with a maximum length of 50 characters.
+          nullable: true
+          type: string
+        imageUrl:
+          description: Image URL. Unicode data with a maximum length of 4000 characters.
+          nullable: true
+          type: string
+        mediaType:
+          description: Type of media. Used by the client to determine how to render the image or video or what have you.
+          nullable: true
+          type: string
+        productImageGroupId:
+          nullable: true
+          type: string
+        sequence:
+          description: For products with multiple images, the sequence is the order in which this image appears. Whole number data. Required.
+          format: int32
+          nullable: true
+          type: integer
+        videoUrl:
+          description: URL of the video. Unicode data with a maximum length of 4000 characters.
+          nullable: true
+          type: string
+      type: object
+    ProductImageGroup:
+      properties:
+        productImageGroupId:
+          minLength: 1
+          type: string
+        productImageGroupTags:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductImageGroupTag'
+          nullable: true
+          type: array
+      required:
+      - productImageGroupId
+      type: object
+    ProductOptionSelection:
+      description: Name of the option that has been selected, and, if this is a stand-alone option, the value that the shopper entered.
+      properties:
+        attributeFQN:
+          description: Fully Qualified Name of the selected option's attribute
+          nullable: true
+          type: string
+        attributeValueId:
+          description: The unique ValueId of the Attribute (this can be sent as an alternative the to the AttributeFqn and Value)
+          format: int32
+          nullable: true
+          type: integer
+        shopperEnteredValue:
+          description: Value that shopper entered if this is an Extra of VaolueType ShopperEntered.  This allows shopper data entry (such as the shopper's initials).
+          nullable: true
+        value:
+          description: Value of the selected option
+          nullable: true
+      type: object
+    ProductOptionSelections:
+      description: If the product has configurable options, the current state of the shopper's selections.
+      properties:
+        options:
+          description: List of the product options that the shopper has currently selected.
+          items:
+            $ref: '#/components/schemas/ProductOptionSelection'
+          nullable: true
+          type: array
+        variationProductCode:
+          description: For a product with options, the code of the product variation that represents the current selection of product options.
+          nullable: true
+          type: string
+      type: object
+    ProductPriceRange:
+      description: For products with options that vary the cost of the product, the range between lowest and highest possible price of the product based on the current selection of options.
+      properties:
+        lower:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        upper:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+      type: object
+    ProductPurchasableState:
+      description: Current state of the product purchase, that is, whether it is ready to be purchased. For products with configurable options,     /// the product is purchaseable if the shopper has selected all required options. If not, a message lists which required options are missing.
+      properties:
+        isPurchasable:
+          description: If true, this product is currently available for purchase. For products with options, this is false until the shopper selects all required options.
+          type: boolean
+        messages:
+          description: Message associated with this product if it is not ready to be purchased. For products with options, message contains which required options are missing.
+          items:
+            $ref: '#/components/schemas/ValidationMessage'
+          nullable: true
+          type: array
+      type: object
+    ProductSearchPreviewResult:
+      allOf:
+      - $ref: '#/components/schemas/ProductBaseProductSearchResult'
+      - additionalProperties: false
+        type: object
+      description: Products and search information returned for search preview query.
+    ProductSearchRandomAccessCursor:
+      description: A calculated set of cursor marks for a given query that can be accessed in any order, providing the ability to page through all results in random/paralellized order
+      properties:
+        cursorMarks:
+          description: The list of cursor marks for the query. Provide a given cursor mark to the product search or getProducts cursorMark parameter to retrieve the associated products
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ProductSearchResult:
+      allOf:
+      - $ref: '#/components/schemas/ProductBaseProductSearchResult'
+      - additionalProperties: false
+        type: object
+      description: Products and facets returned from search criteria supplied in a ProductSearch query.
+    ProductSearchSimplifiedResult:
+      properties:
+        facets:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesFacet'
+          nullable: true
+          type: array
+        items:
+          items:
+            additionalProperties: {}
+            type: object
+          nullable: true
+          type: array
+        nextCursorMark:
+          nullable: true
+          type: string
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        searchRedirect:
+          nullable: true
+          type: string
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductSubstituteCollection:
+      description: Collection used for product substitutions
+      properties:
+        allowAutoSubstitutions:
+          description: Indicates if a product allows automatic substitutions
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/ProductSubstitution'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ProductSubstitution:
+      properties:
+        baseProductCode:
+          description: When a configurable product has IsPurchasable=true on a GetProduct, this property will be populated for submission to cart.
+          nullable: true
+          type: string
+        bundledProducts:
+          description: The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesBundledProduct'
+          nullable: true
+          type: array
+        mfgPartNumber:
+          description: Manufacturer part number.
+          nullable: true
+          type: string
+        price:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productImages:
+          items:
+            $ref: '#/components/schemas/ProductImage'
+          nullable: true
+          type: array
+        productName:
+          nullable: true
+          type: string
+        productUsage:
+          description: The UsageType of this product (Standard, Configurable, Bundle, Component, Collection)
+          nullable: true
+          type: string
+        upc:
+          description: UPC code of the products (populated for configurable products).
+          nullable: true
+          type: string
+      type: object
+    ProductValidationSummary:
+      properties:
+        bundledProducts:
+          description: The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle
+          items:
+            $ref: '#/components/schemas/BundledProductSummary'
+          nullable: true
+          type: array
+        categories:
+          description: Categories to which the product belongs.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          nullable: true
+          type: array
+        fulfillmentTypesSupported:
+          description: Indicates the fulfillment types the product supports.
+          items:
+            type: string
+          nullable: true
+          type: array
+        goodsType:
+          description: The GoodsType of the product (Physical, Digital, DigitalCredit....)
+          nullable: true
+          type: string
+        image:
+          $ref: '#/components/schemas/ProductImage'
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        isPackagedStandAlone:
+          description: Is this product shipped in its own package
+          nullable: true
+          type: boolean
+        isTaxable:
+          description: If true, the product listed on the live order is subject to tax.
+          type: boolean
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        mfgPartNumber:
+          description: Manufacturer part number.
+          nullable: true
+          type: string
+        price:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        pricingBehavior:
+          $ref: '#/components/schemas/CatalogRuntimesProductPricingBehaviorInfo'
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productName:
+          description: Name of the product.
+          nullable: true
+          type: string
+        productShortDescription:
+          description: Brief description of the product typically used when the product is displayed in a list or search results.
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        productUsage:
+          description: The UsageType of this product (Standard, Configurable, Bundle, Component)
+          nullable: true
+          type: string
+        properties:
+          description: List of product Properties.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductProperty'
+          nullable: true
+          type: array
+        purchasableState:
+          $ref: '#/components/schemas/ProductPurchasableState'
+        purchaseLocation:
+          description: 'The location where the product is being purchased.. default is null. Products can have different prices
+
+            by purchaseLocation via custom priceListResolution....'
+          nullable: true
+          type: string
+        upc:
+          description: UPC code of the product.
+          nullable: true
+          type: string
+        variationProductCode:
+          description: For a product with options, the code of the product variation that represents the current selection of product options.
+          nullable: true
+          type: string
+      type: object
+    ProductVolumePrice:
+      properties:
+        isCurrent:
+          type: boolean
+        maxQty:
+          format: int32
+          nullable: true
+          type: integer
+        minQty:
+          format: int32
+          type: integer
+        price:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        priceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+      type: object
+    PurchaseLimitEvalRequest:
+      description: Request parameters for evaluating purchase limit
+      properties:
+        customerId:
+          description: Customer ID
+          format: int32
+          type: integer
+        items:
+          description: List of items to evaluate
+          items:
+            $ref: '#/components/schemas/PurchaseLimitEvalRequestItems'
+          nullable: true
+          type: array
+      required:
+      - customerId
+      - items
+      type: object
+    PurchaseLimitEvalRequestItems:
+      description: Items for purchase limit rule evaluation request
+      properties:
+        productCode:
+          description: Product code for evaluation
+          nullable: true
+          type: string
+        variationProductCode:
+          description: Variation product code for evaluation
+          nullable: true
+          type: string
+      type: object
+    PurchaseLimitEvalResponseCollection:
+      description: Collection of purchase limit evaluation response items
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PurchaseLimitEvalResponseItem'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PurchaseLimitEvalResponseItem:
+      description: Purchase limit evaluation response item
+      properties:
+        maxQty:
+          description: Maximum quantity of the product that can be purchased
+          format: int32
+          nullable: true
+          type: integer
+        productCode:
+          description: Product code evaluated for purchase limit
+          nullable: true
+          type: string
+        ruleCode:
+          description: Rule code that affected the purchase limit for the product
+          nullable: true
+          type: string
+        variationProductCode:
+          description: Variation product code evaluated for purchase limit
+          nullable: true
+          type: string
+      type: object
+    RequestFilter:
+      properties:
+        name:
+          nullable: true
+          type: string
+        values:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ResolvedPriceList:
+      properties:
+        description:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        priceListCode:
+          nullable: true
+          type: string
+        priceListId:
+          format: int32
+          type: integer
+      type: object
+    ReturnEvalRequest:
+      description: Request parameters for evaluating returns
+      properties:
+        customerId:
+          description: Customer ID
+          format: int32
+          type: integer
+        items:
+          description: List of items to evaluate
+          items:
+            $ref: '#/components/schemas/ReturnEvalRequestItems'
+          nullable: true
+          type: array
+      required:
+      - customerId
+      - items
+      type: object
+    ReturnEvalRequestItems:
+      description: Items for return rule evaluation request
+      properties:
+        productCode:
+          description: Product code for evaluation
+          nullable: true
+          type: string
+        variationProductCode:
+          description: Variation product code for evaluation
+          nullable: true
+          type: string
+      type: object
+    ReturnEvalResponseCollection:
+      description: Collection of return evaluation response items
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ReturnEvalResponseItem'
+          nullable: true
+          type: array
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ReturnEvalResponseItem:
+      description: Return evaluation response item
+      properties:
+        isReturnable:
+          description: Flag indicating whether the product can be returned
+          nullable: true
+          type: boolean
+        maxDays:
+          description: Maximum number of days that the product can be returned
+          format: int32
+          nullable: true
+          type: integer
+        maxQty:
+          description: Maximum quantity of the product that can be returned
+          format: int32
+          nullable: true
+          type: integer
+        productCode:
+          description: Product code evaluated for return
+          nullable: true
+          type: string
+        ruleCode:
+          description: Return rule code that affected the return for the product
+          nullable: true
+          type: string
+        variationProductCode:
+          description: Variation product code for evaluation
+          nullable: true
+          type: string
+      type: object
+    SafetyStockEvalRequest:
+      description: Request parameters for evaluating purchase limit
+      properties:
+        locationCode:
+          description: List of items to evaluate
+          nullable: true
+          type: string
+        productCode:
+          description: Customer ID
+          nullable: true
+          type: string
+      required:
+      - locationCode
+      - productCode
+      type: object
+    SafetyStockEvalResponse:
+      description: ''
+      properties:
+        locationCode:
+          description: List of items to evaluate
+          nullable: true
+          type: string
+        productCode:
+          description: Customer ID
+          nullable: true
+          type: string
+        quantity:
+          description: List of items to evaluate
+          format: int32
+          nullable: true
+          type: integer
+        rank:
+          format: int32
+          nullable: true
+          type: integer
+        ruleCode:
+          description: List of items to evaluate
+          nullable: true
+          type: string
+      required:
+      - locationCode
+      - productCode
+      type: object
+    SearchMerchandizingBoostField:
+      properties:
+        fieldName:
+          nullable: true
+          type: string
+        valueExpressions:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingBoostValueExpression'
+          nullable: true
+          type: array
+      type: object
+    SearchMerchandizingBoostType:
+      enum:
+      - 1
+      format: int32
+      type: integer
+    SearchMerchandizingBoostValueExpression:
+      properties:
+        boostNumber:
+          format: int32
+          type: integer
+        operator:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    SearchMerchandizingFieldValueBoost:
+      properties:
+        boostType:
+          $ref: '#/components/schemas/SearchMerchandizingBoostType'
+        fields:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingBoostField'
+          nullable: true
+          type: array
+      type: object
+    SearchMerchandizingFilter:
+      properties:
+        exclusion:
+          nullable: true
+          type: string
+        inclusion:
+          nullable: true
+          type: string
+      type: object
+    SearchMerchandizingImpactItem:
+      properties:
+        isPinned:
+          type: boolean
+        position:
+          format: int32
+          type: integer
+        productCode:
+          nullable: true
+          type: string
+        sliceValue:
+          nullable: true
+          type: string
+      type: object
+    SearchMerchandizingRuleContext:
+      description: SearchMerchandizingRule Condition
+      properties:
+        condition:
+          $ref: '#/components/schemas/CatalogRuntimesSearchMerchandizingRuleCondition'
+        endDate:
+          description: Defaults to MAXDATE
+          format: date-time
+          nullable: true
+          type: string
+        searchType:
+          $ref: '#/components/schemas/SearchType'
+        startDate:
+          description: StartDate
+          format: date-time
+          nullable: true
+          type: string
+      type: object
+    SearchMerchandizingRuleField:
+      properties:
+        name:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: string
+      type: object
+    SearchMerchandizingRuleImpact:
+      description: SearchMerchandizingRule Condition
+      properties:
+        buriedItems:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingImpactItem'
+          nullable: true
+          type: array
+        excludedItems:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingImpactItem'
+          nullable: true
+          type: array
+        fieldValueBoost:
+          $ref: '#/components/schemas/SearchMerchandizingFieldValueBoost'
+        filter:
+          $ref: '#/components/schemas/SearchMerchandizingFilter'
+        rankedItems:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingImpactItem'
+          nullable: true
+          type: array
+        sortFields:
+          items:
+            $ref: '#/components/schemas/SearchMerchandizingSortField'
+          nullable: true
+          type: array
+      type: object
+    SearchMerchandizingRuleParameters:
+      properties:
+        categoryCode:
+          nullable: true
+          type: string
+        collapse:
+          nullable: true
+          type: boolean
+        pageSize:
+          format: int32
+          nullable: true
+          type: integer
+        personalizationUserId:
+          description: 'User specific personalization ID.
+
+            For Monetate users (AKA MID), it follows this format 2.x.y, where x and y are integers'
+          nullable: true
+          type: string
+        query:
+          nullable: true
+          type: string
+        searchMerchandizingRule:
+          $ref: '#/components/schemas/CatalogRuntimesSearchMerchandizingRule'
+        startIndex:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    SearchMerchandizingRuleProduct:
+      description: The additional properties is only relevant when the preview endpoint is used
+      properties:
+        availableShippingDiscounts:
+          description: List of potential shipping discounts available for this product.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesDiscount'
+          nullable: true
+          type: array
+        bundledProducts:
+          description: The list of Bundled products included in this product. This is only populated when ProductUsage=Bundle
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesBundledProduct'
+          nullable: true
+          type: array
+        catalogEndDate:
+          format: date-time
+          nullable: true
+          type: string
+        catalogStartDate:
+          format: date-time
+          nullable: true
+          type: string
+        categories:
+          description: List of categories to which this product belongs.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesCategory'
+          nullable: true
+          type: array
+        collectionMembersProductContent:
+          description: Only used for indexing
+          items:
+            $ref: '#/components/schemas/ProductContent'
+          nullable: true
+          type: array
+        content:
+          $ref: '#/components/schemas/ProductContent'
+        costPriceMargin:
+          format: double
+          nullable: true
+          type: number
+        createDate:
+          description: When the product was created with the product admin resource.
+          format: date-time
+          type: string
+        dateFirstAvailableInCatalog:
+          format: date-time
+          nullable: true
+          type: string
+        daysAvailableInCatalog:
+          format: int32
+          nullable: true
+          type: integer
+        fulfillmentTypesSupported:
+          description: Indicates the fulfillment types the product supports.
+          items:
+            type: string
+          nullable: true
+          type: array
+        goodsType:
+          description: The GoodsType of the product (Physical, Digital, DigitalCredit....)
+          nullable: true
+          type: string
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        isActive:
+          description: If true, the product exists. If not, the product should not appear in search results.
+          nullable: true
+          type: boolean
+        isBuried:
+          type: boolean
+        isPackagedStandAlone:
+          description: Is this product shipped in its own package
+          nullable: true
+          type: boolean
+        isPinned:
+          type: boolean
+        isRanked:
+          type: boolean
+        isRecurring:
+          description: If true, the product can be purchased or fulfilled at regular intervals, for example, monthly billing or a subscription.
+          type: boolean
+        isTaxable:
+          description: If true, the product is subject to tax.
+          type: boolean
+        locationsInStock:
+          description: Any location code (eq) or array of location codes which are in stock.
+          items:
+            type: string
+          nullable: true
+          type: array
+        measurements:
+          $ref: '#/components/schemas/CatalogRuntimesPackageMeasurements'
+        mfgPartNumber:
+          description: Manufacturer part number.
+          nullable: true
+          type: string
+        mfgPartNumbers:
+          description: Manufacturer part numbers (populated for configurable products).
+          items:
+            type: string
+          nullable: true
+          type: array
+        options:
+          description: "List of the product's configurable options and extras. \nIncludes whether an option is configurable (for example, a T-shirt) or an Extra (for example, monogram or gift-wrapping)."
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductOption'
+          nullable: true
+          type: array
+        personalizationScore:
+          format: double
+          type: number
+        position:
+          format: int32
+          type: integer
+        price:
+          $ref: '#/components/schemas/CatalogRuntimesProductPrice'
+        priceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+        pricingBehavior:
+          $ref: '#/components/schemas/CatalogRuntimesProductPricingBehaviorInfo'
+        productCode:
+          description: Merchant-created code associated with the product, for example, a SKU.
+          nullable: true
+          type: string
+        productCollectionMembers:
+          description: 'list of member products that are part of the collection
+
+            This requires that the ProductUsage be set to Collection'
+          items:
+            $ref: '#/components/schemas/ProductCollectionMember'
+          nullable: true
+          type: array
+        productCollections:
+          description: List of product codes of product collections that this product is a member of.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductCollectionInfo'
+          nullable: true
+          type: array
+        productImageGroups:
+          description: 'List of the image groups this product uses.
+
+            Image groups are used to map different images to different product options.
+
+            If the product doesn''t have options then all images will be in the default
+
+            image group.'
+          items:
+            $ref: '#/components/schemas/ProductImageGroup'
+          nullable: true
+          type: array
+        productRules:
+          items:
+            type: string
+          nullable: true
+          type: array
+        productSequence:
+          description: System generated monotonically increasing sequence
+          format: int32
+          nullable: true
+          type: integer
+        productType:
+          nullable: true
+          type: string
+        productTypeId:
+          format: int32
+          nullable: true
+          type: integer
+        productUsage:
+          description: The UsageType of this product (Standard, Configurable, Bundle, Component, Collection)
+          nullable: true
+          type: string
+        properties:
+          description: List of product properties. These are attributes that might apply to multiple products, for example, price, size, manufacturer. These attributes cannot be configured by the shopper.
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesProductProperty'
+          nullable: true
+          type: array
+        publishState:
+          description: Represents the published state of the product returned. Valid values for ValueType are defined in PublishStateConst.
+          nullable: true
+          type: string
+        purchasableState:
+          $ref: '#/components/schemas/ProductPurchasableState'
+        purchaseLocation:
+          description: 'The location where the product is being purchased.. default is null. Products can have different prices
+
+            by purchaseLocation via custom priceListResolution....'
+          nullable: true
+          type: string
+        score:
+          description: The item's search engine relevancy score.
+          format: double
+          type: number
+        sliceValue:
+          description: Readonly value of the selected value of the option corresponding to the Mozu.ProductRuntime.Contracts.Product.SlicingAttributeFQN
+          nullable: true
+          type: string
+        slicingAttributeFQN:
+          nullable: true
+          type: string
+        upCs:
+          description: UPC code of the products (populated for configurable products).
+          items:
+            type: string
+          nullable: true
+          type: array
+        upc:
+          description: UPC code of the product.
+          nullable: true
+          type: string
+        updateDate:
+          description: When the product was last modified with the product admin resource.
+          format: date-time
+          type: string
+        validPriceLists:
+          description: List of valid pricelists for the product
+          items:
+            type: string
+          nullable: true
+          type: array
+        variationProductCode:
+          description: When a configurable product has IsPurchasable=true on a GetProduct, this property will be populated for submission to cart.
+          nullable: true
+          type: string
+        variations:
+          items:
+            $ref: '#/components/schemas/VariationSummary'
+          nullable: true
+          type: array
+        volumePriceBands:
+          description: For products with bulk pricing... this will be populated with pricebands, depending on what options have been selected...
+          items:
+            $ref: '#/components/schemas/ProductVolumePrice'
+          nullable: true
+          type: array
+        volumePriceRange:
+          $ref: '#/components/schemas/ProductPriceRange'
+      type: object
+    SearchMerchandizingSortField:
+      properties:
+        direction:
+          nullable: true
+          type: string
+        propertyName:
+          nullable: true
+          type: string
+      type: object
+    SearchSuggestion:
+      description: A suggested result based on the search query
+      properties:
+        suggestion:
+          description: 'A suggested entity based on the search query. Use the SuggestionType to determine the type of entity.
+
+            Could be a SearchTerm, Product, or Category'
+          nullable: true
+        suggestionType:
+          description: "The type of Suggestion (e.g. Term, Product, Category). \nWill be one of the values of the SuggestionTypeConst type."
+          nullable: true
+          type: string
+      type: object
+    SearchSuggestionGroup:
+      properties:
+        name:
+          description: Group Name
+          nullable: true
+          type: string
+        suggestions:
+          description: List of related SearchSuggestions
+          items:
+            $ref: '#/components/schemas/SearchSuggestion'
+          nullable: true
+          type: array
+      type: object
+    SearchSuggestionResult:
+      description: List of items to suggest to the shopper who is entering a search query, for example, a search box on the storefront.
+      properties:
+        query:
+          description: Text that the shopper types in a search query.
+          nullable: true
+          type: string
+        suggestionGroups:
+          description: List of SearchSuggestionGroups
+          items:
+            $ref: '#/components/schemas/SearchSuggestionGroup'
+          nullable: true
+          type: array
+      type: object
+    SearchType:
+      enum:
+      - 1
+      - 2
+      format: int32
+      type: integer
+    SegmentedQuantity:
+      properties:
+        bopisFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        bopisProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+        futureInventory:
+          items:
+            $ref: '#/components/schemas/CatalogRuntimesFutureInventory'
+          nullable: true
+          type: array
+        infiniteInventory:
+          nullable: true
+          type: boolean
+        isAvailable:
+          nullable: true
+          type: boolean
+        quantity:
+          format: int32
+          nullable: true
+          type: integer
+        sthFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        sthProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+        tags:
+          items:
+            $ref: '#/components/schemas/TagData'
+          nullable: true
+          type: array
+        transferFulfillmentDate:
+          format: date-time
+          nullable: true
+          type: string
+        transferProcessingTimeHours:
+          format: int32
+          nullable: true
+          type: integer
+      type: object
+    SolrDebugInfo:
+      properties:
+        blockedProductCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        boostFunctions:
+          items:
+            type: string
+          nullable: true
+          type: array
+        boostQueries:
+          items:
+            type: string
+          nullable: true
+          type: array
+        boostedProductCodes:
+          items:
+            type: string
+          nullable: true
+          type: array
+        searchTuningRuleCode:
+          nullable: true
+          type: string
+        solrUrl:
+          nullable: true
+          type: string
+      type: object
+    TagData:
+      properties:
+        category:
+          nullable: true
+          type: string
+        tag:
+          nullable: true
+          type: string
+      type: object
+    ValidationMessage:
+      properties:
+        message:
+          description: Message displayed to the user when this validation failure occurred.
+          nullable: true
+          type: string
+        severity:
+          description: "Severity level of the validation failure.\n Must be one of the values in SeverityConst."
+          nullable: true
+          type: string
+        source:
+          description: What invoked the validation.  Must be one of the values in SourceTypeConst.
+          nullable: true
+          type: string
+        sourceId:
+          description: Unique identifier of the source that invoked the validation failure.
+          nullable: true
+          type: string
+        validationType:
+          description: "Type of validation error that occurred. This can be checked programatically. \n Must be one of the values in ValidationTypeConst."
+          nullable: true
+          type: string
+      type: object
+    VariationOption:
+      properties:
+        attributeFQN:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+        valueSequence:
+          format: int32
+          type: integer
+      type: object
+    VariationSummary:
+      description: Details of a product, including its product code, name, description, options (if any), and current state--whether the product can be purchased given the options selected currently.
+      properties:
+        inventoryInfo:
+          $ref: '#/components/schemas/CatalogRuntimesProductInventoryInfo'
+        options:
+          description: The combination of options that resolve to this variation product
+          items:
+            $ref: '#/components/schemas/VariationOption'
+          nullable: true
+          type: array
+        productCode:
+          description: Merchant-created code associated with the variation product, for example, a SKU.
+          nullable: true
+          type: string
+        upc:
+          description: UPC code of the variant product
+          nullable: true
+          type: string
+      type: object
+    VisualSearchResult:
+      properties:
+        pageId:
+          nullable: true
+          type: string
+        results:
+          items:
+            additionalProperties: {}
+            type: object
+          nullable: true
+          type: array
+        trackingId:
+          nullable: true
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+info:
+  description: "<div id=\"overview_CATALOG_STOREFRONT\">\n            <h2>CATALOG STOREFRONT</h2>\n            <p>The Catalog Storefront APIs are a collection of resources for managing storefront categories, currencies, price lists, products, and\n                product search. This controls how the products in your catalog are organized and displayed on the\n                storefront. See the\n                <a href=\"/concept-guides/catalog\">Catalog user guides</a>\n                for information about the related features in the Unified Commerce Admin.</p>\n            <p>Use the <strong>Currencies</strong> resource to retrieve exchange rates for displaying prices on your storefront.</p>\n            <p>Use the <strong>Storefront Categories</strong> resource to view the product category hierarchy as it appears to shoppers\n                who are browsing the storefront. The hierarchy can be returned as a flat list or as a category tree.</p>\n            <p>Use the <strong>Pricelists</strong>\
+    \ resource to retrieve the details of a price list. The details may contain a hierarchy\n                of ancestor and/or descendant price lists dependening on your configuration.</p>\n            <p>Use the <strong>Storefront Products</strong> resource to manage the shopper product selection process during a visit to\n                the web storefront. You can update product options as shoppers pick and choose their product choices. A\n                shopper cannot add a product to a cart until all of its required options have been selected.</p>\n            <p>Use the <strong>Product Search</strong> resource to provide dynamic search results to shoppers as they browse and search\n                for products on the web storefront, and to suggest possible search terms as the shopper enters text. The related <strong>Search Redirect</strong>\n                resource allows you to retrieve any search redirect items.</p>\n        </div>"
+  title: Catalog Storefront
+openapi: 3.0.1
+paths:
+  /commerce/catalog/storefront/campaigns/{campaignId}:
+    get:
+      description: Get a specific campaign by campaign id.
+      parameters:
+      - description: ''
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CampaignResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CampaignResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CampaignResult'
+          description: OK
+      summary: Get Search Campaign
+      tags:
+      - Campaigns
+  /commerce/catalog/storefront/campaigns/all:
+    get:
+      description: Get list of Search campaigns.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CampaignResult'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CampaignResult'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CampaignResult'
+                type: array
+          description: OK
+      summary: Get Search Campaigns
+      tags:
+      - Campaigns
+  /commerce/catalog/storefront/categories/tree:
+    get:
+      description: Retrieves the list of product categories that appear on the storefront organized in a hierarchical format. Hidden categories do not appear in the list.
+      parameters:
+      - description: Optional. If True, Return Category Attributes collection with Category
+        in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryCollection'
+          description: OK
+      summary: Get Category Tree
+      tags:
+      - Categories
+  /commerce/catalog/storefront/categories:
+    get:
+      description: Retrieves a list of product categories that appear on the storefront as a flat list. Hidden categories do not appear in the list.
+      parameters:
+      - description: "Optional. A set of filter expressions representing the search parameters for a query:\n            eq=equals, ne=not equals, gt=greater than, lt = less than, gt = greater than or equals, le = less than or equals,\n            sw = starts with, or cont = contains."
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: "Optional. Used to page results from a query.\n            Indicates the zero-based offset in the complete result set where the returned entities begin.\n            For example, with a pageSize of 25, to get the 51st through the 75th items, startIndex=3.\n            The default value is 0."
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: "Optional. Used to page results from a query.\n            Indicates the maximum number of entities to return from a query. Default value: 20. Maximum value: 200."
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: "The element to sort the results by and the order in which the results appear.\n            Either ascending order (a-z) which accepts 'asc' or 'ASC' or descending order (z-a) which accepts 'desc' or 'DESC'.\n            The sortBy parameter follows an available property.\n            For example, to sort results by category ID ascending, use sortBy=categoryId asc."
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Optional. Used to include Category Attributes in response
+        in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CategoryPagedCollection'
+          description: OK
+      summary: Get Product Categories
+      tags:
+      - Categories
+  /commerce/catalog/storefront/categories/{categoryId}:
+    get:
+      description: 'Retrieves the name and details of a category that appears on the storefront. '
+      parameters:
+      - description: Required. Unique identifier of the category whose details you want to get.
+        in: path
+        name: categoryId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Optional. Allow the return of items with the IsDisplayed flag set to false.
+        in: query
+        name: allowInactive
+        schema:
+          type: boolean
+      - description: Optional. If True, Return Category Attributes collection with Category
+        in: query
+        name: includeAttributes
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesCategory'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesCategory'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesCategory'
+          description: OK
+      summary: Get Product Category
+      tags:
+      - Categories
+  /commerce/catalog/storefront/currencies/exchangerates:
+    get:
+      description: Retrieves a list of currency exchange rates based on the context's currency code.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogRuntimesCurrencyExchangeRate'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogRuntimesCurrencyExchangeRate'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogRuntimesCurrencyExchangeRate'
+                type: array
+          description: OK
+      summary: Get Exchange Rates
+      tags:
+      - Currencies
+  /commerce/rules/product/evaluate/preview:
+    post:
+      description: Previews a new product rule by searching for products in the admin index that meet the rule criteria
+      parameters:
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: fieldList
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogRuntimesProductRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchSimplifiedResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchSimplifiedResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSearchSimplifiedResult'
+          description: OK
+      summary: Preview Product Rule
+      tags:
+      - ProductRule
+  /commerce/catalog/storefront/productsearch/suggest:
+    get:
+      description: Suggests possible search terms as the shopper enters search text. In Unified Commerce, a Suggest2 API exists that returns results based on the returnFields option defined in the search settings. The same request structure and response as documented here is supported by both the /suggest and /suggest2 API endpoints, so either one can be used for this purpose with the same data.
+      parameters:
+      - description: Comma delimited list of suggestion groups that should be returned. The default is everything
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: groups
+        schema:
+          type: string
+      - description: Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: mid
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionResult'
+          description: OK
+      summary: Get Suggested Search Terms
+      tags:
+      - ProductSearch
+  /commerce/catalog/storefront/productsearch/randomAccessCursor:
+    get:
+      description: Generate a list of cursors that then allows you to retrieve all products with efficient deep paging.\r\n\t\t\tOptionally provide a query and/or filter to generate a cursor for a subset of products.\r\n\t\t\tAfter retrieving the cursor, provide a cursorMark to the cursorMark argument of the /search or /getProducts operations.\r\n\t\t\tYou may provide cursorMarks in any order or even in parallel operations.
+      parameters:
+      - description: Optional terms to search on. Only matching products will be included in the cursor.
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: Optional set of filter expressions to filter on. Only matching products will be included in the cursor.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchRandomAccessCursor'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchRandomAccessCursor'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSearchRandomAccessCursor'
+          description: OK
+      summary: Gets Random Access Cursors
+      tags:
+      - ProductSearch
+  /commerce/catalog/storefront/productsearch/suggest2:
+    get:
+      description: Suggests possible search terms as the shopper enters search text. In Unified Commerce, a Suggest2 API exists that returns results based on the returnFields option defined in the search settings. The same request structure and response as documented here is supported by both the /suggest and /suggest2 API endpoints, so either one can be used for this purpose with the same data.
+      parameters:
+      - description: Comma delimited list of suggestion groups that should be returned. The default is everything
+        in: query
+        name: query
+        schema:
+          type: string
+      - in: query
+        name: groups
+        schema:
+          type: string
+      - description: Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: searchSettingsName
+        schema:
+          type: string
+      - in: query
+        name: mid
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/SearchSuggestionResult'
+          description: OK
+      summary: Gets Suggested Search Terms 2
+      tags:
+      - ProductSearch
+  /commerce/catalog/storefront/productsearch/searchDebug:
+    get:
+      description: Searches the items displayed on the storefront for products or product options that the shopper types in a search query. Used for debugging.
+      parameters:
+      - description: The terms to search on.
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: 'The template to use for what facets to compute. ex: categoryId:id'
+        in: query
+        name: facetTemplate
+        schema:
+          type: string
+      - description: 'If you only want to return a subset of the facets defined in the template. ex: category,price,rating'
+        in: query
+        name: facetTemplateSubset
+        schema:
+          type: string
+      - description: 'Fields to facet on in addition to the optionally provided facetTemplate. ex: category,price,rating'
+        in: query
+        name: facet
+        schema:
+          type: string
+      - description: 'Facet field range. ex: field:[val+TO+val] can also label'
+        in: query
+        name: facetFieldRangeQuery
+        schema:
+          type: string
+      - description: 'Facet hierarchy prefix. Skip these levels on a hierarchical facet. ex: field:foo/bar/bing'
+        in: query
+        name: facetHierPrefix
+        schema:
+          type: string
+      - description: 'Find the node to start with given a unique lookup value, instead of requiring a prefix path. ex: field:bing'
+        in: query
+        name: facetHierValue
+        schema:
+          type: string
+      - description: 'Facet hierarchy depth. Number of levels to return. ex: category:1'
+        in: query
+        name: facetHierDepth
+        schema:
+          type: string
+      - description: Facet offset
+        in: query
+        name: facetStartIndex
+        schema:
+          type: string
+      - description: Facet page size
+        in: query
+        name: facetPageSize
+        schema:
+          type: string
+      - description: Deprecated
+        in: query
+        name: facetSettings
+        schema:
+          type: string
+      - description: 'Apply facet values as a filter. ex: category:3,price:[* TO 100]'
+        in: query
+        name: facetValueFilter
+        schema:
+          type: string
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Whether to slice results or not
+        in: query
+        name: sliceSearchResults
+        schema:
+          default: false
+          type: boolean
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The name of a SiteSearchSettings (search relevancy settings) scheme to use. Defaults to whichever Settings is marked as IsDefault=true.
+        in: query
+        name: searchSettings
+        schema:
+          type: string
+      - description: Use search-tuning-rules or not
+        in: query
+        name: enableSearchTuningRules
+        schema:
+          default: true
+          type: boolean
+      - description: The filters which the search tuning rules will match on.
+        in: query
+        name: searchTuningRuleContext
+        schema:
+          type: string
+      - description: Search-Tuning-Rule Code
+        in: query
+        name: searchTuningRuleCode
+        schema:
+          type: string
+      - description: 'A list of property groups to return instead of using the granular responseFields param. ex: categories,properties,options'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: facetTemplateExclude
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: facetPrefix
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: responseOptions
+        schema:
+          type: string
+      - description: Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+        in: query
+        name: cursorMark
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: facetValueSort
+        schema:
+          type: string
+      - description: Only respond with the request made to the search-engine, for one "groups" parameter value. Default is false. Optional parameter.
+        in: query
+        name: returnUrl
+        schema:
+          default: false
+          type: boolean
+      - description: Personalization Id (Monetate Id)
+        in: query
+        name: mid
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: omitNamespace
+        schema:
+          type: boolean
+      - description: ''
+        in: query
+        name: campaignId
+        schema:
+          type: string
+      - description: Optional. Use a specific search-merchandizing-rule code if provided.
+        in: query
+        name: merchandizingRuleCode
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      - in: query
+        name: rows
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: start
+        schema:
+          format: int32
+          type: integer
+      - description: optional alternative to query for debugging tools
+        in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: collapse
+        schema:
+          default: true
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Search Debug
+      tags:
+      - ProductSearch
+  /commerce/catalog/storefront/productsearch/search:
+    get:
+      description: Searches the categories displayed on the storefront for products or product options that the shopper types in a search query.
+      parameters:
+      - description: The terms to search on.
+        in: query
+        name: query
+        schema:
+          type: string
+      - in: query
+        name: collapse
+        schema:
+          default: true
+          type: boolean
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: facetTemplate
+        schema:
+          type: string
+      - in: query
+        name: facetTemplateSubset
+        schema:
+          type: string
+      - in: query
+        name: facet
+        schema:
+          type: string
+      - in: query
+        name: facetFieldRangeQuery
+        schema:
+          type: string
+      - in: query
+        name: facetHierPrefix
+        schema:
+          type: string
+      - in: query
+        name: facetHierValue
+        schema:
+          type: string
+      - in: query
+        name: facetHierDepth
+        schema:
+          type: string
+      - in: query
+        name: facetStartIndex
+        schema:
+          type: string
+      - in: query
+        name: facetPageSize
+        schema:
+          type: string
+      - in: query
+        name: facetSettings
+        schema:
+          type: string
+      - in: query
+        name: facetValueFilter
+        schema:
+          type: string
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: searchSettings
+        schema:
+          type: string
+      - in: query
+        name: enableSearchTuningRules
+        schema:
+          default: true
+          type: boolean
+      - in: query
+        name: searchTuningRuleContext
+        schema:
+          type: string
+      - in: query
+        name: searchTuningRuleCode
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - in: query
+        name: facetTemplateExclude
+        schema:
+          type: string
+      - in: query
+        name: facetPrefix
+        schema:
+          type: string
+      - in: query
+        name: responseOptions
+        schema:
+          type: string
+      - description: Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+        in: query
+        name: cursorMark
+        schema:
+          type: string
+      - in: query
+        name: facetValueSort
+        schema:
+          type: string
+      - in: query
+        name: defaultSort
+        schema:
+          type: string
+      - in: query
+        name: shouldSlice
+        schema:
+          type: boolean
+      - in: query
+        name: mid
+        schema:
+          type: string
+      - in: query
+        name: omitNamespace
+        schema:
+          type: boolean
+      - description: Optional. If true return all images instead of default images.
+        in: query
+        name: includeAllImages
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: spellcorrectOverride
+        schema:
+          default: Default
+          type: string
+      - in: query
+        name: useSubscriptionPricing
+        schema:
+          default: false
+          type: boolean
+      - description: Optional. Use a specific search-merchandizing-rule code if provided.
+        in: query
+        name: merchandizingRuleCode
+        schema:
+          type: string
+      - in: query
+        name: customerSegments
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResult'
+          description: OK
+      summary: Search Products
+      tags:
+      - ProductSearch
+  /commerce/catalog/storefront/productsearch/suggestdebug:
+    get:
+      description: Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products.
+      parameters:
+      - description: Comma delimited list of suggestion groups that should be returned. The default is everything. e.g. categories, products
+        in: query
+        name: groups
+        schema:
+          type: string
+      - description: The terms to search on.
+        in: query
+        name: query
+        schema:
+          type: string
+      - description: Indicates the maximum number of entities to return from a query. The default value is 10 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Specific Search Configuration. Optional parameter
+        in: query
+        name: searchSettingsName
+        schema:
+          type: string
+      - description: Session Id. Optional parameter
+        in: query
+        name: mid
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Used to debug with a specific campaign. Optional parameter
+        in: query
+        name: campaignId
+        schema:
+          type: string
+      - description: Only respond with the request made to the search-engine, for one "groups" parameter value. Default is false. Optional parameter.
+        in: query
+        name: returnUrl
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Search Suggestion Debug
+      tags:
+      - ProductSearch
+  /commerce/catalog/storefront/productsearch/siteSearch:
+    get:
+      description: Searches the items displayed on the storefront.
+      parameters:
+      - description: The terms to search on.
+        in: query
+        name: query
+        schema:
+          type: string
+      - in: query
+        name: collapse
+        schema:
+          default: true
+          type: boolean
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: Identifier of the current category, in the format of either categoryCode:{categoryCode}  or categoryId:{categoryId}. In the example of no category being selected, the root will be used instead. Refer to the corresponding <a href="api-reference/facets/get-facet-category-list">Catalog Admin</a> call.
+        in: query
+        name: facetTemplate
+        schema:
+          type: string
+      - description: Use if you only want to return a subset of the facets defined in the template such has category, price, rating.
+        in: query
+        name: facetTemplateSubset
+        schema:
+          type: string
+      - description: The additional facets to use (comma delimited) that are not already defined in the facet template  in the Product Admin API.
+        in: query
+        name: facet
+        schema:
+          type: string
+      - in: query
+        name: facetFieldRangeQuery
+        schema:
+          type: string
+      - description: Allows you to skip these levels on a hierarchical facet.
+        in: query
+        name: facetHierPrefix
+        schema:
+          type: string
+      - description: The current level to pull categories from, in the format of categoryId:{categoryId}.
+        in: query
+        name: facetHierValue
+        schema:
+          type: string
+      - description: The number of levels to return such as category:1.
+        in: query
+        name: facetHierDepth
+        schema:
+          type: string
+      - in: query
+        name: facetStartIndex
+        schema:
+          type: string
+      - in: query
+        name: facetPageSize
+        schema:
+          type: string
+      - description: May be deprecated.
+        in: query
+        name: facetSettings
+        schema:
+          type: string
+      - description: A comma delimited list of applied facetsValues (such as tenant~brand-name-attribute%3abroil+king).  If the facet is part of the search results facet template as a “range” display style, then you can  specify a min and max that doesn't have to match the predefined ranges (such as &facetValueFilter=price:[38 to 105]).
+        in: query
+        name: facetValueFilter
+        schema:
+          type: string
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 12 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Use this to override search settings for testing purposes in the format of &searchSettings=testConfig1.
+        in: query
+        name: searchSettings
+        schema:
+          type: string
+      - description: Whether or not to enable search tuning rules.
+        in: query
+        name: enableSearchTuningRules
+        schema:
+          default: true
+          type: boolean
+      - description: Deprecated or internal-only, do not use.
+        in: query
+        name: searchTuningRuleContext
+        schema:
+          type: string
+      - description: Deprecated or internal-only, do not use.
+        in: query
+        name: searchTuningRuleCode
+        schema:
+          type: string
+      - description: Deprecated or internal-only, do not use.
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - in: query
+        name: facetTemplateExclude
+        schema:
+          type: string
+      - in: query
+        name: facetPrefix
+        schema:
+          type: string
+      - description: Deprecated or internal-only, do not use.
+        in: query
+        name: responseOptions
+        schema:
+          type: string
+      - description: Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+        in: query
+        name: cursorMark
+        schema:
+          type: string
+      - description: Sorts the values array in a facet. Valid values are Count,Index, CountAscending, CountDescending,  ValuesAscending, ValuesDescending, AttributeDefinition, and AttributeDefinitionDescending.
+        in: query
+        name: facetValueSort
+        schema:
+          type: string
+      - description: Deprecated or internal-only, do not use.
+        in: query
+        name: defaultSort
+        schema:
+          type: string
+      - description: Whether or not to slice products.
+        in: query
+        name: shouldSlice
+        schema:
+          type: boolean
+      - description: This is the customer identifier for personalization. This value can be found in the Monetate  cookie (mt.v) that is uniquely set for each visitor so that personalization of the search results  can use all Monetate functionality.
+        in: query
+        name: mid
+        schema:
+          type: string
+      - description: 'Explicitly request any field or attribute you want in the response.  Only product codes are returned by default. Some common values include productName, priceL (price low), priceH (price high),  product attribute by name, product image URLs, product category names, category IDs and codes,  product short/long descriptions, and score (the relevancy score). '
+        in: query
+        name: fieldList
+        schema:
+          type: string
+      - description: Allows you to drop the tenant~ or similar prefix.
+        in: query
+        name: omitNamespace
+        schema:
+          type: boolean
+      - description: Optional. If true return all images instead of default images.
+        in: query
+        name: includeAllImages
+        schema:
+          default: false
+          type: boolean
+      - description: Valid values are Default, SkipAutocorrect, SkipDidyoumean, and SkipAll.
+        in: query
+        name: spellcorrectOverride
+        schema:
+          default: Default
+          type: string
+      - description: Whether or not to use subscription pricing instead of the default product pricing.
+        in: query
+        name: useSubscriptionPricing
+        schema:
+          default: false
+          type: boolean
+      - description: Optional. Use a specific search-merchandizing-rule code if provided.
+        in: query
+        name: merchandizingRuleCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSearchResult'
+          description: OK
+      summary: Site Search
+      tags:
+      - ProductSearch
+  /commerce/catalog/storefront/productsearch/visualsearch:
+    get:
+      description: Searches the items displayed on the storefront.
+      parameters:
+      - in: query
+        name: SearchTerm
+        required: true
+        schema:
+          minLength: 2
+          type: string
+      - in: query
+        name: Filters
+        schema:
+          items:
+            $ref: '#/components/schemas/RequestFilter'
+          type: array
+      - in: query
+        name: Returnfields
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: Searchfields
+        schema:
+          items:
+            type: string
+          type: array
+      - in: query
+        name: Ignoregrouping
+        schema:
+          type: boolean
+      - in: query
+        name: NumResults
+        schema:
+          format: int32
+          maximum: 10000
+          minimum: 1
+          type: integer
+      - in: query
+        name: PageNumber
+        schema:
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+      - in: query
+        name: ApplicationId
+        schema:
+          maxLength: 50
+          minLength: 1
+          type: string
+      - in: query
+        name: CatalogId
+        schema:
+          maxLength: 50
+          minLength: 1
+          type: string
+      - in: query
+        name: SessionId
+        schema:
+          maxLength: 100
+          type: string
+      - in: query
+        name: TrackingId
+        schema:
+          maxLength: 100
+          type: string
+      - in: query
+        name: ApiKey
+        schema:
+          type: string
+      - in: query
+        name: Revision
+        schema:
+          type: string
+      - in: query
+        name: Cip
+        schema:
+          type: string
+      - in: query
+        name: DisplayDebug
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VisualSearchResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/VisualSearchResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/VisualSearchResult'
+          description: OK
+      summary: Type Ahead Search
+      tags:
+      - ProductSearch
+  /commerce/rules/purchaselimit/evaluate:
+    post:
+      description: Evaluate the purchase limits for given products and customer.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseLimitEvalRequest'
+        description: The request containing the products and customer to evaluate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitEvalResponseCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitEvalResponseCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PurchaseLimitEvalResponseCollection'
+          description: OK
+      summary: Evaluate Purchase Limits
+      tags:
+      - Rules
+  /commerce/rules/return/evaluate:
+    post:
+      description: Evaluate the return eligibility for given products and customer
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReturnEvalRequest'
+        description: The request containing the products and customer to evaluate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnEvalResponseCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReturnEvalResponseCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReturnEvalResponseCollection'
+          description: OK
+      summary: Evaluate Return Eligibility
+      tags:
+      - Rules
+  /commerce/rules/safetystock/evaluate:
+    post:
+      description: Evaluate the safety stock for given products and locations
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/SafetyStockEvalRequest'
+              type: array
+        description: The request containing the products and customer to evaluate
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SafetyStockEvalResponse'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SafetyStockEvalResponse'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SafetyStockEvalResponse'
+                type: array
+          description: OK
+      summary: Evaluate Safety Stock Rules
+      tags:
+      - Rules
+  /commerce/catalog/storefront/searchmerchandizingrules/previewsearchmerchandizingrule:
+    post:
+      description: Preview search results with given SearchMerchandizingRule object
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMerchandizingRuleParameters'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MerchandizingRulePreviewResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/MerchandizingRulePreviewResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/MerchandizingRulePreviewResult'
+          description: OK
+      summary: Preview Search Merchandizing Rule
+      tags:
+      - SearchMerchandizingRules
+  /commerce/catalog/storefront/productsearch/preview:
+    post:
+      description: Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindProductsPreviewParameters'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchPreviewResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchPreviewResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSearchPreviewResult'
+          description: OK
+      summary: Search Preview
+      tags:
+      - SearchPreview
+  /commerce/catalog/storefront/productsearch/sitesearchpreview:
+    post:
+      description: Though this endpoint only returns data, the decision has been made to make it a POST because the request body will be larger than what a url length can contain.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindProductsPreviewParameters'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchPreviewResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSearchPreviewResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSearchPreviewResult'
+          description: OK
+      summary: Site Search Preview
+      tags:
+      - SearchPreview
+  /commerce/catalog/storefront/pricelists/{priceListCode}:
+    get:
+      description: Retrieves the price list for the given priceListCode
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesPriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesPriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesPriceList'
+          description: OK
+      summary: Get Price List
+      tags:
+      - StorefrontPriceLists
+  /commerce/catalog/storefront/pricelists/resolved:
+    get:
+      description: This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.
+      parameters:
+      - in: query
+        name: customerAccountId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+          description: OK
+      summary: Get Resolved Price List (GET)
+      tags:
+      - StorefrontPriceLists
+    post:
+      description: This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+          description: OK
+      summary: Get Resolved Price List (POST)
+      tags:
+      - StorefrontPriceLists
+  /commerce/catalog/storefront/products/{productCode}/configure:
+    post:
+      description: Configure a new product selection. This occurs each time a shopper selects a product option as they configure a product. Once all the required product options are configured, the product can be added to a cart.
+      parameters:
+      - description: 'Merchant-created code for the product being configured, for example, a SKU. Max length: 30.'
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: If true, the response returns product details such as. If false, returns a product summary such as the product name, price, and sale price.
+        in: query
+        name: includeOptionDetails
+        schema:
+          type: boolean
+      - description: Determines whether or not to check inventory on an item when validating
+        in: query
+        name: skipInventoryCheck
+        schema:
+          default: false
+          type: boolean
+      - description: Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
+        in: query
+        name: quantity
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: purchaseLocation
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: variationProductCodeFilter
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: useSubscriptionPricing
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: subscriptionFrequency
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: customerSegments
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductOptionSelections'
+        description: Shopper-selected options.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfiguredProduct'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ConfiguredProduct'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ConfiguredProduct'
+          description: OK
+      summary: Configure Variation Product
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/locationinventory:
+    post:
+      description: Get location inventories for a list of products
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LocationInventoryQuery'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationInventoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationInventoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationInventoryCollection'
+          description: OK
+      summary: Get location inventories for a list of products
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/{productCode}/locationinventory:
+    get:
+      description: Get product inventory. You can provide up to a maximum of 200 product codes and 200 location codes in the endpoint by default.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: locationCodes
+        schema:
+          type: string
+      - in: query
+        name: includeFutureInventory
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: includeSegmentedInventory
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: serialNumber
+        schema:
+          type: string
+      - in: query
+        name: condition
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocationInventoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/LocationInventoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/LocationInventoryCollection'
+          description: OK
+      summary: Get Location Inventory
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/{productCode}:
+    get:
+      description: Retrieves information about a single product given its product code.
+      parameters:
+      - description: 'Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.'
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: 'Optional. Merchant-created code associated with a specific product variation. Max length: #.'
+        in: query
+        name: variationProductCode
+        schema:
+          type: string
+      - description: Optional. Response groups to be determined.
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: Optional. If true, return a product if it is located but inactive.
+        in: query
+        name: allowInactive
+        schema:
+          type: boolean
+      - description: Determines whether or not to check inventory on an item when validating
+        in: query
+        name: skipInventoryCheck
+        schema:
+          default: false
+          type: boolean
+      - description: Optional. If true, will still return the product, even if product is out of stock and the out of stock behavior is set to “Hide Product in Store”. If false or omitted, the same product will return a 404 not found. Suppressing the 404 not found is useful for site SEO.
+        in: query
+        name: supressOutOfStock404
+        schema:
+          default: false
+          type: boolean
+      - description: Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
+        in: query
+        name: quantity
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: acceptVariantProductCode
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: purchaseLocation
+        schema:
+          type: string
+      - in: query
+        name: variationProductCodeFilter
+        schema:
+          type: string
+      - in: query
+        name: sliceValue
+        schema:
+          type: string
+      - in: query
+        name: includeAllImages
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: useSubscriptionPricing
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: customerSegments
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesProduct'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesProduct'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesProduct'
+          description: OK
+      summary: Get Product
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/costs:
+    post:
+      description: Get costs for products. This cost is the amount the merchant pays for the product—it is not the price that the shopper sees on the storefront (which is usually higher).
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductCostQuery'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductCostCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductCostCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductCostCollection'
+          description: OK
+      summary: Get Product Costs
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/indexing/{productCode}:
+    get:
+      description: Retrieves information about a single product given its product code for Mozu to index in the search engine
+      parameters:
+      - description: 'Required. Merchant-created code associated with the product, for example, a SKU. Max length: 30.'
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: Optional. Response groups to be determined.
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: "Optional. The current version of the product to use for latency checking. \n            \tIf this instance of Product Runtime is configured to run against a replicated database node that has a lesser version than this value, it will read from the primary database node to prevent stale data."
+        in: query
+        name: productVersion
+        schema:
+          format: int64
+          type: integer
+      - in: query
+        name: lastModifiedDate
+        schema:
+          format: date-time
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductForIndexing'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductForIndexing'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductForIndexing'
+          description: OK
+      summary: Get Product for Indexing
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/{productCode}/substitutions:
+    get:
+      description: Returns a list of up to 10 products that can be substituted for the provided product code.
+      parameters:
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: preferredProductCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductSubstituteCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductSubstituteCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductSubstituteCollection'
+          description: OK
+      summary: Get Product Substitutions
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products:
+    get:
+      description: Retrieves a list of products that appear on the storefront according to any specified filter criteria and sort options.
+      parameters:
+      - description: 'Optional. A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than, gt = greater than or equals, le = less than or equals, sw = starts with, or cont = contains.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: 'Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a pageSize of 25, to get the 51st through the 75th items, startIndex=3. Default value: 0.'
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: 'Used to page results from a query. Indicates the maximum number of entities to return from a single query. Default value: 20. Maximum value: 200.'
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: 'Optional. Sort the results by and the order in which the results appear. Either ascending order (a-z) which accepts ''asc'' or ''ASC'' or descending order (z-a) which accepts ''desc'' or ''DESC''. The sortBy parameter follows an available property. For example, to sort the results by “ID” ascending then by “CreateDate” descending, use: id asc,createdate desc.'
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Optional. Response groups to be determined.
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: responseOptions
+        schema:
+          type: string
+      - description: Pass in * to begin a deep page operation. The response will include a nextCursorMark value. Pass this into the next call. Continue with this pattern until nextCursorMark is null.
+        in: query
+        name: cursorMark
+        schema:
+          type: string
+      - in: query
+        name: defaultSort
+        schema:
+          type: string
+      - in: query
+        name: mid
+        schema:
+          type: string
+      - description: Optional. If true return all images instead of default images.
+        in: query
+        name: includeAllImages
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: useSubscriptionPricing
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: includeProductDetailsOnlyProperty
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: collapse
+        schema:
+          default: false
+          type: boolean
+      - in: query
+        name: customerSegments
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesProductCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesProductCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesProductCollection'
+          description: OK
+      summary: Get Products
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/{productCode}/validateDiscounts:
+    post:
+      description: Validate if a collection of discounts is valid for a product.  This includes discounts that would normally be considered order level discounts.
+      parameters:
+      - description: ''
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: variationProductCode
+        schema:
+          type: string
+      - description: Customer Id may be set in the querystring or in the user claims bag if the caller context is a shopper.
+        in: query
+        name: customerAccountId
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: allowInactive
+        schema:
+          type: boolean
+      - description: ''
+        in: query
+        name: skipInventoryCheck
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscountSelections'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscountValidationSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DiscountValidationSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DiscountValidationSummary'
+          description: OK
+      summary: Validate Discounts
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/products/{productCode}/validate:
+    post:
+      description: Validate the final state of shopper-selected options.
+      parameters:
+      - description: Merchant-created code of product being validated.
+        in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - description: Determines whether or not to check inventory on an item when validating
+        in: query
+        name: skipInventoryCheck
+        schema:
+          default: false
+          type: boolean
+      - description: Optional.  If specified, will be used for returning pricing based on volume if applicable.  Defaults to 1 if not specified.
+        in: query
+        name: quantity
+        schema:
+          format: int32
+          type: integer
+      - description: Determines whether or not to add configured default-extras on an item when validating
+        in: query
+        name: skipDefaults
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: purchaseLocation
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: useSubscriptionPricing
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: recalculateDynamicCategories
+        schema:
+          default: false
+          type: boolean
+      - description: ''
+        in: query
+        name: acceptVariantProductCode
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductOptionSelections'
+        description: Final state of shopper selected options.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductValidationSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProductValidationSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProductValidationSummary'
+          description: OK
+      summary: Validate Variant Product
+      tags:
+      - StorefrontProducts
+  /commerce/catalog/storefront/searchredirect/{redirectId}:
+    get:
+      description: Get search redirect item by redirect Id.
+      parameters:
+      - description: ''
+        in: path
+        name: redirectId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Search Redirect
+      tags:
+      - StorefrontSearchRedirect
+  /commerce/catalog/storefront/searchredirect/redirects:
+    get:
+      description: Get list of search redirect items.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Get Search Redirects
+      tags:
+      - StorefrontSearchRedirect
+security:
+- bearerAuth: []
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL

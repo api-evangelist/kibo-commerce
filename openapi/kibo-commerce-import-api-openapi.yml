@@ -1,0 +1,333 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Import API
+  version: '1.0'
+  description: 'Operations tagged Import across 2 of this provider''s published API definitions: openapi_openapi_importexport.json, kibo-commerce-importexport-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Import
+paths:
+  /platform/data/import/{id}:
+    delete:
+      description: Deletes an existing import job. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Import Job
+      tags:
+      - Import
+      operationId: deletePlatformDataImportById
+      x-operation-id-source: derived
+    get:
+      description: Retrieves an import job by ID. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+          description: OK
+      summary: Get Import Job
+      tags:
+      - Import
+      operationId: getPlatformDataImportById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/import:
+    get:
+      description: Retrieves a list of all import jobs. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ImportJob'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ImportJob'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ImportJob'
+                type: array
+          description: OK
+      summary: Get Import Jobs
+      tags:
+      - Import
+      operationId: getPlatformDataImport
+      x-operation-id-source: derived
+    post:
+      description: Creates a new import job. For detailed usage, file format specifications, and field references, see the Import/Export API Overview.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ImportJob'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ImportJob'
+          description: OK
+      summary: Create Import Job
+      tags:
+      - Import
+      operationId: postPlatformDataImport
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ImportResource:
+      properties:
+        allowSyscalcValueUpdates:
+          type: boolean
+        configuration: {}
+        deleteOmitted:
+          type: boolean
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        format:
+          type:
+          - string
+          - 'null'
+        isComplete:
+          type: boolean
+        resource:
+          type:
+          - string
+          - 'null'
+        stateDetails:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        statusMessage:
+          type:
+          - string
+          - 'null'
+      type: object
+    ImportJob:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        configuration: {}
+        contextOverride:
+          $ref: '#/components/schemas/ContextOverride'
+        domain:
+          type:
+          - string
+          - 'null'
+        files:
+          items:
+            $ref: '#/components/schemas/DropLocation'
+          type:
+          - array
+          - 'null'
+        format:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        isComplete:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        requester:
+          type:
+          - string
+          - 'null'
+        resources:
+          items:
+            $ref: '#/components/schemas/ImportResource'
+          type:
+          - array
+          - 'null'
+        status:
+          type:
+          - string
+          - 'null'
+        statusDetails:
+          type:
+          - string
+          - 'null'
+        statusMessage:
+          type:
+          - string
+          - 'null'
+        tenant:
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    DropLocation:
+      properties:
+        fileName:
+          type:
+          - string
+          - 'null'
+        fileType:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        locationType:
+          type:
+          - string
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+      type: object
+    ContextOverride:
+      properties:
+        catalog:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        currency:
+          type:
+          - string
+          - 'null'
+        locale:
+          type:
+          - string
+          - 'null'
+        masterCatalog:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        site:
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_importexport.json
+- kibo-commerce-importexport-openapi.yml

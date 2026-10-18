@@ -1,0 +1,343 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Document Type API
+  version: '1.0'
+  description: 'Operations tagged DocumentType across 2 of this provider''s published API definitions: openapi_openapi_content.json, kibo-commerce-content-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Document type
+paths:
+  /content/documenttypes/{documentTypeName}:
+    get:
+      parameters:
+      - description: ''
+        in: path
+        name: documentTypeName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+          description: OK
+      summary: Get Document Type
+      tags:
+      - Document type
+      operationId: getContentDocumenttypesByDocumentTypeName
+      x-operation-id-source: derived
+    put:
+      parameters:
+      - description: ''
+        in: path
+        name: documentTypeName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentType'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/DocumentType'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/DocumentType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+          description: OK
+      summary: Update Document Type
+      tags:
+      - Document type
+      operationId: putContentDocumenttypesByDocumentTypeName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /content/documenttypes:
+    get:
+      description: Get Document Types. All documents have a Document Type that describes the schema that the document must implement and its associated metadata, and is validated whenever a document is created or modified. The immutable types defined out-of-the-box are web_page, entityEditor, document, image, snippets, productContent, categoryContent, pageTemplateContent, emailTemplateContent, and folder.
+      parameters:
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTypeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentTypeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentTypeCollection'
+          description: OK
+      summary: Get Document Types
+      tags:
+      - Document type
+      operationId: getContentDocumenttypes
+      x-operation-id-source: derived
+    post:
+      description: Create Document Type. All documents have a Document Type that describes the schema that the document must implement and its associated metadata, and is validated whenever a document is created or modified. The immutable types defined out-of-the-box are web_page, entityEditor, document, image, snippets, productContent, categoryContent, pageTemplateContent, emailTemplateContent, and folder.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DocumentType'
+          application/octet-stream:
+            schema:
+              $ref: '#/components/schemas/DocumentType'
+          text/plain:
+            schema:
+              $ref: '#/components/schemas/DocumentType'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DocumentType'
+          description: OK
+      summary: Create Document Type
+      tags:
+      - Document type
+      operationId: postContentDocumenttypes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    DocumentType:
+      description: The schema a document must implement and associated metadata. A documentType is created at a tenant scope and is therefore shared amongst all child contexts (masterCatalog, catalog, site).
+      properties:
+        adminName:
+          description: The administrative name of the documentType.
+          type:
+          - string
+          - 'null'
+        documentTypeFQN:
+          description: The unique identifier of the documentType, represented by name@namespace. The documentTypeFQN must be provided when creating the documentType, or the name and namespace fields must be provided.
+          type:
+          - string
+          - 'null'
+        installationPackage:
+          description: "Optionally, a documentType can be defined in an installationPackage and then installed into a tenant. Installed documentTypes can only be updated via installation upgrades. \nCurrently only internal Mozu platform components can create installations. This field is system-supplied and read-only."
+          type:
+          - string
+          - 'null'
+        metadata:
+          description: Allows arbitrary data to be stored on the documentType.
+        name:
+          description: The name component of the documentType, name@namespace. The name must be unique within the namespace component and cannot be updated.
+          type:
+          - string
+          - 'null'
+        namespace:
+          description: The namespace component of the documentType, name@namespace. The issued dev account namespace must be used unless elevated privileges allow a blank namespace to be used. The namespace cannot be updated.
+          type:
+          - string
+          - 'null'
+        properties:
+          description: An array of the schema elements that a document implementing this documentType will have.
+          items:
+            $ref: '#/components/schemas/Property'
+          type:
+          - array
+          - 'null'
+        version:
+          description: The version of the installationPackge installed. This field is read-only.
+          type:
+          - string
+          - 'null'
+      type: object
+    Property:
+      description: A schema element describing a name/value pair that can be stored on a document's properties field, where the name is directly defined by the propertyName and the value is constrained by the propertyType.
+      properties:
+        isMultiValued:
+          description: True if the property value is an array, where each array value must conform to the propertyType. When false, the property value must directly conform to the propertyType. This value is false by default.
+          type: boolean
+        isRequired:
+          description: True if the property must be present on the document. This value is false by default.
+          type: boolean
+        name:
+          description: 'The name portion of the name/value pair stored on a document''s properties field. The property name value must be unique within the properties defined on the documentType.
+
+            This value cannot be updated after property creation.'
+          type:
+          - string
+          - 'null'
+        propertyType:
+          $ref: '#/components/schemas/PropertyType'
+      type: object
+    DocumentTypeCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/DocumentType'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PropertyType:
+      description: "The schema a document property value must implement. A propertyType is created at a tenant scope and is therefore shared amongst all child contexts (masterCatalog, catalog, site).\nA propertyType is analogous to the type argument of a class property in object oriented programming. \nA propertyType's dataType field is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology."
+      properties:
+        adminName:
+          description: The administrative name of the propertyType.
+          type:
+          - string
+          - 'null'
+        dataType:
+          description: 'The underlying value type that can be held in the document''s property value. Valid values are
+
+            string
+
+            number
+
+            boolean
+
+            datetime
+
+            json
+
+            The dataType is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.'
+          type:
+          - string
+          - 'null'
+        installationPackage:
+          description: "Optionally, a propertyType can be defined in an installationPackage and then installed into a tenant. Installed propertyTypes can only be updated via installation upgrades. \nCurrently only internal Mozu platform components can create installations. This field is system-supplied and read-only."
+          type:
+          - string
+          - 'null'
+        isAggregatable:
+          description: tbd
+          type:
+          - boolean
+          - 'null'
+        isQueryable:
+          description: tbd
+          type:
+          - boolean
+          - 'null'
+        isSortable:
+          description: tbd
+          type:
+          - boolean
+          - 'null'
+        name:
+          description: The name component of the propertyType, name@namespace. The name must be unique within the namespace component and cannot be updated.
+          type:
+          - string
+          - 'null'
+        namespace:
+          description: The namespace component of the propertyType, name@namespace. The issued dev account namespace must be used unless elevated privileges allow a blank namespace to be used. The namespace cannot be updated.
+          type:
+          - string
+          - 'null'
+        propertyTypeFQN:
+          description: The unique identifier of the propertyTYpe, represented by name@namespace. The propertyTypeFQN must be provided when creating the propertyType, or the name and namespace fields must be provided.
+          type:
+          - string
+          - 'null'
+        version:
+          description: The version of the installationPackge installed. This field is read-only.
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_content.json
+- kibo-commerce-content-openapi.yml

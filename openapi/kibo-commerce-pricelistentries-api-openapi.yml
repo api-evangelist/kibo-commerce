@@ -1,0 +1,805 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Price List Entries API
+  version: '1.0'
+  description: 'Operations tagged PriceListEntries across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: PriceListEntries
+paths:
+  /commerce/catalog/admin/pricelists/bulkaddentries:
+    post:
+      description: Add bulk price list entries. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+      parameters:
+      - in: query
+        name: publishEvents
+        schema:
+          default: true
+          type: boolean
+      - in: query
+        name: invalidateCache
+        schema:
+          default: true
+          type: boolean
+      - description: Returns status codes of 200 (complete success), 206 (some entries failed validation), 409 (all entries failed validation), or 500 (unexpected failure)
+        in: query
+        name: allowPartialSuccess
+        schema:
+          type: boolean
+      - in: query
+        name: batchJobCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PriceListEntry'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+          description: OK
+      summary: Bulk Add Price List Entries
+      tags:
+      - PriceListEntries
+      operationId: postCommerceCatalogAdminPricelistsBulkaddentries
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/pricelists/bulkdeleteentries:
+    post:
+      description: Deletes up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+      parameters:
+      - in: query
+        name: publishEvents
+        schema:
+          default: true
+          type: boolean
+      - in: query
+        name: invalidateCache
+        schema:
+          default: true
+          type: boolean
+      - in: query
+        name: allowPartialSuccess
+        schema:
+          type: boolean
+      - in: query
+        name: batchJobCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PriceListEntry'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+          description: OK
+      summary: Bulk Delete Price List Entries
+      tags:
+      - PriceListEntries
+      operationId: postCommerceCatalogAdminPricelistsBulkdeleteentries
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/pricelists/bulkupdateentries:
+    post:
+      description: 'Updates up to 5000 price list entries in bulk. By default, any single error will cause the entire batch to fail. If desired, set allowPartialSuccess=true to allow valid entries to be completed even if others in the batch fail.
+
+        This method performs an upsert, which will add missing entries if they do not exist. It can be used in place of Bulk Add Price List Entries to simplify application logic when the desired behavior is to update an entry or add the entry if it does not exist.
+
+
+        Disable the publishEvents parameter to prevent publishing the event related to updating price list entries in the system. Disabling this property helps you prevent performance delays if you expect the event to trigger the re-indexing of a large number of products, or if you want to postpone the operations of other applications and services listening for the event. Disable the invalidateCache parameter if you expect to encounter unacceptable performance hits related to clearing the cache for each product in the price list entries.'
+      parameters:
+      - in: query
+        name: publishEvents
+        schema:
+          default: true
+          type: boolean
+      - in: query
+        name: invalidateCache
+        schema:
+          default: true
+          type: boolean
+      - in: query
+        name: allowPartialSuccess
+        schema:
+          type: boolean
+      - in: query
+        name: batchJobCode
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/PriceListEntry'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListBulkResult'
+          description: OK
+      summary: Bulk Update Price List Entries
+      tags:
+      - PriceListEntries
+      operationId: postCommerceCatalogAdminPricelistsBulkupdateentries
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/pricelists/{priceListCode}/entries:
+    get:
+      description: Retrieves the entries within a price list.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListEntryCollection'
+          description: OK
+      summary: Get Price List Entries
+      tags:
+      - PriceListEntries
+      operationId: getCommerceCatalogAdminPricelistsByPriceListCodeEntries
+      x-operation-id-source: derived
+    post:
+      description: Adds an entry to a price list.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceListEntry'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+          description: OK
+      summary: Add Price List Entry
+      tags:
+      - PriceListEntries
+      operationId: postCommerceCatalogAdminPricelistsByPriceListCodeEntries
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/pricelists/{priceListCode}/entries/{productCode}/{currencyCode}:
+    delete:
+      description: Deletes a price liste entry for a particular product and currency code.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startDate
+        schema:
+          format: date-time
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Price List Entry by Currency
+      tags:
+      - PriceListEntries
+      operationId: deleteCommerceCatalogAdminPricelistsByPriceListCodeEntriesByProductCodeByCurrencyCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves price list entries for a particular product and currency code.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startDate
+        schema:
+          format: date-time
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+          description: OK
+      summary: Get Price List Entries by Currency
+      tags:
+      - PriceListEntries
+      operationId: getCommerceCatalogAdminPricelistsByPriceListCodeEntriesByProductCodeByCurrencyCode
+      x-operation-id-source: derived
+    put:
+      description: Updates price list entry for a particular product and currency code.
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: productCode
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startDate
+        schema:
+          format: date-time
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PriceListEntry'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PriceListEntry'
+          description: OK
+      summary: Update Price List Entry by Currency
+      tags:
+      - PriceListEntries
+      operationId: putCommerceCatalogAdminPricelistsByPriceListCodeEntriesByProductCodeByCurrencyCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PriceListBulkResult:
+      description: Category
+      properties:
+        failureCount:
+          format: int32
+          type: integer
+        failureDetails:
+          items:
+            $ref: '#/components/schemas/PriceListEntryFailure'
+          type:
+          - array
+          - 'null'
+        successCount:
+          format: int32
+          type: integer
+      type: object
+    PriceListEntry:
+      description: Category
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        cost:
+          format: double
+          type:
+          - number
+          - 'null'
+        costMode:
+          type:
+          - string
+          - 'null'
+        currencyCode:
+          minLength: 1
+          type: string
+        discountsRestricted:
+          type:
+          - boolean
+          - 'null'
+        discountsRestrictedEndDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        discountsRestrictedMode:
+          type:
+          - string
+          - 'null'
+        discountsRestrictedStartDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        endDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        extraEntries:
+          items:
+            $ref: '#/components/schemas/PriceListEntryExtra'
+          type:
+          - array
+          - 'null'
+        isVariation:
+          type: boolean
+        map:
+          format: double
+          type:
+          - number
+          - 'null'
+        mapEndDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        mapMode:
+          type:
+          - string
+          - 'null'
+        mapStartDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        msrp:
+          format: double
+          type:
+          - number
+          - 'null'
+        msrpMode:
+          type:
+          - string
+          - 'null'
+        options:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsProductOption'
+          type:
+          - array
+          - 'null'
+        priceEntries:
+          items:
+            $ref: '#/components/schemas/PriceListEntryPrice'
+          type:
+          - array
+          - 'null'
+        priceListCode:
+          description: 'External unique identifier of the PriceList. Must be unique an only contain url sanitized characters. Max length is
+
+            50'
+          type:
+          - string
+          - 'null'
+        priceListEntryMode:
+          type:
+          - string
+          - 'null'
+        priceListEntrySequence:
+          format: int32
+          type: integer
+        priceListEntryTypeCode:
+          type:
+          - string
+          - 'null'
+        productCode:
+          minLength: 1
+          type: string
+        productName:
+          type:
+          - string
+          - 'null'
+        startDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      required:
+      - currencyCode
+      - productCode
+      type: object
+    PriceListEntryFailure:
+      properties:
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        msg:
+          type:
+          - string
+          - 'null'
+        priceListCode:
+          type:
+          - string
+          - 'null'
+        productCode:
+          type:
+          - string
+          - 'null'
+        startDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsProductOption:
+      description: "Product options for configurable or stand-alone products. A configurable option is one that the shopper chooses when ordering, for example, \nthe color of a T-shirt. A stand-alone option is independent of the product and can be added to the product order. For example, a monogram."
+      properties:
+        attributeFQN:
+          description: Unique identifier of the Attribute.
+          type:
+          - string
+          - 'null'
+        isProductImageGroupSelector:
+          description: Defines whether or not this option can be used to segment product images
+          type:
+          - boolean
+          - 'null'
+        values:
+          description: List of all the values for this product option.
+          items:
+            $ref: '#/components/schemas/ProductOptionValue'
+          type:
+          - array
+          - 'null'
+      type: object
+    PriceListEntryExtra:
+      description: Extra for an entry on a price list
+      properties:
+        attributeCode:
+          description: 'AttributeCode.
+
+            ReadOnly'
+          type:
+          - string
+          - 'null'
+        attributeFQN:
+          description: 'AttributeFQN of the extra
+
+            ReadOnly'
+          minLength: 1
+          type: string
+        displayValue:
+          description: 'Value to display.  Currently only vaild when Value is a string type.
+
+            ReadOnly'
+          type:
+          - string
+          - 'null'
+        price:
+          description: PriceList price for the extra
+          format: double
+          type: number
+        value:
+          description: 'The value stored with the extra
+
+            ReadOnly'
+      required:
+      - attributeFQN
+      type: object
+    PriceListEntryPrice:
+      properties:
+        listPrice:
+          format: double
+          type:
+          - number
+          - 'null'
+        listPriceMode:
+          type:
+          - string
+          - 'null'
+        minQty:
+          format: int32
+          type: integer
+        salePrice:
+          format: double
+          type:
+          - number
+          - 'null'
+        salePriceMode:
+          type:
+          - string
+          - 'null'
+        subscriptionPrice:
+          format: double
+          type:
+          - number
+          - 'null'
+        subscriptionPriceMode:
+          type:
+          - string
+          - 'null'
+        subscriptionSalePrice:
+          format: double
+          type:
+          - number
+          - 'null'
+        subscriptionSalePriceMode:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductOptionValue:
+      description: A value of a product option for this product. For example, a computer product may have an option called "Memory" that can have the values "6GB,"8GB," and "12GB."
+      properties:
+        attributeVocabularyValueDetail:
+          $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        value: {}
+      type: object
+    AttributeVocabularyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          minLength: 1
+          type: string
+      type: object
+    CatalogAdminsAttributeVocabularyValue:
+      description: Value of an attribute
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        displayOrder:
+          description: The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        mappedGenericValues:
+          description: "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time."
+          items: {}
+          maxItems: 200
+          type:
+          - array
+          - 'null'
+        productName:
+          description: The ProductName when the Attribute DataType is ProductCode.
+          type:
+          - string
+          - 'null'
+        value:
+          description: "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed."
+          maxLength: 50
+          pattern: ^[A-Za-z0-9-_\.()]*[A-Za-z0-9-_()]
+        valueSequence:
+          description: Read only System generated monotonically increasing unique sequence.
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    PriceListEntryCollection:
+      description: Collection of categories returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PriceListEntry'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

@@ -1,0 +1,142 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Block Assignment API
+  version: '1.0'
+  description: 'Operations tagged InventoryBlockAssignment across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryBlockAssignment
+paths:
+  /commerce/inventory/v5/inventory/blockAssignment:
+    post:
+      description: Setting the blockAssignment flag to true for the product based on the given request
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/BlockAssignmentRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BaseResponse'
+          description: Success
+        '500':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    type: string
+                  message:
+                    $ref: '#/components/schemas/BaseResponse'
+                type: object
+          description: Internal Server Error
+      summary: Block Assignment
+      tags:
+      - InventoryBlockAssignment
+      operationId: postCommerceInventoryV5InventoryBlockAssignment
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  requestBodies:
+    BlockAssignmentRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/BlockAssignmentRequest'
+      description: Request to block assignment on the product
+      required: true
+  schemas:
+    BaseResponse:
+      description: Base Response Model
+      properties:
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        success:
+          description: Flag for success
+          type: boolean
+      title: Base Response
+      type: object
+    BlockAssignmentItem:
+      description: Items for enabling blockAssignment
+      properties:
+        blockAssignment:
+          description: Block assignment of item at product/location level. ONLY allowed on deallocate.
+          title: Block Item Assignment
+          type: boolean
+        partNumber:
+          description: part number
+          title: part number
+          type: string
+        quantity:
+          description: quantity
+          title: quantity
+          type: integer
+        sku:
+          description: sku
+          title: sku
+          type: string
+        upc:
+          description: upc
+          title: upc
+          type: string
+      required:
+      - blockAssignment
+      - itemIdentifiers
+      title: BlockAssignmentItem
+      type: object
+    BlockAssignmentRequest:
+      description: Request to block assignment on the product
+      properties:
+        items:
+          description: list of items for blocking Assignment
+          items:
+            $ref: '#/components/schemas/BlockAssignmentItem'
+          type: array
+        locationCode:
+          description: Location Code
+          title: location code
+          type: string
+        pageNum:
+          description: which page to show
+          type: integer
+        pageSize:
+          description: how many results to show per page
+          type: integer
+        sortBy:
+          description: index to sort results by
+          type: string
+        userID:
+          description: user id
+          type: integer
+      title: Block Assignment Request
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

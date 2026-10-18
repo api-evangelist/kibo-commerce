@@ -1,0 +1,1037 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-package-schema.json",
+  "title": "Package",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/Package",
+  "properties": {
+    "apiVersion": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appConfigUrl": {
+      "description": "This will be used by the 3rd party developers to set a URL the intalled \napplications can call from the Tenant installation/",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appId": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appKey": {
+      "description": "App Key for the package in question.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "appSchemeVersion": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationAttributes": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/ApplicationAttribute"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "applicationBehaviors": {
+      "description": "List of Application Behaviors that apply to this version of the application.",
+      "items": {
+        "$ref": "#/$defs/ApplicationBehavior"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "applicationCapabilities": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/ApplicationCapability"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "applicationCapabilityTypes": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/ApplicationCapabilityType"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "applicationDescription": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationDetailId": {
+      "description": "",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "applicationEntitlements": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/ApplicationEntitlement"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "applicationId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationOwnerDevAccountId": {
+      "description": "This is the DevAccountId that owns the application",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationStatus": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationStatusId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationStatusName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationSubscriptions": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/ApplicationSubscription"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "applicationTypeId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "applicationTypeName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationUpdateDate": {
+      "description": "",
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "assetFileCount": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "attributeNamespace": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dataNamespace": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hasApplicationVersions": {
+      "description": "",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "isDeleted": {
+      "description": "",
+      "type": "boolean"
+    },
+    "isLocked": {
+      "description": "",
+      "type": "boolean"
+    },
+    "isReleasePackage": {
+      "description": "",
+      "type": "boolean"
+    },
+    "legacyNamespace": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "majorVersion": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "minorVersion": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "namespace": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "namespaceRegistryId": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "packageDescription": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "packageGuid": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "packageName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parentThemeAppKey": {
+      "description": "The parent theme AppKey if this is a theme and \nthe theme extends a valid, published theme.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "parentThemeName": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "publishedParentSemanticVersion": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "publishedParentThemeId": {
+      "description": "",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "revision": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    },
+    "semanticVersionRange": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "sharedSecret": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "themeEngineVersion": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updateAvailable": {
+      "description": "Whether or not there's a theme update.",
+      "type": "boolean"
+    },
+    "updateDate": {
+      "description": "",
+      "format": "date-time",
+      "type": "string"
+    },
+    "updateParentAppKey": {
+      "description": "The AppKey is a runtime type.\nThis only applies for themes that inherit from another theme.\nIt shows the most current update available.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updateParentThemeName": {
+      "description": "This only applies for themes that inherit from another theme.\nIt shows the name of the most current update available.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "updateParentThemeVersion": {
+      "description": "This only applies for themes that inherit from another theme.\nIt shows the version of the most current update available.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "userId": {
+      "description": "",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "validApplicationStatusIdList": {
+      "description": "List of Statuses that the application can move to during the application lifecycle.\nThis is based on what the current value of the ApplicatinStatusId is.",
+      "items": {
+        "format": "int32",
+        "type": "integer"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ApplicationAttribute": {
+      "description": "Holds attribute definitions for AppVersion",
+      "properties": {
+        "attributeCodes": {
+          "description": "Comma delimited list of attribute codes.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attributeJson": {
+          "description": "json representation of attribute definitions",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attributes": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/Attribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "isAppliedToBase": {
+          "type": "boolean"
+        },
+        "packageId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "productTypeJson": {
+          "description": "Will contain ProductTypeCollection if Product, else AttributeSet",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourceTenantId": {
+          "description": "Source Tenant Id",
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceTenantName": {
+          "description": "Source Tenant Name",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "subsystem": {
+          "description": "Customer, Order, or Product",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationBehavior": {
+      "description": "",
+      "properties": {
+        "behaviorId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationCapability": {
+      "description": "",
+      "properties": {
+        "applicationCapabilityId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationCapabilityTypeId": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "applicationEndPoint": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "capabilityTypeContractId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationCapabilityDomain": {
+      "description": "",
+      "properties": {
+        "applicationCapabilityDomainId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationCapabilityDomainValues1": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/ApplicationCapabilityDomainValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "applicationCapabilityDomainValues2": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/ApplicationCapabilityDomainValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "applicationCapabilityTypeId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationCapabilityDomainValue": {
+      "description": "",
+      "properties": {
+        "applicationCapabilityDomainId1": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "applicationCapabilityDomainId2": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "applicationCapabilityDomainValueId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "valueName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationCapabilityType": {
+      "description": "",
+      "properties": {
+        "applicationCapabilities": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/ApplicationCapability"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "applicationCapabilityDomains": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/ApplicationCapabilityDomain"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "applicationCapabilityTypeId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "capabilityTypeName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isImplemented": {
+          "description": "",
+          "type": "boolean"
+        },
+        "isInitializedByDefault": {
+          "description": "",
+          "type": "boolean"
+        },
+        "packageId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationEntitlement": {
+      "description": "",
+      "properties": {
+        "appKey": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "appOwnerDevAccountId": {
+          "description": "Denotes the application owner dev account id",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationEntitlementId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationLicenseType": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "applicationName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "applicationStatusId": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "applicationTransactions": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/ApplicationTransaction"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "applicationVersion": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deletedBy": {
+          "description": "User id that soft-deleted this entitlement during an application delete cascade (null if active).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deletedByFirstName": {
+          "description": "First name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deletedByLastName": {
+          "description": "Last name of the user who soft-deleted this entitlement, resolved from Mozu.AppDev.Contracts.ApplicationEntitlement.DeletedBy on read (null if active or unresolved).",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "deletedDate": {
+          "description": "UTC timestamp when this entitlement was soft-deleted during an application delete cascade (null if active).",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "devAccountId": {
+          "description": "Denotes which DevAccountId is the application installed in",
+          "format": "int32",
+          "type": "integer"
+        },
+        "effectiveEndDate": {
+          "description": "",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effectiveStartDate": {
+          "description": "",
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entitlementStatus": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "installedAppsApplicationId": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "installedByFirstName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "installedByLastName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "installedDate": {
+          "description": "",
+          "format": "date-time",
+          "type": "string"
+        },
+        "packageId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "packageName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "siteId": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tenantId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "tenantName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationSubscription": {
+      "description": "Defines an event that an Application Version is subscribed to.",
+      "properties": {
+        "applicationEndPoint": {
+          "description": "The End Point where the event information will be sent to when the event is fired.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "applicationSubscriptionId": {
+          "description": "The unique identifier of an ApplicationVersionEvent record.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "events": {
+          "description": "",
+          "items": {
+            "$ref": "#/$defs/Event"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "noCallback": {
+          "description": "",
+          "type": "boolean"
+        },
+        "packageId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ApplicationTransaction": {
+      "description": "",
+      "properties": {
+        "applicationEntitlementId": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "applicationId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "applicationTransactionId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "isoCurrencyCode": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "localeCode": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "orderNumber": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "siteId": {
+          "description": "",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tenantId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionDate": {
+          "description": "",
+          "format": "date-time",
+          "type": "string"
+        },
+        "transactionPrice": {
+          "description": "",
+          "format": "double",
+          "type": "number"
+        },
+        "transactionTax": {
+          "description": "",
+          "format": "double",
+          "type": "number"
+        },
+        "transactionTotal": {
+          "description": "",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Attribute": {
+      "description": "",
+      "properties": {
+        "adminName": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "applicationAttributeId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "attributeId": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "code": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fqn": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "inputType": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sequence": {
+          "description": "",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vocabularyJson": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "vocabularyValues": {
+          "description": "",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Event": {
+      "description": "Describes an event that a 3rd party developer can subscribe to.",
+      "properties": {
+        "apiVersionNumber": {
+          "description": "The Api Version Number which defines what events are available for a given API version.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventCategory": {
+          "description": "The category the event belongs to.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventId": {
+          "description": "Unique identifier of an Event record.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "eventName": {
+          "description": "The name of the event.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

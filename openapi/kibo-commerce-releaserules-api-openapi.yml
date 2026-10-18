@@ -1,0 +1,538 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Release Rules API
+  version: '1.0'
+  description: 'Operations tagged ReleaseRules across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ReleaseRules
+paths:
+  /commerce/jobs/release-rules/call-offs/{callOffOrderId}/runs:
+    get:
+      description: a given CallOffOrder, most recent first.
+      parameters:
+      - in: path
+        name: callOffOrderId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+          description: OK
+      summary: GET /call-offs/{callOffOrderId}/runs — every audit record that touched
+      tags:
+      - ReleaseRules
+      operationId: getCommerceJobsReleaseRulesCallOffsByCallOffOrderIdRuns
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/jobs/release-rules/rules/{ruleId}/recent:
+    get:
+      description: date range, most recent first.
+      parameters:
+      - in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: fromUtc
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: toUtc
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+          description: OK
+      summary: GET /rules/{ruleId}/recent — records for one rule within an optional
+      tags:
+      - ReleaseRules
+      operationId: getCommerceJobsReleaseRulesRulesByRuleIdRecent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/jobs/release-rules/runs:
+    get:
+      description: optional date range; most-recent run first.
+      parameters:
+      - in: query
+        name: fromUtc
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: toUtc
+        schema:
+          format: date-time
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunSummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunSummaryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunSummaryCollection'
+          description: OK
+      summary: GET /runs — per-run summaries (aggregated outcome counts) within an
+      tags:
+      - ReleaseRules
+      operationId: getCommerceJobsReleaseRulesRuns
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/jobs/release-rules/runs/{runId}:
+    get:
+      description: chronological order. Drill-down from the runs list.
+      parameters:
+      - in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ReleaseRunHistoryRecordCollection'
+          description: OK
+      summary: GET /runs/{runId} — every audit record produced by a single run, in
+      tags:
+      - ReleaseRules
+      operationId: getCommerceJobsReleaseRulesRunsByRunId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/jobs/release-rules/run:
+    post:
+      description: '{tenantId, siteId}.
+
+
+        Default behavior (`sync=false`): publishes the same
+
+        `ReleaseRuleEngineStart` event the cron scheduler does, returns
+
+        HTTP 202 + JobKey within ~200ms p95.
+
+        Debug bypass (`?sync=true`): SKIPS kibo.jobs + RabbitMQ +
+
+        MassTransit consumer entirely. Executes the orchestrator inline.'
+      parameters:
+      - in: query
+        name: sync
+        schema:
+          default: false
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Triggers an on-demand Release Rules Engine run for the caller's
+      tags:
+      - ReleaseRules
+      operationId: postCommerceJobsReleaseRulesRun
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ReleaseLineOutcome:
+      description: Per-line outcome surfaced on Mozu.CommerceRuntime.Contracts.SupplyChain.ReleaseRules.ReleaseRunHistoryRecord.LineOutcomes.
+      properties:
+        evaluatedFillRate:
+          format: double
+          type:
+          - number
+          - 'null'
+        evaluatedShipDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        itemId:
+          description: "The CallOffOrder line — the auto-generated GUID\n            `CallOffOrderItem.Id`, used as the join key into `order.Items[]`."
+          type:
+          - string
+          - 'null'
+        lineId:
+          description: "The operator-visible line sequence number (1, 2, ...) from\n            `CallOffOrderItem.LineId`. Null when the line could not be resolved\n            back to the live order."
+          format: int32
+          type:
+          - integer
+          - 'null'
+        lineOutcome:
+          type:
+          - string
+          - 'null'
+        salesOrderId:
+          type:
+          - string
+          - 'null'
+        skipReason:
+          type:
+          - string
+          - 'null'
+      type: object
+    ReleaseRunFailureDetail:
+      description: 'Per-destination failure detail surfaced on
+
+        Mozu.CommerceRuntime.Contracts.SupplyChain.ReleaseRules.ReleaseRunHistoryRecord.FailureDetail.'
+      properties:
+        destinationId:
+          type:
+          - string
+          - 'null'
+        errorMessage:
+          type:
+          - string
+          - 'null'
+        exceptionType:
+          type:
+          - string
+          - 'null'
+        httpStatus:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        isTimeout:
+          type: boolean
+        responseBody:
+          type:
+          - string
+          - 'null'
+      type: object
+    ReleaseRunHistoryRecord:
+      description: 'Audit record returned by the 4 history GET endpoints under
+
+        `/commerce/jobs/release-rules/`. Schema mirrors the domain entity in
+
+        `Mozu.CommerceRuntime.Domain.Entities.SupplyChain.ReleaseRules.ReleaseRunHistoryRecord`.'
+      properties:
+        callOffOrderId:
+          type:
+          - string
+          - 'null'
+        callOffOrderNumber:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        eligibilityReason:
+          type:
+          - string
+          - 'null'
+        failureDetail:
+          items:
+            $ref: '#/components/schemas/ReleaseRunFailureDetail'
+          type:
+          - array
+          - 'null'
+        finishedAt:
+          format: date-time
+          type: string
+        holderId:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        lineOutcomes:
+          items:
+            $ref: '#/components/schemas/ReleaseLineOutcome'
+          type:
+          - array
+          - 'null'
+        newHeaderStatus:
+          type:
+          - string
+          - 'null'
+        outcome:
+          type:
+          - string
+          - 'null'
+        previousHeaderStatus:
+          type:
+          - string
+          - 'null'
+        ruleId:
+          type:
+          - string
+          - 'null'
+        ruleRank:
+          format: int32
+          type: integer
+        runId:
+          type:
+          - string
+          - 'null'
+        salesOrderIds:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        siteId:
+          format: int32
+          type: integer
+        startedAt:
+          format: date-time
+          type: string
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    ReleaseRunHistoryRecordCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ReleaseRunHistoryRecord'
+          type:
+          - array
+          - 'null'
+        nextPageToken:
+          type:
+          - string
+          - 'null'
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ReleaseRunSummary:
+      description: 'Aggregated per-run summary returned by `GET /commerce/jobs/release-rules/runs`.
+
+        Counts mirror the four terminal outcomes on `ReleaseRunOutcome`.'
+      properties:
+        failedCount:
+          format: int32
+          type: integer
+        finishedAt:
+          format: date-time
+          type: string
+        partialFailedCount:
+          format: int32
+          type: integer
+        releasedCount:
+          format: int32
+          type: integer
+        runId:
+          type:
+          - string
+          - 'null'
+        siteId:
+          format: int32
+          type: integer
+        skippedNotEligibleCount:
+          format: int32
+          type: integer
+        startedAt:
+          format: date-time
+          type: string
+        tenantId:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    ReleaseRunSummaryCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ReleaseRunSummary'
+          type:
+          - array
+          - 'null'
+        nextPageToken:
+          type:
+          - string
+          - 'null'
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

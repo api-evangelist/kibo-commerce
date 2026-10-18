@@ -1,0 +1,103 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Import Export
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-importexport-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-importexport-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/platform/data/batchJob/actions/{code}'].get
+  description: Add derived operationId for GET /platform/data/batchJob/actions/{code}
+  update:
+    operationId: batchjobGetAvailableActions
+- target: $.paths['/platform/data/batchJob/actions/{code}'].post
+  description: Add derived operationId for POST /platform/data/batchJob/actions/{code}
+  update:
+    operationId: batchjobPerformBatchAction
+- target: $.paths['/platform/data/batchJob/{code}'].delete
+  description: Add derived operationId for DELETE /platform/data/batchJob/{code}
+  update:
+    operationId: batchjobDeleteBatchJob
+- target: $.paths['/platform/data/batchJob/{code}'].get
+  description: Add derived operationId for GET /platform/data/batchJob/{code}
+  update:
+    operationId: batchjobGetBatchJob
+- target: $.paths['/platform/data/batchJob/{code}'].put
+  description: Add derived operationId for PUT /platform/data/batchJob/{code}
+  update:
+    operationId: batchjobUpdateBatchJob
+- target: $.paths['/platform/data/batchJob/actions/{code}/items/{correlationId}'].post
+  description: Add derived operationId for POST /platform/data/batchJob/actions/{code}/items/{correlationId}
+  update:
+    operationId: batchjobGetBatchJobItem
+- target: $.paths['/platform/data/batchJob/actions/{code}/items'].post
+  description: Add derived operationId for POST /platform/data/batchJob/actions/{code}/items
+  update:
+    operationId: batchjobGetBatchJobItems
+- target: $.paths['/platform/data/batchJob/actions/summaries'].get
+  description: Add derived operationId for GET /platform/data/batchJob/actions/summaries
+  update:
+    operationId: batchjobGetBatchJobSummaries
+- target: $.paths['/platform/data/batchJob/actions/{code}/summary'].get
+  description: Add derived operationId for GET /platform/data/batchJob/actions/{code}/summary
+  update:
+    operationId: batchjobGetBatchJobSummary
+- target: $.paths['/platform/data/batchJob'].get
+  description: Add derived operationId for GET /platform/data/batchJob
+  update:
+    operationId: batchjobGetBatchJobs
+- target: $.paths['/platform/data/batchJob'].post
+  description: Add derived operationId for POST /platform/data/batchJob
+  update:
+    operationId: batchjobCreateBatchJob
+- target: $.paths['/platform/data/export/{id}'].delete
+  description: Add derived operationId for DELETE /platform/data/export/{id}
+  update:
+    operationId: exportDeleteExportJob
+- target: $.paths['/platform/data/export/{id}'].get
+  description: Add derived operationId for GET /platform/data/export/{id}
+  update:
+    operationId: exportGetExportJob
+- target: $.paths['/platform/data/export'].get
+  description: Add derived operationId for GET /platform/data/export
+  update:
+    operationId: exportGetExportJobs
+- target: $.paths['/platform/data/export'].post
+  description: Add derived operationId for POST /platform/data/export
+  update:
+    operationId: exportCreateExportJob
+- target: $.paths['/platform/data/files/{id}/content'].get
+  description: Add derived operationId for GET /platform/data/files/{id}/content
+  update:
+    operationId: filesDownloadFiles
+- target: $.paths['/platform/data/files/{id}'].get
+  description: Add derived operationId for GET /platform/data/files/{id}
+  update:
+    operationId: filesGetFile
+- target: $.paths['/platform/data/files/{id}/generatelink'].post
+  description: Add derived operationId for POST /platform/data/files/{id}/generatelink
+  update:
+    operationId: filesGetPublicLink
+- target: $.paths['/platform/data/files'].post
+  description: Add derived operationId for POST /platform/data/files
+  update:
+    operationId: filesUploadFiles
+- target: $.paths['/platform/data/import/{id}'].delete
+  description: Add derived operationId for DELETE /platform/data/import/{id}
+  update:
+    operationId: importDeleteImportJob
+- target: $.paths['/platform/data/import/{id}'].get
+  description: Add derived operationId for GET /platform/data/import/{id}
+  update:
+    operationId: importGetImportJob
+- target: $.paths['/platform/data/import'].get
+  description: Add derived operationId for GET /platform/data/import
+  update:
+    operationId: importGetImportJobs
+- target: $.paths['/platform/data/import'].post
+  description: Add derived operationId for POST /platform/data/import
+  update:
+    operationId: importCreateImportJob

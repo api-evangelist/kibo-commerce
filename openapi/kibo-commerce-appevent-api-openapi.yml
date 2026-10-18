@@ -1,0 +1,217 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce App Event API
+  version: '1.0'
+  description: 'Operations tagged AppEvent across 2 of this provider''s published API definitions: openapi_openapi_appdevelopement.json, kibo-commerce-appdevelopement-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AppEvent
+paths:
+  /platform/appdev/appsubscriptions/events:
+    post:
+      description: Create a new application event subscription.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationSubscription'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+          description: OK
+      summary: Create Application Subscription
+      tags:
+      - AppEvent
+      operationId: postPlatformAppdevAppsubscriptionsEvents
+      x-operation-id-source: derived
+    put:
+      description: Update an existing application event subscription.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ApplicationSubscription'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+          description: OK
+      summary: Update Application Subscription
+      tags:
+      - AppEvent
+      operationId: putPlatformAppdevAppsubscriptionsEvents
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/appsubscriptions/events/{applicationSubscriptionId}:
+    delete:
+      description: Delete an application event subscription.
+      parameters:
+      - description: ''
+        in: path
+        name: applicationSubscriptionId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Application Subscription
+      tags:
+      - AppEvent
+      operationId: deletePlatformAppdevAppsubscriptionsEventsByApplicationSubscriptionId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/appdev/appsubscriptions/{subscriptionId}:
+    get:
+      description: Get a specific application subscription by ID.
+      parameters:
+      - description: ''
+        in: path
+        name: subscriptionId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ApplicationSubscription'
+          description: OK
+      summary: Get Application Subscription
+      tags:
+      - AppEvent
+      operationId: getPlatformAppdevAppsubscriptionsBySubscriptionId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Event:
+      description: Describes an event that a 3rd party developer can subscribe to.
+      properties:
+        apiVersionNumber:
+          description: The Api Version Number which defines what events are available for a given API version.
+          type:
+          - string
+          - 'null'
+        eventCategory:
+          description: The category the event belongs to.
+          type:
+          - string
+          - 'null'
+        eventId:
+          description: Unique identifier of an Event record.
+          format: int32
+          type: integer
+        eventName:
+          description: The name of the event.
+          type:
+          - string
+          - 'null'
+      type: object
+    ApplicationSubscription:
+      description: Defines an event that an Application Version is subscribed to.
+      properties:
+        applicationEndPoint:
+          description: The End Point where the event information will be sent to when the event is fired.
+          type:
+          - string
+          - 'null'
+        applicationSubscriptionId:
+          description: The unique identifier of an ApplicationVersionEvent record.
+          format: int32
+          type: integer
+        events:
+          description: ''
+          items:
+            $ref: '#/components/schemas/Event'
+          type:
+          - array
+          - 'null'
+        noCallback:
+          description: ''
+          type: boolean
+        packageId:
+          description: ''
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_appdevelopement.json
+- kibo-commerce-appdevelopement-openapi.yml

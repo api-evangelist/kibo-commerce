@@ -1,0 +1,167 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Discount Settings API
+  version: '1.0'
+  description: 'Operations tagged DiscountSettings across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: DiscountSettings
+paths:
+  /commerce/catalog/admin/discountsettings/{catalogId}:
+    get:
+      description: Retrieves the discount settings of a particular catalog.
+      parameters:
+      - in: path
+        name: catalogId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscountSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DiscountSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DiscountSettings'
+          description: OK
+      summary: Get Discount Settings
+      tags:
+      - DiscountSettings
+      operationId: getCommerceCatalogAdminDiscountsettingsByCatalogId
+      x-operation-id-source: derived
+    put:
+      description: Updates the discount settings of a particular catalog.
+      parameters:
+      - in: path
+        name: catalogId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscountSettings'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscountSettings'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/DiscountSettings'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/DiscountSettings'
+          description: OK
+      summary: Update Discount Settings
+      tags:
+      - DiscountSettings
+      operationId: putCommerceCatalogAdminDiscountsettingsByCatalogId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CustomProperty:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        enabled:
+          type:
+          - boolean
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        position:
+          format: int32
+          type: integer
+      type: object
+    DiscountSettings:
+      description: Tenant level discount settings
+      properties:
+        customProperties:
+          description: Discount settings additional custom properties for storing property codes and names.
+          items:
+            $ref: '#/components/schemas/CustomProperty'
+          type:
+          - array
+          - 'null'
+        doNotApplyToHandlingFees:
+          description: Prevents discounts from applying to handling fees
+          type:
+          - boolean
+          - 'null'
+        rejectSelfDefeatingDiscounts:
+          description: 'When true, the line-item planning loop rejects discounts whose application would
+
+            violate their own minimum order amount constraint.'
+          type:
+          - boolean
+          - 'null'
+        stackingConfiguration:
+          $ref: '#/components/schemas/StackingConfiguration'
+        usePostDiscountedOrderValue:
+          description: Use the pre or post line item discounts order total to evaluate the order minimum constraint
+          type:
+          - boolean
+          - 'null'
+      type: object
+    StackingConfiguration:
+      properties:
+        productLineItemLayers:
+          description: Number of Product Line Item discount layers
+          format: int32
+          type: integer
+        productOrderLayers:
+          description: Number of Product Order discount layers
+          format: int32
+          type: integer
+        stackingEnabled:
+          description: Indicates if discount stacking is enabled for discounts in this catalog
+          type: boolean
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

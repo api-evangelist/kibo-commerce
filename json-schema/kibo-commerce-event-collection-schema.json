@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-event-collection-schema.json",
+  "title": "EventCollection",
+  "description": "Collection of events returned as a whole.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-event-openapi.yml#/components/schemas/EventCollection",
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/EventEvent"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "pageCount": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "pageSize": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "startIndex": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "totalCount": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EventEvent": {
+      "description": "The external/public Event entity used specifically in PULL/POLL event scenarios",
+      "properties": {
+        "auditInfo": {
+          "$ref": "#/$defs/AuditInfo"
+        },
+        "catalogId": {
+          "description": "CatalogId",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "correlationId": {
+          "description": "The Correlation Id of the original API request that caused this event to occur",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "entityId": {
+          "description": "The identifier / ID of the entity that changed (i.e. product code)",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "extendedProperties": {
+          "description": "Extended properties. Note: This is purposefully not a CollectionBase type wrapper so consumers start to get used to not having counts returned.",
+          "items": {
+            "$ref": "#/$defs/EventExtendedProperty"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "The unique identifier for an event",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isTest": {
+          "description": "Is this a test?",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "masterCatalogId": {
+          "description": "MasterCatalogId",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "siteId": {
+          "description": "SiteId",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "tenantId": {
+          "description": "TenantId",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "topic": {
+          "description": "The topic of the event (i.e. product.created)",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "EventExtendedProperty": {
+      "description": "Event Extended Property",
+      "properties": {
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    }
+  }
+}

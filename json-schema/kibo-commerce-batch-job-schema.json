@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-batch-job-schema.json",
+  "title": "BatchJob",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-importexport-openapi.yml#/components/schemas/BatchJob",
+  "properties": {
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "code": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dateStarted": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "domain": {
+      "$ref": "#/$defs/BatchDomains"
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "scheduledDate": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "$ref": "#/$defs/BatchJobStatuses"
+    },
+    "tenantId": {
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "BatchDomains": {
+      "enum": [
+        "Catalog"
+      ],
+      "type": "string"
+    },
+    "BatchJobStatuses": {
+      "enum": [
+        "Ready",
+        "Pending",
+        "Running",
+        "Completed",
+        "Canceled"
+      ],
+      "type": "string"
+    }
+  }
+}

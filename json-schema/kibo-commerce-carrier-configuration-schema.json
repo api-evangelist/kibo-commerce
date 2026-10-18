@@ -1,0 +1,160 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-carrier-configuration-schema.json",
+  "title": "CarrierConfiguration",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-shipping-admin-openapi.yml#/components/schemas/CarrierConfiguration",
+  "properties": {
+    "areCredentialsSet": {
+      "description": "Indicates whether the credentials/passwords are set.\r\n<remarks>Credetials are updated only if this flag is set to true</remarks>",
+      "type": "boolean"
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "customTableRates": {
+      "description": "A list of custom table rates for the 'Custom' carrier\r\n<remarks>only use this if Id == 'Custom'</remarks>",
+      "items": {
+        "$ref": "#/$defs/CustomTableRate"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "enabled": {
+      "description": "Indicates that this CarrierConfiguration should be used at runtime",
+      "type": "boolean"
+    },
+    "enabledForReturns": {
+      "description": "Indicates that this CarrierConfiguration should be the default for returns shipping",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "Carrier Id (usually a shortname of a carrier, e.g. FedEx)",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isDeliveryMethod": {
+      "type": "boolean"
+    },
+    "settings": {
+      "description": "Carrier Configuration Settings",
+      "items": {
+        "$ref": "#/$defs/Setting"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomTableRate": {
+      "description": "",
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/CustomTableRateContent"
+        },
+        "deliveryDuration": {
+          "description": "The number of days it takes to ship the item on custom carrier types. \r\nAllowed values : EXPRESS, 1_DAY, 2_DAY, 3_DAY",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "The Id of the CustomTableRate",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rateType": {
+          "description": "The type of this rate\r\n<value>see ../commerce/catalog/admin/shipping/global/carriers/custom/serviceTypes/en-us</value>",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "The value of this custom table rate",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CustomTableRateContent": {
+      "description": "",
+      "properties": {
+        "localeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Setting": {
+      "properties": {
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

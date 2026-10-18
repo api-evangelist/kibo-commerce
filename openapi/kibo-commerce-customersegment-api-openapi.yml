@@ -1,0 +1,357 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Customer Segment API
+  version: '1.0'
+  description: 'Operations tagged CustomerSegment across 2 of this provider''s published API definitions: openapi_openapi_customer.json, kibo-commerce-customer-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CustomerSegment
+paths:
+  /commerce/customer/segments/{id}/accounts:
+    post:
+      description: Adds segments to an account.
+      parameters:
+      - description: Unique identifer of the segment.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                format: int32
+                type: integer
+              type: array
+        description: Unique identifiers of the accounts.
+      responses:
+        '200':
+          description: OK
+      summary: Add Segments Accounts
+      tags:
+      - CustomerSegment
+      operationId: postCommerceCustomerSegmentsByIdAccounts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/segments/{id}:
+    delete:
+      description: Deletes a segement specified by its unique code. Note that the group is deleted in all accounts that contain this segment.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete Segment
+      tags:
+      - CustomerSegment
+      operationId: deleteCommerceCustomerSegmentsById
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a segment specified the segment Id.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+          description: OK
+      summary: Get Segment
+      tags:
+      - CustomerSegment
+      operationId: getCommerceCustomerSegmentsById
+      x-operation-id-source: derived
+    put:
+      description: Update the code, name, or description of an existing segment.
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerSegment'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+          description: OK
+      summary: Update Segment
+      tags:
+      - CustomerSegment
+      operationId: putCommerceCustomerSegmentsById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/segments:
+    get:
+      description: Retrieves a list of all segments defined for the site according to any specified filter criteria and sort options.
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. \n            For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional."
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: "Used to page results from a query. \n            Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional."
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          default: ''
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegmentCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegmentCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerSegmentCollection'
+          description: OK
+      summary: Get Segments
+      tags:
+      - CustomerSegment
+      operationId: getCommerceCustomerSegments
+      x-operation-id-source: derived
+    post:
+      description: 'Creates a new segment. Merchants create segments of customers, for example,
+
+        to offer discounts to particular groups or assign VIP status to a set of customers.'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerSegment'
+        description: Name of the customer segment to create.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerSegment'
+          description: OK
+      summary: Adds Segment
+      tags:
+      - CustomerSegment
+      operationId: postCommerceCustomerSegments
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/segments/{id}/accounts/{accountId}:
+    delete:
+      description: Removes single account from a segment.
+      parameters:
+      - description: Unique identifer of the segment.
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifiers of the account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Remove Segment Account
+      tags:
+      - CustomerSegment
+      operationId: deleteCommerceCustomerSegmentsByIdAccountsByAccountId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CustomerSegmentCollection:
+      description: Collection of customer segements returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerSegment'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerSegment:
+      description: A customer segment.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Unique identifier of the customer segment.
+          type:
+          - string
+          - 'null'
+        description:
+          description: Description of the customer segment.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the customer segment.
+          format: int32
+          type: integer
+        name:
+          description: Name of the customer segment.
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_customer.json
+- kibo-commerce-customer-openapi.yml

@@ -1,0 +1,381 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Entities API
+  version: '1.0'
+  description: 'Operations tagged Entities across 2 of this provider''s published API definitions: openapi_openapi_entities.json, kibo-commerce-entities-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Entities
+paths:
+  /platform/entitylists/{entityListFullName}/entities:
+    get:
+      description: Get a filtered collection of Entities from an EntityList instance
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+          description: OK
+      summary: Get Entities
+      tags:
+      - Entities
+      operationId: getPlatformEntitylistsByEntityListFullNameEntities
+      x-operation-id-source: derived
+    post:
+      description: Insert an Entity into an EntityList instance
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: The Entity in json format
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: object
+          description: OK
+      summary: Add Entity
+      tags:
+      - Entities
+      operationId: postPlatformEntitylistsByEntityListFullNameEntities
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/entitylists/{entityListFullName}/entities/{id}:
+    delete:
+      description: Delete an existing Entity from an EntityList instance
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The unique id of the Entity
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Entity
+      tags:
+      - Entities
+      operationId: deletePlatformEntitylistsByEntityListFullNameEntitiesById
+      x-operation-id-source: derived
+    get:
+      description: Get a specific Entity from an EntityList instance
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The unique id of the Entity
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: object
+          description: OK
+      summary: Get Entity
+      tags:
+      - Entities
+      operationId: getPlatformEntitylistsByEntityListFullNameEntitiesById
+      x-operation-id-source: derived
+    put:
+      description: Update an existing Entity in an EntityList instance
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The unique id of the Entity
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        description: The Entity in json format
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: object
+          description: OK
+      summary: Update Entity
+      tags:
+      - Entities
+      operationId: putPlatformEntitylistsByEntityListFullNameEntitiesById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/entitylists/{entityListFullName}/views/{viewName}/entities:
+    get:
+      description: Get a filtered collection of Entities for a ListView on an EntityList
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The name of the ListView
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 10
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EntityCollection'
+          description: OK
+      summary: Get View Entities
+      tags:
+      - Entities
+      operationId: getPlatformEntitylistsByEntityListFullNameViewsByViewNameEntities
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/entitylists/{entityListFullName}/views/{viewName}/entities/{entityId}:
+    get:
+      description: Get a specific Entity in a ListView on an EntityList
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The name of the ListView
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+      - description: The unique Entity id
+        in: path
+        name: entityId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+            text/json:
+              schema:
+                type: object
+            text/plain:
+              schema:
+                type: object
+          description: OK
+      summary: Get View Entity
+      tags:
+      - Entities
+      operationId: getPlatformEntitylistsByEntityListFullNameViewsByViewNameEntitiesByEntityId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    EntityCollection:
+      properties:
+        items:
+          items:
+            type: object
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_entities.json
+- kibo-commerce-entities-openapi.yml

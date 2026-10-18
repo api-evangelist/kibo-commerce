@@ -1,0 +1,187 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Content
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-content-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-content-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/content/documentlists/{documentListName}'].delete
+  description: Add derived operationId for DELETE /content/documentlists/{documentListName}
+  update:
+    operationId: documentlistDeleteDocumentList
+- target: $.paths['/content/documentlists/{documentListName}'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}
+  update:
+    operationId: documentlistGetDocumentList
+- target: $.paths['/content/documentlists/{documentListName}'].put
+  description: Add derived operationId for PUT /content/documentlists/{documentListName}
+  update:
+    operationId: documentlistUpdateDocumentList
+- target: $.paths['/content/documentlists'].get
+  description: Add derived operationId for GET /content/documentlists
+  update:
+    operationId: documentlistGetDocumentLists
+- target: $.paths['/content/documentlists'].post
+  description: Add derived operationId for POST /content/documentlists
+  update:
+    operationId: documentlistCreateDocumentList
+- target: $.paths['/content/documentlistTypes/{documentListTypeFQN}'].get
+  description: Add derived operationId for GET /content/documentlistTypes/{documentListTypeFQN}
+  update:
+    operationId: documentlisttypeGetDocumentListType
+- target: $.paths['/content/documentlistTypes/{documentListTypeFQN}'].put
+  description: Add derived operationId for PUT /content/documentlistTypes/{documentListTypeFQN}
+  update:
+    operationId: documentlisttypeUpdateDocumentListType
+- target: $.paths['/content/documentlistTypes'].get
+  description: Add derived operationId for GET /content/documentlistTypes
+  update:
+    operationId: documentlisttypeGetDocumentListTypes
+- target: $.paths['/content/documentlistTypes'].post
+  description: Add derived operationId for POST /content/documentlistTypes
+  update:
+    operationId: documentlisttypeCreateDocumentListType
+- target: $.paths['/content/propertytypes/{propertyTypeName}'].delete
+  description: Add derived operationId for DELETE /content/propertytypes/{propertyTypeName}
+  update:
+    operationId: documentpropertytypeDeletePropertyType
+- target: $.paths['/content/propertytypes/{propertyTypeName}'].get
+  description: Add derived operationId for GET /content/propertytypes/{propertyTypeName}
+  update:
+    operationId: documentpropertytypeGetPropertyType
+- target: $.paths['/content/propertytypes/{propertyTypeName}'].put
+  description: Add derived operationId for PUT /content/propertytypes/{propertyTypeName}
+  update:
+    operationId: documentpropertytypeUpdatePropertyType
+- target: $.paths['/content/propertytypes'].get
+  description: Add derived operationId for GET /content/propertytypes
+  update:
+    operationId: documentpropertytypeGetPropertyTypes
+- target: $.paths['/content/propertytypes'].post
+  description: Add derived operationId for POST /content/propertytypes
+  update:
+    operationId: documentpropertytypeCreatePropertyType
+- target: $.paths['/content/documentpublishing/draft'].get
+  description: Add derived operationId for GET /content/documentpublishing/draft
+  update:
+    operationId: documentpublishingGetDocumentDraftSummaries
+- target: $.paths['/content/documentpublishing/draft'].post
+  description: Add derived operationId for POST /content/documentpublishing/draft
+  update:
+    operationId: documentpublishingDeleteDocumentDrafts
+- target: $.paths['/content/documentpublishing/active'].put
+  description: Add derived operationId for PUT /content/documentpublishing/active
+  update:
+    operationId: documentpublishingPublishDocuments
+- target: $.paths['/content/publishsets/{code}'].post
+  description: Add derived operationId for POST /content/publishsets/{code}
+  update:
+    operationId: documentpublishsetDeletePublishSet
+- target: $.paths['/content/publishsets'].get
+  description: Add derived operationId for GET /content/publishsets
+  update:
+    operationId: documentpublishsetGetPublishSet
+- target: $.paths['/content/publishsets/{code}/items'].get
+  description: Add derived operationId for GET /content/publishsets/{code}/items
+  update:
+    operationId: documentpublishsetGetPublishSetItems
+- target: $.paths['/content/publishsets/{code}/items'].put
+  description: Add derived operationId for PUT /content/publishsets/{code}/items
+  update:
+    operationId: documentpublishsetAddPublishSetItems
+- target: $.paths['/content/documentlists/{documentListName}/documents/copy'].put
+  description: Add derived operationId for PUT /content/documentlists/{documentListName}/documents/copy
+  update:
+    operationId: documentsCopyDocument
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}'].delete
+  description: Add derived operationId for DELETE /content/documentlists/{documentListName}/documents/{documentId}
+  update:
+    operationId: documentsDeleteDocument
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/documents/{documentId}
+  update:
+    operationId: documentsGetDocument
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}'].patch
+  description: Add derived operationId for PATCH /content/documentlists/{documentListName}/documents/{documentId}
+  update:
+    operationId: documentsPatchDocument
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}'].put
+  description: Add derived operationId for PUT /content/documentlists/{documentListName}/documents/{documentId}
+  update:
+    operationId: documentsUpdateDocument
+- target: $.paths['/content/documentlists/{documentListName}/documentTree/{documentName}'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/documentTree/{documentName}
+  update:
+    operationId: documentsGetDocumentByPath
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}/content'].delete
+  description: Add derived operationId for DELETE /content/documentlists/{documentListName}/documents/{documentId}/content
+  update:
+    operationId: documentsDeleteDocumentContent
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}/content'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/documents/{documentId}/content
+  update:
+    operationId: documentsGetDocumentContent
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}/content'].put
+  description: Add derived operationId for PUT /content/documentlists/{documentListName}/documents/{documentId}/content
+  update:
+    operationId: documentsUpdateDocumentContent
+- target: $.paths['/content/documentlists/{documentListName}/documentTree/{documentName}/content'].delete
+  description: Add derived operationId for DELETE /content/documentlists/{documentListName}/documentTree/{documentName}/content
+  update:
+    operationId: documentsDeleteDocumentContentByPath
+- target: $.paths['/content/documentlists/{documentListName}/documentTree/{documentName}/content'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/documentTree/{documentName}/content
+  update:
+    operationId: documentsGetDocumentContentByPath
+- target: $.paths['/content/documentlists/{documentListName}/documentTree/{documentName}/content'].put
+  description: Add derived operationId for PUT /content/documentlists/{documentListName}/documentTree/{documentName}/content
+  update:
+    operationId: documentsUpdateDocumentContentByPath
+- target: $.paths['/content/documentlists/{documentListName}/documents'].delete
+  description: Add derived operationId for DELETE /content/documentlists/{documentListName}/documents
+  update:
+    operationId: documentsDeleteDocuments
+- target: $.paths['/content/documentlists/{documentListName}/documents'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/documents
+  update:
+    operationId: documentsGetDocuments
+- target: $.paths['/content/documentlists/{documentListName}/documents'].post
+  description: Add derived operationId for POST /content/documentlists/{documentListName}/documents
+  update:
+    operationId: documentsCreateDocument
+- target: $.paths['/content/documentlists/{documentListName}/documents/{documentId}/transform'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/documents/{documentId}/transform
+  update:
+    operationId: documentsGetResizedImage
+- target: $.paths['/content/documentlists/{documentListName}/documentTree/{documentName}/transform'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/documentTree/{documentName}/transform
+  update:
+    operationId: documentsGetResizedImageByPath
+- target: $.paths['/content/documentlists/{documentListName}/documents/move'].put
+  description: Add derived operationId for PUT /content/documentlists/{documentListName}/documents/move
+  update:
+    operationId: documentsMoveDocument
+- target: $.paths['/content/documenttypes/{documentTypeName}'].get
+  description: Add derived operationId for GET /content/documenttypes/{documentTypeName}
+  update:
+    operationId: documenttypeGetDocumentType
+- target: $.paths['/content/documenttypes/{documentTypeName}'].put
+  description: Add derived operationId for PUT /content/documenttypes/{documentTypeName}
+  update:
+    operationId: documenttypeUpdateDocumentType
+- target: $.paths['/content/documenttypes'].get
+  description: Add derived operationId for GET /content/documenttypes
+  update:
+    operationId: documenttypeGetDocumentTypes
+- target: $.paths['/content/documenttypes'].post
+  description: Add derived operationId for POST /content/documenttypes
+  update:
+    operationId: documenttypeCreateDocumentType
+- target: $.paths['/content/documentlists/{documentListName}/views/{viewName}/documents'].get
+  description: Add derived operationId for GET /content/documentlists/{documentListName}/views/{viewName}/documents
+  update:
+    operationId: viewsGetViewDocuments

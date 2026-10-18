@@ -1,0 +1,3181 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Item Attributes API
+  version: '1.0'
+  description: 'Operations tagged ShipmentItemAttributes across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentItemAttributes
+paths:
+  /commerce/shipments/{shipmentNumber}/items/attributes:
+    get:
+      deprecated: false
+      parameters:
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ItemAttributes'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ItemAttributes'
+                type: array
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ItemAttributes'
+                type: array
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Shipment Item Attributes
+      tags:
+      - ShipmentItemAttributes
+      operationId: getCommerceShipmentsByShipmentNumberItemsAttributes
+      x-operation-id-source: derived
+    post:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/ItemAttributesArray'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Create Shipment Item Attributes
+      tags:
+      - ShipmentItemAttributes
+      operationId: postCommerceShipmentsByShipmentNumberItemsAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/items/attributes/bulk:
+    put:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: removeMissing
+        in: query
+        name: removeMissing
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/ItemAttributesArray'
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Shipment Item Attributes
+      tags:
+      - ShipmentItemAttributes
+      operationId: putCommerceShipmentsByShipmentNumberItemsAttributesBulk
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/{shipmentNumber}/items/attributes/{lineId}:
+    put:
+      deprecated: false
+      parameters:
+      - description: If-Match
+        in: header
+        name: If-Match
+        required: false
+        schema:
+          type: string
+      - description: lineId
+        in: path
+        name: lineId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: removeMissing
+        in: query
+        name: removeMissing
+        required: false
+        schema:
+          default: false
+          type: boolean
+      - description: shipmentNumber
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/ShipmentItemAttribute'
+              type: array
+        description: attributesList
+        required: true
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EntityModelOfShipment'
+          description: OK
+        '201':
+          description: Created
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Update Single Item Attributes
+      tags:
+      - ShipmentItemAttributes
+      operationId: putCommerceShipmentsByShipmentNumberItemsAttributesByLineId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    FulfillmentAPIBundleInfo:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        imageUrl:
+          type: string
+        name:
+          type: string
+        productCode:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+      title: BundleInfo
+      type: object
+    EntityModelOfShipment:
+      properties:
+        _links:
+          $ref: '#/components/schemas/Links'
+        acceptedDate:
+          format: date-time
+          type: string
+        alternateContact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        assignedLocationCode:
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        canceledItems:
+          items:
+            $ref: '#/components/schemas/CanceledItem'
+          type: array
+        carrier:
+          type: string
+        cartId:
+          type: string
+        changeMessages:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIChangeMessage'
+          type: array
+        channel:
+          type: string
+        childShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        currencyCode:
+          type: string
+        currentRunId:
+          description: Run currently mutating this shipment (== Kibo.Jobs jobId); null when idle (FR-059d)
+          type: string
+        customer:
+          $ref: '#/components/schemas/FulfillmentAPICustomer'
+        customerAccountId:
+          format: int32
+          type: integer
+        customerAddressId:
+          format: int32
+          type: integer
+        customerTaxId:
+          type: string
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        deliveryWindow:
+          $ref: '#/components/schemas/FulfillmentAPIDeliveryWindow'
+        destination:
+          $ref: '#/components/schemas/FulfillmentAPIDestination'
+        dutyAdjustment:
+          type: number
+        dutyTotal:
+          type: number
+        email:
+          type: string
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        externalOrderId:
+          type: string
+        fulfillmentDate:
+          format: date-time
+          type: string
+        fulfillmentLocationCode:
+          type: string
+        fulfillmentPriority:
+          format: int32
+          type: integer
+        fulfillmentStatus:
+          enum:
+          - NotFulfilled
+          - Fulfilled
+          type: string
+        futureDate:
+          format: date-time
+          type: string
+        groupId:
+          type: string
+        handlingAdjustment:
+          type: number
+        handlingSubtotal:
+          type: number
+        handlingTaxAdjustment:
+          type: number
+        handlingTaxTotal:
+          type: number
+        handlingTotal:
+          type: number
+        holdReleaseDate:
+          format: date-time
+          type: string
+        isAutoAssigned:
+          type: boolean
+        isCrossDockEligible:
+          type: boolean
+        isDropship:
+          type: boolean
+        isExpress:
+          type: boolean
+        isFlatRateShipping:
+          type: boolean
+        isHistoricalImport:
+          type: boolean
+        isImmutable:
+          type: boolean
+        isOptInForSms:
+          type: boolean
+        items:
+          items:
+            $ref: '#/components/schemas/Item'
+          type: array
+        lastCancellationDate:
+          format: date-time
+          type: string
+        lineItemSubtotal:
+          type: number
+        lineItemTaxAdjustment:
+          type: number
+        lineItemTaxTotal:
+          type: number
+        lineItemTotal:
+          type: number
+        lowestComplianceLevel:
+          type: string
+        masterTrackingNumber:
+          type: string
+        minutesSinceOnWorkflowStep:
+          format: int64
+          type: integer
+        minutesSinceOrdered:
+          format: int64
+          type: integer
+        mutabilityInfo:
+          $ref: '#/components/schemas/MutabilityInfo'
+        orderId:
+          type: string
+        orderNumber:
+          format: int32
+          type: integer
+        orderSubmitDate:
+          format: date-time
+          type: string
+        orderType:
+          enum:
+          - Offline
+          - Online
+          type: string
+        originalEdd:
+          description: First expectedDeliveryDate this shipment ever carried (write-once, never cleared); non-null marks that the shipment has, at some point, had an EDD. Server-managed (FR-060); ignored on inbound writes.
+          format: date-time
+          type: string
+        originalShipmentNumber:
+          format: int32
+          type: integer
+        packageReceivingEligible:
+          description: FR-014/FR-016 multi-package-receiving eligibility signal. Only present when the MULTI_PACKAGE_RECEIVING_FOR_TRANSFER_SHIPMENTS tenant attribute is enabled and the transfer shipment has at least one package; null otherwise so tenants without the attribute enabled see no shape change (US2-AC2).
+          type: boolean
+        packages:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIPackage'
+          type: array
+        packagesPendingCount:
+          description: 'US4 progress display: packagesTotalCount minus packagesReceivedCount. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        packagesReceivedCount:
+          description: 'US4 progress display: count of packages with receiptStatus=RECEIVED. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        packagesTotalCount:
+          description: 'US4 progress display: total expected package count. Null when not eligible/flag disabled.'
+          format: int32
+          type: integer
+        parentCheckoutNumber:
+          format: int32
+          type: integer
+        parentShipmentNumber:
+          format: int32
+          type: integer
+        paymentInvoice:
+          $ref: '#/components/schemas/PaymentInvoice'
+        pickStatus:
+          enum:
+          - AVAILABLE
+          - IN_WAVE
+          - PICKED
+          - TRANSFER
+          - COMPLETE
+          type: string
+        pickType:
+          enum:
+          - NORMAL
+          - SINGLE
+          - MULTIPLE
+          type: string
+        pickWaveNumber:
+          format: int32
+          type: integer
+        pickupInfo:
+          additionalProperties:
+            type: object
+          type: object
+        priorityInfo:
+          $ref: '#/components/schemas/PriorityInfo'
+        readyForPickup:
+          type: boolean
+        readyForPickupDate:
+          format: date-time
+          type: string
+        readyToCapture:
+          type: boolean
+        reassignedItems:
+          items:
+            $ref: '#/components/schemas/ReassignedItem'
+          type: array
+        receivedDate:
+          format: date-time
+          type: string
+        rejectedItems:
+          items:
+            $ref: '#/components/schemas/RejectedItem'
+          type: array
+        runInfo:
+          description: Capped per-run history of operations that created/mutated this shipment (FR-059d)
+          items:
+            $ref: '#/components/schemas/RunInfo'
+          type: array
+        sentCustomerAtStoreNotification:
+          type: boolean
+        sentCustomerInTransitNotification:
+          type: boolean
+        shipDate:
+          format: date-time
+          type: string
+        shipmentAdjustment:
+          type: number
+        shipmentAttributes:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIShipmentAttribute'
+          type: array
+        shipmentConsolidationId:
+          type: string
+        shipmentGroup:
+          type: string
+        shipmentNotes:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIShipmentNote'
+          type: array
+        shipmentNumber:
+          format: int32
+          type: integer
+        shipmentStatus:
+          enum:
+          - READY
+          - REASSIGNED
+          - BACKORDER
+          - CANCELED
+          - FULFILLED
+          - CUSTOMER_CARE
+          - DELETED
+          - FUTURE
+          type: string
+        shipmentStatusReason:
+          $ref: '#/components/schemas/FulfillmentAPIShipmentStatusReason'
+        shipmentType:
+          description: Shipment type code
+          enum:
+          - STH
+          - FXCB
+          - BOPIS
+          - BOPIS_Curbside
+          - Transfer
+          - Curbside
+          - Digital
+          - Delivery
+          example: STH
+          type: string
+        shippingAdjustment:
+          type: number
+        shippingMethodCode:
+          type: string
+        shippingMethodName:
+          type: string
+        shippingSubtotal:
+          type: number
+        shippingTaxAdjustment:
+          type: number
+        shippingTaxTotal:
+          type: number
+        shippingTotal:
+          type: number
+        shopperNotes:
+          $ref: '#/components/schemas/FulfillmentAPIShopperNotes'
+        siteId:
+          format: int32
+          type: integer
+        slas:
+          items:
+            $ref: '#/components/schemas/Sla'
+          type: array
+        substitutedItems:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPISubstitutedItem'
+          type: array
+        taxData:
+          type: object
+        tenantId:
+          format: int32
+          type: integer
+        total:
+          type: number
+        transferShipmentNumbers:
+          items:
+            format: int32
+            type: integer
+          type: array
+        transferredItems:
+          items:
+            $ref: '#/components/schemas/TransferredItem'
+          type: array
+        transitTime:
+          type: string
+        userId:
+          type: string
+        workflowProcessContainerId:
+          type: string
+        workflowProcessId:
+          type: string
+        workflowProcessVersion:
+          type: string
+        workflowState:
+          $ref: '#/components/schemas/FulfillmentAPIWorkflowState'
+      required:
+      - shipmentType
+      title: EntityModelOfShipment
+      type: object
+    PriorityInfo:
+      properties:
+        history:
+          items:
+            $ref: '#/components/schemas/PriorityEvent'
+          type: array
+        prioritizedAt:
+          format: date-time
+          type: string
+        priority:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+        ruleType:
+          type: string
+        statusWhenPrioritized:
+          type: string
+      title: PriorityInfo
+      type: object
+    Sla:
+      properties:
+        atRiskTrackingInfo:
+          $ref: '#/components/schemas/ThresholdTrackingInfo'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        compliantTrackingInfo:
+          $ref: '#/components/schemas/ThresholdTrackingInfo'
+        endDisplayValue:
+          type: string
+        nonCompliantTrackingInfo:
+          $ref: '#/components/schemas/ThresholdTrackingInfo'
+        slaCode:
+          type: string
+        slaComplianceLevel:
+          type: string
+        slaDefinitionId:
+          type: string
+        slaDefinitionNumber:
+          format: int32
+          type: integer
+        slaDefinitionStatus:
+          type: string
+        slaDueDate:
+          format: date-time
+          type: string
+        slaId:
+          format: int32
+          type: integer
+        slaName:
+          type: string
+        slaStatus:
+          type: string
+        startDisplayValue:
+          type: string
+      title: Sla
+      type: object
+    ReassignedItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        fulfillmentLocationCode:
+          type: string
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        reassignedReason:
+          $ref: '#/components/schemas/ReassignedReason'
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: ReassignedItem
+      type: object
+    InventoryTag:
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+      title: InventoryTag
+      type: object
+    FulfillmentAPIPackageMeasurements:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        height:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        length:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        weight:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+        width:
+          $ref: '#/components/schemas/FulfillmentAPIMeasurement'
+      title: PackageMeasurements
+      type: object
+    FulfillmentAPISubstitutedItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteItemLineIds:
+          items:
+            format: int32
+            type: integer
+          type: array
+        substituteQuantity:
+          format: int32
+          type: integer
+        substituteReason:
+          $ref: '#/components/schemas/SubstituteReason'
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: SubstitutedItem
+      type: object
+    PackedBoxDto:
+      properties:
+        boxId:
+          format: int32
+          type: integer
+        dimensions:
+          $ref: '#/components/schemas/DimensionsDto'
+        items:
+          items:
+            $ref: '#/components/schemas/PackedItemDto'
+          type: array
+        name:
+          type: string
+        volumeUtilization:
+          type: number
+        weightUnit:
+          type: string
+        weightUsed:
+          type: number
+        weightUtilization:
+          type: number
+      title: PackedBoxDto
+      type: object
+    ItemAttributes:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        lineId:
+          format: int32
+          type: integer
+      title: ItemAttributes
+      type: object
+    Task:
+      properties:
+        _links:
+          additionalProperties:
+            $ref: '#/components/schemas/FulfillmentAPILink'
+          type: object
+        active:
+          type: boolean
+        activeDate:
+          format: date-time
+          type: string
+        completed:
+          type: boolean
+        completedDate:
+          format: date-time
+          type: string
+        completedDurationMillis:
+          format: int64
+          type: integer
+        description:
+          type: string
+        inputs:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPITaskInput'
+          type: array
+        name:
+          type: string
+        skippable:
+          type: boolean
+        subject:
+          type: string
+        taskId:
+          type: string
+      title: Task
+      type: object
+    CanceledItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        canceledReason:
+          $ref: '#/components/schemas/FulfillmentAPICanceledReason'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: CanceledItem
+      type: object
+    ThresholdTrackingInfo:
+      properties:
+        code:
+          type: string
+        endDate:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+      title: ThresholdTrackingInfo
+      type: object
+    InventoryAllocation:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        condition:
+          type: string
+        date:
+          format: date-time
+          type: string
+        fulfilledDate:
+          format: date-time
+          type: string
+        inventoryId:
+          format: int32
+          type: integer
+        lotCode:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        quantity:
+          format: int32
+          type: integer
+        serialNumber:
+          type: string
+        sku:
+          type: string
+        status:
+          type: string
+      title: InventoryAllocation
+      type: object
+    InvoiceTax:
+      properties:
+        amount:
+          type: number
+        data:
+          type: object
+        jurisdiction:
+          type: string
+        rate:
+          type: number
+        type:
+          type: string
+      title: InvoiceTax
+      type: object
+    FulfillmentAPIAuditInfo:
+      properties:
+        createBy:
+          type: string
+        createDate:
+          format: date-time
+          type: string
+        updateBy:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+      title: AuditInfo
+      type: object
+    FulfillmentAPIAddress:
+      properties:
+        address1:
+          type: string
+        address2:
+          type: string
+        address3:
+          type: string
+        address4:
+          type: string
+        addressType:
+          enum:
+          - Commercial
+          - Residential
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        cityOrTown:
+          type: string
+        countryCode:
+          type: string
+        isValidated:
+          type: boolean
+        latitude:
+          type: string
+        longitude:
+          type: string
+        postalOrZipCode:
+          type: string
+        stateOrProvince:
+          type: string
+      title: Address
+      type: object
+    InvoiceReferences:
+      properties:
+        data:
+          type: object
+        orderNumber:
+          format: int32
+          type: integer
+        purchaseOrderNumber:
+          type: string
+        shipmentId:
+          type: string
+      title: InvoiceReferences
+      type: object
+    PackingSlipItemDetailDto:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        lineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        receivedQuantity:
+          format: int32
+          type: integer
+        substitutedQuantity:
+          format: int32
+          type: integer
+      title: PackingSlipItemDetailDto
+      type: object
+    FulfillmentAPICustomer:
+      properties:
+        customerContact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+        data:
+          type: object
+        isDestinationCommercial:
+          type: boolean
+      title: Customer
+      type: object
+    FulfillmentAPIProductOption:
+      properties:
+        attributeFQN:
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        dataType:
+          type: string
+        name:
+          type: string
+        shopperEnteredValue:
+          type: object
+        stringValue:
+          type: string
+        value:
+          type: object
+      title: ProductOption
+      type: object
+    ShipmentItemAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type: integer
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        fullyQualifiedName:
+          type: string
+        values:
+          items:
+            type: object
+          type: array
+      title: ShipmentItemAttribute
+      type: object
+    FulfillmentAPIPhone:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        home:
+          type: string
+        mobile:
+          type: string
+        work:
+          type: string
+      title: Phone
+      type: object
+    RejectedReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: RejectedReason
+      type: object
+    DimensionsDto:
+      properties:
+        height:
+          type: number
+        length:
+          type: number
+        unit:
+          type: string
+        width:
+          type: number
+      title: DimensionsDto
+      type: object
+    FulfillmentAPIDestination:
+      properties:
+        data:
+          type: object
+        destinationContact:
+          $ref: '#/components/schemas/FulfillmentAPIContact'
+        isDestinationCommercial:
+          type: boolean
+        locationCode:
+          type: string
+      title: Destination
+      type: object
+    PositionDto:
+      properties:
+        x:
+          type: number
+        y:
+          type: number
+        z:
+          type: number
+      title: PositionDto
+      type: object
+    FulfillmentAPITracking:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        number:
+          type: string
+        url:
+          type: string
+      title: Tracking
+      type: object
+    BpmVariable:
+      properties:
+        name:
+          type: string
+        oldValue:
+          type: string
+        updateDate:
+          format: date-time
+          type: string
+        value:
+          type: string
+      title: BpmVariable
+      type: object
+    PackedItemDto:
+      properties:
+        dimensions:
+          $ref: '#/components/schemas/DimensionsDto'
+        lineId:
+          format: int32
+          type: integer
+        origin:
+          $ref: '#/components/schemas/PositionDto'
+        quantity:
+          format: int32
+          type: integer
+        sourceShipmentNumber:
+          format: int32
+          type: integer
+        uniqueId:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+      title: PackedItemDto
+      type: object
+    LinkRelation:
+      title: LinkRelation
+      type: object
+    InvoiceLineItem:
+      properties:
+        data:
+          type: object
+        description:
+          type: string
+        lineItemType:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        totalPrice:
+          type: number
+        unitPrice:
+          type: number
+      title: InvoiceLineItem
+      type: object
+    PriorityEvent:
+      properties:
+        action:
+          type: string
+        priority:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+        ruleType:
+          type: string
+        shipmentStatus:
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+      title: PriorityEvent
+      type: object
+    MutabilityInfo:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        blockedActions:
+          items:
+            type: string
+          type: array
+        reason:
+          type: string
+      title: MutabilityInfo
+      type: object
+    FulfillmentAPITaskInput:
+      properties:
+        helpMessage:
+          type: string
+        label:
+          type: string
+        maxLength:
+          format: int32
+          type: integer
+        maximum:
+          type: number
+        minLength:
+          format: int32
+          type: integer
+        minimum:
+          type: number
+        name:
+          type: string
+        options:
+          items:
+            type: object
+          type: array
+        pattern:
+          type: string
+        required:
+          type: boolean
+        type:
+          enum:
+          - STRING
+          - INTEGER
+          - NUMBER
+          - BOOLEAN
+          - OBJECT
+          - LIST
+          - UNKNOWN
+          type: string
+      title: TaskInput
+      type: object
+    FulfillmentAPIShipmentNote:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        noteId:
+          type: string
+        noteText:
+          type: string
+        role:
+          type: string
+        username:
+          type: string
+      title: ShipmentNote
+      type: object
+    FulfillmentAPIMeasurement:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        unit:
+          type: string
+        value:
+          type: number
+      title: Measurement
+      type: object
+    PaymentInvoice:
+      properties:
+        currency:
+          type: string
+        data:
+          type: object
+        invoiceDate:
+          format: date-time
+          type: string
+        invoiceNumber:
+          type: string
+        lineItems:
+          items:
+            $ref: '#/components/schemas/InvoiceLineItem'
+          type: array
+        rawEdiData:
+          type: string
+        references:
+          $ref: '#/components/schemas/InvoiceReferences'
+        taxes:
+          items:
+            $ref: '#/components/schemas/InvoiceTax'
+          type: array
+        terms:
+          $ref: '#/components/schemas/InvoiceTerms'
+        totalAmount:
+          type: number
+        vendor:
+          $ref: '#/components/schemas/InvoiceVendor'
+      title: PaymentInvoice
+      type: object
+    CartonizationDto:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        boxes:
+          items:
+            $ref: '#/components/schemas/PackedBoxDto'
+          type: array
+        packingSuggestionId:
+          type: string
+      title: CartonizationDto
+      type: object
+    Item:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: Item
+      type: object
+    FulfillmentAPIAppeasementReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: AppeasementReason
+      type: object
+    SubstituteReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: SubstituteReason
+      type: object
+    FulfillmentAPIDeliveryWindow:
+      properties:
+        endTime:
+          format: date-time
+          type: string
+        startTime:
+          format: date-time
+          type: string
+      title: DeliveryWindow
+      type: object
+    RunInfo:
+      properties:
+        action:
+          type: string
+        occurredAt:
+          format: date-time
+          type: string
+        queue:
+          type: string
+        routedLocationCode:
+          type: string
+        runId:
+          type: string
+        runType:
+          type: string
+        shipmentStatus:
+          type: string
+      title: RunInfo
+      type: object
+    FulfillmentAPIFulfillmentField:
+      properties:
+        name:
+          type: string
+        required:
+          type: boolean
+        userEnteredValue:
+          type: object
+      title: FulfillmentField
+      type: object
+    Links:
+      properties:
+        empty:
+          type: boolean
+      title: Links
+      type: object
+    FulfillmentAPIShipmentStatusReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: ShipmentStatusReason
+      type: object
+    TransferredItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        fulfillmentLocationCode:
+          type: string
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        rejectedReason:
+          $ref: '#/components/schemas/RejectedReason'
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: TransferredItem
+      type: object
+    InvoiceTerms:
+      properties:
+        data:
+          type: object
+        dueDate:
+          format: date-time
+          type: string
+        paymentTerms:
+          type: string
+      title: InvoiceTerms
+      type: object
+    ReassignedReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: ReassignedReason
+      type: object
+    FulfillmentAPISubstituteInfo:
+      properties:
+        optIn:
+          type: string
+        substituteProductCode:
+          type: string
+        substituteVariantCode:
+          type: string
+      title: SubstituteInfo
+      type: object
+    FulfillmentAPIWorkflowState:
+      properties:
+        activeTaskName:
+          type: string
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        completedDate:
+          format: date-time
+          type: string
+        processInstanceId:
+          type: string
+        shipmentState:
+          type: string
+        taskList:
+          items:
+            $ref: '#/components/schemas/Task'
+          type: array
+        variables:
+          additionalProperties:
+            $ref: '#/components/schemas/BpmVariable'
+          type: object
+      title: WorkflowState
+      type: object
+    FulfillmentAPIPackage:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        carrier:
+          type: string
+        carrierName:
+          type: string
+        cartonization:
+          $ref: '#/components/schemas/CartonizationDto'
+        fullyMatched:
+          description: Whether every line item's received+substituted quantity matched its expected quantity for this package. Null until received or when not eligible/flag disabled.
+          type: boolean
+        fxcbDocumentsUrl:
+          type: string
+        fxcbPackNotificationId:
+          type: string
+        hasLabel:
+          type: boolean
+        integratorId:
+          type: string
+        labelFormat:
+          type: string
+        manifestId:
+          type: string
+        measurements:
+          $ref: '#/components/schemas/FulfillmentAPIPackageMeasurements'
+        packageConsolidationId:
+          type: string
+        packageId:
+          type: string
+        packagingType:
+          type: string
+        packingSlipItemDetails:
+          items:
+            $ref: '#/components/schemas/PackingSlipItemDetailDto'
+          type: array
+        packingSlipNumber:
+          format: int32
+          type: integer
+        receiptStatus:
+          description: Package-level receipt status (NOT_RECEIVED/RECEIVED). Null when not eligible/tenant attribute disabled.
+          enum:
+          - NOT_RECEIVED
+          - RECEIVED
+          type: string
+        receivedBy:
+          description: User ID that received this package. Null until received or when not eligible/flag disabled.
+          type: string
+        receivedDate:
+          description: Timestamp this package was marked received. Null until received or when not eligible/flag disabled.
+          format: date-time
+          type: string
+        receivingMethod:
+          description: Method used to receive this package (TRACKING_NUMBER_RECEIPT/ITEM_VALIDATION). Null until received or when not eligible/flag disabled.
+          enum:
+          - TRACKING_NUMBER_RECEIPT
+          - ITEM_VALIDATION
+          - WHOLE_SHIPMENT_RECEIPT
+          type: string
+        returnCarrier:
+          type: string
+        returnTrackingNumbers:
+          items:
+            type: string
+          type: array
+        returnTrackings:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPITracking'
+          type: array
+        shippingMethodCode:
+          type: string
+        shippingMethodName:
+          type: string
+        signatureRequired:
+          type: boolean
+        stringBarcode:
+          type: string
+        trackingNumbers:
+          items:
+            type: string
+          type: array
+        trackings:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPITracking'
+          type: array
+      title: Package
+      type: object
+    UriTemplate:
+      properties:
+        variableNames:
+          items:
+            type: string
+          type: array
+        variables:
+          items:
+            $ref: '#/components/schemas/TemplateVariable'
+          type: array
+      title: UriTemplate
+      type: object
+    InvoiceVendor:
+      properties:
+        address:
+          $ref: '#/components/schemas/FulfillmentAPIAddress'
+        data:
+          type: object
+        name:
+          type: string
+        taxId:
+          type: string
+        vendorId:
+          type: string
+      title: InvoiceVendor
+      type: object
+    FulfillmentAPIShopperNotes:
+      properties:
+        comments:
+          type: string
+        deliveryInstructions:
+          type: string
+        giftMessage:
+          type: string
+      title: ShopperNotes
+      type: object
+    FulfillmentAPILink:
+      properties:
+        deprecation:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        name:
+          type: string
+        profile:
+          type: string
+        rel:
+          $ref: '#/components/schemas/LinkRelation'
+        template:
+          $ref: '#/components/schemas/UriTemplate'
+        templated:
+          type: boolean
+        title:
+          type: string
+        type:
+          type: string
+      title: Link
+      type: object
+    FulfillmentAPICanceledReason:
+      properties:
+        moreInfo:
+          type: string
+        reasonCode:
+          type: string
+      title: CanceledReason
+      type: object
+    FulfillmentAPIReturnRuleInfo:
+      properties:
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        isReturnable:
+          type: boolean
+        maxDays:
+          format: int32
+          type: integer
+        maxQty:
+          format: int32
+          type: integer
+        ruleCode:
+          type: string
+      title: ReturnRuleInfo
+      type: object
+    FulfillmentAPIShipmentAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type: integer
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        fullyQualifiedName:
+          type: string
+        values:
+          items:
+            type: object
+          type: array
+      title: ShipmentAttribute
+      type: object
+    TemplateVariable:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+        type:
+          enum:
+          - ''
+          - '?'
+          - '&'
+          - /
+          - '#'
+          - '*'
+          type: string
+      title: TemplateVariable
+      type: object
+    RejectedItem:
+      properties:
+        actualPrice:
+          type: number
+        allocatedQuantity:
+          format: int32
+          type: integer
+        allowsBackOrder:
+          type: boolean
+        allowsFutureAllocate:
+          type: boolean
+        allowsSubstitution:
+          type: boolean
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        auditInfo:
+          $ref: '#/components/schemas/FulfillmentAPIAuditInfo'
+        autoSubstitution:
+          type: boolean
+        backorderReleaseDate:
+          format: date-time
+          type: string
+        blockAssignment:
+          type: boolean
+        bundleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIBundleInfo'
+        cartItemId:
+          type: string
+        childItemIds:
+          items:
+            type: string
+          type: array
+        condition:
+          type: string
+        contractedPrice:
+          type: number
+        creditCurrencyCode:
+          type: string
+        creditValue:
+          type: number
+        data:
+          additionalProperties:
+            type: object
+          type: object
+        duty:
+          type: number
+        expectedDeliveryDate:
+          format: date-time
+          type: string
+        fulfillmentFields:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIFulfillmentField'
+          type: array
+        giftCards:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIGiftCard'
+          type: array
+        giftMessage:
+          type: string
+        goodsType:
+          enum:
+          - Physical
+          - Digital
+          - DigitalCredit
+          - DigitalGiftCard
+          - Service
+          type: string
+        handling:
+          type: number
+        handlingDiscount:
+          type: number
+        handlingTax:
+          type: number
+        height:
+          type: number
+        holdBlockAssignment:
+          type: boolean
+        imageUrl:
+          type: string
+        inventoryAllocations:
+          items:
+            $ref: '#/components/schemas/InventoryAllocation'
+          type: array
+        inventoryTags:
+          items:
+            $ref: '#/components/schemas/InventoryTag'
+          type: array
+        isAssemblyRequired:
+          type: boolean
+        isGift:
+          type: boolean
+        isPackagedStandAlone:
+          type: boolean
+        isReservedInventory:
+          type: boolean
+        isTaxable:
+          type: boolean
+        itemDiscount:
+          type: number
+        itemTax:
+          type: number
+        length:
+          type: number
+        lineId:
+          format: int32
+          type: integer
+        lineItemAdjustment:
+          type: number
+        lineItemCost:
+          type: number
+        locatorName:
+          type: string
+        manageStock:
+          type: boolean
+        name:
+          type: string
+        optionAttributeFQN:
+          type: string
+        options:
+          items:
+            $ref: '#/components/schemas/FulfillmentAPIProductOption'
+          type: array
+        originalLineId:
+          format: int32
+          type: integer
+        originalOrderItemId:
+          type: string
+        originalQuantity:
+          format: int32
+          type: integer
+        overridePrice:
+          type: number
+        parentItemId:
+          type: string
+        partNumber:
+          type: string
+        priceMode:
+          enum:
+          - Internal
+          - External
+          type: string
+        productCode:
+          type: string
+        purchaseLocation:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        readyForPickupQuantity:
+          format: int32
+          type: integer
+        rejectedReason:
+          $ref: '#/components/schemas/RejectedReason'
+        returnRuleInfo:
+          $ref: '#/components/schemas/FulfillmentAPIReturnRuleInfo'
+        serialNumber:
+          type: string
+        shipmentItemAttributes:
+          items:
+            $ref: '#/components/schemas/ShipmentItemAttribute'
+          type: array
+        shipping:
+          type: number
+        shippingDiscount:
+          type: number
+        shippingTax:
+          type: number
+        sku:
+          type: string
+        stockValidationStatus:
+          type: string
+        substituteInfo:
+          $ref: '#/components/schemas/FulfillmentAPISubstituteInfo'
+        substituteQuantity:
+          format: int32
+          type: integer
+        substitutionType:
+          enum:
+          - PRE_FULFILLMENT
+          - AT_FULFILLMENT
+          type: string
+        taxData:
+          type: object
+        taxableHandling:
+          type: number
+        taxableLineItemCost:
+          type: number
+        taxableShipping:
+          type: number
+        timeFenceDays:
+          format: int32
+          type: integer
+        transferQuantity:
+          description: This is deprecated.
+          format: int32
+          type: integer
+        trueTransferQuantity:
+          description: This is the actual quantity transferred.
+          format: int32
+          type: integer
+        unitPrice:
+          type: number
+        upc:
+          type: string
+        validatedQuantity:
+          format: int32
+          type: integer
+        variationProductCode:
+          type: string
+        weight:
+          type: number
+        weightUnit:
+          type: string
+        weightedDutyAdjustment:
+          type: number
+        weightedHandlingAdjustment:
+          type: number
+        weightedHandlingTaxAdjustment:
+          type: number
+        weightedLineItemTaxAdjustment:
+          type: number
+        weightedOrderHandlingFee:
+          type: number
+        weightedOrderHandlingFeeDiscount:
+          type: number
+        weightedOrderHandlingFeeTax:
+          type: number
+        weightedShipmentAdjustment:
+          type: number
+        weightedShippingAdjustment:
+          type: number
+        weightedShippingTaxAdjustment:
+          type: number
+        width:
+          type: number
+      title: RejectedItem
+      type: object
+    FulfillmentAPIGiftCard:
+      properties:
+        activationDate:
+          format: date-time
+          type: string
+        cardNumber:
+          type: string
+        code:
+          type: string
+        creditType:
+          type: string
+        creditValue:
+          type: number
+        currencyCode:
+          type: string
+        currentBalance:
+          type: number
+        customerId:
+          format: int32
+          type: integer
+        expirationDate:
+          format: date-time
+          type: string
+        initialBalance:
+          type: number
+      title: GiftCard
+      type: object
+    FulfillmentAPIChangeMessage:
+      properties:
+        amount:
+          type: number
+        appId:
+          type: string
+        appKey:
+          type: string
+        appName:
+          type: string
+        appeasementReason:
+          $ref: '#/components/schemas/FulfillmentAPIAppeasementReason'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        changeMessageId:
+          type: string
+        correlationId:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        identifier:
+          type: string
+        message:
+          type: string
+        metadata:
+          type: string
+        newValue:
+          type: string
+        oldValue:
+          type: string
+        subject:
+          type: string
+        subjectType:
+          type: string
+        success:
+          type: boolean
+        userDisplayName:
+          type: string
+        userFirstName:
+          type: string
+        userId:
+          type: string
+        userLastName:
+          type: string
+        verb:
+          type: string
+      title: ChangeMessage
+      type: object
+    FulfillmentAPIContact:
+      properties:
+        address:
+          $ref: '#/components/schemas/FulfillmentAPIAddress'
+        attributes:
+          additionalProperties:
+            type: object
+          type: object
+        companyOrOrganization:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        fullName:
+          type: string
+        id:
+          format: int32
+          type: integer
+        lastNameOrSurname:
+          type: string
+        middleNameOrInitial:
+          type: string
+        phoneNumbers:
+          $ref: '#/components/schemas/FulfillmentAPIPhone'
+        shortFullName:
+          type: string
+      title: Contact
+      type: object
+  requestBodies:
+    ItemAttributesArray:
+      content:
+        application/json:
+          schema:
+            items:
+              $ref: '#/components/schemas/ItemAttributes'
+            type: array
+      description: itemAttributesList
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

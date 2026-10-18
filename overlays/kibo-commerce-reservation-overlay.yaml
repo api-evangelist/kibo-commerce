@@ -1,0 +1,79 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Reservation Web
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-reservation-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-reservation-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/reservation/{reservationId}/activate'].put
+  description: Add derived operationId for PUT /commerce/reservation/{reservationId}/activate
+  update:
+    operationId: reservationActivateReservation
+- target: $.paths['/commerce/reservation/{reservationId}/items'].post
+  description: Add derived operationId for POST /commerce/reservation/{reservationId}/items
+  update:
+    operationId: reservationAddItem
+- target: $.paths['/commerce/reservation/{reservationId}/close'].put
+  description: Add derived operationId for PUT /commerce/reservation/{reservationId}/close
+  update:
+    operationId: reservationCloseReservation
+- target: $.paths['/commerce/reservation/{reservationId}/converttoorderreservation'].post
+  description: Add derived operationId for POST /commerce/reservation/{reservationId}/converttoorderreservation
+  update:
+    operationId: reservationConvertToOrderReservation
+- target: $.paths['/commerce/reservation/{reservationId}/getallocationstatus'].get
+  description: Add derived operationId for GET /commerce/reservation/{reservationId}/getallocationstatus
+  update:
+    operationId: reservationGetAllocationStatus
+- target: $.paths['/commerce/reservation/{reservationId}'].delete
+  description: Add derived operationId for DELETE /commerce/reservation/{reservationId}
+  update:
+    operationId: reservationDeleteReservation
+- target: $.paths['/commerce/reservation/{reservationId}'].get
+  description: Add derived operationId for GET /commerce/reservation/{reservationId}
+  update:
+    operationId: reservationGetReservationById
+- target: $.paths['/commerce/reservation/{reservationId}'].put
+  description: Add derived operationId for PUT /commerce/reservation/{reservationId}
+  update:
+    operationId: reservationUpdateReservation
+- target: $.paths['/commerce/reservation/summary'].get
+  description: Add derived operationId for GET /commerce/reservation/summary
+  update:
+    operationId: reservationGetReservationSummary
+- target: $.paths['/commerce/reservation'].get
+  description: Add derived operationId for GET /commerce/reservation
+  update:
+    operationId: reservationGetReservations
+- target: $.paths['/commerce/reservation'].post
+  description: Add derived operationId for POST /commerce/reservation
+  update:
+    operationId: reservationCreateReservation
+- target: $.paths['/commerce/reservation/cart/{cartId}'].get
+  description: Add derived operationId for GET /commerce/reservation/cart/{cartId}
+  update:
+    operationId: reservationGetReservationsByCartId
+- target: $.paths['/commerce/reservation/{reservationId}/items/{reservationItemId}/quantity/{quantity}'].put
+  description: Add derived operationId for PUT /commerce/reservation/{reservationId}/items/{reservationItemId}/quantity/{quantity}
+  update:
+    operationId: reservationUpdateItemQuantity
+- target: $.paths['/commerce/reservation/{reservationId}/items/{reservationItemId}'].delete
+  description: Add derived operationId for DELETE /commerce/reservation/{reservationId}/items/{reservationItemId}
+  update:
+    operationId: reservationRemoveItem
+- target: $.paths['/commerce/reservation/{reservationId}/items/{reservationItemId}'].put
+  description: Add derived operationId for PUT /commerce/reservation/{reservationId}/items/{reservationItemId}
+  update:
+    operationId: reservationUpdateReservationItem
+- target: $.paths['/commerce/reservation/{reservationId}/updatetimer'].put
+  description: Add derived operationId for PUT /commerce/reservation/{reservationId}/updatetimer
+  update:
+    operationId: reservationUpdateTimer
+- target: $.paths['/commerce/reservation/{reservationId}/zipcode/{zipCode}'].post
+  description: Add derived operationId for POST /commerce/reservation/{reservationId}/zipcode/{zipCode}
+  update:
+    operationId: reservationUpdateZipCode

@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-site-shipping-settings-schema.json",
+  "title": "SiteShippingSettings",
+  "description": "Defines the site setting for the active shipping rate provider that rate provider calculates domestic and international shipping rates.\nYour site may have multiple shipping rate providers, for example, FedEx, DHL, USPS. However, only one shipping rate provider can be active at the same time.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-settings-openapi.yml#/components/schemas/SiteShippingSettings",
+  "properties": {
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "orderHandlingFee": {
+      "$ref": "#/$defs/SiteShippingHandlingFee"
+    },
+    "signatureRequirement": {
+      "$ref": "#/$defs/SiteShippingSignatureRequirement"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SiteShippingHandlingFee": {
+      "description": "The site setting that specifies the store's handling fees",
+      "properties": {
+        "amount": {
+          "description": "Site setting for the name that appears as the sender of the shipping origin.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "SiteShippingSignatureRequirement": {
+      "description": "The site setting that specifies the store's handling fees",
+      "properties": {
+        "isSignatureRequired": {
+          "description": "Is Signature Required?",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "minimumValueThreshold": {
+          "description": "If set, this is exact amount a shipment must be greater than to trigger usage of the IsSignatureRequired property",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

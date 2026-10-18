@@ -1,0 +1,135 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Admin User
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-user-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-user-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/platform/adminuser/authtickets/tenants'].post
+  description: Add derived operationId for POST /platform/adminuser/authtickets/tenants
+  update:
+    operationId: adminauthticketCreateUserAuthTicket
+- target: $.paths['/platform/adminuser/authtickets/tenants'].put
+  description: Add derived operationId for PUT /platform/adminuser/authtickets/tenants
+  update:
+    operationId: adminauthticketRefreshAuthTicket
+- target: $.paths['/platform/adminuser/authtickets/wsfed/auth/{id}'].post
+  description: Add derived operationId for POST /platform/adminuser/authtickets/wsfed/auth/{id}
+  update:
+    operationId: adminauthticketCreateUserAuthTicketWithWsFed
+- target: $.paths['/platform/adminuser/authtickets'].delete
+  description: Add derived operationId for DELETE /platform/adminuser/authtickets
+  update:
+    operationId: adminauthticketDeleteUserAuthTicket
+- target: $.paths['/platform/adminuser/authtickets/wsfed/challenge/{id}'].get
+  description: Add derived operationId for GET /platform/adminuser/authtickets/wsfed/challenge/{id}
+  update:
+    operationId: adminauthticketGetWsFedChallengeUrl
+- target: $.paths['/platform/adminuser/authtickets/wsfed/SignOut/{id}'].get
+  description: Add derived operationId for GET /platform/adminuser/authtickets/wsfed/SignOut/{id}
+  update:
+    operationId: adminauthticketGetWsFedSignOutUrl
+- target: $.paths['/platform/adminuser/groups/{groupCode}/addusers'].post
+  description: Add derived operationId for POST /platform/adminuser/groups/{groupCode}/addusers
+  update:
+    operationId: admingroupAddUsersToAdminGroup
+- target: $.paths['/platform/adminuser/groups/{groupCode}'].delete
+  description: Add derived operationId for DELETE /platform/adminuser/groups/{groupCode}
+  update:
+    operationId: admingroupDeleteAdminGroup
+- target: $.paths['/platform/adminuser/groups/{groupCode}'].get
+  description: Add derived operationId for GET /platform/adminuser/groups/{groupCode}
+  update:
+    operationId: admingroupGetAdminGroup
+- target: $.paths['/platform/adminuser/groups/{groupCode}'].put
+  description: Add derived operationId for PUT /platform/adminuser/groups/{groupCode}
+  update:
+    operationId: admingroupUpdateAdminGroup
+- target: $.paths['/platform/adminuser/groups'].get
+  description: Add derived operationId for GET /platform/adminuser/groups
+  update:
+    operationId: admingroupGetAdminGroups
+- target: $.paths['/platform/adminuser/groups'].post
+  description: Add derived operationId for POST /platform/adminuser/groups
+  update:
+    operationId: admingroupAddAdminGroup
+- target: $.paths['/platform/adminuser/groups/{groupCode}/removeusers'].post
+  description: Add derived operationId for POST /platform/adminuser/groups/{groupCode}/removeusers
+  update:
+    operationId: admingroupRemoveUsersFromAdminGroup
+- target: $.paths['/platform/adminuser/accounts/{userId}/roles/{roleId}'].delete
+  description: Add derived operationId for DELETE /platform/adminuser/accounts/{userId}/roles/{roleId}
+  update:
+    operationId: adminuserRemoveUserRole
+- target: $.paths['/platform/adminuser/accounts/{userId}/roles/{roleId}'].post
+  description: Add derived operationId for POST /platform/adminuser/accounts/{userId}/roles/{roleId}
+  update:
+    operationId: adminuserAddUserRole
+- target: $.paths['/platform/adminuser/accounts/{userId}/Change-Password'].post
+  description: Add derived operationId for POST /platform/adminuser/accounts/{userId}/Change-Password
+  update:
+    operationId: adminuserChangePassword
+- target: $.paths['/platform/adminuser/accounts/{userId}/Change-User-Password'].post
+  description: Add derived operationId for POST /platform/adminuser/accounts/{userId}/Change-User-Password
+  update:
+    operationId: adminuserChangeUserPassword
+- target: $.paths['/platform/adminuser/accounts/{userId}/tenants'].get
+  description: Add derived operationId for GET /platform/adminuser/accounts/{userId}/tenants
+  update:
+    operationId: adminuserGetTenantScope
+- target: $.paths['/platform/adminuser/accounts/{userId}'].delete
+  description: Add derived operationId for DELETE /platform/adminuser/accounts/{userId}
+  update:
+    operationId: adminuserDeleteUser
+- target: $.paths['/platform/adminuser/accounts/{userId}'].get
+  description: Add derived operationId for GET /platform/adminuser/accounts/{userId}
+  update:
+    operationId: adminuserGetUser
+- target: $.paths['/platform/adminuser/accounts/{userId}'].put
+  description: Add derived operationId for PUT /platform/adminuser/accounts/{userId}
+  update:
+    operationId: adminuserUpdateUser
+- target: $.paths['/platform/adminuser/accounts/{userId}/userbyid'].get
+  description: Add derived operationId for GET /platform/adminuser/accounts/{userId}/userbyid
+  update:
+    operationId: adminuserGetUserById
+- target: $.paths['/platform/adminuser/accounts/{userId}/roles'].get
+  description: Add derived operationId for GET /platform/adminuser/accounts/{userId}/roles
+  update:
+    operationId: adminuserGetUserRoles
+- target: $.paths['/platform/adminuser/accounts'].get
+  description: Add derived operationId for GET /platform/adminuser/accounts
+  update:
+    operationId: adminuserGetUsers
+- target: $.paths['/platform/adminuser/accounts'].post
+  description: Add derived operationId for POST /platform/adminuser/accounts
+  update:
+    operationId: adminuserCreateUser
+- target: $.paths['/platform/adminuser/accounts/Reset-Password'].post
+  description: Add derived operationId for POST /platform/adminuser/accounts/Reset-Password
+  update:
+    operationId: adminuserResetPassword
+- target: $.paths['/platform/adminuser/accounts/{userId}/unlock'].post
+  description: Add derived operationId for POST /platform/adminuser/accounts/{userId}/unlock
+  update:
+    operationId: adminuserUnlockUser
+- target: $.paths['/platform/developer/authtickets'].delete
+  description: Add derived operationId for DELETE /platform/developer/authtickets
+  update:
+    operationId: developeradminauthticketDeleteUserAuthTicket
+- target: $.paths['/platform/developer/authtickets'].post
+  description: Add derived operationId for POST /platform/developer/authtickets
+  update:
+    operationId: developeradminauthticketCreateDeveloperUserAuthTicket
+- target: $.paths['/platform/developer/authtickets'].put
+  description: Add derived operationId for PUT /platform/developer/authtickets
+  update:
+    operationId: developeradminauthticketRefreshDeveloperAuthTicket
+- target: $.paths['/platform/adminuser/roles'].get
+  description: Add derived operationId for GET /platform/adminuser/roles
+  update:
+    operationId: roleGetRoles

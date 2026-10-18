@@ -1,0 +1,222 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Storefront Price Lists API
+  version: '1.0'
+  description: 'Operations tagged StorefrontPriceLists across 2 of this provider''s published API definitions: openapi_openapi_catalog_storefront.json, kibo-commerce-catalog-storefront-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: StorefrontPriceLists
+paths:
+  /commerce/catalog/storefront/pricelists/{priceListCode}:
+    get:
+      description: Retrieves the price list for the given priceListCode
+      parameters:
+      - in: path
+        name: priceListCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesPriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesPriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogRuntimesPriceList'
+          description: OK
+      summary: Get Price List
+      tags:
+      - StorefrontPriceLists
+      operationId: getCommerceCatalogStorefrontPricelistsByPriceListCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/storefront/pricelists/resolved:
+    get:
+      description: This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.
+      parameters:
+      - in: query
+        name: customerAccountId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+          description: OK
+      summary: Get Resolved Price List (GET)
+      tags:
+      - StorefrontPriceLists
+      operationId: getCommerceCatalogStorefrontPricelistsResolved
+      x-operation-id-source: derived
+    post:
+      description: This is primarily used when creating an offline order for a shopper. You can use this operation alongside custom Arc.js actions to alter the price list to which a shopper resolves.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ResolvedPriceList'
+          description: OK
+      summary: Get Resolved Price List (POST)
+      tags:
+      - StorefrontPriceLists
+      operationId: postCommerceCatalogStorefrontPricelistsResolved
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CatalogRuntimesPriceList:
+      properties:
+        ancestors:
+          items:
+            $ref: '#/components/schemas/PriceListNode'
+          type:
+          - array
+          - 'null'
+        descendants:
+          items:
+            $ref: '#/components/schemas/PriceListNode'
+          type:
+          - array
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        enabled:
+          type: boolean
+        filteredInStoreFront:
+          type: boolean
+        isIndexed:
+          type:
+          - boolean
+          - 'null'
+        isSiteDefault:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        priceListCode:
+          type:
+          - string
+          - 'null'
+        priceListId:
+          format: int32
+          type: integer
+        resolvable:
+          type: boolean
+        validSites:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    PriceListNode:
+      properties:
+        parentPriceListId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        priceListCode:
+          type:
+          - string
+          - 'null'
+        priceListId:
+          format: int32
+          type: integer
+        priceListLevel:
+          format: int32
+          type: integer
+      type: object
+    ResolvedPriceList:
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        priceListCode:
+          type:
+          - string
+          - 'null'
+        priceListId:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_storefront.json
+- kibo-commerce-catalog-storefront-openapi.yml

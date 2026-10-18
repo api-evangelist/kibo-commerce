@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-subscription-settings-schema.json",
+  "title": "SubscriptionSettings",
+  "description": "Subscription settings defined or this site",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-settings-openapi.yml#/components/schemas/SubscriptionSettings",
+  "properties": {
+    "applyBestPriceOnContinuityOrder": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "applyLatestItemPriceOnContinuityOrder": {
+      "description": "If this setting is enabled, the item price on the continuity order will be updated to the current price upon creation.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "continuityOrderDateOffset": {
+      "description": "Specifies the number of days before the next order date to create the continuity order.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "nextOrderDateOffset": {
+      "description": "Specifies the number of days to update the next order date from existing next order date.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "orderNowResetNextOrderDate": {
+      "description": "Specifies if order now action resets next order date",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "pauseSubscriptionOffset": {
+      "description": "Specifies the number of continuity orders should be placed before activating the subscription.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "restrictOrderNowOffset": {
+      "description": "Specifies the number of days, `order all items now` or `order partial items now` actions cannot be repeated from the last action.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "skipSubscriptionOffset": {
+      "description": "Specifies the number of times the subscription can be skipped",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "subscriptionOrderReminderOffset": {
+      "description": "Specifies the number of days to send subscription order reminder email before the next continuity order.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "subscriptionPauseLimitReminderOffset": {
+      "description": "Specifies the number of days prior to when we need to send a \n\"subscription pause limit reached reminder\" email before the pause limit is reached.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "subscriptionPausedReminderOffset": {
+      "description": "Specifies the number of days to send subscription paused reminder email.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

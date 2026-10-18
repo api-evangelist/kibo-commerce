@@ -1,0 +1,237 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Publishing API
+  version: '1.0'
+  description: 'Operations tagged ProductPublishing across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductPublishing
+paths:
+  /commerce/catalog/admin/publishing/publishsets/{publishSetCode}:
+    delete:
+      description: Removes all details about a PublishSet from the product service. If the discardDrafts param is true, it also deletes the product drafts.
+      parameters:
+      - description: The code of the PublishSet to delete
+        in: path
+        name: publishSetCode
+        required: true
+        schema:
+          type: string
+      - description: Whether to also discard the drafts for this publish set.
+        in: query
+        name: discardDrafts
+        schema:
+          default: false
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      summary: Delete Publish Set
+      tags:
+      - ProductPublishing
+      operationId: deleteCommerceCatalogAdminPublishingPublishsetsByPublishSetCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the details of a single PublishSet.
+      parameters:
+      - description: ''
+        in: path
+        name: publishSetCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PublishSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PublishSet'
+          description: OK
+      summary: Get Publish Set
+      tags:
+      - ProductPublishing
+      operationId: getCommerceCatalogAdminPublishingPublishsetsByPublishSetCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/publishing/publishsets:
+    get:
+      description: Retrieves a list of PublishSets including the product counts.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishSetCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PublishSetCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PublishSetCollection'
+          description: OK
+      summary: Get Publish Sets
+      tags:
+      - ProductPublishing
+      operationId: getCommerceCatalogAdminPublishingPublishsets
+      x-operation-id-source: derived
+    post:
+      description: Assign products to publish sets.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishSet'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/PublishSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/PublishSet'
+          description: OK
+      summary: Assign Products to Publish Sets
+      tags:
+      - ProductPublishing
+      operationId: postCommerceCatalogAdminPublishingPublishsets
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/publishing/publishdrafts:
+    post:
+      description: Publis draft products.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublishingScope'
+      responses:
+        '200':
+          description: OK
+      summary: Publish Draft Products
+      tags:
+      - ProductPublishing
+      operationId: postCommerceCatalogAdminPublishingPublishdrafts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PublishingScope:
+      properties:
+        allPending:
+          description: True = scope to all pending products
+          type:
+          - boolean
+          - 'null'
+        productCodes:
+          description: List of specific productCodes to scope publish operation against
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        publishSetCode:
+          description: The Publish Set to publish
+          type:
+          - string
+          - 'null'
+      type: object
+    PublishSetCollection:
+      description: Non-paged collection of PublishSets.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/PublishSet'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    PublishSet:
+      properties:
+        code:
+          description: The PublishSet unique identifier
+          type:
+          - string
+          - 'null'
+        productCodes:
+          description: List of specific product codes that are included in the publish set
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        productCount:
+          description: Number of product drafts that are included in the publish set
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

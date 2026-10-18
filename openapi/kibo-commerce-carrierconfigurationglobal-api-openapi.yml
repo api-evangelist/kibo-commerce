@@ -1,0 +1,230 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Carrier Configuration Global API
+  version: '1.0'
+  description: 'Operations tagged CarrierConfigurationGlobal across 3 of this provider''s published API definitions: openapi_openapi_shipping.json, kibo-commerce-shipping-admin-openapi.yml, kibo-commerce-shipping-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CarrierConfigurationGlobal
+paths:
+  /commerce/shipping/global/carriers/{carrierId}/serviceTypes/{localeCode}:
+    get:
+      description: Retrieves the available service types for the Default Application carriers
+      parameters:
+      - description: ''
+        in: path
+        name: carrierId
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+          description: Success
+      summary: Get Service Types (with Carrier ID)
+      tags:
+      - CarrierConfigurationGlobal
+      operationId: getCommerceShippingGlobalCarriersByCarrierIdServiceTypesByLocaleCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/global/carriers/serviceTypes/{localeCode}:
+    get:
+      description: Retrieves the available service types for the Default Application carriers
+      parameters:
+      - description: ''
+        in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ServiceType'
+                type: array
+          description: Success
+      summary: Get Service Types (without Carrier ID)
+      tags:
+      - CarrierConfigurationGlobal
+      operationId: getCommerceShippingGlobalCarriersServiceTypesByLocaleCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipping/global/carriers/signatureOptions:
+    get:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SignatureOption'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SignatureOption'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/SignatureOption'
+                type: array
+          description: Success
+      summary: Gets all the Signature Options
+      tags:
+      - CarrierConfigurationGlobal
+      operationId: getCommerceShippingGlobalCarriersSignatureOptions
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SignatureOption:
+      description: Signature options against a carrier
+      properties:
+        carrierId:
+          description: Carrier Id
+          type:
+          - string
+          - 'null'
+        isEnabled:
+          description: If carrier is enabled for signature option.
+          type: boolean
+        options:
+          description: Supported signature options
+          items:
+            $ref: '#/components/schemas/Option'
+          type:
+          - array
+          - 'null'
+      type: object
+    Option:
+      description: Option class for signature option
+      properties:
+        alternateCarrierValue:
+          description: Value required by other carrier or carrier aggragator like Easypost
+          type:
+          - string
+          - 'null'
+        carrierValue:
+          description: Value required by the actual carrier in carrier request
+          type:
+          - string
+          - 'null'
+        displayName:
+          description: User readable value to be shown to the user
+          type:
+          - string
+          - 'null'
+      type: object
+    ServiceType:
+      description: Service Type aka Shipping Method
+      properties:
+        code:
+          description: Unique Service Type Code for a particular Carrier
+          type:
+          - string
+          - 'null'
+        content:
+          $ref: '#/components/schemas/ServiceTypeLocalizedContent'
+        deliveryDuration:
+          type:
+          - string
+          - 'null'
+      type: object
+    ServiceTypeLocalizedContent:
+      properties:
+        localeCode:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_shipping.json
+- kibo-commerce-shipping-admin-openapi.yml
+- kibo-commerce-shipping-openapi.yml

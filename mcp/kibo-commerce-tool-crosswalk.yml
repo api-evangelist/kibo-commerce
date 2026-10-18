@@ -1,0 +1,1648 @@
+generated: '2026-10-18'
+method: derived
+source: https://docs.kibocommerce.com/pages/kibo-mcp-server
+purpose: Bind Kibo MCP tools to the Kibo OpenAPI operations.
+surfaces:
+  rest_openapi: openapi/
+  mcp_commerce: https://{host}/mcp/admin/{toolCategories?} (tenant-hosted, gated by tenant credentials)
+  mcp_docs: https://docs.kibocommerce.com/mcp (open, probed)
+  graphql: documented in openapi/_original/openapi_openapi_graphql.json
+crosswalk: []
+mcp_only:
+- tool: search_kibo_documentation
+  reason: Documentation search/feedback tool on the docs MCP server; no backing commerce REST operation.
+- tool: query_docs_filesystem_kibo_documentation
+  reason: Documentation search/feedback tool on the docs MCP server; no backing commerce REST operation.
+- tool: submit_feedback
+  reason: Documentation search/feedback tool on the docs MCP server; no backing commerce REST operation.
+category_bindings:
+- category: cart.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: cart.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: cart.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: cart.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channel.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channel.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channel.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channel.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channelgroup.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channelgroup.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channelgroup.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: channelgroup.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: checkout.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: checkout.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: checkout.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: checkout.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: job.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: order.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: order.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: order.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: order.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: orderattributedefinitions.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: orderattributedefinitions.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: orderattributedefinitions.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: ordervalidationcapability.create
+  group: Commerce Runtime
+  spec_files: []
+  confidence: low
+- category: quote.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: quote.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: quote.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: quote.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: return.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: return.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: return.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: return.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: returnattributedefinitions.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: returnattributedefinitions.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: returnattributedefinitions.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: wishlist.create
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: wishlist.delete
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: wishlist.read
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: wishlist.update
+  group: Commerce Runtime
+  spec_files:
+  - openapi/kibo-commerce-commerce-openapi.yml
+  confidence: low
+- category: accountrankingrule.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: accountrankingrule.delete
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: accountrankingrule.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: accountrankingrule.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: addressvalidation.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: addressvalidationcapability.create
+  group: Customer
+  spec_files: []
+  confidence: low
+- category: authticket.create
+  group: Customer
+  spec_files: []
+  confidence: low
+- category: authticket.read
+  group: Customer
+  spec_files: []
+  confidence: low
+- category: authticket.update
+  group: Customer
+  spec_files: []
+  confidence: low
+- category: b2baccount.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: b2baccount.delete
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: b2baccount.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: b2baccount.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: b2bcontact.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: credit.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: credit.delete
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: credit.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: credit.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customeraccount.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customeraccount.delete
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customeraccount.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customeraccount.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customeraccountattributedefinitions.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customeraccountattributedefinitions.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customeraccountattributedefinitions.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customerattributedefinition.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customerattributedefinition.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customerattributedefinition.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customersegment.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customersegment.delete
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customersegment.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customersegment.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customerset.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customervisit.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customervisit.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: customervisit.update
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: instocknotificationsubscription.create
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: instocknotificationsubscription.delete
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: instocknotificationsubscription.read
+  group: Customer
+  spec_files:
+  - openapi/kibo-commerce-customer-openapi.yml
+  confidence: low
+- category: batchjob.create
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: batchjob.delete
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: batchjob.read
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: batchjob.update
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: export.create
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: export.delete
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: export.read
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: files.create
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: files.read
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: import.create
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: import.delete
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: import.read
+  group: Import / Export
+  spec_files:
+  - openapi/kibo-commerce-importexport-openapi.yml
+  confidence: low
+- category: location.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-openapi.yml
+  - openapi/kibo-commerce-location-storefront-openapi.yml
+  confidence: low
+- category: locationadmin.create
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationadmin.delete
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationadmin.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationadmin.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationattributedefinitions.create
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationattributedefinitions.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationattributedefinitions.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationgroup.create
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationgroup.delete
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationgroup.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationgroup.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationgroupconfiguration.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationgroupconfiguration.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationinventoryattributedefinition.create
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationinventoryattributedefinition.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationinventoryattributedefinition.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationsettings.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationsettings.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationtype.create
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationtype.delete
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationtype.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: locationtype.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: transfertimes.create
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: transfertimes.delete
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: transfertimes.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: transfertimes.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: vendor.create
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: vendor.delete
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: vendor.read
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: vendor.update
+  group: Location
+  spec_files:
+  - openapi/kibo-commerce-location-admin-openapi.yml
+  - openapi/kibo-commerce-location-openapi.yml
+  confidence: low
+- category: discounts.create
+  group: Pricing Runtime
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: discounts.read
+  group: Pricing Runtime
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: products.create
+  group: Pricing Runtime
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: products.read
+  group: Pricing Runtime
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: taxes.create
+  group: Pricing Runtime
+  spec_files:
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: categories.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-catalog-storefront-openapi.yml
+  confidence: low
+- category: categories.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-catalog-storefront-openapi.yml
+  confidence: low
+- category: categories.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-catalog-storefront-openapi.yml
+  confidence: low
+- category: categories.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-catalog-storefront-openapi.yml
+  confidence: low
+- category: categoryattributedefinition.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: categoryattributedefinition.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: categoryattributedefinition.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: couponsets.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: couponsets.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: couponsets.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: couponsets.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: currency.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: currency.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: currency.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: currency.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: discounts.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: discounts.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: discounts.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: discounts.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: discountsettings.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: discountsettings.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: facets.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: facets.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: facets.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: facets.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: mastercatalogpublishsettings.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: mastercatalogpublishsettings.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pickwaveruleevaluate.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pickwaverules.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pickwaverules.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pickwaverules.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pickwaverules.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelistentries.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelistentries.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelistentries.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelistentries.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelists.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelists.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelists.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: pricelists.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productattributes.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productattributes.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productattributes.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productattributes.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productextras.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productextras.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productextras.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productextras.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productoptions.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productoptions.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productoptions.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productoptions.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productproperties.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productproperties.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productproperties.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productproperties.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productpublishing.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productpublishing.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productpublishing.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productquickedit.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productrules.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productrules.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productrules.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productrules.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productruleusages.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: products.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: products.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: products.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: products.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  - openapi/kibo-commerce-pricing-openapi.yml
+  confidence: low
+- category: productsortdefinitions.create
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: productsortdefinitions.delete
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: productsortdefinitions.read
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: productsortdefinitions.update
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: producttypes.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: producttypes.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: producttypes.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: producttypes.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productvariations.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productvariations.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productvariations.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: productvariations.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: purchaselimitrules.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: purchaselimitrules.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: purchaselimitrules.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: purchaselimitrules.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: returnrules.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: returnrules.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: returnrules.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: returnrules.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: safetystockrules.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: safetystockrules.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: safetystockrules.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: safetystockrules.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchcategorysuggestsettings.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchcategorysuggestsettings.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchcategorysuggestsettings.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchlistingsettings.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchlistingsettings.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchlistingsettings.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchmerchandizingrule.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchmerchandizingrule.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchmerchandizingrule.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchmerchandizingrule.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchproductsuggestsettings.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchproductsuggestsettings.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchproductsuggestsettings.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchredirect.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchredirect.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchredirect.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchredirect.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsettings.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsettings.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsettings.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsettings.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsynonyms.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsynonyms.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsynonyms.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchsynonyms.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: searchtuningrules.create
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: searchtuningrules.delete
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: searchtuningrules.read
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: searchtuningrules.update
+  group: Product Admin
+  spec_files: []
+  confidence: low
+- category: shipmentrules.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: shipmentrules.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: shipmentrules.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: shipmentrules.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: tag.create
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: tag.delete
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: tag.read
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: tag.update
+  group: Product Admin
+  spec_files:
+  - openapi/kibo-commerce-catalog-admin-openapi.yml
+  confidence: low
+- category: carrierconfiguration.create
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carrierconfiguration.delete
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carrierconfiguration.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carrierconfiguration.update
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carrierconfigurationglobal.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredential.create
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredential.delete
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredential.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredential.update
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredentialset.create
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredentialset.delete
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredentialset.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carriercredentialset.update
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: carrierdefinition.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: shipmentattributedefinition.create
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-fulfillment-openapi.yml
+  confidence: low
+- category: shipmentattributedefinition.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-fulfillment-openapi.yml
+  confidence: low
+- category: shipmentattributedefinition.update
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-fulfillment-openapi.yml
+  confidence: low
+- category: shippingprofile.create
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: shippingprofile.delete
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: shippingprofile.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: shippingprofile.update
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: targetrules.create
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: targetrules.delete
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: targetrules.read
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: targetrules.update
+  group: Shipping Admin
+  spec_files:
+  - openapi/kibo-commerce-shipping-admin-openapi.yml
+  - openapi/kibo-commerce-shipping-openapi.yml
+  confidence: low
+- category: shipping.create
+  group: Shipping Runtime
+  spec_files:
+  - openapi/kibo-commerce-shipping-openapi.yml
+  - openapi/kibo-commerce-shipping-storefront-openapi.yml
+  confidence: low
+- category: shipping.read
+  group: Shipping Runtime
+  spec_files:
+  - openapi/kibo-commerce-shipping-openapi.yml
+  - openapi/kibo-commerce-shipping-storefront-openapi.yml
+  confidence: low
+- category: cartsettings.create
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: cartsettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: cartsettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: checkoutsettings.delete
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: checkoutsettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: checkoutsettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: fulfillmentsettings.create
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: fulfillmentsettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: fulfillmentsettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: generalsettings.create
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: generalsettings.delete
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: generalsettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: generalsettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: inventorysettings.create
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: inventorysettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: inventorysettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: returnsettings.create
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: returnsettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: returnsettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: shippingsettings.create
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: shippingsettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: shippingsettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: subscriptionsettings.create
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: subscriptionsettings.read
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: subscriptionsettings.update
+  group: Site Settings
+  spec_files:
+  - openapi/kibo-commerce-settings-openapi.yml
+  confidence: low
+- category: subscription.create
+  group: Subscription
+  spec_files:
+  - openapi/kibo-commerce-subscription-openapi.yml
+  confidence: low
+- category: subscription.delete
+  group: Subscription
+  spec_files:
+  - openapi/kibo-commerce-subscription-openapi.yml
+  confidence: low
+- category: subscription.read
+  group: Subscription
+  spec_files:
+  - openapi/kibo-commerce-subscription-openapi.yml
+  confidence: low
+- category: subscription.update
+  group: Subscription
+  spec_files:
+  - openapi/kibo-commerce-subscription-openapi.yml
+  confidence: low
+rest_only_note: The Kibo OpenAPI files publish NO operationId on any operation, and the Commerce MCP docs publish tool categories rather than tool names, so no tool->operationId row can be bound. category_bindings
+  links each documented category to the spec files whose tag matches its prefix (name match only).
+coverage:
+  mcp_tools_observed: 3
+  commerce_categories_documented: 313
+  categories_with_tag_match: 300
+  crosswalk_rows: 0

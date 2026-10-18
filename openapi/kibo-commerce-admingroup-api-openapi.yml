@@ -1,0 +1,537 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Admin Group API
+  version: '1.0'
+  description: 'Operations tagged AdminGroup across 3 of this provider''s published API definitions: openapi_openapi_tenant_and_user.json, kibo-commerce-tenant-and-user-openapi.yml, kibo-commerce-user-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AdminGroup
+paths:
+  /platform/adminuser/groups/{groupCode}/addusers:
+    post:
+      description: Add users to admin group
+      parameters:
+      - description: ''
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: OK
+      summary: Add Users to Admin Group
+      tags:
+      - AdminGroup
+      operationId: postPlatformAdminuserGroupsByGroupCodeAddusers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/groups/{groupCode}:
+    delete:
+      description: Deletes an Admin Group
+      parameters:
+      - description: ''
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Admin Group
+      tags:
+      - AdminGroup
+      operationId: deletePlatformAdminuserGroupsByGroupCode
+      x-operation-id-source: derived
+    get:
+      description: Gets an Admin group by id
+      parameters:
+      - description: groupCode
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: OK
+      summary: Get Admin Group
+      tags:
+      - AdminGroup
+      operationId: getPlatformAdminuserGroupsByGroupCode
+      x-operation-id-source: derived
+    put:
+      description: Update an existing adminGroup
+      parameters:
+      - description: ''
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminGroup'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: OK
+      summary: Update Admin Group
+      tags:
+      - AdminGroup
+      operationId: putPlatformAdminuserGroupsByGroupCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/groups:
+    get:
+      description: Gets a collection of user groups
+      parameters:
+      - description: ''
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: pageSize
+        schema:
+          default: 100
+          format: int32
+          type: integer
+      - description: ''
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: ''
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroupCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroupCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroupCollection'
+          description: OK
+      summary: Get Admin Groups
+      tags:
+      - AdminGroup
+      operationId: getPlatformAdminuserGroups
+      x-operation-id-source: derived
+    post:
+      description: Adds an admin group
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdminGroup'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AdminGroup'
+          description: OK
+      summary: Add Admin Group
+      tags:
+      - AdminGroup
+      operationId: postPlatformAdminuserGroups
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/groups/{groupCode}/removeusers:
+    post:
+      description: Remove users from admin group
+      parameters:
+      - description: ''
+        in: path
+        name: groupCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ''
+      responses:
+        '200':
+          description: OK
+      summary: Remove Users from Admin Group
+      tags:
+      - AdminGroup
+      operationId: postPlatformAdminuserGroupsByGroupCodeRemoveusers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Resource:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    UserScope:
+      properties:
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    UserSystemData:
+      properties:
+        createdOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        failedLoginAttemptCount:
+          format: int32
+          type: integer
+        firstFailedLoginAttemptOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isLocked:
+          type: boolean
+        isPasswordChangeRequired:
+          type: boolean
+        lastLockedOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastLoginOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastPasswordChangeOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        remainingLoginAttempts:
+          format: int32
+          type: integer
+        updatedOn:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    AdminGroup:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        description:
+          description: Human-readable description of the group
+          type:
+          - string
+          - 'null'
+        groupCode:
+          description: User Group Id
+          type:
+          - string
+          - 'null'
+        name:
+          description: Human-readable Name of the group
+          type:
+          - string
+          - 'null'
+        scopeId:
+          description: Scope Id
+          format: int32
+          type: integer
+        scopeTypeId:
+          description: Scope Type Id
+          format: int32
+          type: integer
+        users:
+          description: Users associate with a group
+          items:
+            $ref: '#/components/schemas/User'
+          type:
+          - array
+          - 'null'
+      type: object
+    UserRole:
+      properties:
+        assignedInScope:
+          $ref: '#/components/schemas/UserScope'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        roleId:
+          format: int32
+          type: integer
+        roleName:
+          type:
+          - string
+          - 'null'
+        roleResources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type:
+          - array
+          - 'null'
+        roleTags:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+      type: object
+    AdminGroupCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AdminGroup'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    User:
+      properties:
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        externalId:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          type:
+          - string
+          - 'null'
+        identityProviderId:
+          type:
+          - string
+          - 'null'
+        isActive:
+          type: boolean
+        lastName:
+          type:
+          - string
+          - 'null'
+        localeCode:
+          type:
+          - string
+          - 'null'
+        optInToEmail:
+          type:
+          - boolean
+          - 'null'
+        optInToTextMessage:
+          type:
+          - boolean
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+        phoneNumber:
+          type:
+          - string
+          - 'null'
+        roles:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          type:
+          - array
+          - 'null'
+        systemData:
+          $ref: '#/components/schemas/UserSystemData'
+        userName:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_tenant_and_user.json
+- kibo-commerce-tenant-and-user-openapi.yml
+- kibo-commerce-user-openapi.yml

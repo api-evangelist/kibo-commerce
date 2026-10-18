@@ -1,0 +1,237 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Tenants API
+  version: '1.0'
+  description: 'Operations tagged Tenants across 3 of this provider''s published API definitions: openapi_openapi_tenant_and_user.json, kibo-commerce-tenant-and-user-openapi.yml, kibo-commerce-tenant-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Tenants
+paths:
+  /platform/tenants/{tenantId}:
+    get:
+      description: Retrieve information about a tenant. The attributes object will contain flags indicating whether or not certain features are enabled on the tenant. Kibo employees can reference this internal-only documentation for a list of all attributes.
+      parameters:
+      - description: ''
+        in: path
+        name: tenantId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/Tenant'
+          description: OK
+      summary: Get Tenant by ID
+      tags:
+      - Tenants
+      operationId: getPlatformTenantsByTenantId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Site:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          type:
+          - array
+          - 'null'
+        catalogId:
+          format: int32
+          type: integer
+        countryCode:
+          type:
+          - string
+          - 'null'
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        domain:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        localeCode:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        primaryCustomDomain:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    Tenant:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          type:
+          - array
+          - 'null'
+        domain:
+          type:
+          - string
+          - 'null'
+        expiry:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        isDevTenant:
+          type: boolean
+        isUnified:
+          type: boolean
+        lastLoginDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        masterCatalogs:
+          items:
+            $ref: '#/components/schemas/MasterCatalog'
+          type:
+          - array
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        sites:
+          items:
+            $ref: '#/components/schemas/Site'
+          type:
+          - array
+          - 'null'
+      type: object
+    MasterCatalog:
+      properties:
+        catalogs:
+          items:
+            $ref: '#/components/schemas/Catalog'
+          type:
+          - array
+          - 'null'
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        defaultLocaleCode:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        supportedLocaleCodes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    TenantAttribute:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type: string
+        value: {}
+      type: object
+    Catalog:
+      properties:
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        defaultLocaleCode:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        masterCatalogId:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_tenant_and_user.json
+- kibo-commerce-tenant-and-user-openapi.yml
+- kibo-commerce-tenant-openapi.yml

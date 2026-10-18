@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-order-tax-context-schema.json",
+  "title": "OrderTaxContext",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-pricing-openapi.yml#/components/schemas/OrderTaxContext",
+  "properties": {
+    "handlingFeeTax": {
+      "description": "The handling fee tax amount for this line item",
+      "format": "double",
+      "type": "number"
+    },
+    "itemTaxContexts": {
+      "description": "Taxes applied to each item in the order.",
+      "items": {
+        "$ref": "#/$defs/ItemTaxContext"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "orderTax": {
+      "description": "Rollup tax on the order not including shipping",
+      "format": "double",
+      "type": "number"
+    },
+    "shippingTax": {
+      "description": "Rollup shipping tax for this order",
+      "format": "double",
+      "type": "number"
+    },
+    "taxData": {
+      "description": "Storage for any additional/custom tax data.",
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "ItemTaxContext": {
+      "description": "The tax applied to an individual order item.",
+      "properties": {
+        "duty": {
+          "description": "Duty Amount for this line item",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "id": {
+          "description": "Unique identifier of the line item.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productCode": {
+          "description": "Merchant-created code that uniquely identifies the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "The number of products in this lineitem",
+          "format": "int32",
+          "type": "integer"
+        },
+        "shippingTax": {
+          "description": "The shipping tax amount for this line item",
+          "format": "double",
+          "type": "number"
+        },
+        "tax": {
+          "description": "Line item tax amount not including shipping",
+          "format": "double",
+          "type": "number"
+        },
+        "taxData": {
+          "description": "Storage for any additional/custom tax data.",
+          "type": [
+            "object",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

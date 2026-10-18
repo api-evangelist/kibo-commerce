@@ -1,0 +1,236 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Role API
+  version: '1.0'
+  description: 'Operations tagged Role across 3 of this provider''s published API definitions: openapi_openapi_tenant_and_user.json, kibo-commerce-tenant-and-user-openapi.yml, kibo-commerce-user-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Role
+paths:
+  /platform/adminuser/roles:
+    get:
+      description: Retrieves a list of all roles defined for this tenant.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 25
+          format: int32
+          type: integer
+      - description: Optional filter param to filter the roles
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RoleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RoleCollection'
+          description: OK
+      summary: Get Roles
+      tags:
+      - Role
+      operationId: getPlatformAdminuserRoles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Resource:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    CollectionOfRole:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Role'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    UserScope:
+      properties:
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    Behavior:
+      properties:
+        categoryId:
+          format: int32
+          type: integer
+        id:
+          format: int32
+          type: integer
+        isPrivate:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        oAuthScopes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        requiresBehaviorIds:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        systemRoles:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        validUserTypes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    Owner:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    RoleCollection:
+      allOf:
+      - $ref: '#/components/schemas/CollectionOfRole'
+      - additionalProperties: false
+        type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    Role:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        behaviors:
+          items:
+            $ref: '#/components/schemas/Behavior'
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        isSystemRole:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        owners:
+          items:
+            $ref: '#/components/schemas/Owner'
+          type:
+          - array
+          - 'null'
+        resources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type:
+          - array
+          - 'null'
+        tags:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        userScope:
+          $ref: '#/components/schemas/UserScope'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_tenant_and_user.json
+- kibo-commerce-tenant-and-user-openapi.yml
+- kibo-commerce-user-openapi.yml

@@ -1,0 +1,818 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Batch Job API
+  version: '1.0'
+  description: 'Operations tagged BatchJob across 2 of this provider''s published API definitions: openapi_openapi_importexport.json, kibo-commerce-importexport-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: BatchJob
+paths:
+  /platform/data/batchJob/actions/{code}:
+    get:
+      description: Retrieves all available actions for the specified batch job
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/json:
+              schema:
+                items:
+                  type: string
+                type: array
+            text/plain:
+              schema:
+                items:
+                  type: string
+                type: array
+          description: OK
+      summary: Get Available Actions
+      tags:
+      - BatchJob
+      operationId: getPlatformDataBatchJobActionsByCode
+      x-operation-id-source: derived
+    post:
+      description: Performs an action on the specified batch job. Possible actions are start, cancel, and reset actions. Reset can only be called for jobs that are already completed or canceled, and will remove all items so that you can re-use the empty job.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchJobAction'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+          description: OK
+      summary: Perform Batch Action
+      tags:
+      - BatchJob
+      operationId: postPlatformDataBatchJobActionsByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/batchJob/{code}:
+    delete:
+      description: Deletes an existing batch job
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+          description: OK
+      summary: Delete Batch Job
+      tags:
+      - BatchJob
+      operationId: deletePlatformDataBatchJobByCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves information about a specific batch job
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+          description: OK
+      summary: Get Batch Job
+      tags:
+      - BatchJob
+      operationId: getPlatformDataBatchJobByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing batch job. Currently only allows you to change the name of a job.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchJob'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+          description: OK
+      summary: Update Batch Job
+      tags:
+      - BatchJob
+      operationId: putPlatformDataBatchJobByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/batchJob/actions/{code}/items/{correlationId}:
+    post:
+      description: Retrieves a specific item in a batch job
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: correlationId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobItemResultSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobItemResultSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJobItemResultSet'
+          description: OK
+      summary: Get Batch Job Item
+      tags:
+      - BatchJob
+      operationId: postPlatformDataBatchJobActionsByCodeItemsByCorrelationId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/batchJob/actions/{code}/items:
+    post:
+      description: Retrieve a list of all batch job items. Query for items of a specific processing status and/or resource by appending ?processingStatus={processingStatus}&resourceType={resourceType}. Resource type can be Products, ProductProperty, or Pricelistentries.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: includeCount
+        schema:
+          type: boolean
+      - in: query
+        name: processingStatus
+        schema:
+          type: string
+      - in: query
+        name: resourceType
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobItemResultSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobItemResultSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJobItemResultSet'
+          description: OK
+      summary: Get Batch Job Items
+      tags:
+      - BatchJob
+      operationId: postPlatformDataBatchJobActionsByCodeItems
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/batchJob/actions/summaries:
+    get:
+      description: Retrieves a list of all batch job summaries
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          type: string
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: status
+        schema:
+          type: string
+      - in: query
+        name: includeCount
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobSummaryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobSummaryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJobSummaryCollection'
+          description: OK
+      summary: Get Batch Job Summaries
+      tags:
+      - BatchJob
+      operationId: getPlatformDataBatchJobActionsSummaries
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/batchJob/actions/{code}/summary:
+    get:
+      description: Retrieves a batch job summary by its code
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobSummary'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobSummary'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJobSummary'
+          description: OK
+      summary: Get Batch Job Summary
+      tags:
+      - BatchJob
+      operationId: getPlatformDataBatchJobActionsByCodeSummary
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/data/batchJob:
+    get:
+      description: Gets all batch jobs
+      parameters:
+      - in: query
+        name: domain
+        schema:
+          type: string
+      - in: query
+        name: pageSize
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: startIndex
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: status
+        schema:
+          type: string
+      - in: query
+        name: includeCount
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJobCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJobCollection'
+          description: OK
+      summary: Get Batch Jobs
+      tags:
+      - BatchJob
+      operationId: getPlatformDataBatchJob
+      x-operation-id-source: derived
+    post:
+      description: Creates a new batch job
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchJob'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BatchJob'
+          description: OK
+      summary: Create Batch Job
+      tags:
+      - BatchJob
+      operationId: postPlatformDataBatchJob
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    BatchJobItemError:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        field:
+          type:
+          - string
+          - 'null'
+        itemKeys:
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+          type:
+          - array
+          - 'null'
+        longMessage:
+          type:
+          - string
+          - 'null'
+        message:
+          type:
+          - string
+          - 'null'
+        subErrors:
+          items:
+            $ref: '#/components/schemas/BatchJobItemError'
+          type:
+          - array
+          - 'null'
+      type: object
+    BatchJobItemProcessingStatuses:
+      enum:
+      - Waiting
+      - Running
+      - ValidationFailed
+      - Failed
+      - Completed
+      - Cancelled
+      type: string
+    BatchJobAction:
+      properties:
+        action:
+          $ref: '#/components/schemas/BatchJobActionTypes'
+      type: object
+    BatchJobItem:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        batchJobCode:
+          type:
+          - string
+          - 'null'
+        catalogId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        correlationId:
+          type:
+          - string
+          - 'null'
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        dataViewMode:
+          $ref: '#/components/schemas/DataViewModeType'
+        errors:
+          items:
+            $ref: '#/components/schemas/BatchJobItemError'
+          type:
+          - array
+          - 'null'
+        httpMethod:
+          type:
+          - string
+          - 'null'
+        itemKey:
+          type:
+          - string
+          - 'null'
+        localeCode:
+          type:
+          - string
+          - 'null'
+        masterCatalog:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        processingStatus:
+          $ref: '#/components/schemas/BatchJobItemProcessingStatuses'
+        query:
+          type:
+          - string
+          - 'null'
+        resourceType:
+          type:
+          - string
+          - 'null'
+        retryCount:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        siteId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        status:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        uri:
+          type:
+          - string
+          - 'null'
+      type: object
+    BatchJobSummaryCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BatchJobSummary'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    BatchJobStatuses:
+      enum:
+      - Ready
+      - Pending
+      - Running
+      - Completed
+      - Canceled
+      type: string
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    BatchJob:
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          type:
+          - string
+          - 'null'
+        dateStarted:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        domain:
+          $ref: '#/components/schemas/BatchDomains'
+        name:
+          type:
+          - string
+          - 'null'
+        scheduledDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/BatchJobStatuses'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    ProcessingCount:
+      properties:
+        count:
+          format: int32
+          type: integer
+        status:
+          $ref: '#/components/schemas/BatchJobItemProcessingStatuses'
+      type: object
+    StringStringKeyValuePair:
+      properties:
+        key:
+          type:
+          - string
+          - 'null'
+        value:
+          type:
+          - string
+          - 'null'
+      type: object
+    BatchDomains:
+      enum:
+      - Catalog
+      type: string
+    BatchJobResourceSummary:
+      properties:
+        counts:
+          items:
+            $ref: '#/components/schemas/ProcessingCount'
+          type:
+          - array
+          - 'null'
+        resourceType:
+          type:
+          - string
+          - 'null'
+      type: object
+    BatchJobItemResultSet:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BatchJobItem'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    BatchJobSummary:
+      properties:
+        code:
+          type:
+          - string
+          - 'null'
+        dateStarted:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        resources:
+          items:
+            $ref: '#/components/schemas/BatchJobResourceSummary'
+          type:
+          - array
+          - 'null'
+        scheduledDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/BatchJobStatuses'
+      type: object
+    BatchJobActionTypes:
+      enum:
+      - Start
+      - Reset
+      - Cancel
+      type: string
+    BatchJobCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BatchJob'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    DataViewModeType:
+      enum:
+      - 0
+      - 1
+      - 2
+      format: int32
+      type: integer
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_importexport.json
+- kibo-commerce-importexport-openapi.yml

@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-document-type-schema.json",
+  "title": "DocumentType",
+  "description": "The schema a document must implement and associated metadata. A documentType is created at a tenant scope and is therefore shared amongst all child contexts (masterCatalog, catalog, site).",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-content-openapi.yml#/components/schemas/DocumentType",
+  "properties": {
+    "adminName": {
+      "description": "The administrative name of the documentType.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "documentTypeFQN": {
+      "description": "The unique identifier of the documentType, represented by name@namespace. The documentTypeFQN must be provided when creating the documentType, or the name and namespace fields must be provided.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "installationPackage": {
+      "description": "Optionally, a documentType can be defined in an installationPackage and then installed into a tenant. Installed documentTypes can only be updated via installation upgrades. \nCurrently only internal Mozu platform components can create installations. This field is system-supplied and read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "metadata": {
+      "description": "Allows arbitrary data to be stored on the documentType.",
+      "nullable": true
+    },
+    "name": {
+      "description": "The name component of the documentType, name@namespace. The name must be unique within the namespace component and cannot be updated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "namespace": {
+      "description": "The namespace component of the documentType, name@namespace. The issued dev account namespace must be used unless elevated privileges allow a blank namespace to be used. The namespace cannot be updated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "properties": {
+      "description": "An array of the schema elements that a document implementing this documentType will have.",
+      "items": {
+        "$ref": "#/$defs/Property"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "version": {
+      "description": "The version of the installationPackge installed. This field is read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Property": {
+      "description": "A schema element describing a name/value pair that can be stored on a document's properties field, where the name is directly defined by the propertyName and the value is constrained by the propertyType.",
+      "properties": {
+        "isMultiValued": {
+          "description": "True if the property value is an array, where each array value must conform to the propertyType. When false, the property value must directly conform to the propertyType. This value is false by default.",
+          "type": "boolean"
+        },
+        "isRequired": {
+          "description": "True if the property must be present on the document. This value is false by default.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "The name portion of the name/value pair stored on a document's properties field. The property name value must be unique within the properties defined on the documentType.\nThis value cannot be updated after property creation.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "propertyType": {
+          "$ref": "#/$defs/PropertyType"
+        }
+      },
+      "type": "object"
+    },
+    "PropertyType": {
+      "description": "The schema a document property value must implement. A propertyType is created at a tenant scope and is therefore shared amongst all child contexts (masterCatalog, catalog, site).\nA propertyType is analogous to the type argument of a class property in object oriented programming. \nA propertyType's dataType field is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.",
+      "properties": {
+        "adminName": {
+          "description": "The administrative name of the propertyType.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataType": {
+          "description": "The underlying value type that can be held in the document's property value. Valid values are\nstring\nnumber\nboolean\ndatetime\njson\nThe dataType is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "installationPackage": {
+          "description": "Optionally, a propertyType can be defined in an installationPackage and then installed into a tenant. Installed propertyTypes can only be updated via installation upgrades. \nCurrently only internal Mozu platform components can create installations. This field is system-supplied and read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isAggregatable": {
+          "description": "tbd",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isQueryable": {
+          "description": "tbd",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "isSortable": {
+          "description": "tbd",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "name": {
+          "description": "The name component of the propertyType, name@namespace. The name must be unique within the namespace component and cannot be updated.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "namespace": {
+          "description": "The namespace component of the propertyType, name@namespace. The issued dev account namespace must be used unless elevated privileges allow a blank namespace to be used. The namespace cannot be updated.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "propertyTypeFQN": {
+          "description": "The unique identifier of the propertyTYpe, represented by name@namespace. The propertyTypeFQN must be provided when creating the propertyType, or the name and namespace fields must be provided.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "version": {
+          "description": "The version of the installationPackge installed. This field is read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

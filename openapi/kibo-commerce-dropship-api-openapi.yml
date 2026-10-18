@@ -1,0 +1,1892 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Drop Ship API
+  version: '1.0'
+  description: 'Operations tagged DropShip across 2 of this provider''s published API definitions: openapi_openapi_dropship.json, kibo-commerce-dropship-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: DropShip
+paths:
+  /commerce/dropship/invoice/{shipmentNumber}:
+    get:
+      parameters:
+      - description: The shipment number to generate EDI 810 for
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet810'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet810'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionSet810'
+          description: OK
+      summary: Generates an EDI 810 Invoice for the specified shipment
+      tags:
+      - DropShip
+      operationId: getCommerceDropshipInvoiceByShipmentNumber
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/dropship/purchaseorder/{shipmentNumber}:
+    get:
+      description: Generates an EDI 850 Purchase Order (returned as JSON) for the specified shipment, resolving the vendor, contracted pricing, and ship-to address from the shipment's fulfillment location. See the Dropship Developer Guide for the complete segment mapping, validation rules, and workflow.
+      parameters:
+      - description: The shipment number to generate EDI 850 for
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TransactionSet'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TransactionSet'
+          description: OK
+      summary: Retrieve EDI 850 Purchase Order
+      tags:
+      - DropShip
+      operationId: getCommerceDropshipPurchaseorderByShipmentNumber
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/dropship/translate/{shipmentNumber}:
+    get:
+      description: Translates a shipment into a lightweight response containing vendor SKU mappings and contracted pricing per item. See the Dropship Developer Guide for field details and behavior.
+      parameters:
+      - description: The shipment number to translate
+        in: path
+        name: shipmentNumber
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranslatedShipment'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TranslatedShipment'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TranslatedShipment'
+          description: OK
+      summary: Translate Shipment
+      tags:
+      - DropShip
+      operationId: getCommerceDropshipTranslateByShipmentNumber
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AdministrativeCommunicationsContact:
+      description: Administrative Communications Contact (PER) - Contact information (REUSABLE)
+      properties:
+        communicationNumber:
+          description: Communication Number
+          type:
+          - string
+          - 'null'
+        communicationNumber1:
+          description: Communication Number 1
+          type:
+          - string
+          - 'null'
+        communicationNumber2:
+          description: Communication Number 2
+          type:
+          - string
+          - 'null'
+        communicationNumberQualifier:
+          description: Communication Number Qualifier
+          type:
+          - string
+          - 'null'
+        communicationNumberQualifier1:
+          description: Communication Number Qualifier 1
+          type:
+          - string
+          - 'null'
+        communicationNumberQualifier2:
+          description: Communication Number Qualifier 2
+          type:
+          - string
+          - 'null'
+        contactFunctionCode:
+          description: Contact Function Code
+          type:
+          - string
+          - 'null'
+        contactInquiryReference:
+          description: Contact Inquiry Reference
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name
+          type:
+          - string
+          - 'null'
+      type: object
+    TranslatedShipmentItem:
+      properties:
+        imageUrl:
+          type:
+          - string
+          - 'null'
+        lineId:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        originalOrderItemId:
+          type:
+          - string
+          - 'null'
+        productCode:
+          type:
+          - string
+          - 'null'
+        quantity:
+          format: int32
+          type: integer
+        sku:
+          type:
+          - string
+          - 'null'
+        subtotal:
+          format: double
+          type:
+          - number
+          - 'null'
+        unitPrice:
+          format: double
+          type: number
+        variationProductCode:
+          type:
+          - string
+          - 'null'
+        vendorContractedPrice:
+          format: double
+          type:
+          - number
+          - 'null'
+        vendorSku:
+          type:
+          - string
+          - 'null'
+      type: object
+    TransactionTotals:
+      description: Transaction Totals (CTT) - Transaction set totals
+      properties:
+        hashTotal:
+          description: Hash Total
+          type:
+          - string
+          - 'null'
+        numberOfLineItems:
+          description: Number of Line Items
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode:
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode1:
+          type:
+          - string
+          - 'null'
+        volume:
+          type:
+          - string
+          - 'null'
+        weight:
+          type:
+          - string
+          - 'null'
+      type: object
+    PartyLocation:
+      description: Party Location (N3) - Address information
+      properties:
+        addressInformation:
+          description: Address Information
+          type:
+          - string
+          - 'null'
+      type: object
+    GeographicLocation:
+      description: Geographic Location (N4) - City, state, postal code, and country information
+      properties:
+        cityName:
+          description: City Name
+          type:
+          - string
+          - 'null'
+        countryCode:
+          description: Country Code
+          type:
+          - string
+          - 'null'
+        locationIdentifier:
+          description: Location Identifier
+          type:
+          - string
+          - 'null'
+        locationQualifier:
+          description: Location Qualifier
+          type:
+          - string
+          - 'null'
+        postalCode:
+          description: Postal Code
+          type:
+          - string
+          - 'null'
+        stateOrProvinceCode:
+          description: State or Province Code
+          type:
+          - string
+          - 'null'
+      type: object
+    DateTimeReference:
+      description: Date/Time Reference (DTM) - Date and time information (REUSABLE)
+      properties:
+        date:
+          description: Date (CCYYMMDD format)
+          type:
+          - string
+          - 'null'
+        dateTimeQualifier:
+          description: Date/Time Qualifier
+          type:
+          - string
+          - 'null'
+        time:
+          description: Time (HHMM or HHMMSS format)
+          type:
+          - string
+          - 'null'
+        timeCode:
+          description: Time Code
+          type:
+          - string
+          - 'null'
+      type: object
+    N9_Loop:
+      description: 'N9 Loop - Extended Reference Information Loop
+
+        Contains Extended Reference Information and related Message Text segments'
+      properties:
+        extendedReferenceInformation:
+          description: 'N9 - Extended Reference Information
+
+            To transmit identifying information as specified by the Reference Identification Qualifier'
+          items:
+            $ref: '#/components/schemas/ExtendedReferenceInformation'
+          type:
+          - array
+          - 'null'
+        messageText:
+          description: 'MSG - Message Text
+
+            To provide a free-form format that allows the transmission of text information'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+      type: object
+    BeginningSegmentForInvoice:
+      description: Beginning Segment for Invoice (BIG) - Invoice header information
+      properties:
+        date:
+          type:
+          - string
+          - 'null'
+        date1:
+          type:
+          - string
+          - 'null'
+        invoiceNumber:
+          type:
+          - string
+          - 'null'
+        purchaseOrderNumber:
+          type:
+          - string
+          - 'null'
+        transactionSetPurposeCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    PID_Loop:
+      description: 'PID Loop - Product/Item Description Loop
+
+        Contains product/item descriptions and related information'
+      properties:
+        productItemDescription:
+          description: 'PID - Product/Item Description
+
+            To describe a product or process in coded or free-form format'
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          type:
+          - array
+          - 'null'
+      type: object
+    TaxInformation:
+      description: Tax Information (TXI) - Tax details
+      properties:
+        dollarBasisForPercent:
+          type:
+          - string
+          - 'null'
+        monetaryAmount:
+          type:
+          - string
+          - 'null'
+        percentageAsDecimal:
+          type:
+          - string
+          - 'null'
+        taxExemptCode:
+          type:
+          - string
+          - 'null'
+        taxIdentificationNumber:
+          type:
+          - string
+          - 'null'
+        taxTypeCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    ProductItemDescription:
+      description: Product/Item Description (PID) - Product description information (REUSABLE)
+      properties:
+        description:
+          description: Description
+          type:
+          - string
+          - 'null'
+        itemDescriptionTypeCode:
+          description: Item Description Type Code
+          type:
+          - string
+          - 'null'
+        productProcessCharacteristicCode:
+          description: Product/Process Characteristic Code
+          type:
+          - string
+          - 'null'
+      type: object
+    ShippingAddress:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    SalesRequirements:
+      description: Sales Requirements (SAL) - Sales information
+      properties:
+        actionCode:
+          description: Action Code
+          type:
+          - string
+          - 'null'
+        amount:
+          description: Amount
+          type:
+          - string
+          - 'null'
+        salesRequirementCode:
+          description: Sales Requirement Code
+          type:
+          - string
+          - 'null'
+      type: object
+    IT1_Loop:
+      description: IT1 Loop - Invoice Line Item Loop
+      properties:
+        additionalItemData:
+          items:
+            $ref: '#/components/schemas/AdditionalItemData'
+          type:
+          - array
+          - 'null'
+        baselineItemDataInvoice:
+          items:
+            $ref: '#/components/schemas/BaselineItemDataInvoice'
+          type:
+          - array
+          - 'null'
+        dateTimeReference:
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          type:
+          - array
+          - 'null'
+        itemPhysicalDetails:
+          items:
+            $ref: '#/components/schemas/ItemPhysicalDetails'
+          type:
+          - array
+          - 'null'
+        piD_loop:
+          items:
+            $ref: '#/components/schemas/PID_Loop'
+          type:
+          - array
+          - 'null'
+        pricingInformation:
+          items:
+            $ref: '#/components/schemas/PricingInformation'
+          type:
+          - array
+          - 'null'
+        taxInformation:
+          items:
+            $ref: '#/components/schemas/TaxInformation'
+          type:
+          - array
+          - 'null'
+      type: object
+    BaselineItemDataInvoice:
+      description: Baseline Item Data - Invoice (IT1) - Line item information for invoice
+      properties:
+        assignedIdentification:
+          type:
+          - string
+          - 'null'
+        basisOfUnitPriceCode:
+          type:
+          - string
+          - 'null'
+        productServiceID:
+          type:
+          - string
+          - 'null'
+        productServiceID1:
+          type:
+          - string
+          - 'null'
+        productServiceID2:
+          type:
+          - string
+          - 'null'
+        productServiceIDQualifier:
+          type:
+          - string
+          - 'null'
+        productServiceIDQualifier1:
+          type:
+          - string
+          - 'null'
+        productServiceIDQualifier2:
+          type:
+          - string
+          - 'null'
+        quantityInvoiced:
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode:
+          type:
+          - string
+          - 'null'
+        unitPrice:
+          type:
+          - string
+          - 'null'
+      type: object
+    TransactionSetHeader:
+      description: Transaction Set Header (ST) - Starts a transaction set and assigns a control number
+      properties:
+        transactionSetControlNumber:
+          description: Transaction Set Control Number
+          type:
+          - string
+          - 'null'
+        transactionSetIdentifierCode:
+          description: Transaction Set Identifier Code (e.g., "850" for Purchase Order)
+          type:
+          - string
+          - 'null'
+      type: object
+    TranslatedShipment:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/TranslatedShipmentItem'
+          type:
+          - array
+          - 'null'
+        orderId:
+          type:
+          - string
+          - 'null'
+        shipmentNumber:
+          format: int32
+          type: integer
+        shippingAddress:
+          $ref: '#/components/schemas/ShippingAddress'
+        subtotal:
+          format: double
+          type: number
+        vendorCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    TransactionSet:
+      description: 'TransactionSet - Complete 850 Purchase Order Transaction Set
+
+        Contains all segments and loops for a complete EDI 850 Purchase Order transaction'
+      properties:
+        administrativeCommunicationsContact:
+          description: 'PER - Administrative Communications Contact
+
+            To identify a person or office to whom administrative communications should be directed'
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          type:
+          - array
+          - 'null'
+        advertisingDemographicInformation:
+          description: 'ADV - Advertising Demographic Information
+
+            To specify advertising demographic information'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        beginningSegmentForPurchaseOrder:
+          description: 'BEG - Beginning Segment for Purchase Order
+
+            To indicate the beginning of the Purchase Order Transaction Set and transmit identifying numbers and dates'
+          items:
+            $ref: '#/components/schemas/BeginningSegmentForPurchaseOrder'
+          type:
+          - array
+          - 'null'
+        carrierDetails:
+          description: 'TD1 - Carrier Details (Quantity and Weight)
+
+            To specify the transportation details relative to commodity, weight, and quantity'
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          type:
+          - array
+          - 'null'
+        carrierEquipmentDetails:
+          description: 'TD3 - Carrier Details (Equipment)
+
+            To specify transportation details relating to the equipment used by the carrier'
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          type:
+          - array
+          - 'null'
+        carrierSpecialHandling:
+          description: 'TD4 - Carrier Details (Special Handling, or Hazardous Materials, or Both)
+
+            To specify transportation special handling requirements, or hazardous materials, or both'
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          type:
+          - array
+          - 'null'
+        codeSourceInformation:
+          description: 'LM - Code Source Information
+
+            To transmit standard code list identification information'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        ctT_loop:
+          description: 'CTT Loop - Transaction Totals Loop
+
+            Contains transaction totals and related monetary information'
+          items:
+            $ref: '#/components/schemas/CTT_Loop'
+          type:
+          - array
+          - 'null'
+        currency:
+          description: 'CUR - Currency
+
+            To specify the currency (dollars, pounds, francs, etc.) used in a transaction'
+          items:
+            $ref: '#/components/schemas/Currency'
+          type:
+          - array
+          - 'null'
+        dateTimeReference:
+          description: 'DTM - Date/Time Reference
+
+            To specify pertinent dates and times'
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          type:
+          - array
+          - 'null'
+        discountDetail:
+          description: 'DIS - Discount Detail
+
+            To specify the exact type and terms of various discount information'
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        extendedReferenceLoop:
+          description: 'N9 Loop - Extended Reference Information Loop
+
+            Contains extended reference information and related text'
+          items:
+            $ref: '#/components/schemas/N9_Loop'
+          type:
+          - array
+          - 'null'
+        installmentInformation:
+          description: 'INC - Installment Information
+
+            To specify installment billing arrangement information'
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        itemIdentification:
+          description: 'LIN - Item Identification
+
+            To specify basic item identification data'
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          type:
+          - array
+          - 'null'
+        leadTime:
+          description: 'LDT - Lead Time
+
+            To specify lead time for availability of products and services'
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          type:
+          - array
+          - 'null'
+        marksAndNumbers:
+          description: 'MAN - Marks and Numbers
+
+            To indicate identifying marks and numbers for shipping containers'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        measurements:
+          description: 'MEA - Measurements
+
+            To specify physical measurements or counts, including dimensions, tolerances, variances, and weights'
+          items:
+            $ref: '#/components/schemas/ItemPhysicalDetails'
+          type:
+          - array
+          - 'null'
+        n1_loop:
+          description: 'N1 Loop - Party Identification Loop
+
+            Contains party information including identification, additional names, location, and geographic details'
+          items:
+            $ref: '#/components/schemas/N1_Loop'
+          type:
+          - array
+          - 'null'
+        pO1_loop:
+          description: 'PO1 Loop - Baseline Item Data Loop
+
+            Contains complete line item information including baseline data, pricing, physical details, and related segments'
+          items:
+            $ref: '#/components/schemas/PO1_Loop'
+          type:
+          - array
+          - 'null'
+        packagingInformation:
+          description: 'PKG - Marking, Packaging, Loading
+
+            To describe marking, packaging, loading, and unloading requirements'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        paperwork:
+          description: 'PWK - Paperwork
+
+            To identify the type or transmission or both of paperwork or supporting information'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        periodAmount:
+          description: 'PAM - Period Amount
+
+            To indicate a quantity, and/or amount for an identified period'
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        pricingInformation:
+          description: 'CTP - Pricing Information
+
+            To specify pricing information'
+          items:
+            $ref: '#/components/schemas/PricingInformation'
+          type:
+          - array
+          - 'null'
+        productItemDescription:
+          description: 'PID - Product/Item Description
+
+            To describe a product or process in coded or free-form format'
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          type:
+          - array
+          - 'null'
+        referenceInformation:
+          description: 'REF - Reference Information
+
+            To specify identifying information'
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          type:
+          - array
+          - 'null'
+        salesRequirements:
+          description: 'CSH - Sales Requirements
+
+            To specify sales conditions'
+          items:
+            $ref: '#/components/schemas/SalesRequirements'
+          type:
+          - array
+          - 'null'
+        serviceCharacteristic:
+          description: 'SI - Service Characteristic Identification
+
+            To specify service characteristic data'
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          type:
+          - array
+          - 'null'
+        servicePromotionAllowanceChargeLoop:
+          description: 'SAC Loop - Service, Promotion, Allowance, or Charge Information Loop
+
+            To request or identify a service, promotion, allowance, or charge; or to report a condition'
+          items:
+            $ref: '#/components/schemas/SAC_Loop'
+          type:
+          - array
+          - 'null'
+        specificationIdentifier:
+          description: 'SPI - Specification Identifier
+
+            To provide a description of the included specification or technical data items'
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          type:
+          - array
+          - 'null'
+        taxReference:
+          description: 'TAX - Tax Reference
+
+            To specify tax information'
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          type:
+          - array
+          - 'null'
+        termsOfSaleDeferredTermsOfSale:
+          description: 'ITD - Terms of Sale/Deferred Terms of Sale
+
+            To specify terms of sale'
+          items:
+            $ref: '#/components/schemas/TermsOfSaleDeferredTermsOfSale'
+          type:
+          - array
+          - 'null'
+        transactionSetHeader:
+          description: 'ST - Transaction Set Header
+
+            To indicate the start of a transaction set and to assign a control number'
+          items:
+            $ref: '#/components/schemas/TransactionSetHeader'
+          type:
+          - array
+          - 'null'
+        transactionSetTrailer:
+          description: 'SE - Transaction Set Trailer
+
+            To indicate the end of the transaction set and provide the count of the transmitted segments (including the beginning (ST) and ending (SE) segments)'
+          items:
+            $ref: '#/components/schemas/TransactionSetTrailer'
+          type:
+          - array
+          - 'null'
+      type: object
+    CTP_Loop:
+      description: 'CTP Loop - Pricing Information Loop
+
+        Contains pricing information and related segments'
+      properties:
+        pricingInformation:
+          description: 'CTP - Pricing Information
+
+            To specify pricing information'
+          items:
+            $ref: '#/components/schemas/PricingInformation'
+          type:
+          - array
+          - 'null'
+      type: object
+    TransactionSetTrailer:
+      description: Transaction Set Trailer (SE) - Ends a transaction set and provides segment count
+      properties:
+        numberOfIncludedSegments:
+          description: Number of Included Segments (including ST and SE segments)
+          type:
+          - string
+          - 'null'
+        transactionSetControlNumber:
+          description: Transaction Set Control Number (must match ST02)
+          type:
+          - string
+          - 'null'
+      type: object
+    BaselineItemData:
+      description: Baseline Item Data (PO1) - Line item information for purchase order
+      properties:
+        assignedIdentification:
+          description: Assigned Identification
+          type:
+          - string
+          - 'null'
+        basisOfUnitPriceCode:
+          description: Basis of Unit Price Code
+          type:
+          - string
+          - 'null'
+        productServiceID:
+          description: Product/Service ID
+          type:
+          - string
+          - 'null'
+        productServiceID2:
+          description: Product/Service ID 2
+          type:
+          - string
+          - 'null'
+        productServiceID3:
+          description: Product/Service ID 3
+          type:
+          - string
+          - 'null'
+        productServiceID4:
+          description: Product/Service ID 4
+          type:
+          - string
+          - 'null'
+        productServiceIDQualifier:
+          description: Product/Service ID Qualifier
+          type:
+          - string
+          - 'null'
+        productServiceIDQualifier2:
+          description: Product/Service ID Qualifier 2
+          type:
+          - string
+          - 'null'
+        productServiceIDQualifier3:
+          description: Product/Service ID Qualifier 3
+          type:
+          - string
+          - 'null'
+        productServiceIDQualifier4:
+          description: Product/Service ID Qualifier 4
+          type:
+          - string
+          - 'null'
+        quantity:
+          description: Quantity
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode:
+          description: Unit or Basis for Measurement Code
+          type:
+          - string
+          - 'null'
+        unitPrice:
+          description: Unit Price
+          type:
+          - string
+          - 'null'
+      type: object
+    Currency:
+      description: Currency (CUR) - Identifies the monetary unit
+      properties:
+        currencyCode:
+          description: Currency Code (e.g., USD, EUR, CAD)
+          type:
+          - string
+          - 'null'
+        entityIdentifierCode:
+          description: Entity Identifier Code
+          type:
+          - string
+          - 'null'
+      type: object
+    TermsOfSaleDeferredTermsOfSale:
+      description: Terms of Sale/Deferred Terms of Sale (ITD) - Terms of sale information
+      properties:
+        dayOfMonth:
+          description: Day of Month
+          type:
+          - string
+          - 'null'
+        description:
+          description: Description
+          type:
+          - string
+          - 'null'
+        paymentMethodTypeCode:
+          description: Payment Method Type Code
+          type:
+          - string
+          - 'null'
+        termsBasisDateCode:
+          description: Terms Basis Date Code
+          type:
+          - string
+          - 'null'
+        termsDiscountAmount:
+          description: Terms Discount Amount
+          type:
+          - string
+          - 'null'
+        termsNetDays:
+          description: Terms Net Days
+          type:
+          - string
+          - 'null'
+        termsTypeCode:
+          description: Terms Type Code
+          type:
+          - string
+          - 'null'
+      type: object
+    ReferenceInformation:
+      description: Reference Information (REF) - Reference identification information (REUSABLE)
+      properties:
+        referenceIdentification:
+          description: Reference Identification
+          type:
+          - string
+          - 'null'
+        referenceIdentificationQualifier:
+          description: Reference Identification Qualifier
+          type:
+          - string
+          - 'null'
+      type: object
+    CTT_Loop:
+      description: 'CTT Loop - Transaction Totals Loop
+
+        Contains transaction totals and related monetary information'
+      properties:
+        monetaryAmountInformation:
+          description: 'AMT - Monetary Amount Information
+
+            To indicate the total monetary amount'
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        transactionTotals:
+          description: 'CTT - Transaction Totals
+
+            To transmit a hash total for a specific element in the transaction set'
+          items:
+            $ref: '#/components/schemas/TransactionTotals'
+          type:
+          - array
+          - 'null'
+      type: object
+    PartyIdentification:
+      description: Party Identification (N1) - Name and identification information
+      properties:
+        entityIdentifierCode:
+          description: Entity Identifier Code
+          type:
+          - string
+          - 'null'
+        identificationCode:
+          description: Identification Code
+          type:
+          - string
+          - 'null'
+        identificationCodeQualifier:
+          description: Identification Code Qualifier
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name
+          type:
+          - string
+          - 'null'
+      type: object
+    ItemPhysicalDetails:
+      description: Item Physical Details (PO4) - Physical characteristics of items
+      properties:
+        grossVolumePerPack:
+          description: Gross Volume per Pack
+          type:
+          - string
+          - 'null'
+        grossWeightPerPack:
+          description: Gross Weight per Pack
+          type:
+          - string
+          - 'null'
+        height:
+          description: Height
+          type:
+          - string
+          - 'null'
+        length:
+          description: Length
+          type:
+          - string
+          - 'null'
+        pack:
+          description: Pack
+          type:
+          - string
+          - 'null'
+        packagingCode:
+          description: Packaging Code
+          type:
+          - string
+          - 'null'
+        size:
+          description: Size
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode:
+          description: Unit or Basis for Measurement Code
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode1:
+          description: Unit or Basis for Measurement Code 1
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode2:
+          description: Unit or Basis for Measurement Code 2
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode3:
+          description: Unit or Basis for Measurement Code 3
+          type:
+          - string
+          - 'null'
+        weightQualifier:
+          description: Weight Qualifier
+          type:
+          - string
+          - 'null'
+        width:
+          description: Width
+          type:
+          - string
+          - 'null'
+      type: object
+    ServicePromotionAllowanceOrChargeInformation:
+      description: Service, Promotion, Allowance, or Charge Information (SAC) - Service, allowance, or charge information (REUSABLE)
+      properties:
+        agencyQualifierCode:
+          description: Agency Qualifier Code
+          type:
+          - string
+          - 'null'
+        agencyServicePromotionAllowanceOrChargeCode:
+          description: Agency Service, Promotion, Allowance, or Charge Code
+          type:
+          - string
+          - 'null'
+        allowanceChargePercentQualifier:
+          description: Allowance/Charge Percent Qualifier
+          type:
+          - string
+          - 'null'
+        allowanceOrChargeIndicatorCode:
+          description: Allowance or Charge Indicator Code
+          type:
+          - string
+          - 'null'
+        allowanceOrChargeMethodOfHandlingCode:
+          description: Allowance or Charge Method of Handling Code
+          type:
+          - string
+          - 'null'
+        amount:
+          description: Amount
+          type:
+          - string
+          - 'null'
+        description:
+          description: Description
+          type:
+          - string
+          - 'null'
+        optionNumber:
+          description: Option Number
+          type:
+          - string
+          - 'null'
+        percentDecimalFormat:
+          description: Percent (Decimal Format)
+          type:
+          - string
+          - 'null'
+        referenceIdentification:
+          description: Reference Identification
+          type:
+          - string
+          - 'null'
+        servicePromotionAllowanceOrChargeCode:
+          description: Service, Promotion, Allowance, or Charge Code
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode:
+          description: Unit or Basis for Measurement Code
+          type:
+          - string
+          - 'null'
+      type: object
+    N1_Loop:
+      description: 'N1 Loop - Party Identification Loop
+
+        Contains party information including identification, additional names, location, and geographic details'
+      properties:
+        additionalNameInformation:
+          description: 'N2 - Additional Name Information
+
+            To specify additional names or those longer than 35 characters in length'
+          items:
+            $ref: '#/components/schemas/AdditionalNameInformation'
+          type:
+          - array
+          - 'null'
+        administrativeCommunicationsContact:
+          description: 'PER - Administrative Communications Contact
+
+            To identify a person or office to whom administrative communications should be directed'
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          type:
+          - array
+          - 'null'
+        geographicLocation:
+          description: 'N4 - Geographic Location
+
+            To specify the geographic place of the named party'
+          items:
+            $ref: '#/components/schemas/GeographicLocation'
+          type:
+          - array
+          - 'null'
+        partyIdentification:
+          description: 'N1 - Party Identification
+
+            To identify a party by type of organization, name, and code'
+          items:
+            $ref: '#/components/schemas/PartyIdentification'
+          type:
+          - array
+          - 'null'
+        partyLocation:
+          description: 'N3 - Party Location
+
+            To specify the location of the named party'
+          items:
+            $ref: '#/components/schemas/PartyLocation'
+          type:
+          - array
+          - 'null'
+        referenceInformation:
+          description: 'REF - Reference Information
+
+            To specify identifying information'
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          type:
+          - array
+          - 'null'
+      type: object
+    AdditionalItemData:
+      description: Additional Item Data (IT3) - Shipped quantity information
+      properties:
+        numberOfUnitsShipped:
+          type:
+          - string
+          - 'null'
+        unitOrBasisForMeasurementCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    TotalMonetaryValueSummary:
+      description: Total Monetary Value Summary (TDS) - Invoice total amounts
+      properties:
+        amount:
+          type:
+          - string
+          - 'null'
+        amount1:
+          type:
+          - string
+          - 'null'
+      type: object
+    AdditionalNameInformation:
+      description: Additional Name Information (N2) - Additional name information
+      properties:
+        name:
+          description: Name
+          type:
+          - string
+          - 'null'
+      type: object
+    TransactionSet810:
+      description: TransactionSet810 - Complete 810 Invoice Transaction Set (Contract DTO)
+      properties:
+        administrativeCommunicationsContact:
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          type:
+          - array
+          - 'null'
+        beginningSegmentForInvoice:
+          items:
+            $ref: '#/components/schemas/BeginningSegmentForInvoice'
+          type:
+          - array
+          - 'null'
+        currency:
+          items:
+            $ref: '#/components/schemas/Currency'
+          type:
+          - array
+          - 'null'
+        dateTimeReference:
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          type:
+          - array
+          - 'null'
+        fobRelatedInstructions:
+          items:
+            $ref: '#/components/schemas/FOBRelatedInstructions'
+          type:
+          - array
+          - 'null'
+        iT1_loop:
+          items:
+            $ref: '#/components/schemas/IT1_Loop'
+          type:
+          - array
+          - 'null'
+        monetaryAmountInformation:
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        n1_loop:
+          items:
+            $ref: '#/components/schemas/N1_Loop'
+          type:
+          - array
+          - 'null'
+        taxInformation:
+          items:
+            $ref: '#/components/schemas/TaxInformation'
+          type:
+          - array
+          - 'null'
+        termsOfSaleDeferredTermsOfSale:
+          items:
+            $ref: '#/components/schemas/TermsOfSaleDeferredTermsOfSale'
+          type:
+          - array
+          - 'null'
+        totalMonetaryValueSummary:
+          items:
+            $ref: '#/components/schemas/TotalMonetaryValueSummary'
+          type:
+          - array
+          - 'null'
+        transactionSetHeader:
+          items:
+            $ref: '#/components/schemas/TransactionSetHeader'
+          type:
+          - array
+          - 'null'
+        transactionSetTrailer:
+          items:
+            $ref: '#/components/schemas/TransactionSetTrailer'
+          type:
+          - array
+          - 'null'
+        transactionTotals:
+          items:
+            $ref: '#/components/schemas/TransactionTotals'
+          type:
+          - array
+          - 'null'
+      type: object
+    CarrierDetailsRoutingSequenceTransitTime:
+      description: Carrier Details (Routing Sequence/Transit Time) (TD5) - Carrier and routing information (REUSABLE)
+      properties:
+        identificationCode:
+          description: Identification Code
+          type:
+          - string
+          - 'null'
+        identificationCodeQualifier:
+          description: Identification Code Qualifier
+          type:
+          - string
+          - 'null'
+        locationIdentifier:
+          description: Location Identifier
+          type:
+          - string
+          - 'null'
+        locationQualifier:
+          description: Location Qualifier
+          type:
+          - string
+          - 'null'
+      type: object
+    SAC_Loop:
+      description: 'SAC Loop - Service, Promotion, Allowance, or Charge Information Loop
+
+        Contains Service/Promotion/Allowance/Charge Information segments'
+      properties:
+        servicePromotionAllowanceOrChargeInformation:
+          description: 'SAC01 - Allowance or Charge Indicator
+
+            Code which indicates an allowance or charge for the service specified'
+          items:
+            $ref: '#/components/schemas/ServicePromotionAllowanceOrChargeInformation'
+          type:
+          - array
+          - 'null'
+      type: object
+    FOBRelatedInstructions:
+      description: FOB Related Instructions (FOB) - Free on board instructions
+      properties:
+        description:
+          type:
+          - string
+          - 'null'
+        description1:
+          type:
+          - string
+          - 'null'
+        locationQualifier:
+          type:
+          - string
+          - 'null'
+        locationQualifier1:
+          type:
+          - string
+          - 'null'
+        shipmentMethodOfPaymentCode:
+          type:
+          - string
+          - 'null'
+        transportationTermsCode:
+          type:
+          - string
+          - 'null'
+        transportationTermsQualifierCode:
+          type:
+          - string
+          - 'null'
+      type: object
+    Text:
+      description: Text (MSG) - Text information
+      properties:
+        textualData:
+          description: Textual Data
+          type:
+          - string
+          - 'null'
+      type: object
+    PO1_Loop:
+      description: 'PO1 Loop - Baseline Item Data Loop
+
+        Contains complete line item information including baseline data, pricing, physical details, and related segments'
+      properties:
+        administrativeCommunicationsContact:
+          description: 'PER - Administrative Communications Contact
+
+            To identify a person or office to whom administrative communications should be directed'
+          items:
+            $ref: '#/components/schemas/AdministrativeCommunicationsContact'
+          type:
+          - array
+          - 'null'
+        baselineItemData:
+          description: 'PO1 - Baseline Item Data
+
+            To specify basic and most frequently used line item data'
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          type:
+          - array
+          - 'null'
+        carrierDetailsRoutingSequenceTransitTime:
+          description: 'TD5 - Carrier Details (Routing Sequence/Transit Time)
+
+            To specify the carrier and sequence of routing and provide transit time information'
+          items:
+            $ref: '#/components/schemas/CarrierDetailsRoutingSequenceTransitTime'
+          type:
+          - array
+          - 'null'
+        conditionsOfSale:
+          description: 'IT8 - Conditions of Sale
+
+            To specify the conditions under which the sale is made'
+          items:
+            $ref: '#/components/schemas/SalesRequirements'
+          type:
+          - array
+          - 'null'
+        currency:
+          description: 'CUR - Currency
+
+            To specify the currency (dollars, pounds, francs, etc.) used in a transaction'
+          items:
+            $ref: '#/components/schemas/Currency'
+          type:
+          - array
+          - 'null'
+        dateTimeReference:
+          description: 'DTM - Date/Time Reference
+
+            To specify pertinent dates and times'
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          type:
+          - array
+          - 'null'
+        discountDetail:
+          description: 'DIS - Discount Detail
+
+            To specify the exact type and terms of various discount information'
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        installmentInformation:
+          description: 'INC - Installment Information
+
+            To specify installment billing arrangement information'
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        itemIdentification:
+          description: 'LIN - Item Identification
+
+            To specify basic item identification data'
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          type:
+          - array
+          - 'null'
+        itemPhysicalDetails:
+          description: 'PO4 - Item Physical Details
+
+            To specify physical measurements or counts, including dimensions, tolerances, variances, and weights'
+          items:
+            $ref: '#/components/schemas/ItemPhysicalDetails'
+          type:
+          - array
+          - 'null'
+        leadTime:
+          description: 'LDT - Lead Time
+
+            To specify lead time for availability of products and services'
+          items:
+            $ref: '#/components/schemas/DateTimeReference'
+          type:
+          - array
+          - 'null'
+        loopHeaderTrailer:
+          description: 'LS/LE - Loop Header/Loop Trailer
+
+            To indicate that the next segment begins a loop'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        monetaryAmountInformation:
+          description: 'AMT - Monetary Amount Information
+
+            To indicate the total monetary amount'
+          items:
+            $ref: '#/components/schemas/MonetaryAmountInformation'
+          type:
+          - array
+          - 'null'
+        n1_loop:
+          description: 'N1 Loop - Party Identification Loop
+
+            Contains party information for the line item'
+          items:
+            $ref: '#/components/schemas/N1_Loop'
+          type:
+          - array
+          - 'null'
+        packagingInformation:
+          description: 'PKG - Marking, Packaging, Loading
+
+            To describe marking, packaging, loading, and unloading requirements'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        packagingLoop:
+          description: 'PKG - Marking, Packaging, Loading Loop
+
+            Contains packaging information and related details'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        paperwork:
+          description: 'PWK - Paperwork
+
+            To identify the type or transmission or both of paperwork or supporting information'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        paperworkLoop:
+          description: 'PWK - Paperwork Loop
+
+            Contains paperwork identification and related information'
+          items:
+            $ref: '#/components/schemas/Text'
+          type:
+          - array
+          - 'null'
+        piD_loop:
+          description: 'PID - Product/Item Description
+
+            To describe a product or process in coded or free-form format'
+          items:
+            $ref: '#/components/schemas/PID_Loop'
+          type:
+          - array
+          - 'null'
+        pricingLoop:
+          description: 'CTP - Pricing Information
+
+            To specify pricing information'
+          items:
+            $ref: '#/components/schemas/CTP_Loop'
+          type:
+          - array
+          - 'null'
+        productItemDescriptionLoop:
+          description: 'PID Loop - Product/Item Description Loop
+
+            Contains product/item descriptions and related information'
+          items:
+            $ref: '#/components/schemas/PID_Loop'
+          type:
+          - array
+          - 'null'
+        referenceInformation:
+          description: 'REF - Reference Information
+
+            To specify identifying information'
+          items:
+            $ref: '#/components/schemas/ReferenceInformation'
+          type:
+          - array
+          - 'null'
+        salesRequirements:
+          description: 'CSH - Sales Requirements
+
+            To specify sales conditions'
+          items:
+            $ref: '#/components/schemas/SalesRequirements'
+          type:
+          - array
+          - 'null'
+        serviceCharacteristic:
+          description: 'SI - Service Characteristic Identification
+
+            To specify service characteristic data'
+          items:
+            $ref: '#/components/schemas/ProductItemDescription'
+          type:
+          - array
+          - 'null'
+        servicePromotionAllowanceChargeLoop:
+          description: 'SAC - Service, Promotion, Allowance, or Charge Information
+
+            To request or identify a service, promotion, allowance, or charge; or to report a condition'
+          items:
+            $ref: '#/components/schemas/SAC_Loop'
+          type:
+          - array
+          - 'null'
+        sublineItemDetail:
+          description: 'SLN - Subline Item Detail
+
+            To specify product subline detail item data'
+          items:
+            $ref: '#/components/schemas/BaselineItemData'
+          type:
+          - array
+          - 'null'
+        termsOfSale:
+          description: 'ITD - Terms of Sale/Deferred Terms of Sale
+
+            To specify terms of sale'
+          items:
+            $ref: '#/components/schemas/TermsOfSaleDeferredTermsOfSale'
+          type:
+          - array
+          - 'null'
+      type: object
+    PricingInformation:
+      description: Pricing Information (CTP) - Pricing information for items
+      properties:
+        classOfTradeCode:
+          type:
+          - string
+          - 'null'
+        multiplier5:
+          type:
+          - string
+          - 'null'
+        priceIdentifierCode:
+          type:
+          - string
+          - 'null'
+        priceMultiplierQualifier:
+          type:
+          - string
+          - 'null'
+        unitPrice:
+          type:
+          - string
+          - 'null'
+      type: object
+    MonetaryAmountInformation:
+      description: Monetary Amount Information (AMT) - Monetary amount information (REUSABLE)
+      properties:
+        amountQualifierCode:
+          description: Amount Qualifier Code
+          type:
+          - string
+          - 'null'
+        monetaryAmount:
+          description: Monetary Amount
+          format: double
+          type:
+          - number
+          - 'null'
+      type: object
+    ExtendedReferenceInformation:
+      description: Extended Reference Information (N9) - Extended reference information (REUSABLE)
+      properties:
+        freeFormDescription:
+          description: Free-form Description
+          type:
+          - string
+          - 'null'
+        referenceIdentification:
+          description: Reference Identification
+          type:
+          - string
+          - 'null'
+        referenceIdentificationQualifier:
+          description: Reference Identification Qualifier
+          type:
+          - string
+          - 'null'
+      type: object
+    BeginningSegmentForPurchaseOrder:
+      description: Beginning Segment for Purchase Order (BEG) - Indicates the beginning of a Purchase Order Transaction Set
+      properties:
+        date:
+          description: Date (CCYYMMDD format)
+          type:
+          - string
+          - 'null'
+        purchaseOrderNumber:
+          description: Purchase Order Number
+          type:
+          - string
+          - 'null'
+        purchaseOrderTypeCode:
+          description: Purchase Order Type Code
+          type:
+          - string
+          - 'null'
+        transactionSetPurposeCode:
+          description: Transaction Set Purpose Code
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_dropship.json
+- kibo-commerce-dropship-openapi.yml

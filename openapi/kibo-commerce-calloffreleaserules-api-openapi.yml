@@ -1,0 +1,426 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Call Off Release Rules API
+  version: '1.0'
+  description: 'Operations tagged CallOffReleaseRules across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CallOffReleaseRules
+paths:
+  /commerce/rules/calloffrelease/{code}:
+    delete:
+      description: Permanently deletes a call-off release rule (FR-013 hard delete).
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete call-off release rule
+      tags:
+      - CallOffReleaseRules
+      operationId: deleteCommerceRulesCalloffreleaseByCode
+      x-operation-id-source: derived
+    get:
+      description: Gets a call-off release rule by its unique code.
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+          description: OK
+      summary: Get call-off release rule by code
+      tags:
+      - CallOffReleaseRules
+      operationId: getCommerceRulesCalloffreleaseByCode
+      x-operation-id-source: derived
+    put:
+      description: Updates an existing call-off release rule with full replacement semantics (FR-009).
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffReleaseRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+          description: OK
+      summary: Update call-off release rule
+      tags:
+      - CallOffReleaseRules
+      operationId: putCommerceRulesCalloffreleaseByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/calloffrelease:
+    get:
+      description: Gets a paged collection of call-off release rules according to any specified filter criteria and sort options.
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRuleCollection'
+          description: OK
+      summary: Get call-off release rules
+      tags:
+      - CallOffReleaseRules
+      operationId: getCommerceRulesCalloffrelease
+      x-operation-id-source: derived
+    post:
+      description: Creates a new call-off release rule.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffReleaseRule'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffReleaseRule'
+          description: OK
+      summary: Create call-off release rule
+      tags:
+      - CallOffReleaseRules
+      operationId: postCommerceRulesCalloffrelease
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/calloffrelease/{code}/rank:
+    put:
+      description: Atomically reorders ranks within the current master catalog. Returns 204 No Content (FR-019).
+      parameters:
+      - in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRankRequest'
+      responses:
+        '200':
+          description: OK
+      summary: Update call-off release rule rank
+      tags:
+      - CallOffReleaseRules
+      operationId: putCommerceRulesCalloffreleaseByCodeRank
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ProductRuleCode:
+      properties:
+        code:
+          description: Unique identifier of the ProductRule. System-supplied and read-only.
+          type:
+          - string
+          - 'null'
+        masterCatalogId:
+          description: Master Catalog Id of the ProductRule.
+          format: int32
+          type: integer
+      type: object
+    CallOffReleaseRule:
+      description: 'Call-Off Release Rule contract (CAT-7736).
+
+        Tenant-owned, internally master-catalog-scoped ranked admin rule for the
+
+        B2B Supply Chain OMS call-off order release pipeline.'
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        callOffOrderRules:
+          description: 'Referenced Call-Off-Order Rule codes. Max 1 entry. At least one of ProductRules,
+
+            CustomerRules, or CallOffOrderRules must be non-empty (FR-007, FR-008).'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        code:
+          description: 'Unique identifier. Auto-generated on create if not supplied. Immutable after creation.
+
+            Max 30 characters; must match GeneralAlphaNumericCharactersRegex (FR-005, FR-016).'
+          type:
+          - string
+          - 'null'
+        customerRules:
+          description: Referenced Customer Rule codes. Max 1 entry (FR-007, FR-008).
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        daysBeforeShipDate:
+          description: Days before the ship date within which this rule applies. Inclusive [0, 365] (FR-015).
+          format: int32
+          type: integer
+        description:
+          description: Optional description. Max 500 characters (FR-003).
+          type:
+          - string
+          - 'null'
+        enabled:
+          description: Whether the rule is active. Defaults to true on insert (FR-003, FR-011).
+          type:
+          - boolean
+          - 'null'
+        endDate:
+          description: End of the rule's effective window. Null = never expires. Must be >= StartDate when both supplied.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        isActive:
+          description: 'Read-only. Computed server-side: true when the current UTC instant is inside the effective window
+
+            (StartDate null/≤now AND EndDate null/≥now), false otherwise. A rule with no dates is always active.
+
+            This reflects the effective window alone and does not incorporate the enabled flag.'
+          type:
+          - boolean
+          - 'null'
+        metaData:
+          description: Opaque JSON metadata passthrough. Persisted as nvarchar(MAX). Cleared on PUT if omitted (FR-023).
+        minimumFillRate:
+          description: Minimum fill rate threshold [0, 100] (integer percentage). 0 is valid (FR-027).
+          format: int32
+          type: integer
+        name:
+          description: Display name. Required. Max 200 characters (FR-003).
+          type:
+          - string
+          - 'null'
+        productRules:
+          description: 'Referenced Product Rule criteria. Max 1 entry. Each entry requires both code and
+
+            masterCatalogId; the (code, masterCatalogId) pair must resolve to an existing
+
+            ProductRule with RuleType=CallOffRelease (FR-007, FR-008).'
+          items:
+            $ref: '#/components/schemas/ProductRuleCode'
+          type:
+          - array
+          - 'null'
+        rank:
+          description: 'Priority rank, unique per (TenantId, MasterCatalogId). Auto-assigned to MAX(Rank)+1
+
+            when omitted or ≤0 on create (FR-006, FR-017).'
+          format: int32
+          type: integer
+        sortAttribute:
+          description: 'Optional tiebreaker attribute name used by the downstream call-off release engine.
+
+            Max 50 characters. null, absent, and empty are all accepted (FR-026).'
+          type:
+          - string
+          - 'null'
+        startDate:
+          description: Start of the rule's effective window. Null = no lower bound (already active).
+          format: date-time
+          type:
+          - string
+          - 'null'
+        validForAllSites:
+          description: When true the rule applies to all tenant sites; ValidSites is ignored (FR-022).
+          type:
+          - boolean
+          - 'null'
+        validSites:
+          description: Site IDs this rule applies to. Each must be tenant-owned (FR-007, FR-022).
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    UpdateRankRequest:
+      description: Represents a request to update the rank of a SafetyStock, PurchaseLimit and Return Rule.
+      properties:
+        code:
+          description: 'Gets or sets the code of the rule to be updated.
+
+            It can be SafetyStock Code , PurchaseLimit Code or Return Rule Code'
+          type:
+          - string
+          - 'null'
+        newRank:
+          description: Gets or sets the new rank of the rule.
+          format: int32
+          type: integer
+        oldRank:
+          description: Gets or sets the old rank of the rule.
+          format: int32
+          type: integer
+      type: object
+    CallOffReleaseRuleCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CallOffReleaseRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

@@ -1,0 +1,656 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Filter Data API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingFilterData across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: New UI API - Filter data for routing scenarios
+  name: OrderRoutingFilterData
+paths:
+  /commerce/orders/orderrouting/api/v1/routing/filter-attributes:
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/FilterAttributeGroupResponse'
+                type: array
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filter Attributes
+      tags:
+      - OrderRoutingFilterData
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingFilterAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/scenarios/{scenarioId}/filterLogicalGroups:
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: scenarioId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pagedRequest
+        required: true
+        schema:
+          $ref: '#/components/schemas/PagedRequest'
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseScenarioFilterLogicalGroupResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filter Logical Groups For Scenario
+      tags:
+      - OrderRoutingFilterData
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingScenariosByScenarioIdFilterLogicalGroups
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/filter-operators:
+    get:
+      parameters:
+      - in: query
+        name: attributeDataType
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: comparisonAttributeDataType
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: filterTypeID
+        required: false
+        schema:
+          type: string
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/FilterOperator'
+                type: array
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filter Operators
+      tags:
+      - OrderRoutingFilterData
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingFilterOperators
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/filter-types:
+    get:
+      parameters:
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/FilterTypeResponse'
+                type: array
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filter Types
+      tags:
+      - OrderRoutingFilterData
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingFilterTypes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/routing/scenarios/{scenarioId}/filters:
+    get:
+      parameters:
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: scenarioId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: pagedRequest
+        required: true
+        schema:
+          $ref: '#/components/schemas/PagedRequest'
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagedResponseScenarioFilterResponse'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filters For Scenario
+      tags:
+      - OrderRoutingFilterData
+      operationId: getCommerceOrdersOrderroutingApiV1RoutingScenariosByScenarioIdFilters
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    PagedResponseScenarioFilterResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ScenarioFilterResponse'
+          type: array
+        pageNum:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        paginatedItems:
+          format: int64
+          type: integer
+        totalItems:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+      type: object
+    FilterAttributeResponse:
+      properties:
+        allowedValues:
+          items:
+            type: string
+          type: array
+        customValueTypes:
+          items:
+            type: string
+          type: array
+        dataType:
+          enum:
+          - STRING
+          - STRING_LIST
+          - NUMBER
+          - NUMBER_LIST
+          - BOOLEAN
+          - DATE
+          type: string
+        extensibleAttributeFQN:
+          type: string
+        filterAttributePath:
+          type: string
+        id:
+          type: string
+        isExtensible:
+          type: boolean
+        name:
+          type: string
+        unitOptions:
+          items:
+            type: string
+          type: array
+        unitType:
+          enum:
+          - unit.type.currency
+          - unit.type.distance
+          - unit.type.length
+          - unit.type.volume
+          - unit.type.area
+          - unit.type.weight
+          - unit.type.dimensionless
+          type: string
+      type: object
+    FilterOperator:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      type: object
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    ScenarioFilterResponse:
+      properties:
+        booleanOperator:
+          enum:
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.greater.than
+          - filter.logic.less.than
+          - filter.logic.greater.or.equal
+          - filter.logic.less.or.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.between
+          - filter.logic.starts.with
+          - filter.logic.ends.with
+          - filter.logic.contains
+          - filter.logic.does.not.contain
+          - filter.logic.equal
+          - filter.logic.not.equal
+          - filter.logic.in
+          - filter.logic.not.in
+          - filter.logic.subset
+          type: string
+        customValue:
+          type: object
+        customValueUnit:
+          type: string
+        dataListID:
+          format: int32
+          type: integer
+        dataPointAttributePath:
+          type: string
+        dataPointExtensibleAttributeFQN:
+          type: string
+        dataPointExtensibleAttributeName:
+          type: string
+        dataPointExtensibleAttributeType:
+          type: string
+        extensibleAttributeFQN:
+          type: string
+        extensibleAttributeName:
+          type: string
+        filterAttributePath:
+          type: string
+        filterID:
+          format: int32
+          type: integer
+        filterLogicalGroupOrderIndex:
+          format: int32
+          type: integer
+        filterType:
+          enum:
+          - filter.type.customValue
+          - filter.type.customDataList
+          - filter.type.dataSet
+          - filter.type.dataPoint
+          type: string
+        isDataPointExtensible:
+          type: boolean
+        isExtensible:
+          type: boolean
+        itemCustomAttributeName:
+          type: string
+        name:
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+      type: object
+    FilterTypeResponse:
+      properties:
+        id:
+          enum:
+          - filter.type.customValue
+          - filter.type.customDataList
+          - filter.type.dataSet
+          - filter.type.dataPoint
+          type: string
+        name:
+          type: string
+      type: object
+    PagedRequest:
+      properties:
+        pageNum:
+          format: int32
+          minimum: 0
+          type: integer
+        pageSize:
+          format: int32
+          minimum: 1
+          type: integer
+        sortDirection:
+          enum:
+          - ASC
+          - DESC
+          type: string
+      type: object
+    FilterAttributeGroupResponse:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/FilterAttributeResponse'
+          type: array
+        groupName:
+          type: string
+      type: object
+    ScenarioFilterLogicalGroupResponse:
+      properties:
+        filterLogicalGroupID:
+          format: int32
+          type: integer
+        isRootGroup:
+          type: boolean
+        logicalOperator:
+          enum:
+          - AND
+          - OR
+          type: string
+        orderIndex:
+          format: int32
+          type: integer
+        parentOrderIndex:
+          format: int32
+          type: integer
+        scenarioID:
+          format: int32
+          type: integer
+      type: object
+    PagedResponseScenarioFilterLogicalGroupResponse:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ScenarioFilterLogicalGroupResponse'
+          type: array
+        pageNum:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        paginatedItems:
+          format: int64
+          type: integer
+        totalItems:
+          format: int64
+          type: integer
+        totalPages:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

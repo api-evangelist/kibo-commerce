@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-application-subscription-schema.json",
+  "title": "ApplicationSubscription",
+  "description": "Defines an event that an Application Version is subscribed to.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-appdevelopement-openapi.yml#/components/schemas/ApplicationSubscription",
+  "properties": {
+    "applicationEndPoint": {
+      "description": "The End Point where the event information will be sent to when the event is fired.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "applicationSubscriptionId": {
+      "description": "The unique identifier of an ApplicationVersionEvent record.",
+      "format": "int32",
+      "type": "integer"
+    },
+    "events": {
+      "description": "",
+      "items": {
+        "$ref": "#/$defs/Event"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "noCallback": {
+      "description": "",
+      "type": "boolean"
+    },
+    "packageId": {
+      "description": "",
+      "format": "int32",
+      "type": "integer"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Event": {
+      "description": "Describes an event that a 3rd party developer can subscribe to.",
+      "properties": {
+        "apiVersionNumber": {
+          "description": "The Api Version Number which defines what events are available for a given API version.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventCategory": {
+          "description": "The category the event belongs to.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "eventId": {
+          "description": "Unique identifier of an Event record.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "eventName": {
+          "description": "The name of the event.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

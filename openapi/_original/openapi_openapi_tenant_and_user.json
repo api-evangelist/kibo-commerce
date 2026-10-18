@@ -1,0 +1,2934 @@
+{
+  "components": {
+    "schemas": {
+      "AdminGroup": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "description": {
+            "description": "Human-readable description of the group",
+            "nullable": true,
+            "type": "string"
+          },
+          "groupCode": {
+            "description": "User Group Id",
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "description": "Human-readable Name of the group",
+            "nullable": true,
+            "type": "string"
+          },
+          "scopeId": {
+            "description": "Scope Id",
+            "format": "int32",
+            "type": "integer"
+          },
+          "scopeTypeId": {
+            "description": "Scope Type Id",
+            "format": "int32",
+            "type": "integer"
+          },
+          "users": {
+            "description": "Users associate with a group",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "AdminGroupCollection": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AdminGroup"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "AuditInfo": {
+        "properties": {
+          "createBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BaseTenantEntity": {
+        "properties": {
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "BaseTenantEntityInternal": {
+        "properties": {
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "deleteDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Behavior": {
+        "properties": {
+          "categoryId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isPrivate": {
+            "type": "boolean"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "oAuthScopes": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "requiresBehaviorIds": {
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "systemRoles": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "validUserTypes": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "Catalog": {
+        "properties": {
+          "defaultCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "defaultLocaleCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "masterCatalogId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "CatalogExtended": {
+        "properties": {
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "defaultCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "defaultLocaleCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "deleteDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "masterCatalogId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "ChangeUserPasswordInfo": {
+        "properties": {
+          "newPassword": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "CollectionOfRole": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Role"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "DeveloperAccount": {
+        "properties": {
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "DeveloperAdminUserAuthTicket": {
+        "properties": {
+          "accessToken": {
+            "nullable": true,
+            "type": "string"
+          },
+          "accessTokenExpiration": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "account": {
+            "$ref": "#/components/schemas/DeveloperAccount"
+          },
+          "availableAccounts": {
+            "items": {
+              "$ref": "#/components/schemas/DeveloperAccount"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "createdOn": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "grantedBehaviors": {
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "jwtAccessToken": {
+            "nullable": true,
+            "type": "string"
+          },
+          "refreshToken": {
+            "nullable": true,
+            "type": "string"
+          },
+          "refreshTokenExpiration": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserProfile"
+          }
+        },
+        "type": "object"
+      },
+      "Domain": {
+        "properties": {
+          "cName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "domainName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ipAddress": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isDomainManaged": {
+            "type": "boolean"
+          },
+          "isInfrastructureRecord": {
+            "type": "boolean"
+          },
+          "isPrimary": {
+            "type": "boolean"
+          },
+          "isSystemAssigned": {
+            "type": "boolean"
+          },
+          "siteId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "zone": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "MasterCatalog": {
+        "properties": {
+          "catalogs": {
+            "items": {
+              "$ref": "#/components/schemas/Catalog"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "defaultCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "defaultLocaleCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "supportedLocaleCodes": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "MasterCatalogExtended": {
+        "properties": {
+          "catalogs": {
+            "items": {
+              "$ref": "#/components/schemas/CatalogExtended"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "defaultCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "defaultLocaleCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "deleteDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "supportedLocaleCodes": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Owner": {
+        "properties": {
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "type": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "PasswordInfo": {
+        "description": "Old password and new password.",
+        "properties": {
+          "newPassword": {
+            "description": "New password.",
+            "nullable": true,
+            "type": "string"
+          },
+          "oldPassword": {
+            "description": "Old password.",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "newPassword",
+          "oldPassword"
+        ],
+        "type": "object"
+      },
+      "ResetPasswordInfo": {
+        "description": "Email address of the user who is requesting a new password.",
+        "properties": {
+          "emailAddress": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "required": [
+          "emailAddress"
+        ],
+        "type": "object"
+      },
+      "Resource": {
+        "properties": {
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "type": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Role": {
+        "properties": {
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "behaviors": {
+            "items": {
+              "$ref": "#/components/schemas/Behavior"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isSystemRole": {
+            "type": "boolean"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "owners": {
+            "items": {
+              "$ref": "#/components/schemas/Owner"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "resources": {
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "tags": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "userScope": {
+            "$ref": "#/components/schemas/UserScope"
+          }
+        },
+        "type": "object"
+      },
+      "RoleCollection": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CollectionOfRole"
+          },
+          {
+            "additionalProperties": false,
+            "type": "object"
+          }
+        ]
+      },
+      "Site": {
+        "properties": {
+          "attributes": {
+            "items": {
+              "$ref": "#/components/schemas/TenantAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "catalogId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "countryCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "currencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "domain": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "localeCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "primaryCustomDomain": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "SiteExtended": {
+        "properties": {
+          "attributes": {
+            "items": {
+              "$ref": "#/components/schemas/TenantAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "catalogId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "countryCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "defaultCurrencyCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "defaultLocaleCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "deleteDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "domains": {
+            "items": {
+              "$ref": "#/components/schemas/Domain"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "isMozuRendered": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "masterCatalogId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "omsCatalogId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "routingTargetInfo": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenantId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "Tenant": {
+        "properties": {
+          "attributes": {
+            "items": {
+              "$ref": "#/components/schemas/TenantAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "domain": {
+            "nullable": true,
+            "type": "string"
+          },
+          "expiry": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isDevTenant": {
+            "type": "boolean"
+          },
+          "isUnified": {
+            "type": "boolean"
+          },
+          "lastLoginDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "masterCatalogs": {
+            "items": {
+              "$ref": "#/components/schemas/MasterCatalog"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "sites": {
+            "items": {
+              "$ref": "#/components/schemas/Site"
+            },
+            "nullable": true,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "TenantAdminUserAuthTicket": {
+        "properties": {
+          "accessToken": {
+            "nullable": true,
+            "type": "string"
+          },
+          "accessTokenExpiration": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "availableTenants": {
+            "items": {
+              "$ref": "#/components/schemas/Tenant"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "createdOn": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "grantedBehaviors": {
+            "items": {
+              "format": "int32",
+              "type": "integer"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "jwtAccessToken": {
+            "nullable": true,
+            "type": "string"
+          },
+          "redirect": {
+            "nullable": true,
+            "type": "string"
+          },
+          "refreshToken": {
+            "nullable": true,
+            "type": "string"
+          },
+          "refreshTokenExpiration": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "ssoNameId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "ssoSession": {
+            "nullable": true,
+            "type": "string"
+          },
+          "tenant": {
+            "$ref": "#/components/schemas/Tenant"
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserProfile"
+          }
+        },
+        "type": "object"
+      },
+      "TenantAttribute": {
+        "properties": {
+          "createBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateBy": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "type": "object"
+      },
+      "TenantCollection": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Tenant"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "pageCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "pageSize": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "startIndex": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "TenantExtended": {
+        "properties": {
+          "attributes": {
+            "items": {
+              "$ref": "#/components/schemas/TenantAttribute"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "createDate": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "deleteDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "devAccountId": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "domain": {
+            "$ref": "#/components/schemas/Domain"
+          },
+          "hardDeleteExpiry": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "isDevTenant": {
+            "type": "boolean"
+          },
+          "isHardDeleted": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isHeadless": {
+            "type": "boolean"
+          },
+          "isPermanent": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "isUnified": {
+            "type": "boolean"
+          },
+          "kubeNamespace": {
+            "nullable": true,
+            "type": "string"
+          },
+          "lastLoginDate": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "masterCatalogs": {
+            "items": {
+              "$ref": "#/components/schemas/MasterCatalogExtended"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "mozuInstanceId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "omsEnabled": {
+            "type": "boolean"
+          },
+          "routingTargetInfo": {
+            "nullable": true,
+            "type": "string"
+          },
+          "scaleUnitId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "sites": {
+            "items": {
+              "$ref": "#/components/schemas/SiteExtended"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "softDeleteExpiry": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          },
+          "supportsCustomExtensions": {
+            "type": "boolean"
+          },
+          "unifiedTenantType": {
+            "nullable": true,
+            "type": "string"
+          },
+          "updateDate": {
+            "format": "date-time",
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "User": {
+        "properties": {
+          "emailAddress": {
+            "nullable": true,
+            "type": "string"
+          },
+          "externalId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "firstName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "identityProviderId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "lastName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "localeCode": {
+            "nullable": true,
+            "type": "string"
+          },
+          "optInToEmail": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "optInToTextMessage": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "password": {
+            "nullable": true,
+            "type": "string"
+          },
+          "phoneNumber": {
+            "nullable": true,
+            "type": "string"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "systemData": {
+            "$ref": "#/components/schemas/UserSystemData"
+          },
+          "userName": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UserAuthInfo": {
+        "properties": {
+          "emailAddress": {
+            "nullable": true,
+            "type": "string"
+          },
+          "password": {
+            "nullable": true,
+            "type": "string"
+          },
+          "userName": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UserProfile": {
+        "properties": {
+          "emailAddress": {
+            "nullable": true,
+            "type": "string"
+          },
+          "firstName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "lastName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "userId": {
+            "nullable": true,
+            "type": "string"
+          },
+          "userName": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UserRole": {
+        "properties": {
+          "assignedInScope": {
+            "$ref": "#/components/schemas/UserScope"
+          },
+          "auditInfo": {
+            "$ref": "#/components/schemas/AuditInfo"
+          },
+          "roleId": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "roleName": {
+            "nullable": true,
+            "type": "string"
+          },
+          "roleResources": {
+            "items": {
+              "$ref": "#/components/schemas/Resource"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "roleTags": {
+            "items": {
+              "type": "string"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "userId": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UserRoleCollection": {
+        "description": "Collection of UserRoles for given user.",
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/UserRole"
+            },
+            "nullable": true,
+            "type": "array"
+          },
+          "totalCount": {
+            "format": "int32",
+            "type": "integer"
+          }
+        },
+        "type": "object"
+      },
+      "UserScope": {
+        "properties": {
+          "id": {
+            "format": "int32",
+            "nullable": true,
+            "type": "integer"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "type": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "UserSystemData": {
+        "properties": {
+          "createdOn": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "failedLoginAttemptCount": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "firstFailedLoginAttemptOn": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "isLocked": {
+            "type": "boolean"
+          },
+          "isPasswordChangeRequired": {
+            "type": "boolean"
+          },
+          "lastLockedOn": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "lastLoginOn": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "lastPasswordChangeOn": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          },
+          "remainingLoginAttempts": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "updatedOn": {
+            "format": "date-time",
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "type": "object"
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "bearer",
+        "type": "http"
+      }
+    }
+  },
+  "info": {
+    "description": "<div id=\"overview_TENANT_AND_USER\">\n            <h2>ADMIN USER &amp; TENANT</h2>\n            <p>The AdminUser and Tenants APIs are a collection of resources related to admin user accounts within tenants, their user roles, and authorization tickets.\n                This is not compatible with SCIM at the moment,\n                though SAML is supported.</p>\n            <p>Use the <strong>Admin User</strong> resource to retrieve information about user accounts\n                in your Unified Commerce tenant, add users to the platform, and update or remove those users. Additionally, administrators\n                are able to view, add, and remove the roles that are assigned to users. However, it is recommended to\n                use the\n                <a href=\"/pages/permissions\">Unified Commerce Admin\n                    interface</a>\n                to configure any new role types that may be desired so that all appropriate behaviors and permissions\n                can be accounted for. The <strong>Role</strong> resource only allows you to retrieve a list of available roles.\n                </p>\n            <p>Use the <strong>AuthTickets</strong> resources for Admins and Developer Admins to generate and refresh authentication tickets that \n                enable account users to access development or production tenants.</p>\n            <p>You will soon be able to use the <strong>Admin Groups</strong> resource to support the B2B Quotes review feature, though the functionality is not\n                yet released. See\n                the <a href=\"/pages/users-and-user-groups\">User Management\n                    guide</a> for more information.</p>\n        </div>",
+    "title": "Admin User"
+  },
+  "openapi": "3.0.1",
+  "paths": {
+    "/platform/adminuser/authtickets/tenants": {
+      "post": {
+        "description": "Authenticates a user for a particular tenant given a set of user credentials and a tenantId.",
+        "parameters": [
+          {
+            "description": "Optional tenant Id parameter",
+            "in": "query",
+            "name": "tenantId",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAuthInfo"
+              }
+            }
+          },
+          "description": "User's email address and password."
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Create User Auth Ticket",
+        "tags": [
+          "AdminAuthTicket"
+        ]
+      },
+      "put": {
+        "description": "Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.",
+        "parameters": [
+          {
+            "description": "The tenant to authenticate the user in",
+            "in": "query",
+            "name": "tenantId",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+              }
+            }
+          },
+          "description": "An existing valid auth ticket containing the refresh token."
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Refresh Auth Ticket",
+        "tags": [
+          "AdminAuthTicket"
+        ]
+      }
+    },
+    "/platform/adminuser/authtickets/wsfed/auth/{id}": {
+      "post": {
+        "description": "Create User Auth Ticket With Ws Fed",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "scopeid",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "scopeType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantAdminUserAuthTicket"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Create User Auth Ticket With Ws Fed",
+        "tags": [
+          "AdminAuthTicket"
+        ]
+      }
+    },
+    "/platform/adminuser/authtickets": {
+      "delete": {
+        "description": "Logs out a user by deleting the refresh token",
+        "parameters": [
+          {
+            "description": "The refresh token to delete.",
+            "in": "query",
+            "name": "refreshToken",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete User Auth Ticket",
+        "tags": [
+          "AdminAuthTicket"
+        ]
+      }
+    },
+    "/platform/adminuser/authtickets/wsfed/challenge/{id}": {
+      "get": {
+        "description": "Get Ws Fed Challenge Url",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "scopeid",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "scopeType",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "redirect",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "invitationToken",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Ws Fed Challenge Url",
+        "tags": [
+          "AdminAuthTicket"
+        ]
+      }
+    },
+    "/platform/adminuser/authtickets/wsfed/SignOut/{id}": {
+      "get": {
+        "description": "Get Ws Fed Sign Out Url",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "redirect",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "ssoNameId",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "session",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Ws Fed Sign Out Url",
+        "tags": [
+          "AdminAuthTicket"
+        ]
+      }
+    },
+    "/platform/adminuser/groups/{groupCode}/addusers": {
+      "post": {
+        "description": "Add users to admin group",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "groupCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Add Users to Admin Group",
+        "tags": [
+          "AdminGroup"
+        ]
+      }
+    },
+    "/platform/adminuser/groups/{groupCode}": {
+      "delete": {
+        "description": "Deletes an Admin Group",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "groupCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete Admin Group",
+        "tags": [
+          "AdminGroup"
+        ]
+      },
+      "get": {
+        "description": "Gets an Admin group by id",
+        "parameters": [
+          {
+            "description": "groupCode",
+            "in": "path",
+            "name": "groupCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Admin Group",
+        "tags": [
+          "AdminGroup"
+        ]
+      },
+      "put": {
+        "description": "Update an existing adminGroup",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "groupCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminGroup"
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Update Admin Group",
+        "tags": [
+          "AdminGroup"
+        ]
+      }
+    },
+    "/platform/adminuser/groups": {
+      "get": {
+        "description": "Gets a collection of user groups",
+        "parameters": [
+          {
+            "description": "",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 100,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroupCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroupCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroupCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Admin Groups",
+        "tags": [
+          "AdminGroup"
+        ]
+      },
+      "post": {
+        "description": "Adds an admin group",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdminGroup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminGroup"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Add Admin Group",
+        "tags": [
+          "AdminGroup"
+        ]
+      }
+    },
+    "/platform/adminuser/groups/{groupCode}/removeusers": {
+      "post": {
+        "description": "Remove users from admin group",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "groupCode",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            }
+          },
+          "description": ""
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Remove Users from Admin Group",
+        "tags": [
+          "AdminGroup"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}/roles/{roleId}": {
+      "delete": {
+        "description": "Removes a role from the specified Admin account.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user with the role to delete.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Unique identifer of the role to delete.",
+            "in": "path",
+            "name": "roleId",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Remove User Role",
+        "tags": [
+          "AdminUser"
+        ]
+      },
+      "post": {
+        "description": "Adds a role to the specified user's Admin account.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user who receives the role.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Unique identifier of the role to add.",
+            "in": "path",
+            "name": "roleId",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Add User Role",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}/Change-Password": {
+      "post": {
+        "description": "Change a password",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user for whom to change the password.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordInfo"
+              }
+            }
+          },
+          "description": "Old password and new password."
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Change Password",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}/Change-User-Password": {
+      "post": {
+        "description": "Changes a user's password to the provided new password",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user for whom to change the password.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeUserPasswordInfo"
+              }
+            }
+          },
+          "description": "New password info for this user"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Change User Password",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}/tenants": {
+      "get": {
+        "description": "Get tenant scope for users",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TenantCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Tenant Scope",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}": {
+      "delete": {
+        "description": "Removes a user account from the site.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user account to delete.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete User",
+        "tags": [
+          "AdminUser"
+        ]
+      },
+      "get": {
+        "description": "Retrieves the details of a user specified by user ID.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user whose details you want to view.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get User",
+        "tags": [
+          "AdminUser"
+        ]
+      },
+      "put": {
+        "description": "Modifies user information for a specified user.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user whose login information you want to change.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "description": "Details of the new user account. Required properties: EmailAddress, FirstName, LastName, and Password. Note that the site ID is passed in the request header."
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Update User",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}/userbyid": {
+      "get": {
+        "description": "Retrieves the details of a user specified by user ID.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user whose details you want to view.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "responseGroups",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get User By Id",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}/roles": {
+      "get": {
+        "description": "Retrieves all the roles for a specified user on the specified tenant.",
+        "parameters": [
+          {
+            "description": "Unique identifier of the user.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRoleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRoleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserRoleCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get User Roles",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts": {
+      "get": {
+        "description": "Retrieves a list of Admin users for a specified site according to any specified filter criteria and sort options.",
+        "parameters": [
+          {
+            "description": "",
+            "in": "query",
+            "name": "emailAddress",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 20,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.",
+            "in": "query",
+            "name": "sortBy",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "",
+            "in": "query",
+            "name": "responseGroups",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Get Users",
+        "tags": [
+          "AdminUser"
+        ]
+      },
+      "post": {
+        "description": "Creates a new user",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              }
+            }
+          },
+          "description": "The user to be created"
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Create User",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/Reset-Password": {
+      "post": {
+        "description": "Resets the password for a user specified by email address.",
+        "parameters": [
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResetPasswordInfo"
+              }
+            }
+          },
+          "description": "Email address of the user who has requested a password reset. \n            Note that the site ID is passed in the request header."
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Reset Password",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/adminuser/accounts/{userId}/unlock": {
+      "post": {
+        "description": "Unlocks (or \"enables\") a user",
+        "parameters": [
+          {
+            "description": "The user id.",
+            "in": "path",
+            "name": "userId",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Unlock User",
+        "tags": [
+          "AdminUser"
+        ]
+      }
+    },
+    "/platform/developer/authtickets": {
+      "delete": {
+        "description": "Logs out a user by deleting the refresh token",
+        "parameters": [
+          {
+            "description": "The refresh token to delete.",
+            "in": "query",
+            "name": "refreshToken",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Delete User Auth Ticket",
+        "tags": [
+          "DeveloperAdminAuthTicket"
+        ]
+      },
+      "post": {
+        "description": "Authenticates a user for a particular tenant given a set of user credentials adn a tenantId.",
+        "parameters": [
+          {
+            "description": "The users developer account Id",
+            "in": "query",
+            "name": "developerAccountId",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserAuthInfo"
+              }
+            }
+          },
+          "description": "User's email address and password."
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeveloperAdminUserAuthTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeveloperAdminUserAuthTicket"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeveloperAdminUserAuthTicket"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Create Developer User Auth Ticket",
+        "tags": [
+          "DeveloperAdminAuthTicket"
+        ]
+      },
+      "put": {
+        "description": "Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.",
+        "parameters": [
+          {
+            "description": "The users developer account Id",
+            "in": "query",
+            "name": "developerAccountId",
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeveloperAdminUserAuthTicket"
+              }
+            }
+          },
+          "description": "An existing valid auth ticket containing the refresh token."
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeveloperAdminUserAuthTicket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeveloperAdminUserAuthTicket"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeveloperAdminUserAuthTicket"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Refresh Developer Auth Ticket",
+        "tags": [
+          "DeveloperAdminAuthTicket"
+        ]
+      }
+    },
+    "/platform/adminuser/roles": {
+      "get": {
+        "description": "Retrieves a list of all roles defined for this tenant.",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "startIndex",
+            "schema": {
+              "default": 0,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "schema": {
+              "default": 25,
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Optional filter param to filter the roles",
+            "in": "query",
+            "name": "filter",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleCollection"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleCollection"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleCollection"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Roles",
+        "tags": [
+          "Role"
+        ]
+      }
+    },
+    "/platform/tenants/{tenantId}": {
+      "get": {
+        "description": "Retrieve information about a tenant. The attributes object will contain flags indicating whether or not certain features are enabled on the tenant. Kibo employees can reference <a href=\"/pages/tenant-attributes\">this internal-only documentation</a> for a list of all attributes. </ul>",
+        "parameters": [
+          {
+            "description": "",
+            "in": "path",
+            "name": "tenantId",
+            "required": true,
+            "schema": {
+              "format": "int32",
+              "type": "integer"
+            }
+          },
+          {
+            "description": "limits which fields are returned in the response body",
+            "in": "query",
+            "name": "responseFields",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tenant"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tenant"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Tenant"
+                }
+              }
+            },
+            "description": "OK"
+          }
+        },
+        "summary": "Get Tenant by ID",
+        "tags": [
+          "Tenants"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "servers": [
+    {
+      "description": "Kibo Base URL",
+      "url": "{baseUrl}/api",
+      "variables": {
+        "baseUrl": {
+          "default": "https://t1000000.sb.usc1.gcp.kibocommerce.com",
+          "description": "Base URL"
+        }
+      }
+    }
+  ]
+}

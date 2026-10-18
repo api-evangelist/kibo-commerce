@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-property-type-schema.json",
+  "title": "PropertyType",
+  "description": "The schema a document property value must implement. A propertyType is created at a tenant scope and is therefore shared amongst all child contexts (masterCatalog, catalog, site).\nA propertyType is analogous to the type argument of a class property in object oriented programming. \nA propertyType's dataType field is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-content-openapi.yml#/components/schemas/PropertyType",
+  "properties": {
+    "adminName": {
+      "description": "The administrative name of the propertyType.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dataType": {
+      "description": "The underlying value type that can be held in the document's property value. Valid values are\nstring\nnumber\nboolean\ndatetime\njson\nThe dataType is analogous to an intrinsic value type in object oriented programming, or to a column data type in relational database terminology.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "installationPackage": {
+      "description": "Optionally, a propertyType can be defined in an installationPackage and then installed into a tenant. Installed propertyTypes can only be updated via installation upgrades. \nCurrently only internal Mozu platform components can create installations. This field is system-supplied and read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isAggregatable": {
+      "description": "tbd",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isQueryable": {
+      "description": "tbd",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isSortable": {
+      "description": "tbd",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "name": {
+      "description": "The name component of the propertyType, name@namespace. The name must be unique within the namespace component and cannot be updated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "namespace": {
+      "description": "The namespace component of the propertyType, name@namespace. The issued dev account namespace must be used unless elevated privileges allow a blank namespace to be used. The namespace cannot be updated.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "propertyTypeFQN": {
+      "description": "The unique identifier of the propertyTYpe, represented by name@namespace. The propertyTypeFQN must be provided when creating the propertyType, or the name and namespace fields must be provided.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "version": {
+      "description": "The version of the installationPackge installed. This field is read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object"
+}

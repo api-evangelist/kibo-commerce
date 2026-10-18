@@ -1,0 +1,649 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Call Off Order Rule API
+  version: '1.0'
+  description: 'Operations tagged CallOffOrderRule across 2 of this provider''s published API definitions: openapi_openapi_commerce.json, kibo-commerce-commerce-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: CallOffOrderRule
+paths:
+  /commerce/rules/callOffOrder/{code}/evaluate:
+    post:
+      description: 'Call-Off Order ids. Optionally AND-composes the rule expression with a
+
+        `statusFilter` to scope results to a single status.'
+      parameters:
+      - description: The rule's tenant-unique code.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrderRuleEvalRequest'
+        description: "Optional `StatusFilter`, `PageSize`, and\n            `PageToken` for cursor-style paging."
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleEvalResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleEvalResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleEvalResponse'
+          description: OK
+        '404':
+          description: No enabled rule exists for the given code.
+      summary: Evaluates an enabled rule and returns the paged list of matching
+      tags:
+      - CallOffOrderRule
+      operationId: postCommerceRulesCallOffOrderByCodeEvaluate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/callOffOrder:
+    get:
+      description: 'Default sort is `createDate DESC`; sortBy accepts
+
+        `createDate`, `updateDate`, `code`, `name`, `ruleType`.
+
+        filter follows Kibo''s standard filter syntax over
+
+        `code`, `name`, `ruleType`, `enabled`, `createDate`,
+
+        `updateDate`.'
+      parameters:
+      - description: Zero-based page offset. Defaults to 0.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Maximum items returned. Defaults to 20.
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: Optional sort expression, e.g. `createDate desc`.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: Optional filter expression, e.g. `enabled eq true`.
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleCollection'
+          description: OK
+      summary: Lists Call-Off Order Rules for the current tenant with offset paging
+      tags:
+      - CallOffOrderRule
+      operationId: getCommerceRulesCallOffOrder
+      x-operation-id-source: derived
+    post:
+      description: at save time; `code` auto-generates from `name` when omitted.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrderRule'
+        description: The rule to create.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+          description: OK
+        '201':
+          description: Rule created. Returns 409 if a rule with the supplied code already exists or the expression failed validation.
+      summary: Creates a Call-Off Order Rule. The expression is validated and canonicalized
+      tags:
+      - CallOffOrderRule
+      operationId: postCommerceRulesCallOffOrder
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/callOffOrder/{code}:
+    delete:
+      description: 'deleting a rule that is still referenced by a workflow is the caller''s
+
+        responsibility.'
+      parameters:
+      - description: The rule's tenant-unique code.
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '204':
+          description: Rule deleted. Returns 404 if no rule exists for the given code.
+      summary: Hard-deletes a rule by code. v1 has no usage guard —
+      tags:
+      - CallOffOrderRule
+      operationId: deleteCommerceRulesCallOffOrderByCode
+      x-operation-id-source: derived
+    get:
+      description: Returns a single Call-Off Order Rule by its tenant-unique code.
+      parameters:
+      - description: The rule's tenant-unique code (slug).
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+          description: OK
+        '404':
+          description: No rule exists for the given code.
+      summary: Returns a single Call-Off Order Rule by its tenant-unique code
+      tags:
+      - CallOffOrderRule
+      operationId: getCommerceRulesCallOffOrderByCode
+      x-operation-id-source: derived
+    put:
+      description: 'differs from the URL code is rejected. The expression is
+
+        re-validated and the canonical `Text` regenerated from `Tree`.'
+      parameters:
+      - description: The rule's tenant-unique code (immutable).
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CallOffOrderRule'
+        description: The updated rule.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRule'
+          description: OK
+        '400':
+          description: Body code does not match URL code. Returns 404 if no rule exists for the given code.
+      summary: Updates an existing rule. `code` is immutable — a body `code` that
+      tags:
+      - CallOffOrderRule
+      operationId: putCommerceRulesCallOffOrderByCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/rules/callOffOrder/schema:
+    get:
+      description: 'expression fields with their data types, allowed operators, nullability,
+
+        enum values, and the dynamic-attribute slot pointing at the tenant''s
+
+        call-off attribute catalog. Reflection-driven from the validator''s
+
+        `[ExpressionContextProperty]` metadata so the UI and server stay in
+
+        lockstep automatically.'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleSchema'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleSchema'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CallOffOrderRuleSchema'
+          description: OK
+      summary: 'Returns the authoring schema for Call-Off Order Rules: the complete set of'
+      tags:
+      - CallOffOrderRule
+      operationId: getCommerceRulesCallOffOrderSchema
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    StaticField:
+      description: Authoring descriptor for a single declared expression field.
+      properties:
+        allowNullRightSide:
+          description: True when `eq null` / `ne null` predicates are valid.
+          type:
+          - boolean
+          - 'null'
+        dataType:
+          description: 'One of: `String`, `Integer`, `Decimal`, `DateTime`,
+
+            `Boolean`.'
+          type:
+          - string
+          - 'null'
+        enumValues:
+          description: 'Present when the field has a constrained value set
+
+            (e.g. `status`, `items.fulfillmentType`).'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          description: Filter-syntax field name (e.g. `"items.fulfillmentType"`).
+          type:
+          - string
+          - 'null'
+        nullable:
+          description: True when the underlying field accepts null comparison values.
+          type:
+          - boolean
+          - 'null'
+        operators:
+          description: 'Allowed operator codes for this field. Subset of
+
+            `eq`, `ne`, `in`, `gt`, `ge`, `lt`, `le`.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        pathLabel:
+          description: Human-readable UI label (e.g. `"Item Fulfillment Type"`).
+          type:
+          - string
+          - 'null'
+        scope:
+          description: '`"item"` for item-level fields; absent for header fields.'
+          type:
+          - string
+          - 'null'
+        semantics:
+          description: "`\"anyMatch\"` on item-level fields to communicate\n            ANY-item-matches semantics."
+          type:
+          - string
+          - 'null'
+      type: object
+    CallOffOrderRule:
+      description: 'Tenant-scoped, expression-based rule that selects Mozu.CommerceRuntime.Contracts.CallOffOrders.CallOffOrder
+
+        entities for downstream composite consumers (e.g. CallOff Reservation Rule in Catalog).'
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/CoreApiContractsAuditInfo'
+        code:
+          description: 'Tenant-unique stable identifier referenced by composite consumers. Matches
+
+            `[A-Za-z0-9_-]+`. Auto-generated from Mozu.CommerceRuntime.Contracts.CallOffOrderRules.CallOffOrderRule.Name when omitted
+
+            on create. Immutable after create.'
+          type:
+          - string
+          - 'null'
+        description:
+          description: Optional rule purpose / authoring notes. Max 2000 chars.
+          type:
+          - string
+          - 'null'
+        enabled:
+          description: 'If `false`, the evaluate endpoint rejects the rule with HTTP 400.
+
+            Lifecycle CRUD reads continue to return it. Default `true` on create.'
+          type: boolean
+        expression:
+          $ref: '#/components/schemas/DynamicExpression'
+        id:
+          description: System-generated unique identifier (MozuObjectId). Server-set; ignored on write.
+          type:
+          - string
+          - 'null'
+        metaData:
+          description: Free-form consumer-specific metadata. Mirrors `PurchaseLimitRule.MetaData`.
+          type:
+          - object
+          - 'null'
+        name:
+          description: Human-readable rule name. Required; non-empty; max 255 chars.
+          type:
+          - string
+          - 'null'
+        ruleType:
+          description: 'Identifies which composite consumer family uses this rule. Free string
+
+            matching `[A-Za-z0-9_-]+`. Well-known values: `"Reservation"`,
+
+            `"PurchaseLimit"`, `"Custom"`.'
+          type:
+          - string
+          - 'null'
+        tenantId:
+          description: 'Tenant identifier. Populated from `IApiContext` on the server. Never
+
+            accepted from the client request body.'
+          format: int32
+          type: integer
+      type: object
+    CallOffOrderRuleEvalResponse:
+      description: Response body for `POST /commerce/rules/callOffOrder/{code}/evaluate`.
+      properties:
+        callOffOrderIds:
+          description: 'Matched Call-Off Order ids, up to `PageSize`, ordered by `_id`
+
+            ascending.'
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        nextPageToken:
+          description: Cursor for the next page; null when this is the last page.
+          type:
+          - string
+          - 'null'
+        ruleCode:
+          description: Echoed input rule code for client correlation.
+          type:
+          - string
+          - 'null'
+        totalCount:
+          description: 'Total number of matching orders across all pages (not capped at
+
+            `PageSize`).'
+          format: int32
+          type: integer
+      type: object
+    CallOffOrderRuleCollection:
+      description: Paged result for Call-Off Order Rule list queries.
+      properties:
+        items:
+          description: Page of call-off order rules matching the query.
+          items:
+            $ref: '#/components/schemas/CallOffOrderRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          description: Total number of pages.
+          format: int32
+          type: integer
+        pageSize:
+          description: Maximum number of records per page.
+          format: int32
+          type: integer
+        startIndex:
+          description: Zero-based index of the first record in this page.
+          format: int32
+          type: integer
+        totalCount:
+          description: Total number of matching records across all pages.
+          format: int32
+          type: integer
+      type: object
+    DynamicExpression:
+      properties:
+        text:
+          type:
+          - string
+          - 'null'
+        tree:
+          $ref: '#/components/schemas/Expression'
+      type: object
+    CallOffOrderRuleSchema:
+      description: 'Response body for `GET /commerce/rules/callOffOrder/schema`. Tenant-scoped
+
+        authoring contract for rule-builder UIs — reflects
+
+        `CallOffOrderExpressionContext` and `CallOffOrderItemExpressionContext`
+
+        plus the tenant''s dynamic call-off order attribute slot.'
+      properties:
+        context:
+          description: Schema-version identifier. Always `"CallOffOrderExpressionContext"` in v1.
+          type:
+          - string
+          - 'null'
+        dynamicFields:
+          description: One entry per dynamic slot. v1 has a single entry for `attributes.*`.
+          items:
+            $ref: '#/components/schemas/DynamicFieldSlot'
+          type:
+          - array
+          - 'null'
+        staticFields:
+          description: 'One entry per `[ExpressionContextProperty]` on the context: header
+
+            fields plus the flattened item-level fields under the `items.*`
+
+            namespace.'
+          items:
+            $ref: '#/components/schemas/StaticField'
+          type:
+          - array
+          - 'null'
+      type: object
+    Expression:
+      properties:
+        left:
+          type:
+          - string
+          - 'null'
+        logicalOperator:
+          type:
+          - string
+          - 'null'
+        nodes:
+          items:
+            type: object
+          type:
+          - array
+          - 'null'
+        operator:
+          type:
+          - string
+          - 'null'
+        right: {}
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    DynamicFieldSlot:
+      description: Authoring descriptor for a dynamic field slot.
+      properties:
+        definitionsEndpoint:
+          description: Endpoint the UI fans out to in order to resolve dynamic values.
+          type:
+          - string
+          - 'null'
+        isDynamic:
+          description: Always `true` for a dynamic slot.
+          type: boolean
+        namePattern:
+          description: Name template, e.g. `"attributes.{fqn}"`.
+          type:
+          - string
+          - 'null'
+        operatorsByDataType:
+          additionalProperties:
+            items:
+              type: string
+            type:
+            - array
+            - 'null'
+          description: 'Map from `AttributeDataType` name to allowed operators. Drives the
+
+            per-data-type operator narrowing the validator enforces at save time.'
+          type:
+          - object
+          - 'null'
+        pathLabel:
+          description: Human-readable UI label.
+          type:
+          - string
+          - 'null'
+      type: object
+    CallOffOrderRuleEvalRequest:
+      description: Request body for `POST /commerce/rules/callOffOrder/{code}/evaluate`.
+      properties:
+        pageSize:
+          description: 'Requested page size. Defaults to 50 when omitted. Values above 200 are
+
+            silently clamped to 200 per FR-009.'
+          format: int32
+          type:
+          - integer
+          - 'null'
+        pageToken:
+          description: 'Opaque cursor returned by a prior response''s `NextPageToken`. Null on
+
+            the first page.'
+          type:
+          - string
+          - 'null'
+        statusFilter:
+          description: 'Optional Call-Off Order status (e.g. `"Hold"`) AND-composed with the
+
+            rule predicate at evaluation time.'
+          type:
+          - string
+          - 'null'
+      type: object
+    CoreApiContractsAuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_commerce.json
+- kibo-commerce-commerce-openapi.yml

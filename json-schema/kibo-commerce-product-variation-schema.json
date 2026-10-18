@@ -1,0 +1,417 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-product-variation-schema.json",
+  "title": "ProductVariation",
+  "description": "The ProductVariation resource helps merchants manage their products with configurable options. Using this resource, the system creates a matrix of all possible combinations of the product options and the merchant confirms which variations match products for sale. For example, a T-shirt with three color and three size options has nine possible product variations. The system keeps track of inventory for each variation.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-catalog-admin-openapi.yml#/components/schemas/ProductVariation",
+  "properties": {
+    "deltaPrice": {
+      "$ref": "#/$defs/ProductVariationDeltaPrice"
+    },
+    "deltaWeight": {
+      "description": "Weight of the product with this variation.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "fixedPrice": {
+      "$ref": "#/$defs/ProductVariationFixedPrice"
+    },
+    "fixedWeight": {
+      "description": "Fixed weight of the product with this variation.",
+      "format": "double",
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "fulfillmentTypesSupported": {
+      "description": "Indicates the fulfillment types the product supports.",
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "isActive": {
+      "description": "If true, the merchant accepts the variation generated from the configurable options as a product offering. If IsActive is false then the product variation is not for sale--either because it was never a product offering or it was permanently dropped. IsActive is not intended for temporary unavailability. Default is false.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "isOrphan": {
+      "description": "If true, the variation is no longer possible. The system sets IsOrphan to true when the merchant has changed something to make this variation impossible. For example, if the merchant stopped selling all \"small\" shirts, all product variations with the \"small\" option are set to IsOrphan. System-supplied and read-only.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "localizedDeltaPrice": {
+      "description": "How much more the variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted accordingly.\nThis collection allows for multiple currencies.",
+      "items": {
+        "$ref": "#/$defs/ProductVariationDeltaPrice"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "localizedFixedPrice": {
+      "description": "Price of the variation using fixed per currency\nThis collection allows for multiple currencies.",
+      "items": {
+        "$ref": "#/$defs/ProductVariationFixedPrice"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "options": {
+      "description": "List of values for this product variation: such as \"small, \"red.. these are read only here as the variationKey defines the values \"",
+      "items": {
+        "$ref": "#/$defs/ProductVariationOption"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "properties": {
+      "description": "List of properties specific to this variation",
+      "items": {
+        "$ref": "#/$defs/ProductVariationProperty"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "supplierInfo": {
+      "$ref": "#/$defs/ProductSupplierInfo"
+    },
+    "upc": {
+      "description": "Price Lookup Unit code for the product",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "variationExists": {
+      "description": "If true, the product variation exists. When the merchant sets IsActive to true, the system sets VariationExists to true and creates a Variation Key as a unique identifier for this variation. System-supplied and read-only.",
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "variationProductCode": {
+      "description": "Descriptive code to refer to a single variation. Typically this is a sequence appended to the base ProduceCode. A merchant can create this code to easily recognize a product variation. By default, the system creates this code by appending a number to the base product. After the merchant supplies this code, it becomes read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "variationkey": {
+      "description": "Unique identifier for a single variation (\"small\" + \"red\" + \"short-sleeved\"). System-supplied and read-only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AttributeVocabularyValueLocalizedContent": {
+      "description": "Attribute Value Localized Resource",
+      "properties": {
+        "localeCode": {
+          "description": "Language used for the string attribute value. Currently, only en_US is supported.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stringValue": {
+          "description": "Localized Value in the language of the locale code",
+          "minLength": 1,
+          "nullable": false,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsAttributeVocabularyValue": {
+      "description": "Value of an attribute",
+      "properties": {
+        "content": {
+          "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+        },
+        "displayOrder": {
+          "description": "The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "localizedContent": {
+          "description": "The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.",
+          "items": {
+            "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "mappedGenericValues": {
+          "description": "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time.",
+          "items": {},
+          "maxItems": 200,
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "productName": {
+          "description": "The ProductName when the Attribute DataType is ProductCode.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed.",
+          "maxLength": 50,
+          "nullable": false,
+          "pattern": "^[A-Za-z0-9-_\\.()]*[A-Za-z0-9-_()]"
+        },
+        "valueSequence": {
+          "description": "Read only System generated monotonically increasing unique sequence.",
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CatalogAdminsProductPropertyValue": {
+      "description": "A value of a product option for this product. For example, a computer product may have an option called \"Memory\" that can have the values \"6GB,\"8GB,\" and \"12GB.\"",
+      "properties": {
+        "attributeVocabularyValueDetail": {
+          "$ref": "#/$defs/CatalogAdminsAttributeVocabularyValue"
+        },
+        "content": {
+          "$ref": "#/$defs/ProductPropertyValueLocalizedContent"
+        },
+        "localizedContent": {
+          "items": {
+            "$ref": "#/$defs/ProductPropertyValueLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ProductCost": {
+      "description": "Price of the product and currency used.",
+      "properties": {
+        "cost": {
+          "description": "Cost of the product. This is the price the merchant pays for the product.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "isoCurrencyCode": {
+          "description": "Currency code.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductPropertyValueLocalizedContent": {
+      "description": "Attribute Value Localized Resource",
+      "properties": {
+        "localeCode": {
+          "description": "Language used for the string attribute value.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stringValue": {
+          "description": "Localized Value in the language of the locale code",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductSupplierInfo": {
+      "description": "Supplier info for the product",
+      "properties": {
+        "cost": {
+          "$ref": "#/$defs/ProductCost"
+        },
+        "distPartNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mfgPartNumber": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductVariationDeltaPrice": {
+      "description": "How much more a product variation costs above the cost of the base product. If the price of the base product changes, this price is adjusted automatically.",
+      "properties": {
+        "creditValue": {
+          "description": "Credit amt of the product",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "currencyCode": {
+          "description": "Which currency is in use.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "msrp": {
+          "description": "Manufacturer Suggested Retail Price.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "value": {
+          "description": "How much more the variation costs above the cost of the base product.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductVariationFixedPrice": {
+      "properties": {
+        "creditValue": {
+          "description": "Credit amt of the product",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "currencyCode": {
+          "description": "Which currency is in use.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "listPrice": {
+          "description": "Variation price for fixed pricing",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "msrp": {
+          "description": "Manufacturer Suggested Retail Price.",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "salePrice": {
+          "description": "Variation sale price whne fixed pricing",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductVariationOption": {
+      "description": "An option for a product variation. For example, a T-shirt with size and color configurable options, might have a product variation option of \"size\" or \"color.\"",
+      "properties": {
+        "attributeFQN": {
+          "description": "Unique identifier of the product variation option. System-supplied and read-only.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "content": {
+          "$ref": "#/$defs/AttributeVocabularyValueLocalizedContent"
+        },
+        "value": {
+          "description": "Name of the product variation option used on the admin side independent of how it appears on the storefront. For example, the internal \"SZ\" attribute might appear as \"size\" on the storefront.",
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ProductVariationProperty": {
+      "description": "",
+      "properties": {
+        "attributeFQN": {
+          "description": "Unique identifier of the Attribute.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {
+            "$ref": "#/$defs/CatalogAdminsProductPropertyValue"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

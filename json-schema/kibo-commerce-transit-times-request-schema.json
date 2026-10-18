@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-transit-times-request-schema.json",
+  "title": "TransitTimesRequest",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-shipping-storefront-openapi.yml#/components/schemas/TransitTimesRequest",
+  "properties": {
+    "data": {
+      "description": "Custom data for the request",
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "destinationAddress": {
+      "$ref": "#/$defs/Address"
+    },
+    "fulfillmentMethod": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/TransitTimesItem"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "originAddress": {
+      "$ref": "#/$defs/Address"
+    },
+    "originLocationCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "shipDate": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "shippingServiceTypes": {
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "addressType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isValidated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ItemMeasurements": {
+      "properties": {
+        "girth": {
+          "description": "Not exposed publicly",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "height": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "length": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "weight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "width": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "type": "object"
+    },
+    "Measurement": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "TransitTimesItem": {
+      "properties": {
+        "data": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "itemId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "quantity": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "unitMeasurements": {
+          "$ref": "#/$defs/ItemMeasurements"
+        }
+      },
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,1393 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Product Attributes API
+  version: '1.0'
+  description: 'Operations tagged ProductAttributes across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ProductAttributes
+paths:
+  /commerce/catalog/admin/attributedefinition/attributes/typerules:
+    get:
+      description: Retrieves a paged list of attribute type rules according to any specified filter criteria and sort options.
+      parameters:
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeTypeRuleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeTypeRuleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeTypeRuleCollection'
+          description: OK
+      summary: Get Attribute Type Rules
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesTyperules
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent:
+    get:
+      description: Retrieves product attribute localized content
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+                type: array
+          description: OK
+      summary: Get Localized Content
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNLocalizedContent
+      x-operation-id-source: derived
+    post:
+      description: Creates product attribute localized content
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+          description: OK
+      summary: Add Localized Content
+      tags:
+      - ProductAttributes
+      operationId: postCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNLocalizedContent
+      x-operation-id-source: derived
+    put:
+      description: Updates product attribute localized content
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+                type: array
+          description: OK
+      summary: Update Localized Content
+      tags:
+      - ProductAttributes
+      operationId: putCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNLocalizedContent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/LocalizedContent/{localeCode}:
+    delete:
+      description: Deletes localized content by its locale code
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Localized Content by Locale Code
+      tags:
+      - ProductAttributes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNLocalizedContentByLocaleCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves localized content by its locale code
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+          description: OK
+      summary: Get Localized Content by Locale Code
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNLocalizedContentByLocaleCode
+      x-operation-id-source: derived
+    put:
+      description: Updates localized content by its locale code
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+          description: OK
+      summary: Update Localized Content by Locale Code
+      tags:
+      - ProductAttributes
+      operationId: putCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNLocalizedContentByLocaleCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}:
+    delete:
+      description: Deletes a product attribute by its FQN
+      parameters:
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Product Attribute
+      tags:
+      - ProductAttributes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+          description: OK
+      summary: Get Product Attribute
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Updates a product attribute by its FQN. This current version of the Attributes API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsAttribute'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+          description: OK
+      summary: Update Product Attribute
+      tags:
+      - ProductAttributes
+      operationId: putCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/attributes:
+    get:
+      description: Get product attributes. This current version of the Attributes API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - in: query
+        name: sortBy
+        schema:
+          type: string
+      - in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeCollection'
+          description: OK
+      summary: Get Product Attributes
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributes
+      x-operation-id-source: derived
+    post:
+      description: Create a new attribute. The attribute name, attribute type, input type, and data type are required. This current version of the Attributes API includes localizedContent to support multi-locale catalogs, which was not present in the previous API model. If you were a client prior to May 2024 and have upgraded your implementation to support this feature, you can still access attribute data that has not yet been rewritten to the new model by providing an x-api-version header set to "1".
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsAttribute'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttribute'
+          description: OK
+      summary: Add Product Attribute
+      tags:
+      - ProductAttributes
+      operationId: postCommerceCatalogAdminAttributedefinitionAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}:
+    delete:
+      description: Deletes a product attribute vocabulary value
+      parameters:
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Vocabulary Value
+      tags:
+      - ProductAttributes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValue
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a product attribute vocabulary value
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+          description: OK
+      summary: Get Vocabulary Value
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValue
+      x-operation-id-source: derived
+    put:
+      description: Updates a product attribute vocabulary value
+      parameters:
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: ''
+        in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+          description: OK
+      summary: Update Vocabulary Value
+      tags:
+      - ProductAttributes
+      operationId: putCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValue
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent:
+    get:
+      description: Retrieves vocabulary value localized content
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+                type: array
+          description: OK
+      summary: Get Vocabulary Value Localized Content
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValueLocalizedContent
+      x-operation-id-source: derived
+    post:
+      description: Creates vocabulary value localized content
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          description: OK
+      summary: Add Vocabulary Value Localized Content
+      tags:
+      - ProductAttributes
+      operationId: postCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValueLocalizedContent
+      x-operation-id-source: derived
+    put:
+      description: Updates vocabulary value localized content
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+              type: array
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+                type: array
+          description: OK
+      summary: Update Vocabulary Value Localized Content
+      tags:
+      - ProductAttributes
+      operationId: putCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValueLocalizedContent
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  ? /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues/{value}/LocalizedContent/{localeCode}
+  : delete:
+      description: Delete product attribute vocabulary value localized content by its locale code
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Vocabulary Value Localized Content by Locale Code
+      tags:
+      - ProductAttributes
+      operationId: deleteCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValueLocalizedContentByLocaleCode
+      x-operation-id-source: derived
+    get:
+      description: Get product attribute vocabulary value localized content by its locale code
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          description: OK
+      summary: Get Vocabulary Value Localized Content by Locale Code
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValueLocalizedContentByLocaleCode
+      x-operation-id-source: derived
+    put:
+      description: Update product attribute vocabulary value localized content by its locale code
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: value
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: localeCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          description: OK
+      summary: Update Vocabulary Value Localized Content by Locale Code
+      tags:
+      - ProductAttributes
+      operationId: putCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValuesByValueLocalizedContentByLocaleCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/attributedefinition/attributes/{attributeFQN}/VocabularyValues:
+    get:
+      description: Retrieves product attribute vocabulary values
+      parameters:
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+                type: array
+          description: OK
+      summary: Get Vocabulary Values
+      tags:
+      - ProductAttributes
+      operationId: getCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValues
+      x-operation-id-source: derived
+    post:
+      description: Creates product attribute vocabulary values
+      parameters:
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+          description: OK
+      summary: Add Vocabulary Value
+      tags:
+      - ProductAttributes
+      operationId: postCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValues
+      x-operation-id-source: derived
+    put:
+      description: Updates product attribute vocabulary values
+      parameters:
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+              type: array
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+                type: array
+          description: OK
+      summary: Update Vocabulary Values
+      tags:
+      - ProductAttributes
+      operationId: putCommerceCatalogAdminAttributedefinitionAttributesByAttributeFQNVocabularyValues
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsAttributeCollection:
+      description: Collection of attributes.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CatalogAdminsAttribute'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AttributeSearchSettings:
+      description: Attribute Search Settings. A container for all of the search and indexing settings of an Attribute
+      properties:
+        allowFilteringAndSortingInStorefront:
+          description: Indicates whether the attribute should be able to be used in filters, facets, and sorting on the public storefront.
+          type:
+          - boolean
+          - 'null'
+        customWeightInStorefrontSearch:
+          description: Indicates whether the attribute is indevidually stored as a tokenized field in search for custom term search weight
+          type:
+          - boolean
+          - 'null'
+        indexValueWithCase:
+          description: "Indicates whether the attribute value is case sensative for filtering and faceting. This applies to Text Admin entered attributes. \nA null value means it is not case sensative"
+          type:
+          - boolean
+          - 'null'
+        searchDisplayValue:
+          description: "If true, the system will index the display value of string attributes instead of the canonical value for searching. \nThe canonical value will always be used for filtering. Does not apply for for non-string attributes."
+          type: boolean
+        searchableInAdmin:
+          description: Indicates whether the attribute value should be searchable in the merchant catalog admin.
+          type: boolean
+        searchableInStorefront:
+          description: Indicates whether the attribute value should be searchable on the public storefront.
+          type: boolean
+      type: object
+    AttributeTypeRuleCollection:
+      description: A collection of AttributeType rules
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/AttributeTypeRule'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CatalogAdminsAttributeValidation:
+      description: Used to validate attributes.
+      properties:
+        maxDateValue:
+          description: For validating a DateTime attribute value, maximum datetime allowed.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        maxNumericValue:
+          description: For validating Number attribute value, maximum number allowed.
+          format: double
+          type:
+          - number
+          - 'null'
+        maxStringLength:
+          description: For validating strings, maximum length allowed for a string.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        minDateValue:
+          description: For validating a DateTime attribute value, minimum datetime allowed.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        minNumericValue:
+          description: For validating Number attribute value, minimum number allowed.
+          format: double
+          type:
+          - number
+          - 'null'
+        minStringLength:
+          description: For validating strings, minimum length allowed for a string.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        regularExpression:
+          description: Regular expression to run against the attribute value. This should follow JavaScript/EMCA's Regular Expression syntax.
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsAttributeLocalizedContent:
+      description: Container for language-specific content to display on the storefront. You'll have a container for each supported language (LocaleCode). This enables you to display an attribute in multiple languages yet manage it as a single attribute internally.
+      properties:
+        description:
+          description: Description of the attribute in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+        localeCode:
+          description: Language used for the attribute name and description. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        name:
+          description: Name of the attribute in the language specified by LocaleCode.
+          type:
+          - string
+          - 'null'
+      type: object
+    AttributeVocabularyValueLocalizedContent:
+      description: Attribute Value Localized Resource
+      properties:
+        localeCode:
+          description: Language used for the string attribute value. Currently, only en_US is supported.
+          type:
+          - string
+          - 'null'
+        stringValue:
+          description: Localized Value in the language of the locale code
+          minLength: 1
+          type: string
+      type: object
+    CatalogAdminsAttributeMetadataItem:
+      description: Attribute Metadata Item.  It can be utilized for storing abitrary key/value pairs of data related to an attribute.
+      properties:
+        key:
+          description: The key
+          type:
+          - string
+          - 'null'
+        value:
+          description: The value
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsAttributeVocabularyValue:
+      description: Value of an attribute
+      properties:
+        content:
+          $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+        displayOrder:
+          description: The order in which the attribute value displays. If you omit a value for this property, Mozu infers the display order from the attribute value's position the list.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute value. This content is in multiple locals supported by the master catalog and is only valid for String DataType.
+          items:
+            $ref: '#/components/schemas/AttributeVocabularyValueLocalizedContent'
+          type:
+          - array
+          - 'null'
+        mappedGenericValues:
+          description: "The actual values of the related generic attribute. This value must match the datatype of the attribute and already exist \nwithin the Vocabulary values of the related ValueMappingAttribute. Only supporting string at this time."
+          items: {}
+          maxItems: 200
+          type:
+          - array
+          - 'null'
+        productName:
+          description: The ProductName when the Attribute DataType is ProductCode.
+          type:
+          - string
+          - 'null'
+        value:
+          description: "The actual value of the attribute vocabulary. This value must be unique within the vocabulary for a single attribute and match the datatype of the attribute. \nString data type requires a canonical value here or one will be system generated if null. The actual string content displayed to users should be stored as Content. \nString values require content to be present.\nOnce this value is set it cannot be changed."
+          maxLength: 50
+          pattern: ^[A-Za-z0-9-_\.()]*[A-Za-z0-9-_()]
+        valueSequence:
+          description: Read only System generated monotonically increasing unique sequence.
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    AttributeTypeRule:
+      description: Attribute Value Localized Resource
+      properties:
+        attributeDataType:
+          description: AttributeDataType identifier
+          type:
+          - string
+          - 'null'
+        attributeInputType:
+          description: AttributeInputType identifier
+          type:
+          - string
+          - 'null'
+        attributeUsageType:
+          description: AttributeUsageType identifier
+          type:
+          - string
+          - 'null'
+        attributeValueType:
+          description: AttributeValueType identifier
+          type:
+          - string
+          - 'null'
+      type: object
+    CatalogAdminsAttribute:
+      description: Attribute
+      properties:
+        adminName:
+          description: Name of the product displayed in the admin, This field does not need to be unqiue, but is required. It can include spaces...and is limited to a length of 50.
+          type:
+          - string
+          - 'null'
+        attributeCode:
+          description: 'Unique identifier of the Attribute. Must be unique within a namespace and cannot be changed once the attribute is created. This value will be generated and match the attribute
+
+            sequence if not provided on create.'
+          type:
+          - string
+          - 'null'
+        attributeDataTypeSequence:
+          description: Read only System generated monotonically increasing unique sequence for each attribute,DataType created (this is used to optimize indexed field names in search).
+          format: int32
+          type:
+          - integer
+          - 'null'
+        attributeFQN:
+          description: Attribute fully qualified name, Read only value that combines namespace and attribute code as NameSpace~AttributeCode
+          type:
+          - string
+          - 'null'
+        attributeMetadata:
+          description: Attribute Metadata. This list can contain opaque data (key value pairs) that can be used as a property bag for UI concerns.
+          items:
+            $ref: '#/components/schemas/CatalogAdminsAttributeMetadataItem'
+          type:
+          - array
+          - 'null'
+        attributeSequence:
+          description: Read only System generated monotonically increasing unique sequence for each attribute created.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        availableForOrderRouting:
+          description: Specifies if this attribute is available for order routing
+          type: boolean
+        availableInRules:
+          description: 'Specifies if this attribute is available for use when building rules (e.g. Product rules, Shipment
+
+            rules, category expressions). Purely descriptive metadata: it does not gate or validate
+
+            rule-criteria authoring in any way.
+
+            Omitting this property means "leave unchanged" on update: the stored value is preserved.
+
+            On create an omitted value is persisted as an explicit false.'
+          type:
+          - boolean
+          - 'null'
+        content:
+          $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+        dataType:
+          description: "The DataType of the attribute.  Must be a valid value for DataType defined in DataTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create"
+          maxLength: 20
+          type:
+          - string
+          - 'null'
+        inputType:
+          description: "The InputType type of the attribute. Must be a valid value for InputType defined in InputTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create"
+          maxLength: 20
+          type:
+          - string
+          - 'null'
+        isExtra:
+          description: Specifies if this attribute can have a usage type of Extra in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
+          type:
+          - boolean
+          - 'null'
+        isOption:
+          description: Specifies if this attribute can have a usage type of Option in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
+          type:
+          - boolean
+          - 'null'
+        isProperty:
+          description: Specifies if this attribute can have a usage type of Property in a ProductType. This value can only be true when when it matches an AttributeTypeRule in the AttributeTypeRules resource.
+          type:
+          - boolean
+          - 'null'
+        isValueMappingAttribute:
+          description: Specifies if this attribute can can be used to generalize values of another attribute
+          type:
+          - boolean
+          - 'null'
+        localizedContent:
+          description: The Content of an attribute. This content is always in the default language of the MasterCatalog.
+          items:
+            $ref: '#/components/schemas/CatalogAdminsAttributeLocalizedContent'
+          type:
+          - array
+          - 'null'
+        masterCatalogId:
+          description: Indentifier of the master that this attribute is a member of. System-supplied and read-only. Attributes will be created in the MasterCatalog of the supplied context.
+          format: int32
+          type:
+          - integer
+          - 'null'
+        namespace:
+          description: 'NameSpace, each application creating attributes will have a uniqe namespace to avoid name (Code) collisions. The namespace provided must be a valid registered
+
+            namespace. If no namespace is specified it is assumed to be the namespace of the Tenant.'
+          type:
+          - string
+          - 'null'
+        searchSettings:
+          $ref: '#/components/schemas/AttributeSearchSettings'
+        validation:
+          $ref: '#/components/schemas/CatalogAdminsAttributeValidation'
+        valueMappingAttributeFQN:
+          description: Attribute fully qualified name of a corresponding value mapping atribuite
+          type:
+          - string
+          - 'null'
+        valueType:
+          description: "The ValueType of the attribute.  Must be a valid value for ValueType defined in ValueTypeTypeConst and the combination of types set must match an entry in the AttributeTypeRules resource. \nThis value cannot be changed after create"
+          maxLength: 20
+          type:
+          - string
+          - 'null'
+        vocabularyValues:
+          description: The list of Values for this attribute. Only available for ValueType:PredefinedVocabulary
+          items:
+            $ref: '#/components/schemas/CatalogAdminsAttributeVocabularyValue'
+          type:
+          - array
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

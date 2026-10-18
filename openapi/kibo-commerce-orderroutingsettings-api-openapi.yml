@@ -1,0 +1,655 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Order Routing Settings API
+  version: '1.0'
+  description: 'Operations tagged OrderRoutingSettings across 2 of this provider''s published API definitions: openapi_openapi_orderrouting.json, kibo-commerce-orderrouting-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- description: Classic UI API - Order Routing Settings configuration
+  name: OrderRoutingSettings
+paths:
+  /commerce/orders/orderrouting/api/v1/settings/filterAttributes/{attributeName}:
+    delete:
+      description: Deletes a filter attribute.
+      parameters:
+      - in: path
+        name: attributeName
+        required: true
+        schema:
+          type: string
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterAttribute'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Delete Filter Attribute
+      tags:
+      - OrderRoutingSettings
+      operationId: deleteCommerceOrdersOrderroutingApiV1SettingsFilterAttributesByAttributeName
+      x-operation-id-source: derived
+    get:
+      description: Retrieve an order routing filter attribute based on its name.
+      parameters:
+      - in: path
+        name: attributeName
+        required: true
+        schema:
+          type: string
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterAttribute'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filter Attribute
+      tags:
+      - OrderRoutingSettings
+      operationId: getCommerceOrdersOrderroutingApiV1SettingsFilterAttributesByAttributeName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/settings/filterAttributes:
+    get:
+      description: Retrieves a list of order routing filter attributes.
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FilterAttribute'
+                type: array
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Filter Attributes
+      tags:
+      - OrderRoutingSettings
+      operationId: getCommerceOrdersOrderroutingApiV1SettingsFilterAttributes
+      x-operation-id-source: derived
+    put:
+      description: Saves an order routing filter attribute.
+      parameters:
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilterAttribute'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilterAttribute'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Save Filter Attribute
+      tags:
+      - OrderRoutingSettings
+      operationId: putCommerceOrdersOrderroutingApiV1SettingsFilterAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/orders/orderrouting/api/v1/settings:
+    delete:
+      description: Remove order routing settings.
+      parameters:
+      - in: query
+        name: tenantID
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: siteID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: boolean
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Delete Order Routing Settings
+      tags:
+      - OrderRoutingSettings
+      operationId: deleteCommerceOrdersOrderroutingApiV1Settings
+      x-operation-id-source: derived
+    get:
+      description: Retrieve a list of order routing settings.
+      parameters:
+      - in: query
+        name: tenantID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: siteID
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: getDefaults
+        required: false
+        schema:
+          default: true
+          type: boolean
+      - description: Tenant
+        in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Site
+        in: header
+        name: x-vol-site
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRoutingSettings'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Get Order Routing Settings
+      tags:
+      - OrderRoutingSettings
+      operationId: getCommerceOrdersOrderroutingApiV1Settings
+      x-operation-id-source: derived
+    put:
+      description: Save order routing settings.
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderRoutingSettings'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderRoutingSettings'
+          description: OK
+        '400':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Bad Request
+        '403':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Forbidden
+        '409':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Conflict
+        '410':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Gone
+        '500':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Internal Server Error
+        '503':
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/APIErrorResponse'
+          description: Service Unavailable
+      summary: Save Order Routing Settings
+      tags:
+      - OrderRoutingSettings
+      operationId: putCommerceOrdersOrderroutingApiV1Settings
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    APIErrorResponse:
+      properties:
+        additionalInfo:
+          type: string
+        errorMessage:
+          type: string
+      type: object
+    OrderRoutingSettings:
+      properties:
+        allowInternationalAssignment:
+          type: boolean
+        autoAssignLimit:
+          format: int32
+          type: integer
+        defaultStateChange:
+          enum:
+          - CANCEL
+          - CUSTOMER_CARE
+          - AVAILABLE
+          - BACKORDER
+          type: string
+        failoverActions:
+          items:
+            enum:
+            - LINE_ITEM_SPLIT_ASSIGN_IF_FULFILLED
+            - LINE_ITEM_SPLIT_CANCEL_WITHOUT_INVENTORY
+            - QUANTITY_SPLIT_ASSIGN_IF_FULFILLED
+            - QUANTITY_SPLIT_CANCEL_WITHOUT_INVENTORY
+            - CANCEL_ORDER
+            - ASSIGN_TO_CUSTOMER_CARE
+            - ASSIGN_TO_GROUP
+            - LINE_ITEM_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+            - QUANTITY_SPLIT_ASSIGN_CUSTOMER_CARE_WITHOUT_INVENTORY
+            - SEND_ORDER_TO_BIDDING
+            - LINE_ITEM_SPLIT_BACKORDER_WITHOUT_INVENTORY
+            - QUANTITY_SPLIT_BACKORDER_WITHOUT_INVENTORY
+            - ASSIGN_TO_BACKORDER
+            type: string
+          type: array
+          uniqueItems: true
+        filterAttributes:
+          items:
+            $ref: '#/components/schemas/FilterAttribute'
+          type: array
+          uniqueItems: true
+        maxFulfillingLocations:
+          format: int32
+          type: integer
+        maxSplitItemLocations:
+          format: int32
+          type: integer
+        productIdentifierMapping:
+          enum:
+          - PART_NUMBER_ONLY
+          - UPC_ONLY
+          - SKU_ONLY
+          - PART_NUMBER_AND_UPC
+          - PART_NUMBER_AND_SKU
+          - UPC_AND_SKU
+          - PART_NUMBER_AND_UPC_AND_SKU
+          type: string
+        siteID:
+          format: int32
+          type: integer
+        tenantID:
+          format: int32
+          type: integer
+        tooManyAssignsAction:
+          enum:
+          - CANCEL
+          - CUSTOMER_CARE
+          - AVAILABLE
+          - BACKORDER
+          type: string
+      required:
+      - allowInternationalAssignment
+      - defaultStateChange
+      - tooManyAssignsAction
+      type: object
+    FilterAttribute:
+      properties:
+        extensibleAttributeFQN:
+          type: string
+        filterTypeGroup:
+          enum:
+          - ORDER_INFO
+          - FULFILLMENT_LOCATION_INFO
+          - FULFILLMENT_INVENTORY_INFO
+          - ITEM_ATTRIBUTES
+          - CUSTOMER_INFORMATION
+          - CALL_OFF_ORDER_INFO
+          - CALL_OFF_ORDER_ITEM_ATTRIBUTES
+          - UNKNOWN
+          - EXTENSIBLE_FULFILLMENT_LOCATION_INFO
+          - EXTENSIBLE_ORDER_INFO
+          - EXTENSIBLE_PRODUCT_INFO
+          - EXTENSIBLE_CUSTOMER_INFO
+          - EXTENSIBLE_B2B_CUSTOMER_INFO
+          - EXTENSIBLE_INVENTORY_INFO
+          - EXTENSIBLE_CALL_OFF_INFO
+          - EXTENSIBLE_CALL_OFF_ORDER_ITEM_INFO
+          type: string
+        langTag:
+          type: string
+        name:
+          type: string
+        propertyPath:
+          type: string
+        unitType:
+          enum:
+          - unit.type.currency
+          - unit.type.distance
+          - unit.type.length
+          - unit.type.volume
+          - unit.type.area
+          - unit.type.weight
+          - unit.type.dimensionless
+          type: string
+        vocabularyListValues:
+          type: string
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_orderrouting.json
+- kibo-commerce-orderrouting-openapi.yml

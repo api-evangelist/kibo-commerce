@@ -1,0 +1,23 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce DropShip
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-dropship-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-dropship-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/dropship/invoice/{shipmentNumber}'].get
+  description: Add derived operationId for GET /commerce/dropship/invoice/{shipmentNumber}
+  update:
+    operationId: dropshipGeneratesAnEDI810InvoiceForTheSpecifiedShipment
+- target: $.paths['/commerce/dropship/purchaseorder/{shipmentNumber}'].get
+  description: Add derived operationId for GET /commerce/dropship/purchaseorder/{shipmentNumber}
+  update:
+    operationId: dropshipRetrieveEDI850PurchaseOrder
+- target: $.paths['/commerce/dropship/translate/{shipmentNumber}'].get
+  description: Add derived operationId for GET /commerce/dropship/translate/{shipmentNumber}
+  update:
+    operationId: dropshipTranslateShipment

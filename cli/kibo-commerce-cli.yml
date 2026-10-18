@@ -1,0 +1,18 @@
+generated: '2026-10-18'
+method: searched
+source: https://registry.npmjs.org/@kibocommerce/headless-cli
+install: npm install -g @kibocommerce/headless-cli
+commands:
+- name: headless-cli
+  description: Kibo Headless CLI — manage env vars, secrets, builds, and logs
+  version: '3.0.1'
+- name: kibo-sandbox-data-cli
+  description: kibo sandbox data cli
+  install: npm install -g @kibocommerce/kibo-sandbox-data-cli
+- name: kibo-kpp-ucp-catalog-sync-cli
+  description: A small utility to automate syncing catalogs between Kibo KPP and Kibo UCP platforms
+  install: npm install -g @kibocommerce/kibo-kpp-ucp-catalog-sync-cli
+- name: cli-web-login
+  description: kibo cli web login
+  install: npm install -g @kibocommerce/cli-web-login
+note: Found multiple CLI tools published by Kibo on npm. The main CLI appears to be @kibocommerce/headless-cli for managing headless commerce environments.

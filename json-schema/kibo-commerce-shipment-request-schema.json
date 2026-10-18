@@ -1,0 +1,648 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-shipment-request-schema.json",
+  "title": "ShipmentRequest",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-shipping-openapi.yml#/components/schemas/ShipmentRequest",
+  "properties": {
+    "carrierAccountNumber": {
+      "description": "Optional shipper-provided carrier account number. When provided, postage is\nbilled to this account using SENDER billing via EasyPost options.payment,\noverriding any stored-credential billing for this request. Not persisted in\nKibo; masked (last 4) in logs.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "carrierId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "consolidationReferences": {
+      "description": "Consolidation references for Order Number, Shipment Number and Order Id",
+      "items": {
+        "$ref": "#/$defs/ConsolidationReference"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "customAttributes": {
+      "description": "Carrier specific options\n\nEx: RequiresDeliveryConfirmation when using usps with non-express mail service type.",
+      "items": {
+        "$ref": "#/$defs/CustomAttribute"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "customerReferences": {
+      "items": {
+        "$ref": "#/$defs/CustomerReferences"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "externalOrderId": {
+      "description": "Optional external (non-Kibo) order identifier to print on the label.\nMapped into EasyPost PrintCustom reference lines alongside ReferenceNotes\nand CustomerReferences, within the 3-line carrier capacity.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "fulfillmentMethod": {
+      "description": "Fulfillment method for the shipment. STH / Delivery. Empty will be assumed as STH.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "hazmatClassification": {
+      "description": "Optional hazardous-materials classification (pass-through string). Conveyed\nto the carrier via EasyPost options.hazmat. The system maintains no hazmat\ntaxonomy; unsupported values are rejected by EasyPost and surfaced as an error.\nNever inferred or defaulted.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "isoCurrencyCode": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "labelFormat": {
+      "description": "Returns the Label in the requested format.\nSpecify either \"LASER\" or \"THERMAL\" format.\nActual supported image formats vary by carrier.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "referenceNotes": {
+      "description": "Optional freeform reference notes to print on the label. Mapped into EasyPost\nPrintCustom reference lines alongside ExternalOrderId and CustomerReferences,\nwithin the 3-line carrier capacity. Truncated on overflow with a warning.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relatedOrderId": {
+      "description": "The related Order ID for this shipment request.\nInformational only.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "relatedOrderNumber": {
+      "description": "The related Order Number for this shipment request.\nInformational only.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "relatedShipmentNumber": {
+      "description": "The related Shipment Number for this shipment request.\nInformational only.",
+      "format": "int32",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "shipment": {
+      "$ref": "#/$defs/ShippingRuntimeShipment"
+    },
+    "shipmentRequestType": {
+      "description": "Selected Shipment Request Type.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "shippingServiceType": {
+      "description": "Selected Shipping Service Type.",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "signatureOption": {
+      "description": "Specify an optional signature option for this shipment.\nAll packages will inherit this option value automatically.\nSet this option on the package level to override this value.",
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "Address": {
+      "properties": {
+        "address1": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address2": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address3": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "address4": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "addressType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "cityOrTown": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "countryCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isValidated": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "postalOrZipCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stateOrProvince": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ConsolidationReference": {
+      "properties": {
+        "relatedOrderId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "relatedOrderNumber": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "relatedShipmentNumber": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Contact": {
+      "properties": {
+        "address": {
+          "$ref": "#/$defs/Address"
+        },
+        "companyOrOrganization": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "email": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "firstName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "id": {
+          "format": "int32",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "lastNameOrSurname": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "middleNameOrInitial": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "phoneNumbers": {
+          "$ref": "#/$defs/Phone"
+        }
+      },
+      "type": "object"
+    },
+    "CustomAttribute": {
+      "properties": {
+        "childAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CustomerReferences": {
+      "properties": {
+        "key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ItemMeasurements": {
+      "properties": {
+        "girth": {
+          "description": "Not exposed publicly",
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "height": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "length": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "weight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "width": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "type": "object"
+    },
+    "Measurement": {
+      "properties": {
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "Phone": {
+      "properties": {
+        "home": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "mobile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "work": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ProductSummary": {
+      "properties": {
+        "categories": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeCategory"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "options": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeProductOption"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "price": {
+          "description": "Price (unit price * quantity)",
+          "format": "double",
+          "type": "number"
+        },
+        "productCode": {
+          "description": "Merchant-created code that uniquely identifies the product.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productDescription": {
+          "description": "Product name/description",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimeProductProperty"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "quantity": {
+          "description": "Product quantity",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unitMeasurements": {
+          "$ref": "#/$defs/ItemMeasurements"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeCategory": {
+      "description": "Categories to which the product belongs.",
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "parent": {
+          "$ref": "#/$defs/ShippingRuntimeCategory"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimePackage": {
+      "properties": {
+        "contentsValue": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "customAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "isGift": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "measurements": {
+          "$ref": "#/$defs/ShippingRuntimePackageMeasurements"
+        },
+        "packagingType": {
+          "description": "Selected PackagingType.  Shipping provider dependent.",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productSummaries": {
+          "description": "Product details in the package",
+          "items": {
+            "$ref": "#/$defs/ProductSummary"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "signatureOption": {
+          "description": "Specify an optional signature option for this package.\nIf not specified, will inherit the option value from the shipment.",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimePackageMeasurements": {
+      "properties": {
+        "height": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "length": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "weight": {
+          "$ref": "#/$defs/Measurement"
+        },
+        "width": {
+          "$ref": "#/$defs/Measurement"
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeProductOption": {
+      "properties": {
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "nullable": true
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeProductProperty": {
+      "properties": {
+        "attributeFQN": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dataType": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "values": {
+          "items": {},
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "ShippingRuntimeShipment": {
+      "properties": {
+        "customAttributes": {
+          "items": {
+            "$ref": "#/$defs/CustomAttribute"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "destination": {
+          "$ref": "#/$defs/Contact"
+        },
+        "estimatedShipmentDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "fulfillmentLocationCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "orderTotal": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "origin": {
+          "$ref": "#/$defs/Contact"
+        },
+        "packages": {
+          "items": {
+            "$ref": "#/$defs/ShippingRuntimePackage"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "shippingMethodCodes": {
+          "items": {
+            "type": "string"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

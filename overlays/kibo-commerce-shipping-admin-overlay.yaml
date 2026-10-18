@@ -1,0 +1,187 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Shipping Admin
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-shipping-admin-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-shipping-admin-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/shipping/admin/carriers/{carrierId}'].delete
+  description: Add derived operationId for DELETE /commerce/shipping/admin/carriers/{carrierId}
+  update:
+    operationId: carrierconfigurationDeleteCarrierConfiguration
+- target: $.paths['/commerce/shipping/admin/carriers/{carrierId}'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers/{carrierId}
+  update:
+    operationId: carrierconfigurationGetCarrierConfigurationInformation
+- target: $.paths['/commerce/shipping/admin/carriers/{carrierId}'].post
+  description: Add derived operationId for POST /commerce/shipping/admin/carriers/{carrierId}
+  update:
+    operationId: carrierconfigurationCreateCarrierConfiguration
+- target: $.paths['/commerce/shipping/admin/carriers/{carrierId}'].put
+  description: Add derived operationId for PUT /commerce/shipping/admin/carriers/{carrierId}
+  update:
+    operationId: carrierconfigurationUpdateCarrierConfiguration
+- target: $.paths['/commerce/shipping/admin/carriers'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers
+  update:
+    operationId: carrierconfigurationGetCarrierConfigurations
+- target: $.paths['/commerce/shipping/global/carriers/{carrierId}/serviceTypes/{localeCode}'].get
+  description: Add derived operationId for GET /commerce/shipping/global/carriers/{carrierId}/serviceTypes/{localeCode}
+  update:
+    operationId: carrierconfigurationglobalGetServiceTypesWithCarrierID
+- target: $.paths['/commerce/shipping/global/carriers/serviceTypes/{localeCode}'].get
+  description: Add derived operationId for GET /commerce/shipping/global/carriers/serviceTypes/{localeCode}
+  update:
+    operationId: carrierconfigurationglobalGetServiceTypesWithoutCarrierID
+- target: $.paths['/commerce/shipping/global/carriers/signatureOptions'].get
+  description: Add derived operationId for GET /commerce/shipping/global/carriers/signatureOptions
+  update:
+    operationId: carrierconfigurationglobalGetsAllTheSignatureOptions
+- target: $.paths['/commerce/shipping/admin/carriers/credentials'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers/credentials
+  update:
+    operationId: carriercredentialGetCarrierCredentials
+- target: $.paths['/commerce/shipping/admin/carriers/credentials/{carrierId}'].delete
+  description: Add derived operationId for DELETE /commerce/shipping/admin/carriers/credentials/{carrierId}
+  update:
+    operationId: carriercredentialDeleteCarrierCredentials
+- target: $.paths['/commerce/shipping/admin/carriers/credentials/{carrierId}'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers/credentials/{carrierId}
+  update:
+    operationId: carriercredentialGetCarrierCredentialsByID
+- target: $.paths['/commerce/shipping/admin/carriers/credentials/{carrierId}'].post
+  description: Add derived operationId for POST /commerce/shipping/admin/carriers/credentials/{carrierId}
+  update:
+    operationId: carriercredentialCreateCarrierCredentials
+- target: $.paths['/commerce/shipping/admin/carriers/credentials/{carrierId}'].put
+  description: Add derived operationId for PUT /commerce/shipping/admin/carriers/credentials/{carrierId}
+  update:
+    operationId: carriercredentialUpdateCarrierCredentials
+- target: $.paths['/commerce/shipping/admin/carriers/credential-sets/{carrierId}'].post
+  description: Add derived operationId for POST /commerce/shipping/admin/carriers/credential-sets/{carrierId}
+  update:
+    operationId: carriercredentialsetCreateCarrierCredentialSet
+- target: $.paths['/commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}
+  update:
+    operationId: carriercredentialsetDeleteCarrierCredentialSet
+- target: $.paths['/commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}
+  update:
+    operationId: carriercredentialsetGetCarrierCredentialSet
+- target: $.paths['/commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}'].put
+  description: Add derived operationId for PUT /commerce/shipping/admin/carriers/credential-sets/{carrierId}/{code}
+  update:
+    operationId: carriercredentialsetUpdateCarrierCredentialSet
+- target: $.paths['/commerce/shipping/admin/carriers/credential-sets'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers/credential-sets
+  update:
+    operationId: carriercredentialsetGetCarrierCredentialSets
+- target: $.paths['/commerce/shipping/admin/carriers/definitions/{carrierId}'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers/definitions/{carrierId}
+  update:
+    operationId: carrierdefinitionGetCarrierDefinition
+- target: $.paths['/commerce/shipping/admin/carriers/definitions'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/carriers/definitions
+  update:
+    operationId: carrierdefinitionGetCarrierDefinitions
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/shippingstates'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles/{profilecode}/shippingstates
+  update:
+    operationId: shippingprofileGetConfiguredShippingStates
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/shippingstates'].put
+  description: Add derived operationId for PUT /commerce/shipping/admin/profiles/{profilecode}/shippingstates
+  update:
+    operationId: shippingprofileUpdateStates
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}'].delete
+  description: Add derived operationId for DELETE /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}
+  update:
+    operationId: shippingprofileDeleteOrderHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}
+  update:
+    operationId: shippingprofileGetOrderHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}'].put
+  description: Add derived operationId for PUT /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees/{id}
+  update:
+    operationId: shippingprofileUpdateOrderHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees
+  update:
+    operationId: shippingprofileGetOrderHandlingFeeRules
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees'].post
+  description: Add derived operationId for POST /commerce/shipping/admin/profiles/{profilecode}/rules/orderhandlingfees
+  update:
+    operationId: shippingprofileCreateOrderHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}'].delete
+  description: Add derived operationId for DELETE /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}
+  update:
+    operationId: shippingprofileDeleteProductHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}
+  update:
+    operationId: shippingprofileGetProductHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}'].put
+  description: Add derived operationId for PUT /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees/{id}
+  update:
+    operationId: shippingprofileUpdateProductHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees
+  update:
+    operationId: shippingprofileGetProductHandlingFeeRules
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees'].post
+  description: Add derived operationId for POST /commerce/shipping/admin/profiles/{profilecode}/rules/producthandlingfees
+  update:
+    operationId: shippingprofileCreateProductHandlingFeeRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}'].delete
+  description: Add derived operationId for DELETE /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}
+  update:
+    operationId: shippingprofileDeleteShippingInclusionRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}
+  update:
+    operationId: shippingprofileGetShippingInclusionRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}'].put
+  description: Add derived operationId for PUT /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions/{id}
+  update:
+    operationId: shippingprofileUpdateShippingInclusionRule
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions
+  update:
+    operationId: shippingprofileGetShippingInclusionRules
+- target: $.paths['/commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions'].post
+  description: Add derived operationId for POST /commerce/shipping/admin/profiles/{profilecode}/rules/shippinginclusions
+  update:
+    operationId: shippingprofileCreateShippingInclusionRule
+- target: $.paths['/commerce/shipping/admin/profiles'].get
+  description: Add derived operationId for GET /commerce/shipping/admin/profiles
+  update:
+    operationId: shippingprofileGetShippingProfiles
+- target: $.paths['/commerce/targetrules/{code}'].delete
+  description: Add derived operationId for DELETE /commerce/targetrules/{code}
+  update:
+    operationId: targetrulesDeleteTargetRule
+- target: $.paths['/commerce/targetrules/{code}'].get
+  description: Add derived operationId for GET /commerce/targetrules/{code}
+  update:
+    operationId: targetrulesGetTargetRule
+- target: $.paths['/commerce/targetrules/{code}'].put
+  description: Add derived operationId for PUT /commerce/targetrules/{code}
+  update:
+    operationId: targetrulesUpdateTargetRule
+- target: $.paths['/commerce/targetrules'].get
+  description: Add derived operationId for GET /commerce/targetrules
+  update:
+    operationId: targetrulesGetTargetRules
+- target: $.paths['/commerce/targetrules'].post
+  description: Add derived operationId for POST /commerce/targetrules
+  update:
+    operationId: targetrulesCreateTargetRule
+- target: $.paths['/commerce/targetrules/validate'].post
+  description: Add derived operationId for POST /commerce/targetrules/validate
+  update:
+    operationId: targetrulesValidateTargetRule

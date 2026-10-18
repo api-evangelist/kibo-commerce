@@ -1,0 +1,310 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Inventory Location API
+  version: '1.0'
+  description: 'Operations tagged InventoryLocation across 2 of this provider''s published API definitions: openapi_openapi_inventory.json, kibo-commerce-inventory-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: InventoryLocation
+paths:
+  /commerce/inventory/v1/location/{locationCode}:
+    get:
+      description: Get Locations
+      parameters:
+      - description: Location Code of the location to get
+        in: path
+        name: locationCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+                type: array
+          description: Success
+        '404':
+          description: Location Not Found
+      summary: Get Location
+      tags:
+      - InventoryLocation
+      operationId: getCommerceInventoryV1LocationByLocationCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/location/{locationGroupCode}:
+    get:
+      description: Get LocationGroups
+      parameters:
+      - description: Location Group Code of the location to get
+        in: path
+        name: locationGroupCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationGroupResponse'
+                type: array
+          description: Success
+        '404':
+          description: Location Not Found
+      summary: Get Location Groups
+      tags:
+      - InventoryLocation
+      operationId: getCommerceInventoryV1LocationByLocationGroupCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/inventory/v1/location:
+    get:
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+                type: array
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Get Locations
+      tags:
+      - InventoryLocation
+      operationId: getCommerceInventoryV1Location
+      x-operation-id-source: derived
+    post:
+      parameters: []
+      requestBody:
+        $ref: '#/components/requestBodies/LocationRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/LocationResponse'
+                type: array
+          description: Success
+        '400':
+          description: Bad Request
+      summary: Save Location
+      tags:
+      - InventoryLocation
+      operationId: postCommerceInventoryV1Location
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    LocationRequest:
+      description: Location Request Object
+      properties:
+        active:
+          description: Flag for whether the location is active
+          type: boolean
+        countryCode:
+          description: Country Code
+          type: string
+        directShip:
+          description: Flag for whether the location allows Direct Ship (STH) orders
+          type: boolean
+        express:
+          description: Flag for whether the location is express enabled or not
+          type: boolean
+        includeInAggregate:
+          description: Flag for whether the location is to be included in aggregate exports
+          type: boolean
+        includeInLocationExport:
+          description: Flag for whether the location is to be included in location exports
+          type: boolean
+        latitude:
+          description: Latitude
+          type: number
+        locationCode:
+          description: Location Code
+          type: string
+        locationName:
+          description: Location Name
+          type: string
+        longitude:
+          description: Longitude
+          type: number
+        pickup:
+          description: Flag for whether the location allows Pickup (BOPIS) orders
+          type: boolean
+        postalCode:
+          description: Postal Code
+          type: string
+        tenantID:
+          description: Tenant ID
+          type: integer
+        transferEnabled:
+          description: Flag for whether the location allows Transfer orders
+          type: boolean
+        wmsEnabled:
+          description: Flag for whether the location is WMS Enabled
+          type: boolean
+      required:
+      - locationCode
+      - directShip
+      - pickup
+      - tenantID
+      - active
+      - locationName
+      title: LocationRequest
+      type: object
+    LocationGroupResponse:
+      description: LocationGroup Response Object
+      properties:
+        adminLocationGroupID:
+          description: Admin Location Group ID
+          type: integer
+        created:
+          description: Created
+          type: string
+        locationCodes:
+          description: Location IDs
+          items:
+            type: string
+          type: array
+        locationGroupCode:
+          description: Location Group Code
+          type: string
+        locationGroupID:
+          description: Location Group ID
+          type: integer
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        sites:
+          description: Site IDs
+          items:
+            type: integer
+          type: array
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Tenant ID
+          type: integer
+      title: LocationGroupResponse
+      type: object
+    LocationResponse:
+      description: Location Response Object
+      properties:
+        active:
+          description: Flag for whether the location is active
+          type: boolean
+        countryCode:
+          description: Country Code
+          type: string
+        directShip:
+          description: Flag for whether the location allows Direct Ship (STH) orders
+          type: boolean
+        express:
+          description: Flag for whether the location is express enabled or not
+          type: boolean
+        includeInAggregate:
+          description: Flag for whether the location is to be included in aggregate exports
+          type: boolean
+        includeInLocationExport:
+          description: Flag for whether the location is to be included in location exports
+          type: boolean
+        latitude:
+          description: Latitude
+          type: number
+        locationCode:
+          description: Location Code
+          type: string
+        locationID:
+          description: Internal Location ID
+          type: integer
+        locationName:
+          description: Location Name
+          type: string
+        longitude:
+          description: Longitude
+          type: number
+        messages:
+          description: List of messages
+          items:
+            type: string
+          type: array
+        numResults:
+          description: Number of results
+          type: integer
+        pickup:
+          description: Flag for whether the location allows Pickup (BOPIS) orders
+          type: boolean
+        postalCode:
+          description: Postal Code
+          type: string
+        success:
+          description: Flag for success
+          type: boolean
+        tenantID:
+          description: Tenant ID
+          type: integer
+        transferEnabled:
+          description: Flag for whether the location allows Transfer orders
+          type: boolean
+        wmsEnabled:
+          description: Flag for whether the location is WMS Enabled
+          type: boolean
+      title: LocationResponse
+      type: object
+  requestBodies:
+    LocationRequest:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LocationRequest'
+      description: Location Request Object
+      required: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_inventory.json
+- kibo-commerce-inventory-openapi.yml

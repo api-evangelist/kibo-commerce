@@ -1,0 +1,547 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Admin Auth Ticket API
+  version: '1.0'
+  description: 'Operations tagged AdminAuthTicket across 3 of this provider''s published API definitions: openapi_openapi_tenant_and_user.json, kibo-commerce-tenant-and-user-openapi.yml, kibo-commerce-user-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: AdminAuthTicket
+paths:
+  /platform/adminuser/authtickets/tenants:
+    post:
+      description: Authenticates a user for a particular tenant given a set of user credentials and a tenantId.
+      parameters:
+      - description: Optional tenant Id parameter
+        in: query
+        name: tenantId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAuthInfo'
+        description: User's email address and password.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+          description: OK
+      summary: Create User Auth Ticket
+      tags:
+      - AdminAuthTicket
+      operationId: postPlatformAdminuserAuthticketsTenants
+      x-operation-id-source: derived
+    put:
+      description: Reauthenticates the current user for a different tenant. If the user does not have access to the tenant, the operation fails.
+      parameters:
+      - description: The tenant to authenticate the user in
+        in: query
+        name: tenantId
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+        description: An existing valid auth ticket containing the refresh token.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+          description: OK
+      summary: Refresh Auth Ticket
+      tags:
+      - AdminAuthTicket
+      operationId: putPlatformAdminuserAuthticketsTenants
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/authtickets/wsfed/auth/{id}:
+    post:
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: scopeid
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: scopeType
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/TenantAdminUserAuthTicket'
+          description: OK
+      summary: Create User Auth Ticket With Ws Fed
+      tags:
+      - AdminAuthTicket
+      operationId: postPlatformAdminuserAuthticketsWsfedAuthById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/authtickets:
+    delete:
+      description: Logs out a user by deleting the refresh token
+      parameters:
+      - description: The refresh token to delete.
+        in: query
+        name: refreshToken
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete User Auth Ticket
+      tags:
+      - AdminAuthTicket
+      operationId: deletePlatformAdminuserAuthtickets
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/authtickets/wsfed/challenge/{id}:
+    get:
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: scopeid
+        schema:
+          format: int32
+          type: integer
+      - in: query
+        name: scopeType
+        schema:
+          type: string
+      - in: query
+        name: redirect
+        schema:
+          type: string
+      - in: query
+        name: invitationToken
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: OK
+      summary: Get Ws Fed Challenge Url
+      tags:
+      - AdminAuthTicket
+      operationId: getPlatformAdminuserAuthticketsWsfedChallengeById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/adminuser/authtickets/wsfed/SignOut/{id}:
+    get:
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: redirect
+        schema:
+          type: string
+      - in: query
+        name: ssoNameId
+        schema:
+          type: string
+      - in: query
+        name: session
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+            text/plain:
+              schema:
+                type: string
+          description: OK
+      summary: Get Ws Fed Sign Out Url
+      tags:
+      - AdminAuthTicket
+      operationId: getPlatformAdminuserAuthticketsWsfedSignOutById
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    Site:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          type:
+          - array
+          - 'null'
+        catalogId:
+          format: int32
+          type: integer
+        countryCode:
+          type:
+          - string
+          - 'null'
+        currencyCode:
+          type:
+          - string
+          - 'null'
+        domain:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        localeCode:
+          type:
+          - string
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        primaryCustomDomain:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    Tenant:
+      properties:
+        attributes:
+          items:
+            $ref: '#/components/schemas/TenantAttribute'
+          type:
+          - array
+          - 'null'
+        domain:
+          type:
+          - string
+          - 'null'
+        expiry:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        isDevTenant:
+          type: boolean
+        isUnified:
+          type: boolean
+        lastLoginDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        masterCatalogs:
+          items:
+            $ref: '#/components/schemas/MasterCatalog'
+          type:
+          - array
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        sites:
+          items:
+            $ref: '#/components/schemas/Site'
+          type:
+          - array
+          - 'null'
+      type: object
+    TenantAdminUserAuthTicket:
+      properties:
+        accessToken:
+          type:
+          - string
+          - 'null'
+        accessTokenExpiration:
+          format: date-time
+          type: string
+        availableTenants:
+          items:
+            $ref: '#/components/schemas/Tenant'
+          type:
+          - array
+          - 'null'
+        createdOn:
+          format: date-time
+          type: string
+        grantedBehaviors:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        jwtAccessToken:
+          type:
+          - string
+          - 'null'
+        redirect:
+          type:
+          - string
+          - 'null'
+        refreshToken:
+          type:
+          - string
+          - 'null'
+        refreshTokenExpiration:
+          format: date-time
+          type: string
+        ssoNameId:
+          type:
+          - string
+          - 'null'
+        ssoSession:
+          type:
+          - string
+          - 'null'
+        tenant:
+          $ref: '#/components/schemas/Tenant'
+        user:
+          $ref: '#/components/schemas/UserProfile'
+      type: object
+    MasterCatalog:
+      properties:
+        catalogs:
+          items:
+            $ref: '#/components/schemas/Catalog'
+          type:
+          - array
+          - 'null'
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        defaultLocaleCode:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        supportedLocaleCodes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+    UserProfile:
+      properties:
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+      type: object
+    TenantAttribute:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type: string
+        name:
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type: string
+        value: {}
+      type: object
+    UserAuthInfo:
+      properties:
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        password:
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+      type: object
+    Catalog:
+      properties:
+        defaultCurrencyCode:
+          type:
+          - string
+          - 'null'
+        defaultLocaleCode:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type: integer
+        masterCatalogId:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+        tenantId:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_tenant_and_user.json
+- kibo-commerce-tenant-and-user-openapi.yml
+- kibo-commerce-user-openapi.yml

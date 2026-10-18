@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-carrier-definition-schema.json",
+  "title": "CarrierDefinition",
+  "description": "A carrier definition including config field metadata.\r\nCan either be a built-in system carrier or an Extensible Carrier installed via a <see cref=\"T:Mozu.ShippingAdmin.Contracts.Carriers.CarrierInstallation\">carrier installation</see>.",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-shipping-admin-openapi.yml#/components/schemas/CarrierDefinition",
+  "properties": {
+    "auditInfo": {
+      "$ref": "#/$defs/AuditInfo"
+    },
+    "carrierId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "certified": {
+      "type": [
+        "boolean",
+        "null"
+      ]
+    },
+    "configFields": {
+      "items": {
+        "$ref": "#/$defs/CarrierCredentialSetMetadata"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "features": {
+      "items": {
+        "type": "string"
+      },
+      "type": [
+        "array",
+        "null"
+      ]
+    },
+    "isBuiltIn": {
+      "type": "boolean"
+    },
+    "logoUrl": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "AuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateBy": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "CarrierCredentialSetMetadata": {
+      "description": "The metadata for a single field on a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSet.\r\nThis metadata is used during carrier installation and carrier credential set validation.",
+      "properties": {
+        "dataType": {
+          "$ref": "#/$defs/CarrierCredentialSetMetadataDataType"
+        },
+        "localizations": {
+          "items": {
+            "$ref": "#/$defs/CarrierCredentialSetMetadataLocalizedContent"
+          },
+          "type": [
+            "array",
+            "null"
+          ]
+        },
+        "name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CarrierCredentialSetMetadataDataType": {
+      "description": "The type of field stored in a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata item.",
+      "enum": [
+        "String",
+        "Integer",
+        "Boolean",
+        "Password"
+      ],
+      "format": "",
+      "type": "string"
+    },
+    "CarrierCredentialSetMetadataLocalizedContent": {
+      "description": "The localized content for a Mozu.ShippingAdmin.Contracts.Carriers.CarrierCredentialSetMetadata item.",
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "localeCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    }
+  }
+}

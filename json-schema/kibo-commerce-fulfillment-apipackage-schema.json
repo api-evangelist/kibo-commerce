@@ -1,0 +1,373 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/kibo-commerce/main/json-schema/kibo-commerce-fulfillment-apipackage-schema.json",
+  "title": "Package",
+  "x-generated": "2026-10-18",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/kibo-commerce-fulfillment-openapi.yml#/components/schemas/FulfillmentAPIPackage",
+  "properties": {
+    "attributes": {
+      "additionalProperties": {
+        "type": "object"
+      },
+      "type": "object"
+    },
+    "auditInfo": {
+      "$ref": "#/$defs/FulfillmentAPIAuditInfo"
+    },
+    "carrier": {
+      "type": "string"
+    },
+    "carrierName": {
+      "type": "string"
+    },
+    "cartonization": {
+      "$ref": "#/$defs/CartonizationDto"
+    },
+    "fullyMatched": {
+      "description": "Whether every line item's received+substituted quantity matched its expected quantity for this package. Null until received or when not eligible/flag disabled.",
+      "type": "boolean"
+    },
+    "fxcbDocumentsUrl": {
+      "type": "string"
+    },
+    "fxcbPackNotificationId": {
+      "type": "string"
+    },
+    "hasLabel": {
+      "type": "boolean"
+    },
+    "integratorId": {
+      "type": "string"
+    },
+    "labelFormat": {
+      "type": "string"
+    },
+    "manifestId": {
+      "type": "string"
+    },
+    "measurements": {
+      "$ref": "#/$defs/FulfillmentAPIPackageMeasurements"
+    },
+    "packageConsolidationId": {
+      "type": "string"
+    },
+    "packageId": {
+      "type": "string"
+    },
+    "packagingType": {
+      "type": "string"
+    },
+    "packingSlipItemDetails": {
+      "items": {
+        "$ref": "#/$defs/PackingSlipItemDetailDto"
+      },
+      "type": "array"
+    },
+    "packingSlipNumber": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "receiptStatus": {
+      "description": "Package-level receipt status (NOT_RECEIVED/RECEIVED). Null when not eligible/tenant attribute disabled.",
+      "enum": [
+        "NOT_RECEIVED",
+        "RECEIVED"
+      ],
+      "type": "string"
+    },
+    "receivedBy": {
+      "description": "User ID that received this package. Null until received or when not eligible/flag disabled.",
+      "type": "string"
+    },
+    "receivedDate": {
+      "description": "Timestamp this package was marked received. Null until received or when not eligible/flag disabled.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "receivingMethod": {
+      "description": "Method used to receive this package (TRACKING_NUMBER_RECEIPT/ITEM_VALIDATION). Null until received or when not eligible/flag disabled.",
+      "enum": [
+        "TRACKING_NUMBER_RECEIPT",
+        "ITEM_VALIDATION",
+        "WHOLE_SHIPMENT_RECEIPT"
+      ],
+      "type": "string"
+    },
+    "returnCarrier": {
+      "type": "string"
+    },
+    "returnTrackingNumbers": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "returnTrackings": {
+      "items": {
+        "$ref": "#/$defs/FulfillmentAPITracking"
+      },
+      "type": "array"
+    },
+    "shippingMethodCode": {
+      "type": "string"
+    },
+    "shippingMethodName": {
+      "type": "string"
+    },
+    "signatureRequired": {
+      "type": "boolean"
+    },
+    "stringBarcode": {
+      "type": "string"
+    },
+    "trackingNumbers": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "trackings": {
+      "items": {
+        "$ref": "#/$defs/FulfillmentAPITracking"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object",
+  "$defs": {
+    "CartonizationDto": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "boxes": {
+          "items": {
+            "$ref": "#/$defs/PackedBoxDto"
+          },
+          "type": "array"
+        },
+        "packingSuggestionId": {
+          "type": "string"
+        }
+      },
+      "title": "CartonizationDto",
+      "type": "object"
+    },
+    "DimensionsDto": {
+      "properties": {
+        "height": {
+          "type": "number"
+        },
+        "length": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "width": {
+          "type": "number"
+        }
+      },
+      "title": "DimensionsDto",
+      "type": "object"
+    },
+    "FulfillmentAPIAuditInfo": {
+      "properties": {
+        "createBy": {
+          "type": "string"
+        },
+        "createDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "updateBy": {
+          "type": "string"
+        },
+        "updateDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "title": "AuditInfo",
+      "type": "object"
+    },
+    "FulfillmentAPIMeasurement": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "value": {
+          "type": "number"
+        }
+      },
+      "title": "Measurement",
+      "type": "object"
+    },
+    "FulfillmentAPIPackageMeasurements": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "height": {
+          "$ref": "#/$defs/FulfillmentAPIMeasurement"
+        },
+        "length": {
+          "$ref": "#/$defs/FulfillmentAPIMeasurement"
+        },
+        "weight": {
+          "$ref": "#/$defs/FulfillmentAPIMeasurement"
+        },
+        "width": {
+          "$ref": "#/$defs/FulfillmentAPIMeasurement"
+        }
+      },
+      "title": "PackageMeasurements",
+      "type": "object"
+    },
+    "FulfillmentAPITracking": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "number": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "title": "Tracking",
+      "type": "object"
+    },
+    "PackedBoxDto": {
+      "properties": {
+        "boxId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dimensions": {
+          "$ref": "#/$defs/DimensionsDto"
+        },
+        "items": {
+          "items": {
+            "$ref": "#/$defs/PackedItemDto"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "volumeUtilization": {
+          "type": "number"
+        },
+        "weightUnit": {
+          "type": "string"
+        },
+        "weightUsed": {
+          "type": "number"
+        },
+        "weightUtilization": {
+          "type": "number"
+        }
+      },
+      "title": "PackedBoxDto",
+      "type": "object"
+    },
+    "PackedItemDto": {
+      "properties": {
+        "dimensions": {
+          "$ref": "#/$defs/DimensionsDto"
+        },
+        "lineId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "origin": {
+          "$ref": "#/$defs/PositionDto"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sourceShipmentNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "uniqueId": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "number"
+        },
+        "weightUnit": {
+          "type": "string"
+        }
+      },
+      "title": "PackedItemDto",
+      "type": "object"
+    },
+    "PackingSlipItemDetailDto": {
+      "properties": {
+        "attributes": {
+          "additionalProperties": {
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "lineId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "originalOrderItemId": {
+          "type": "string"
+        },
+        "quantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "receivedQuantity": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "substitutedQuantity": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "title": "PackingSlipItemDetailDto",
+      "type": "object"
+    },
+    "PositionDto": {
+      "properties": {
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        }
+      },
+      "title": "PositionDto",
+      "type": "object"
+    }
+  }
+}

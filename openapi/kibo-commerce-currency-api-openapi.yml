@@ -1,0 +1,463 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Currency API
+  version: '1.0'
+  description: 'Operations tagged Currency across 2 of this provider''s published API definitions: openapi_openapi_catalog_admin.json, kibo-commerce-catalog-admin-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: Currency
+paths:
+  /commerce/catalog/admin/currency/{currencyCode}/exchangerates/{toCurrencyCode}:
+    delete:
+      description: Delete a single exchange rate for a specified currency code and target currency code.
+      parameters:
+      - description: Currency code
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: C
+        in: path
+        name: toCurrencyCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Currency Exchange Rate
+      tags:
+      - Currency
+      operationId: deleteCommerceCatalogAdminCurrencyByCurrencyCodeExchangeratesByToCurrencyCode
+      x-operation-id-source: derived
+    get:
+      description: Retrieves a single exchange rate for a specified currency code and target currency code.
+      parameters:
+      - description: Currency code
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: Target currency code
+        in: path
+        name: toCurrencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyExchangeRate'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyExchangeRate'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyExchangeRate'
+          description: OK
+      summary: Get Currency Exchange Rate
+      tags:
+      - Currency
+      operationId: getCommerceCatalogAdminCurrencyByCurrencyCodeExchangeratesByToCurrencyCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/currency/{currencyCode}/exchangerates:
+    get:
+      description: Retrieves a list of exchange rates for a specified currency code and filter criteria.
+      parameters:
+      - description: Currency code
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyExchangeRateCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyExchangeRateCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyExchangeRateCollection'
+          description: OK
+      summary: Get Currency Exchange Rates
+      tags:
+      - Currency
+      operationId: getCommerceCatalogAdminCurrencyByCurrencyCodeExchangerates
+      x-operation-id-source: derived
+    post:
+      description: Updates the details of a currency localization.
+      parameters:
+      - description: Currency code
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CurrencyExchangeRate'
+              type: array
+        description: Exchange rates for the currency
+      responses:
+        '200':
+          description: OK
+      summary: Update Currency Exchange Rates
+      tags:
+      - Currency
+      operationId: postCommerceCatalogAdminCurrencyByCurrencyCodeExchangerates
+      x-operation-id-source: derived
+    put:
+      description: Update multiple exchange rates for a specified currency code.
+      parameters:
+      - description: Currency code
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                $ref: '#/components/schemas/CurrencyExchangeRate'
+              type: array
+        description: Exchange rates for the currency
+      responses:
+        '200':
+          description: OK
+      summary: Bulk Update Currency Exchange Rates
+      tags:
+      - Currency
+      operationId: putCommerceCatalogAdminCurrencyByCurrencyCodeExchangerates
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/currency/{currencyCode}:
+    delete:
+      description: Deletes the currency localization specified by its currency code.
+      parameters:
+      - description: Currency code.
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Currency Localization
+      tags:
+      - Currency
+      operationId: deleteCommerceCatalogAdminCurrencyByCurrencyCode
+      x-operation-id-source: derived
+    get:
+      description: Gets a single currency localization.
+      parameters:
+      - description: Currency code.
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+          description: OK
+      summary: Get Currency Localization
+      tags:
+      - Currency
+      operationId: getCommerceCatalogAdminCurrencyByCurrencyCode
+      x-operation-id-source: derived
+    put:
+      description: Updates the details of a currency localization.
+      parameters:
+      - description: Currency code.
+        in: path
+        name: currencyCode
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurrencyLocalization'
+        description: Properties of the currency-localization to update.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+          description: OK
+      summary: Update Currency Localization
+      tags:
+      - Currency
+      operationId: putCommerceCatalogAdminCurrencyByCurrencyCode
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/catalog/admin/currency:
+    get:
+      description: Gets all currency localizations.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalizationCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalizationCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalizationCollection'
+          description: OK
+      summary: Get Currency Localizations
+      tags:
+      - Currency
+      operationId: getCommerceCatalogAdminCurrency
+      x-operation-id-source: derived
+    post:
+      description: Adds a new currency localization.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurrencyLocalization'
+        description: 'Properties of the currency-localization to create.
+
+          Required properties: CurrencyCode'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CurrencyLocalization'
+          description: OK
+      summary: Add Currency Localization
+      tags:
+      - Currency
+      operationId: postCommerceCatalogAdminCurrency
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    CurrencyLocalizationCollection:
+      description: Non-pages collection of currency-localizations.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CurrencyLocalization'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CurrencyExchangeRateCollection:
+      description: Non-pages collection of currency-exchange-rates.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CurrencyExchangeRate'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CurrencyLocalization:
+      description: A currency and some localization options
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        currencyCode:
+          description: Currency Code
+          type:
+          - string
+          - 'null'
+        decimalPlaces:
+          description: Number of decimal places to round to
+          format: int32
+          type:
+          - integer
+          - 'null'
+        roundingStrategy:
+          description: The rounding strategy to use
+          format: int32
+          type:
+          - integer
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CurrencyExchangeRate:
+      description: The exchange rate between two currencies
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        fromCurrencyCode:
+          description: The source currency code
+          type:
+          - string
+          - 'null'
+        multiplier:
+          description: An additional multiplier to use in calculations
+          format: double
+          type:
+          - number
+          - 'null'
+        rate:
+          description: The exchange rate
+          format: double
+          type: number
+        referenceData:
+          description: Reference data for miscellaneous metadata from updates
+          type:
+          - string
+          - 'null'
+        toCurrencyCode:
+          description: The target currency code
+          type:
+          - string
+          - 'null'
+      required:
+      - rate
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_catalog_admin.json
+- kibo-commerce-catalog-admin-openapi.yml

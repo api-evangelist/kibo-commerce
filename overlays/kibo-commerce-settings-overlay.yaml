@@ -1,0 +1,163 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist operationId overlay for Kibo Commerce Site Settings
+  version: 1.0.0
+extends: ../openapi/_original/kibo-commerce-settings-openapi.yml
+x-generated: '2026-10-18'
+x-method: generated
+x-source: openapi/kibo-commerce-settings-openapi.yml
+x-rationale: The Kibo-published OpenAPI files carry no operationId on any operation. This overlay adds a stable, derived operationId (camelCase of tag + summary, de-duplicated within the file) so tools,
+  skills and crosswalks can reference operations, without mutating the original.
+actions:
+- target: $.paths['/commerce/settings/b2b/b2bsettings'].get
+  description: Add derived operationId for GET /commerce/settings/b2b/b2bsettings
+  update:
+    operationId: b2bsettingsGetB2BSettings
+- target: $.paths['/commerce/settings/b2b/b2bsettings'].post
+  description: Add derived operationId for POST /commerce/settings/b2b/b2bsettings
+  update:
+    operationId: b2bsettingsCreateB2BSettings
+- target: $.paths['/commerce/settings/b2b/b2bsettings'].put
+  description: Add derived operationId for PUT /commerce/settings/b2b/b2bsettings
+  update:
+    operationId: b2bsettingsUpdateB2BSettings
+- target: $.paths['/commerce/settings/cart/cartsettings'].get
+  description: Add derived operationId for GET /commerce/settings/cart/cartsettings
+  update:
+    operationId: cartsettingsGetCartSettings
+- target: $.paths['/commerce/settings/cart/cartsettings'].post
+  description: Add derived operationId for POST /commerce/settings/cart/cartsettings
+  update:
+    operationId: cartsettingsCreateCartSettings
+- target: $.paths['/commerce/settings/cart/cartsettings'].put
+  description: Add derived operationId for PUT /commerce/settings/cart/cartsettings
+  update:
+    operationId: cartsettingsUpdateCartSettings
+- target: $.paths['/commerce/settings/checkout/paymentsettings/thirdpartyworkflows/{fullyQualifiedName}'].delete
+  description: Add derived operationId for DELETE /commerce/settings/checkout/paymentsettings/thirdpartyworkflows/{fullyQualifiedName}
+  update:
+    operationId: checkoutsettingsDeleteThirdPartyPaymentWorkflow
+- target: $.paths['/commerce/settings/checkout'].get
+  description: Add derived operationId for GET /commerce/settings/checkout
+  update:
+    operationId: checkoutsettingsGetCheckoutSettings
+- target: $.paths['/commerce/settings/checkout/customercheckoutsettings'].get
+  description: Add derived operationId for GET /commerce/settings/checkout/customercheckoutsettings
+  update:
+    operationId: checkoutsettingsGetCustomerCheckoutSettings
+- target: $.paths['/commerce/settings/checkout/customercheckoutsettings'].put
+  description: Add derived operationId for PUT /commerce/settings/checkout/customercheckoutsettings
+  update:
+    operationId: checkoutsettingsUpdateCustomerCheckoutSettings
+- target: $.paths['/commerce/settings/checkout/paymentsettings/thirdpartyworkflow/{fullyQualifiedName}'].get
+  description: Add derived operationId for GET /commerce/settings/checkout/paymentsettings/thirdpartyworkflow/{fullyQualifiedName}
+  update:
+    operationId: checkoutsettingsGetThirdPartyPaymentWorkflowWithValues
+- target: $.paths['/commerce/settings/checkout/paymentsettings/thirdpartyworkflows'].get
+  description: Add derived operationId for GET /commerce/settings/checkout/paymentsettings/thirdpartyworkflows
+  update:
+    operationId: checkoutsettingsGetThirdPartyPaymentWorkflows
+- target: $.paths['/commerce/settings/checkout/paymentsettings/thirdpartyworkflows'].put
+  description: Add derived operationId for PUT /commerce/settings/checkout/paymentsettings/thirdpartyworkflows
+  update:
+    operationId: checkoutsettingsAddThirdPartyPaymentWorkflow
+- target: $.paths['/commerce/settings/fulfillment/fulfillmentsettings'].get
+  description: Add derived operationId for GET /commerce/settings/fulfillment/fulfillmentsettings
+  update:
+    operationId: fulfillmentsettingsGetFulfillmentSettings
+- target: $.paths['/commerce/settings/fulfillment/fulfillmentsettings'].post
+  description: Add derived operationId for POST /commerce/settings/fulfillment/fulfillmentsettings
+  update:
+    operationId: fulfillmentsettingsCreateFulfillmentSettings
+- target: $.paths['/commerce/settings/fulfillment/fulfillmentsettings'].put
+  description: Add derived operationId for PUT /commerce/settings/fulfillment/fulfillmentsettings
+  update:
+    operationId: fulfillmentsettingsUpdateFulfillmentSettings
+- target: $.paths['/commerce/settings/general/customroutes'].delete
+  description: Add derived operationId for DELETE /commerce/settings/general/customroutes
+  update:
+    operationId: generalsettingsDeleteCustomRouteSettings
+- target: $.paths['/commerce/settings/general/customroutes'].get
+  description: Add derived operationId for GET /commerce/settings/general/customroutes
+  update:
+    operationId: generalsettingsGetCustomRouteSettings
+- target: $.paths['/commerce/settings/general/customroutes'].post
+  description: Add derived operationId for POST /commerce/settings/general/customroutes
+  update:
+    operationId: generalsettingsCreateCustomRouteSettings
+- target: $.paths['/commerce/settings/general/customroutes'].put
+  description: Add derived operationId for PUT /commerce/settings/general/customroutes
+  update:
+    operationId: generalsettingsUpdateCustomRouteSettings
+- target: $.paths['/commerce/settings/general'].get
+  description: Add derived operationId for GET /commerce/settings/general
+  update:
+    operationId: generalsettingsGetGeneralSettings
+- target: $.paths['/commerce/settings/general'].put
+  description: Add derived operationId for PUT /commerce/settings/general
+  update:
+    operationId: generalsettingsUpdateGeneralSettings
+- target: $.paths['/commerce/settings/general/taxableterritories'].get
+  description: Add derived operationId for GET /commerce/settings/general/taxableterritories
+  update:
+    operationId: generalsettingsGetTaxableTerritories
+- target: $.paths['/commerce/settings/general/taxableterritories'].post
+  description: Add derived operationId for POST /commerce/settings/general/taxableterritories
+  update:
+    operationId: generalsettingsAddsTaxableTerritory
+- target: $.paths['/commerce/settings/general/taxableterritories'].put
+  description: Add derived operationId for PUT /commerce/settings/general/taxableterritories
+  update:
+    operationId: generalsettingsUpdateTaxableTerritories
+- target: $.paths['/commerce/settings/inventory/inventorySettings'].get
+  description: Add derived operationId for GET /commerce/settings/inventory/inventorySettings
+  update:
+    operationId: inventorysettingsGetInventorySettings
+- target: $.paths['/commerce/settings/inventory/inventorySettings'].post
+  description: Add derived operationId for POST /commerce/settings/inventory/inventorySettings
+  update:
+    operationId: inventorysettingsCreateInventorySettings
+- target: $.paths['/commerce/settings/inventory/inventorySettings'].put
+  description: Add derived operationId for PUT /commerce/settings/inventory/inventorySettings
+  update:
+    operationId: inventorysettingsUpdateInventorySettings
+- target: $.paths['/commerce/settings/return/returnsettings'].get
+  description: Add derived operationId for GET /commerce/settings/return/returnsettings
+  update:
+    operationId: returnsettingsGetReturnSettings
+- target: $.paths['/commerce/settings/return/returnsettings'].post
+  description: Add derived operationId for POST /commerce/settings/return/returnsettings
+  update:
+    operationId: returnsettingsCreateReturnSettings
+- target: $.paths['/commerce/settings/return/returnsettings'].put
+  description: Add derived operationId for PUT /commerce/settings/return/returnsettings
+  update:
+    operationId: returnsettingsUpdateReturnSettings
+- target: $.paths['/commerce/settings/shipping/orderhandlingfee'].get
+  description: Add derived operationId for GET /commerce/settings/shipping/orderhandlingfee
+  update:
+    operationId: shippingsettingsGetOrderHandlingFee
+- target: $.paths['/commerce/settings/shipping/orderhandlingfee'].post
+  description: Add derived operationId for POST /commerce/settings/shipping/orderhandlingfee
+  update:
+    operationId: shippingsettingsCreateShippingSettings
+- target: $.paths['/commerce/settings/shipping/orderhandlingfee'].put
+  description: Add derived operationId for PUT /commerce/settings/shipping/orderhandlingfee
+  update:
+    operationId: shippingsettingsUpdateShippingSettings
+- target: $.paths['/commerce/settings/shipping'].get
+  description: Add derived operationId for GET /commerce/settings/shipping
+  update:
+    operationId: shippingsettingsGetSiteShippingSettings
+- target: $.paths['/commerce/settings/subscription/subscriptionsettings'].get
+  description: Add derived operationId for GET /commerce/settings/subscription/subscriptionsettings
+  update:
+    operationId: subscriptionsettingsGetSubscriptionSettings
+- target: $.paths['/commerce/settings/subscription/subscriptionsettings'].post
+  description: Add derived operationId for POST /commerce/settings/subscription/subscriptionsettings
+  update:
+    operationId: subscriptionsettingsCreateSubscriptionSettings
+- target: $.paths['/commerce/settings/subscription/subscriptionsettings'].put
+  description: Add derived operationId for PUT /commerce/settings/subscription/subscriptionsettings
+  update:
+    operationId: subscriptionsettingsUpdateSubscriptionSettings

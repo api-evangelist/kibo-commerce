@@ -1,0 +1,295 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce Shipment Metadata API
+  version: '1.0'
+  description: 'Operations tagged ShipmentMetadata across 2 of this provider''s published API definitions: openapi_openapi_fulfillment.json, kibo-commerce-fulfillment-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: ShipmentMetadata
+paths:
+  /commerce/shipments/metadata/query-descriptor:
+    get:
+      deprecated: false
+      parameters:
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/QueryDescriptorDto'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryDescriptorDto'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/QueryDescriptorDto'
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Query Descriptor
+      tags:
+      - ShipmentMetadata
+      operationId: getCommerceShipmentsMetadataQueryDescriptor
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/shipments/metadata/rule-fields:
+    get:
+      deprecated: false
+      parameters:
+      - description: filter
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      - in: header
+        name: x-vol-site
+        required: false
+        schema:
+          format: int32
+          type: integer
+      - in: header
+        name: x-vol-tenant
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          content:
+            application/hal+json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShipmentRuleFieldDto'
+                type: array
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShipmentRuleFieldDto'
+                type: array
+            application/xml:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ShipmentRuleFieldDto'
+                type: array
+          description: OK
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+      summary: Get Rule Fields
+      tags:
+      - ShipmentMetadata
+      operationId: getCommerceShipmentsMetadataRuleFields
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    SortDescriptorDto:
+      properties:
+        ascValue:
+          type: string
+        descValue:
+          type: string
+        multiFieldSeparator:
+          type: string
+        queryParam:
+          type: string
+      title: SortDescriptorDto
+      type: object
+    LogicalOperatorsDto:
+      properties:
+        and:
+          type: string
+        or:
+          type: string
+      title: LogicalOperatorsDto
+      type: object
+    PaginationDto:
+      properties:
+        defaultPageSize:
+          format: int32
+          type: integer
+        pageParam:
+          type: string
+        pageSizeParam:
+          type: string
+      title: PaginationDto
+      type: object
+    QueryDescriptorDto:
+      properties:
+        endpoint:
+          type: string
+        filterParam:
+          type: string
+        logicalOperators:
+          $ref: '#/components/schemas/LogicalOperatorsDto'
+        multiSortSeparator:
+          type: string
+        pagination:
+          $ref: '#/components/schemas/PaginationDto'
+        ruleFieldsEndpoint:
+          type: string
+        sortAscPrefix:
+          type: string
+        sortDescPrefix:
+          type: string
+        sortParam:
+          type: string
+      title: QueryDescriptorDto
+      type: object
+    RuleOperatorDto:
+      description: Metadata for a rule field operator including display text and RSQL syntax
+      properties:
+        code:
+          description: Operator code identifier
+          enum:
+          - eq
+          - ne
+          - in
+          - le
+          - lt
+          - ge
+          - gt
+          - cont
+          - sw
+          example: eq
+          type: string
+        display:
+          description: Human-readable operator display text for UI
+          example: is equal to
+          type: string
+        filterSyntax:
+          description: RSQL filter syntax token for query construction
+          example: ==
+          type: string
+      required:
+      - code
+      - display
+      - filterSyntax
+      title: RuleOperatorDto
+      type: object
+    ShipmentRuleFieldDto:
+      description: Metadata for a shipment rule field including operators, data type, and UI grouping information
+      properties:
+        allowNullOnRight:
+          description: Whether null values are allowed on the right side of the operator
+          example: false
+          type: boolean
+        apiFieldName:
+          description: API field name for RSQL filter construction
+          example: shipmentType
+          type: string
+        apiOperators:
+          description: Comprehensive operator metadata with display text and RSQL syntax
+          items:
+            $ref: '#/components/schemas/RuleOperatorDto'
+          type: array
+        applicableTo:
+          description: Attribute scope (Shipment, ShipmentItem, ShipmentAndShipmentItem) for custom attributes only
+          example: Shipment
+          type: string
+        dataType:
+          description: Data type of the field (string, enum, date, boolean, number)
+          example: enum
+          type: string
+        displayValue:
+          description: Human-readable display name for UI
+          example: Shipment Type
+          type: string
+        fieldName:
+          description: Field name identifier used internally
+          example: ShipmentType
+          type: string
+        ruleFieldType:
+          description: Field type for UI grouping (ShipmentField, ShipmentAttribute, ItemAttribute)
+          example: ShipmentField
+          type: string
+        ruleFieldTypeDisplayValue:
+          description: Display value for the field type group header
+          example: Shipment Fields
+          type: string
+        sortDescriptor:
+          $ref: '#/components/schemas/SortDescriptorDto'
+          description: Sort descriptor with query parameter format and ascending/descending values
+        sortable:
+          description: Whether this field supports sorting in result sets
+          example: false
+          type: boolean
+        supportedOperators:
+          description: List of supported operator codes (legacy, use apiOperators instead)
+          example:
+          - eq
+          - ne
+          - in
+          items:
+            type: string
+          type: array
+        validEnumValues:
+          description: List of valid enumerated values for enum/list data types
+          items:
+            $ref: '#/components/schemas/ShipmentRuleEnumValueDto'
+          type: array
+      required:
+      - allowNullOnRight
+      - dataType
+      - displayValue
+      - fieldName
+      - supportedOperators
+      title: ShipmentRuleFieldDto
+      type: object
+    ShipmentRuleEnumValueDto:
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      title: ShipmentRuleEnumValueDto
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_fulfillment.json
+- kibo-commerce-fulfillment-openapi.yml

@@ -1,0 +1,2639 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce B2B Account API
+  version: '1.0'
+  description: 'Operations tagged B2BAccount across 2 of this provider''s published API definitions: openapi_openapi_customer.json, kibo-commerce-customer-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: B2BAccount
+paths:
+  /commerce/customer/b2baccounts/{accountId}/salesrep/{userId}:
+    delete:
+      description: Removes a specific sales rep from B2B account .
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Remove Sales Rep From B2B Account
+      tags:
+      - B2BAccount
+      operationId: deleteCommerceCustomerB2baccountsByAccountIdSalesrepByUserId
+      x-operation-id-source: derived
+    post:
+      description: Adds a sales rep to a B2B account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Add Sales Rep To B2B Account
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccountsByAccountIdSalesrepByUserId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/addsalesreps:
+    post:
+      description: Adds lists of sales reps to a B2B account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Add Sales Reps To B2B Account
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccountsByAccountIdAddsalesreps
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/user:
+    post:
+      description: Adds user to B2B account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BUserAndAuthInfo'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BUser'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BUser'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BUser'
+          description: OK
+      summary: Add User
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccountsByAccountIdUser
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/user/{userId}/roles/{roleId}:
+    delete:
+      description: Removes a role from the specified user.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifier of the user with the role to delete.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifer of the role to delete.
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Remove User Role Async
+      tags:
+      - B2BAccount
+      operationId: deleteCommerceCustomerB2baccountsByAccountIdUserByUserIdRolesByRoleId
+      x-operation-id-source: derived
+    post:
+      description: Add a role to B2B user. These roles include Admin, Purchaser, and Non-Purchaser.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifier of the user who receives the role.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: Unique identifier of the role to add.
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Add User Role Async
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccountsByAccountIdUserByUserIdRolesByRoleId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}:
+    delete:
+      description: 'This operation will fail if any users in the account are currently
+
+        assigned to this role.'
+      parameters:
+      - description: Role ID
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Account ID
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Remove a role from a specific account
+      tags:
+      - B2BAccount
+      operationId: deleteCommerceCustomerB2baccountsRolesByRoleIdAccountsByAccountId
+      x-operation-id-source: derived
+    put:
+      description: Assign a role to a specific account.
+      parameters:
+      - description: Role ID
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Account ID
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Assign a role to a specific account
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsRolesByRoleIdAccountsByAccountId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/changeparent/{parentAccountId}:
+    post:
+      description: Change the B2B parent account for an existing B2B account that belongs to an account hierarchy.
+      parameters:
+      - description: Unique identifier of the B2B account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: parentAccountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Change Parent Account
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccountsByAccountIdChangeparentByParentAccountId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/roles:
+    post:
+      description: 'Required fields:
+
+        - Name: Role name (must be unique within tenant)
+
+        - Behaviors: List of behavior IDs (at least one required)
+
+        - AccountIds: List of account IDs to associate with role (at least one required)'
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BRole'
+        description: Role payload containing name, behaviors, and accountIds
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+          description: OK
+      summary: Create a new role and associate it with specified accounts
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccountsRoles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/priority/delete:
+    put:
+      description: Deletes the priorities of specified B2B accounts
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                format: int32
+                type: integer
+              type: array
+        description: The IDs of the accounts whose priorities are to be deleted.
+      responses:
+        '200':
+          description: OK
+      summary: Delete Account Priorities
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsPriorityDelete
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/roles/{roleId}/accounts/{accountId}/apply-to-future-children/{enabled}:
+    put:
+      description: 'This setting only affects future account creation and does not modify existing child accounts.
+
+        The inheritance applies to all levels of the hierarchy (children, grandchildren, etc.).
+
+        When enabled, the system will automatically assign this role to all future child accounts
+
+        and grandchildren created under the specified account in the hierarchy.'
+      parameters:
+      - description: Role ID
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Account ID
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: True to apply role to future children, false to disable
+        in: path
+        name: enabled
+        required: true
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Enable or disable role inheritance for future child accounts
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsRolesByRoleIdAccountsByAccountIdApplyToFutureChildrenByEnabled
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/priority/read:
+    get:
+      description: Retrieves the priorities of B2B accounts
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPriorityModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountPriorityModel'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountPriorityModel'
+          description: OK
+      summary: Get Account Priorities
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsPriorityRead
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/accountsbyuser:
+    get:
+      description: Retrieves account IDs of all active accounts that a user belongs to by username or email. If emailAddress and userName are both provided, the email address will be used. When getAllAccounts is set to true, all accounts will be returned regardless of the AccountStatus.
+      parameters:
+      - in: query
+        name: emailAddress
+        schema:
+          type: string
+      - in: query
+        name: userName
+        schema:
+          type: string
+      - in: query
+        name: getAllAccounts
+        schema:
+          type: boolean
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+            text/json:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+            text/plain:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+          description: OK
+      summary: Get Accounts by User
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsAccountsbyuser
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/salesrep/{userId}:
+    get:
+      description: Gets list of accounts for the B2B sales rep account.
+      parameters:
+      - description: ''
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+            text/json:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+            text/plain:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+          description: OK
+      summary: Get Accounts For Sales Rep
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsSalesrepByUserId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/roles:
+    get:
+      description: Get all roles available to the specified account.
+      parameters:
+      - description: B2B account ID
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BRoleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BRoleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BRoleCollection'
+          description: OK
+      summary: Get all roles available to the specified account
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdRoles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}:
+    get:
+      description: Retrieves the details of a B2B account specified by its unique identifier.
+      parameters:
+      - description: Unique identifier of the B2B account whose details you want to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: 'Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional.'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Get B2B Account
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountId
+      x-operation-id-source: derived
+    put:
+      description: Modifies an existing B2B account. If you want to update the users on an account, call the user-specific endpoints (such as Add User and Remove User) instead.
+      parameters:
+      - description: Unique identifier of the B2B account.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BAccount'
+        description: Properties of the B2B account to update.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Update Account
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsByAccountId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/attributes/{attributeFQN}:
+    delete:
+      description: Deletes a specific customer attribute specified by attributeFQN.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete B2B Account Attribute
+      tags:
+      - B2BAccount
+      operationId: deleteCommerceCustomerB2baccountsByAccountIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    get:
+      description: Retrieves the contents of a particular attribute attached to a specified account.
+      parameters:
+      - description: Unique identifier of the b2b account that contains the attribute to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Fully qualified name of the attribute that you want to retrieve.
+        in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+          description: OK
+      summary: Get B2B Account Attribute
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    put:
+      description: Modifies an existing attribute for a b2b account.
+      parameters:
+      - description: Unique identifier of the account whose attribute you want to modify.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - in: path
+        name: attributeFQN
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAttribute'
+        description: The new content to replace the existing attribute.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+          description: OK
+      summary: Update B2B Account Attribute
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsByAccountIdAttributesByAttributeFQN
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/attributes:
+    get:
+      description: Retrieves a list of notes added to an account according to any specified filter criteria and sort options.
+      parameters:
+      - description: Unique identifier of the customer account whose notes you want to retrieve.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 20
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          default: ''
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          default: ''
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttributeCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttributeCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttributeCollection'
+          description: OK
+      summary: Get B2B Account Attributes
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdAttributes
+      x-operation-id-source: derived
+    post:
+      description: Add a customer attribute to the B2B account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerAttribute'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerAttribute'
+          description: OK
+      summary: Add B2B Account tAttribute
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccountsByAccountIdAttributes
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/hierarchy:
+    get:
+      description: Retrieves the account hierarchy for a B2B account specified by its unique identifier.
+      parameters:
+      - description: Unique identifier of the B2B account whose account hierarchy you want to retrieve. This can be any account belonging to the same hierarchy.
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: 'Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional.'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccountHierarchyResult'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccountHierarchyResult'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccountHierarchyResult'
+          description: OK
+      summary: Get B2B Account Hierarchy
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdHierarchy
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts:
+    get:
+      description: Retrieves a list of B2B accounts according to any filter criteria and sort options.
+      parameters:
+      - description: "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.\n            For example, applications can filter on UserId to get the single record of the current customer."
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - in: query
+        name: fields
+        schema:
+          type: string
+      - description: a quick filter which will search a predefined set of fields for a match
+        in: query
+        name: q
+        schema:
+          type: string
+      - in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: 'Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional.'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccountCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccountCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccountCollection'
+          description: OK
+      summary: Get B2B Accounts
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccounts
+      x-operation-id-source: derived
+    post:
+      description: Creates a new B2B account in the Pending Approval state. This account will not yet be active, as it requires a sales representative to be assigned (with .../b2baccounts/{accountId}/salesrep/{userId}) before it is approved (with .../b2baccounts/{accountId}/status/{actionName}).
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BAccount'
+        description: Properties of the new B2B account to create.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Add Account
+      tags:
+      - B2BAccount
+      operationId: postCommerceCustomerB2baccounts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/behaviors:
+    get:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BehaviorCollection'
+          description: OK
+      summary: Get Behaviors for b2b shopper
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsBehaviors
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/roles/{roleId}:
+    delete:
+      description: 'This operation will fail if any users are currently assigned to this role
+
+        in any of the associated accounts.'
+      parameters:
+      - description: Role ID
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      responses:
+        '200':
+          description: OK
+      summary: Delete role and all its account associations
+      tags:
+      - B2BAccount
+      operationId: deleteCommerceCustomerB2baccountsRolesByRoleId
+      x-operation-id-source: derived
+    get:
+      description: Get role details by role ID, including associated account IDs.
+      parameters:
+      - description: Role ID
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+          description: OK
+      summary: Get role details by role ID, including associated account IDs
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsRolesByRoleId
+      x-operation-id-source: derived
+    put:
+      description: 'Required fields:
+
+        - Name: Role name (must be unique within tenant)
+
+        - Behaviors: List of behavior IDs (at least one required)
+
+        - AccountIds: List of account IDs to associate with role (at least one required)
+
+
+        Note: This performs a complete replacement of account associations.'
+      parameters:
+      - description: Role ID
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BRole'
+        description: Role payload containing name, behaviors, and accountIds
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BRole'
+          description: OK
+      summary: Update existing role and its account associations
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsRolesByRoleId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/user/{userId}/behaviors:
+    get:
+      description: Gets shopper behaviors of the B2B user.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+            text/json:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+            text/plain:
+              schema:
+                items:
+                  format: int32
+                  type: integer
+                type: array
+          description: OK
+      summary: Get User Behaviors
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdUserByUserIdBehaviors
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/user/{userId}/roles:
+    get:
+      description: Retrieves all the roles for a specified user of a b2b account. These roles may include Admin, Purchaser, and Non-Purchaser.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: Unique identifier of the user.
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerUserRoleCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/CustomerUserRoleCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/CustomerUserRoleCollection'
+          description: OK
+      summary: Get User Roles Async
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdUserByUserIdRoles
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/users:
+    get:
+      description: Retrieves a list of user for a B2B account according to any filter criteria and sort options.
+      parameters:
+      - in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: "Used to page results from a query. Indicates the zero-based offset in the complete result set where the returned entities begin. For example, with a PageSize of 25, to get the 51st through the 75th items, startIndex=3. The default value is 0. Optional.\n            For example, applications can filter on UserId to get the single record of the current customer."
+        in: query
+        name: startIndex
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: Used to page results from a query. Indicates the maximum number of entities to return from a query. The default value is 20 and the maximum value is 200. Optional.
+        in: query
+        name: pageSize
+        schema:
+          default: 0
+          format: int32
+          type: integer
+      - description: The element to sort the results by and the order in which the results appear. Either ascending (a-z) or descending (z-a) order. Optional.
+        in: query
+        name: sortBy
+        schema:
+          type: string
+      - description: 'A set of filter expressions representing the search parameters for a query: eq=equals, ne=not equals, gt=greater than, lt = less than or equals, gt = greater than or equals, lt = less than or equals, sw = starts with, or cont = contains. Optional.'
+        in: query
+        name: filter
+        schema:
+          type: string
+      - description: a quick filter which will search a predefined set of fields for a match
+        in: query
+        name: q
+        schema:
+          type: string
+      - description: limit on quick filter which will search a predefined set of fields for a match
+        in: query
+        name: qLimit
+        schema:
+          format: int32
+          type: integer
+      - description: 'Used to refine the default information returned from a request. To reduce amount of customer account information returned, use the valid response groups: Contacts, CustomerAccountNotes, and OrderSummary. Optional.'
+        in: query
+        name: responseGroups
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BUserCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BUserCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BUserCollection'
+          description: OK
+      summary: Get Users Async
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdUsers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/roles/{roleId}/users:
+    get:
+      description: Retrieves a list of users who have a specific role in a B2B account.
+      parameters:
+      - description: The B2B account identifier
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: The role identifier
+        in: path
+        name: roleId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/B2BUser'
+                type: array
+            text/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/B2BUser'
+                type: array
+            text/plain:
+              schema:
+                items:
+                  $ref: '#/components/schemas/B2BUser'
+                type: array
+          description: OK
+      summary: Get Users By Role
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsByAccountIdRolesByRoleIdUsers
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/behaviors/categories:
+    get:
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/BehaviorCategoryCollection'
+          description: OK
+      summary: Gets all the behavior categories for the b2b shopper
+      tags:
+      - B2BAccount
+      operationId: getCommerceCustomerB2baccountsBehaviorsCategories
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/user/{userId}/remove:
+    put:
+      description: Removes a B2B user from an account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Remove User
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsByAccountIdUserByUserIdRemove
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/priority/update:
+    put:
+      description: Updates the priorities of B2B accounts. The Priority for blacklisted accounts will be set as -1.
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountPriorityModel'
+        description: The account priorities to update.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountPriorityModel'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/AccountPriorityModel'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/AccountPriorityModel'
+          description: OK
+      summary: Update Account Priorities
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsPriorityUpdate
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/status/{actionName}:
+    put:
+      description: Updates the status on B2B account by transitioning it between states with the approve, deny, enable, and disable actions. An account that has been newly requested will be in the Pending Approval state and can be approved or denied. An account that has been previously approved can be disabled to deactivate it, while a disabled or denied account can be reinstated by enabling or approving it.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: actionName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Update B2B Account Status
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsByAccountIdStatusByActionName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/salesrep:
+    put:
+      description: Updates list of sales reps on a B2B account.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                type: string
+              type: array
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BAccount'
+          description: OK
+      summary: Update Sales Reps On B2B Account
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsByAccountIdSalesrep
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/{accountId}/user/{userId}:
+    put:
+      description: Updates a B2B user specified by user Id.
+      parameters:
+      - description: ''
+        in: path
+        name: accountId
+        required: true
+        schema:
+          format: int32
+          type: integer
+      - description: ''
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/B2BUser'
+        description: ''
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/B2BUser'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/B2BUser'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/B2BUser'
+          description: OK
+      summary: Update User
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsByAccountIdUserByUserId
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /commerce/customer/b2baccounts/upgradeaccounts:
+    put:
+      description: Upgrades bulk B2C accounts to B2B
+      parameters:
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              items:
+                format: int32
+                type: integer
+              type: array
+        description: List of accountIds(integers)
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpgradeToB2BAccountResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/UpgradeToB2BAccountResponse'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/UpgradeToB2BAccountResponse'
+          description: OK
+      summary: Upgrade B2C Accounts To B2B
+      tags:
+      - B2BAccount
+      operationId: putCommerceCustomerB2baccountsUpgradeaccounts
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    UpgradeToB2BAccountError:
+      description: This class is used for reporting errors while upgrading the B2C account to B2B.
+      properties:
+        accountID:
+          format: int32
+          type: integer
+        errorMessage:
+          type:
+          - string
+          - 'null'
+      type: object
+    Resource:
+      properties:
+        id:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerUserRoleCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CustomerAttribute:
+      properties:
+        attributeDefinitionId:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        fullyQualifiedName:
+          type:
+          - string
+          - 'null'
+        values:
+          items: {}
+          type:
+          - array
+          - 'null'
+      type: object
+    B2BUserAndAuthInfo:
+      properties:
+        b2BUser:
+          $ref: '#/components/schemas/B2BUser'
+        externalPassword:
+          type:
+          - string
+          - 'null'
+        isImport:
+          type: boolean
+      type: object
+    B2BUserCollection:
+      description: Collection of users in a B2B account.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/B2BUser'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    B2BAccount:
+      description: "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \nMerchants can edit accounts to add internal notes or assign them to segments."
+      properties:
+        accountType:
+          description: Type of account.
+          type:
+          - string
+          - 'null'
+        approvalStatus:
+          description: Status on B2B account.
+          type:
+          - string
+          - 'null'
+        attributes:
+          description: List of attributes for the account.
+          items:
+            $ref: '#/components/schemas/CustomerAttribute'
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        commerceSummary:
+          $ref: '#/components/schemas/CommerceSummary'
+        companyOrOrganization:
+          description: The company or organization name for an account.
+          type:
+          - string
+          - 'null'
+        contacts:
+          description: List of contacts for this account. A customer account can have multiple contacts for billing and shipping addresses.
+          items:
+            $ref: '#/components/schemas/CustomerContact'
+          type:
+          - array
+          - 'null'
+        customerSet:
+          type:
+          - string
+          - 'null'
+        customerSinceDate:
+          description: Date when the customer account is created.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        externalId:
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the account, also known as a customer number.
+          format: int32
+          type: integer
+        isActive:
+          description: Is the B2B account active?
+          type:
+          - boolean
+          - 'null'
+        migrationRequired:
+          description: Indicates Subscription migration is required or not.
+          type: boolean
+        notes:
+          description: "List of notes for the account. Merchants use these internal notes, for example, to make a note of a customer's interests or complaints. \nNotes are available only from the merchant's view, customers cannot view these notes."
+          items:
+            $ref: '#/components/schemas/CustomerNote'
+          type:
+          - array
+          - 'null'
+        parentAccountId:
+          description: Parent account Id in B2B hierarchy
+          format: int32
+          type:
+          - integer
+          - 'null'
+        priceList:
+          description: Price list on B2B account.
+          type:
+          - string
+          - 'null'
+        priority:
+          description: Priority of the b2b account for order release
+          format: int32
+          type:
+          - integer
+          - 'null'
+        rootAccountId:
+          description: Root account Id in B2B hierarchy
+          format: int32
+          type:
+          - integer
+          - 'null'
+        salesReps:
+          description: List of sales rep on B2B account.
+          items:
+            $ref: '#/components/schemas/AccountSalesRep'
+          type:
+          - array
+          - 'null'
+        segments:
+          description: "List of segments assigned to account. Merchants create segments, for example, to manage discounts or assign VIP status. \nThen they assign the account to the segment. An account can belong to several segments or none at all."
+          items:
+            $ref: '#/components/schemas/CustomerSegment'
+          type:
+          - array
+          - 'null'
+        taxExempt:
+          type: boolean
+        taxId:
+          type:
+          - string
+          - 'null'
+        users:
+          description: List of B2B users on the account.
+          items:
+            $ref: '#/components/schemas/B2BUser'
+          type:
+          - array
+          - 'null'
+      type: object
+    CurrencyAmount:
+      description: The currency code and amount of an order listed in the order history of a customer account. Currently, only USD is supported.
+      properties:
+        amount:
+          description: Total amount of the order. Currently, only US dollar amounts are supported.
+          format: double
+          type: number
+        currencyCode:
+          description: Currency code for the amount of the order. Currently, only "USD" is supported.
+          type:
+          - string
+          - 'null'
+      type: object
+    B2BRoleCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/B2BRole'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    B2BAccountHierarchyResult:
+      properties:
+        accounts:
+          description: All accounts belonging to this account hierarchy.
+          items:
+            $ref: '#/components/schemas/B2BAccount'
+          type:
+          - array
+          - 'null'
+        hierarchy:
+          $ref: '#/components/schemas/AccountHierarchyNode'
+      type: object
+    CustomerAttributeCollection:
+      description: Collection of notes added to a customer account returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CustomerAttribute'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    CommerceSummary:
+      description: Commerce (orders and wishlists) on a customer account which lists all the orders the customer has made with the order date, order amount, and status. Includes cancellations and returns.  Also includes wishlist information.
+      properties:
+        lastOrderDate:
+          description: When the last order was placed.
+          format: date-time
+          type:
+          - string
+          - 'null'
+        orderCount:
+          description: Number of orders listed in the order history of a customer account.
+          format: int32
+          type: integer
+        totalOrderAmount:
+          $ref: '#/components/schemas/CurrencyAmount'
+        visitsCount:
+          description: Number of visits for this customer across the entire tenant.
+          format: int32
+          type: integer
+        wishlistCount:
+          description: Number of wishlists listed in the wishlist count of a customer account
+          format: int32
+          type: integer
+      type: object
+    BehaviorCategoryCollectionBase:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/BehaviorCategory'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    B2BAccountCollection:
+      description: Collection of all the B2B Accounts returned as a whole. A collection is not paged.
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/B2BAccount'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AccountHierarchyNode:
+      properties:
+        children:
+          items:
+            type: object
+          type:
+          - array
+          - 'null'
+        id:
+          format: int32
+          type: integer
+      type: object
+    CustomerNote:
+      description: Note added to the customer account. Merchants can add internal notes, for example, to keep track of a customer's interests or complaints.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        content:
+          description: Content of the note that the merchant added.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the note.
+          format: int32
+          type: integer
+      type: object
+    UpgradeToB2BAccountResponse:
+      description: 'This class is used for sending custom response while upgrading the B2C accounts to B2B.
+
+        The custom response returns a list of success, skipped and error accountIDs while upgrade.'
+      properties:
+        errorAccountIds:
+          items:
+            $ref: '#/components/schemas/UpgradeToB2BAccountError'
+          type:
+          - array
+          - 'null'
+        skippedAccountIds:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        successAccountIds:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    CustomerSegment:
+      description: A customer segment.
+      properties:
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        code:
+          description: Unique identifier of the customer segment.
+          type:
+          - string
+          - 'null'
+        description:
+          description: Description of the customer segment.
+          type:
+          - string
+          - 'null'
+        id:
+          description: Unique identifier of the customer segment.
+          format: int32
+          type: integer
+        name:
+          description: Name of the customer segment.
+          type:
+          - string
+          - 'null'
+      type: object
+    BehaviorCategory:
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    Address:
+      properties:
+        address1:
+          type:
+          - string
+          - 'null'
+        address2:
+          type:
+          - string
+          - 'null'
+        address3:
+          type:
+          - string
+          - 'null'
+        address4:
+          type:
+          - string
+          - 'null'
+        addressType:
+          type:
+          - string
+          - 'null'
+        cityOrTown:
+          type:
+          - string
+          - 'null'
+        countryCode:
+          type:
+          - string
+          - 'null'
+        isValidated:
+          type:
+          - boolean
+          - 'null'
+        postalOrZipCode:
+          type:
+          - string
+          - 'null'
+        stateOrProvince:
+          type:
+          - string
+          - 'null'
+      type: object
+    AccountPriorityModel:
+      description: Model used for B2b account priority
+      properties:
+        accountPriorities:
+          description: List of account priorities.
+          items:
+            $ref: '#/components/schemas/AccountPriority'
+          type:
+          - array
+          - 'null'
+        blackListedAccounts:
+          description: List of blacklisted accounts which should not be considered for priority order release.
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+      type: object
+    BehaviorCategoryCollection:
+      allOf:
+      - $ref: '#/components/schemas/BehaviorCategoryCollectionBase'
+      - additionalProperties: false
+        type: object
+    ContactType:
+      properties:
+        isPrimary:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+      type: object
+    UserScope:
+      properties:
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        name:
+          type:
+          - string
+          - 'null'
+        type:
+          type:
+          - string
+          - 'null'
+      type: object
+    Behavior:
+      properties:
+        categoryId:
+          format: int32
+          type: integer
+        id:
+          format: int32
+          type: integer
+        isPrivate:
+          type: boolean
+        name:
+          type:
+          - string
+          - 'null'
+        oAuthScopes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        requiresBehaviorIds:
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        systemRoles:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        validUserTypes:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    BehaviorCollectionBase:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/Behavior'
+          type:
+          - array
+          - 'null'
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+    AccountSalesRep:
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        adminUserId:
+          type:
+          - string
+          - 'null'
+      type: object
+    AuditInfo:
+      properties:
+        createBy:
+          type:
+          - string
+          - 'null'
+        createDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        updateBy:
+          type:
+          - string
+          - 'null'
+        updateDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+    CustomerContact:
+      description: CustomerContact information for a customer account including the name, company, phone numbers, email addresses, and billing and shipping addresses (if supplied).
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        address:
+          $ref: '#/components/schemas/Address'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        companyOrOrganization:
+          type:
+          - string
+          - 'null'
+        email:
+          type:
+          - string
+          - 'null'
+        faxNumber:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        id:
+          format: int32
+          type:
+          - integer
+          - 'null'
+        label:
+          type:
+          - string
+          - 'null'
+        lastNameOrSurname:
+          type:
+          - string
+          - 'null'
+        middleNameOrInitial:
+          type:
+          - string
+          - 'null'
+        phoneNumbers:
+          $ref: '#/components/schemas/Phone'
+        types:
+          items:
+            $ref: '#/components/schemas/ContactType'
+          type:
+          - array
+          - 'null'
+      type: object
+    BehaviorCollection:
+      allOf:
+      - $ref: '#/components/schemas/BehaviorCollectionBase'
+      - additionalProperties: false
+        type: object
+    UserRole:
+      properties:
+        assignedInScope:
+          $ref: '#/components/schemas/UserScope'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        roleId:
+          format: int32
+          type: integer
+        roleName:
+          type:
+          - string
+          - 'null'
+        roleResources:
+          items:
+            $ref: '#/components/schemas/Resource'
+          type:
+          - array
+          - 'null'
+        roleTags:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        userId:
+          type:
+          - string
+          - 'null'
+      type: object
+    AccountPriority:
+      description: Represents an account priority.
+      properties:
+        accounts:
+          description: List of accounts against the priority. One account will have only 1 priority assigned to it.
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        priority:
+          description: The Priority or rank of accounts. Lowest value has highest priority.
+          format: int32
+          type: integer
+      type: object
+    B2BRole:
+      properties:
+        accountIds:
+          description: 'List of Account IDs associated with this role.
+
+            Required for CreateRole and UpdateRole operations.'
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        auditInfo:
+          $ref: '#/components/schemas/AuditInfo'
+        behaviors:
+          description: List of Role Behaviors
+          items:
+            format: int32
+            type: integer
+          type:
+          - array
+          - 'null'
+        id:
+          description: Unique Identifier for the Role
+          format: int32
+          type: integer
+        isSystemRole:
+          description: Indicate if the Role is a System Role or Custom Role
+          type: boolean
+        name:
+          description: Name for the Role
+          type:
+          - string
+          - 'null'
+      type: object
+    B2BUser:
+      description: "Customer account. Customers provide contact information, view order history, and set email preferences on their account. \nMerchants can edit accounts to add internal notes or assign them to segments."
+      properties:
+        acceptsMarketing:
+          description: If true, the customer prefers to receive marketing material such as newsletters or email offers.
+          type: boolean
+        emailAddress:
+          type:
+          - string
+          - 'null'
+        firstName:
+          type:
+          - string
+          - 'null'
+        hasExternalPassword:
+          description: Indicates if an external password is set on this account
+          type: boolean
+        isActive:
+          type: boolean
+        isLocked:
+          type: boolean
+        isRemoved:
+          type: boolean
+        last2FaDate:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        lastName:
+          type:
+          - string
+          - 'null'
+        localeCode:
+          type:
+          - string
+          - 'null'
+        roles:
+          items:
+            $ref: '#/components/schemas/UserRole'
+          type:
+          - array
+          - 'null'
+        userId:
+          description: Unique identifier of the user who is currently logged in. This is null if the user is anonymous (not logged in).  Unicode data with a maximum length of 55 characters.
+          type:
+          - string
+          - 'null'
+        userName:
+          type:
+          - string
+          - 'null'
+      type: object
+    Phone:
+      properties:
+        home:
+          type:
+          - string
+          - 'null'
+        mobile:
+          type:
+          - string
+          - 'null'
+        work:
+          type:
+          - string
+          - 'null'
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_customer.json
+- kibo-commerce-customer-openapi.yml

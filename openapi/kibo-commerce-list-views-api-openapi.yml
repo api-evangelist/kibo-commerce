@@ -1,0 +1,301 @@
+openapi: 3.2.0
+info:
+  title: Kibo Commerce List Views API
+  version: '1.0'
+  description: 'Operations tagged ListViews across 2 of this provider''s published API definitions: openapi_openapi_entities.json, kibo-commerce-entities-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- description: Kibo Base URL
+  url: '{baseUrl}/api'
+  variables:
+    baseUrl:
+      default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+      description: Base URL
+security:
+- bearerAuth: []
+tags:
+- name: List Views
+paths:
+  /platform/entitylists/{entityListFullName}/views:
+    get:
+      description: Get all of the defined ListViews for a specific EntityList for a specific tenant
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListViewCollection'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListViewCollection'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListViewCollection'
+          description: OK
+      summary: Get ListViews
+      tags:
+      - List Views
+      operationId: getPlatformEntitylistsByEntityListFullNameViews
+      x-operation-id-source: derived
+    post:
+      description: Create a new ListView definition for a specific EntityList for a specific tenant
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListView'
+        description: The new ListView definition
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListView'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListView'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListView'
+          description: OK
+      summary: Add ListView
+      tags:
+      - List Views
+      operationId: postPlatformEntitylistsByEntityListFullNameViews
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+  /platform/entitylists/{entityListFullName}/views/{viewName}:
+    delete:
+      description: Delete an existing ListView definition for a specific EntityList for a specific tenant
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The name of the ListView to delete
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete ListView
+      tags:
+      - List Views
+      operationId: deletePlatformEntitylistsByEntityListFullNameViewsByViewName
+      x-operation-id-source: derived
+    get:
+      description: Returns a specific ListView definition for a specific EntityList for a specific tenant
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The name of the ListView
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListView'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListView'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListView'
+          description: OK
+      summary: Get ListView
+      tags:
+      - List Views
+      operationId: getPlatformEntitylistsByEntityListFullNameViewsByViewName
+      x-operation-id-source: derived
+    put:
+      description: Update an existing ListView definition for a specific EntityList for a specific tenant
+      parameters:
+      - description: The full name of the EntityList including namespace in name@nameSpace format
+        in: path
+        name: entityListFullName
+        required: true
+        schema:
+          type: string
+      - description: The name of the ListView
+        in: path
+        name: viewName
+        required: true
+        schema:
+          type: string
+      - description: limits which fields are returned in the response body
+        in: query
+        name: responseFields
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListView'
+        description: The udpated ListView definition
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListView'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListView'
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListView'
+          description: OK
+      summary: Update ListView
+      tags:
+      - List Views
+      operationId: putPlatformEntitylistsByEntityListFullNameViewsByViewName
+      x-operation-id-source: derived
+    servers:
+    - description: Kibo Base URL
+      url: '{baseUrl}/api'
+      variables:
+        baseUrl:
+          default: https://t1000000.sb.usc1.gcp.kibocommerce.com
+          description: Base URL
+components:
+  schemas:
+    ListView:
+      properties:
+        defaultSort:
+          description: Indicates a default sort to be applied to the ListView.
+          type:
+          - string
+          - 'null'
+        fields:
+          description: The list of ViewFields for this view. ViewFields can be used to filter or transform the underlying Entity to provide an optimized format for applications which query the ListView.  If no ViewFields are specified, entities will be returned for the View with no transform applied.
+          items:
+            $ref: '#/components/schemas/ListViewField'
+          type:
+          - array
+          - 'null'
+        filter:
+          description: Indicates a implicitly applied filter to the EntityList for to which the ListView is associated. All queries to the ListView will have this filter applied implicitly.
+          type:
+          - string
+          - 'null'
+        metaData:
+          description: An arbitrary json property to be used by external applications for any purpose. MZDB will persist and retrieve the metadata without any restrictions.
+          type:
+          - object
+          - 'null'
+        name:
+          description: The name of the ListView. This must be unique for the EntityList.
+          type:
+          - string
+          - 'null'
+        security:
+          description: less restrictive than collection/list security. public | admin | owner
+          type:
+          - string
+          - 'null'
+        usages:
+          description: Usages are arbitratry sting values used to provide instructions for other applications as to the intended areas where the view should be used. Mozu uses the "admin" usage valued to indicate that a ListView should appear in the EntityManager in the Admin UI.  The values are open ended and applications may provide any value for a usage. This field can be used in queries to the EntityList.
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    ListViewField:
+      description: shared by cms/mzdb.
+      properties:
+        name:
+          description: The name of the field in the view.
+          type:
+          - string
+          - 'null'
+        target:
+          description: A JPath query to the source property for this ViewField.
+          type:
+          - string
+          - 'null'
+        type:
+          description: The datatype of the field. Valid values are "string", "integer", "decimal", "date", "bool". See SharedConstants.DataTypeConst
+          type:
+          - string
+          - 'null'
+      type: object
+    ListViewCollection:
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/ListView'
+          type:
+          - array
+          - 'null'
+        pageCount:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        startIndex:
+          format: int32
+          type: integer
+        totalCount:
+          format: int32
+          type: integer
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: JWT
+      description: JWT Authorization header using the Bearer scheme.
+      scheme: bearer
+      type: http
+x-refined-from:
+- openapi_openapi_entities.json
+- kibo-commerce-entities-openapi.yml
