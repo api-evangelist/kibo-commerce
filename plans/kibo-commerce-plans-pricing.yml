@@ -72,3 +72,45 @@ plans:
   - Optional subscriptions commerce
   - Optional B2B commerce
 note: Kibo Commerce uses enterprise pricing model with "Contact sales" for all plans. No public pricing available. Plans are structured around product bundles (Order Management, B2C Commerce, B2B Commerce) with tiered feature sets.
+x-canonical:
+  generated: '2026-10-18'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models: []
+  units: []
+  plans:
+  - name: Order Management - Starter
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Order Management - Essentials
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Order Management - Advanced
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: B2C & DTC eCommerce - Starter
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: B2C & DTC eCommerce - Essentials
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: B2C & DTC eCommerce - Advanced
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
