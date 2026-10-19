@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.kibocommerce.com/openapi/openapi_dropship.json",
+ "requested_url": "https://docs.kibocommerce.com/openapi/openapi_dropship.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 65891,
+ "sha256": "2dd98f918bd1a5fdb8202b732f9700a1b6d566b81cb6448c618e1c2c96164f25",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

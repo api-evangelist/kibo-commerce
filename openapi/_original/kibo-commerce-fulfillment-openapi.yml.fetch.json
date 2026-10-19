@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.kibocommerce.com/openapi/openapi_fulfillment.json",
+ "requested_url": "https://docs.kibocommerce.com/openapi/openapi_fulfillment.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 715949,
+ "sha256": "e056365d0bc321d6881319a18356dda06b4df788e3fb2143cdc2f02774a2a00b",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.kibocommerce.com/openapi/openapi_catalog_storefront.json",
+ "requested_url": "https://docs.kibocommerce.com/openapi/openapi_catalog_storefront.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 244384,
+ "sha256": "17ac17fe8114ec3b29a2fd7f0bd66e84b0e7e8aca774569c2583ddfcc4cb830c",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}

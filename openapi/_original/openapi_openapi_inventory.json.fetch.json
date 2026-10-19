@@ -1,0 +1,12 @@
+{
+ "url": "https://docs.kibocommerce.com/openapi/openapi_inventory.json",
+ "requested_url": "https://docs.kibocommerce.com/openapi/openapi_inventory.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 243547,
+ "sha256": "74e80e7788b4b175767b64e5302ab1f6cbdaf4357c23c44086fe4d1ce2a9d9b1",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
