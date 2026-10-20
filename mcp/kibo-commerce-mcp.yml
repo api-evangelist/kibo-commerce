@@ -3,16 +3,20 @@ method: probed
 status: official
 source: https://docs.kibocommerce.com/pages/kibo-mcp-server
 name: Kibo Commerce MCP servers
-description: 'Kibo publishes two hosted MCP servers: the Commerce MCP Server, a tenant-hosted HTTP endpoint at https://{host}/mcp/admin/{toolCategories?} exposing 500+ admin/runtime API operations filtered
-  by tool category (documented; gated by tenant credentials), and the Kibo Documentation MCP server at https://docs.kibocommerce.com/mcp (probed live, open).'
+description: 'Kibo publishes two hosted MCP servers: the Commerce MCP Server, a tenant-hosted HTTP endpoint
+  at https://{host}/mcp/admin/{toolCategories?} exposing 500+ admin/runtime API operations filtered by
+  tool category (documented; gated by tenant credentials), and the Kibo Documentation MCP server at https://docs.kibocommerce.com/mcp
+  (probed live, open).'
 deployment:
   mode: remote
   endpoint: https://docs.kibocommerce.com/mcp
   auth: none
   verified: probed
   checked: '2026-10-18'
-  note: The probed endpoint is the documentation server. The Commerce MCP Server is per-tenant (endpoint pattern https://{host}/mcp/admin/{toolCategories?}, e.g. https://t1000000-s12345.sb.usc1.gcp.kibocommerce.com/mcp/admin/)
-    with Basic (applicationKey:clientSecret) or Bearer JWT auth; no tenant URL is public, so it is recorded as documented, not probed.
+  note: The probed endpoint is the documentation server. The Commerce MCP Server is per-tenant (endpoint
+    pattern https://{host}/mcp/admin/{toolCategories?}, e.g. https://t1000000-s12345.sb.usc1.gcp.kibocommerce.com/mcp/admin/)
+    with Basic (applicationKey:clientSecret) or Bearer JWT auth; no tenant URL is public, so it is recorded
+    as documented, not probed.
 servers:
 - name: Kibo Commerce MCP Server
   transport: streamable-http
@@ -31,10 +35,12 @@ servers:
   probe:
     url: https://t1000000.sb.usc1.gcp.kibocommerce.com/mcp/admin/
     status: 404
-    body: 'ReverseProxy ITEM_NOT_FOUND "Item not found: Tenant" -- the docs example tenant does not exist; a real tenant host is required'
+    body: 'ReverseProxy ITEM_NOT_FOUND "Item not found: Tenant" -- the docs example tenant does not exist;
+      a real tenant host is required'
     date: '2026-10-18'
   tool_count: 500+ (documented; individual tool names are not published, only categories)
-  tool_listing: 'l3: table of tool CATEGORIES (Category | Description) per API group; categories are URL filters, not tool names'
+  tool_listing: 'l3: table of tool CATEGORIES (Category | Description) per API group; categories are URL
+    filters, not tool names'
   tool_categories:
   - category: cart.create
     group: Commerce Runtime
@@ -992,20 +998,54 @@ servers:
   install_example: claude mcp add kibo-docs -- npx mcp-remote https://docs.kibocommerce.com/mcp
   tools:
   - name: search_kibo_documentation
-    description: Search across the Kibo Documentation knowledge base to find relevant information, code examples, API references, and guides. Use this tool when you need to answer questions about Kibo Documentation,
-      find specific documentation, understand how features work, or locate implementation details. The sear
+    description: Search across the Kibo Documentation knowledge base to find relevant information, code
+      examples, API references, and guides. Use this tool when you need to answer questions about Kibo
+      Documentation, find specific documentation, understand how features work, or locate implementation
+      details. The sear
     inputs:
     - query
   - name: query_docs_filesystem_kibo_documentation
-    description: Run a read-only shell-like query against a virtualized, in-memory filesystem rooted at `/` that contains ONLY the Kibo Documentation documentation pages and OpenAPI specs. This is NOT a
-      shell on any real machine — nothing runs on the user's computer, the server host, or any network. The filesystem i
+    description: Run a read-only shell-like query against a virtualized, in-memory filesystem rooted at
+      `/` that contains ONLY the Kibo Documentation documentation pages and OpenAPI specs. This is NOT
+      a shell on any real machine — nothing runs on the user's computer, the server host, or any network.
+      The filesystem i
     inputs:
     - command
   - name: submit_feedback
-    description: 'Report a problem with this documentation site so the docs team can fix it. Use when a documentation page is incorrect, outdated, confusing, incomplete, or has a broken example. This is
-      for feedback about the documentation content itself — not for product support requests or feedback about this tool '
+    description: 'Report a problem with this documentation site so the docs team can fix it. Use when
+      a documentation page is incorrect, outdated, confusing, incomplete, or has a broken example. This
+      is for feedback about the documentation content itself — not for product support requests or feedback
+      about this tool '
     inputs:
     - path
     - feedback
 tool_count: 316
-notes: 3 documentation tools observed via live tools/list; 313 Commerce MCP tool categories transcribed from the provider docs table.
+notes: 3 documentation tools observed via live tools/list; 313 Commerce MCP tool categories transcribed
+  from the provider docs table.
+tool_quality:
+  tool_count: 3
+  tokens_total: 1820
+  tokens_per_tool_median: 239
+  heavy_tools:
+  - name: query_docs_filesystem_kibo_documentation
+    tokens: 1344
+  heavy_tool_count: 1
+  params_total: 4
+  params_undescribed: 0
+  params_described_pct: 100.0
+  tools_with_undescribed_params: 0
+  tools_annotated: 3
+  annotated_pct: 100.0
+  state_changing_unhinted: []
+  tools_missing_schema: 0
+  short_descriptions: 0
+  duplicate_descriptions: 0
+  duplicate_names: 0
+  nonportable_names: []
+  output_schema_count: 0
+  token_estimate: chars/3.6 of each compact tool definition
+  source: mcp/kibo-commerce-mcp-tools.json
+  measured: '2026-10-20'
+  scored: false
+  note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
+    from Glimind's agent-readiness audit.
