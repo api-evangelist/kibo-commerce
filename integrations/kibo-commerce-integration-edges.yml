@@ -1,19 +1,126 @@
 generated: '2026-10-18'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/kibo-commerce/integrations
 - https://n8n.io/integrations/kibo-commerce/
 - https://composio.dev/toolkits/kibo-commerce
 - https://monid.ai/tools/kibo-commerce
 checked:
+- contentful/integrations/contentful-integration-edges.yml
+- https://api.nuget.org/v3
+- https://aws.amazon.com/marketplace/
 - https://composio.dev/toolkits/kibo-commerce
+- https://crates.io/api/v1
 - https://kibocommerce.com/platform/connect-hub/
 - https://monid.ai/tools/kibo-commerce
 - https://n8n.io/integrations/kibo-commerce/
 - https://partners.kibocommerce.com/integrations/
+- https://proxy.golang.org
+- https://pypi.org/pypi
+- https://registry.npmjs.org
+- https://repo1.maven.org/maven2
+- https://rubygems.org/api/v1
 - https://zapier.com/apps/kibo-commerce/integrations
 summary: Kibo has a Connect Hub for commerce integrations and mentions MCP Server for agentic AI integrations, but
   no specific integration partners were listed on the pages checked.
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Contentful (own)
+  partner: contentful
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.contentful.com/marketplace/kibo-commerce/
+  mirror_of: contentful/integrations/contentful-integration-edges.yml
+  apps:
+  - Kibo Commerce App
+  listing_count: 1
+  detected: '2026-10-19'
+  detected_by: mirror-platform-listings.py
+- partner_name: AWS Marketplace
+  partner: amazon-web-services
+  partner_match: aggregator
+  type: marketplace
+  marketplace: aws-marketplace
+  channel: distribution
+  relationship: distribution-channel
+  direction: third-party
+  evidence: https://aws.amazon.com/marketplace/seller-profile?id=5266ea99-b537-4294-94ea-12a4186d2f57
+  listing_count: 2
+  apps:
+  - Kibo Order Management
+  - Kibo Composable eCommerce
+  seller_name: Kibo
+  detected_by: sweep-cloud-marketplaces.py
+  detected: '2026-10-19'
+- partner_name: npm registry
+  partner: npm
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official SDK (JavaScript/TypeScript)
+  evidence: https://www.npmjs.com/package/@kibocommerce/cli-web-login
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@kibocommerce/cli-web-login'
+      version: 1.0.3
+      released: '2026-09-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@kibocommerce/cli-web-login
+      repo_leg: github-org:kibosoftware
+      publisher_leg: org:kibocommerce
+      matched_by: github-org
+    - name: '@kibocommerce/graphql-client'
+      version: 1.0.3-beta.10
+      released: '2026-09-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@kibocommerce/graphql-client
+      repo_leg: github-org:kibosoftware
+      publisher_leg: org:kibocommerce
+      matched_by: github-org
+    - name: '@kibocommerce/kibo-kpp-ucp-catalog-sync-cli'
+      version: 0.0.4
+      released: '2026-09-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@kibocommerce/kibo-kpp-ucp-catalog-sync-cli
+      repo_leg: github-org:kibosoftware
+      publisher_leg: org:kibocommerce
+      matched_by: github-org
+    - name: '@kibocommerce/rest-sdk'
+      version: 3.2634.1
+      released: '2026-09-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@kibocommerce/rest-sdk
+      repo_leg: github-org:kibosoftware
+      publisher_leg: org:kibocommerce
+      matched_by: github-org
+    - name: '@kibocommerce/sdk-authentication'
+      version: 1.0.1
+      released: '2026-09-14'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@kibocommerce/sdk-authentication
+      repo_leg: github-org:kibosoftware
+      publisher_leg: org:kibocommerce
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-20'
+  detected_by: sweep-official-sdks.py
+  first_seen: '2026-10-20'
 templates: []
