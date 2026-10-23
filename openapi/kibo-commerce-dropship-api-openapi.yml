@@ -1890,3 +1890,9 @@ components:
 x-refined-from:
 - openapi_openapi_dropship.json
 - kibo-commerce-dropship-openapi.yml
+x-provenance:
+  method: harvested
+  publisher: Kibo Commerce
+  source: https://docs.kibocommerce.com/openapi/openapi_dropship.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

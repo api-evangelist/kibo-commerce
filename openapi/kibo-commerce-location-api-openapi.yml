@@ -1247,3 +1247,9 @@ x-refined-from:
 - openapi_openapi_location.json
 - kibo-commerce-location-openapi.yml
 - kibo-commerce-location-storefront-openapi.yml
+x-provenance:
+  method: harvested
+  publisher: Kibo Commerce
+  source: https://docs.kibocommerce.com/openapi/openapi_location_storefront.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

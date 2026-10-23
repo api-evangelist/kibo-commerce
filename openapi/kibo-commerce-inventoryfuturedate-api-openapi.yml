@@ -172,3 +172,9 @@ components:
 x-refined-from:
 - openapi_openapi_inventory.json
 - kibo-commerce-inventory-openapi.yml
+x-provenance:
+  method: harvested
+  publisher: Kibo Commerce
+  source: https://docs.kibocommerce.com/openapi/openapi_inventory.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
